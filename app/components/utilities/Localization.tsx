@@ -27,6 +27,7 @@ const strings = new LocalizedStrings({
     supportForumHeader: 'Support Forum',
     leaderBoardHeader: 'LeaderBoard',
     bookingListHeader: 'Booking List',
+    bookingDetails: 'Booking Details',
     settingHeader: 'Setting',
     logout: 'LogOut',
     versionText: 'version',
@@ -36,8 +37,10 @@ const strings = new LocalizedStrings({
     byCreating: 'By Signing up you agree to our',
     termsAndCondition: 'Terms & Conditions',
     and: 'and',
+    scanQrCode: 'Scan Qr',
     view: 'View',
     status: 'Status',
+    cancel: 'Cancel',
     privacyPolicy: 'Privacy Policy',
     ofJusto: 'of Justo.',
     basicInfoText: 'Basic Information',
@@ -76,6 +79,8 @@ const strings = new LocalizedStrings({
     copyLink: 'Copy Link',
     dropLocation: 'Drop Location',
     selectNewCloseManager: 'Select New Closing Manager',
+    bookNow: 'Book Now',
+    browse: 'Browse',
 
 
     // common strings
@@ -143,6 +148,7 @@ const strings = new LocalizedStrings({
     propertyrequire: 'Property Require',
     createVisitor: 'Create Visitor',
     Statusupdate: 'Status Update',
+    cancelBooking: 'Cancel Booking',
     ScheduleSitevisite: 'Schedule Site Visite',
     createandschedule: 'Create & schedule',
     propertyrequired: 'Property Required',
@@ -167,6 +173,7 @@ const strings = new LocalizedStrings({
     addNewappointment: 'Add New Appointment',
     selectLead: 'Select Lead',
     selectproperty: 'Select Property',
+    reason: 'Reason',
     appointmentDate: 'Appointment Date',
     appointmentTime: 'Appointment Time',
     location: 'Location',
