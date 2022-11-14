@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, } from "react";
 import AppointmentView from './components/Appointments'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AppointmentsScreen = ({ navigation }: any) => {
+    const [dropLocisVisible, setDropLocisVisible] = useState(false)
     const [filterisVisible, setFilterisVisible] = useState(false)
     const DATA: any = [
         {
@@ -63,6 +65,9 @@ const AppointmentsScreen = ({ navigation }: any) => {
     const onPressView = (items: any) => {
         navigation.navigate('AppointmentDetailMain', { items })
     };
+    const handleScanQr = (items: any) => {
+        navigation.navigate('ScanQr')
+    };
     return (
         <>
             <AppointmentView
@@ -71,6 +76,9 @@ const AppointmentsScreen = ({ navigation }: any) => {
                 handleDrawerPress={handleDrawerPress}
                 onPressView={onPressView}
                 DATA={DATA}
+                handleScanQr={handleScanQr}
+                dropLocisVisible={dropLocisVisible}
+                setDropLocisVisible={setDropLocisVisible}
             />
         </>
     )
