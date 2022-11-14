@@ -41,11 +41,16 @@ import SeparateLinkScreen from '../views/Setting/SeparateLink';
 import BookingListScreen from '../views/BookingManagement/BookingList';
 import BookingDetailsScreen from '../views/BookingManagement/BookingDetails';
 import AppointmentsScreen from '../views/AppointMent/AppintMents';
-import AppointmentDetailsScreen from '../views/AppointMent/AppointMentDetails';
+import AppointmentDetailsScreen from '../views/AppointMent/AppointmentDetails';
+import AppointmentForSiteScreen from '../views/AppointMentForSite/AppointmentScreen';
+import AppointmentForSiteDetailScreen from '../views/AppointMentForSite/AppointmentDetails';
+import AddAppointmentForSiteScreen from '../views/AppointMentForSite/AddAppointment';
 import FollUpAddScreen from '../views/FollowUp/FollowUpAdd';
 import VisitorUpdateScreen from '../views/LeadManagement/VisitorUpdate';
 import ScanQrScreen from '../views/ScanQr';
 import BookingScreen from '../views/BookingManagement/Booking';
+import LeaderBoardScreen from '../views/LeaderBoard/LeaderBoardScreen';
+import LeaderBoardSearchScreen from '../views/LeaderBoard/LeaderBoardSearch';
 
 
 const Stack = createNativeStackNavigator();
@@ -60,10 +65,13 @@ const DrawerComponent = () => {
       <Drawer.Screen name="LeadManagementScreen" component={LeadManagementScreen} />
       <Drawer.Screen name="SourcingManager" component={SourcingManager} />
       <Drawer.Screen name="FollowUpScreen" component={FollowUpScreen} />
+      <Drawer.Screen name="AppointmentForSite" component={AppointmentForSiteScreen} />
       <Drawer.Screen name="AppointmentScreenCPSM" component={AppointmentScreenCPSM} />
       <Drawer.Screen name="SettingScreen" component={SettingScreen} />
       <Drawer.Screen name="Appointments" component={AppointmentsScreen} />
       <Drawer.Screen name="BookingList" component={BookingListScreen} />
+      <Drawer.Screen name="PickupRequest" component={PickupRequestScreen} />
+      <Drawer.Screen name="LeaderBoard" component={LeaderBoardScreen} />
       {/* <Drawer.Screen name="profile" component={ProfileScreen}  /> */}
     </Drawer.Navigator>
   );
@@ -117,15 +125,22 @@ const Route = () => {
         <Stack.Screen name="AppointmentDetails" component={AppointmentDetails} />
         <Stack.Screen name="AddAppointmentScreen" component={AddAppointmentScreen} />
 
+        {/* Appointment for Site */}
+        <Stack.Screen name="AppointmentForSiteDetail" component={AppointmentForSiteDetailScreen} />
+        <Stack.Screen name="AddAppointmentForSite" component={AddAppointmentForSiteScreen} />
+
 
         {/* BookingDetails */}
         <Stack.Screen name="BookingDetails" component={BookingDetailsScreen} />
+        <Stack.Screen name="Booking" component={BookingScreen} />
 
         {/* Appointment  */}
         <Stack.Screen name="AppointmentDetailMain" component={AppointmentDetailsScreen} />
         <Stack.Screen name="FollUpAdd" component={FollUpAddScreen} />
         <Stack.Screen name="VisitorUpdate" component={VisitorUpdateScreen} />
-        <Stack.Screen name="Booking" component={BookingScreen} />
+
+        {/* LeaderBoard  */}
+        <Stack.Screen name="LeaderBoardSearch" component={LeaderBoardSearchScreen} />
 
         {/* Profile Management */}
         <Stack.Screen name="ScanQr" component={ScanQrScreen} />

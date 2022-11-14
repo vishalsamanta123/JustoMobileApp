@@ -11,19 +11,22 @@ import {
 } from '../../../../components/utilities/constant';
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+  },
   headerStyle: {
-    backgroundColor: WHITE_COLOR,
+    backgroundColor: PRIMARY_THEME_COLOR,
   },
   headerTextStyle: {
-    color: BLACK_COLOR,
+    color: WHITE_COLOR,
   },
-  mainContainer: {
-    flexGrow: 1,
+  leftImageIconStyle: {
+    tintColor: WHITE_COLOR,
   },
   wrap: {
-    flex: 1,
-    margin: normalizeSpacing(20),
-    alignItems: 'center'
+    flexGrow: 1,
+    marginHorizontal: normalizeSpacing(20),
+    alignItems: 'center',
   },
   headingText: {
     fontSize: normalize(18),
@@ -101,9 +104,6 @@ const styles = StyleSheet.create({
     fontSize: normalize(13),
     fontFamily: FONT_FAMILY_EXTRABOLD
   },
-  btnView: {
-    marginBottom: normalizeSpacing(20),
-  }
 });
 
 export default styles;

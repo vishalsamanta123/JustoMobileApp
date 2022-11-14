@@ -1,23 +1,19 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import LeadDetailsView from './Components/LeadDetailsView'
+import AppointmentDetailsView from './Components/AppointmentDetailsView'
 
-const LeadDetails = ({ navigation }: any) => {
+const AppointmentDetails = ({ navigation }: any) => {
   const handleBackPress = () => {
     navigation.goBack()
   }
   const handleStatusUpdate = () => {
     navigation.navigate('FollUpAdd')
   }
-  const handleScheduleVisit = () => {
-    navigation.navigate('AddAppointmentScreen')
-  }
   return (
-    <LeadDetailsView
+    <AppointmentDetailsView
       handleStatusUpdate={handleStatusUpdate}
-      handleScheduleVisit={handleScheduleVisit}
       handleBackPress={handleBackPress} />
   )
 }
 
-export default LeadDetails
+export default AppointmentDetails

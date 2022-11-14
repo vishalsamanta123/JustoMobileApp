@@ -64,15 +64,12 @@ const PickupRequestsList = (props: any) => {
           <Text style={styles.nameTxt}>{props.items.visitScore}</Text>
         </View>
       </View>
-      <View style={styles.Txtview} >
+      <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Status :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={[styles.nameTxt, {
-            color: props.items.status == 'confirmatin Pending' ? BLACK_COLOR :
-              props.items.status == 'Subscribe' ? YELLOW_COLOR : 'red'
-          }]}>{props.items.status}</Text>
+          <Text style={styles.nameTxt}>{props.items.status}</Text>
         </View>
       </View>
     </View>
