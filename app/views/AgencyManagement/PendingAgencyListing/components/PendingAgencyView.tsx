@@ -76,7 +76,7 @@ const PendingAgencyView = (props: any) => {
     <View style={styles.mainContainer}>
       <Header
         leftImageSrc={images.backArrow}
-        rightFirstImageScr={images.filter}
+        // rightFirstImageScr={images.filter}
         rightSecondImageScr={images.notification}
         headerText={strings.agencyHeader}
         handleOnLeftIconPress={props.handleBackPress}

@@ -129,7 +129,7 @@ const SMDetailsView = (props: any) => {
                     btnTxtsize={16}
                     textTransform={null}
                     buttonText={strings.cpAllocation}
-                    handleBtnPress={() => props.handleCpAllocation()}
+                    handleBtnPress={() => props.handleCpAllocationPress()}
                 />
             </View>
         </View>

@@ -38,15 +38,46 @@ const FilterModal = (props: any) => {
               />
             </View>
             <View style={styles.inputWrap}>
+              <InputField
+                placeholderText={"By Cutomer Name"}
+                handleInputBtnPress={() => { }}
+                onChangeText={() => { }}
+              />
+            </View>
+            <View style={styles.inputWrap}>
+              <InputField
+                placeholderText={"By Property Name"}
+                handleInputBtnPress={() => { }}
+                onChangeText={() => { }}
+              />
+            </View>
+            <View style={styles.inputWrap}>
               <DropdownInput
                 placeholder={strings.appointmentWith}
-                value={props.value}
-                setValue={props.setValue}
+                value={props.filterData.appointWith}
+                setValue={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    appointWith: data
+                  })
+                }}
+              />
+            </View>
+            <View style={styles.inputWrap}>
+              <DropdownInput
+                placeholder={strings.status}
+                value={props.filterData.status}
+                setValue={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    status: data
+                  })
+                }}
               />
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.search} />
+            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply} />
           </View>
         </View>
       </Modal>

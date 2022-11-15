@@ -12,17 +12,18 @@ import images from "../../../../assets/images";
 const CompanyDetails = (props: any) => {
   const insets = useSafeAreaInsets();
   return (
-    <ScrollView style={styles.mainContainer}>
+    <View style={styles.mainContainer}>
       <Header
         headerText={strings.companyDetails}
         headerStyle={styles.headerStyle}
         headerTextStyle={styles.headerTextStyle}
         leftImageSrc={images.backArrow}
+        leftImageIconStyle={styles.leftImageIconStyle}
         handleOnLeftIconPress={() => props.onPressNext(1)}
         barStyle={'light-content'}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <View style={styles.wrap}>
+      <ScrollView contentContainerStyle={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Agency Name"}
@@ -124,14 +125,14 @@ const CompanyDetails = (props: any) => {
             headingText={"IFSC Code"}
           />
         </View>
-      </View>
-      <View style={styles.btnView}>
-        <Button
-          handleBtnPress={() => props.onPressNext(3)}
-          buttonText={strings.createnewagency}
-          textTransform={'uppercase'} />
-      </View>
-    </ScrollView>
+        <View style={{ marginTop: 20 }}>
+          <Button
+            handleBtnPress={() => props.onPressNext(3)}
+            buttonText={strings.createnewagency}
+            textTransform={'uppercase'} />
+        </View>
+      </ScrollView>
+    </View >
   );
 };
 

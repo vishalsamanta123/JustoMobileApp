@@ -92,7 +92,7 @@ const SourcingManagersItem = (props: any) => {
                     btnTxtsize={14}
                     textTransform={null}
                     border={10}
-                    handleBtnPress={() => props.onPressStatus()}
+                    handleBtnPress={() => props.onPressAllocate()}
                 />
                 <TouchableOpacity style={styles.Viewbutton}
                     onPress={() => props.onPressView()}>
