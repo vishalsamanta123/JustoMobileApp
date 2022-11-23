@@ -34,7 +34,7 @@ const PendingAgencyView = (props: any) => {
       visitor: 123,
       siteVisit: 234,
       closeVisit: 600,
-      status: 'Active'
+      status: 'Pending'
     },
     {
       Projectname: 'ABC',
@@ -43,7 +43,7 @@ const PendingAgencyView = (props: any) => {
       visitor: 123,
       siteVisit: 234,
       closeVisit: 600,
-      status: 'Deactive'
+      status: 'Pending'
     },
     {
       Projectname: 'ABC',
@@ -52,7 +52,7 @@ const PendingAgencyView = (props: any) => {
       visitor: 123,
       siteVisit: 234,
       closeVisit: 600,
-      status: 'Active'
+      status: 'Pending'
     },
     {
       Projectname: 'ABC',
@@ -61,7 +61,7 @@ const PendingAgencyView = (props: any) => {
       visitor: 123,
       siteVisit: 234,
       closeVisit: 600,
-      status: 'Deactive'
+      status: 'Pending'
     },
   ];
 

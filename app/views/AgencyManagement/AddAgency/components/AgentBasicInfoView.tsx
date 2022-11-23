@@ -165,7 +165,7 @@ const AgentBasicInfoView = (props: any) => {
             <Text style={styles.addTxt}>+ Add location</Text>
           </TouchableOpacity>
         </View>
-        <View>
+        <View style={styles.buttonContainer}>
           <Button
             handleBtnPress={(type: any) => props.onPressNext(1)}
             rightImage={images.forwardArrow}

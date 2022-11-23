@@ -155,7 +155,12 @@ const styles = StyleSheet.create({
     fontSize: normalize(14),
     color: WHITE_COLOR,
     fontFamily: FONT_FAMILY_REGULAR
-  }
+  },
+  selecttxtmodel  : { 
+    marginVertical: normalizeSpacing(10),
+    fontFamily:FONT_FAMILY_EXTRABOLD,
+    fontSize:18
+},
 });
 
 export default styles;

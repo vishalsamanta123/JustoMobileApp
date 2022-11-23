@@ -69,7 +69,7 @@ const SourcingManagersItem = (props: any) => {
                     border={10}
                     handleBtnPress={() => props.onPressEditSM('edit')}
                 />
-                <Button
+               {/*  <Button
                     width={78}
                     height={30}
                     bgcolor={WHITE_COLOR}
@@ -80,7 +80,7 @@ const SourcingManagersItem = (props: any) => {
                     btnTxtsize={14}
                     border={10}
                     handleBtnPress={() => props.onPressStatus()}
-                />
+                /> */}
                 <Button
                     width={85}
                     height={30}

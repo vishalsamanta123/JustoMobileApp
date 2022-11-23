@@ -8,6 +8,8 @@ import { CALL_COLOR, PURPLE_COLOR } from '../../../../components/utilities/const
 
 const MyAppointment = (props: any) => {
   return (
+
+
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
@@ -22,7 +24,7 @@ const MyAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Appointment Type :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.appointmenttype}</Text>
+          <Text style={styles.nameTxt}>{props.items.appointmentType}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -38,27 +40,43 @@ const MyAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Appointment With :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.appwith}</Text>
+          <Text style={styles.nameTxt}>{props.items.appointmentWith}</Text>
         </View>
       </View>
+     {/*  <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>SM Name :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{props.items.smName}</Text>
+        </View>
+      </View> */}
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Status :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{props.items.status}</Text>
+        </View>
+      </View>
+
+
       <View style={styles.buttonContainer}>
-        {props.items.Status !== 'Confirmed' && props.items.Status !== 'Visitor not interested' ?
-          (
-            <Button
-              width={80}
-              height={30}
-              bgcolor={null}
-              bordercolor={PURPLE_COLOR}
-              borderWidth={1}
-              btnTxtcolor={PURPLE_COLOR}
-              buttonText={strings.edit}
-              btnTxtsize={14}
-              border={10}
-            // handleBtnPress={() => props.onPressEdit()}
-            />
-          )
-          : null
-        }
+
+        <Button
+          width={80}
+          height={30}
+          bgcolor={null}
+          bordercolor={PURPLE_COLOR}
+          borderWidth={1}
+          btnTxtcolor={PURPLE_COLOR}
+          buttonText={strings.edit}
+          btnTxtsize={14}
+          border={10}
+        // handleBtnPress={() => props.onPressEdit()}
+        />
+
+
         <Button
           width={80}
           height={30}
@@ -78,7 +96,11 @@ const MyAppointment = (props: any) => {
           />
         </TouchableOpacity>
       </View>
+
+
+
     </View>
+
   )
 }
 

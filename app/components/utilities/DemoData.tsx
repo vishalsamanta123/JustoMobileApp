@@ -68,34 +68,37 @@ export const AllFolloeUpData: any = [
     Description: 'A ticket, in a Support heolpdesk,is any issues It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.'
   },
 ]
-export const MyAppointMentData: any = [
+export const AppointMentSmData: any = [
   {
     date: '15/10/2022',
-    appointmenttype: 'Meetting With SM',
+    appointmentType: 'Meetting With SM',
     time: '11:00 AM',
-    appwith: 'ABC, XYZ, PKR',
+    appointmentWith: 'ABC, XYZ, PKR',
+    status : 'Confirm'
   },
   {
     date: '15/10/2022',
-    appointmenttype: 'Meetting With SM',
+    appointmentType: 'Meetting With SM',
     time: '11:00 AM',
-    appwith: 'ABC, XYZ, PKR',
+    appointmentWith: 'ABC, XYZ, PKR',
+    status : 'Confirm'
   },
   {
     date: '15/10/2022',
-    appointmenttype: 'Meetting With SM',
+    appointmentType: 'Meetting With SM',
     time: '11:00 AM',
-    appwith: 'ABC, XYZ, PKR',
+    appointmentWith: 'ABC, XYZ, PKR',
+    status : 'Confirm'
   },
 ]
-export const AppointMentSmData: any = [
+export const MyAppointMentData : any = [
   {
     date: '15/10/2022 ',
     appointmentType: 'Meeting with CP',
     time: '11:00 AM',
     appointmentWith: 'CP Name',
     smName: 'SM Name',
-    Status: 'Pending',
+    status: 'Pending',
   },
   {
     date: '15/10/2022 ',
@@ -103,7 +106,7 @@ export const AppointMentSmData: any = [
     time: '11:00 AM',
     appointmentWith: 'CP Name',
     smName: 'SM Name',
-    Status: 'Confirm',
+    status: 'Confirm',
   },
   {
     date: '15/10/2022 ',
@@ -111,7 +114,7 @@ export const AppointMentSmData: any = [
     time: '11:00 AM',
     appointmentWith: 'CP Name',
     smName: 'SM Name',
-    Status: 'Complete',
+    status: 'Complete',
   },
 ]
 

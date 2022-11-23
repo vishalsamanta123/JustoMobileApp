@@ -10,7 +10,7 @@ const LeadDetails = ({ navigation }: any) => {
     navigation.navigate('FollUpAdd')
   }
   const handleScheduleVisit = () => {
-    navigation.navigate('AddAppointmentScreen')
+    navigation.navigate('AddAppointmentForSite')
   }
   return (
     <LeadDetailsView

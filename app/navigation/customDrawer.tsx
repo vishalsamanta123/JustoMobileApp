@@ -171,7 +171,7 @@ const customDrawer = ({ navigation }: any) => {
           iconSource={images.report}
           tabTitle={strings.reportHeader}
         /> */}
-        <DrawerTabSection
+       {/*  <DrawerTabSection
           type={'sourcingmanager,closingmanager,closinghead'}
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
@@ -190,7 +190,7 @@ const customDrawer = ({ navigation }: any) => {
         <DrawerTabSection iconSource={images.chat} tabTitle={strings.chatHeader} />
         <DrawerTabSection
           type={'closinghead'}
-          iconSource={images.support} tabTitle={strings.supportHeader} />
+          iconSource={images.support} tabTitle={strings.supportHeader} /> */}
         <DrawerTabSection
           type={'all'}
           iconSource={images.setting} tabTitle={strings.settingHeader} handleDrawerNavigation={() => {
@@ -205,7 +205,7 @@ const customDrawer = ({ navigation }: any) => {
       </DrawerContentScrollView>
       <View style={styles.versionView}>
         <View style={styles.drawerTouch}>
-          <Text style={styles.drawerText}>{strings.versionText}{' 1.00.00'}</Text>
+          <Text style={styles.drawerText}>{strings.versionText}{'1.00.00'}</Text>
         </View>
       </View>
     </View>

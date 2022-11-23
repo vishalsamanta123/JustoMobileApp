@@ -104,6 +104,11 @@ const styles = StyleSheet.create({
     fontSize: normalize(13),
     fontFamily: FONT_FAMILY_EXTRABOLD
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: normalizeSpacing(10),
+  },
 });
 
 export default styles;

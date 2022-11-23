@@ -5,7 +5,7 @@ const AllocateCPScreen = ({ navigation, }: any) => {
     const constantArry: any[] = [
         {
             id: 1,
-            cpName: 'CP 1'
+            cpName: 'Ramesh Patidar Demo'
         },
         {
             id: 2,
@@ -39,7 +39,7 @@ const AllocateCPScreen = ({ navigation, }: any) => {
     const [cpList, setCpList] = useState([
         {
             id: 1,
-            cpName: 'CP 1'
+            cpName: 'Ramesh Patidar Demo'
         },
         {
             id: 2,
@@ -71,7 +71,7 @@ const AllocateCPScreen = ({ navigation, }: any) => {
         },
     ])
     const [selectedCp, setSelected] = useState<any>([])
-    const [allList, setAllList] = useState(false)
+    const [allList, setAllList] = useState(true)
     const [CPDetails, setCPDetails] = useState(false)
     const onPressBack = () => {
         navigation.goBack()

@@ -139,7 +139,7 @@ const AgentBankInfo = (props: any) => {
             <Text>browse</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ marginTop: 20 }}>
+        <View style={styles.buttonContainer}>
           <Button
             handleBtnPress={(type: any) => props.onPressNext(2)}
             buttonText={strings.createAgent}

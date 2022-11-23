@@ -125,7 +125,7 @@ const CompanyDetails = (props: any) => {
             headingText={"IFSC Code"}
           />
         </View>
-        <View style={{ marginTop: 20 }}>
+        <View style={styles.buttonContainer}>
           <Button
             handleBtnPress={() => props.onPressNext(3)}
             buttonText={strings.createnewagency}

@@ -73,10 +73,10 @@ const PendingAgencyListing = (props: any) => {
           width={78}
           height={30}
           bgcolor={WHITE_COLOR}
-          bordercolor={props.items.status === 'Deactive' ? GREEN_COLOR : RED_COLOR}
+          bordercolor={props.items.status === 'Pending' ? GREEN_COLOR : RED_COLOR}
           borderWidth={1}
-          btnTxtcolor={props.items.status === 'Deactive' ? GREEN_COLOR : RED_COLOR}
-          buttonText={props.items.status === 'Deactive' ? strings.active : strings.deactive}
+          btnTxtcolor={props.items.status === 'Pending' ? GREEN_COLOR : RED_COLOR}
+          buttonText={props.items.status === 'Pending' ? strings.active : strings.deactive}
           btnTxtsize={14}
           border={10}
         // handleBtnPress={() => props.setIsVisible(true)}
