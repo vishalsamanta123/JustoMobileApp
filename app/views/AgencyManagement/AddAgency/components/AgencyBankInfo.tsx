@@ -18,18 +18,18 @@ import Header from "../../../../components/Header";
 const AgentBankInfo = (props: any) => {
   const insets = useSafeAreaInsets();
   return (
-    <ScrollView style={styles.mainContainer}>
+    <View style={styles.mainContainer}>
       <Header
         headerText={strings.userbankinfo}
         headerStyle={styles.headerStyle}
         headerTextStyle={styles.headerTextStyle}
+        leftImageIconStyle={styles.leftImageIconStyle}
         leftImageSrc={images.backArrow}
         handleOnLeftIconPress={() => props.onPressNext(0)}
         barStyle={'light-content'}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <View style={styles.wrap}>
-
+      <ScrollView contentContainerStyle={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"RERA Certificat No."}
@@ -139,15 +139,15 @@ const AgentBankInfo = (props: any) => {
             <Text>browse</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ marginTop: 20 }}>
+        <View style={styles.buttonContainer}>
           <Button
             handleBtnPress={(type: any) => props.onPressNext(2)}
             buttonText={strings.createAgent}
             textTransform={"uppercase"}
           />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 

@@ -2,7 +2,8 @@ import { View, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
 import styles from './Styles'
 
-const AppointmentDtailsItem = () => {
+const AppointmentDtailsItem = (props : any) => {
+  const appdetail = props?.status
   return (
     <ScrollView>
       <View style={styles.Txtview}>
@@ -11,7 +12,7 @@ const AppointmentDtailsItem = () => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>15/10/2022</Text>
+           <Text style={styles.nameTxt}>{appdetail.date}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -20,7 +21,7 @@ const AppointmentDtailsItem = () => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>Meeting With SM</Text>
+          <Text style={styles.nameTxt}>{appdetail.appointmentType}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -29,7 +30,7 @@ const AppointmentDtailsItem = () => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>11:00 AM</Text>
+          <Text style={styles.nameTxt}>11:30 PM</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -38,7 +39,7 @@ const AppointmentDtailsItem = () => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>ABC, XYZ , PKR</Text>
+          <Text style={styles.nameTxt}>{appdetail.appointmentWith}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -47,9 +48,10 @@ const AppointmentDtailsItem = () => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>Pendding</Text>
+      <Text style={styles.nameTxt}>{appdetail.status}</Text>
         </View>
       </View>
+      { appdetail.status === 'Complete' ? <>
       <View style={styles.bottomView}>
         <Text style={styles.topTxt}>SH update information</Text>
       </View>
@@ -71,6 +73,7 @@ const AppointmentDtailsItem = () => {
           <Text style={styles.nameTxt}>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</Text>
         </View>
       </View>
+     </> : null }
     </ScrollView>
   )
 }

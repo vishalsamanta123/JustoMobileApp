@@ -11,7 +11,7 @@ import DropdownInput from "../../../../components/DropDown";
 const FilterModal = (props: any) => {
     const [value, setValue] = useState(null);
     return (
-        <Modal backdropOpacity={0.1}
+        <Modal backdropOpacity={0.6}
             isVisible={props.Visible}>
             <View style={styles.mainContainer}>
                 {/* <View style={styles.topContainer}>
@@ -23,6 +23,7 @@ const FilterModal = (props: any) => {
                 </View> */}
                 {/* <View style={styles.borderView} /> */}
                 <View style={{ marginHorizontal: 10 }}>
+                    <Text style={styles.selecttxtmodel}>Select Target for CP</Text>
                     <View style={styles.inputWrap}>
                         <DropdownInput
                             inputheight={40}

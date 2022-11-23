@@ -9,9 +9,13 @@ const LeadDetails = ({ navigation }: any) => {
   const handleStatusUpdate = () => {
     navigation.navigate('FollUpAdd')
   }
+  const handleScheduleVisit = () => {
+    navigation.navigate('AddAppointmentForSite')
+  }
   return (
     <LeadDetailsView
       handleStatusUpdate={handleStatusUpdate}
+      handleScheduleVisit={handleScheduleVisit}
       handleBackPress={handleBackPress} />
   )
 }

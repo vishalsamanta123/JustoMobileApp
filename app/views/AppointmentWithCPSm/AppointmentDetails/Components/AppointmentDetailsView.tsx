@@ -24,11 +24,15 @@ const AppointmentDetailsView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
             <View style={styles.propertyListView}>
-                <AppointmentDtailsItem />
+                <AppointmentDtailsItem 
+                 status = {props.status} />
             </View>
+
+            { props.status.status === 'Confirm' ? <>
             <View style={styles.bntView}>
                 <Button buttonText={strings.doneappointment}  />
             </View>
+            </> : null }
         </View>
     )
 }

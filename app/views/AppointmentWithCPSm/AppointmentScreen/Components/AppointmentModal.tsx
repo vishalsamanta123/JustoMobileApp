@@ -7,6 +7,7 @@ import strings from "../../../../components/utilities/Localization";
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import DropdownInput from "../../../../components/DropDown";
+
 const FilterModal = (props: any) => {
   return (
     <View>

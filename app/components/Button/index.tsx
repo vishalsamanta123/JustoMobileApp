@@ -17,7 +17,7 @@ const Button = (props: any) => {
     bordercolor = null,
     borderWidth = 0,
     btnTxtcolor = WHITE_COLOR,
-    btnTxtsize = 20,
+    btnTxtsize = 15,
     textTransform = "capitalize",
     marginTop = 0,
     rightImage,

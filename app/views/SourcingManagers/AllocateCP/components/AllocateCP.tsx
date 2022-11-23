@@ -7,6 +7,7 @@ import styles from './styles';
 import Button from '../../../../components/Button';
 import strings from '../../../../components/utilities/Localization';
 import AllocateCPDetails from '../components/AllocateDetails'
+import { ScrollView } from 'react-native-gesture-handler';
 
 const AllocateCPView = (props: any) => {
     return (
@@ -23,14 +24,14 @@ const AllocateCPView = (props: any) => {
                 barStyle={'light-content'}
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
-            <View style={styles.containerVw}>
+            <ScrollView style={styles.containerVw}>
                 <Text style={styles.headerTxt}>{strings.newAllocateTxt}</Text>
                 <View style={styles.selectedBox}>
                     {props?.selectedCp?.length > 0 ?
                         <>
                             {props?.selectedCp?.map((item: any, index: any) => {
                                 return (
-                                    <View style={[styles.innerBoxVw, { justifyContent: 'center' }]}>
+                                    <View style={[styles.innerBoxVw, { justifyContent: 'flex-start' }]}>
                                         <Text>{item.cpName}</Text>
                                         <TouchableOpacity onPress={() => props.handleDelete(item, index)}>
                                             <Image
@@ -61,9 +62,11 @@ const AllocateCPView = (props: any) => {
                                     : props?.selectedCp?.map(({ cpName }: any) => cpName);
                             return (
                                 <View
-                                    style={styles.innerBoxVw}>
-                                    <Text>{item.cpName}</Text>
-                                    <TouchableOpacity onPress={() => props.handleSelects(item)}
+                                    style={styles.innerBoxVwlist}>
+                                    <Text style={styles.innerBoxVwlistfont}>{item.cpName}</Text>
+                                    <TouchableOpacity onPress={() => !getSelected?.toString()
+                                                ?.includes(item.cpName)
+                                                ? props.handleSelects(item) : console.log('')}
                                         style={styles.checkBoxVw}>
                                         <Image
                                             style={styles.checksVw}
@@ -80,16 +83,17 @@ const AllocateCPView = (props: any) => {
                     /> : null
                 }
 
-                <View style={{ marginTop: 25, alignItems: 'flex-end', }}>
-                    <Button
-                        width={150}
-                        height={40}
-                        btnTxtsize={16}
-                        buttonText={strings.cpAllocation}
-                        textTransform={null}
-                        handleBtnPress={() => props.handleAddTarget()}
-                    />
-                </View>
+               
+            </ScrollView>
+              <View style={styles.btncontener}>
+                <Button
+                    width={150}
+                    height={40}
+                    btnTxtsize={16}
+                    buttonText={strings.cpAllocation}
+                    textTransform={null}
+                    handleBtnPress={() => props.handleAddTarget()}
+                />
             </View>
             <AllocateCPDetails
                 Visible={props.CPDetails}

@@ -11,11 +11,13 @@ const AgentBasicInfo = ({ navigation }: any) => {
   })
   const [imagePicker, setImagePicker] = useState(false)
   const onPressNext = (type: any) => {
+    console.log("onPressNext -> type", type)
     if (type > 2) {
       // navigation.navigate('OtpVerificationScreenView')
     } else {
       setFormType(type)
     }
+    navigation.navigate('AgencyListing')
   }
   const onPressBack = () => {
     navigation.goBack()

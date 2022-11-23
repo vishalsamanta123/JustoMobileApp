@@ -152,6 +152,13 @@ const customDrawer = ({ navigation }: any) => {
           type={'sourcinghead,sourcingmanager'}
           iconSource={images.event}
           tabTitle={strings.appointmentForVisitHeader}
+          handleDrawerNavigation={() => { navigation.navigate('AppointmentForSite'); }}
+        />
+        <DrawerTabSection
+          type={'sourcingmanager'}
+          iconSource={images.event}
+          tabTitle={strings.leaderBoardHeader}
+          handleDrawerNavigation={() => { navigation.navigate('LeaderBoard'); }}
         />
         <DrawerTabSection
           type={'sourcinghead,sourcingmanager'}
@@ -164,7 +171,7 @@ const customDrawer = ({ navigation }: any) => {
           iconSource={images.report}
           tabTitle={strings.reportHeader}
         /> */}
-        <DrawerTabSection
+       {/*  <DrawerTabSection
           type={'sourcingmanager,closingmanager,closinghead'}
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
@@ -175,28 +182,13 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.supportForumHeader}
         />
         <DrawerTabSection
-          type={'sourcingmanager'}
-          iconSource={images.support}
-          tabTitle={strings.leaderBoardHeader}
-        />
-        {/* <DrawerTabSection
           type={'sourcingmanager,closingmanager'}
           iconSource={images.support}
           tabTitle={strings.supportHeader}
-        /> */}
-        <DrawerTabSection
-          type={'closingmanager,closinghead'}
-          iconSource={images.setting}
-          tabTitle={strings.saleToolHeader}
-        />
-        <DrawerTabSection
-          type={'sourcinghead,sourcingmanager,closingmanager'}
-          iconSource={images.setting}
-          tabTitle={strings.settingHeader}
         />
         <DrawerTabSection iconSource={images.report} tabTitle={strings.reportHeader} />
         <DrawerTabSection iconSource={images.chat} tabTitle={strings.chatHeader} />
-        {/* <DrawerTabSection
+        <DrawerTabSection
           type={'closinghead'}
           iconSource={images.support} tabTitle={strings.supportHeader} /> */}
         <DrawerTabSection
@@ -213,7 +205,7 @@ const customDrawer = ({ navigation }: any) => {
       </DrawerContentScrollView>
       <View style={styles.versionView}>
         <View style={styles.drawerTouch}>
-          <Text style={styles.drawerText}>{strings.versionText}{' 1.00.00'}</Text>
+          <Text style={styles.drawerText}>{strings.versionText}{'1.00.00'}</Text>
         </View>
       </View>
     </View>

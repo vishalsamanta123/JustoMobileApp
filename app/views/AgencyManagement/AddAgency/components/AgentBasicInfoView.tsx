@@ -28,17 +28,18 @@ const AgentBasicInfoView = (props: any) => {
   const [checked, setChecked] = React.useState("first");
 
   return (
-    <ScrollView contentContainerStyle={styles.mainContainer}>
+    <View style={styles.mainContainer}>
       <Header
         headerText={strings.basicInfoText}
         headerStyle={styles.headerStyle}
         headerTextStyle={styles.headerTextStyle}
+        leftImageIconStyle={styles.leftImageIconStyle}
         leftImageSrc={images.backArrow}
         handleOnLeftIconPress={props.onPressBack}
         barStyle={'light-content'}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <View style={styles.wrap}>
+      <ScrollView contentContainerStyle={styles.wrap}>
         <TouchableOpacity onPress={() => props.setImagePicker(true)}
           style={styles.imageCircle}>
           {props.agencyData.image === '' ?
@@ -164,7 +165,7 @@ const AgentBasicInfoView = (props: any) => {
             <Text style={styles.addTxt}>+ Add location</Text>
           </TouchableOpacity>
         </View>
-        <View>
+        <View style={styles.buttonContainer}>
           <Button
             handleBtnPress={(type: any) => props.onPressNext(1)}
             rightImage={images.forwardArrow}
@@ -172,8 +173,8 @@ const AgentBasicInfoView = (props: any) => {
             textTransform={"uppercase"}
           />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 

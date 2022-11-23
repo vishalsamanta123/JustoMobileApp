@@ -21,8 +21,8 @@ const AppointmentView = (props: any) => {
     const [index, setIndex] = useState(0);
     const [FilterisVisible, setFilterisVisible] = useState(false)
     const [routes] = useState([
-        { key: 'first', title: 'My Appointment' },
-        { key: 'second', title: 'SM Appointment With CP' },
+        { key: 'first', title: 'My Appointment with CP' },
+        { key: 'second', title: 'My Appointment With ST' },
     ]);
     const renderTabBar = (props: any) => (
 
@@ -34,8 +34,9 @@ const AppointmentView = (props: any) => {
             style={{ backgroundColor: PRIMARY_THEME_COLOR_DARK }} />
 
     );
-    const onPressView = () => {
-        navigation.navigate('AppointmentDetails')
+    const onPressView = (items : any ) => {
+        console.log("onPressView -> items", items)
+       navigation.navigate('AppointmentDetails', items)
     }
     const onPressAddNew = () => {
         navigation.navigate('AddAppointmentScreen')
@@ -43,7 +44,8 @@ const AppointmentView = (props: any) => {
     const FirstRoute = () => (
         <FlatList
             data={MyAppointMentData}
-            renderItem={({ item }) => <MyAppointment items={item} onPressView={onPressView} />}
+            renderItem={({ item }) => <MyAppointment items={item} 
+            onPressView={(items : any) => onPressView(items)} />}
         />
     );
 

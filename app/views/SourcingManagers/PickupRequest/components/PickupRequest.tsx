@@ -6,6 +6,7 @@ import { PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import PickupRequestsList from './PickupRequestsList'
+import FilterModal from "../../../../components/Modals/FilterModal";
 
 
 const PickupRequestView = (props: any) => {
@@ -17,6 +18,7 @@ const PickupRequestView = (props: any) => {
                 rightSecondImageScr={images.notification}
                 headerText={strings.PickuprequestHeader}
                 handleOnLeftIconPress={props.handleDrawerPress}
+                handleOnRightFirstIconPress={() => props.setFilterisVisible(true)}
                 headerStyle={styles.headerStyle}
                 RightFirstIconStyle={styles.RightFirstIconStyle}
                 barStyle={'light-content'}
@@ -31,6 +33,9 @@ const PickupRequestView = (props: any) => {
                     />}
                 />
             </View>
+            <FilterModal
+                Visible={props.filterisVisible}
+                setIsVisible={props.setFilterisVisible} />
         </View>
     )
 }

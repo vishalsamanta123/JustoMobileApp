@@ -35,6 +35,7 @@ const LeadDetailsView = (props: any) => {
           btnTxtcolor={WHITE_COLOR}
           btnTxtsize={12}
           textTransform={"uppercase"}
+          handleBtnPress={() => props.handleScheduleVisit()}
         />
         <Button
           buttonText={strings.Statusupdate}
