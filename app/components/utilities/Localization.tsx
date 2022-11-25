@@ -83,6 +83,18 @@ const strings = new LocalizedStrings({
     bookNow: 'Book Now',
     browse: 'Browse',
 
+    usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
+    correctemail: 'Enter correct Email Address',
+    usernamerequired: 'Username is require. Please enter username',
+    passwordrequired: 'Password is require. Please enter password',
+    emailrequired: 'Email is require. Please enter email',
+    otprequired: 'Enter your OTP',
+    passwordnotmatch: 'Password and Confirm Password not match !',
+    requiredpassword: 'Enter your Password and Confirm Password',
+    requiredField: 'All Password field are required',
+    sendotp: 'Send OTP',
+    registration: 'registration',
+
 
     // common strings
     search: 'Search',

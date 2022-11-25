@@ -39,12 +39,12 @@ const LoginView = (props: any) => {
             isSecureText={isVisiblePassword}
             onChangeText={(val: any) => {
               props.setLoginData({
-                ...props.loginData, pass: val
+                ...props.loginData, password: val
               })
             }}
           />
         </View>
-        <TouchableOpacity style={styles.forgotTouch}>
+        <TouchableOpacity style={styles.forgotTouch} onPress={()=> props.handleForgotPress()}>
           <Text style={styles.forgotText}>{strings.forgotPassword}</Text>
         </TouchableOpacity>
         <View style={styles.btnView}>
