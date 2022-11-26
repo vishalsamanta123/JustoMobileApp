@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 import SplashScreen from '../views/Authentication/SplashScreen';
@@ -51,6 +52,15 @@ import ScanQrScreen from '../views/ScanQr';
 import BookingScreen from '../views/BookingManagement/Booking';
 import LeaderBoardScreen from '../views/LeaderBoard/LeaderBoardScreen';
 import LeaderBoardSearchScreen from '../views/LeaderBoard/LeaderBoardSearch';
+import { apiCall, setDefaultHeader } from '../components/utilities/httpClient';
+import apiEndPoints from '../components/utilities/apiEndPoints';
+import ForgotPassword from '../views/Authentication/ForgotPassword';
+import OtpVerificationScreen from '../views/Authentication/OtpVerification';
+import ChangePassword from '../views/Authentication/ChangePassword';
+import ImageContent from '../views/PropertyMangement/PropertyDetails/components/ImageContent';
+import VideoContent from '../views/PropertyMangement/PropertyDetails/components/VideoContent';
+import CatalogueContent from '../views/PropertyMangement/PropertyDetails/components/CatalogueContent';
+import AllocatePropertyScreen from '../views/PropertyMangement/PropertyAllocate';
 
 
 const Stack = createNativeStackNavigator();
@@ -78,16 +88,46 @@ const DrawerComponent = () => {
 };
 
 const Route = () => {
-  const [userData, setUserData] = useState<any>([])
+  // const [userData, setUserData] = useState<any>([])
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
 
-  const fetchData = async () => {
-    const data: any = await AsyncStorage.getItem('userData')
-    setUserData(JSON.parse(data))
+  // const fetchData = async () => {
+  //   const data: any = await AsyncStorage.getItem('userData')
+  //   setUserData(JSON.parse(data))
+  // }
+  const dispatch: any = useDispatch();
+  const loginSelector = useSelector((state: any) => state.login);
+  useEffect( () => {
+    // const authval = AsyncStorage.removeItem("AuthToken");
+    // console.log('authval: vv', authval);
+  
+      if (loginSelector?.response == null ||  loginSelector?.response?.status == 201 ||  loginSelector?.response?.status == 401) {
+        tokenGenrate()
+      } else {
+        setDefaultHeader("token", loginSelector?.response?.token);
+      
+      }
+   }, [loginSelector])
+
+  
+
+  async function tokenGenrate() {
+    //dispatch(jwtTokenGenrate())
+     try {
+      const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
+      //console.log('data: ', data);
+      if (data) {
+        await AsyncStorage.setItem("token", data.token);
+        await setDefaultHeader("token", data.token);
+      }
+    } catch (error) {
+      // console.log(error);
+    } 
   }
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={screenOptions}>
@@ -96,13 +136,20 @@ const Route = () => {
           component={OnboardingScreen}
           name="OnboardingScreenView"
         />
-        {userData?.email !== "" &&
-          <Stack.Screen component={LoginScreen} name="LoginScreenView" />
-        }
+        <Stack.Screen component={LoginScreen} name="LoginScreenView" />
         <Stack.Screen component={DrawerComponent} name="DashboardScreenView" />
         <Stack.Screen component={PropertyDetails} name="PropertyDetails" />
-
-
+        <Stack.Screen component={AllocatePropertyScreen} name="AllocatePropertyScreen" />
+        <Stack.Screen component={ImageContent} name="ImageContent" />
+        <Stack.Screen component={VideoContent} name="VideoContent" />
+        <Stack.Screen component={CatalogueContent} name="CatalogueContent" />
+        <Stack.Screen
+          component={ForgotPassword}
+          name="ForgotPassword"
+        />
+        <Stack.Screen name="OtpVerificationScreenView" component={OtpVerificationScreen} />
+        <Stack.Screen name="ChangePasswordScreenView" component={ChangePassword} />
+        
         {/* Agent Management Screen */}
         <Stack.Screen name="PendingAgencyList" component={PendingAgencyListScreen} />
         <Stack.Screen name="AgencyDetails" component={AgencyDetails} />
@@ -111,7 +158,6 @@ const Route = () => {
 
         {/* Lead Management Screens */}
         <Stack.Screen name="LeadDetails" component={LeadDetails} />
-        <Stack.Screen name="SourcingManager" component={SourcingManager} />
         <Stack.Screen name="AddNewSM" component={AddNewSM} />
         <Stack.Screen name="AllocateCP" component={AllocateCP} />
         <Stack.Screen name="SMDetails" component={SMDetails} />

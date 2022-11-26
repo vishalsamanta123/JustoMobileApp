@@ -15,6 +15,7 @@ const strings = new LocalizedStrings({
     appointmentHeader: 'Appointment',
     readytoBookHeader: 'Ready to Book',
     bookingRequestHead: 'Booking Request',
+    playVideo: 'Play',
     recoveryHeader: 'Recovery',
     saleToolHeader: 'Sales tools',
     agencyHeader: 'Agency(CP)',
@@ -82,6 +83,20 @@ const strings = new LocalizedStrings({
     selectNewCloseManager: 'Select New Closing Manager',
     bookNow: 'Book Now',
     browse: 'Browse',
+    reset: 'RESET',
+
+
+    usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
+    correctemail: 'Enter correct Email Address',
+    usernamerequired: 'Username is require. Please enter username',
+    passwordrequired: 'Password is require. Please enter password',
+    emailrequired: 'Email is require. Please enter email',
+    otprequired: 'Enter your OTP',
+    passwordnotmatch: 'Password and Confirm Password not match !',
+    requiredpassword: 'Enter your Password and Confirm Password',
+    requiredField: 'All Password field are required',
+    sendotp: 'Send OTP',
+    registration: 'registration',
 
 
     // common strings
@@ -104,6 +119,7 @@ const strings = new LocalizedStrings({
     editSM: 'Edit SM',
     updateSM: 'Update SM',
     cpAllocation: 'CP Allocation',
+    allocation: 'Allocation',
     newAllocateTxt: 'Allocate to New CP',
     noCpSelected: 'No CP Selected',
     selectMonth: 'Select Month',

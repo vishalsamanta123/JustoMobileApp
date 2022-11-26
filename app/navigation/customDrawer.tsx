@@ -7,12 +7,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DrawerContentScrollView, useDrawerStatus } from '@react-navigation/drawer';
 import { PRIMARY_THEME_COLOR } from '../components/utilities/constant';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { userLogout } from '../Redux/Actions/AuthActions';
+import { useDispatch } from 'react-redux';
+
 
 const customDrawer = ({ navigation }: any) => {
+  const dispatch: any = useDispatch()
   const isDrawerOpen = useDrawerStatus() === 'open';
   const insets = useSafeAreaInsets()
   const [userData, setUserData] = useState<any>([])
-  console.log('userData: ', userData);
   useEffect(() => {
     fetchData()
   }, [])
@@ -25,8 +28,8 @@ const customDrawer = ({ navigation }: any) => {
     navigation.toggleDrawer();
   }
   const onpressLogout = async () => {
-    await AsyncStorage.removeItem('userData')
-    navigation.replace('LoginScreenView');
+    dispatch(userLogout())
+    navigation.navigate('LoginScreenView');
   }
   const ProfileSection = () => {
     return (
@@ -36,15 +39,15 @@ const customDrawer = ({ navigation }: any) => {
             <Image
               style={styles.UserImge}
               resizeMode={'contain'}
-              source={require('../assets/images/buildings.jpeg')}
-            // source={{ uri: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80' }}
+              //source={require('../assets/images/buildings.jpeg')}
+               source={{ uri: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80' }}
             />
             <View style={styles.UserNameView}>
               <Text
                 numberOfLines={1}
                 style={[styles.UserNameText, { width: 120 }]}
               >
-                {userData?.name}
+                {userData?.user_name}
                 {/* Warren Hussen */}
               </Text>
               <Text style={[styles.UserAddress, { width: 140 }]}>
@@ -62,7 +65,7 @@ const customDrawer = ({ navigation }: any) => {
   const DrawerTabSection = (props: any) => {
     return (
       <>
-        {props?.type?.includes(userData?.type) || props?.type == 'all' ?
+        {props?.type?.includes( userData?.role_title) || props?.type == 'all' ?
           <TouchableOpacity style={styles.drawerTouch} onPress={props.handleDrawerNavigation}>
             <Image source={props.iconSource} style={styles.drawerIconStyle} />
             <Text style={styles.drawerText}>{props.tabTitle}</Text>
@@ -89,7 +92,7 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.closingManagerHeader}
         />
         <DrawerTabSection
-          type={'sourcinghead,sourcingmanager,closinghead'}
+          type={'Sourcing TL,sourcingmanager,closinghead'}
           iconSource={images.property}
           tabTitle={strings.propertyManagementHeader}
           handleDrawerNavigation={() => { navigation.navigate('PropertyScreenView') }}
@@ -114,25 +117,25 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('BookingList') }}
         />
         <DrawerTabSection
-          type={'sourcinghead'}
+          type={'Sourcing TL'}
           iconSource={images.property}
           tabTitle={strings.SourcingManagersHeader}
           handleDrawerNavigation={() => { navigation.navigate('SourcingManager') }}
         />
         <DrawerTabSection
-          type={'sourcinghead,sourcingmanager'}
+          type={'Sourcing TL,sourcingmanager'}
           iconSource={images.agency}
           tabTitle={strings.agencyHeader}
           handleDrawerNavigation={() => { navigation.navigate('AgencyListing') }}
         />
         <DrawerTabSection
-          type={'sourcinghead,sourcingmanager'}
+          type={'Sourcing TL,sourcingmanager'}
           iconSource={images.lead}
           tabTitle={strings.leadManagementHeader}
           handleDrawerNavigation={() => { navigation.navigate('LeadManagementScreen') }}
         />
         <DrawerTabSection
-          type={'sourcinghead,sourcingmanager,closingmanager,closinghead'}
+          type={'Sourcing TL,sourcingmanager,closingmanager,closinghead'}
           iconSource={images.event}
           tabTitle={strings.followupHeader}
           handleDrawerNavigation={() => { navigation.navigate('FollowUpScreen'); }}
@@ -143,13 +146,13 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.recoveryHeader}
         />
         <DrawerTabSection
-          type={'sourcinghead,sourcingmanager'}
+          type={'Sourcing TL,sourcingmanager'}
           iconSource={images.event}
           tabTitle={strings.appointmentWithCPHeader}
           handleDrawerNavigation={() => { navigation.navigate('AppointmentScreenCPSM'); }}
         />
         <DrawerTabSection
-          type={'sourcinghead,sourcingmanager'}
+          type={'Sourcing TL,sourcingmanager'}
           iconSource={images.event}
           tabTitle={strings.appointmentForVisitHeader}
           handleDrawerNavigation={() => { navigation.navigate('AppointmentForSite'); }}
@@ -161,7 +164,7 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('LeaderBoard'); }}
         />
         <DrawerTabSection
-          type={'sourcinghead,sourcingmanager'}
+          type={'Sourcing TL,sourcingmanager'}
           iconSource={images.event}
           tabTitle={strings.PickuprequestHeader}
           handleDrawerNavigation={() => { navigation.navigate('PickupRequest'); }}
