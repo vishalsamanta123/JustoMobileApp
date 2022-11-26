@@ -1,7 +1,7 @@
 import { View, Text, StatusBar, FlatList, Image } from "react-native";
 import React from "react";
 import styles from "./styles";
-import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK } from "../../../../components/utilities/constant";
+import { PRIMARY_THEME_COLOR_DARK } from "../../../../components/utilities/constant";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import Header from "../../../../components/Header";
@@ -9,13 +9,23 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { normalizeHeight, normalizeSpacing, normalizeWidth } from "../../../../components/scaleFontSize";
 import { DATA } from "../../../../components/utilities/DemoData";
 
-const ImageContent = ({ navigation }: any) => {
+const ImageContent = ({ navigation,route }: any) => {
   const insets = useSafeAreaInsets();
+
+  const dataimage = route?.params || []
+  console.log('dataimage: ', typeof dataimage === 'string');
   const handleBackPress = () => {
     navigation.goBack();
   };
   return (
     <View style={styles.mainContainer}>
+      <View
+        style={{
+          backgroundColor: PRIMARY_THEME_COLOR_DARK,
+          height: insets.top,
+        }}
+      />
+      <StatusBar barStyle={"light-content"} />
       <Header
         leftImageSrc={images.backArrow}
         rightSecondImageScr={images.notification}
@@ -24,25 +34,36 @@ const ImageContent = ({ navigation }: any) => {
         RightFirstIconStyle={styles.leftImageIconStyle}
         leftImageIconStyle={styles.leftImageIconStyle}
         handleOnLeftIconPress={handleBackPress}
-        barStyle={'light-content'}
-        statusBarColor={PRIMARY_THEME_COLOR}
       />
       <View>
-        <FlatList data={DATA}
-        numColumns={3}
+        {typeof dataimage === 'string' ? 
+        <View style={{padding:normalizeSpacing(10)}}>
+            
+        <Image
+          source={{uri:dataimage}}
+
+          style={{
+            width: '100%',
+            height: normalizeHeight(300),
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        />
+      </View> :
+        <FlatList data={dataimage}
+        numColumns={1}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          justifyContent: 'center',
-          alignItems: 'center'
         }}
          renderItem={({item}) => (
-          <View>
+          <View style={{padding:normalizeSpacing(10)}}>
+            
             <Image
-              source={item.image}
+              source={{uri:item.base_url+item.document}}
 
               style={{
-                width: normalizeWidth(110),
-                height: normalizeHeight(110),
-                margin: normalizeSpacing(5),
+                width: '100%',
+                height: normalizeHeight(300),
                 alignItems: 'center',
                 justifyContent: 'center'
               }}
@@ -52,7 +73,7 @@ const ImageContent = ({ navigation }: any) => {
          ListFooterComponent={() => (
           <View style={{height: normalizeHeight(100)}} />
          )}
-          />
+          />}
       </View>
     </View>
   );

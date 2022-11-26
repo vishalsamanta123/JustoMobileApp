@@ -57,6 +57,10 @@ import apiEndPoints from '../components/utilities/apiEndPoints';
 import ForgotPassword from '../views/Authentication/ForgotPassword';
 import OtpVerificationScreen from '../views/Authentication/OtpVerification';
 import ChangePassword from '../views/Authentication/ChangePassword';
+import ImageContent from '../views/PropertyMangement/PropertyDetails/components/ImageContent';
+import VideoContent from '../views/PropertyMangement/PropertyDetails/components/VideoContent';
+import CatalogueContent from '../views/PropertyMangement/PropertyDetails/components/CatalogueContent';
+import AllocatePropertyScreen from '../views/PropertyMangement/PropertyAllocate';
 
 
 const Stack = createNativeStackNavigator();
@@ -135,6 +139,10 @@ const Route = () => {
         <Stack.Screen component={LoginScreen} name="LoginScreenView" />
         <Stack.Screen component={DrawerComponent} name="DashboardScreenView" />
         <Stack.Screen component={PropertyDetails} name="PropertyDetails" />
+        <Stack.Screen component={AllocatePropertyScreen} name="AllocatePropertyScreen" />
+        <Stack.Screen component={ImageContent} name="ImageContent" />
+        <Stack.Screen component={VideoContent} name="VideoContent" />
+        <Stack.Screen component={CatalogueContent} name="CatalogueContent" />
         <Stack.Screen
           component={ForgotPassword}
           name="ForgotPassword"
@@ -150,7 +158,6 @@ const Route = () => {
 
         {/* Lead Management Screens */}
         <Stack.Screen name="LeadDetails" component={LeadDetails} />
-        <Stack.Screen name="SourcingManager" component={SourcingManager} />
         <Stack.Screen name="AddNewSM" component={AddNewSM} />
         <Stack.Screen name="AllocateCP" component={AllocateCP} />
         <Stack.Screen name="SMDetails" component={SMDetails} />

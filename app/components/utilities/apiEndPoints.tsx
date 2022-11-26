@@ -18,4 +18,25 @@ export default {
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
   CHECKEMAILMOBILE: '/auth/checkEmailMobile',
   GET_SOURCINGMANAGER: '/channelPartner/getListSourcingManager',
+
+   // property Start
+   ADDPROPERTY: "/property/addProperty",
+   PROPERTYLIST: "/property/getAllProperty",
+   PROPERTYFILTER: "/property/filterProperty",
+   EDITPROPERTY: "/property/editProperty",
+   GETPROPERTYDETAIL: "/property/getPropertyDetails",
+   GETPROPERTYFILTERDETAIL: "/property/filterProperty",
+   PROPERTYSTATUSUPDATE: "/property/propertyStatusUpdate",
+   PROPERTYSUBSCRIBE: "/property/userSubscribeUnsubscribeProperty",
+   PROPERTYALLOCATELIST: "/property/getPropertyAlocateUserList",
+   ALLOCATEPROPERTYTOUSER: "/property/propertyAllocateToUsers",
+   
+   
+
+    // MASTER START
+    ADDMASTERLIST: "/master/getMasterList",
+    CREATEMASTER: "/master/createMaster",
+    GETPROPERTYTYPE: "/master/getPropertyType",
+    GETCONFIGURATION: "/master/getConfiguration",
+    GETAMENITY: "/master/getAmenity",
 };

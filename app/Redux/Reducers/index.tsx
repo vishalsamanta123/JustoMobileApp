@@ -1,4 +1,5 @@
 import { authStore, changePasswordReducer, forgotReducer, otpVerifyReducer, updatepasswordReducer } from "./AuthReducer";
+import { propertyDetailReducer, propertyReducer } from "./propertyReducers";
 
 export default {
     login: authStore,
@@ -6,4 +7,6 @@ export default {
     otpVerifyResponce: otpVerifyReducer,
     updatepasswordResponce: updatepasswordReducer,
     changePasswordResponse: changePasswordReducer,
+    propertyData: propertyReducer,
+    propertydetailData: propertyDetailReducer,
 }
