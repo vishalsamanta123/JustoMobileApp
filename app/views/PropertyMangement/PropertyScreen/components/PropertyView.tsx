@@ -9,10 +9,11 @@ import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import ConfirmModal from '../../../../components/Modals/ConfirmModal';
-import { PRIMARY_THEME_COLOR_DARK, PRIMARY_THEME_COLOR } from '../../../../components/utilities/constant';
+import { PRIMARY_THEME_COLOR_DARK, PRIMARY_THEME_COLOR, GREEN_COLOR, RED_COLOR } from '../../../../components/utilities/constant';
 import FilterModal from './FilterModel';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllMaster } from '../../../../Redux/Actions/MasterActions';
+import ErrorMessage from 'app/components/ErrorMessage';
 
 
 const PropertyView = (props: any) => {
@@ -40,14 +41,25 @@ const PropertyView = (props: any) => {
 
   useEffect(() => {
     if (propertyData?.response) {
-      const { response, loading } = propertyData;
-      if (response?.status === 200) {
+    console.log('propertyData: ', propertyData);
+      const { response, loading ,list} = propertyData;
+     if(list){
+      if (response?.status === 200 ) {
         setPropertyList(response?.data);
         props.setIsloading(loading);
+       /*  ErrorMessage({
+          msg: response.message,
+          backgroundColor: GREEN_COLOR
+        }) */
       } else {
         setPropertyList([]);
         //errorToast(response.message);
+        ErrorMessage({
+          msg: response.message,
+          backgroundColor: RED_COLOR
+        })
       }
+     }
     }
   }, [propertyData]);
 

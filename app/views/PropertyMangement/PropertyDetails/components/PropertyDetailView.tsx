@@ -109,41 +109,8 @@ const PropertyDetailView = (props: any) => {
         />
       </View>
       <View style={[styles.btnContainer, {
-        justifyContent: approveStatus !== 1 && approveStatus !== 3 ? 'space-between' : 'center'
-
+        justifyContent:  'center'
       }]}>
-
-        <Button
-          handleBtnPress={() => approveStatus === 2 ? setIsVisible(true) : console.log('11111')}
-          buttonText={
-            approveStatus === 1
-              ? strings.active
-              : approveStatus === 2
-                ? strings.unsubscribe
-                : strings.subscribe
-          }
-          width={150}
-          height={45}
-          bgcolor={""}
-          bordercolor={
-            approveStatus === 1
-              ? BLACK_COLOR
-              : approveStatus === 2
-                ? "red"
-                : YELLOW_COLOR
-          }
-          borderWidth={1.5}
-          btnTxtcolor={
-            approveStatus === 1
-              ? BLACK_COLOR
-              : approveStatus === 2
-                ? "red"
-                : YELLOW_COLOR
-          }
-          btnTxtsize={15}
-          textTransform={"uppercase"}
-        />
-
         {approveStatus !== 1 &&
           approveStatus !== 3 ? (
             <Button

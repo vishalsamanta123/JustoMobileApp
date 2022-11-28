@@ -94,7 +94,7 @@ export const getManagerList = (params: any) => async (dispatch: any) => {
     console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYALLOCATELIST, params);
-        console.log('res: IN MAnAGERS', res);
+        console.log('res: IN MAnAGERS', res.data.data);
         if (res.data.status == 200) {
             dispatch({
                 type: SOURCING_MANAGER_LIST,
