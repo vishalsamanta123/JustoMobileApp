@@ -1,17 +1,15 @@
-import { View, Text, FlatList, StatusBar } from "react-native";
+import { View, FlatList, } from "react-native";
 import React, { useState } from "react";
 import styles from "./Styles";
 import images from "../../../../assets/images";
-import ConfirmModal from "../../../../components/Modals/ConfirmModal";
-import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK } from "../../../../components/utilities/constant";
+import { PRIMARY_THEME_COLOR, } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
-import PropertyListItem from "../../../PropertyMangement/PropertyScreen_/components/PropertyListItem";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Header from "../../../../components/Header";
-import Button from "../../../../components/Button";
 import LeadManagementItem from "./LeadManagementItem";
 import { useNavigation } from "@react-navigation/native";
 import FilterModal from "./LeadManagementModal";
+import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 const DATA: any = [
   {
     Projectname: 'ABC',
@@ -52,12 +50,23 @@ const DATA: any = [
 ];
 
 const LeadManagementView = (props: any) => {
+  const loadingref = false
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
   const [FilterisVisible, setFilterisVisible] = useState(false)
-  
-  const onPressView = () => {
-    navigation.navigate('LeadDetails')
+
+  const onRefresh = () => {
+    props.setFilterData({
+      startdate: '',
+      enddate: '',
+      search_by_name: '',
+      search_by_location: '',
+      status: ''
+    })
+    props.getVisitorsList(0, {})
+  }
+  const onPressView = (data: any) => {
+    navigation.navigate('LeadDetails', data)
   }
   return (
     <View style={styles.mainContainer}>
@@ -75,13 +84,33 @@ const LeadManagementView = (props: any) => {
       />
       <View style={styles.propertyListView}>
         <FlatList
-          data={DATA}
+          data={props?.visitorList}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => <LeadManagementItem items={item} onPressView={onPressView} />}
+          renderItem={({ item }) =>
+            <LeadManagementItem items={item}
+              onPressView={onPressView} />
+          }
+          ListEmptyComponent={() => (
+            <EmptyListScreen message={strings.visitor} />
+          )}
+          onEndReached={() => {
+            if (props?.visitorList?.length < props?.moreData) {
+              props.getVisitorsList(props?.visitorList?.length > 2 ?
+                props.offSET + 1 : 0, props.filterData)
+            }
+          }}
+          onRefresh={() => onRefresh()}
+          refreshing={loadingref}
         />
       </View>
       {/* <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} /> */}
-      <FilterModal Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
+      <FilterModal
+        Visible={FilterisVisible}
+        setIsVisible={setFilterisVisible}
+        setFilterData={props.setFilterData}
+        filterData={props.filterData}
+        getVisitorsList={() => props.getVisitorsList(0, props.filterData)}
+      />
     </View>
   );
 };

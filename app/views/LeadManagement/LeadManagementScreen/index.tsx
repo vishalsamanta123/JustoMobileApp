@@ -21,14 +21,14 @@ const LeadManagementScreen = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getVisitorsList(offSET, {})
+      getVisitorsList(0, {})
       return () => { };
     }, [navigation])
   );
 
   useEffect(() => {
     if (list) {
-      if (offSET === 0) {
+      if (offSET === 0 || offSET === undefined) {
         setVisiitorList(response?.data)
       } else {
         setVisiitorList([...visitorList, ...response?.data])
@@ -55,6 +55,10 @@ const LeadManagementScreen = ({ navigation }: any) => {
     <LeadManagementView
       handleDrawerPress={handleDrawerPress}
       visitorList={visitorList}
+      moreData={moreData}
+      getVisitorsList={getVisitorsList}
+      filterData={filterData}
+      setFilterData={setFilterData}
     />
   )
 }
