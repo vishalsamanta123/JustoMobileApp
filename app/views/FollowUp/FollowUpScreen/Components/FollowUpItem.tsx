@@ -1,44 +1,82 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
-import styles from './Styles'
-import images from '../../../../assets/images'
-import { BLACK_COLOR, PURPLE_COLOR, WHITE_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant'
-import strings from '../../../../components/utilities/Localization'
-import Button from '../../../../components/Button'
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import React from "react";
+import styles from "./Styles";
+import images from "../../../../assets/images";
+import {
+  BLACK_COLOR,
+  YELLOW_COLOR,
+  PURPLE_COLOR,
+  PRIMARY_THEME_COLOR_DARK,
+  PRIMARY_THEME_COLOR,
+} from "../../../../components/utilities/constant";
+import strings from "../../../../components/utilities/Localization";
+import moment from "moment";
 
 const FollowUpItem = (props: any) => {
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Lead No. :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>
+            {props.items.lead_no === "" || props.items.lead_no === undefined
+              ? strings.notfount
+              : props.items.lead_no}
+          </Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Visitor Score :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.visitor}</Text>
+          <Text style={styles.nameTxt}>
+            {props.items.visit_score === "" ||
+            props.items.visit_score === undefined
+              ? strings.notfount
+              : props.items.visit_score}
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Follow-Up Date  :</Text>
+          <Text style={styles.projectTxt}>Follow-Up Date :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.date}</Text>
+          <Text style={styles.nameTxt}>
+            {props.items.next_followup_date === "" ||
+            props.items.next_followup_date === undefined
+              ? strings.notfount
+              : moment(props.items.next_followup_date).format("DD/MM/YYYY")}
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Visitor Name :</Text>
+          <Text style={styles.projectTxt}>Customer Name :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.visitorname}</Text>
+          <Text style={styles.nameTxt}>
+            {props.items.customer_first_name === "" ||
+            props.items.customer_first_name === undefined
+              ? strings.notfount
+              : props.items.customer_first_name}
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configuration :</Text>
+          <Text style={styles.projectTxt}>Configration :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.config}</Text>
+          <Text style={styles.nameTxt}>
+            {props.items.configuration === "" ||
+            props.items.configuration === undefined
+              ? strings.notfount
+              : props.items.configuration}
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -46,51 +84,58 @@ const FollowUpItem = (props: any) => {
           <Text style={styles.projectTxt}>Budget :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.budget}</Text>
+          {props.items?.min_budget && props.items?.max_budget ? (
+            <Text style={styles.nameTxt}>
+              {`${props.items?.min_budget} ${props.items?.min_budget_type}`} -{" "}
+              {`${props.items?.max_budget} ${props.items?.max_budget_type}`}
+            </Text>
+          ) : null}
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Follow-Up Type :</Text>
+          <Text style={styles.projectTxt}>Followup Type :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.type}</Text>
+          <Text style={styles.nameTxt}>
+            {props.items.followup_for == 1
+              ? "Lead"
+              : props.items.followup_for == 2
+              ? "Site visit"
+              : props.items.followup_for == 3
+              ? "Booking"
+              : props.items.followup_for === 4
+              ? "regstration"
+              : strings.notfount}
+          </Text>
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <Button
-          width={78}
-          height={30}
-          bgcolor={null}
-          bordercolor={PURPLE_COLOR}
-          borderWidth={1}
-          btnTxtcolor={PURPLE_COLOR}
-          buttonText={strings.edit}
-          btnTxtsize={14}
-          border={10}
-          handleBtnPress={() => props.onPressEdit()}
-        />
-        <Button
-          width={85}
-          height={30}
-          bgcolor={null}
-          // bordercolor={PURPLE_COLOR}
-          borderWidth={1}
-          btnTxtcolor={BLACK_COLOR}
-          buttonText={strings.allfollowup}
-          btnTxtsize={13}
-          border={10}
-          handleBtnPress={() => props.onPressAllFollowUp()}
-        />
-        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>
-          <Image
-            source={images.forwardArrow}
-            style={styles.arrow}
-          />
+        <TouchableOpacity
+          style={[styles.button, { borderColor: PURPLE_COLOR }]}
+          onPress={() => props.onPressEdit(props.items)}
+        >
+          <Text style={[styles.buttonTxt, { color: PURPLE_COLOR }]}>
+            {strings.edit}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { borderColor: PRIMARY_THEME_COLOR }]}
+          onPress={() => props.onPressAllFollowUp(props.items)}
+        >
+          <Text style={[styles.buttonTxt, { color: PRIMARY_THEME_COLOR }]}>
+            {strings.allfollowup}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.Viewbutton}
+          onPress={() => props.onPressView(props.items)}
+        >
+          <Image source={images.forwardArrow} style={styles.arrow} />
         </TouchableOpacity>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default FollowUpItem
+export default FollowUpItem;

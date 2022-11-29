@@ -55,5 +55,11 @@ export default {
   EDIT_AGENT_: "/channelPartner/editAgent",
 
    //Settings
-   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"
+   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
+
+     // Folloe-Up
+  GET_FOLLOWUP_LIST: '/followupStatus/getFollowupList',
+  GET_FOLLOWUP_DETAILS: '/followupStatus/getFollowupDetails',
+  UPDATE_FOLLOWUP: '/followupStatus/updatefollowup',
+  ADD_FOLLOWUP: '/followupStatus/addfollowup',
 };
