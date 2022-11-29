@@ -1,17 +1,99 @@
-import React, { useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import ErrorMessage from 'app/components/ErrorMessage';
+import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant';
+import React, { useLayoutEffect, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../../../components/CommonScreen/Loader';
+import { getAllProperty, getManagerList, statusUpdate } from '../../../Redux/Actions/propertyActions';
 import PropertyView from './components/PropertyView';
 
 const PropertyScreen = ({ navigation }: any) => {
-  const [filterisVisible, setFilterisVisible] = useState(false)
+  const dispatch: any = useDispatch()
+  const [limit, setLimit] = useState(10)
+  const [offset, setOffset] = useState(0)
+  const [isloading, setIsloading] = useState(false)
+  const [currentStatus, setCurrentStatus] = useState(1)
+  const [currentProperty, setCurrentProperty] = useState({})
+  const [resion, setResion] = useState('')
+  
 
+  const propertyData = useSelector((state: any) => state.propertydetailData) || []
+  const { response, loading ,updateStatus, list } = propertyData;
+  console.log('response: ', response);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getallproperty()
+        return () => { };
+    }, [navigation, list]))
+
+  // useEffect(() => {
+  //   if(response?.status === 200) {
+  //     ErrorMessage({
+  //       msg: response?.message,
+  //       backgroundColor: GREEN_COLOR
+  //     })
+  //   } else {
+  //     ErrorMessage({
+  //       msg: response?.message,
+  //       backgroundColor: RED_COLOR
+  //     })
+  //   }
+  // }, [response])
+
+  const handleStatusChange = () => {
+  setIsloading(true)
+    dispatch(statusUpdate({
+      property_id: currentProperty,
+      approve_status: currentStatus === 1 ? 2 : currentStatus === 2 ? 3 : 2,
+      resion_id: resion,
+    }))  
+  }
+
+
+  const getallproperty = () => {
+    setIsloading(true)
+    dispatch(getAllProperty({
+      offset: 0,
+      limit: limit,
+
+    }))
+  }
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
-  return <PropertyView
-    filterisVisible={filterisVisible}
-    setFilterisVisible={setFilterisVisible}
-    handleDrawerPress={handleDrawerPress}
-  />;
+  const Onreachedend = () => {
+  //  setOffset(offset + 1)
+    dispatch(getAllProperty({
+      offset: offset + 1,
+      limit: limit,
+    }))
+  };
+  const handleAllocatePress = (item: any) => {
+    console.log('item: ', item.property_id);
+    dispatch(getManagerList({
+      property_id: item.property_id
+    }))
+    navigation.navigate('AllocatePropertyScreen', {property_id: item.property_id})
+  }
+  return (
+    <>
+      {isloading ? <Loader /> : null}
+      <PropertyView
+        handleDrawerPress={handleDrawerPress}
+        Onreachedend={Onreachedend}
+        getallproperty={getallproperty}
+        setIsloading={setIsloading}
+        handleStatusChange={() => handleStatusChange()}
+        currentStatus={currentStatus}
+        setCurrentStatus={setCurrentStatus}
+        setCurrentProperty={setCurrentProperty}
+        setResion={setResion}
+        resion={resion}
+        handleAllocatePress={handleAllocatePress}
+      />
+    </>
+  );
 };
 
 export default PropertyScreen;

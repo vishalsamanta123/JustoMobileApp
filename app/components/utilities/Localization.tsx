@@ -15,6 +15,7 @@ const strings = new LocalizedStrings({
     appointmentHeader: 'Appointment',
     readytoBookHeader: 'Ready to Book',
     bookingRequestHead: 'Booking Request',
+    playVideo: 'Play',
     recoveryHeader: 'Recovery',
     saleToolHeader: 'Sales tools',
     agencyHeader: 'Agency(CP)',
@@ -82,6 +83,8 @@ const strings = new LocalizedStrings({
     selectNewCloseManager: 'Select New Closing Manager',
     bookNow: 'Book Now',
     browse: 'Browse',
+    reset: 'RESET',
+
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
     correctemail: 'Enter correct Email Address',
@@ -117,6 +120,7 @@ const strings = new LocalizedStrings({
     editSM: 'Edit SM',
     updateSM: 'Update SM',
     cpAllocation: 'CP Allocation',
+    allocation: 'Allocation',
     newAllocateTxt: 'Allocate to New CP',
     noCpSelected: 'No CP Selected',
     selectMonth: 'Select Month',

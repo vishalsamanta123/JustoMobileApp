@@ -5,7 +5,7 @@ import images from "../../../../assets/images";
 import ConfirmModal from "../../../../components/Modals/ConfirmModal";
 import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
-import PropertyListItem from "../../../PropertyMangement/PropertyScreen/components/PropertyListItem";
+import PropertyListItem from "../../../PropertyMangement/PropertyScreen_/components/PropertyListItem";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Header from "../../../../components/Header";
 import Button from "../../../../components/Button";

@@ -72,7 +72,6 @@ const LoginScreen = ({navigation}: any) => {
     login_type: 1
   })
   const loginSelector = useSelector((state: any) => state.login);
-  console.log("LoginScreen -> loginSelector====", loginSelector)
   useEffect(() => {
     checklogin()
   }, [loginSelector])
