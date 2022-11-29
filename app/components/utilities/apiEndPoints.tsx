@@ -54,14 +54,14 @@ export default {
   ADD_AGENT_: "/channelPartner/createAgent",
   EDIT_AGENT_: "/channelPartner/editAgent",
 
-    // Appointment
-    GET_APPOINTMENT_LIST: '/appointment/getAppointmentList',
-    GET_APPOINTMENT_DETAILS: '/appointment/getAppointmentDetails',
-    ADD_APPOINTMENT: '/appointment/addAppointment',
-    EDIT_APPOINTMENT: '/appointment/editAppointment',
+  // Appointment
+  GET_APPOINTMENT_LIST: '/appointment/getAppointmentList',
+  GET_APPOINTMENT_DETAILS: '/appointment/getAppointmentDetails',
+  ADD_APPOINTMENT: '/appointment/addAppointment',
+  EDIT_APPOINTMENT: '/appointment/editAppointment',
 
-   //Settings
-   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
+  //Settings
+  UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
 
   //Lead Management
   VISITORLIST: "/visit/getVisiterList",
@@ -69,4 +69,5 @@ export default {
   VISITOR_STATUS_UPDATE: "/visit/updateVisitStatus",
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
+  GET_USERVISTLIST: '/visit/getUserVisitList'
 };

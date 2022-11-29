@@ -1,5 +1,5 @@
 import { View, Text, StatusBar } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Styles'
 import { PRIMARY_THEME_COLOR } from '../../../../components/utilities/constant';
 import Header from '../../../../components/Header';
@@ -11,16 +11,29 @@ import { useNavigation } from '@react-navigation/native';
 const AddAppointmentView = (props: any) => {
     const navigation: any = useNavigation()
     const [value, setValue] = useState(null)
-    const [addAppointmentForm, setAddAppointmentForm] = useState({});
+    const [addAppointmentForm, setAddAppointmentForm] = useState({
+        lead_id: props?.data?.lead_id,
+        appointment_date: props?.data?.appointment_date,
+        appointment_time: props?.data?.appointment_time,
+        appointment_id: props?.data?._id,
+        type: props?.data?.type,
+    });
+    console.log('addAppointmentForm: ', addAppointmentForm);
     const handleBtnPress = () => {
-        navigation.navigate('AppointmentScreen')
+        props.handleAddAppointment(addAppointmentForm)
+        console.log('addAppointmentForm: ', addAppointmentForm);
+        // navigation.navigate('AppointmentScreen')
     }
+    // useEffect(() => {
+    //     setAddAppointmentForm(props.data)
+    //     return () => {}
+    //   }, [props.data])
     return (
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.backArrow}
                 rightSecondImageScr={images.notification}
-                headerText={strings.addNewappointment}
+                headerText={props.type === strings.edit ? strings.editNewappointment : strings.addNewappointment}
                 leftImageIconStyle={styles.RightFirstIconStyle}
                 handleOnLeftIconPress={() => props.handleBackPress()}
                 headerStyle={styles.headerStyle}
@@ -34,6 +47,9 @@ const AddAppointmentView = (props: any) => {
                     handleBtnPress={handleBtnPress}
                     setAddAppointmentForm={setAddAppointmentForm}
                     addAppointmentForm={addAppointmentForm}
+                    getVisitorsList={props.getVisitorsList}
+                    visitorList={props.visitorList}
+                    type={props.type}
                 />
             </View>
         </View>

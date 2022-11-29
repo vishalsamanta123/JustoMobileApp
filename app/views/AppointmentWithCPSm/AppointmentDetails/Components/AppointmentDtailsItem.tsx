@@ -22,7 +22,7 @@ const AppointmentDtailsItem = (props : any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{appdetail.appointmentType}</Text>
+          <Text style={styles.nameTxt}>{appdetail.lead_source}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

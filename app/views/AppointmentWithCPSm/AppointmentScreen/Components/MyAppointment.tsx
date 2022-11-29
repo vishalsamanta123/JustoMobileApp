@@ -25,7 +25,7 @@ const MyAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Appointment Type :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.appointmentType}</Text>
+          <Text style={styles.nameTxt}>{props.items.lead_source}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -78,7 +78,7 @@ const MyAppointment = (props: any) => {
           buttonText={strings.edit}
           btnTxtsize={14}
           border={10}
-        // handleBtnPress={() => props.onPressEdit()}
+        handleBtnPress={() => props.onPressEdit()}
         />
 
 

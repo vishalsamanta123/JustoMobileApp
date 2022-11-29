@@ -15,11 +15,10 @@ const AppointmentScreenCPSM = ({ navigation }: any) => {
     start_date: '',
     end_date: '',
     customer_name: '',
-    status: ''
   })
   useFocusEffect(
     React.useCallback(() => {
-      getAppointmentList(offSET)
+      getAppointmentList(offSET, 1)
       return () => { };
     }, [navigation, list])
   );
@@ -33,7 +32,7 @@ const AppointmentScreenCPSM = ({ navigation }: any) => {
       }
     }
   }, [response])
-  const getAppointmentList = (offset: any) => {
+  const getAppointmentList = (offset: any, type: any) => {
     setOffset(offset)
     dispatch(getAllAppointmentList({
       offset: offset,
@@ -41,7 +40,7 @@ const AppointmentScreenCPSM = ({ navigation }: any) => {
       start_date: filterData.start_date,
       end_date: filterData.end_date,
       customer_name: filterData.customer_name,
-      status: filterData.status
+      appointment_type: type ? type : 1
     }))
     // toGetDatas(array)
   }
@@ -55,6 +54,7 @@ const AppointmentScreenCPSM = ({ navigation }: any) => {
       offSET={offSET}
       getAppointmentList={getAppointmentList}
       setFilterData={setFilterData}
+      filterData={filterData}
     />
   )
 }

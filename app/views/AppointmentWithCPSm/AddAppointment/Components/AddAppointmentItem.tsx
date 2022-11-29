@@ -19,6 +19,7 @@ const AddAppointmentItem = (props: any) => {
                     <InputCalender
                         mode={'date'}
                         leftIcon={images.event}
+                        minimumDate={new Date()}
                         placeholderText={strings.appointmentDate}
                         headingText={strings.appointmentDate}
                         editable={false}
@@ -65,18 +66,20 @@ const AddAppointmentItem = (props: any) => {
                     <DropdownInput
                         headingText={strings.appointmentType}
                         placeholder={strings.appointmentType}
-                        data={props.visitorList}
+                        data={[
+                            { label: "Site lead visit", value: "1" },
+                            { label: "Client visit", value: "2" },
+                        ]}
                         inputWidth={'100%'}
                         paddingLeft={16}
                         maxHeight={300}
-                        onFocus={() => props.getVisitorsList()}
-                        labelField="title"
-                        valueField={props.addAppointmentForm?.lead_name}
-                        value={props.addAppointmentForm?.lead_name}
+                        labelField="label"
+                        valueField={props.addAppointmentForm?.type}
+                        value={props.addAppointmentForm?.type}
                         onChange={(item: any) => {
                             props.setAddAppointmentForm({
                                 ...props.addAppointmentForm,
-                                lead_id: item._id, property_id: item.property_id, lead_name: item.first_name
+                                type: item.value
                             })
                         }}
                         newRenderItem={(item: any) => {
@@ -91,14 +94,14 @@ const AddAppointmentItem = (props: any) => {
                                         flex: 1,
                                         fontSize: 16,
                                         color: GRAY_LIGHT_COLOR
-                                    }}>{item.first_name}</Text>
+                                    }}>{item.label}</Text>
                                 </View>
                             );
                         }}
                     />
                 </View>
                 <View style={styles.inputWrap}>
-                <DropdownInput
+                    <DropdownInput
                         headingText={strings.appointmentWith}
                         placeholder={strings.appointmentWith}
                         data={props.visitorList}
@@ -106,13 +109,13 @@ const AddAppointmentItem = (props: any) => {
                         paddingLeft={16}
                         maxHeight={300}
                         onFocus={() => props.getVisitorsList()}
-                        labelField="title"
+                        labelField="first_name"
                         valueField={props.addAppointmentForm?.lead_name}
                         value={props.addAppointmentForm?.lead_name}
                         onChange={(item: any) => {
                             props.setAddAppointmentForm({
                                 ...props.addAppointmentForm,
-                                lead_id: item._id, property_id: item.property_id, lead_name: item.first_name
+                                lead_id: item._id, lead_name: item.first_name
                             })
                         }}
                         newRenderItem={(item: any) => {
@@ -134,7 +137,11 @@ const AddAppointmentItem = (props: any) => {
                     />
                 </View>
                 <View style={styles.btnView}>
-                    <Button btnTxtsize={16} handleBtnPress={() => props.handleBtnPress()} buttonText={strings.addNewappointment} />
+                    <Button
+                        btnTxtsize={16}
+                        handleBtnPress={() => props.handleBtnPress()}
+                        buttonText={props.type === strings.edit ? strings.editNewappointment :  strings.addNewappointment}
+                    />
                 </View>
             </View>
         </ScrollView>

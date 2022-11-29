@@ -16,8 +16,10 @@ import MyAppointment from './MyAppointment';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllAppointmentList } from 'app/Redux/Actions/AppointmentWithCpActions';
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
+import { getUserVisitList } from 'app/Redux/Actions/LeadsActions';
 
 const AppointmentView = (props: any) => {
+    const dispatch: any = useDispatch()
     const loadingref = false
     const layout = useWindowDimensions();
     const navigation: any = useNavigation()
@@ -28,8 +30,23 @@ const AppointmentView = (props: any) => {
         { key: 'first', title: 'My Appointment with CP' },
         { key: 'second', title: 'SM Appointment With CP' },
     ]);
-  
-   
+    const [visitorList, setVisiitorList] = useState<any>([])
+    console.log('visitorList ===>>>: ', visitorList);
+    useEffect(() => {
+        if (list) {
+            setVisiitorList(response?.data)
+        }
+    }, [response])
+
+
+
+
+    const getVisitorsList = (offset: any, array: any) => {
+        dispatch(getUserVisitList({
+            lead_status: 1
+        }))
+    }
+
     const renderTabBar = (props: any) => (
 
         <TabBar
@@ -44,6 +61,9 @@ const AppointmentView = (props: any) => {
         console.log("onPressView -> items", items)
         navigation.navigate('AppointmentDetails', items)
     }
+    const onPressEdit = (items: any) => {
+        navigation.navigate('AddAppointmentScreen', { data: items, type: strings.edit })
+    }
     const onPressAddNew = () => {
         navigation.navigate('AddAppointmentScreen')
     }
@@ -53,7 +73,8 @@ const AppointmentView = (props: any) => {
             renderItem={({ item }) =>
                 <MyAppointment
                     items={item}
-                    onPressView={(items: any) => onPressView(items)}
+                    onPressView={(items: any) => onPressView(item)}
+                    onPressEdit={(items: any) => onPressEdit(item)}
                 />
             }
             ListEmptyComponent={<EmptyListScreen message={'My Appointment with CP'} />}
@@ -77,10 +98,13 @@ const AppointmentView = (props: any) => {
     );
 
     const SecondRoute = () => (
-        <FlatList
-            data={AppointMentSmData}
-            renderItem={({ item }) => <SmAppointment items={item} onPressView={onPressView} />}
-        />
+        <>
+            {/* {props.getAppointmentList(0, 2)} */}
+            <FlatList
+                data={AppointMentSmData}
+                renderItem={({ item }) => <SmAppointment items={item} onPressView={onPressView} />}
+            />
+        </>
     );
     const renderScene = SceneMap({
         first: FirstRoute,
@@ -120,7 +144,14 @@ const AppointmentView = (props: any) => {
                     initialLayout={{ width: layout.width }}
                 />
             </View>
-            <FilterModal Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
+            <FilterModal
+                Visible={FilterisVisible}
+                setIsVisible={setFilterisVisible}
+                setFilterData={props.setFilterData}
+                filterData={props.filterData}
+                visitorList={visitorList}
+                getVisitorsList={getVisitorsList}
+            />
         </View>
     )
 }
