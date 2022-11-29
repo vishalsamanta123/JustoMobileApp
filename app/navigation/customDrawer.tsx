@@ -29,7 +29,7 @@ const customDrawer = ({ navigation }: any) => {
   }
   const onpressLogout = async () => {
     dispatch(userLogout())
-    navigation.navigate('LoginScreenView');
+    navigation.navigate('AuthLoading');
   }
   const ProfileSection = () => {
     return (

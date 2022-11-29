@@ -1,4 +1,4 @@
-import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, FORGOT_PASSWORD, FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL, USERREGISTER_ERROR, USERREGISTER } from '../types'
+import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, FORGOT_PASSWORD, FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL, USERREGISTER_ERROR, USERREGISTER, START_LOADING, STOP_LOADING } from '../types'
 
 const initialState = {
     response: null,
@@ -37,6 +37,24 @@ const changePasswordinitialState = {
     changepassword: false,
     error: false
 }
+export function loadingReducer(state = { loading: false }, action: any) {
+    switch (action.type) {
+
+        case START_LOADING:
+            return {
+                ...state,
+                loading: true,
+            }
+        case STOP_LOADING:
+            return {
+                ...state,
+                loading: false,
+            }
+        default: return state
+    }
+
+}
+
 export function userData(state = initialStateUserData, action: any) {
     switch (action.type) {
         case USER_LOGIN:

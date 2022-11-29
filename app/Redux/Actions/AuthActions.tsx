@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE, FORGOT_PASSWORD, FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR, USERREGISTER, USERREGISTER_ERROR } from '../types'
+import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE, FORGOT_PASSWORD, FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR, USERREGISTER, USERREGISTER_ERROR, START_LOADING, STOP_LOADING } from '../types'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import apiEndPoints from '../../components/utilities/apiEndPoints';
@@ -6,6 +6,7 @@ import { apiCall } from '../../components/utilities/httpClient';
 import { handleApiError } from 'app/components/ErrorMessage/HandleApiErrors';
 
 export const userLogin = (loginDetail: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.LOGIN, loginDetail);
         console.log('res: ', res?.data);
@@ -30,6 +31,9 @@ export const userLogin = (loginDetail: any) => async (dispatch: any) => {
             type: LOGIN_ERROR,
             payload: console.log(e),
         })
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
     }
 }
 
