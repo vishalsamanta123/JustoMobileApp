@@ -1,27 +1,29 @@
-import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE,FORGOT_PASSWORD,FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR } from '../types'
+import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE, FORGOT_PASSWORD, FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR, START_LOADING, STOP_LOADING } from '../types'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import apiEndPoints from '../../components/utilities/apiEndPoints';
 import { apiCall } from '../../components/utilities/httpClient';
+import { handleApiError } from 'app/components/ErrorMessage/HandleApiErrors';
 
 export const userLogin = (loginDetail: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.LOGIN, loginDetail);
         console.log('res: ', res?.data);
-        if(res.data.status === 200){
-        await AsyncStorage.setItem("AuthToken", res?.data?.token);    
-        await AsyncStorage.setItem("userData", JSON.stringify(res?.data?.data));    
-        console.log('res?.data: ', res?.data);
-        dispatch({
-            type: USER_LOGIN,
-            payload: res.data
-        })
-       }else{
-        dispatch({
-            type: LOGIN_ERROR,
-            payload: res.data,
-        })
-       }
+        if (res.data.status === 200) {
+            await AsyncStorage.setItem("AuthToken", res?.data?.token);
+            await AsyncStorage.setItem("userData", JSON.stringify(res?.data?.data));
+            dispatch({
+                type: USER_LOGIN,
+                payload: res.data
+            })
+        } else {
+            handleApiError(res.data)
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: res.data,
+            })
+        }
     }
     catch (e) {
         dispatch({
@@ -29,23 +31,26 @@ export const userLogin = (loginDetail: any) => async (dispatch: any) => {
             payload: console.log(e),
         })
     }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
 }
 
 export const forgotemailverify = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.FORGOTPASSWORD, params);
-        if(res.data.status === 200){
-       /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */  
-        dispatch({
-            type: FORGOT_PASSWORD,
-            payload: res.data
-        })
-       }else{
-        dispatch({
-            type: FORGOT_ERROR,
-            payload: res.data,
-        })
-       }
+        if (res.data.status === 200) {
+            /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
+            dispatch({
+                type: FORGOT_PASSWORD,
+                payload: res.data
+            })
+        } else {
+            dispatch({
+                type: FORGOT_ERROR,
+                payload: res.data,
+            })
+        }
     }
     catch (e) {
         dispatch({
@@ -56,21 +61,21 @@ export const forgotemailverify = (params: any) => async (dispatch: any) => {
 }
 
 export const otpVerify = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
+    console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.OTPVERIFY, params);
-       if(res.data.status === 200){
-       /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */  
-        dispatch({
-            type: OTPVERIFY,
-            payload: res.data
-        })
-       }else{
-        dispatch({
-            type: OTPVERIFY_ERROR,
-            payload: res.data,
-        })
-       }
+        if (res.data.status === 200) {
+            /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
+            dispatch({
+                type: OTPVERIFY,
+                payload: res.data
+            })
+        } else {
+            dispatch({
+                type: OTPVERIFY_ERROR,
+                payload: res.data,
+            })
+        }
     }
     catch (e) {
         dispatch({
@@ -82,18 +87,18 @@ console.log('params: ', params);
 export const Resendotp = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.RESENDOTP, params);
-       if(res.data.status === 200){
-       /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */  
-        dispatch({
-            type: RESENDOTP,
-            payload: res.data
-        })
-       }else{
-        dispatch({
-            type: OTPVERIFY_ERROR,
-            payload: res.data,
-        })
-       }
+        if (res.data.status === 200) {
+            /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
+            dispatch({
+                type: RESENDOTP,
+                payload: res.data
+            })
+        } else {
+            dispatch({
+                type: OTPVERIFY_ERROR,
+                payload: res.data,
+            })
+        }
     }
     catch (e) {
         dispatch({
@@ -107,18 +112,18 @@ export const Resendotp = (params: any) => async (dispatch: any) => {
 export const updatepassword = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.UPDATEPASSWORD, params);
-       if(res.data.status === 200){
-       /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */  
-        dispatch({
-            type: UPDATEPASSWORD,
-            payload: res.data
-        })
-       }else{
-        dispatch({
-            type: UPDATEPASSWORD_ERROR,
-            payload: res.data,
-        })
-       }
+        if (res.data.status === 200) {
+            /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
+            dispatch({
+                type: UPDATEPASSWORD,
+                payload: res.data
+            })
+        } else {
+            dispatch({
+                type: UPDATEPASSWORD_ERROR,
+                payload: res.data,
+            })
+        }
     }
     catch (e) {
         dispatch({
@@ -132,19 +137,19 @@ export const changePassword = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.CHANGEPASSWORD, params);
         console.log('res ====: ', res);
-       if(res.data.status === 200){
-       console.log('res.data.status: ', res.data.status);
-       /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */  
-        dispatch({
-            type: CHANGEPASSWORD,
-            payload: res.data
-        })
-       }else{
-        dispatch({
-            type: CHANGEPASSWORD_ERROR,
-            payload: res.data,
-        })
-       }
+        if (res.data.status === 200) {
+            console.log('res.data.status: ', res.data.status);
+            /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
+            dispatch({
+                type: CHANGEPASSWORD,
+                payload: res.data
+            })
+        } else {
+            dispatch({
+                type: CHANGEPASSWORD_ERROR,
+                payload: res.data,
+            })
+        }
     }
     catch (e) {
         dispatch({
@@ -156,9 +161,9 @@ export const changePassword = (params: any) => async (dispatch: any) => {
 
 export const userLogout = () => async (dispatch: any) => {
     try {
-      await AsyncStorage.removeItem("persistantState");
-      await AsyncStorage.removeItem("AuthToken");
-      await AsyncStorage.removeItem('userData')
+        await AsyncStorage.removeItem("persistantState");
+        await AsyncStorage.removeItem("AuthToken");
+        await AsyncStorage.removeItem('userData')
         dispatch({
             type: USER_LOGOUT,
             payload: null
