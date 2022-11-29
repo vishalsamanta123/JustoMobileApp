@@ -8,9 +8,18 @@ import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import { Dropdown } from "react-native-element-dropdown";
 import { dropdownData } from "../../../../components/utilities/DemoData";
-import DropdownInput from "../../../../components/DropDown";
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
 const FilterModal = (props: any) => {
   const [value, setValue] = useState(null);
+
+  const renderItem = (item: any) => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.textItem}>{item.label}</Text>
+      </View>
+    );
+  };
   return (
     <View>
       <Modal isVisible={props.Visible}>
@@ -26,29 +35,70 @@ const FilterModal = (props: any) => {
           <View style={styles.borderView} />
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
-              <InputField
-                placeholderText={"Start Date"}
-                handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
+              <InputCalender
+                mode={'Date'}
+                leftIcon={images.event}
+                placeholderText={"Start Date"}//can edit
+                editable={false}
+                // onChangeText={() => { }}
+                dateData={(data: any) => {
+                  props.setFormData({
+                    ...props.formData,
+                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  })
+                }}
+                setDateshow={(data: any) => {
+                  props.setFormData({
+                    ...props.formData,
+                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  })
+                }}
+                value={props?.formData?.next_followup_date}
               />
             </View>
             <View style={styles.inputWrap}>
-              <InputField
-                placeholderText={"End Date"}
-                handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
+              <InputCalender
+                mode={'date'}
+                leftIcon={images.event}
+                placeholderText={" End Date"}//can edit
+                editable={false}
+                // onChangeText={() => { }}
+                dateData={(data: any) => {
+                  props.setFormData({
+                    ...props.formData,
+                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  })
+                }}
+                setDateshow={(data: any) => {
+                  props.setFormData({
+                    ...props.formData,
+                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  })
+                }}
+                value={props?.formData?.next_followup_date}
               />
             </View>
             <View style={styles.inputWrap}>
-            <DropdownInput
-                placeholder={strings.searchbytype}
+              <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                iconStyle={styles.iconStyle}
+                data={dropdownData}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="Search by Type"
                 value={value}
-                setValue={setValue}
+                onChange={(item) => {
+                  setValue(item.value);
+                }}
+                renderItem={renderItem}
               />
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.search} />
+            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply} />
           </View>
         </View>
       </Modal>

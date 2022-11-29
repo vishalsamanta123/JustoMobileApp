@@ -51,7 +51,6 @@ export const getRolesList = (item: any) => async (dispatch: any) => {
         })
     }
 }
-
 export const getAllMaster = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.ADDMASTERLIST, params);

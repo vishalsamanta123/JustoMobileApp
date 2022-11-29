@@ -7,10 +7,10 @@ import { PRIMARY_THEME_COLOR_DARK, PRIMARY_THEME_COLOR } from '../utilities/cons
 const Loader = (props: any) => {
  return (
   <View style={styles.containerStyle}>
-  <View style={styles.indicatorViewStyle}>
-    {<ActivityIndicator size={'large'} color={PRIMARY_THEME_COLOR} />}
+    <View style={styles.indicatorViewStyle}>
+      {<ActivityIndicator size={'large'} color={PRIMARY_THEME_COLOR} />}
+    </View>
   </View>
-</View>
  )
 
 };
