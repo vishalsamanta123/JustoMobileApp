@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
 import styles from './Styles'
+import moment from 'moment'
 
 const AppointmentDtailsItem = (props : any) => {
   const appdetail = props?.status
@@ -12,7 +13,7 @@ const AppointmentDtailsItem = (props : any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-           <Text style={styles.nameTxt}>{appdetail.date}</Text>
+        <Text style={styles.nameTxt}>{moment(appdetail.appointment_date).format('DD-MM-YYYY')}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -21,7 +22,7 @@ const AppointmentDtailsItem = (props : any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{appdetail.appointmentType}</Text>
+          <Text style={styles.nameTxt}>{appdetail.lead_source}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -39,7 +40,7 @@ const AppointmentDtailsItem = (props : any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{appdetail.appointmentWith}</Text>
+          <Text style={styles.nameTxt}>{appdetail.customer_first_name}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -48,7 +49,11 @@ const AppointmentDtailsItem = (props : any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-      <Text style={styles.nameTxt}>{appdetail.status}</Text>
+        <Text style={styles.nameTxt}>{
+            appdetail.status == 1 ? 'Pending' :
+              appdetail.status == 2 ? 'Confirm' :
+                appdetail.status == 3 ? 'Compleat' : 'Appoiment cancel'
+          }</Text>
         </View>
       </View>
       { appdetail.status === 'Complete' ? <>

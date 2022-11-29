@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropertyListItem from './PropertyListItem';
-import EmptyListScreen from '../../../../components/CommonScreen/EmptyListScreen';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
@@ -14,6 +13,7 @@ import FilterModal from './FilterModel';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllMaster } from '../../../../Redux/Actions/MasterActions';
 import ErrorMessage from 'app/components/ErrorMessage';
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 
 const PropertyView = (props: any) => {

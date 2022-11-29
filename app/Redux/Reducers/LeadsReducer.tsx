@@ -1,5 +1,5 @@
 import {
-  ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, GET_VISITOR_DETAIL, REMOVE_VISITOR,
+  ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, GET_USERVISIT_LIST, GET_USERVISIT_LIST_ERROR, GET_VISITOR_DETAIL, REMOVE_VISITOR,
   VISITOR_LIST, VISITOR_STATUSUPDATE
 } from "../types";
 
@@ -50,15 +50,24 @@ export function visitorReducer(state = initialState, action: any) {
         loading: false,
         response: action.payload,
       };
-    /*   case VISITOR_LIST:
-        return {
-          ...state,
-          detail: false,
-          create: false,
-          loading: false,
-          list: true,
-          response: action.payload,
-        }; */
+    case GET_USERVISIT_LIST:
+      return {
+        ...state,
+        detail: false,
+        create: false,
+        loading: false,
+        list: true,
+        response: action.payload,
+      };
+    case GET_USERVISIT_LIST_ERROR:
+      return {
+        ...state,
+        detail: false,
+        create: false,
+        loading: false,
+        list: true,
+        response: action.payload,
+      };
     case VISITOR_STATUSUPDATE:
       return {
         ...state,

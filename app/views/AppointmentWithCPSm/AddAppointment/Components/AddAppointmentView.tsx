@@ -1,8 +1,7 @@
 import { View, Text, StatusBar } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Styles'
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK } from '../../../../components/utilities/constant';
+import { PRIMARY_THEME_COLOR } from '../../../../components/utilities/constant';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
@@ -10,20 +9,31 @@ import AddAppointmentItem from './AddAppointmentItem';
 import { useNavigation } from '@react-navigation/native';
 
 const AddAppointmentView = (props: any) => {
-    const insets = useSafeAreaInsets();
     const navigation: any = useNavigation()
     const [value, setValue] = useState(null)
-    const [gender, setGender] = useState("Male");
-    const [checked, setChecked] = React.useState("first");
+    const [addAppointmentForm, setAddAppointmentForm] = useState({
+        lead_id: props?.data?.lead_id,
+        appointment_date: props?.data?.appointment_date,
+        appointment_time: props?.data?.appointment_time,
+        appointment_id: props?.data?._id,
+        type: props?.data?.type,
+    });
+    console.log('addAppointmentForm: ', addAppointmentForm);
     const handleBtnPress = () => {
-        navigation.navigate('AppointmentScreen')
+        props.handleAddAppointment(addAppointmentForm)
+        console.log('addAppointmentForm: ', addAppointmentForm);
+        // navigation.navigate('AppointmentScreen')
     }
+    // useEffect(() => {
+    //     setAddAppointmentForm(props.data)
+    //     return () => {}
+    //   }, [props.data])
     return (
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.backArrow}
                 rightSecondImageScr={images.notification}
-                headerText={strings.addNewappointment}
+                headerText={props.type === strings.edit ? strings.editNewappointment : strings.addNewappointment}
                 leftImageIconStyle={styles.RightFirstIconStyle}
                 handleOnLeftIconPress={() => props.handleBackPress()}
                 headerStyle={styles.headerStyle}
@@ -34,9 +44,12 @@ const AddAppointmentView = (props: any) => {
                 <AddAppointmentItem
                     setValue={setValue}
                     value={value}
-                    setChecked={setChecked}
-                    checked={checked}
                     handleBtnPress={handleBtnPress}
+                    setAddAppointmentForm={setAddAppointmentForm}
+                    addAppointmentForm={addAppointmentForm}
+                    getVisitorsList={props.getVisitorsList}
+                    visitorList={props.visitorList}
+                    type={props.type}
                 />
             </View>
         </View>

@@ -64,6 +64,7 @@ const InputCalender = (props: any) => {
         (<DatePicker
           modal={true}
           mode={'date'}
+          minimumDate={props.minimumDate}
           open={open}
           date={new Date()}
           onDateChange={(date) => {

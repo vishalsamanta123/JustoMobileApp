@@ -3,14 +3,15 @@ import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
 import {
     GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR,
-    ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING
+    ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, GET_USERVISIT_LIST, GET_USERVISIT_LIST_ERROR
 } from "../types";
 
 export const getAllLeadsList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.VISITORLIST, params);
-        if (res.data.status == 200) {
+        console.log('res VISITORLIST: ', res);
+        if (res?.data?.status == 200) {
             dispatch({
                 type: VISITOR_LIST,
                 payload: res.data,
@@ -135,6 +136,34 @@ export const getVisitorDetail = (params: any) => async (dispatch: any) => {
     } catch (e) {
         dispatch({
             type: VISITOR_ERROR,
+            payload: console.log(e),
+        });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+};
+export const getUserVisitList = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
+    dispatch({ type: START_LOADING })
+    try {
+        const res = await apiCall("post", apiEndPoints.GET_USERVISTLIST, params);
+        console.log('res GET_USERVISTLIST: ', res);
+        if (res.data.status === 200) {
+            dispatch({
+                type: GET_USERVISIT_LIST,
+                payload: res.data,
+            });
+        } else {
+            handleApiError(res.data)
+            dispatch({
+                type: GET_USERVISIT_LIST_ERROR,
+                payload: [],
+            });
+        }
+    } catch (e) {
+        dispatch({
+            type: GET_USERVISIT_LIST_ERROR,
             payload: console.log(e),
         });
     }

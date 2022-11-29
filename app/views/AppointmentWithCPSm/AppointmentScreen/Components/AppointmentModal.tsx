@@ -7,6 +7,9 @@ import strings from "../../../../components/utilities/Localization";
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import DropdownInput from "../../../../components/DropDown";
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
+import { GRAY_LIGHT_COLOR } from "app/components/utilities/constant";
 
 const FilterModal = (props: any) => {
   return (
@@ -24,24 +27,80 @@ const FilterModal = (props: any) => {
           <View style={styles.borderView} />
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
-              <InputField
-                placeholderText={"Start Date"}
-                handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
+              <InputCalender
+                mode={'date'}
+                leftIcon={images.event}
+                placeholderText={strings.startDate}
+                editable={false}
+                dateData={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    start_date: moment(data).format('YYYY-MM-DD')
+                  })
+                }}
+                setDateshow={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    start_date: moment(data).format('YYYY-MM-DD')
+                  })
+                }}
+                value={moment(props.filterData?.start_date).format('DD-MM-YYYY')}
               />
             </View>
             <View style={styles.inputWrap}>
-              <InputField
-                placeholderText={"End Date"}
-                handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
+              <InputCalender
+                mode={'date'}
+                leftIcon={images.event}
+                placeholderText={strings.endDate}
+                editable={false}
+                dateData={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    appointment_date: moment(data).format('YYYY-MM-DD')
+                  })
+                }}
+                setDateshow={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    appointment_date: moment(data).format('YYYY-MM-DD')
+                  })
+                }}
+                value={moment(props.filterData?.appointment_date).format('DD-MM-YYYY')}
               />
             </View>
             <View style={styles.inputWrap}>
               <DropdownInput
                 placeholder={strings.appointmentWith}
-                value={props.value}
-                setValue={props.setValue}
+                data={props.visitorList}
+                inputWidth={'100%'}
+                paddingLeft={16}
+                maxHeight={300}
+                onFocus={() => props.getVisitorsList()}
+                labelField="first_name"
+                valueField={props.addAppointmentForm?.lead_name}
+                value={props.addAppointmentForm?.lead_name}
+                onChange={(item: any) => {
+                  props.setAddAppointmentForm({
+                    ...props.addAppointmentForm,
+                    lead_id: item._id, lead_name: item.first_name
+                  })
+                }}
+                newRenderItem={(item: any) => {
+                  return (
+                    <View style={{
+                      padding: 17,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}>
+                      <Text style={{
+                        flex: 1,
+                        fontSize: 16,
+                        color: GRAY_LIGHT_COLOR
+                      }}>{item.first_name}</Text>
+                    </View>
+                  );
+                }}
               />
             </View>
           </View>
