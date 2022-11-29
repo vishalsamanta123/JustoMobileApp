@@ -5,6 +5,7 @@ import strings from '../../../../components/utilities/Localization'
 import images from '../../../../assets/images'
 import Button from '../../../../components/Button'
 import { CALL_COLOR, PURPLE_COLOR } from '../../../../components/utilities/constant'
+import moment from 'moment'
 
 const MyAppointment = (props: any) => {
   return (
@@ -16,7 +17,7 @@ const MyAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Date :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.date}</Text>
+          <Text style={styles.nameTxt}>{moment(props.items.appointment_date).format('DD-MM-YYYY')}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -32,7 +33,7 @@ const MyAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Time :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.time}</Text>
+          <Text style={styles.nameTxt}>{props.items.appointment_time}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -40,7 +41,7 @@ const MyAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Appointment With :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.appointmentWith}</Text>
+          <Text style={styles.nameTxt}>{props.items.customer_first_name}</Text>
         </View>
       </View>
      {/*  <View style={styles.Txtview}>
@@ -56,7 +57,11 @@ const MyAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Status :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.status}</Text>
+        <Text style={styles.nameTxt}>{
+            props.items.status == 1 ? 'Pending' :
+              props.items.status == 2 ? 'Confirm' :
+                props.items.status == 3 ? 'Compleat' : 'Appoiment cancel'
+          }</Text>
         </View>
       </View>
 

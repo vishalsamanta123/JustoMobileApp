@@ -5,6 +5,7 @@ import { SourcingManagerReducer } from "./SourcingManagerReducer";
 import { agentReducer } from "./AgentReducer";
 import { propertyDetailReducer, propertyReducer } from "./propertyReducers";
 import { settingReducer } from "./SettingReducer";
+import { appointmentReducer } from "./AppointmentWithCpReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -22,5 +23,5 @@ export default {
     propertydetailData: propertyDetailReducer,
     agentData: agentReducer,
     settingData: settingReducer,
-
+    appointment: appointmentReducer,
 }

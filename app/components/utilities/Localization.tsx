@@ -237,6 +237,7 @@ const strings = new LocalizedStrings({
     addLocation: 'Add Locations',
     notSelectedLocation: 'Not Selected Location',
     searchYourlocation: 'Search your location here',
+    notfount: 'Not Found',
   },
 });
 

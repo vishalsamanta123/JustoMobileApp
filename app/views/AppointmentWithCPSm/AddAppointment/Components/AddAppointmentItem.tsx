@@ -6,45 +6,131 @@ import DropdownInput from '../../../../components/DropDown'
 import strings from '../../../../components/utilities/Localization'
 import images from '../../../../assets/images'
 import { RadioButton } from 'react-native-paper'
-import { PRIMARY_THEME_COLOR, BLACK_COLOR } from '../../../../components/utilities/constant'
+import { PRIMARY_THEME_COLOR, BLACK_COLOR, GRAY_LIGHT_COLOR } from '../../../../components/utilities/constant'
 import Button from '../../../../components/Button'
+import InputCalender from 'app/components/InputCalender'
+import moment from 'moment'
 
 const AddAppointmentItem = (props: any) => {
     return (
         <ScrollView>
             <View style={styles.wrap}>
                 <View style={styles.inputWrap}>
-                    <InputField
+                    <InputCalender
+                        mode={'date'}
+                        leftIcon={images.event}
                         placeholderText={strings.appointmentDate}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
                         headingText={strings.appointmentDate}
-                        rightImgSrc={images.event}
+                        editable={false}
+                        // onChangeText={() => { }}
+                        dateData={(data: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                appointment_date: moment(data).format('YYYY-MM-DD')
+                            })
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                appointment_date: moment(data).format('YYYY-MM-DD')
+                            })
+                        }}
+                        value={moment(props.addAppointmentForm?.appointment_date).format('DD-MM-YYYY')}
                     />
                 </View>
                 <View style={styles.inputWrap}>
-                    <InputField
+                    <InputCalender
+                        mode={'time'}
+                        leftIcon={images.timer}
                         placeholderText={strings.appointmentTime}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
                         headingText={strings.appointmentTime}
-                        rightImgSrc={images.timer}
+                        editable={false}
+                        // onChangeText={() => { }}
+                        dateData={(data: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                appointment_time: moment(data).format('LT')
+                            })
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                appointment_time: moment(data).format('LT')
+                            })
+                        }}
+                        value={props.addAppointmentForm?.appointment_time}
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <DropdownInput
                         headingText={strings.appointmentType}
                         placeholder={strings.appointmentType}
-                        value={props.value}
-                        setValue={props.setValue}
+                        data={props.visitorList}
+                        inputWidth={'100%'}
+                        paddingLeft={16}
+                        maxHeight={300}
+                        onFocus={() => props.getVisitorsList()}
+                        labelField="title"
+                        valueField={props.addAppointmentForm?.lead_name}
+                        value={props.addAppointmentForm?.lead_name}
+                        onChange={(item: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                lead_id: item._id, property_id: item.property_id, lead_name: item.first_name
+                            })
+                        }}
+                        newRenderItem={(item: any) => {
+                            return (
+                                <View style={{
+                                    padding: 17,
+                                    flexDirection: "row",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}>
+                                    <Text style={{
+                                        flex: 1,
+                                        fontSize: 16,
+                                        color: GRAY_LIGHT_COLOR
+                                    }}>{item.first_name}</Text>
+                                </View>
+                            );
+                        }}
                     />
                 </View>
                 <View style={styles.inputWrap}>
-                    <DropdownInput
+                <DropdownInput
                         headingText={strings.appointmentWith}
                         placeholder={strings.appointmentWith}
-                        value={props.value}
-                        setValue={props.setValue}
+                        data={props.visitorList}
+                        inputWidth={'100%'}
+                        paddingLeft={16}
+                        maxHeight={300}
+                        onFocus={() => props.getVisitorsList()}
+                        labelField="title"
+                        valueField={props.addAppointmentForm?.lead_name}
+                        value={props.addAppointmentForm?.lead_name}
+                        onChange={(item: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                lead_id: item._id, property_id: item.property_id, lead_name: item.first_name
+                            })
+                        }}
+                        newRenderItem={(item: any) => {
+                            return (
+                                <View style={{
+                                    padding: 17,
+                                    flexDirection: "row",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}>
+                                    <Text style={{
+                                        flex: 1,
+                                        fontSize: 16,
+                                        color: GRAY_LIGHT_COLOR
+                                    }}>{item.first_name}</Text>
+                                </View>
+                            );
+                        }}
                     />
                 </View>
                 <View style={styles.btnView}>

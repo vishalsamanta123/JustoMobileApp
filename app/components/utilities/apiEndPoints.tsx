@@ -54,6 +54,12 @@ export default {
   ADD_AGENT_: "/channelPartner/createAgent",
   EDIT_AGENT_: "/channelPartner/editAgent",
 
+    // Appointment
+    GET_APPOINTMENT_LIST: '/appointment/getAppointmentList',
+    GET_APPOINTMENT_DETAILS: '/appointment/getAppointmentDetails',
+    ADD_APPOINTMENT: '/appointment/addAppointment',
+    EDIT_APPOINTMENT: '/appointment/editAppointment',
+
    //Settings
    UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"
 };

@@ -1,5 +1,5 @@
 import { View, Text, StatusBar, useWindowDimensions, FlatList } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, TABBAR_COLOR } from '../../../../components/utilities/constant';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
@@ -9,21 +9,27 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 import SmAppointment from './SmAppointment';
 import { AppointMentSmData, MyAppointMentData } from '../../../../components/utilities/DemoData';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import FilterModal from './AppointmentModal';
 import Button from '../../../../components/Button';
 import MyAppointment from './MyAppointment';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllAppointmentList } from 'app/Redux/Actions/AppointmentWithCpActions';
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 const AppointmentView = (props: any) => {
-    const insets = useSafeAreaInsets();
+    const loadingref = false
     const layout = useWindowDimensions();
     const navigation: any = useNavigation()
     const [index, setIndex] = useState(0);
     const [FilterisVisible, setFilterisVisible] = useState(false)
+    const { response = {}, list = '' } = useSelector((state: any) => state.appointment)
     const [routes] = useState([
         { key: 'first', title: 'My Appointment with CP' },
-        { key: 'second', title: 'My Appointment With ST' },
+        { key: 'second', title: 'SM Appointment With CP' },
     ]);
+  
+   
     const renderTabBar = (props: any) => (
 
         <TabBar
@@ -34,18 +40,39 @@ const AppointmentView = (props: any) => {
             style={{ backgroundColor: PRIMARY_THEME_COLOR_DARK }} />
 
     );
-    const onPressView = (items : any ) => {
+    const onPressView = (items: any) => {
         console.log("onPressView -> items", items)
-       navigation.navigate('AppointmentDetails', items)
+        navigation.navigate('AppointmentDetails', items)
     }
     const onPressAddNew = () => {
         navigation.navigate('AddAppointmentScreen')
     }
     const FirstRoute = () => (
         <FlatList
-            data={MyAppointMentData}
-            renderItem={({ item }) => <MyAppointment items={item} 
-            onPressView={(items : any) => onPressView(items)} />}
+            data={props.appointmentList}
+            renderItem={({ item }) =>
+                <MyAppointment
+                    items={item}
+                    onPressView={(items: any) => onPressView(items)}
+                />
+            }
+            ListEmptyComponent={<EmptyListScreen message={'My Appointment with CP'} />}
+            onRefresh={() => {
+                props.setFilterData({
+                    start_date: '',
+                    end_date: '',
+                    customer_name: '',
+                    status: ''
+                })
+                props.getAppointmentList(0)
+            }}
+            refreshing={loadingref}
+            onEndReached={() => {
+                if (props.appointmentList?.length < response?.total_data) {
+                    console.log('onEndReached: ');
+                    props.getAppointmentList(props.appointmentList?.length > 2 ? props.offSET + 1 : 0)
+                }
+            }}
         />
     );
 
