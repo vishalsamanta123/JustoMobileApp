@@ -6,6 +6,7 @@ import { agentReducer } from "./AgentReducer";
 import { propertyDetailReducer, propertyReducer } from "./propertyReducers";
 import { settingReducer } from "./SettingReducer";
 import { appointmentReducer } from "./AppointmentWithCpReducer";
+import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -24,4 +25,10 @@ export default {
     agentData: agentReducer,
     settingData: settingReducer,
     appointment: appointmentReducer,
+
+    // visit modal
+    visitorData: visitorReducer,
+    visitorDataList: visitorListReducer,
+    editVisitorData: editVisitorReducer,
+    addVisitorData: addVisitorReducer,
 }
