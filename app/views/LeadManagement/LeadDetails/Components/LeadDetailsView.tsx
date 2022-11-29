@@ -24,7 +24,9 @@ const LeadDetailsView = (props: any) => {
         barStyle={'light-content'}
       />
       <View style={styles.leadDetailsItemView}>
-        <LeadDetailsIteam />
+        <LeadDetailsIteam
+          items={props?.allDetails}
+        />
       </View>
       <View style={styles.btnContainer}>
         <Button

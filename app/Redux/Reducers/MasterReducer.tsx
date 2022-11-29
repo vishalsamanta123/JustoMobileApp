@@ -1,4 +1,4 @@
-import { GET_CITY_LIST, GET_CITY_LIST_ERROR, GET_ROLE_LIST, GET_ROLE_LIST_ERROR } from "../types";
+import { GET_CITY_LIST, GET_CITY_LIST_ERROR, GET_ROLE_LIST, GET_ROLE_LIST_ERROR, MASTER_LIST } from "../types";
 
 const initialState = {
     response: null,
@@ -26,6 +26,14 @@ export function MasterReducer(state = initialState, action: any) {
                 Roleresponse: action.payload,
                 loading: false,
             }
+        case MASTER_LIST:
+            return {
+                ...state,
+                detail: false,
+                create: true,
+                response: action.payload,
+            };
+
         case GET_ROLE_LIST_ERROR:
             return {
                 ...state,

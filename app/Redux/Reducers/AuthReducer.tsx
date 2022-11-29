@@ -40,13 +40,11 @@ const changePasswordinitialState = {
 export function loadingReducer(state = { loading: false }, action: any) {
     switch (action.type) {
         case START_LOADING:
-            console.log("START_LOADING")
             return {
                 ...state,
                 loading: true,
             }
         case STOP_LOADING:
-            console.log("STOP_LOADING")
             return {
                 ...state,
                 loading: false,
