@@ -103,6 +103,7 @@ const strings = new LocalizedStrings({
     call: 'Call',
     unsubscribe: 'Unsubscribe',
     subscribe: 'Subscribe',
+    city: 'City',
 
     /**Confirm Model**/
     ConfirmationModalTxt: 'Select the reason for\r\nunsubscribe this property.',
@@ -199,7 +200,39 @@ const strings = new LocalizedStrings({
     doneappointment: 'Done Appointment',
 
     // Pickup request
-    PickuprequestHeader: 'Pickup Request'
+    PickuprequestHeader: 'Pickup Request',
+
+    // PERMISSION
+    txt_setting_heading_media: 'Justo Would Like to Access Your Photos',
+    txt_setting_heading_camera: 'Justo Would Like to Access the Camera',
+    txt_setting_heading_contact: 'Justo Would Like to Access Your Contacts',
+    txt_setting_heading_location: 'Justo Would Like to Access Your location',
+    txt_setting_heading_microPhone: 'Justo Would Like to Access Your MicroPhone',
+    txt_setting_description_contact:
+      'To allow this, tap Settings below and turn on Contacts.',
+    txt_setting_description_microPhone:
+      'To allow this, tap Settings below and turn on MicroPhone.',
+    txt_setting_description_camera:
+      'To allow, tap on Settings and turn on Camera.',
+    txt_setting_description_location:
+      'To allow, tap on Settings and turn on location.',
+    txt_setting_description_media: 'To allow, tap on Settings and turn on Photos.',
+    txt_setting_access:
+      'Justo does not have access. To enable access, tap on Settings and turn on the permissions.',
+    txt_setting_camera:
+      'Justo does not have access to your camera. To enable access, tap on Settings and turn on Camera.',
+    txt_setting_media:
+      'Justo does not have access to your media. To enable access, tap on Settings and turn on Media.',
+    txt_setting_media_camera:
+      'Justo does not have access to your camera and media. To enable access, tap on Settings and turn on Camera and Media.',
+    txt_setting_contact:
+      'Justo does not have access to your contact. To enable access, tap on Settings and turn on Contacts.',
+    txt_setting_Location:
+      'Justo does not have access to your Location. To enable access, tap on Settings and turn on Location.',
+
+    addLocation: 'Add Locations',
+    notSelectedLocation: 'Not Selected Location',
+    searchYourlocation: 'Search your location here',
   },
 });
 

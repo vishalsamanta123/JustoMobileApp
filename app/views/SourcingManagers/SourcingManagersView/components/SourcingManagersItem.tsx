@@ -15,7 +15,7 @@ const SourcingManagersItem = (props: any) => {
                 </View>
                 {/* <View><Text>:</Text></View> */}
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.Projectname}</Text>
+                    <Text style={styles.nameTxt}>{props.items.user_name}</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
