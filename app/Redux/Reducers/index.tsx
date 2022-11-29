@@ -5,6 +5,7 @@ import { SourcingManagerReducer } from "./SourcingManagerReducer";
 import { agentReducer } from "./AgentReducer";
 import { propertyDetailReducer, propertyReducer } from "./propertyReducers";
 import { settingReducer } from "./SettingReducer";
+import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -23,4 +24,9 @@ export default {
     agentData: agentReducer,
     settingData: settingReducer,
 
+    // visit modal
+    visitorData: visitorReducer,
+    visitorDataList: visitorListReducer,
+    editVisitorData: editVisitorReducer,
+    addVisitorData: addVisitorReducer,
 }

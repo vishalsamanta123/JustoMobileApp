@@ -167,39 +167,38 @@ const AuthComponent = () => {
   )
 }
 
+const AuthLoadingComponent = () => {
+  const { response, authToken = false } = useSelector((state: any) => state.login);
+  async function tokenGenrate() {
+    try {
+      const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
+      if (data) {
+        await AsyncStorage.setItem("token", data.token);
+        await setDefaultHeader("token", data.token);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  }
+  useEffect(() => {
+    if (response == null || response?.status == 201 || response?.status == 401) {
+      tokenGenrate()
+    } else {
+      setDefaultHeader("token", response?.token);
+    }
+  }, [response])
+  return (
+    <AuthLoading.Navigator screenOptions={screenOptions}>
+      {!authToken ?
+        <AuthLoading.Screen component={AuthComponent} name="Auth" /> :
+        <AuthLoading.Screen component={AppComponent} name="App" />
+      }
+    </AuthLoading.Navigator>
+  )
+
+}
 
 const Route = () => {
-  const AuthLoadingComponent = () => {
-    const { response, authToken = false } = useSelector((state: any) => state.login);
-    async function tokenGenrate() {
-      try {
-        const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
-        if (data) {
-          await AsyncStorage.setItem("token", data.token);
-          await setDefaultHeader("token", data.token);
-        }
-      } catch (error) {
-        // console.log(error);
-      }
-    }
-    useEffect(() => {
-      if (response == null || response?.status == 201 || response?.status == 401) {
-        tokenGenrate()
-      } else {
-        setDefaultHeader("token", response?.token);
-      }
-    }, [response])
-    return (
-      <AuthLoading.Navigator screenOptions={screenOptions}>
-        {!authToken ?
-          <AuthLoading.Screen component={AuthComponent} name="Auth" /> :
-          <AuthLoading.Screen component={AppComponent} name="App" />
-        }
-      </AuthLoading.Navigator>
-    )
-
-  }
-
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={screenOptions}>

@@ -25,26 +25,26 @@ export default {
 
   // SOURCING TL
   GET_SOURCING_MANAGER_LIST: '/channelPartner/getListSourcingManager',
-   // property Start
-   ADDPROPERTY: "/property/addProperty",
-   PROPERTYLIST: "/property/getAllProperty",
-   PROPERTYFILTER: "/property/filterProperty",
-   EDITPROPERTY: "/property/editProperty",
-   GETPROPERTYDETAIL: "/property/getPropertyDetails",
-   GETPROPERTYFILTERDETAIL: "/property/filterProperty",
-   PROPERTYSTATUSUPDATE: "/property/propertyStatusUpdate",
-   PROPERTYSUBSCRIBE: "/property/userSubscribeUnsubscribeProperty",
-   PROPERTYALLOCATELIST: "/property/getPropertyAlocateUserList",
-   ALLOCATEPROPERTYTOUSER: "/property/propertyAllocateToUsers",
-   
-   
+  // property Start
+  ADDPROPERTY: "/property/addProperty",
+  PROPERTYLIST: "/property/getAllProperty",
+  PROPERTYFILTER: "/property/filterProperty",
+  EDITPROPERTY: "/property/editProperty",
+  GETPROPERTYDETAIL: "/property/getPropertyDetails",
+  GETPROPERTYFILTERDETAIL: "/property/filterProperty",
+  PROPERTYSTATUSUPDATE: "/property/propertyStatusUpdate",
+  PROPERTYSUBSCRIBE: "/property/userSubscribeUnsubscribeProperty",
+  PROPERTYALLOCATELIST: "/property/getPropertyAlocateUserList",
+  ALLOCATEPROPERTYTOUSER: "/property/propertyAllocateToUsers",
 
-    // MASTER START
-    ADDMASTERLIST: "/master/getMasterList",
-    CREATEMASTER: "/master/createMaster",
-    GETPROPERTYTYPE: "/master/getPropertyType",
-    GETCONFIGURATION: "/master/getConfiguration",
-    GETAMENITY: "/master/getAmenity",
+
+
+  // MASTER START
+  ADDMASTERLIST: "/master/getMasterList",
+  CREATEMASTER: "/master/createMaster",
+  GETPROPERTYTYPE: "/master/getPropertyType",
+  GETCONFIGURATION: "/master/getConfiguration",
+  GETAMENITY: "/master/getAmenity",
 
 
   //Agent Management
@@ -54,6 +54,13 @@ export default {
   ADD_AGENT_: "/channelPartner/createAgent",
   EDIT_AGENT_: "/channelPartner/editAgent",
 
-   //Settings
-   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"
+  //Settings
+  UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
+
+  //Lead Management
+  VISITORLIST: "/visit/getVisiterList",
+  GET_VISITOR_DETAIL_: "/visit/getVisitDetails",
+  VISITOR_STATUS_UPDATE: "/visit/updateVisitStatus",
+  ADD_VISITOR_: "/visit/addVisit",
+  EDIT_VISITOR_: "/visit/editVisit",
 };
