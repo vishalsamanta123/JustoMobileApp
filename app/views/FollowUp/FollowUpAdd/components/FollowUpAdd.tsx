@@ -8,9 +8,14 @@ import InputField from "../../../../components/InputField";
 import { PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
+import Styles from "../../../../components/DropDown/styles";
 import FollupListItem from './FollowupListItem'
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
 
 const FollowUpAddView = (props: any) => {
+    console.log('props?.masterDatas: ', props?.masterDatas);
+
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -26,26 +31,91 @@ const FollowUpAddView = (props: any) => {
             />
             <View style={styles.topItemsVw}>
                 <DropdownInput
+                    headingText={'Status'}
                     placeholder={strings.status}
-                    value={props.value}
-                    setValue={props.setValue}
-                    onChange={(data: any) => {
-                        props.setValue(data)
+                    data={props?.masterDatas}
+                    inputWidth={'100%'}
+                    paddingLeft={16}
+                    maxHeight={300}
+                    onFocus={() => props.handleMasterDatas(5)}
+                    labelField="title"
+                    valueField={'_id'}
+                    value={props?.formData?.property_id}
+                    onChange={(item: any) => {
+                        props.setFormData({
+                            ...props.formData,
+                            followup_status: item._id,
+                        })
+                    }}
+                    newRenderItem={(item: any) => {
+                        return (
+                            <>
+                                {props?.isloading === false &&
+                                    <View style={Styles.item}>
+                                        <Text style={Styles.textItem}>{item.title}</Text>
+                                    </View>
+                                }
+                            </>
+                        );
                     }}
                 />
                 <View style={styles.inputWrap}>
-                    <InputField
-                        placeholderText={"Date & Time"}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
-                        rightImgSrc={images.event}
+                    <InputCalender
+                        headingText={'Date'}
+                        mode={'date'}
+                        leftIcon={images.event}
+                        placeholderText={"Date"}//can edit
+                        editable={false}
+                        // onChangeText={() => { }}
+                        dateData={(data: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                next_followup_date: moment(data).format('YYYY-MM-DD')
+                            })
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                next_followup_date: moment(data).format('YYYY-MM-DD')
+                            })
+                        }}
+                        value={props?.formData?.next_followup_date}
+                    />
+                </View>
+                <View style={styles.inputWrap}>
+                    <InputCalender
+                        headingText={'Time'}
+                        mode={'time'}
+                        leftIcon={images.timer}
+                        placeholderText={"Time"}//can edit
+                        editable={false}
+                        // onChangeText={() => { }}
+                        dateData={(data: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                followup_time: moment(data).format('LT')
+                            })
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                followup_time: moment(data).format('LT')
+                            })
+                        }}
+                        value={props?.formData?.followup_time}
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        headingText={'Description'}
                         placeholderText={"Description"}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(val: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                remark: val,
+                            })
+                        }}
                         multiline={true}
                         inputheight={100}
                     />
@@ -55,17 +125,26 @@ const FollowUpAddView = (props: any) => {
                         width={320}
                         btnTxtsize={18}
                         buttonText={strings.update + " " + strings.followupHeader}
+                        handleBtnPress={() => props.handleUpdateStatus()}
+                    />
+                </View>
+                <View style={styles.inputWrap}>
+                    <Button
+                        width={320}
+                        btnTxtsize={18}
+                        buttonText={strings.allfollowup}
+                        handleBtnPress={() => props.handleAllFollowUp()}
                     />
                 </View>
             </View>
             <View style={styles.listView}>
-                <FlatList
+                {/* <FlatList
                     data={props.DATA}
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => <FollupListItem items={item}
                     // onPressView={props.onPressView}
                     />}
-                />
+                /> */}
             </View>
         </View>
     )

@@ -97,6 +97,7 @@ const strings = new LocalizedStrings({
     requiredField: 'All Password field are required',
     sendotp: 'Send OTP',
     registration: 'registration',
+    followup: 'Follow-Up',
 
 
     // common strings
@@ -237,6 +238,7 @@ const strings = new LocalizedStrings({
     addLocation: 'Add Locations',
     notSelectedLocation: 'Not Selected Location',
     searchYourlocation: 'Search your location here',
+    notfount: 'Not Found',
   },
 });
 

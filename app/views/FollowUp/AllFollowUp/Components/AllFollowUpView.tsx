@@ -8,11 +8,21 @@ import strings from '../../../../components/utilities/Localization'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { AllFolloeUpData } from '../../../../components/utilities/DemoData'
 import AllFollowUpItem from './AllFollowUpItem'
+import EmptyListScreen from '../../../../components/CommonScreen/Empty'
+import { useSelector } from 'react-redux'
 
 const AllFollowUpView = (props: any) => {
-    const insets = useSafeAreaInsets();
+  const { response = {}, list = '' } = useSelector((state: any) => state.followUp)
+  const insets = useSafeAreaInsets();
   return (
     <View style={styles.mainConatiner}>
+      <View
+        style={{
+          backgroundColor: PRIMARY_THEME_COLOR_DARK,
+          height: insets.top,
+        }}
+      />
+      <StatusBar backgroundColor={PRIMARY_THEME_COLOR} barStyle={"light-content"} />
       <Header
         leftImageSrc={images.backArrow}
         rightSecondImageScr={images.notification}
@@ -21,14 +31,18 @@ const AllFollowUpView = (props: any) => {
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}
         leftImageIconStyle={styles.RightFirstIconStyle}
-        barStyle={'light-content'}
-        statusBarColor={PRIMARY_THEME_COLOR}
       />
       <View style={styles.iteamView}>
         <FlatList
-        data={AllFolloeUpData}
-        renderItem={({item}) => <AllFollowUpItem items={item} />}
-         />
+          data={Array.isArray(props?.allFollowUpList) ? props?.allFollowUpList : []}
+          ListEmptyComponent={<EmptyListScreen message={strings.allfollowup} />}
+          renderItem={({ item }) => <AllFollowUpItem items={item} />}
+          onEndReached={() => {
+            if (props?.allFollowUpList?.length < response?.total_data) {
+              props.getFollowupList(props?.allFollowUpList?.length > 4 ? props.offSET + 1 : 0, props?.allFollowUpList)
+            }
+          }}
+        />
       </View>
     </View>
   )
