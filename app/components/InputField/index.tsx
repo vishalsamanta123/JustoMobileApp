@@ -1,9 +1,9 @@
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { BLACK_COLOR, Isios } from '../utilities/constant';
+import { BLACK_COLOR } from '../utilities/constant';
 import images from '../../assets/images';
-import { normalize, normalizeHeight } from '../scaleFontSize';
+import { normalizeHeight } from '../scaleFontSize';
 
 const InputField = (props: any) => {
   const {
@@ -11,22 +11,27 @@ const InputField = (props: any) => {
     editable = true,
     multiline = false,
     inputheight = 50,
-    headTxtSize = Isios ? 14 : 16
+    keyboardtype = 'default',
+    topping = 2
   } = props
   const onSubmit = (e: any) => {
     const { text } = e;
   };
+
   return (
     <View>
       <View style={styles.inputHeadinView}>
-        <Text style={[styles.inputHeadingText, {
-          fontSize: normalize(headTxtSize),
-        }]}>{props.headingText}</Text>
+        <Text style={styles.inputHeadingText}>{props.headingText}</Text>
       </View>
       <View style={styles.mainContainer}>
         <TextInput
-          style={[styles.input, { textAlignVertical: 'top', width: inputWidth, height: normalizeHeight(inputheight) }]}
-          onChangeText={(val) => props.onChangeText(val)}
+          style={[styles.input, {
+            width: inputWidth,
+            height: normalizeHeight(inputheight),
+            textAlignVertical: 'top',
+            top: topping
+          }]}
+          onChangeText={val => props.onChangeText(val)}
           onSubmitEditing={onSubmit}
           placeholder={props.placeholderText}
           placeholderTextColor={BLACK_COLOR}
@@ -34,6 +39,10 @@ const InputField = (props: any) => {
           autoCapitalize={'none'}
           editable={editable}
           multiline={multiline}
+          keyboardType={keyboardtype}
+          value={props.valueshow}
+          maxLength={props.maxLength}
+          onBlur={props.onBlur}
         />
         <TouchableOpacity
           onPress={props.handleInputBtnPress}

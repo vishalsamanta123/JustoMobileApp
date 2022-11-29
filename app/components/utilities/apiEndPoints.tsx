@@ -39,4 +39,15 @@ export default {
     GETPROPERTYTYPE: "/master/getPropertyType",
     GETCONFIGURATION: "/master/getConfiguration",
     GETAMENITY: "/master/getAmenity",
+
+
+  //Agent Management
+  AGENTLIST: "/channelPartner/getchannelPartnerList",
+  GET_AGENT_DETAIL_: "/channelPartner/getChannelPartnersDetails",
+  AGENT_STATUS_UPDATE: "/channelPartner/ApproveChannelpartnerbysourcinghead",
+  ADD_AGENT_: "/channelPartner/createAgent",
+  EDIT_AGENT_: "/channelPartner/editAgent",
+
+   //Settings
+   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"
 };

@@ -52,6 +52,11 @@ const styles = StyleSheet.create({
       radioTxt : {
         fontSize: normalize(18),
       },
+      userImage: {
+        height: normalizeHeight(80),
+        width: normalizeWidth(80),
+        borderRadius: normalizeSpacing(80)
+    },
 });
 
 export default styles;

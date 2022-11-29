@@ -15,7 +15,15 @@ const PicturePickerModal = (props: any) => {
             multiple: props.multiple ? props.multiple : false
         }).then((image: any) => {
             props.setVisible(false);
-            props.imageData(image)
+            props.imageData(
+                {
+                    uri: image?.path,
+                    type: image?.mime,
+                    name: image?.path?.substring(
+                        image?.path?.lastIndexOf("/") + 1
+                    ),
+                }
+            );
         });
     }
     const handleGalleryPress = () => {
@@ -26,7 +34,15 @@ const PicturePickerModal = (props: any) => {
             multiple: props.multiple ? props.multiple : false
         }).then((image: any) => {
             props.setVisible(false);
-            props.imageData(image)
+            props.imageData(
+                {
+                    uri: image?.path,
+                    type: image?.mime,
+                    name: image?.path?.substring(
+                        image?.path?.lastIndexOf("/") + 1
+                    ),
+                }
+            )
         });
     }
     return (

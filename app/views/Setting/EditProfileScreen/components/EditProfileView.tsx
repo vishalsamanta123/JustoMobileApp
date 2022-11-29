@@ -1,78 +1,133 @@
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { RadioButton } from "react-native-paper";
+import Header from "../../../../components/Header";
+import strings from "../../../../components/utilities/Localization";
+import styles from "./styles";
 import {
-    ScrollView,
-    Text,
-    View,
-  } from "react-native";
-  import React, { useState } from "react";
-  import { RadioButton } from "react-native-paper";
-  import Header from "../../../../components/Header";
-  import strings from "../../../../components/utilities/Localization";
-  import styles from "./styles";
-  import {
-    BLACK_COLOR,
-    PRIMARY_THEME_COLOR,
-  } from "../../../../components/utilities/constant";
-  import { useSafeAreaInsets } from "react-native-safe-area-context";
-  import InputField from "../../../../components/InputField";
-  import images from "../../../../assets/images";
-  import Button from "../../../../components/Button";
-  
-  const EditProfileView = (props: any) => {
-    const insets = useSafeAreaInsets();
-    const [gender, setGender] = useState("Male");
-    const [checked, setChecked] = React.useState("first");
-  
-    return (
-      <ScrollView style={styles.mainContainer}>
-        <Header
-          headerText={strings.editProfile}
-          headerStyle={styles.headerStyle}
-          headerTextStyle={styles.headerTextStyle}
-          leftImageSrc={images.backArrow}
-          leftImageIconStyle={styles.leftImageIconStyle}
-          handleOnLeftIconPress={props.onPressBack}
-          barStyle={'light-content'}
-          statusBarColor={PRIMARY_THEME_COLOR}
-        />
+  BLACK_COLOR,
+  PRIMARY_THEME_COLOR,
+} from "../../../../components/utilities/constant";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import InputField from "../../../../components/InputField";
+import images from "../../../../assets/images";
+import Button from "../../../../components/Button";
+import moment from "moment";
+import { useSelector } from "react-redux";
+import InputCalender from "app/components/InputCalender";
+import PicturePickerModal from "app/components/Modals/PicturePicker";
+
+const EditProfileView = (props: any) => {
+  const { onPressBack, allDetails, setEditData, editData } = props;
+  const insets = useSafeAreaInsets();
+  const [gender, setGender] = useState("Male");
+  const [checked, setChecked] = useState("first");
+  const [profileVisible, setProfileVisible] = useState(false);
+
+  console.log("editData:00000000", editData);
+  const allDetailsall = useSelector((state: any) => state.agentData);
+  // useEffect(() => {
+  //   // setEditData(allDetails)
+  //   setEditData(allDetailsall?.response)
+  // }, [allDetailsall])
+  console.log('editData?.firstname?.toUpperCase() + editData?.lastname?.toUpperCase(): ', editData?.firstname?.toUpperCase() + editData?.lastname?.toUpperCase());
+
+  return (
+    <View style={styles.mainContainer}>
+      <Header
+        headerText={strings.editProfile}
+        headerStyle={styles.headerStyle}
+        headerTextStyle={styles.headerTextStyle}
+        leftImageSrc={images.backArrow}
+        leftImageIconStyle={styles.leftImageIconStyle}
+        handleOnLeftIconPress={onPressBack}
+        barStyle={"light-content"}
+        statusBarColor={PRIMARY_THEME_COLOR}
+      />
+      <ScrollView>
         <View style={styles.wrap}>
-         {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
-          {/* <View style={styles.underlineStyle} /> */}
-          <View style={styles.imageCircle}>
-            <Text>Image</Text>
-          </View>
+          {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
+          {/* <View style={styles.nderlineStyle} /> */}
+
+          <TouchableOpacity
+            style={styles.imageCircle}
+            onPress={() => setProfileVisible(true)}
+          >
+            <Image
+              style={styles.userImage}
+              source={{
+                uri: editData?.local_profile_picture?.uri
+                  ? editData?.local_profile_picture?.uri
+                  : editData?.base_url + editData?.profile_picture,
+              }}
+            />
+          </TouchableOpacity>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Name"}
+              valueshow={editData?.firstname}
               handleInputBtnPress={() => {}}
-              onChangeText={() => {}}
-              headingText={"Agent Name"}
+              onChangeText={(e: any) => {
+                setEditData({
+                  ...editData,
+                  firstname: e,
+                });
+              }}
+              headingText={"First Name"}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Adhar No."}
+              valueshow={editData?.lastname}
               handleInputBtnPress={() => {}}
-              onChangeText={() => {}}
+              onChangeText={(e: any) => {
+                setEditData({
+                  ...editData,
+                  lastname: e,
+                });
+              }}
+              headingText={"Last Name"}
+            />
+          </View>
+          <View style={styles.inputWrap}>
+            <InputField
+              valueshow={editData?.adhar_no}
+              handleInputBtnPress={() => {}}
+              onChangeText={(e: any) => {
+                setEditData({
+                  ...editData,
+                  adhar_no: e,
+                });
+              }}
               headingText={"Adhar No."}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Pancard No."}
+              valueshow={editData?.pancard_no}
               handleInputBtnPress={() => {}}
-              onChangeText={() => {}}
+              onChangeText={(e: any) => {
+                setEditData({
+                  ...editData,
+                  pancard_no: e,
+                });
+              }}
               headingText={"Pancard No."}
             />
           </View>
           <View style={styles.genderView}>
             <Text style={styles.genderTxt}>{strings.gender}</Text>
             <View style={styles.radioView}>
-              {/* <RadioButton
-                value="first"
-                status={checked === "first" ? "checked" : "unchecked"}
-                onPress={() => setChecked("first")}
+              <RadioButton
+                value={editData?.gender}
+                status={editData?.gender === 1 ? "checked" : "unchecked"}
+                onPress={() =>
+                  setEditData({
+                    ...editData,
+                    gender: 1,
+                  })
+                }
                 color={PRIMARY_THEME_COLOR}
-              /> */}
+              />
               <Text
                 style={[
                   styles.radioTxt,
@@ -86,12 +141,17 @@ import {
               </Text>
             </View>
             <View style={styles.radioView}>
-              {/* <RadioButton
-                value="second"
-                status={checked === "second" ? "checked" : "unchecked"}
-                onPress={() => setChecked("second")}
+              <RadioButton
+                value={editData?.gender}
+                status={editData?.gender === 2 ? "checked" : "unchecked"}
+                onPress={() =>
+                  setEditData({
+                    ...editData,
+                    gender: 2,
+                  })
+                }
                 color={PRIMARY_THEME_COLOR}
-              /> */}
+              />
               <Text
                 style={[
                   styles.radioTxt,
@@ -105,54 +165,118 @@ import {
               </Text>
             </View>
           </View>
-          <View style={styles.inputWrap}>
+          {/* <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Date of Birth"}
+              valueshow={moment(editData?.date_of_birth).format("DD/MM/YYYY")}
               handleInputBtnPress={() => {}}
-              onChangeText={() => {}}
+              onChangeText={(e: any) => {
+                setEditData({
+                  ...editData,
+                  date_of_birth: e,
+                });
+              }}
               headingText={"Date of Birth"}
               rightImgSrc={images.event}
             />
-          </View>
+          </View> */}
+          <InputCalender
+            mode={"date"}
+            leftIcon={images.event}
+            placeholderText={"Date of Birth"} //can edit
+            editable={false}
+            // onChangeText={() => { }}
+            dateData={(data: any) => {
+              console.log("data: ", data);
+              setEditData({
+                ...editData,
+                dateofbirth: data,
+              });
+            }}
+            setDateshow={(data: any) => {
+              setEditData({
+                ...editData,
+                dateofbirth: data,
+              });
+            }}
+            value={moment(editData?.dateofbirth).format("DD/MM/YYYY")}
+          />
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Mobile No."}
+              valueshow={editData?.mobile?.toString()}
               handleInputBtnPress={() => {}}
-              onChangeText={() => {}}
+              onChangeText={(e: any) => {
+                setEditData({
+                  ...editData,
+                  primary_mobile: e,
+                });
+              }}
               headingText={"Mobile No."}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"WhatsApp No."}
+              valueshow={editData?.whatsapp_no}
               handleInputBtnPress={() => {}}
-              onChangeText={() => {}}
+              onChangeText={(e: any) => {
+                setEditData({
+                  ...editData,
+                  whatsapp_no: e,
+                });
+              }}
               headingText={"WhatsApp No."}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Email Address"}
+              valueshow={editData?.email}
               handleInputBtnPress={() => {}}
-              onChangeText={() => {}}
+              onChangeText={(e: any) => {
+                setEditData({
+                  ...editData,
+                  email: e,
+                });
+              }}
               headingText={"Email Address"}
             />
           </View>
-         {/*  <View style={styles.inputWrap}>
+          {/*  <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Sourcing Manager"}
               handleInputBtnPress={() => {}}
-              onChangeText={() => {}}
+              onChangeText={(e: any) => {
+                setEditData({
+                  ...editData,
+                  adhar_no: e
+                })
+              }}
               headingText={"Sourcing Manager"}
             />
           </View> */}
-          <View style={{marginTop: 10}}>
-            <Button handleBtnPress={props.onPressNext} width={300} btnTxtsize={15} buttonText={strings.updateProfile} textTransform={"uppercase"} />
+          <View style={{ marginTop: 10 }}>
+            <Button
+              handleBtnPress={() => props.handleNextPress()}
+              width={300}
+              btnTxtsize={15}
+              buttonText={strings.update}
+              textTransform={"uppercase"}
+            />
           </View>
+          <PicturePickerModal
+            Visible={profileVisible}
+            setVisible={setProfileVisible}
+            imageData={(data: any) => {
+              console.log("data: ", data);
+              setEditData({
+                ...editData,
+                profile_picture: data,
+                local_profile_picture: data,
+              });
+            }}
+          />
         </View>
       </ScrollView>
-    );
-  };
-  
-  export default EditProfileView;
-  
+    </View>
+  );
+};
+
+export default EditProfileView;

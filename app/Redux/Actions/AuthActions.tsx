@@ -129,6 +129,7 @@ export const updatepassword = (params: any) => async (dispatch: any) => {
 }
 
 export const changePassword = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.CHANGEPASSWORD, params);
         console.log('res ====: ', res);
