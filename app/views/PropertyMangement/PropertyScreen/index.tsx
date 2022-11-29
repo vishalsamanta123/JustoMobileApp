@@ -1,4 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
+import ErrorMessage from 'app/components/ErrorMessage';
+import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant';
 import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../../components/CommonScreen/Loader';
@@ -26,12 +28,18 @@ const PropertyScreen = ({ navigation }: any) => {
     }, [navigation, list]))
 
   // useEffect(() => {
-  //   if (response && response?.status === 200 && updateStatus) {
-  //     getallproperty()
+  //   if(response?.status === 200) {
+  //     ErrorMessage({
+  //       msg: response?.message,
+  //       backgroundColor: GREEN_COLOR
+  //     })
   //   } else {
-  //     //errorToast(response.message);
+  //     ErrorMessage({
+  //       msg: response?.message,
+  //       backgroundColor: RED_COLOR
+  //     })
   //   }
-  // }, [propertyData])
+  // }, [response])
 
   const handleStatusChange = () => {
   setIsloading(true)

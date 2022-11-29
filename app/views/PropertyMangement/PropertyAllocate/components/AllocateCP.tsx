@@ -2,15 +2,51 @@ import { View, Text, Image, TextInput, FlatList, TouchableOpacity } from 'react-
 import images from '../../../../assets/images';
 import Header from '../../../../components/Header';
 import { Checkbox } from 'react-native-paper';
-import { BLACK_COLOR, GRAY_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant';
+import { BLACK_COLOR, GRAY_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant';
 import styles from './styles';
 import Button from '../../../../components/Button';
 import strings from '../../../../components/utilities/Localization';
 import AllocateCPDetails from './AllocateDetails'
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import ErrorMessage from 'app/components/ErrorMessage';
+import { useNavigation } from '@react-navigation/native';
 
 const AllocateCPView = (props: any) => {
+
+
+
+
+
+    const navigation: any = useNavigation();
+    const { response = {}, allocated } =
+    useSelector((state: any) => state.propertyData) || [];
+    // useEffect(() => {
+    //     if(response.status === 200) {
+    //       ErrorMessage({
+    //         msg: response.message,
+    //         backgroundColor: GREEN_COLOR
+    //       })
+    //     } else {
+    //       ErrorMessage({
+    //         msg: response.message,
+    //         backgroundColor: RED_COLOR
+    //       })
+    //     }
+    //   }, [allocated])
+
+      useEffect(() => {
+        let ordersData = props?.selectedCp?.map((data : any) => {
+        
+          return data?._id
+         }
+        );
+
+        console.log('ordersData: ', ordersData);
+        props.setSelectedLoginIdCp(ordersData)
+    
+      }, [props.selectedCp]);
 
     return (
         <View style={styles.mainContainer}>
@@ -31,7 +67,19 @@ const AllocateCPView = (props: any) => {
                 <View style={styles.selectedBox}>
                     {props?.selectedCp?.length > 0 ?
                         <>
+
+                                                        
                             {props?.selectedCp?.map((item: any, index: any) => {
+                            console.log('item: ', item._id);
+                            
+                        /*    var arrayLoginID: any[] = [...props.selectedLoginIdCp];
+                            
+                            console.log('arrayLoginID: ', arrayLoginID);
+                            arrayLoginID.push(item?._id);
+                            props.setSelectedLoginIdCp(arrayLoginID);  */
+                              
+                              //props.setSelectedLoginIdCp([...props.selectedLoginIdCp,item._id])
+
                                 return (
                                     <View style={[styles.innerBoxVw, { justifyContent: 'flex-start' }]}>
                                         <Text>{item.user_name}</Text>

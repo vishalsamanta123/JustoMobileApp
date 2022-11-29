@@ -19,6 +19,12 @@ export default {
   CHECKEMAILMOBILE: '/auth/checkEmailMobile',
   GET_SOURCINGMANAGER: '/channelPartner/getListSourcingManager',
 
+  // MASTERS
+  GET_CITY_LIST: '/master/getCityList',
+  GET_ROLE_LIST: '/role/getRoles',
+
+  // SOURCING TL
+  GET_SOURCING_MANAGER_LIST: '/channelPartner/getListSourcingManager',
    // property Start
    ADDPROPERTY: "/property/addProperty",
    PROPERTYLIST: "/property/getAllProperty",
@@ -39,4 +45,15 @@ export default {
     GETPROPERTYTYPE: "/master/getPropertyType",
     GETCONFIGURATION: "/master/getConfiguration",
     GETAMENITY: "/master/getAmenity",
+
+
+  //Agent Management
+  AGENTLIST: "/channelPartner/getchannelPartnerList",
+  GET_AGENT_DETAIL_: "/channelPartner/getChannelPartnersDetails",
+  AGENT_STATUS_UPDATE: "/channelPartner/ApproveChannelpartnerbysourcinghead",
+  ADD_AGENT_: "/channelPartner/createAgent",
+  EDIT_AGENT_: "/channelPartner/editAgent",
+
+   //Settings
+   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"
 };

@@ -1,14 +1,29 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import images from '../../../../assets/images'
 import { PRIMARY_THEME_COLOR } from '../../../../components/utilities/constant'
 import strings from '../../../../components/utilities/Localization'
 import styles from './styles'
 import Header from '../../../../components/Header'
+import moment from 'moment'
+import { useSelector } from 'react-redux'
 
 const ProfileView = (props: any) => {
   const {data, HandleBackPress, handleEditProfilePress} = props;
-  console.log('data', data)
+  const allDetailsall = useSelector((state: any) => state.agentData);
+  const [allDetails , setAllDetails] = useState<any>({})
+
+  useEffect(() =>{
+    checkprofile()
+  },[allDetailsall])
+
+  const checkprofile = () => {
+    if(allDetailsall?.response?.status === 200){
+      setAllDetails(allDetailsall?.response?.data)
+    }
+  } 
+  console.log('allDetails?.profile_picture: ', allDetails?.base_url + allDetails?.profile_picture);
+
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -23,12 +38,12 @@ const ProfileView = (props: any) => {
       />
       <View style={styles.ProfileView}>
         <View style={styles.roleView}>
-          <Text style={styles.CPtext}>{strings.userRole} : {strings.channelPartner}</Text>
+          <Text style={styles.CPtext}>{strings.userRole} : {allDetails?.role_title}</Text>
         </View>
         <View style={styles.userCardView}>
           <View style={styles.usernameWrap}>
-            <Image style={styles.userImage} source={images.dummyUser}  />
-            <Text style={styles.userNameText}>ROBERT DOWNEY</Text>
+            <Image style={styles.userImage} source={{uri: allDetails?.base_url + allDetails?.profile_picture}}  />
+            <Text style={styles.userNameText}>{(allDetails?.firstname?.toUpperCase() + allDetails?.lastname?.toUpperCase())}</Text>
           </View>
           <TouchableOpacity style={styles.editImageWrap} onPress={handleEditProfilePress}>
             <Image style={styles.editIconImage} source={images.editIcon}/>
@@ -41,7 +56,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>ANIL SINGH</Text>
+              <Text style={styles.valueText}>{allDetails?.firstname?.toUpperCase() + ' ' + allDetails?.lastname?.toUpperCase()}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -50,7 +65,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>12345*****</Text>
+              <Text style={styles.valueText}>{allDetails?.adhar_no}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -59,7 +74,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>ASD***</Text>
+              <Text style={styles.valueText}>{allDetails?.pancard_no} </Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -68,7 +83,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>MALE</Text>
+              <Text style={styles.valueText}>{allDetails?.gender === 1 ? strings.male : strings.female}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -77,7 +92,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>21/09/2022</Text>
+              <Text style={styles.valueText}>{moment(allDetails?.dateofbirth).format('DD/MM/YYYY')}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -86,7 +101,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>123456789</Text>
+              <Text style={styles.valueText}>{allDetails?.mobile}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -95,7 +110,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>123456789</Text>
+              <Text style={styles.valueText}>{allDetails?.whatsapp_no}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -104,7 +119,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>abc@gmail.com</Text>
+              <Text style={styles.valueText}>{allDetails?.email}</Text>
             </View>
           </View>
         </View>

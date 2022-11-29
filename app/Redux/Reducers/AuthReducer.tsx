@@ -1,11 +1,13 @@
-import {
-    TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, FORGOT_PASSWORD, FORGOT_ERROR, FORGOT_NULL,
-    OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR,
-    RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL, START_LOADING, STOP_LOADING
-} from '../types'
+import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, FORGOT_PASSWORD, FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL, USERREGISTER_ERROR, USERREGISTER, START_LOADING, STOP_LOADING } from '../types'
 
 const initialState = {
     response: null,
+    authToken: false,
+    loading: true,
+
+}
+const initialStateUserData = {
+    userData: null,
     authToken: false,
     loading: true,
 
@@ -53,6 +55,28 @@ export function loadingReducer(state = { loading: false }, action: any) {
 
 }
 
+export function userData(state = initialStateUserData, action: any) {
+    switch (action.type) {
+        case USER_LOGIN:
+            return {
+                ...state,
+                userData: action.payload,
+                authToken: true,
+                loading: false,
+            }
+        case LOGIN_ERROR:
+            return {
+                ...state,
+                userData: action.payload,
+                authToken: false,
+                loading: false,
+            }
+
+        default: return state
+            break;
+    }
+
+}
 export function authStore(state = initialState, action: any) {
     switch (action.type) {
         case USER_LOGIN:
@@ -81,6 +105,18 @@ export function authStore(state = initialState, action: any) {
             }
 
         case TOKEN_GENRATE:
+            return {
+                ...state,
+                response: action.payload,
+                // authToken: false
+            }
+        case USERREGISTER:
+            return {
+                ...state,
+                response: action.payload,
+                // authToken: false
+            }
+        case USERREGISTER_ERROR:
             return {
                 ...state,
                 response: action.payload,

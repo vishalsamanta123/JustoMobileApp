@@ -3,8 +3,9 @@ import { View, Text, Image, TouchableOpacity, } from "react-native";
 import Modal from "react-native-modal";
 import styles from "./styles";
 import images from "../../assets/images";
-import strings from "../../components/utilities/Localization";
+import strings from "../utilities/Localization";
 import ImagePicker from 'react-native-image-crop-picker';
+import { handlePermission, openPermissionSetting, } from "../utilities/GlobalFuncations";
 
 const PicturePickerModal = (props: any) => {
     const handleCameraPress = () => {
@@ -15,7 +16,15 @@ const PicturePickerModal = (props: any) => {
             multiple: props.multiple ? props.multiple : false
         }).then((image: any) => {
             props.setVisible(false);
-            props.imageData(image)
+            props.imageData(
+                {
+                    uri: image?.path,
+                    type: image?.mime,
+                    name: image?.path?.substring(
+                        image?.path?.lastIndexOf("/") + 1
+                    ),
+                }
+            );
         });
     }
     const handleGalleryPress = () => {
@@ -26,9 +35,18 @@ const PicturePickerModal = (props: any) => {
             multiple: props.multiple ? props.multiple : false
         }).then((image: any) => {
             props.setVisible(false);
-            props.imageData(image)
+            props.imageData(
+                {
+                    uri: image?.path,
+                    type: image?.mime,
+                    name: image?.path?.substring(
+                        image?.path?.lastIndexOf("/") + 1
+                    ),
+                }
+            )
         });
     }
+
     return (
         <Modal style={styles.fullContainer} coverScreen={true}
             isVisible={props.Visible}
@@ -45,7 +63,21 @@ const PicturePickerModal = (props: any) => {
                     </View>
                     <View style={styles.straightVw}>
                         <TouchableOpacity
-                            onPress={() => handleGalleryPress()}
+                            onPress={async () => {
+                                const res = await handlePermission(
+                                    'gallery',
+                                    strings.txt_setting_heading_media,
+                                    strings.txt_setting_description_media,
+                                );
+                                if (res == 'setting1') {
+                                    openPermissionSetting(
+                                        strings.txt_setting_heading_media,
+                                        strings.txt_setting_description_media,
+                                    );
+                                } else if (res) {
+                                    handleGalleryPress()
+                                }
+                            }}
                             style={styles.componentsVw}>
                             <Image
                                 style={styles.componentsImg}
@@ -55,8 +87,25 @@ const PicturePickerModal = (props: any) => {
                             <Text style={styles.componentsTxt}>{strings.galleryHeader}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => handleCameraPress()}
-                            style={styles.componentsVw}>
+                            style={styles.componentsVw}
+                            onPress={async () => {
+
+                                const res = await handlePermission(
+                                    'camera',
+                                    strings.txt_setting_heading_camera,
+                                    strings.txt_setting_description_camera,
+                                );
+                                if (res == 'setting1') {
+                                    openPermissionSetting(
+                                        strings.txt_setting_heading_camera,
+                                        strings.txt_setting_description_camera,
+                                    );
+                                } else if (res) {
+                                    // console.log('res: ', res);
+                                    handleCameraPress()
+                                }
+                            }}
+                        >
                             <Image
                                 style={styles.componentsImg}
                                 resizeMode={'contain'}
@@ -67,7 +116,7 @@ const PicturePickerModal = (props: any) => {
                     </View>
                 </View>
             </View>
-        </Modal>
+        </Modal >
     );
 };
 

@@ -109,6 +109,77 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: normalizeSpacing(10),
   },
+  loginBanner: {
+    width: normalizeSpacing(100),
+    height: normalizeSpacing(100),
+    borderRadius: normalizeSpacing(50),
+  },
+  DummyloginBanner: {
+    width: normalizeSpacing(80),
+    height: normalizeSpacing(80),
+    borderRadius: normalizeSpacing(50),
+  },
+  loginBannerView: {
+    height: '100%',
+    width: '100%',
+    // borderBottomLeftRadius: width,
+    // borderBottomRightRadius: width,
+    // // borderRadius: width,
+    // width: width * 2,
+    // height: width * 2,
+    // marginLeft: -(width / 2),
+    // position: 'absolute',
+    // bottom: 0,
+    // overflow: 'hidden',
+  },
+  editView: {
+    position: 'absolute',
+    top: 5,
+    bottom: 0,
+    right: 0
+  },
+  editImage: {
+    width: normalizeWidth(20),
+    height: normalizeHeight(20),
+    backgroundColor: GRAY_COLOR,
+    borderRadius: 100
+  },
+  inputBoxVw: {
+    shadowColor: '#171717',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    elevation: 3,
+    backgroundColor: WHITE_COLOR,
+    borderRadius: 10,
+    padding: normalizeSpacing(5),
+    borderColor: GRAY_COLOR,
+    width: '100%',
+    marginTop: normalize(6)
+  },
+  inputBoxItmVw: {
+    paddingVertical: normalize(5),
+    borderBottomWidth: 0.6,
+    borderColor: BLACK_COLOR,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  inputBoxItmTxt: {
+    fontSize: normalize(16),
+    paddingRight: normalizeSpacing(30),
+    // paddingLeft: normalizeSpacing(Isios ? 5 : 15),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    opacity: 0.6,
+    color: BLACK_COLOR,
+    width: '90%'
+  },
+  crossVw: {
+    width: normalizeWidth(18),
+    height: normalizeHeight(18),
+    marginHorizontal: 5,
+    tintColor: BLACK_COLOR
+  },
 });
 
 export default styles;

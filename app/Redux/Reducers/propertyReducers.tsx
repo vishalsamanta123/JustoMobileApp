@@ -10,7 +10,9 @@ const initialState = {
   response: null,
   detail: false,
   create: false,
-  list: false
+  list: false,
+  smlist: false,
+  allocated: false
 };
 const initialStatedetail = {
   response: null,
@@ -27,7 +29,7 @@ const initialStateForm = {
 
 export function propertyReducer(state = initialState, action: any) {
   switch (action.type) {
-    case ADD_PROPERTY:
+   /*  case ADD_PROPERTY:
       return {
         ...state,
         detail: false,
@@ -40,7 +42,7 @@ export function propertyReducer(state = initialState, action: any) {
         detail: false,
         create: true,
         response: action.payload,
-      };
+      }; */
     case PROPERTY_FILTER_LIST:
       return {
         ...state,
@@ -78,7 +80,7 @@ export function propertyReducer(state = initialState, action: any) {
         ...state,
         detail: false,
         create: false,
-        list: true,
+        smlist: true,
         response: action.payload,
       };
     case ALLOCATE_PROPERTY_TO_USER:
@@ -86,7 +88,9 @@ export function propertyReducer(state = initialState, action: any) {
         ...state,
         detail: false,
         create: true,
+        list: false,
         response: action.payload,
+        allocated: true
       };
     default:
       return state;

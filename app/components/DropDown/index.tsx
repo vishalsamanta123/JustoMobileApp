@@ -7,12 +7,9 @@ import { normalize, normalizeHeight } from '../scaleFontSize';
 
 const DropdownInput = (props: any) => {
     const {
-        inputWidth = '90%',
+        inputWidth = '100%',
         inputheight = 50,
-        fontSize = 18,
-        borderRadius = 10,
-        borderWidth = 0,
-        borderColor = null,
+        paddingLeft = 0
     } = props
     const renderItem = (item: any) => {
         return (
@@ -26,31 +23,28 @@ const DropdownInput = (props: any) => {
             <View style={styles.inputHeadinView}>
                 <Text style={styles.inputHeadingText}>{props.headingText}</Text>
             </View>
-            <View style={[styles.mainContainer, {
-                borderRadius: borderRadius,
-                borderWidth: borderWidth,
-                borderColor: borderColor
-            }]}>
+            <View style={styles.mainContainer}>
                 <Dropdown
                     style={[styles.dropdown, {
                         width: inputWidth,
                         height: normalizeHeight(inputheight),
+                        paddingLeft: normalize(paddingLeft)
                     }]}
-                    placeholderStyle={[styles.placeholderStyle, {
-                        fontSize: normalize(fontSize),
-                    },]}
-                    selectedTextStyle={styles.selectedTextStyle}
+                    placeholderStyle={styles.placeholderStyle}
+                    selectedTextStyle={props.selectedTextStyle ? props.selectedTextStyle : styles.selectedTextStyle}
                     iconStyle={styles.iconStyle}
-                    data={dropdownData}
-                    maxHeight={300}
-                    labelField="label"
-                    valueField="value"
+                    data={props.data ? props.data : dropdownData}
+                    maxHeight={props.maxHeight ? props.maxHeight : 300}
+                    labelField={props.labelField ? props.labelField : "label"}
+                    valueField={props.valueField ? props.valueField : "value"}
                     placeholder={props.placeholder}
+                    disable={props.disable}
                     value={props.value}
                     onChange={(item) => {
-                        props.setValue(item.value);
+                        props.onChange(item);
                     }}
-                    renderItem={renderItem}
+                    onFocus={props.onFocus}
+                    renderItem={props.newRenderItem ? props.newRenderItem : renderItem}
                 />
             </View>
         </View>
