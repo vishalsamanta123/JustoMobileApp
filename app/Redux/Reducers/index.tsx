@@ -1,11 +1,12 @@
 import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, updatepasswordReducer, userData } from "./AuthReducer";
 import { agencyCreateFormReducer, agencyReducer } from "./AgencyReducer";
-import { MasterReducer } from "./MasterReducer";
 import { SourcingManagerReducer } from "./SourcingManagerReducer";
 import { agentReducer } from "./AgentReducer";
 import { propertyDetailReducer, propertyReducer } from "./propertyReducers";
 import { settingReducer } from "./SettingReducer";
 import { appointmentReducer } from "./AppointmentWithCpReducer";
+import { followUpReducer } from "./FollowUpReducer";
+import { masterDataReducer } from "./MasterReducer";
 import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
 
 export default {
@@ -16,7 +17,6 @@ export default {
     otpVerifyResponce: otpVerifyReducer,
     updatepasswordResponce: updatepasswordReducer,
     changePasswordResponse: changePasswordReducer,
-    MasterReducer: MasterReducer,
     agencyForm: agencyCreateFormReducer,
     agency: agencyReducer,
     SourcingManager: SourcingManagerReducer,
@@ -25,6 +25,8 @@ export default {
     agentData: agentReducer,
     settingData: settingReducer,
     appointment: appointmentReducer,
+    followUp: followUpReducer,
+    masterData: masterDataReducer,
 
     // visit modal
     visitorData: visitorReducer,

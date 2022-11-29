@@ -1,9 +1,10 @@
-import { UPDATE_PROFILE_ERROR, UPDATE_PROFILE } from "../types";
+import { UPDATE_PROFILE_ERROR, UPDATE_PROFILE, START_LOADING, STOP_LOADING } from "../types";
 import apiEndPoints from "../../components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
 
 export const updateUserSettingData =
   (userDetail: any) => async (dispatch: any) => {
+    // dispatch({ type: START_LOADING })
     try {
       const header = {
         "Content-Type": "multipart/form-data",
@@ -15,7 +16,6 @@ export const updateUserSettingData =
         userDetail,
         header
       );
-      console.log("res.data: EDITUSER ====>>>> ", res);
       if (res?.data?.status == 200) {
         dispatch({
           type: UPDATE_PROFILE,
@@ -33,4 +33,7 @@ export const updateUserSettingData =
         payload: console.log(e),
       });
     }
+    // finally {
+    //   dispatch({ type: STOP_LOADING })
+    // }
   };

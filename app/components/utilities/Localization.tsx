@@ -97,6 +97,7 @@ const strings = new LocalizedStrings({
     requiredField: 'All Password field are required',
     sendotp: 'Send OTP',
     registration: 'registration',
+    followup: 'Follow-Up',
 
 
     // common strings
