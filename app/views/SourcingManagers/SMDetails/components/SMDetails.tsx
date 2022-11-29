@@ -61,7 +61,6 @@ const SMDetailsView = (props: any) => {
         closeTarget: '12/02',
     };
 
-    const insets = useSafeAreaInsets();
 
     const layout = useWindowDimensions();
 
@@ -122,7 +121,7 @@ const SMDetailsView = (props: any) => {
                     initialLayout={{ width: layout.width }}
                 />
             </View>
-            <View style={{ marginVertical: 12, alignItems: 'flex-end', }}>
+            <View style={{ marginVertical: 12, alignItems: 'center', }}>
                 <Button
                     width={150}
                     height={40}

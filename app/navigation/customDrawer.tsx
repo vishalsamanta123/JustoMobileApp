@@ -40,7 +40,10 @@ const customDrawer = ({ navigation }: any) => {
               style={styles.UserImge}
               resizeMode={'contain'}
               //source={require('../assets/images/buildings.jpeg')}
-               source={{ uri: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80' }}
+               source={userData?.base_url ? 
+                { uri:  userData?.base_url}
+                : images.dummyUser
+              }
             />
             <View style={styles.UserNameView}>
               <Text
@@ -92,7 +95,7 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.closingManagerHeader}
         />
         <DrawerTabSection
-          type={'Sourcing TL,sourcingmanager,closinghead'}
+          type={'Sourcing TL,Sourcing Manager,closinghead'}
           iconSource={images.property}
           tabTitle={strings.propertyManagementHeader}
           handleDrawerNavigation={() => { navigation.navigate('PropertyScreenView') }}
@@ -123,19 +126,19 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('SourcingManager') }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,sourcingmanager'}
+          type={'Sourcing TL,Sourcing Manager'}
           iconSource={images.agency}
           tabTitle={strings.agencyHeader}
           handleDrawerNavigation={() => { navigation.navigate('AgencyListing') }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,sourcingmanager'}
+          type={'Sourcing TL,Sourcing Manager'}
           iconSource={images.lead}
           tabTitle={strings.leadManagementHeader}
           handleDrawerNavigation={() => { navigation.navigate('LeadManagementScreen') }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,sourcingmanager,closingmanager,closinghead'}
+          type={'Sourcing TL,Sourcing Manager,closingmanager,closinghead'}
           iconSource={images.event}
           tabTitle={strings.followupHeader}
           handleDrawerNavigation={() => { navigation.navigate('FollowUpScreen'); }}
@@ -146,46 +149,46 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.recoveryHeader}
         />
         <DrawerTabSection
-          type={'Sourcing TL,sourcingmanager'}
+          type={'Sourcing TL,Sourcing Manager'}
           iconSource={images.event}
           tabTitle={strings.appointmentWithCPHeader}
           handleDrawerNavigation={() => { navigation.navigate('AppointmentScreenCPSM'); }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,sourcingmanager'}
+          type={'Sourcing TL,Sourcing Manager'}
           iconSource={images.event}
           tabTitle={strings.appointmentForVisitHeader}
           handleDrawerNavigation={() => { navigation.navigate('AppointmentForSite'); }}
         />
         <DrawerTabSection
-          type={'sourcingmanager'}
+          type={'Sourcing Manager'}
           iconSource={images.event}
           tabTitle={strings.leaderBoardHeader}
           handleDrawerNavigation={() => { navigation.navigate('LeaderBoard'); }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,sourcingmanager'}
+          type={'Sourcing TL,Sourcing Manager'}
           iconSource={images.event}
           tabTitle={strings.PickuprequestHeader}
           handleDrawerNavigation={() => { navigation.navigate('PickupRequest'); }}
         />
         {/* <DrawerTabSection
-          type={'sourcingmanager,closingmanager,closinghead'}
+          type={'Sourcing Manager,closingmanager,closinghead'}
           iconSource={images.report}
           tabTitle={strings.reportHeader}
         /> */}
        {/*  <DrawerTabSection
-          type={'sourcingmanager,closingmanager,closinghead'}
+          type={'Sourcing Manager,closingmanager,closinghead'}
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
         />
         <DrawerTabSection
-          type={'sourcingmanager,closingmanager,closinghead'}
+          type={'Sourcing Manager,closingmanager,closinghead'}
           iconSource={images.support}
           tabTitle={strings.supportForumHeader}
         />
         <DrawerTabSection
-          type={'sourcingmanager,closingmanager'}
+          type={'Sourcing Manager,closingmanager'}
           iconSource={images.support}
           tabTitle={strings.supportHeader}
         />

@@ -71,7 +71,7 @@ const SourcingDetailsView = (props: any) => {
             <View style={styles.listViewsec}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={DATA}
+                    data={props?.sourcingManagers}
                     renderItem={({ item }) => <SourcingManagersItem items={item}
                         // setIsVisible={setIsVisible} onPressView={onPressView}
                         onPressEditSM={() => props.handleAddNewSM('edit')}

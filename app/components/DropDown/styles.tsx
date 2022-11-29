@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
     color: GRAY_LIGHT_COLOR
   },
   placeholderStyle: {
-    color: GRAY_LIGHT_COLOR,
-    fontFamily: FONT_FAMILY_SEMIBOLD,
+    fontSize: 16,
+    color: GRAY_LIGHT_COLOR
   },
   selectedTextStyle: {
-    fontSize: normalize(18),
+    fontSize: 16,
     color: GRAY_LIGHT_COLOR,
-    fontFamily: FONT_FAMILY_SEMIBOLD,
+    // marginLeft: normalize(10)
   },
   iconStyle: {
     width: 20,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     shadowColor: '#171717',
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 1,
     elevation: 3,
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 10,
     padding: normalizeSpacing(Isios ? 15 : 5),
     borderColor: GRAY_COLOR,
   },

@@ -19,6 +19,12 @@ export default {
   CHECKEMAILMOBILE: '/auth/checkEmailMobile',
   GET_SOURCINGMANAGER: '/channelPartner/getListSourcingManager',
 
+  // MASTERS
+  GET_CITY_LIST: '/master/getCityList',
+  GET_ROLE_LIST: '/role/getRoles',
+
+  // SOURCING TL
+  GET_SOURCING_MANAGER_LIST: '/channelPartner/getListSourcingManager',
    // property Start
    ADDPROPERTY: "/property/addProperty",
    PROPERTYLIST: "/property/getAllProperty",

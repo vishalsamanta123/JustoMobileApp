@@ -164,7 +164,7 @@ const LoginScreen = ({navigation}: any) => {
   };
   return (
     <>
-      {isloading ? <Loader /> : null}
+      {/* {isloading ? <Loader /> : null} */}
       <LoginView
         // handleEmailChange={handleEmailChange}
         // handlePasswordChange={handlePasswordChange}
