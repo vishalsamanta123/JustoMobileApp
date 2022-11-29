@@ -204,9 +204,7 @@ const AuthComponent = () => {
 };
 
 const AuthLoadingComponent = () => {
-  const { response, authToken = false } = useSelector(
-    (state: any) => state.login
-  );
+  const { response, authToken = false } = useSelector((state: any) => state.login);
   async function tokenGenrate() {
     try {
       const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
@@ -219,26 +217,22 @@ const AuthLoadingComponent = () => {
     }
   }
   useEffect(() => {
-    if (
-      response == null ||
-      response?.status == 201 ||
-      response?.status == 401
-    ) {
-      tokenGenrate();
+    if (response == null || response?.status == 201 || response?.status == 401) {
+      tokenGenrate()
     } else {
       setDefaultHeader("token", response?.token);
     }
-  }, [response]);
+  }, [response])
   return (
     <AuthLoading.Navigator screenOptions={screenOptions}>
-      {!authToken ? (
-        <AuthLoading.Screen component={AuthComponent} name="Auth" />
-      ) : (
+      {!authToken ?
+        <AuthLoading.Screen component={AuthComponent} name="Auth" /> :
         <AuthLoading.Screen component={AppComponent} name="App" />
-      )}
+      }
     </AuthLoading.Navigator>
-  );
-};
+  )
+
+}
 
 const Route = () => {
   return (

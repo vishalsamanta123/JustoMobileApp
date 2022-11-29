@@ -64,7 +64,6 @@ const LoginScreen = ({ navigation }: any) => {
   // };
 
   const dispatch: any = useDispatch()
-  const [isloading, setIsloading] = useState(false)
   const [validEmail, setIsValidEmail] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
@@ -72,7 +71,6 @@ const LoginScreen = ({ navigation }: any) => {
     login_type: 1
   })
   const loginSelector = useSelector((state: any) => state.login);
-  console.log('loginSelector: ', loginSelector);
   useEffect(() => {
     checklogin()
   }, [loginSelector])
@@ -123,13 +121,8 @@ const LoginScreen = ({ navigation }: any) => {
   }
   const handleLoginPress = () => {
     if (validation()) {
-      setIsloading(true)
       const respon = dispatch(userLogin(loginData))
-      console.log('loginData: IN LOGIN PRESS', loginData);
-      // console.log("handleLoginPress -> respon", respon)
-      //navigation.navigate('DashboardScreenView');
     }
-
   };
   const handleSingupPress = () => {
     navigation.navigate('RegistrationScreenView');
@@ -139,7 +132,6 @@ const LoginScreen = ({ navigation }: any) => {
   };
   return (
     <>
-      {/* {isloading ? <Loader /> : null} */}
       <LoginView
         // handleEmailChange={handleEmailChange}
         // handlePasswordChange={handlePasswordChange}

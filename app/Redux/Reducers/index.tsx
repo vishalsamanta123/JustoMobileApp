@@ -6,6 +6,7 @@ import { propertyDetailReducer, propertyReducer } from "./propertyReducers";
 import { settingReducer } from "./SettingReducer";
 import { followUpReducer } from "./FollowUpReducer";
 import { masterDataReducer } from "./MasterReducer";
+import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -24,4 +25,10 @@ export default {
     settingData: settingReducer,
     followUp: followUpReducer,
     masterData: masterDataReducer,
+
+    // visit modal
+    visitorData: visitorReducer,
+    visitorDataList: visitorListReducer,
+    editVisitorData: editVisitorReducer,
+    addVisitorData: addVisitorReducer,
 }
