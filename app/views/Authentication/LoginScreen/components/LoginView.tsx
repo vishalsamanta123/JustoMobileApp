@@ -12,7 +12,8 @@ const LoginView = (props: any) => {
     setIsVisiblePassword(!isVisiblePassword);
   };
   return (
-    <ScrollView  contentContainerStyle={styles.mainContainer}>
+    <ScrollView keyboardShouldPersistTaps={'handled'}
+      contentContainerStyle={styles.mainContainer}>
         <View style={styles.logoView}>
           <Image style={styles.logoImage} source={images.logoWhiteBG} />
       </View>
