@@ -10,40 +10,6 @@ import ConfirmModal from '../../../../components/Modals/ConfirmModal';
 import FilterModal from '../../../../components/Modals/FilterModal';
 
 const SourcingDetailsView = (props: any) => {
-    const DATA: any = [
-        {
-            Projectname: 'ABC',
-            visitor: 123,
-            siteVisit: 234,
-            closeVisit: 600,
-            closingPercentage: '90%',
-            status: 'Deactive',
-        },
-        {
-            Projectname: 'ABC',
-            visitor: 123,
-            siteVisit: 234,
-            closeVisit: 600,
-            closingPercentage: '36%',
-            status: 'Active'
-        },
-        {
-            Projectname: 'ABC',
-            visitor: 123,
-            siteVisit: 234,
-            closeVisit: 600,
-            closingPercentage: '70%',
-            status: 'Deactive'
-        },
-        {
-            Projectname: 'ABC',
-            visitor: 123,
-            siteVisit: 234,
-            closeVisit: 600,
-            closingPercentage: '50%',
-            status: 'Deactive'
-        },
-    ];
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -76,7 +42,7 @@ const SourcingDetailsView = (props: any) => {
                         // setIsVisible={setIsVisible} onPressView={onPressView}
                         onPressEditSM={() => props.handleAddNewSM('edit')}
                         onPressAllocate={() => props.onPressAllocateCp()}
-                        onPressView={() => props.onPressViews()}
+                        onPressView={() => props.onPressViews(item)}
                         onPressStatus={() => props.setStatus(true)}
                     />}
                 />

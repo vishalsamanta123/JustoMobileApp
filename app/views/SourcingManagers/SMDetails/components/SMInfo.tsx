@@ -9,6 +9,8 @@ import strings from "../../../../components/utilities/Localization";
 import Button from "../../../../components/Button";
 
 const SMInfoView = (props: any) => {
+    const item = props?.items || {}
+    const allocate_cp = item?.allocate_cp?.length > 0 ? item?.allocate_cp : []
     return (
         <ScrollView>
             <View style={styles.Txtview}>
@@ -17,7 +19,7 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.AgentName}</Text>
+                    <Text style={styles.nameTxt}>{item.user_name}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -26,25 +28,7 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.aadharno}</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>GST</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.gst}</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>RERA Reg.</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.rerano}</Text>
+                    <Text style={styles.nameTxt}>{item.adhar_no}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -53,7 +37,7 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.pancardno}</Text>
+                    <Text style={styles.nameTxt}>{item.pancard_no}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -62,7 +46,7 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.workinglocation}</Text>
+                    <Text style={styles.nameTxt}>{item.area}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -71,7 +55,7 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.Email}</Text>
+                    <Text style={styles.nameTxt}>{item.email}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -80,7 +64,7 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.Mobileno}</Text>
+                    <Text style={styles.nameTxt}>{item.mobile}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -89,19 +73,19 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.whatsappno}</Text>
+                    <Text style={styles.nameTxt}>{item.whatsapp_no}</Text>
                 </View>
             </View>
             <View style={[styles.Txtview, styles.allocatsVw]}>
                 <Text style={[styles.projectTxt, { color: BLACK_COLOR }]}>Allocated CP</Text>
             </View>
             <View style={styles.allocatsBox}>
-                {props?.items?.allocatedCp?.length > 0 ?
+                {allocate_cp?.length > 0 ?
                     <>
-                        {props?.items?.allocatedCp?.map((item: any, index: any) => {
+                        {allocate_cp?.map((item: any, index: any) => {
                             return (
                                 <View style={styles.innerBoxVw}>
-                                    <Text>{item.cpName}</Text>
+                                    <Text>{item.user_name}</Text>
                                     <TouchableOpacity>
                                         <Image
                                             source={images.close}

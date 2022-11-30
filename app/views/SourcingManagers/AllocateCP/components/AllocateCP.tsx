@@ -2,7 +2,7 @@ import { View, Text, Image, TextInput, FlatList, TouchableOpacity } from 'react-
 import images from '../../../../assets/images';
 import Header from '../../../../components/Header';
 import { Checkbox } from 'react-native-paper';
-import { BLACK_COLOR, GRAY_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant';
+import { BLACK_COLOR, GRAY_COLOR, GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant';
 import styles from './styles';
 import Button from '../../../../components/Button';
 import strings from '../../../../components/utilities/Localization';
@@ -32,7 +32,7 @@ const AllocateCPView = (props: any) => {
                             {props?.selectedCp?.map((item: any, index: any) => {
                                 return (
                                     <View style={[styles.innerBoxVw, { justifyContent: 'flex-start' }]}>
-                                        <Text>{item.cpName}</Text>
+                                        <Text style={{color: GRAY_LIGHT_COLOR}}>{item.cpName}</Text>
                                         <TouchableOpacity onPress={() => props.handleDelete(item, index)}>
                                             <Image
                                                 source={images.close}

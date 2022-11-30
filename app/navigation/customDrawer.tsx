@@ -40,8 +40,8 @@ const customDrawer = ({ navigation }: any) => {
               style={styles.UserImge}
               resizeMode={'contain'}
               //source={require('../assets/images/buildings.jpeg')}
-               source={userData?.base_url ? 
-                { uri:  userData?.base_url}
+              source={userData?.base_url ?
+                { uri: userData?.base_url + userData?.profile_picture }
                 : images.dummyUser
               }
             />
@@ -68,7 +68,7 @@ const customDrawer = ({ navigation }: any) => {
   const DrawerTabSection = (props: any) => {
     return (
       <>
-        {props?.type?.includes( userData?.role_title) || props?.type == 'all' ?
+        {props?.type?.includes(userData?.role_title) || props?.type == 'all' ?
           <TouchableOpacity style={styles.drawerTouch} onPress={props.handleDrawerNavigation}>
             <Image source={props.iconSource} style={styles.drawerIconStyle} />
             <Text style={styles.drawerText}>{props.tabTitle}</Text>
@@ -177,7 +177,7 @@ const customDrawer = ({ navigation }: any) => {
           iconSource={images.report}
           tabTitle={strings.reportHeader}
         /> */}
-       {/*  <DrawerTabSection
+        {/*  <DrawerTabSection
           type={'Sourcing Manager,closingmanager,closinghead'}
           iconSource={images.chat}
           tabTitle={strings.chatHeader}

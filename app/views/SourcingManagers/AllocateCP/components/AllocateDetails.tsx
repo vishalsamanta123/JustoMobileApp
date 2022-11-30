@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
@@ -7,6 +7,8 @@ import strings from "../../../../components/utilities/Localization";
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import DropdownInput from "../../../../components/DropDown";
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
 
 const FilterModal = (props: any) => {
     const [value, setValue] = useState(null);
@@ -22,61 +24,91 @@ const FilterModal = (props: any) => {
                     </View>
                 </View> */}
                 {/* <View style={styles.borderView} /> */}
-                <View style={{ marginHorizontal: 10 }}>
-                    <Text style={styles.selecttxtmodel}>Select Target for CP</Text>
-                    <View style={styles.inputWrap}>
-                        <DropdownInput
-                            inputheight={40}
-                            placeholder={strings.selectMonth}
-                            value={value}
-                            setValue={setValue}
-                        />
+                <ScrollView style={{ flexGrow: 1 }}>
+                    <View style={{ marginHorizontal: 10 }}>
+                        <Text style={styles.selecttxtmodel}>Select Target for CP</Text>
+                        <View style={styles.inputWrap}>
+                            <DropdownInput
+                                inputheight={40}
+                                placeholder={strings.selectMonth}
+                                value={value}
+                                setValue={setValue}
+                            />
+                        </View>
+                        <View style={styles.inputWrap}>
+                            <InputCalender
+                                mode={'date'}
+                                leftIcon={images.event}
+                                placeholderText={"Start Date"}//can edit
+                                editable={false}
+                                // onChangeText={() => { }}
+                                dateData={(data: any) => {
+                                    props.setFilterData({
+                                        ...props.filterData,
+                                        start_date: moment(data).format('YYYY-MM-DD')
+                                    })
+                                }}
+                                setDateshow={(data: any) => {
+                                    props.setFilterData({
+                                        ...props.filterData,
+                                        start_date: moment(data).format('YYYY-MM-DD')
+                                    })
+                                }}
+                                value={props.filterData?.start_date}
+                            />
+                        </View>
+                        <View style={styles.inputWrap}>
+                            <InputCalender
+                                mode={'date'}
+                                leftIcon={images.event}
+                                placeholderText={" End Date"}//can edit
+                                editable={false}
+                                // onChangeText={() => { }}
+                                dateData={(data: any) => {
+                                    props.setFilterData({
+                                        ...props.filterData,
+                                        end_date: moment(data).format('YYYY-MM-DD')
+                                    })
+                                }}
+                                setDateshow={(data: any) => {
+                                    props.setFilterData({
+                                        ...props.filterData,
+                                        end_date: moment(data).format('YYYY-MM-DD')
+                                    })
+                                }}
+                                value={props.filterData?.end_date}
+                            />
+                        </View>
+                        <View style={styles.inputWrap}>
+                            <InputField
+                                inputheight={40}
+                                placeholderText={strings.visitTarget}
+                                handleInputBtnPress={() => { }}
+                                onChangeText={() => { }}
+                            />
+                        </View>
+                        <View style={styles.inputWrap}>
+                            <InputField
+                                inputheight={40}
+                                placeholderText={strings.siteVisitTarget}
+                                handleInputBtnPress={() => { }}
+                                onChangeText={() => { }}
+                            />
+                        </View>
+                        <View style={styles.inputWrap}>
+                            <InputField
+                                inputheight={40}
+                                placeholderText={strings.closeTarget}
+                                handleInputBtnPress={() => { }}
+                                onChangeText={() => { }}
+                            />
+                        </View>
                     </View>
-                    <View style={styles.inputWrap}>
-                        <InputField
-                            inputheight={40}
-                            placeholderText={strings.startDate}
-                            handleInputBtnPress={() => { }}
-                            onChangeText={() => { }}
-                        />
+                    <View style={{ marginVertical: 20 }}>
+                        <Button handleBtnPress={props.handleAddTarget}
+                            buttonText={strings.addTarget} />
                     </View>
-                    <View style={styles.inputWrap}>
-                        <InputField
-                            inputheight={40}
-                            placeholderText={strings.endDate}
-                            handleInputBtnPress={() => { }}
-                            onChangeText={() => { }}
-                        />
-                    </View>
-                    <View style={styles.inputWrap}>
-                        <InputField
-                            inputheight={40}
-                            placeholderText={strings.visitTarget}
-                            handleInputBtnPress={() => { }}
-                            onChangeText={() => { }}
-                        />
-                    </View>
-                    <View style={styles.inputWrap}>
-                        <InputField
-                            inputheight={40}
-                            placeholderText={strings.siteVisitTarget}
-                            handleInputBtnPress={() => { }}
-                            onChangeText={() => { }}
-                        />
-                    </View>
-                    <View style={styles.inputWrap}>
-                        <InputField
-                            inputheight={40}
-                            placeholderText={strings.closeTarget}
-                            handleInputBtnPress={() => { }}
-                            onChangeText={() => { }}
-                        />
-                    </View>
-                </View>
-                <View style={{ marginVertical: 20 }}>
-                    <Button handleBtnPress={props.handleAddTarget}
-                        buttonText={strings.addTarget} />
-                </View>
+                </ScrollView>
             </View>
         </Modal>
     );

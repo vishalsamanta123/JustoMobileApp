@@ -41,13 +41,7 @@ const SourcingDetailScreen = ({ navigation }: any) => {
     const getFollowupList = (offset: any) => {
         setIsloading(true)
         setOffset(offset)
-        dispatch(getSourcingManagerList({
-            offset: offset,
-            limit: 3,
-            start_date: filterData.start_date,
-            end_date: filterData.end_date,
-            followup_for: filterData.followup_for,
-        }))
+        dispatch(getSourcingManagerList())
         // toGetDatas(array)
     }
 
@@ -77,8 +71,8 @@ const SourcingDetailScreen = ({ navigation }: any) => {
     const onPressAllocateCp = () => {
         navigation.navigate('AllocateCP')
     }
-    const onPressViews = () => {
-        navigation.navigate('SMDetails')
+    const onPressViews = (item: any) => {
+        navigation.navigate('SMDetails', item)
     }
 
     return (

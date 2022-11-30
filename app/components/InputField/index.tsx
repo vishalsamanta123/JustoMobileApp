@@ -1,7 +1,7 @@
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { BLACK_COLOR } from '../utilities/constant';
+import { BLACK_COLOR, GRAY_LIGHT_COLOR } from '../utilities/constant';
 import images from '../../assets/images';
 import { normalizeHeight } from '../scaleFontSize';
 
@@ -29,7 +29,8 @@ const InputField = (props: any) => {
             width: inputWidth,
             height: normalizeHeight(inputheight),
             textAlignVertical: 'top',
-            top: topping
+            top: topping,
+            color: GRAY_LIGHT_COLOR
           }]}
           onChangeText={val => props.onChangeText(val)}
           onSubmitEditing={onSubmit}
