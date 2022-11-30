@@ -16,7 +16,6 @@ const FollowUpDetails = ({ navigation, route }: any) => {
     navigation.goBack()
   }
   const handleStatusUpdate = () => {
-    console.log('followUpId: ', followUpId);
     navigation.navigate('FollUpAdd', followUpId)
   }
 

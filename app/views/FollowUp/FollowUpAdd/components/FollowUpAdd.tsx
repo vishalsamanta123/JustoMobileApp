@@ -14,7 +14,6 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 
 const FollowUpAddView = (props: any) => {
-    console.log('props?.masterDatas: ', props?.masterDatas);
 
     return (
         <View style={styles.mainContainer}>
