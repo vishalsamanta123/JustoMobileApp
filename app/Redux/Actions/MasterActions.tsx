@@ -34,6 +34,7 @@ export const getRolesList = (item: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_ROLE_LIST, item);
+        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: GET_ROLE_LIST,

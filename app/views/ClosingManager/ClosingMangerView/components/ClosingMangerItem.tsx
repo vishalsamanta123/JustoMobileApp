@@ -67,7 +67,7 @@ const ClosingManagersItem = (props: any) => {
                     buttonText={strings.edit}
                     btnTxtsize={14}
                     border={10}
-                    handleBtnPress={() => props.onPressEditSM('edit')}
+                    handleBtnPress={() => props.onPressEditCM('edit')}
                 />
                 {/*  <Button
                     width={78}

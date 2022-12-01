@@ -4,7 +4,7 @@ import Button from '../../../../components/Button';
 import Header from '../../../../components/Header';
 import { PRIMARY_THEME_COLOR } from '../../../../components/utilities/constant';
 import styles from './styles';
-import SourcingManagersItem from './ClosingMangerItem'
+import ClosingManagersItem from './ClosingMangerItem'
 import strings from '../../../../components/utilities/Localization';
 import ConfirmModal from '../../../../components/Modals/ConfirmModal';
 import FilterModal from '../../../../components/Modals/FilterModal';
@@ -32,16 +32,16 @@ const ClosingDetailsView = (props: any) => {
                     buttonText={strings.addNewCM}
                     textTransform={null}
                     btnTxtsize={15}
-                    handleBtnPress={() => props.handleAddNewSM()}
+                    handleBtnPress={() => props.handleAddNewCM()}
                 />
             </View>
             <View style={styles.listViewsec}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={props?.sourcingManagers}
-                    renderItem={({ item }) => <SourcingManagersItem items={item}
+                    data={props?.ClosingManagers}
+                    renderItem={({ item }) => <ClosingManagersItem items={item}
                         // setIsVisible={setIsVisible} onPressView={onPressView}
-                        onPressEditSM={() => props.handleAddNewSM('edit')}
+                        onPressEditCM={() => props.handleAddNewCM('edit')}
                         onPressAllocate={() => props.onPressAllocateCp(item)}
                         onPressView={() => props.onPressViews(item)}
                         onPressStatus={() => props.setStatus(true)}
@@ -53,8 +53,8 @@ const ClosingDetailsView = (props: any) => {
             <ConfirmModal
                 Visible={props.status}
                 setIsVisible={props.setStatus}
-                stringshow={strings.selectSM}
-                middleTxt={strings.selectSM + ' ' + strings.transferToAllVisitor + ' SM Name ?'}
+                stringshow={strings.selectCM}
+                middleTxt={strings.selectCM + ' ' + strings.transferToAllVisitor + ' CM Name ?'}
                 confirmtype={''}
             />
             <FilterModal

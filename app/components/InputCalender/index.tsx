@@ -65,6 +65,7 @@ const InputCalender = (props: any) => {
           modal={true}
           mode={'date'}
           minimumDate={props.minimumDate}
+          maximumDate={props.maximumDate}
           open={open}
           date={new Date()}
           onDateChange={(date) => {
