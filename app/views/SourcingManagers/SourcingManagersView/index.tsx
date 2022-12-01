@@ -9,7 +9,6 @@ import SourcingDetailsView from './components/SourcingManager'
 const SourcingDetailScreen = ({ navigation }: any) => {
     const [status, setStatus] = useState(false)
     const [filterisVisible, setFilterisVisible] = useState(false)
-    const [isloading, setIsloading] = useState(false)
     const [sourcingManagers, setSourcingManagers] = useState<any>([])
     const [offSET, setOffset] = useState(0)
     const dispatch: any = useDispatch()
@@ -23,13 +22,12 @@ const SourcingDetailScreen = ({ navigation }: any) => {
 
     useFocusEffect(
         React.useCallback(() => {
-            getFollowupList(offSET)
+            getSMList(offSET)
             return () => { };
         }, [navigation, list])
     );
     useEffect(() => {
         if (list || response?.status) {
-            setIsloading(false)
             if (offSET == 0) {
                 console.log('offSET == 0: ', offSET == 0);
                 setSourcingManagers(response?.data)
@@ -38,8 +36,7 @@ const SourcingDetailScreen = ({ navigation }: any) => {
             }
         }
     }, [response])
-    const getFollowupList = (offset: any) => {
-        setIsloading(true)
+    const getSMList = (offset: any) => {
         setOffset(offset)
         dispatch(getSourcingManagerList())
         // toGetDatas(array)
@@ -51,11 +48,11 @@ const SourcingDetailScreen = ({ navigation }: any) => {
             end_date: '',
             followup_for: ''
         })
-        getFollowupList(0)
+        getSMList(0)
         // props.setFilter({})
     }
     const handleFilterApply = () => {
-        getFollowupList(0)
+        getSMList(0)
     }
 
     const handleDrawerPress = () => {
@@ -68,28 +65,26 @@ const SourcingDetailScreen = ({ navigation }: any) => {
             navigation.navigate('AddNewSM')
         }
     };
-    const onPressAllocateCp = () => {
-        navigation.navigate('AllocateCP')
+    const onPressAllocateCp = (item: any) => {
+        navigation.navigate('AllocateCP', item?._id)
     }
     const onPressViews = (item: any) => {
         navigation.navigate('SMDetails', item)
     }
 
     return (
-        <>
-            {isloading ? <Loader /> : null}
-            <SourcingDetailsView
-                handleDrawerPress={handleDrawerPress}
-                filterisVisible={filterisVisible}
-                setFilterisVisible={setFilterisVisible}
-                handleAddNewSM={handleAddNewSM}
-                onPressAllocateCp={onPressAllocateCp}
-                onPressViews={onPressViews}
-                status={status}
-                setStatus={setStatus}
-                sourcingManagers={sourcingManagers}
-            />
-        </>
+        <SourcingDetailsView
+            handleDrawerPress={handleDrawerPress}
+            filterisVisible={filterisVisible}
+            setFilterisVisible={setFilterisVisible}
+            handleAddNewSM={handleAddNewSM}
+            onPressAllocateCp={onPressAllocateCp}
+            onPressViews={onPressViews}
+            status={status}
+            setStatus={setStatus}
+            sourcingManagers={sourcingManagers}
+            onRefresh={onRefresh}
+        />
     )
 }
 

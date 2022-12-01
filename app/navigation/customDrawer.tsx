@@ -50,7 +50,7 @@ const customDrawer = ({ navigation }: any) => {
                 numberOfLines={1}
                 style={[styles.UserNameText, { width: 120 }]}
               >
-                {userData?.user_name}
+                {userData?.user_name ? userData?.user_name : `${userData?.firstname} ${userData?.lastname}`}
                 {/* Warren Hussen */}
               </Text>
               <Text style={[styles.UserAddress, { width: 140 }]}>

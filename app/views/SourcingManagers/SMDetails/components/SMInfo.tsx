@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from "./styles";
-import { BLACK_COLOR, GRAY_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GRAY_COLOR, GRAY_LIGHT_COLOR } from "../../../../components/utilities/constant";
 import { normalizeSpacing } from "../../../../components/scaleFontSize";
 import { ScrollView } from "react-native-gesture-handler";
 import images from "../../../../assets/images";
@@ -85,7 +85,7 @@ const SMInfoView = (props: any) => {
                         {allocate_cp?.map((item: any, index: any) => {
                             return (
                                 <View style={styles.innerBoxVw}>
-                                    <Text>{item.user_name}</Text>
+                                    <Text style={{color: GRAY_LIGHT_COLOR}}>{item.user_name}</Text>
                                     <TouchableOpacity>
                                         <Image
                                             source={images.close}

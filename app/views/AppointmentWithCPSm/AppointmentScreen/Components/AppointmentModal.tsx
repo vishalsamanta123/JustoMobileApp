@@ -71,17 +71,18 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <DropdownInput
                 placeholder={strings.appointmentWith}
+                headingText={strings.appointmentWith}
                 data={props.visitorList}
                 inputWidth={'100%'}
                 paddingLeft={16}
                 maxHeight={300}
                 onFocus={() => props.getVisitorsList()}
-                labelField="first_name"
-                valueField={props.addAppointmentForm?.lead_name}
-                value={props.addAppointmentForm?.lead_name}
+                labelField="lead_name"
+                valueField={props.filterData?.lead_name}
+                value={props.filterData?.lead_name}
                 onChange={(item: any) => {
-                  props.setAddAppointmentForm({
-                    ...props.addAppointmentForm,
+                  props.setFilterData({
+                    ...props.filterData,
                     lead_id: item._id, lead_name: item.first_name
                   })
                 }}
@@ -97,7 +98,7 @@ const FilterModal = (props: any) => {
                         flex: 1,
                         fontSize: 16,
                         color: GRAY_LIGHT_COLOR
-                      }}>{item.first_name}</Text>
+                      }}>{item.customer_first_name}</Text>
                     </View>
                   );
                 }}

@@ -79,7 +79,7 @@ const EditProfileScreen = ({ navigation, route }: any) => {
         msg: response.message,
         backgroundColor: GREEN_COLOR
       })
-      // navigation.goBack()
+      navigation.goBack(null)
     }
   }
   

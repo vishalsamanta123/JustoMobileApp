@@ -64,15 +64,14 @@ const styles = StyleSheet.create({
 
     btncontener  : { 
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     marginHorizontal: normalizeSpacing(10),
     marginVertical: normalizeSpacing(8)
    },
    
 
     innerBoxVwlistfont :{
-      fontSize:15,
-      color: GRAY_LIGHT_COLOR
+      fontSize:15
     },
     searchInputVw: {
         marginVertical: 2,

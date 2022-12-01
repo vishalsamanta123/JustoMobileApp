@@ -74,7 +74,7 @@ const PropertyScreen = ({ navigation }: any) => {
     dispatch(getManagerList({
       property_id: item.property_id
     }))
-    navigation.navigate('AllocatePropertyScreen', {property_id: item.property_id})
+    navigation.navigate('AllocatePropertyScreen', {id: item.property_id})
   }
   return (
     <>

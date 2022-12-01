@@ -10,6 +10,7 @@ import ConfirmModal from '../../../../components/Modals/ConfirmModal';
 import FilterModal from '../../../../components/Modals/FilterModal';
 
 const SourcingDetailsView = (props: any) => {
+    const loadingref = false
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -41,10 +42,12 @@ const SourcingDetailsView = (props: any) => {
                     renderItem={({ item }) => <SourcingManagersItem items={item}
                         // setIsVisible={setIsVisible} onPressView={onPressView}
                         onPressEditSM={() => props.handleAddNewSM('edit')}
-                        onPressAllocate={() => props.onPressAllocateCp()}
+                        onPressAllocate={() => props.onPressAllocateCp(item)}
                         onPressView={() => props.onPressViews(item)}
                         onPressStatus={() => props.setStatus(true)}
                     />}
+                    refreshing={loadingref}
+                    onRefresh={() => props.onRefresh()}
                 />
             </View>
             <ConfirmModal

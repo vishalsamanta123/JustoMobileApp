@@ -1,15 +1,16 @@
 import { useFocusEffect } from "@react-navigation/native";
 import ErrorMessage from "app/components/ErrorMessage";
 import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
+import { getAllAgentList } from "app/Redux/Actions/AgencyActions";
 import { allocatePropertyToUser, getManagerList } from "app/Redux/Actions/propertyActions";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AllocateCP from "./components/AllocateCP";
+import AllocateCPView from "./components/AllocateCP";
 
-const AllocatePropertyScreen = ({ navigation, route }: any) => {
-  const {id , type} = route?.params || {}
+const AllocateCPScreen = ({ navigation, route }: any) => {
+  const id  = route?.params || {}
   const { response = {}, list } =
-  useSelector((state: any) => state.propertyData) || [];
+    useSelector((state: any) => state.agentData) || [];
 
   const [cpList, setCpList] = useState<any>([]);
   const dispatch: any = useDispatch();
@@ -27,59 +28,23 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
   useFocusEffect(
     React.useCallback(() => {
       dispatch(
-        getManagerList({
-          property_id: id,
+        getAllAgentList({
+          offset: 0,
+          limit: 100
         })
       );
       // const constantArry: any[] = [...response.data];
-      return () => {};
+      return () => { };
     }, [navigation, list])
   );
   useEffect(() => {
     setCpList(response?.data);
     setSelected(response?.data?.filter((item: any) => item?.allocate_status?.length > 0))
-    /* setSelectedLoginIdCp(
-      response?.data?.filter((item: any) =>
-       {
-        const getid : any =  item?.allocate_status?.length > 0 
-        if(getid){
-          return item
-          //console.log('item?._id: ', item?._id);
-        }
-        
-      }).reduce((obj : any , key : any) => {
-      console.log('obj: ', obj);
-
-
-      }, [])
-    ) */
-
-      /*  const names = Object.keys(user)
-    .filter((key) => key.includes("Name"))
-    .reduce((obj, key) => {
-        return Object.assign(obj, {
-          [key]: user[key]
-        });
-  }, {}); */
-
-
-
-    if(response.status === 200) {
-      // ErrorMessage({
-      //   msg: response.message,
-      //   backgroundColor: GREEN_COLOR
-      // })
-    } else {
-      ErrorMessage({
-        msg: response.message,
-        backgroundColor: RED_COLOR
-      })
-    }
   }, [response])
-  
+
   const handleSelects = (items: any) => {
 
-    
+
     var array: any[] = [...selectedCp];
     var arrayLoginID: any[] = [...selectedLoginIdCp];
     array.push(items);
@@ -103,7 +68,7 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
       const lowerCased = searchKey.toLowerCase();
       const searchArray = [...cpList];
       const list = searchArray.filter((item) => {
-        return item.user_name.toLowerCase().match(lowerCased);
+        return item.agent_name.toLowerCase().match(lowerCased);
       });
       setCpList(list);
     }
@@ -118,10 +83,10 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
       })
     );
 
-    navigation.navigate('PropertyScreenView')
+    navigation.navigate('SourcingManager')
   };
   return (
-    <AllocateCP
+    <AllocateCPView
       setSelectedLoginIdCp={setSelectedLoginIdCp}
       selectedLoginIdCp={selectedLoginIdCp}
       onPressBack={onPressBack}
@@ -135,9 +100,9 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
       CPDetails={CPDetails}
       setCPDetails={setCPDetails}
       handleAddTarget={handleAddTarget}
-      // onPressCreate={onPressCreate}
+    // onPressCreate={onPressCreate}
     />
   );
 };
 
-export default AllocatePropertyScreen;
+export default AllocateCPScreen;
