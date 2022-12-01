@@ -135,6 +135,16 @@ const strings = new LocalizedStrings({
     selectSM: "Select SM",
     transferToAllVisitor: 'for transfer to all visitors of',
 
+
+    /*** Closing Managers ***/
+    addNewCM: 'Add New CM',
+    createCM: 'Create CM',
+    editCM: 'Edit CM',
+    updateCM: 'Update CM',
+    cpAllocationCm: 'CP Allocation',
+    CMDetails: "CM Detail",
+    selectCM: "Select CM",
+
     /*** agency ***/
     addnewAgency: 'Add new Agency',
     pendingconfirm: 'Pending Confirm',

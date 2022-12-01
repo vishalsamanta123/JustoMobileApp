@@ -94,6 +94,7 @@ const customDrawer = ({ navigation }: any) => {
           type={'Closing TL'}
           iconSource={images.property}
           tabTitle={strings.closingManagerHeader}
+          handleDrawerNavigation={() => { navigation.navigate('ClosingManager') }}
         />
         <DrawerTabSection
           type={'Sourcing TL,Sourcing Manager,Closing TL'}

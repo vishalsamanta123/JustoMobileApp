@@ -1,9 +1,10 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_CITY_LIST, GET_CITY_LIST_ERROR, GET_ROLE_LIST, GET_ROLE_LIST_ERROR, GET_SOURCING_MANAGER, GET_SOURCING_MANAGER_ERROR, MASTER_ERROR, MASTER_LIST } from "../types";
+import { GET_CITY_LIST, GET_CITY_LIST_ERROR, GET_ROLE_LIST, GET_ROLE_LIST_ERROR, GET_SOURCING_MANAGER, GET_SOURCING_MANAGER_ERROR, MASTER_ERROR, MASTER_LIST, START_LOADING, STOP_LOADING } from "../types";
 
 export const getCityList = (item: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_CITY_LIST, item);
         if (res.data.status == 200) {
@@ -18,7 +19,6 @@ export const getCityList = (item: any) => async (dispatch: any) => {
                 payload: []
             })
         }
-
     }
     catch (e) {
         dispatch({
@@ -26,8 +26,12 @@ export const getCityList = (item: any) => async (dispatch: any) => {
             payload: console.log(e),
         })
     }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
 }
 export const getRolesList = (item: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_ROLE_LIST, item);
         if (res.data.status == 200) {
@@ -50,8 +54,12 @@ export const getRolesList = (item: any) => async (dispatch: any) => {
             payload: console.log(e),
         })
     }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
 }
 export const getAllMaster = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.ADDMASTERLIST, params);
         if (res.data.status == 200) {
@@ -71,8 +79,12 @@ export const getAllMaster = (params: any) => async (dispatch: any) => {
             payload: console.log(e),
         });
     }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
 };
 export const getAllSourcingManager = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_SOURCINGMANAGER, params);
         if (res.data.status == 200) {
@@ -91,5 +103,8 @@ export const getAllSourcingManager = (params: any) => async (dispatch: any) => {
             type: GET_SOURCING_MANAGER_ERROR,
             payload: console.log(e),
         });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
     }
 };
