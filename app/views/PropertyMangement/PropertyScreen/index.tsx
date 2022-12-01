@@ -15,44 +15,29 @@ const PropertyScreen = ({ navigation }: any) => {
   const [currentStatus, setCurrentStatus] = useState(1)
   const [currentProperty, setCurrentProperty] = useState({})
   const [resion, setResion] = useState('')
-  
+
 
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
-  const { response, loading ,updateStatus, list } = propertyData;
+  const { response, loading, updateStatus, list } = propertyData;
   console.log('response: ', response);
 
   useFocusEffect(
     React.useCallback(() => {
       getallproperty()
-        return () => { };
+      return () => { };
     }, [navigation, list]))
 
-  // useEffect(() => {
-  //   if(response?.status === 200) {
-  //     ErrorMessage({
-  //       msg: response?.message,
-  //       backgroundColor: GREEN_COLOR
-  //     })
-  //   } else {
-  //     ErrorMessage({
-  //       msg: response?.message,
-  //       backgroundColor: RED_COLOR
-  //     })
-  //   }
-  // }, [response])
-
   const handleStatusChange = () => {
-  setIsloading(true)
+    setIsloading(true)
     dispatch(statusUpdate({
       property_id: currentProperty,
       approve_status: currentStatus === 1 ? 2 : currentStatus === 2 ? 3 : 2,
       resion_id: resion,
-    }))  
+    }))
   }
 
 
   const getallproperty = () => {
-    setIsloading(true)
     dispatch(getAllProperty({
       offset: 0,
       limit: limit,
@@ -63,7 +48,7 @@ const PropertyScreen = ({ navigation }: any) => {
     navigation.toggleDrawer();
   };
   const Onreachedend = () => {
-  //  setOffset(offset + 1)
+    //  setOffset(offset + 1)
     dispatch(getAllProperty({
       offset: offset + 1,
       limit: limit,
@@ -74,11 +59,10 @@ const PropertyScreen = ({ navigation }: any) => {
     dispatch(getManagerList({
       property_id: item.property_id
     }))
-    navigation.navigate('AllocatePropertyScreen', {id: item.property_id})
+    navigation.navigate('AllocatePropertyScreen', { id: item.property_id })
   }
   return (
     <>
-      {isloading ? <Loader /> : null}
       <PropertyView
         handleDrawerPress={handleDrawerPress}
         Onreachedend={Onreachedend}

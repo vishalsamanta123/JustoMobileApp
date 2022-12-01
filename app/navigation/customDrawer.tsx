@@ -16,6 +16,7 @@ const customDrawer = ({ navigation }: any) => {
   const isDrawerOpen = useDrawerStatus() === 'open';
   const insets = useSafeAreaInsets()
   const [userData, setUserData] = useState<any>([])
+  console.log('userData: ', userData);
   useEffect(() => {
     fetchData()
   }, [])
@@ -90,26 +91,26 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('DashboardScreen') }}
         />
         <DrawerTabSection
-          type={'closinghead'}
+          type={'Closing TL'}
           iconSource={images.property}
           tabTitle={strings.closingManagerHeader}
         />
         <DrawerTabSection
-          type={'Sourcing TL,Sourcing Manager,closinghead'}
+          type={'Sourcing TL,Sourcing Manager,Closing TL'}
           iconSource={images.property}
           tabTitle={strings.propertyManagementHeader}
           handleDrawerNavigation={() => { navigation.navigate('PropertyScreenView') }}
         />
         <DrawerTabSection
-          type={'closingmanager,closinghead'}
+          type={'closingmanager,Closing TL'}
           iconSource={images.property}
           tabTitle={strings.appointmentHeader}
           handleDrawerNavigation={() => { navigation.navigate('Appointments') }}
         />
         <DrawerTabSection
-          type={'postsales,closinghead,closingmanager'}
+          type={'postsales,Closing TL,closingmanager'}
           iconSource={images.lead}
-          tabTitle={userData?.type === 'closinghead' || 'closingmanager' ?
+          tabTitle={userData?.type === 'Closing TL' || 'closingmanager' ?
             strings.readytoBookHeader : strings.bookingRequestHead}
           handleDrawerNavigation={() => { navigation.navigate('BookingList') }}
         />
@@ -138,13 +139,13 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('LeadManagementScreen') }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,Sourcing Manager,closingmanager,closinghead'}
+          type={'Sourcing TL,Sourcing Manager,closingmanager,Closing TL'}
           iconSource={images.event}
           tabTitle={strings.followupHeader}
           handleDrawerNavigation={() => { navigation.navigate('FollowUpScreen'); }}
         />
         <DrawerTabSection
-          type={'closingmanager,closinghead'}
+          type={'closingmanager,Closing TL'}
           iconSource={images.property}
           tabTitle={strings.recoveryHeader}
         />
@@ -173,17 +174,17 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('PickupRequest'); }}
         />
         {/* <DrawerTabSection
-          type={'Sourcing Manager,closingmanager,closinghead'}
+          type={'Sourcing Manager,closingmanager,Closing TL'}
           iconSource={images.report}
           tabTitle={strings.reportHeader}
         /> */}
         {/*  <DrawerTabSection
-          type={'Sourcing Manager,closingmanager,closinghead'}
+          type={'Sourcing Manager,closingmanager,Closing TL'}
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
         />
         <DrawerTabSection
-          type={'Sourcing Manager,closingmanager,closinghead'}
+          type={'Sourcing Manager,closingmanager,Closing TL'}
           iconSource={images.support}
           tabTitle={strings.supportForumHeader}
         />
@@ -195,7 +196,7 @@ const customDrawer = ({ navigation }: any) => {
         <DrawerTabSection iconSource={images.report} tabTitle={strings.reportHeader} />
         <DrawerTabSection iconSource={images.chat} tabTitle={strings.chatHeader} />
         <DrawerTabSection
-          type={'closinghead'}
+          type={'Closing TL'}
           iconSource={images.support} tabTitle={strings.supportHeader} /> */}
         <DrawerTabSection
           type={'all'}

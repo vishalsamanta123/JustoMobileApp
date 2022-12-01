@@ -14,7 +14,7 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
     const [isLoading, setIsLoading] = useState(false)
     const { userData = {} } = useSelector((state: any) => state.userData)
     console.log('userData: ', userData);
-    const { response = {}, Roleresponse = {} } = useSelector((state: any) => state.MasterReducer)
+    const { response = {}, Roleresponse = {} } = useSelector((state: any) => state.MasterData) || {}
     console.log('Roleresponse: ', Roleresponse);
     console.log('response: ', response);
     console.log('addNewSmData: ', addNewSmData);

@@ -82,7 +82,7 @@ const AllocateCPView = (props: any) => {
 
                                 return (
                                     <View style={[styles.innerBoxVw, { justifyContent: 'flex-start' }]}>
-                                        <Text>{item.agent_name}</Text>
+                                        <Text>{item.user_name}</Text>
                                         <TouchableOpacity onPress={() => props.handleDelete(item, index)}>
                                             <Image
                                                 source={images.close}
@@ -109,19 +109,19 @@ const AllocateCPView = (props: any) => {
                             const getSelected =
                                 props?.selectedCp?.length === 0
                                     ? ""
-                                    : props?.selectedCp?.map(({ agent_name }: any) => agent_name);
+                                    : props?.selectedCp?.map(({ user_name }: any) => user_name);
                             return (
                                 <View
                                     style={styles.innerBoxVwlist}>
-                                    <Text style={styles.innerBoxVwlistfont}>{item.agent_name}</Text>
+                                    <Text style={styles.innerBoxVwlistfont}>{item.user_name}</Text>
                                     <TouchableOpacity onPress={() => !getSelected?.toString()
-                                                ?.includes(item.agent_name)
+                                                ?.includes(item.user_name)
                                                 ? props.handleSelects(item) : console.log('')}
                                         style={styles.checkBoxVw}>
                                         <Image
                                             style={styles.checksVw}
                                             source={getSelected?.toString()
-                                                ?.includes(item.agent_name)
+                                                ?.includes(item.user_name)
                                                 ? images.check
                                                 : null
                                             }

@@ -1,8 +1,9 @@
 import apiEndPoints from "../../components/utilities/apiEndPoints";
 import { apiCall } from "../../components/utilities/httpClient";
-import { ALLOCATE_PROPERTY_TO_USER, GETPROPERTY_DETAIL, PROPERTY_ERROR, PROPERTY_LIST, PROPERTY_STATUS_UPDATE, SOURCING_MANAGER_LIST } from "../types";
+import { ALLOCATE_PROPERTY_TO_USER, GETPROPERTY_DETAIL, PROPERTY_ERROR, PROPERTY_LIST, PROPERTY_STATUS_UPDATE, SOURCING_MANAGER_LIST, START_LOADING, STOP_LOADING } from "../types";
 
 export const getAllProperty = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYLIST, params);
         console.log('res: ', res);
@@ -24,8 +25,12 @@ export const getAllProperty = (params: any) => async (dispatch: any) => {
             payload: console.log(e),
         });
     }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
 };
 export const getFilterProperty = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYFILTER, params);
         if (res.data.status == 200) {
@@ -45,22 +50,25 @@ export const getFilterProperty = (params: any) => async (dispatch: any) => {
             payload: console.log(e),
         });
     }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
 };
 
 export const getPropertyDetail = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.GETPROPERTYDETAIL, params);
-        
+
         if (res.data.status == 200) {
             dispatch({
                 type: GETPROPERTY_DETAIL,
                 payload: res.data,
-            }); 
+            });
         } else {
-             dispatch({
+            dispatch({
                 type: GETPROPERTY_DETAIL,
                 payload: [],
-            }); 
+            });
         }
     } catch (e) {
         dispatch({
@@ -76,12 +84,12 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
             dispatch({
                 type: PROPERTY_STATUS_UPDATE,
                 payload: res.data,
-            }); 
+            });
         } else {
-             dispatch({
+            dispatch({
                 type: PROPERTY_ERROR,
                 payload: [],
-            }); 
+            });
         }
     } catch (e) {
         dispatch({
@@ -99,12 +107,12 @@ export const getManagerList = (params: any) => async (dispatch: any) => {
             dispatch({
                 type: SOURCING_MANAGER_LIST,
                 payload: res.data,
-            }); 
+            });
         } else {
-             dispatch({
+            dispatch({
                 type: PROPERTY_ERROR,
                 payload: [],
-            }); 
+            });
         }
     } catch (e) {
         dispatch({
@@ -122,12 +130,12 @@ export const allocatePropertyToUser = (params: any) => async (dispatch: any) => 
             dispatch({
                 type: ALLOCATE_PROPERTY_TO_USER,
                 payload: res.data,
-            }); 
+            });
         } else {
-             dispatch({
+            dispatch({
                 type: PROPERTY_ERROR,
                 payload: [],
-            }); 
+            });
         }
     } catch (e) {
         dispatch({
