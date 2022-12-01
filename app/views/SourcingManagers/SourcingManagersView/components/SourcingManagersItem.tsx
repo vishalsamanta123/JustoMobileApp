@@ -24,7 +24,7 @@ const SourcingManagersItem = (props: any) => {
                 </View>
                 {/* <View><Text>:</Text></View> */}
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.visitor}</Text>
+                    <Text style={styles.nameTxt}>{props.items.total_visit}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -33,7 +33,7 @@ const SourcingManagersItem = (props: any) => {
                 </View>
                 {/* <View><Text>:</Text></View> */}
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.siteVisit}</Text>
+                    <Text style={styles.nameTxt}>{props.items.total_site_visit}</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
@@ -42,7 +42,7 @@ const SourcingManagersItem = (props: any) => {
                 </View>
                 {/* <View><Text>:</Text></View> */}
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.closeVisit}</Text>
+                    <Text style={styles.nameTxt}>{props.items.total_closing_lead}</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
@@ -53,7 +53,7 @@ const SourcingManagersItem = (props: any) => {
                 <View style={styles.nameContainer}>
                     <Text style={[styles.nameTxt, {
                         color: BLACK_COLOR
-                    }]}>{props.items.closingPercentage}</Text>
+                    }]}>{props.items.total_closing_percentage}</Text>
                 </View>
             </View>
             <View style={styles.buttonContainer}>

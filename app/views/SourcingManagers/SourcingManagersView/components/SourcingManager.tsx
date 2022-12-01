@@ -10,40 +10,7 @@ import ConfirmModal from '../../../../components/Modals/ConfirmModal';
 import FilterModal from '../../../../components/Modals/FilterModal';
 
 const SourcingDetailsView = (props: any) => {
-    const DATA: any = [
-        {
-            Projectname: 'ABC',
-            visitor: 123,
-            siteVisit: 234,
-            closeVisit: 600,
-            closingPercentage: '90%',
-            status: 'Deactive',
-        },
-        {
-            Projectname: 'ABC',
-            visitor: 123,
-            siteVisit: 234,
-            closeVisit: 600,
-            closingPercentage: '36%',
-            status: 'Active'
-        },
-        {
-            Projectname: 'ABC',
-            visitor: 123,
-            siteVisit: 234,
-            closeVisit: 600,
-            closingPercentage: '70%',
-            status: 'Deactive'
-        },
-        {
-            Projectname: 'ABC',
-            visitor: 123,
-            siteVisit: 234,
-            closeVisit: 600,
-            closingPercentage: '50%',
-            status: 'Deactive'
-        },
-    ];
+    const loadingref = false
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -75,10 +42,12 @@ const SourcingDetailsView = (props: any) => {
                     renderItem={({ item }) => <SourcingManagersItem items={item}
                         // setIsVisible={setIsVisible} onPressView={onPressView}
                         onPressEditSM={() => props.handleAddNewSM('edit')}
-                        onPressAllocate={() => props.onPressAllocateCp()}
-                        onPressView={() => props.onPressViews()}
+                        onPressAllocate={() => props.onPressAllocateCp(item)}
+                        onPressView={() => props.onPressViews(item)}
                         onPressStatus={() => props.setStatus(true)}
                     />}
+                    refreshing={loadingref}
+                    onRefresh={() => props.onRefresh()}
                 />
             </View>
             <ConfirmModal

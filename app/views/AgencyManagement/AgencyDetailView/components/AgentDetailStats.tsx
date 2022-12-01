@@ -13,7 +13,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.closingper}%</Text>
+          <Text style={styles.nameTxt}>{props.items.closingper}</Text>
         </View>
       </View>
      

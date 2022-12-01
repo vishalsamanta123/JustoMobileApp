@@ -21,17 +21,17 @@ import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
-import MultiLocation from 'app/components/MultiLocation'
+import MultiLocation from "app/components/MultiLocation";
 
 const AgentBasicInfoView = (props: any) => {
   const handleDelete = (item: any, index: any) => {
-    var array: any[] = [...props?.agencyData.working_location];
+    var array: any[] = [...props?.agencyData?.working_location];
     array?.splice(index, 1);
     props?.setRegisterForm({
       ...props?.agencyData,
-      working_location: array
-    })
-  }
+      working_location: array,
+    });
+  };
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -41,21 +41,24 @@ const AgentBasicInfoView = (props: any) => {
         leftImageIconStyle={styles.leftImageIconStyle}
         leftImageSrc={images.backArrow}
         handleOnLeftIconPress={props.onPressBack}
-        barStyle={'light-content'}
+        barStyle={"light-content"}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <ScrollView keyboardShouldPersistTaps={'handled'} contentContainerStyle={styles.wrap}>
+      <ScrollView
+        keyboardShouldPersistTaps={"handled"}
+        contentContainerStyle={styles.wrap}
+      >
         <TouchableOpacity
           onPress={() => props.setImagePicker(true)}
           style={[styles.imageCircle, { backgroundColor: GRAY_COLOR }]}
         >
-          {!props.agencyData?.profile_picture?.uri ?
+          {!props.agencyData?.profile_picture?.uri ? (
             <Image
               style={styles.DummyloginBanner}
               source={images.user}
               resizeMode="contain"
             />
-            :
+          ) : (
             <View style={styles.imageCircle}>
               <Image
                 style={styles.loginBanner}
@@ -63,7 +66,7 @@ const AgentBasicInfoView = (props: any) => {
                 resizeMode="contain"
               />
             </View>
-          }
+          )}
           <View style={styles.editView}>
             <Image
               style={styles.editImage}
@@ -75,39 +78,42 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Name"}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"Agent Name"}
-            valueshow={props.agencyData?.owner_name}
+            valueshow={props.agencyData?.agent_name}
             onChangeText={(val: any) => {
               props.setAgencyData({
-                ...props.agencyData, owner_name: val
-              })
+                ...props.agencyData,
+                agent_name: val,
+              });
             }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Adhar No."}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"Adhar No."}
             valueshow={props.agencyData?.adhar_no}
             onChangeText={(val: any) => {
               props.setAgencyData({
-                ...props.agencyData, adhar_no: val
-              })
+                ...props.agencyData,
+                adhar_no: val,
+              });
             }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Pancard No."}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"Pancard No."}
             valueshow={props.agencyData?.pancard_no}
             onChangeText={(val: any) => {
               props.setAgencyData({
-                ...props.agencyData, pancard_no: val
-              })
+                ...props.agencyData,
+                pancard_no: val,
+              });
             }}
           />
         </View>
@@ -119,8 +125,9 @@ const AgentBasicInfoView = (props: any) => {
               status={props.agencyData.gender === 1 ? "checked" : "unchecked"}
               onPress={() => {
                 props.setAgencyData({
-                  ...props.agencyData, gender: 1
-                })
+                  ...props.agencyData,
+                  gender: 1,
+                });
               }}
               color={PRIMARY_THEME_COLOR}
             />
@@ -129,7 +136,9 @@ const AgentBasicInfoView = (props: any) => {
                 styles.radioTxt,
                 {
                   color:
-                    props.agencyData.gender === 1 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                    props.agencyData.gender === 1
+                      ? PRIMARY_THEME_COLOR
+                      : BLACK_COLOR,
                 },
               ]}
             >
@@ -142,8 +151,9 @@ const AgentBasicInfoView = (props: any) => {
               status={props.agencyData.gender === 2 ? "checked" : "unchecked"}
               onPress={() => {
                 props.setAgencyData({
-                  ...props.agencyData, gender: 2
-                })
+                  ...props.agencyData,
+                  gender: 2,
+                });
               }}
               color={PRIMARY_THEME_COLOR}
             />
@@ -152,7 +162,9 @@ const AgentBasicInfoView = (props: any) => {
                 styles.radioTxt,
                 {
                   color:
-                    props.agencyData.gender === 2 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                    props.agencyData.gender === 2
+                      ? PRIMARY_THEME_COLOR
+                      : BLACK_COLOR,
                 },
               ]}
             >
@@ -163,61 +175,66 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputCalender
             leftIcon={images.event}
-            mode={'date'}
+            mode={"date"}
             placeholderText={"Date of Birth"}
             headingText={"Date of Birth"}
             editable={false}
             dateData={(data: any) => {
               props.setAgencyData({
                 ...props.agencyData,
-                date_of_birth: moment(data).format('YYYY-MM-DD')
-              })
+                date_of_birth: moment(data).format("YYYY-MM-DD"),
+              });
             }}
             setDateshow={(data: any) => {
               props.setAgencyData({
                 ...props.agencyData,
-                date_of_birth: moment(data).format('YYYY-MM-DD')
-              })
+                date_of_birth: moment(data).format("YYYY-MM-DD"),
+              });
             }}
-            value={moment(props?.agencyData?.date_of_birth).format('DD-MM-YYYY')}
+            value={moment(props?.agencyData?.date_of_birth).format(
+              "DD-MM-YYYY"
+            )}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Mobile No."}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"Mobile No."}
-            valueshow={props.agencyData?.primary_mobile}
+            valueshow={props.agencyData?.primary_mobile?.toString()}
             onChangeText={(val: any) => {
               props.setAgencyData({
-                ...props.agencyData, primary_mobile: val
-              })
+                ...props.agencyData,
+                primary_mobile: val,
+              });
             }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"WhatsApp No."}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"WhatsApp No."}
-            valueshow={props.agencyData?.whatsapp_number}
+            valueshow={props.agencyData?.whatsapp_number?.toString()}
             onChangeText={(val: any) => {
               props.setAgencyData({
-                ...props.agencyData, whatsapp_number: val
-              })
+                ...props.agencyData,
+                whatsapp_number: val,
+              });
             }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"Email Address"}
             valueshow={props.agencyData?.email}
             onChangeText={(val: any) => {
               props.setAgencyData({
-                ...props.agencyData, email: val
-              })
+                ...props.agencyData,
+                email: val,
+              });
             }}
           />
         </View>
@@ -230,36 +247,47 @@ const AgentBasicInfoView = (props: any) => {
           />
         </View> */}
         <View style={styles.workingView}>
-          <View style={{
-            top: props.agencyData?.working_location?.length > 0 ? 5 : 0
-          }}>
+          <View
+            style={{
+              top: props.agencyData?.working_location?.length > 0 ? 5 : 0,
+            }}
+          >
             <Text style={styles.workTxt}>Working Location</Text>
           </View>
-          <TouchableOpacity onPress={() => props.setLocationModel(true)}
-            style={styles.addBtn}>
+          <TouchableOpacity
+            onPress={() => props.setLocationModel(true)}
+            style={styles.addBtn}
+          >
             <Text style={styles.addTxt}>+ Add location</Text>
           </TouchableOpacity>
         </View>
-        {props.agencyData?.working_location?.length > 0 ?
+        {props.agencyData?.working_location?.length > 0 ? (
           <View style={styles.inputBoxVw}>
-            {props.agencyData?.working_location?.map((item: any, index: any) => {
-              return (
-                <View style={[styles.inputBoxItmVw, {
-                  borderBottomWidth: props?.agencyData?.working_location?.length - 1 === index ? 0 : 0.6
-                }]}>
-                  <Text style={styles.inputBoxItmTxt}>{item.location}</Text>
-                  <TouchableOpacity onPress={() => handleDelete(item, index)}>
-                    <Image
-                      source={images.close}
-                      style={styles.crossVw}
-                    />
-                  </TouchableOpacity>
-                </View>
-              )
-            })}
+            {props.agencyData?.working_location?.map(
+              (item: any, index: any) => {
+                return (
+                  <View
+                    style={[
+                      styles.inputBoxItmVw,
+                      {
+                        borderBottomWidth:
+                          props?.agencyData?.working_location?.length - 1 ===
+                          index
+                            ? 0
+                            : 0.6,
+                      },
+                    ]}
+                  >
+                    <Text style={styles.inputBoxItmTxt}>{item.location}</Text>
+                    <TouchableOpacity onPress={() => handleDelete(item, index)}>
+                      <Image source={images.close} style={styles.crossVw} />
+                    </TouchableOpacity>
+                  </View>
+                );
+              }
+            )}
           </View>
-          : null
-        }
+        ) : null}
 
         <View style={styles.buttonContainer}>
           <Button
@@ -272,13 +300,17 @@ const AgentBasicInfoView = (props: any) => {
         <MultiLocation
           Visible={props.locationModel}
           setVisible={() => props.setLocationModel(false)}
-          value={props.agencyData?.working_location}
+          value={
+            props?.agencyData?.working_location
+              ? props?.agencyData?.working_location
+              : []
+          }
           handleAddTarget={(data: any) => {
             if (data?.length > 0) {
               props.setAgencyData({
                 ...props.agencyData,
-                working_location: data
-              })
+                working_location: data,
+              });
             }
           }}
         />

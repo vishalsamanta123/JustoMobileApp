@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, useWindowDimensions, Image } from 'react-native';
 import images from '../../../../assets/images';
 import Header from '../../../../components/Header';
@@ -10,8 +10,24 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import SmInfoView from './SMInfo';
 import StatsView from './StatsViews';
 import Button from '../../../../components/Button';
+import { useSelector } from 'react-redux';
 
 const SMDetailsView = (props: any) => {
+    const [SMdetail, setSMdetail] = useState([])
+    console.log('SMdetail: ', SMdetail);
+    const { response = {}, detail = '' } = useSelector((state: any) => state.SourcingManager)
+    console.log('response GET_SOURCING_MANAGER_DETAIL: ', response);
+    useEffect(() => {
+        if (response && response?.status === 200) {
+            if (response?.data?.length > 0) {
+                setSMdetail(response?.data[0] ? response?.data[0] : []);
+            }
+
+        } else {
+            setSMdetail([]);
+            //errorToast(response.message);
+        }
+    }, [response])
     const DATAINFO: any =
     {
         AgentName: 'ABC',
@@ -79,11 +95,11 @@ const SMDetailsView = (props: any) => {
             style={{ backgroundColor: PRIMARY_THEME_COLOR_DARK }} />
     );
     const FirstRoute = () => (
-        <StatsView items={DATASTATS} handleCpAllocation={props.handleCpAllocationPress} />
+        <StatsView items={SMdetail} handleCpAllocation={props.handleCpAllocationPress} />
     );
 
     const SecondRoute = () => (
-        <SmInfoView items={DATAINFO} handleCpAllocation={props.handleCpAllocationPress} />
+        <SmInfoView items={SMdetail} handleCpAllocation={props.handleCpAllocationPress} />
     );
     const renderScene = SceneMap({
         first: FirstRoute,

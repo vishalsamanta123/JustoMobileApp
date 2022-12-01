@@ -24,7 +24,10 @@ export default {
   GET_ROLE_LIST: '/role/getRoles',
 
   // SOURCING TL
-  GET_SOURCING_MANAGER_LIST: '/channelPartner/getListSourcingManager',
+  GET_SOURCING_MANAGER_LIST: '/userManage/getUserSourcingManagerList',
+  GET_SOURCING_MANAGER_DETAIL: '/userManage/getUserSourcingManagerDetail',
+
+
   // property Start
   ADDPROPERTY: "/property/addProperty",
   PROPERTYLIST: "/property/getAllProperty",

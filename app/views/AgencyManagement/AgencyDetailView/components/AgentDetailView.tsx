@@ -10,6 +10,7 @@ import styles from './styles'
 import AgentDetailInfo from './AgentDetailInfo'
 import AgentDetailStats from './AgentDetailStats'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import moment from 'moment'
 
 
 const PropertyDetailView = (props: any) => {
@@ -26,32 +27,34 @@ const PropertyDetailView = (props: any) => {
 
   const DATAINFO: any =
   {
-    status: 'Active',
-    AgentName: 'ABC',
-    Mobileno: '12586663',
-    Email: 'Abc@gmail.com',
-    whatsappno: 'Abc@gmail.com',
-    rerano: '12345699',
-    aadharno: '12345699',
-    pancardno: 'AAAAA2225A',
-    location: 'Indore',
-    workingfrom: '22/10/2021',
-    workinglocation: ['indoe', 'Dewash'],
-
+    status: props?.allDetails?.status ? props?.allDetails?.status : '',
+    AgentName: props?.allDetails?.agent_name ? props?.allDetails?.agent_name : '',
+    Mobileno: props?.allDetails?.primary_mobile ? props?.allDetails?.primary_mobile : '',
+    Email: props?.allDetails?.email ? props?.allDetails?.email : '',
+    whatsappno: props?.allDetails?.whatsapp_number ? props?.allDetails?.whatsapp_number : '',
+    rerano: props?.allDetails?.rera_certificate_no ? props?.allDetails?.rera_certificate_no : '',
+    aadharno: props?.allDetails?.adhar_no ? props?.allDetails?.adhar_no : '',
+    pancardno: props?.allDetails?.pancard_no ? props?.allDetails?.pancard_no : '',
+    location: props?.allDetails?.location ? props?.allDetails?.location : '',
+    workingfrom: props?.allDetails?.createdDate ? moment(props?.allDetails?.createdDate).format('MMM Do YYYY') : '',
+    workinglocation: props?.allDetails?.working_location ? props?.allDetails?.working_location : '',
   };
   const DATASTATS: any =
   {
-
-    closingper: 10,
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    lastlogin: '2 min ago',
-    lastvisit: '2 min ago',
-    lastsitevisit: '2 min ago',
-    lastclosevisit: '2 min ago',
+    closingper: props?.allDetails?.agent_stats?.total_closing_percentage,
+    visitor: props?.allDetails?.agent_stats?.total_visit,
+    siteVisit: props?.allDetails?.agent_stats?.total_site_visit,
+    closeVisit: props?.allDetails?.agent_stats?.lastclosevisit ?
+      moment(props?.allDetails?.agent_stats?.lastclosevisit).format('llll') : '',
+    lastlogin: props?.allDetails?.agent_stats?.last_login ?
+      moment(props?.allDetails?.agent_stats?.last_login).format('llll') : '',
+    lastvisit: props?.allDetails?.agent_stats?.last_lead_crate ?
+      moment(props?.allDetails?.agent_stats?.last_lead_crate).format('llll') : '',
+    lastsitevisit: props?.allDetails?.agent_stats?.last_site_visit ?
+      moment(props?.allDetails?.agent_stats?.last_site_visit).format('llll') : '',
+    lastclosevisit: props?.allDetails?.agent_stats?.last_closing_lead ?
+      moment(props?.allDetails?.agent_stats?.last_closing_lead).format('llll') : '',
   };
-
   const FirstRoute = () => (
     <AgentDetailInfo items={DATAINFO} />
   );
