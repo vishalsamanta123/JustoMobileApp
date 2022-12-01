@@ -8,9 +8,8 @@ const LeadDetails = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
   const { response = {}, detail = "" } = useSelector((state: any) => state.visitorData)
   const [allDetails, setAllDetails] = useState({})
-
+  const data = route?.params || 0
   useLayoutEffect(() => {
-    const data = route?.params
     if (data._id) {
       dispatch(getVisitorDetail({
         lead_id: data._id
@@ -27,7 +26,7 @@ const LeadDetails = ({ navigation, route }: any) => {
     navigation.goBack()
   }
   const handleStatusUpdate = () => {
-    navigation.navigate('FollUpAdd')
+    navigation.navigate('FollUpAdd', data)
   }
   const handleScheduleVisit = () => {
     navigation.navigate('AddAppointmentForSite')
@@ -36,9 +35,9 @@ const LeadDetails = ({ navigation, route }: any) => {
     <LeadDetailsView
       handleStatusUpdate={handleStatusUpdate}
       handleScheduleVisit={handleScheduleVisit}
-      handleBackPress={handleBackPress} 
+      handleBackPress={handleBackPress}
       allDetails={allDetails}
-      />
+    />
   )
 }
 
