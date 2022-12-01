@@ -2,13 +2,13 @@ import Loader from 'app/components/CommonScreen/Loader';
 import { userRegister } from 'app/Redux/Actions/AuthActions';
 import { getCityList, getRolesList } from 'app/Redux/Actions/MasterActions';
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AddNewCM from './components/AddNewCM'
 
 const AddNewCMScreen = ({ navigation, route }: any) => {
     const dispatch: any = useDispatch()
-    const [addNewSmData, setAddNewSmData] = useState<any>({})
+    const [addNewCMData, setAddNewCMData] = useState<any>({})
     const [cityData, setCityData] = useState<any>([])
     const [roleData, setRoleData] = useState<any>([])
     const { userData = {} } = useSelector((state: any) => state.userData)
@@ -20,12 +20,12 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
 
 
     const onPressCreate = () => {
-        dispatch(userRegister(addNewSmData))
+        dispatch(userRegister(addNewCMData))
         // navigation.goBack()
     }
     const handlegetCityList = () => {
         dispatch(getCityList({}))
-        if (response?.status) {
+        if (response?.status === 200) {
             setCityData(response?.data)
         }
     }
@@ -44,8 +44,8 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
                 onPressBack={onPressBack}
                 onPressCreate={onPressCreate}
                 type={route?.params?.type || ""}
-                addNewSmData={addNewSmData}
-                setAddNewSmData={setAddNewSmData}
+                addNewCMData={addNewCMData}
+                setAddNewCMData={setAddNewCMData}
                 handlegetCityList={handlegetCityList}
                 cityData={cityData}
                 handlegetRoleList={handlegetRoleList}

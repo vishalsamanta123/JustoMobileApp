@@ -19,7 +19,7 @@ const AddNewCMView = (props: any) => {
     return (
         <View style={styles.mainContainer}>
             <Header
-                headerText={props?.type === 'edit' ? strings.editSM : strings.addNewSM}
+                headerText={props?.type === 'edit' ? strings.editCM : strings.addNewCM}
                 headerStyle={styles.headerStyle}
                 headerTextStyle={styles.headerTextStyle}
                 leftImageSrc={images.backArrow}
@@ -35,7 +35,7 @@ const AddNewCMView = (props: any) => {
                     onPress={() => setProfile(true)}
                     style={[styles.imageCircle]}
                 >
-                    {!props.addNewSmData?.profile_picture?.uri ?
+                    {!props.addNewCMData?.profile_picture?.uri ?
                         <Image
                             style={styles.DummyloginBanner}
                             source={images.user}
@@ -44,7 +44,7 @@ const AddNewCMView = (props: any) => {
                         :
                         <Image
                             style={styles.loginBanner}
-                            source={{ uri: props.addNewSmData?.profile_picture?.uri }}
+                            source={{ uri: props.addNewCMData?.profile_picture?.uri }}
                             resizeMode="contain"
                         />
                     }
@@ -65,22 +65,21 @@ const AddNewCMView = (props: any) => {
                         paddingLeft={16}
                         maxHeight={300}
                         onFocus={() => props.handlegetRoleList()}
-                        labelField="title"
+                        labelField="role_title"
                         valueField={'_id'}
-                        value={props.addNewSmData?.city}
+                        value={props.addNewCMData?.role_id}
                         onChange={(item: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData, role_id: item._id
+                            props.setAddNewCMData({
+                                ...props.addNewCMData,
+                                role_id: item._id
                             })
                         }}
                         newRenderItem={(item: any) => {
                             return (
                                 <>
-                                    {props.isloading !== false &&
-                                        <View style={styles.item}>
-                                            <Text style={styles.textItem}>{item.role_title}</Text>
-                                        </View>
-                                    }
+                                    <View style={styles.item}>
+                                        <Text style={styles.textItem}>{item.role_title}</Text>
+                                    </View>
                                 </>
                             );
                         }}
@@ -90,10 +89,10 @@ const AddNewCMView = (props: any) => {
                     <InputField
                         placeholderText={"First Name"}
                         handleInputBtnPress={() => { }}
-                        headingText={"SM First Name"}
+                        headingText={"CM First Name"}
                         onChangeText={(val: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData, firstname: val
+                            props.setAddNewCMData({
+                                ...props.addNewCMData, firstname: val
                             })
                         }}
                     />
@@ -102,10 +101,10 @@ const AddNewCMView = (props: any) => {
                     <InputField
                         placeholderText={"Last Name"}
                         handleInputBtnPress={() => { }}
-                        headingText={"SM Last Name"}
+                        headingText={"CM Last Name"}
                         onChangeText={(val: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData, lastname: val
+                            props.setAddNewCMData({
+                                ...props.addNewCMData, lastname: val
                             })
                         }}
                     />
@@ -116,8 +115,8 @@ const AddNewCMView = (props: any) => {
                         handleInputBtnPress={() => { }}
                         headingText={"Adhar No."}
                         onChangeText={(val: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData, adhar_no: val
+                            props.setAddNewCMData({
+                                ...props.addNewCMData, adhar_no: val
                             })
                         }}
                     />
@@ -128,10 +127,11 @@ const AddNewCMView = (props: any) => {
                         handleInputBtnPress={() => { }}
                         headingText={"Pancard No."}
                         onChangeText={(val: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData, pancard_no: val
+                            props.setAddNewCMData({
+                                ...props.addNewCMData, pancard_no: val
                             })
                         }}
+                        maxLength={10}
                     />
                 </View>
                 <View style={styles.genderView}>
@@ -139,10 +139,10 @@ const AddNewCMView = (props: any) => {
                     <View style={styles.radioView}>
                         <RadioButton
                             value="Male"
-                            status={props.addNewSmData?.gender === 1 ? "checked" : "unchecked"}
+                            status={props.addNewCMData?.gender === 1 ? "checked" : "unchecked"}
                             onPress={() => {
-                                props.setAddNewSmData({
-                                    ...props.addNewSmData, gender: 1
+                                props.setAddNewCMData({
+                                    ...props.addNewCMData, gender: 1
                                 })
                             }}
                             color={PRIMARY_THEME_COLOR}
@@ -152,7 +152,7 @@ const AddNewCMView = (props: any) => {
                                 styles.radioTxt,
                                 {
                                     color:
-                                        props.addNewSmData?.gender === 1 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                                        props.addNewCMData?.gender === 1 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                                 },
                             ]}
                         >
@@ -162,10 +162,10 @@ const AddNewCMView = (props: any) => {
                     <View style={styles.radioView}>
                         <RadioButton
                             value="second"
-                            status={props.addNewSmData?.gender === 2 ? "checked" : "unchecked"}
+                            status={props.addNewCMData?.gender === 2 ? "checked" : "unchecked"}
                             onPress={() => {
-                                props.setAddNewSmData({
-                                    ...props.addNewSmData, gender: 2
+                                props.setAddNewCMData({
+                                    ...props.addNewCMData, gender: 2
                                 })
                             }}
                             color={PRIMARY_THEME_COLOR}
@@ -175,7 +175,7 @@ const AddNewCMView = (props: any) => {
                                 styles.radioTxt,
                                 {
                                     color:
-                                        props.addNewSmData?.gender === 2 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                                        props.addNewCMData?.gender === 2 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                                 },
                             ]}
                         >
@@ -187,21 +187,24 @@ const AddNewCMView = (props: any) => {
                     <InputCalender
                         leftIcon={images.event}
                         mode={'date'}
+                        maximumDate={new Date()}
                         placeholderText={"Date of Birth"}//can edit
                         editable={false}
                         dateData={(data: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData,
+                            props.setAddNewCMData({
+                                ...props.addNewCMData,
                                 dateofbirth: moment(data).format('YYYY-MM-DD')
                             })
                         }}
                         setDateshow={(data: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData,
+                            props.setAddNewCMData({
+                                ...props.addNewCMData,
                                 dateofbirth: moment(data).format('YYYY-MM-DD')
                             })
                         }}
-                        value={moment(props?.addNewSmData?.dateofbirth).format('DD-MM-YYYY')}
+                        value={props?.addNewCMData?.dateofbirth ?
+                            moment(props?.addNewCMData?.dateofbirth).format('DD-MM-YYYY')
+                            : ''}
                     />
                 </View>
                 <View style={styles.inputWrap}>
@@ -210,10 +213,12 @@ const AddNewCMView = (props: any) => {
                         handleInputBtnPress={() => { }}
                         headingText={"Mobile No."}
                         onChangeText={(val: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData, mobile: val
+                            props.setAddNewCMData({
+                                ...props.addNewCMData, mobile: val
                             })
                         }}
+                        maxLength={10}
+                        keyboardtype={'number-pad'}
                     />
                 </View>
                 <View style={styles.inputWrap}>
@@ -222,10 +227,12 @@ const AddNewCMView = (props: any) => {
                         handleInputBtnPress={() => { }}
                         headingText={"WhatsApp No."}
                         onChangeText={(val: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData, whatsapp_no: val
+                            props.setAddNewCMData({
+                                ...props.addNewCMData, whatsapp_no: val
                             })
                         }}
+                        maxLength={10}
+                        keyboardtype={'number-pad'}
                     />
                 </View>
                 <View style={styles.inputWrap}>
@@ -234,8 +241,8 @@ const AddNewCMView = (props: any) => {
                         handleInputBtnPress={() => { }}
                         headingText={"Email Address"}
                         onChangeText={(val: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData, email: val
+                            props.setAddNewCMData({
+                                ...props.addNewCMData, email: val
                             })
                         }}
                     />
@@ -249,23 +256,21 @@ const AddNewCMView = (props: any) => {
                         paddingLeft={16}
                         maxHeight={300}
                         onFocus={() => props.handlegetCityList()}
-                        labelField="title"
+                        labelField="city_name"
                         valueField={'_id'}
-                        value={props.addNewSmData?.city}
+                        value={props.addNewCMData?.city}
                         onChange={(item: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData,
+                            props.setAddNewCMData({
+                                ...props.addNewCMData,
                                 city: item.city_name, city_id: item.city_id
                             })
                         }}
                         newRenderItem={(item: any) => {
                             return (
                                 <>
-                                    {props.isloading !== false &&
-                                        <View style={styles.item}>
-                                            <Text style={styles.textItem}>{item.city_name}</Text>
-                                        </View>
-                                    }
+                                    <View style={styles.item}>
+                                        <Text style={styles.textItem}>{item.city_name}</Text>
+                                    </View>
                                 </>
                             );
                         }}
@@ -277,8 +282,8 @@ const AddNewCMView = (props: any) => {
                         handleInputBtnPress={() => { }}
                         headingText={"Area"}
                         onChangeText={(val: any) => {
-                            props.setAddNewSmData({
-                                ...props.addNewSmData, area: val
+                            props.setAddNewCMData({
+                                ...props.addNewCMData, area: val
                             })
                         }}
                     />
@@ -287,15 +292,15 @@ const AddNewCMView = (props: any) => {
                     <Button
                         handleBtnPress={() => props.onPressCreate()}
                         textTransform={null}
-                        buttonText={props?.type === 'edit' ? strings.updateSM : strings.createSM} />
+                        buttonText={props?.type === 'edit' ? strings.updateCM : strings.createCM} />
                 </View>
             </ScrollView>
             <PicturePickerModal
                 Visible={profile}
                 setVisible={setProfile}
                 imageData={(data: any) => {
-                    props.setAddNewSmData({
-                        ...props.addNewSmData, profile_picture: data
+                    props.setAddNewCMData({
+                        ...props.addNewCMData, profile_picture: data
                     })
                 }}
             />

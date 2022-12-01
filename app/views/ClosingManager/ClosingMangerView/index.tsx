@@ -9,10 +9,10 @@ import ClosingDetailsView from './components/ClosingManger'
 const ClosingDetailScreen = ({ navigation }: any) => {
     const [status, setStatus] = useState(false)
     const [filterisVisible, setFilterisVisible] = useState(false)
-    const [sourcingManagers, setSourcingManagers] = useState<any>([])
+    const [ClosingManagers, setClosingManagers] = useState<any>([])
     const [offSET, setOffset] = useState(0)
     const dispatch: any = useDispatch()
-    const { response = {}, list = '' } = useSelector((state: any) => state.SourcingManager)
+    const { response = {}, list = '' } = useSelector((state: any) => state.SourcingManager) || {}
     const [filterData, setFilterData] = useState({
         start_date: '',
         end_date: '',
@@ -21,24 +21,22 @@ const ClosingDetailScreen = ({ navigation }: any) => {
 
     useFocusEffect(
         React.useCallback(() => {
-            getSMList(offSET)
+            getCMList(offSET)
             return () => { };
         }, [navigation, list])
     );
     useEffect(() => {
         if (list || response?.status) {
-            if (offSET == 0) {
-                console.log('offSET == 0: ', offSET == 0);
-                setSourcingManagers(response?.data)
+            if (offSET === 0) {
+                setClosingManagers(response?.data)
             } else {
-                setSourcingManagers([...sourcingManagers, ...response?.data])
+                setClosingManagers([...ClosingManagers, ...response?.data])
             }
         }
     }, [response])
-    const getSMList = (offset: any) => {
+    const getCMList = (offset: any) => {
         setOffset(offset)
         dispatch(getSourcingManagerList())
-        // toGetDatas(array)
     }
 
     const onRefresh = () => {
@@ -47,17 +45,17 @@ const ClosingDetailScreen = ({ navigation }: any) => {
             end_date: '',
             followup_for: ''
         })
-        getSMList(0)
+        getCMList(0)
         // props.setFilter({})
     }
     const handleFilterApply = () => {
-        getSMList(0)
+        getCMList(0)
     }
 
     const handleDrawerPress = () => {
         navigation.toggleDrawer();
     };
-    const handleAddNewSM = (type: any) => {
+    const handleAddNewCM = (type: any) => {
         if (type === 'edit') {
             navigation.navigate('AddNewCM', { type })
         } else {
@@ -76,12 +74,12 @@ const ClosingDetailScreen = ({ navigation }: any) => {
             handleDrawerPress={handleDrawerPress}
             filterisVisible={filterisVisible}
             setFilterisVisible={setFilterisVisible}
-            handleAddNewSM={handleAddNewSM}
+            handleAddNewCM={handleAddNewCM}
             onPressAllocateCp={onPressAllocateCp}
             onPressViews={onPressViews}
             status={status}
             setStatus={setStatus}
-            sourcingManagers={sourcingManagers}
+            ClosingManagers={ClosingManagers}
             onRefresh={onRefresh}
         />
     )
