@@ -21,64 +21,56 @@ import { AgencyCreateForm } from "app/Redux/Actions/AgencyActions";
 import ErrorMessage from "app/components/ErrorMessage";
 
 const AgentBankInfo = (props: any) => {
-  const dispatch: any = useDispatch()
-  const [formData, setFormData] = useState<any>({})
-  console.log('formData: ', formData);
   const [reravisible, setreraVisible] = useState(false)
   const [lettervisible, setletterVisible] = useState(false)
   const [cheaquevisible, setcheaqueVisible] = useState(false)
   const [visible, setVisible] = useState(false)
-  const registrationData = useSelector((state: any) => state.agencyForm)
-  console.log('registrationData: ', registrationData);
-  useEffect(() => {
-    setFormData({ ...registrationData.response })
-  }, [registrationData])
 
-  const validation = () => {
-    let isError = true;
-    let errorMessage: any = ''
-    if (formData.rera_certificate_no == '' || formData.rera_certificate_no == undefined) {
-      isError = false;
-      errorMessage = "Rera Certificate No. is require. Please enter Rera Certificate No."
-    }
-    else if (formData.rera_certificate == '' || formData.rera_certificate == undefined) {
-      isError = false;
-      errorMessage = "Rera Certificate Image is require. Please Choose Rera Certificate Image"
-    }
-    else if (formData.propidership_declaration_letter == '' || formData.propidership_declaration_letter == undefined) {
-      isError = false;
-      errorMessage = "Propidership Declaration Letter Image is require. Please Choose Propidership Declaration Letter Image"
-    }
-    else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
-      isError = false;
-      errorMessage = "Cancel Cheaque Image is require. Please Choose Cancel Cheaque Image"
-    }
-    else if (formData.bank_name == '' || formData.bank_name == undefined) {
-      isError = false;
-      errorMessage = "Bank Name is require. Please enter Bank Name"
-    }
-    else if (formData.branch_name == '' || formData.branch_name == undefined) {
-      isError = false;
-      errorMessage = "Branch Name is require. Please enter Branch Name"
-    }
-    else if (formData.account_no == '' || formData.account_no == undefined) {
-      isError = false;
-      errorMessage = "Account No. is require. Please enter Account No."
-    }
-    else if (formData.ifsc_code == '' || formData.ifsc_code == undefined) {
-      isError = false;
-      errorMessage = "IFSC Code is require. Please enter IFSC Code"
-    }
+  // const validation = () => {
+  //   let isError = true;
+  //   let errorMessage: any = ''
+  //   if (props.agencyData.rera_certificate_no == '' || props.agencyData.rera_certificate_no == undefined) {
+  //     isError = false;
+  //     errorMessage = "Rera Certificate No. is require. Please enter Rera Certificate No."
+  //   }
+  //   else if (props.agencyData.rera_certificate == '' || props.agencyData.rera_certificate == undefined) {
+  //     isError = false;
+  //     errorMessage = "Rera Certificate Image is require. Please Choose Rera Certificate Image"
+  //   }
+  //   else if (props.agencyData.propidership_declaration_letter == '' || props.agencyData.propidership_declaration_letter == undefined) {
+  //     isError = false;
+  //     errorMessage = "Propidership Declaration Letter Image is require. Please Choose Propidership Declaration Letter Image"
+  //   }
+  //   else if (props.agencyData.cancel_cheaque == '' || props.agencyData.cancel_cheaque == undefined) {
+  //     isError = false;
+  //     errorMessage = "Cancel Cheaque Image is require. Please Choose Cancel Cheaque Image"
+  //   }
+  //   else if (props.agencyData.bank_name == '' || props.agencyData.bank_name == undefined) {
+  //     isError = false;
+  //     errorMessage = "Bank Name is require. Please enter Bank Name"
+  //   }
+  //   else if (props.agencyData.branch_name == '' || props.agencyData.branch_name == undefined) {
+  //     isError = false;
+  //     errorMessage = "Branch Name is require. Please enter Branch Name"
+  //   }
+  //   else if (props.agencyData.account_no == '' || props.agencyData.account_no == undefined) {
+  //     isError = false;
+  //     errorMessage = "Account No. is require. Please enter Account No."
+  //   }
+  //   else if (props.agencyData.ifsc_code == '' || props.agencyData.ifsc_code == undefined) {
+  //     isError = false;
+  //     errorMessage = "IFSC Code is require. Please enter IFSC Code"
+  //   }
 
-    if (errorMessage !== '') {
-      ErrorMessage({
-        msg: errorMessage,
-        backgroundColor: RED_COLOR
-      })
-    }
-    // console.log('isError: ', isError);
-    return isError;
-  }
+  //   if (errorMessage !== '') {
+  //     ErrorMessage({
+  //       msg: errorMessage,
+  //       backgroundColor: RED_COLOR
+  //     })
+  //   }
+  //   // console.log('isError: ', isError);
+  //   return isError;
+  // }
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -97,10 +89,10 @@ const AgentBankInfo = (props: any) => {
             placeholderText={"RERA Certificate No."}
             handleInputBtnPress={() => { }}
             headingText={"RERA Certificate No."}
-            valueshow={formData?.rera_certificate_no}
+            valueshow={props.agencyData?.rera_certificate_no}
             onChangeText={(val: any) => {
-              setFormData({
-                ...formData, rera_certificate_no: val
+              props.setAgencyData({
+                ...props.agencyData, rera_certificate_no: val
               })
             }}
           />
@@ -125,7 +117,7 @@ const AgentBankInfo = (props: any) => {
                 setVisible(true)
               }}
             >
-              <Text style={{ color: formData?.rera_certificate ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
+              <Text style={{ color: props.agencyData?.rera_certificate ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -149,7 +141,7 @@ const AgentBankInfo = (props: any) => {
                 setVisible(true)
               }}
             >
-              <Text style={{ color: formData?.propidership_declaration_letter ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
+              <Text style={{ color: props.agencyData?.propidership_declaration_letter ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -161,10 +153,10 @@ const AgentBankInfo = (props: any) => {
             placeholderText={"Bank Name"}
             handleInputBtnPress={() => { }}
             headingText={"Bank Name"}
-            valueshow={formData?.bank_name}
+            valueshow={props.agencyData?.bank_name}
             onChangeText={(val: any) => {
-              setFormData({
-                ...formData, bank_name: val
+              props.setAgencyData({
+                ...props.agencyData, bank_name: val
               })
             }}
           />
@@ -174,10 +166,10 @@ const AgentBankInfo = (props: any) => {
             placeholderText={"Branch Name"}
             handleInputBtnPress={() => { }}
             headingText={"Branch Name"}
-            valueshow={formData?.branch_name}
+            valueshow={props.agencyData?.branch_name}
             onChangeText={(val: any) => {
-              setFormData({
-                ...formData, branch_name: val
+              props.setAgencyData({
+                ...props.agencyData, branch_name: val
               })
             }}
           />
@@ -188,10 +180,10 @@ const AgentBankInfo = (props: any) => {
             handleInputBtnPress={() => { }}
             headingText={"Account No."}
             keyboardtype={'number-pad'}
-            valueshow={formData?.account_no}
+            valueshow={props.agencyData?.account_no}
             onChangeText={(val: any) => {
-              setFormData({
-                ...formData, account_no: val
+              props.setAgencyData({
+                ...props.agencyData, account_no: val
               })
             }}
           />
@@ -201,10 +193,10 @@ const AgentBankInfo = (props: any) => {
             placeholderText={"IFSC Code"}
             handleInputBtnPress={() => { }}
             headingText={"IFSC Code"}
-            valueshow={formData?.ifsc_code}
+            valueshow={props.agencyData?.ifsc_code}
             onChangeText={(val: any) => {
-              setFormData({
-                ...formData, ifsc_code: val
+              props.setAgencyData({
+                ...props.agencyData, ifsc_code: val
               })
             }}
           />
@@ -229,16 +221,16 @@ const AgentBankInfo = (props: any) => {
                 setVisible(true)
               }}
             >
-              <Text style={{ color: formData?.cancel_cheaque ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
+              <Text style={{ color: props.agencyData?.cancel_cheaque ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.buttonContainer}>
           <Button
             handleBtnPress={(type: any) => {
-              if (validation()) {
-                props.onPressNext(2, formData)
-              }
+              // if (validation()) {
+              //   props.onPressNext(2, props.agencyData)
+              // }
             }}
             rightImage={images.forwardArrow}
             buttonText={strings.next}
@@ -251,20 +243,20 @@ const AgentBankInfo = (props: any) => {
         setVisible={setVisible}
         imageData={(data: any) => {
           if (reravisible) {
-            setFormData({
-              ...formData, rera_certificate: data
+            props.setAgencyData({
+              ...props.agencyData, rera_certificate: data
             })
             setreraVisible(false)
           }
           else if (lettervisible) {
-            setFormData({
-              ...formData, propidership_declaration_letter: data
+            props.setAgencyData({
+              ...props.agencyData, propidership_declaration_letter: data
             })
             setletterVisible(false)
           }
           else {
-            setFormData({
-              ...formData, cancel_cheaque: data
+            props.setAgencyData({
+              ...props.agencyData, cancel_cheaque: data
             })
             setcheaqueVisible(false)
           }

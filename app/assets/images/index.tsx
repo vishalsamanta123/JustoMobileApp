@@ -31,6 +31,7 @@ const images = {
   timer: require('./timer.png'),
   dummyUser: require('./dummyUser.jpeg'),
   editIcon: require('./editIcon.png'),
+  edit: require('./edit.png'),
   pdfIcone: require('./pdfIcone.png'),
 };
 

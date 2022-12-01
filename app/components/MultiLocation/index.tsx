@@ -7,7 +7,6 @@ import styles from './styles';
 import Button from 'app/components/Button';
 import strings from 'app/components/utilities/Localization';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import Geolocation from '@react-native-community/geolocation';
 import Header from '../Header';
 import { normalize, normalizeHeight, normalizeSpacing } from '../scaleFontSize';
 import { handlePermission, openPermissionSetting } from '../utilities/GlobalFuncations';
