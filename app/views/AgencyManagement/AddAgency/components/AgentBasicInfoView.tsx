@@ -24,6 +24,7 @@ import moment from "moment";
 import MultiLocation from "app/components/MultiLocation";
 
 const AgentBasicInfoView = (props: any) => {
+console.log('props: ', props?.agencyData?.date_of_birth);
   const handleDelete = (item: any, index: any) => {
     var array: any[] = [...props?.agencyData?.working_location];
     array?.splice(index, 1);
@@ -80,11 +81,11 @@ const AgentBasicInfoView = (props: any) => {
             placeholderText={"Name"}
             handleInputBtnPress={() => {}}
             headingText={"Agent Name"}
-            valueshow={props.agencyData?.agent_name}
+            valueshow={props.agencyData?.owner_name}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData,
-                agent_name: val,
+                owner_name: val,
               });
             }}
           />
@@ -191,9 +192,9 @@ const AgentBasicInfoView = (props: any) => {
                 date_of_birth: moment(data).format("YYYY-MM-DD"),
               });
             }}
-            value={moment(props?.agencyData?.date_of_birth).format(
+            value={props?.agencyData?.date_of_birth !== '' ? moment(props?.agencyData?.date_of_birth).format(
               "DD-MM-YYYY"
-            )}
+            ): null}
           />
         </View>
         <View style={styles.inputWrap}>
