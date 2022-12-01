@@ -1,4 +1,4 @@
-import { GET_SOURCINGMANAGER_DETAIL, GET_SOURCINGMANAGER_DETAIL_ERROR, GET_SOURCINGMANAGER_LIST, GET_SOURCINGMANAGER_LIST_ERROR } from "../types";
+import { ASSIGNCP_SM, ASSIGNCP_SM_ERROR, GET_ASSIGNCP_LIST, GET_ASSIGNCP_LIST_ERROR, GET_SOURCINGMANAGER_DETAIL, GET_SOURCINGMANAGER_DETAIL_ERROR, GET_SOURCINGMANAGER_LIST, GET_SOURCINGMANAGER_LIST_ERROR } from "../types";
 
 const initialState = {
     response: null,
@@ -34,6 +34,34 @@ export function SourcingManagerReducer(state = initialState, action: any) {
                 ...state,
                 list: false,
                 detail: true,
+                response: action.payload,
+            };
+        case GET_ASSIGNCP_LIST:
+            return {
+                ...state,
+                list: false,
+                detail: false,
+                response: action.payload,
+            };
+        case GET_ASSIGNCP_LIST_ERROR:
+            return {
+                ...state,
+                list: false,
+                detail: false,
+                response: action.payload,
+            };
+        case ASSIGNCP_SM:
+            return {
+                ...state,
+                list: false,
+                detail: false,
+                response: action.payload,
+            };
+        case ASSIGNCP_SM_ERROR:
+            return {
+                ...state,
+                list: false,
+                detail: false,
                 response: action.payload,
             };
 

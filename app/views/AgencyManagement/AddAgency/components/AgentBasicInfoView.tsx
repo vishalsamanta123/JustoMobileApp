@@ -24,10 +24,11 @@ import moment from "moment";
 import MultiLocation from "app/components/MultiLocation";
 
 const AgentBasicInfoView = (props: any) => {
+  console.log("props: ", props?.agencyData?.date_of_birth);
   const handleDelete = (item: any, index: any) => {
     var array: any[] = [...props?.agencyData?.working_location];
     array?.splice(index, 1);
-    props?.setRegisterForm({
+    props?.setAgencyData({
       ...props?.agencyData,
       working_location: array,
     });
@@ -52,7 +53,9 @@ const AgentBasicInfoView = (props: any) => {
           onPress={() => props.setImagePicker(true)}
           style={[styles.imageCircle, { backgroundColor: GRAY_COLOR }]}
         >
-          {!props.agencyData?.profile_picture?.uri ? (
+          {props.type == "edit" ? (
+            props?.agencyData?.profile_picture === ""
+          ) : props?.agencyData?.profile_picture?.uri === "" ? (
             <Image
               style={styles.DummyloginBanner}
               source={images.user}
@@ -62,7 +65,11 @@ const AgentBasicInfoView = (props: any) => {
             <View style={styles.imageCircle}>
               <Image
                 style={styles.loginBanner}
-                source={{ uri: props.agencyData?.profile_picture?.uri }}
+                source={{
+                  uri: props.agencyData?.profile_picture?.uri
+                    ? props.agencyData?.profile_picture?.uri
+                    : props.agencyData?.profile_picture,
+                }}
                 resizeMode="contain"
               />
             </View>
@@ -80,11 +87,11 @@ const AgentBasicInfoView = (props: any) => {
             placeholderText={"Name"}
             handleInputBtnPress={() => {}}
             headingText={"Agent Name"}
-            valueshow={props.agencyData?.agent_name}
+            valueshow={props.agencyData?.owner_name}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData,
-                agent_name: val,
+                owner_name: val,
               });
             }}
           />
@@ -191,9 +198,11 @@ const AgentBasicInfoView = (props: any) => {
                 date_of_birth: moment(data).format("YYYY-MM-DD"),
               });
             }}
-            value={moment(props?.agencyData?.date_of_birth).format(
-              "DD-MM-YYYY"
-            )}
+            value={
+              props?.agencyData?.date_of_birth !== ""
+                ? moment(props?.agencyData?.date_of_birth).format("DD-MM-YYYY")
+                : null
+            }
           />
         </View>
         <View style={styles.inputWrap}>
