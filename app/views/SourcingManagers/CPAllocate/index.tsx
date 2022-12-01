@@ -3,16 +3,17 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
 import { getAllAgentList } from "app/Redux/Actions/AgencyActions";
 import { allocatePropertyToUser, getManagerList } from "app/Redux/Actions/propertyActions";
+import { assignCPSM, getAssignCPList } from "app/Redux/Actions/SourcingManagerActions";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AllocateCPView from "./components/AllocateCP";
 
 const AllocateCPScreen = ({ navigation, route }: any) => {
-  const id  = route?.params || {}
-  const { response = {}, list } =
-    useSelector((state: any) => state.agentData) || [];
+  const id = route?.params || {}
+  const { response = {}, list } = useSelector((state: any) => state.SourcingManager) || [];
 
   const [cpList, setCpList] = useState<any>([]);
+  console.log('cpList: ', cpList);
   const dispatch: any = useDispatch();
   const [selectedCp, setSelected] = useState<any>([]);
   const [selectedLoginIdCp, setSelectedLoginIdCp] = useState<any>([]);
@@ -28,9 +29,8 @@ const AllocateCPScreen = ({ navigation, route }: any) => {
   useFocusEffect(
     React.useCallback(() => {
       dispatch(
-        getAllAgentList({
-          offset: 0,
-          limit: 100
+        getAssignCPList({
+          user_id: id
         })
       );
       // const constantArry: any[] = [...response.data];
@@ -38,8 +38,10 @@ const AllocateCPScreen = ({ navigation, route }: any) => {
     }, [navigation, list])
   );
   useEffect(() => {
-    setCpList(response?.data);
-    setSelected(response?.data?.filter((item: any) => item?.allocate_status?.length > 0))
+    if (response?.data?.length > 0) {
+      setCpList(response?.data);
+      setSelected(response?.data?.filter((item: any) => item?.parent_id === id))
+    }
   }, [response])
 
   const handleSelects = (items: any) => {
@@ -68,7 +70,7 @@ const AllocateCPScreen = ({ navigation, route }: any) => {
       const lowerCased = searchKey.toLowerCase();
       const searchArray = [...cpList];
       const list = searchArray.filter((item) => {
-        return item.agent_name.toLowerCase().match(lowerCased);
+        return item.user_name.toLowerCase().match(lowerCased);
       });
       setCpList(list);
     }
@@ -77,9 +79,9 @@ const AllocateCPScreen = ({ navigation, route }: any) => {
     setCPDetails(false);
     console.log('selectedLoginIdCp: ', selectedLoginIdCp);
     dispatch(
-      allocatePropertyToUser({
-        user_id: selectedLoginIdCp,
-        property_id: id,
+      assignCPSM({
+        user_id: id,
+        cp_id: selectedLoginIdCp
       })
     );
 

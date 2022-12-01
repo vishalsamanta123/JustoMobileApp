@@ -1,10 +1,11 @@
-import React, { useState, } from "react";
+import React, { useEffect, useState, } from "react";
 import AppointmentView from './components/Appointments'
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
+import { getAllAppointmentList } from "app/Redux/Actions/AppointmentWithCpActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const AppointmentsScreen = ({ navigation }: any) => {
-    const [dropLocisVisible, setDropLocisVisible] = useState(false)
-    const [filterisVisible, setFilterisVisible] = useState(false)
     const DATA: any = [
         {
             visitorName: 'ABC',
@@ -59,6 +60,45 @@ const AppointmentsScreen = ({ navigation }: any) => {
             budget: '50L',
         },
     ];
+    const [dropLocisVisible, setDropLocisVisible] = useState(false)
+    const [filterisVisible, setFilterisVisible] = useState(false)
+    const [appointmentList, setAppointmentList] = useState<any>([])
+    const [offSET, setOffset] = useState(0)
+    const dispatch: any = useDispatch()
+    const { response = {}, list = '' } = useSelector((state: any) => state.appointment)
+    console.log('response: ', response);
+    const [filterData, setFilterData] = useState({
+        start_date: '',
+        end_date: '',
+        customer_name: '',
+    })
+    useFocusEffect(
+        React.useCallback(() => {
+            getAppointmentList(offSET)
+            return () => { };
+        }, [navigation, list])
+    );
+    useEffect(() => {
+        if (list) {
+            if (offSET == 0) {
+                setAppointmentList(response?.data)
+            } else {
+                setAppointmentList([...appointmentList, ...response?.data])
+            }
+        }
+    }, [response])
+    const getAppointmentList = (offset: any) => {
+        setOffset(offset)
+        dispatch(getAllAppointmentList({
+            offset: offset,
+            limit: 3,
+            start_date: filterData.start_date,
+            end_date: filterData.end_date,
+            customer_name: filterData.customer_name,
+            appointment_type: 2
+        }))
+        // toGetDatas(array)
+    }
     const handleDrawerPress = () => {
         navigation.toggleDrawer()
     };

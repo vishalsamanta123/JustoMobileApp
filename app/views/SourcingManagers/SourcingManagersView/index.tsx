@@ -13,7 +13,6 @@ const SourcingDetailScreen = ({ navigation }: any) => {
     const [offSET, setOffset] = useState(0)
     const dispatch: any = useDispatch()
     const { response = {}, list = '' } = useSelector((state: any) => state.SourcingManager)
-    console.log('response: ', response);
     const [filterData, setFilterData] = useState({
         start_date: '',
         end_date: '',
@@ -29,7 +28,6 @@ const SourcingDetailScreen = ({ navigation }: any) => {
     useEffect(() => {
         if (list || response?.status) {
             if (offSET == 0) {
-                console.log('offSET == 0: ', offSET == 0);
                 setSourcingManagers(response?.data)
             } else {
                 setSourcingManagers([...sourcingManagers, ...response?.data])

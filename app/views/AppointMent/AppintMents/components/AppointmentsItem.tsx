@@ -91,26 +91,29 @@ const AppointmentItem = (props: any) => {
             </View>
             <View style={[styles.buttonContainer, { justifyContent: 'center' }]}>
                 <Button
-                    width={130}
-                    height={45}
-                    bgcolor={BG_MAIN_COLOUR}
-                    borderWidth={0}
+                    width={100}
+                    height={30}
+                    bgcolor={WHITE_COLOR}
+                    bordercolor={PRIMARY_THEME_COLOR}
+                    borderWidth={1}
                     btnTxtcolor={PRIMARY_THEME_COLOR}
                     buttonText={strings.allocate}
                     btnTxtsize={14}
-                    textTransform={'uppercase'}
+                    border={10}
                     handleLinkPress={() => props.handleLinkPress}
-
+                    textTransform={'uppercase'}
                 />
                 <Button
-                    width={130}
-                    height={45}
+                    width={150}
+                    height={30}
                     bgcolor={WHITE_COLOR}
                     bordercolor={PRIMARY_THEME_COLOR}
-                    borderWidth={0.8}
+                    borderWidth={1}
                     btnTxtcolor={PRIMARY_THEME_COLOR}
                     buttonText={strings.dropLocation}
                     btnTxtsize={14}
+                    border={10}
+                    handleLinkPress={() => props.handleLinkPress}
                     textTransform={'uppercase'}
                 />
             </View>

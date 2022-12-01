@@ -26,6 +26,8 @@ export default {
   // SOURCING TL
   GET_SOURCING_MANAGER_LIST: '/userManage/getUserSourcingManagerList',
   GET_SOURCING_MANAGER_DETAIL: '/userManage/getUserSourcingManagerDetail',
+  GET_ASSIGNCP_LIST: '/userManage/getAssignCPList',
+  ASSIGNCP_SM: '/userManage/cpAssignSorcingManager',
 
 
   // property Start
