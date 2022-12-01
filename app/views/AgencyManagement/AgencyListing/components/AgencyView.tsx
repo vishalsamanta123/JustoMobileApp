@@ -20,9 +20,11 @@ import {
   WHITE_COLOR,
 } from '../../../../components/utilities/constant';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 
 const AgencyView = (props: any) => {
+  const loadingref = false
   const [isVisible, setIsVisible] = useState(false)
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const insets = useSafeAreaInsets();
@@ -73,7 +75,17 @@ const AgencyView = (props: any) => {
     navigation.navigate('PendingAgencyList')
   }
   const onPressAddnewAgency = () => {
-    navigation.navigate('AddnewAgency')
+    navigation.navigate('AddnewAgency', {type: 'add'})
+  }
+  const onRefresh = () => {
+    props.setFilterData({
+      startdate: '',
+      enddate: '',
+      search_by_name: '',
+      search_by_location: '',
+      status: ''
+    })
+    props.getAgentList(0, {})
   }
 
   return (
@@ -110,12 +122,24 @@ const AgencyView = (props: any) => {
 
         </View>
         <View style={styles.propertyListViewsec}>
-          <FlatList
+        <FlatList
             showsVerticalScrollIndicator={false}
-            data={DATA}
-            renderItem={({ item }) => <AgencyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView}
-              onPressAddnewAgency={onPressAddnewAgency}
-            />}
+            data={props?.agentList}
+            ListEmptyComponent={<EmptyListScreen message={strings.agent} />}
+            renderItem={({ item }) =>
+              <AgencyListItem items={item} setIsVisible={setIsVisible}
+                onPressView={props.onPressView}
+                setChangeStatus={props.setChangeStatus}
+              />
+            }
+            onEndReached={() => {
+              if (props?.agentList?.length < props?.moreData) {
+                props.getAgentList(props?.agentList?.length > 2 ?
+                  props.offSET + 1 : 0, props.filterData)
+              }
+            }}
+            refreshing={loadingref}
+            onRefresh={() => onRefresh()}
           />
         </View>
       </View>

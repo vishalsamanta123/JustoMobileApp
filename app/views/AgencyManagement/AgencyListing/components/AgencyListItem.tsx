@@ -7,6 +7,7 @@ import images from '../../../../assets/images';
 import Button from '../../../../components/Button';
 
 const AgencyListItem = (props: any) => {
+
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >
@@ -14,7 +15,7 @@ const AgencyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Agency Name :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.Projectname}</Text>
+          <Text style={styles.nameTxt}>{props?.items.agent_name}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -22,7 +23,9 @@ const AgencyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Location :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.Location}</Text>
+          <Text style={styles.nameTxt}>{
+            props.items.location === '' || props.items.location === undefined ?
+              strings.notfount : props.items.location}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -30,7 +33,9 @@ const AgencyListItem = (props: any) => {
           <Text style={styles.projectTxt}>RERA No. :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.rerano}</Text>
+          <Text style={styles.nameTxt}>{
+            props.items.rera_certificate_no === '' || props.items.rera_certificate_no === undefined ?
+              strings.notfount : props.items.rera_certificate_no}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -38,7 +43,9 @@ const AgencyListItem = (props: any) => {
           <Text style={styles.projectTxt}>No. of Visit :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.visitor}</Text>
+          <Text style={styles.nameTxt}>{
+            props.items.total_visit === '' || props.items.total_visit === undefined ?
+              strings.notfount : props.items.total_visit}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -46,15 +53,19 @@ const AgencyListItem = (props: any) => {
           <Text style={styles.projectTxt}>No. of Site Visit :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.siteVisit}</Text>
+          <Text style={styles.nameTxt}>{
+            props.items.total_site_visit === '' || props.items.total_site_visit === undefined ?
+              strings.notfount : props.items.total_site_visit}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Colse Visit :</Text>
+          <Text style={styles.projectTxt}>No. of Close Visit :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.closeVisit}</Text>
+          <Text style={styles.nameTxt}>{
+            props.items.total_closing_lead === '' || props.items.total_closing_lead === undefined ?
+              strings.notfount : props.items.total_closing_lead}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -64,7 +75,7 @@ const AgencyListItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
             color: BLACK_COLOR
-          }]}>{props.items.status}</Text>
+          }]}>{props.items.status ? strings.active : strings.deactive}</Text>
         </View>
       </View>
 
@@ -79,27 +90,28 @@ const AgencyListItem = (props: any) => {
           buttonText={strings.edit}
           btnTxtsize={14}
           border={10}
-          handleBtnPress={() => props.onPressAddnewAgency()}
+          handleBtnPress={() => props.onPressView(props.items, 'edit')}
         />
         <Button
           width={78}
           height={30}
           bgcolor={WHITE_COLOR}
-          bordercolor={props.items.status === 'Deactive' ? GREEN_COLOR : RED_COLOR}
+          bordercolor={props.items.status ? RED_COLOR : GREEN_COLOR}
           borderWidth={1}
-          btnTxtcolor={props.items.status === 'Deactive' ? GREEN_COLOR : RED_COLOR}
-          buttonText={props.items.status === 'Deactive' ? strings.active : strings.deactive}
+          btnTxtcolor={props.items.status ? RED_COLOR : GREEN_COLOR}
+          buttonText={props.items.status ? strings.deactive : strings.active }
           btnTxtsize={14}
           border={10}
           handleBtnPress={() => props.setIsVisible(true)}
         />
-        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView()} >
+        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items, 'view')} >
           <Image
             source={images.forwardArrow}
             style={styles.arrow}
           />
         </TouchableOpacity>
       </View>
+      
     </View>
   );
 };
