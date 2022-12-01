@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from "../../../../components/scaleFontSize";
-import { FONT_FAMILY_SEMIBOLD, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { FONT_FAMILY_SEMIBOLD, GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     headingTxt: {
         fontSize: normalize(16),
         fontFamily: FONT_FAMILY_SEMIBOLD,
+        color: GRAY_LIGHT_COLOR
     },
     rightArrowView: {
         flex: 1,

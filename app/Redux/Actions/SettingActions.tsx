@@ -4,7 +4,7 @@ import { apiCall } from "app/components/utilities/httpClient";
 
 export const updateUserSettingData =
   (userDetail: any) => async (dispatch: any) => {
-    // dispatch({ type: START_LOADING })
+    dispatch({ type: START_LOADING })
     try {
       const header = {
         "Content-Type": "multipart/form-data",
@@ -33,7 +33,7 @@ export const updateUserSettingData =
         payload: console.log(e),
       });
     }
-    // finally {
-    //   dispatch({ type: STOP_LOADING })
-    // }
+    finally {
+      dispatch({ type: STOP_LOADING })
+    }
   };

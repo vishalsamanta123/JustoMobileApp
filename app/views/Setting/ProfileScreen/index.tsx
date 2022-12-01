@@ -5,25 +5,25 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileView from './components/ProfileView';
 
-const ProfileScreen = ({navigation,route}: any) => {
-    // console.log('route', route);
-    // const HandleBackPress = () => {
-    //     navigation.goBack();
-    // }
-    // const handleEditProfilePress = () => {
-    //   navigation.navigate('EditProfileScreen')
-    // }
-    const dispatch: any = useDispatch();
+const ProfileScreen = ({ navigation, route }: any) => {
+  // console.log('route', route);
+  // const HandleBackPress = () => {
+  //     navigation.goBack();
+  // }
+  // const handleEditProfilePress = () => {
+  //   navigation.navigate('EditProfileScreen')
+  // }
+  const dispatch: any = useDispatch();
   const isFocused = useIsFocused()
   const [isloading, setIsloading] = useState(false);
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.agentData
-    );
+  );
 
-  const userdata = useSelector((state: any) => state.agentData);  
+  const userdata = useSelector((state: any) => state.agentData);
 
   const [allDetails, setAllDetails] = useState({});
-  
+
   useFocusEffect(
     React.useCallback(() => {
       // getAgentList(offSET, [])
@@ -46,16 +46,22 @@ const ProfileScreen = ({navigation,route}: any) => {
           user_id: JSON.parse(userData).data?._id,
         })
       );
-      toGetDatas();
+      // toGetDatas();
     }
   };
-  
-  const toGetDatas = () => {
 
-    if (detail) {
+  useEffect( () => {
+    toGetDatas()
+  }, [response])
+
+
+  const toGetDatas = async () => {
+
+    if (response?.status) {
+
       setIsloading(false);
-      setAllDetails({ ...response.data });
-      
+      setAllDetails({ ...response?.data });
+      await AsyncStorage.setItem('userData', JSON.stringify(response?.data))
     }
   };
 
@@ -67,10 +73,10 @@ const ProfileScreen = ({navigation,route}: any) => {
     navigation.goBack();
   };
   const handleEditProfilePress = () => {
-    navigation.navigate("EditProfileScreen", {allDetails: allDetails});
+    navigation.navigate("EditProfileScreen", { allDetails: allDetails });
   };
   return (
-    <ProfileView allDetails={allDetails} data={route.params} HandleBackPress={HandleBackPress} handleEditProfilePress={handleEditProfilePress}/>
+    <ProfileView allDetails={allDetails} data={route.params} HandleBackPress={HandleBackPress} handleEditProfilePress={handleEditProfilePress} />
   );
 };
 

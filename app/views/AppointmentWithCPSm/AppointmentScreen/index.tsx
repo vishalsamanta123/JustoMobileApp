@@ -16,6 +16,7 @@ const AppointmentScreenCPSM = ({ navigation }: any) => {
     end_date: '',
     customer_name: '',
   })
+  console.log('filterData: ', filterData);
   useFocusEffect(
     React.useCallback(() => {
       getAppointmentList(offSET, 1)

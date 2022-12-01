@@ -1,20 +1,17 @@
-import { View, Text, StatusBar, useWindowDimensions, FlatList } from 'react-native'
+import { View, useWindowDimensions, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, TABBAR_COLOR } from '../../../../components/utilities/constant';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import styles from './Styles';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 import SmAppointment from './SmAppointment';
-import { AppointMentSmData, MyAppointMentData } from '../../../../components/utilities/DemoData';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import FilterModal from './AppointmentModal';
 import Button from '../../../../components/Button';
 import MyAppointment from './MyAppointment';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllAppointmentList } from 'app/Redux/Actions/AppointmentWithCpActions';
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 import { getUserVisitList } from 'app/Redux/Actions/LeadsActions';
 
@@ -37,6 +34,15 @@ const AppointmentView = (props: any) => {
             setVisiitorList(response?.data)
         }
     }, [response])
+
+    useEffect(() => {
+        if (index == 1) {
+            props.getAppointmentList(0, 2)
+        } else {
+            props.getAppointmentList(0, 1)
+        }
+    }, [index])
+
 
 
 
@@ -85,26 +91,43 @@ const AppointmentView = (props: any) => {
                     customer_name: '',
                     status: ''
                 })
-                props.getAppointmentList(0)
+                props.getAppointmentList(0, 1)
             }}
             refreshing={loadingref}
             onEndReached={() => {
                 if (props.appointmentList?.length < response?.total_data) {
                     console.log('onEndReached: ');
-                    props.getAppointmentList(props.appointmentList?.length > 2 ? props.offSET + 1 : 0)
+                    props.getAppointmentList(props.appointmentList?.length > 2 ? props.offSET + 1 : 0, 1)
                 }
             }}
         />
     );
 
     const SecondRoute = () => (
-        <>
-            {/* {props.getAppointmentList(0, 2)} */}
-            <FlatList
-                data={AppointMentSmData}
-                renderItem={({ item }) => <SmAppointment items={item} onPressView={onPressView} />}
-            />
-        </>
+        <FlatList
+            data={props.appointmentList}
+            renderItem={({ item }) =>
+                <SmAppointment items={item}
+                    onPressView={onPressView}
+                />}
+            ListEmptyComponent={<EmptyListScreen message={'SM Appointment With CP'} />}
+            onRefresh={() => {
+                props.setFilterData({
+                    start_date: '',
+                    end_date: '',
+                    customer_name: '',
+                    status: ''
+                })
+                props.getAppointmentList(0, 2)
+            }}
+            refreshing={loadingref}
+            onEndReached={() => {
+                if (props.appointmentList?.length < response?.total_data) {
+                    console.log('onEndReached: ');
+                    props.getAppointmentList(props.appointmentList?.length > 2 ? props.offSET + 1 : 0, 2)
+                }
+            }}
+        />
     );
     const renderScene = SceneMap({
         first: FirstRoute,

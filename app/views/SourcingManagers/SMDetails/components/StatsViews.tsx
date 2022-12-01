@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import { View, Text } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
@@ -8,6 +9,8 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 
 const StatsView = (props: any) => {
+    const item = props?.items || {}
+    const current_target = item?.current_target?.length > 0 ? item?.current_target?.[0] : []
     return (
         <ScrollView>
             <View style={styles.Txtview}>
@@ -16,7 +19,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.siteVisit}</Text>
+                    <Text style={styles.nameTxt}>{item?.user_states?.total_visit}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -25,7 +28,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.closeVisit}</Text>
+                    <Text style={styles.nameTxt}>{item?.user_states?.total_closing_lead}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -34,7 +37,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.closingper}%</Text>
+                    <Text style={styles.nameTxt}>{item?.user_states?.total_closing_percentage}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -43,7 +46,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.lastlogin}</Text>
+                    <Text style={styles.nameTxt}>{moment(item?.user_states?.last_login).format('DD-MM-YYYY')}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -52,7 +55,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.lastvisit}</Text>
+                    <Text style={styles.nameTxt}>{item?.user_states?.last_visit}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -61,7 +64,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.lastsitevisit}</Text>
+                    <Text style={styles.nameTxt}>{item?.user_states?.last_site_visit}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -70,7 +73,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.lastclosevisit}</Text>
+                    <Text style={styles.nameTxt}>{item?.user_states?.last_closing_lead}</Text>
                 </View>
             </View>
             <Text style={styles.bigTitlesTxt}>Current Target</Text>
@@ -81,7 +84,11 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.month}</Text>
+                    <Text style={styles.nameTxt}>
+                        {
+                            current_target?.month
+                        }
+                    </Text>
                 </View>
             </View>
             <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
@@ -90,7 +97,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.startDate}</Text>
+                    <Text style={styles.nameTxt}>{moment(current_target?.start_date).format('DD-MM-YYYY')}</Text>
                 </View>
             </View>
             <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
@@ -99,7 +106,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.endDate}</Text>
+                    <Text style={styles.nameTxt}>{moment(current_target?.end_date).format('DD-MM-YYYY')}</Text>
                 </View>
             </View>
             <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
@@ -108,7 +115,13 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.visitTarget}</Text>
+                    <Text style={styles.nameTxt}>
+                        {current_target?.visitTarget ?
+
+                            `${current_target?.visitTarget} / ${current_target?.achieve_visit_target}`
+                            : null
+                        }
+                    </Text>
                 </View>
             </View>
             <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
@@ -117,7 +130,13 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.siteVisitTarget}</Text>
+                    <Text style={styles.nameTxt}>
+                        {current_target?.site_visit_target ?
+
+                            `${current_target?.site_visit_target} / ${current_target?.achieve_site_visit_target}`
+                            : null
+                        }
+                    </Text>
                 </View>
             </View>
             <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
@@ -126,7 +145,13 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.closeTarget}</Text>
+                    <Text style={styles.nameTxt}>
+                        {current_target?.closing_target ?
+
+                            `${current_target?.closing_target} / ${current_target?.achieve_closing_target}`
+                            : null
+                        }
+                    </Text>
                 </View>
             </View>
         </ScrollView>

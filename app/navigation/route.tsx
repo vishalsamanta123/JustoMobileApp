@@ -23,7 +23,6 @@ import LeadManagementScreen from "../views/LeadManagement/LeadManagementScreen";
 import LeadDetails from "../views/LeadManagement/LeadDetails";
 import SourcingManager from "../views/SourcingManagers/SourcingManagersView";
 import AddNewSM from "../views/SourcingManagers/AddNewSm";
-import AllocateCP from "../views/SourcingManagers/AllocateCP";
 import SMDetails from "../views/SourcingManagers/SMDetails";
 import FollowUpDetails from "../views/FollowUp/FollowUpDetails";
 import EditFollowUp from "../views/FollowUp/FollowUpScreen/Components/EditFollowUp";
@@ -60,6 +59,9 @@ import ImageContent from "../views/PropertyMangement/PropertyDetails/components/
 import VideoContent from "../views/PropertyMangement/PropertyDetails/components/VideoContent";
 import CatalogueContent from "../views/PropertyMangement/PropertyDetails/components/CatalogueContent";
 import AllocatePropertyScreen from "../views/PropertyMangement/PropertyAllocate";
+import AllocateCPScreen from "app/views/SourcingManagers/CPAllocate";
+import ErrorMessage from "app/components/ErrorMessage";
+import { RED_COLOR } from "app/components/utilities/constant";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -127,7 +129,7 @@ const AppComponent = () => {
       {/* Lead Management Screens */}
       <AppStack.Screen name="LeadDetails" component={LeadDetails} />
       <AppStack.Screen name="AddNewSM" component={AddNewSM} />
-      <AppStack.Screen name="AllocateCP" component={AllocateCP} />
+      <AppStack.Screen name="AllocateCP" component={AllocateCPScreen} />
       <AppStack.Screen name="SMDetails" component={SMDetails} />
 
       {/* Follow up Screens */}
@@ -205,6 +207,24 @@ const AuthComponent = () => {
 
 const AuthLoadingComponent = () => {
   const { response, authToken = false } = useSelector((state: any) => state.login);
+
+  useEffect(() => {
+    checklogin()
+  }, [response])
+
+  const checklogin = async () => {
+    if (response && authToken) {
+      if (response.status === 200) {
+        await setDefaultHeader("token", response.token);
+        await AsyncStorage.setItem('loginData', JSON.stringify(response))
+      } else {
+        ErrorMessage({
+          msg: response?.message,
+          backgroundColor: RED_COLOR
+        })
+      }
+    }
+  }
   async function tokenGenrate() {
     try {
       const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
