@@ -5,6 +5,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
 
+// Auth model
 import SplashScreen from "../views/Authentication/SplashScreen";
 import OnboardingScreen from "../views/Authentication/OnboardingScreen";
 import LoginScreen from "../views/Authentication/LoginScreen";
@@ -19,11 +20,21 @@ import AddnewAgency from "../views/AgencyManagement/AddAgency";
 import AgencyBankInfo from "../views/AgencyManagement/AddAgency/components/AgencyBankInfo";
 import AgencyDetails from "../views/AgencyManagement/AgencyDetailView";
 import PendingAgencyListScreen from "../views/AgencyManagement/PendingAgencyListing";
+
+/**Lead Visitor module**/
 import LeadManagementScreen from "../views/LeadManagement/LeadManagementScreen";
 import LeadDetails from "../views/LeadManagement/LeadDetails";
+
+/**Souricing  module**/
 import SourcingManager from "../views/SourcingManagers/SourcingManagersView";
 import AddNewSM from "../views/SourcingManagers/AddNewSm";
 import SMDetails from "../views/SourcingManagers/SMDetails";
+
+/**Closing  module**/
+import ClosingManager from "../views/ClosingManager/ClosingMangerView";
+import AddNewCM from "../views/ClosingManager/AddNewCM";
+import CMDetails from "../views/ClosingManager/CMDetails";
+//
 import FollowUpDetails from "../views/FollowUp/FollowUpDetails";
 import EditFollowUp from "../views/FollowUp/FollowUpScreen/Components/EditFollowUp";
 import AllFollowUpScreen from "../views/FollowUp/AllFollowUp";
@@ -62,6 +73,7 @@ import AllocatePropertyScreen from "../views/PropertyMangement/PropertyAllocate"
 import AllocateCPScreen from "app/views/SourcingManagers/CPAllocate";
 import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
+import AddNewVisitorScreen from "app/views/LeadManagement/AddNewVisitor";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -84,6 +96,7 @@ const DrawerComponent = () => {
         component={LeadManagementScreen}
       />
       <Drawer.Screen name="SourcingManager" component={SourcingManager} />
+      <Drawer.Screen name="ClosingManager" component={ClosingManager} />
       <Drawer.Screen name="FollowUpScreen" component={FollowUpScreen} />
       <Drawer.Screen
         name="AppointmentForSite"
@@ -131,6 +144,11 @@ const AppComponent = () => {
       <AppStack.Screen name="AddNewSM" component={AddNewSM} />
       <AppStack.Screen name="AllocateCP" component={AllocateCPScreen} />
       <AppStack.Screen name="SMDetails" component={SMDetails} />
+      <AppStack.Screen name="AddNewVisitorScreen" component={AddNewVisitorScreen} />
+
+      {/* Closing Management Screens */}
+      <AppStack.Screen name="AddNewCM" component={AddNewCM} />
+      <AppStack.Screen name="CMDetails" component={CMDetails} />
 
       {/* Follow up Screens */}
       <AppStack.Screen name="FollowUpDetails" component={FollowUpDetails} />

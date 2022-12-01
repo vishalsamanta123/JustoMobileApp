@@ -78,7 +78,6 @@ const PropertyScreen = ({ navigation }: any) => {
   }
   return (
     <>
-      {isloading ? <Loader /> : null}
       <PropertyView
         handleDrawerPress={handleDrawerPress}
         Onreachedend={Onreachedend}

@@ -114,6 +114,8 @@ const FollowUpView = (props: any) => {
       <FilterModal
         Visible={FilterisVisible}
         setIsVisible={setFilterisVisible}
+        setFilterData={props.setFilterData}
+        filterData={props.filterData}
       />
     </View>
   );

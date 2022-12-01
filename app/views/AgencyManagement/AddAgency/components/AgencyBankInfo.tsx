@@ -25,52 +25,6 @@ const AgentBankInfo = (props: any) => {
   const [lettervisible, setletterVisible] = useState(false)
   const [cheaquevisible, setcheaqueVisible] = useState(false)
   const [visible, setVisible] = useState(false)
-
-  // const validation = () => {
-  //   let isError = true;
-  //   let errorMessage: any = ''
-  //   if (props.agencyData.rera_certificate_no == '' || props.agencyData.rera_certificate_no == undefined) {
-  //     isError = false;
-  //     errorMessage = "Rera Certificate No. is require. Please enter Rera Certificate No."
-  //   }
-  //   else if (props.agencyData.rera_certificate == '' || props.agencyData.rera_certificate == undefined) {
-  //     isError = false;
-  //     errorMessage = "Rera Certificate Image is require. Please Choose Rera Certificate Image"
-  //   }
-  //   else if (props.agencyData.propidership_declaration_letter == '' || props.agencyData.propidership_declaration_letter == undefined) {
-  //     isError = false;
-  //     errorMessage = "Propidership Declaration Letter Image is require. Please Choose Propidership Declaration Letter Image"
-  //   }
-  //   else if (props.agencyData.cancel_cheaque == '' || props.agencyData.cancel_cheaque == undefined) {
-  //     isError = false;
-  //     errorMessage = "Cancel Cheaque Image is require. Please Choose Cancel Cheaque Image"
-  //   }
-  //   else if (props.agencyData.bank_name == '' || props.agencyData.bank_name == undefined) {
-  //     isError = false;
-  //     errorMessage = "Bank Name is require. Please enter Bank Name"
-  //   }
-  //   else if (props.agencyData.branch_name == '' || props.agencyData.branch_name == undefined) {
-  //     isError = false;
-  //     errorMessage = "Branch Name is require. Please enter Branch Name"
-  //   }
-  //   else if (props.agencyData.account_no == '' || props.agencyData.account_no == undefined) {
-  //     isError = false;
-  //     errorMessage = "Account No. is require. Please enter Account No."
-  //   }
-  //   else if (props.agencyData.ifsc_code == '' || props.agencyData.ifsc_code == undefined) {
-  //     isError = false;
-  //     errorMessage = "IFSC Code is require. Please enter IFSC Code"
-  //   }
-
-  //   if (errorMessage !== '') {
-  //     ErrorMessage({
-  //       msg: errorMessage,
-  //       backgroundColor: RED_COLOR
-  //     })
-  //   }
-  //   // console.log('isError: ', isError);
-  //   return isError;
-  // }
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -79,7 +33,7 @@ const AgentBankInfo = (props: any) => {
         headerTextStyle={styles.headerTextStyle}
         leftImageIconStyle={styles.leftImageIconStyle}
         leftImageSrc={images.backArrow}
-        handleOnLeftIconPress={() => props.onPressNext(0)}
+        handleOnLeftIconPress={() => props.setFormType(0)}
         barStyle={'light-content'}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
@@ -228,9 +182,7 @@ const AgentBankInfo = (props: any) => {
         <View style={styles.buttonContainer}>
           <Button
             handleBtnPress={(type: any) => {
-              // if (validation()) {
-              //   props.onPressNext(2, props.agencyData)
-              // }
+                props.onPressNext(2, props.agencyData)
             }}
             rightImage={images.forwardArrow}
             buttonText={strings.next}

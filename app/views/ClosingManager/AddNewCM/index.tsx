@@ -4,14 +4,13 @@ import { getCityList, getRolesList } from 'app/Redux/Actions/MasterActions';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import AddNewSM from './components/AddNewSM'
+import AddNewCM from './components/AddNewCM'
 
-const AddNewSMScreen = ({ navigation, route }: any) => {
+const AddNewCMScreen = ({ navigation, route }: any) => {
     const dispatch: any = useDispatch()
     const [addNewSmData, setAddNewSmData] = useState<any>({})
     const [cityData, setCityData] = useState<any>([])
     const [roleData, setRoleData] = useState<any>([])
-    const [isLoading, setIsLoading] = useState(false)
     const { userData = {} } = useSelector((state: any) => state.userData)
     const { response = {}, Roleresponse = {} } = useSelector((state: any) => state.masterData) || {}
 
@@ -25,10 +24,8 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
         // navigation.goBack()
     }
     const handlegetCityList = () => {
-        setIsLoading(true)
         dispatch(getCityList({}))
         if (response?.status) {
-            setIsLoading(false)
             setCityData(response?.data)
         }
     }
@@ -43,8 +40,7 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
     }
     return (
         <>
-            {/* {isLoading ? <Loader /> : null} */}
-            <AddNewSM
+            <AddNewCM
                 onPressBack={onPressBack}
                 onPressCreate={onPressCreate}
                 type={route?.params?.type || ""}
@@ -59,4 +55,4 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
     )
 }
 
-export default AddNewSMScreen;
+export default AddNewCMScreen;

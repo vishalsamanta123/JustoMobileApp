@@ -41,7 +41,7 @@ const CompanyDetails = (props: any) => {
         headerTextStyle={styles.headerTextStyle}
         leftImageSrc={images.backArrow}
         leftImageIconStyle={styles.leftImageIconStyle}
-        handleOnLeftIconPress={() => props.onPressNext(1)}
+        handleOnLeftIconPress={() => props.setFormType(1)}
         barStyle={'light-content'}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
