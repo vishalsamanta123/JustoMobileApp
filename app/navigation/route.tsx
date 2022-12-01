@@ -73,6 +73,7 @@ import AllocatePropertyScreen from "../views/PropertyMangement/PropertyAllocate"
 import AllocateCPScreen from "app/views/SourcingManagers/CPAllocate";
 import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
+import AddNewVisitorScreen from "app/views/LeadManagement/AddNewVisitor";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -143,6 +144,7 @@ const AppComponent = () => {
       <AppStack.Screen name="AddNewSM" component={AddNewSM} />
       <AppStack.Screen name="AllocateCP" component={AllocateCPScreen} />
       <AppStack.Screen name="SMDetails" component={SMDetails} />
+      <AppStack.Screen name="AddNewVisitorScreen" component={AddNewVisitorScreen} />
 
       {/* Closing Management Screens */}
       <AppStack.Screen name="AddNewCM" component={AddNewCM} />

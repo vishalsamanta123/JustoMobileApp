@@ -73,6 +73,7 @@ const FollowUpScreen = ({ navigation }: any) => {
         setFollowUpList={setFollowUpList}
         followUpList={followUpList}
         moreData={moreData}
+        filterData={filterData}
       />
     </>
   );

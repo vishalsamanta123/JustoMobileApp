@@ -4,6 +4,7 @@ import {
   AgencyCreateForm,
   AgencyCreateFormRemove,
   createAgency,
+  editAgent,
   getAgencyDetail,
 } from "app/Redux/Actions/AgencyActions";
 import React, { useEffect, useLayoutEffect, useState } from "react";
@@ -21,7 +22,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
   const { userData = {} } = useSelector((state: any) => state.userData);
 
   const [agencyData, setAgencyData] = useState({
-    profile_picture: {},
+    profile_picture: type === "edit" ? "" : { uri: "" },
     owner_name: "",
     adhar_no: "",
     pancard_no: "",
@@ -32,23 +33,24 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     email: "",
     working_location: [],
     rera_certificate_no: "",
-    rera_certificate: "",
-    propidership_declaration_letter: "",
+    rera_certificate: { uri: "" },
+    propidership_declaration_letter: { uri: "" },
     cancel_cheaque: "",
     bank_name: "",
     branch_name: "",
     account_no: "",
     ifsc_code: "",
-    agent_name: "",
     gst: "",
     company_pancard: "",
-    declaration_letter_of_company: "",
+    declaration_letter_of_company: { uri: "" },
     rera_registration: "",
     company_bank_name: "",
     company_branch_name: "",
     company_account_no: "",
     company_ifsc_code: "",
+    _id: "",
   });
+  console.log("agencyData", agencyData);
 
   const [imagePicker, setImagePicker] = useState(false);
   const [locationModel, setLocationModel] = useState(false);
@@ -58,22 +60,29 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
 
   useEffect(() => {
     if (type === "edit") {
-      setAgencyData(response?.data[0]);
-      console.log("response?.data[0]: ", response?.data[0]);
+      if (response?.status === 200) {
+        setAgencyData({
+          ...response?.data[0],
+          bank_name: response?.data[0]?.cp_bank_detail?.bank_name,
+          branch_name: response?.data[0]?.cp_bank_detail?.branch_name,
+          account_no: response?.data[0]?.cp_bank_detail?.account_no,
+          ifsc_code: response?.data[0]?.cp_bank_detail?.ifsc_code,
+        });
+      }
       // setAgencyData({ ...registrationData.response, sourcing_manager: userData?.data?._id })
     }
-  }, [registrationData, navigation]);
+  }, [navigation, response]);
 
-  // useLayoutEffect(() => {
-  //   const { data = {} } = route?.params;
-  //   if (data._id) {
-  //     dispatch(
-  //       getAgencyDetail({
-  //         cp_id: data._id,
-  //       })
-  //     );
-  //   }
-  // }, [navigation, detail]);
+  useLayoutEffect(() => {
+    const { data = {} } = route?.params;
+    if (data._id) {
+      dispatch(
+        getAgencyDetail({
+          cp_id: data._id,
+        })
+      );
+    }
+  }, [navigation, detail]);
   // useEffect(() => {
   //   if (detail) {
   //     setAgencyData(response?.data[0]);
@@ -141,15 +150,15 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         errorMessage =
           "Rera Certificate No. is require. Please enter Rera Certificate No.";
       } else if (
-        agencyData.rera_certificate == "" ||
-        agencyData.rera_certificate == undefined
+        agencyData.rera_certificate?.uri == "" ||
+        agencyData.rera_certificate?.uri == undefined
       ) {
         isError = false;
         errorMessage =
           "Rera Certificate Image is require. Please Choose Rera Certificate Image";
       } else if (
-        agencyData.propidership_declaration_letter == "" ||
-        agencyData.propidership_declaration_letter == undefined
+        agencyData?.propidership_declaration_letter?.uri == "" ||
+        agencyData.propidership_declaration_letter?.uri == undefined
       ) {
         isError = false;
         errorMessage =
@@ -188,7 +197,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       }
     }
     if (formType === 2) {
-      if (agencyData.agent_name == "" || agencyData.agent_name == undefined) {
+      if (agencyData.owner_name == "" || agencyData.owner_name == undefined) {
         isError = false;
         errorMessage = "Agency Name is require. Please enter Agency Name";
       } else if (agencyData.gst == "" || agencyData.gst == undefined) {
@@ -202,8 +211,8 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         errorMessage =
           "Company pancard Image is require. Please Choose Company pancard";
       } else if (
-        agencyData.declaration_letter_of_company == "" ||
-        agencyData.declaration_letter_of_company == undefined
+        agencyData.declaration_letter_of_company?.uri == "" ||
+        agencyData.declaration_letter_of_company?.uri == undefined
       ) {
         isError = false;
         errorMessage =
@@ -251,27 +260,66 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     return isError;
   };
 
-  const onPressNext = (type: any, data: any) => {
-    if (type > 2) {
-      // navigation.navigate('OtpVerificationScreenView')
-
-      const params = {
-        ...agencyData,
-        working_location: JSON.stringify(agencyData.working_location),
-      };
-      dispatch(AgencyCreateForm({ ...agencyData, ...data }));
-      dispatch(createAgency(params));
-      if (response?.status) {
-        dispatch(AgencyCreateFormRemove());
-        navigation.navigate("AgencyListing");
+  const onPressNext = (screenType: any, data: any) => {
+    if (screenType <= 2) {
+      if (validation()) {
+        setFormType(screenType);
       }
     } else {
       if (validation()) {
-        dispatch(AgencyCreateForm({ ...agencyData, ...data }));
-        setFormType(type);
+        const location = agencyData?.working_location?.map((item: any) => {
+          return item.location;
+        });
+        const latitude = agencyData?.working_location?.map((item: any) => {
+          return item.latitude;
+        });
+        const longitude = agencyData?.working_location?.map((item: any) => {
+          return item.longitude;
+        });
+
+        const formData = new FormData();
+        if (type === "edit") {
+          formData.append("agent_id", agencyData?._id);
+        }
+        formData.append("email", agencyData?.email);
+        formData.append("owner_name", agencyData?.owner_name);
+        formData.append("primary_mobile", agencyData?.primary_mobile);
+        formData.append("whatsapp_number", agencyData?.whatsapp_number);
+        formData.append("adhar_no", agencyData?.adhar_no);
+        formData.append("pancard_no", agencyData?.pancard_no);
+        formData.append("gender", agencyData?.gender);
+        formData.append(
+          "date_of_birth",
+          agencyData?.date_of_birth ? agencyData?.date_of_birth : "10/11/2000"
+        );
+        formData.append("location", location[0]);
+        formData.append("latitude", latitude[0]);
+        formData.append("longitude", longitude[0]);
+        formData.append(
+          "working_location",
+          JSON.stringify(agencyData?.working_location)
+        );
+        formData.append("rera_certificate_no", agencyData?.rera_certificate_no);
+        agencyData?.profile_picture != "" &&
+          formData.append("profile_picture", agencyData?.profile_picture);
+        agencyData?.rera_certificate?.uri != "" &&
+          formData.append("rera_certificate", agencyData?.rera_certificate);
+        agencyData?.propidership_declaration_letter?.uri &&
+          formData.append(
+            "propidership_declaration_letter",
+            agencyData?.propidership_declaration_letter
+          );
+        if (type === "edit") {
+          dispatch(editAgent(formData));
+        } else if (type === "add") {
+          dispatch(createAgency(formData));
+        }
+        if (response?.status === 200) {
+          dispatch(AgencyCreateFormRemove());
+          navigation.navigate("AgencyListing");
+        }
       }
     }
-    // navigation.navigate('AgencyListing')
   };
   const onPressBack = () => {
     navigation.goBack();
@@ -288,6 +336,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           setAgencyData={setAgencyData}
           setLocationModel={setLocationModel}
           locationModel={locationModel}
+          type={type}
         />
       ) : (
         <>
@@ -296,12 +345,14 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
               agencyData={agencyData}
               setAgencyData={setAgencyData}
               onPressNext={onPressNext}
+              setFormType={setFormType}
             />
           ) : (
             <CompanyDetails
               agencyData={agencyData}
               setAgencyData={setAgencyData}
               onPressNext={onPressNext}
+              setFormType={setFormType}
             />
           )}
         </>
