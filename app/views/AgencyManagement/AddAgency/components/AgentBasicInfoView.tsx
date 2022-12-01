@@ -24,11 +24,11 @@ import moment from "moment";
 import MultiLocation from "app/components/MultiLocation";
 
 const AgentBasicInfoView = (props: any) => {
-console.log('props: ', props?.agencyData?.date_of_birth);
+  console.log("props: ", props?.agencyData?.date_of_birth);
   const handleDelete = (item: any, index: any) => {
     var array: any[] = [...props?.agencyData?.working_location];
     array?.splice(index, 1);
-    props?.setRegisterForm({
+    props?.setAgencyData({
       ...props?.agencyData,
       working_location: array,
     });
@@ -53,7 +53,9 @@ console.log('props: ', props?.agencyData?.date_of_birth);
           onPress={() => props.setImagePicker(true)}
           style={[styles.imageCircle, { backgroundColor: GRAY_COLOR }]}
         >
-          {!props.agencyData?.profile_picture?.uri ? (
+          {props.type == "edit" ? (
+            props?.agencyData?.profile_picture === ""
+          ) : props?.agencyData?.profile_picture?.uri === "" ? (
             <Image
               style={styles.DummyloginBanner}
               source={images.user}
@@ -63,7 +65,11 @@ console.log('props: ', props?.agencyData?.date_of_birth);
             <View style={styles.imageCircle}>
               <Image
                 style={styles.loginBanner}
-                source={{ uri: props.agencyData?.profile_picture?.uri }}
+                source={{
+                  uri: props.agencyData?.profile_picture?.uri
+                    ? props.agencyData?.profile_picture?.uri
+                    : props.agencyData?.profile_picture,
+                }}
                 resizeMode="contain"
               />
             </View>
@@ -192,9 +198,11 @@ console.log('props: ', props?.agencyData?.date_of_birth);
                 date_of_birth: moment(data).format("YYYY-MM-DD"),
               });
             }}
-            value={props?.agencyData?.date_of_birth !== '' ? moment(props?.agencyData?.date_of_birth).format(
-              "DD-MM-YYYY"
-            ): null}
+            value={
+              props?.agencyData?.date_of_birth !== ""
+                ? moment(props?.agencyData?.date_of_birth).format("DD-MM-YYYY")
+                : null
+            }
           />
         </View>
         <View style={styles.inputWrap}>

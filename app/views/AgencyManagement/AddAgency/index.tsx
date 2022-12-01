@@ -22,7 +22,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
   const { userData = {} } = useSelector((state: any) => state.userData);
 
   const [agencyData, setAgencyData] = useState({
-    profile_picture: { uri: "" },
+    profile_picture: type === "edit" ? "" : { uri: "" },
     owner_name: "",
     adhar_no: "",
     pancard_no: "",
@@ -50,7 +50,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     company_ifsc_code: "",
     _id: "",
   });
-  console.log("agencyDataagencyData", agencyData);
+  console.log("agencyData", agencyData);
 
   const [imagePicker, setImagePicker] = useState(false);
   const [locationModel, setLocationModel] = useState(false);
@@ -300,15 +300,15 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           JSON.stringify(agencyData?.working_location)
         );
         formData.append("rera_certificate_no", agencyData?.rera_certificate_no);
-        // agencyData?.profile_picture?.uri != "" &&
-        // formData.append("profile_picture", agencyData?.profile_picture);
-        // agencyData?.rera_certificate?.uri != "" &&
-        //   formData.append("rera_certificate", agencyData?.rera_certificate);
-        // agencyData?.propidership_declaration_letter?.uri &&
-        //   formData.append(
-        //     "propidership_declaration_letter",
-        //     agencyData?.propidership_declaration_letter
-        //   );
+        agencyData?.profile_picture != "" &&
+          formData.append("profile_picture", agencyData?.profile_picture);
+        agencyData?.rera_certificate?.uri != "" &&
+          formData.append("rera_certificate", agencyData?.rera_certificate);
+        agencyData?.propidership_declaration_letter?.uri &&
+          formData.append(
+            "propidership_declaration_letter",
+            agencyData?.propidership_declaration_letter
+          );
         if (type === "edit") {
           dispatch(editAgent(formData));
         } else if (type === "add") {
@@ -336,6 +336,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           setAgencyData={setAgencyData}
           setLocationModel={setLocationModel}
           locationModel={locationModel}
+          type={type}
         />
       ) : (
         <>
