@@ -1,5 +1,7 @@
 import Loader from 'app/components/CommonScreen/Loader';
-import { userRegister } from 'app/Redux/Actions/AuthActions';
+import ErrorMessage from 'app/components/ErrorMessage';
+import { GREEN_COLOR } from 'app/components/utilities/constant';
+import { removeAuthUser, userRegister } from 'app/Redux/Actions/AuthActions';
 import { getCityList, getRolesList } from 'app/Redux/Actions/MasterActions';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, Alert } from 'react-native';
@@ -12,12 +14,22 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
     const [cityData, setCityData] = useState<any>([])
     const [roleData, setRoleData] = useState<any>([])
     const { userData = {} } = useSelector((state: any) => state.userData)
+    const userDataSucess = useSelector((state: any) => state.userReducer)
     const { response = {}, Roleresponse = {} } = useSelector((state: any) => state.masterData) || {}
 
+    useEffect(() => {
+        if (userDataSucess?.response?.status === 200 && userDataSucess?.create) {
+            dispatch(removeAuthUser())
+            navigation.goBack()
+            ErrorMessage({
+                msg: userDataSucess?.response?.message,
+                backgroundColor: GREEN_COLOR
+            })
+        }
+    }, [userDataSucess])
     const onPressBack = () => {
         navigation.goBack()
     }
-
 
     const onPressCreate = () => {
         dispatch(userRegister(addNewCMData))
@@ -29,14 +41,16 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
             setCityData(response?.data)
         }
     }
-    const handlegetRoleList = () => {
-        dispatch(getRolesList({}))
+    useEffect(() => {
         if (response?.status === 200) {
-            const final = Roleresponse?.data.filter((el: any) => {
+            const final = Roleresponse?.data?.filter((el: any) => {
                 return userData?.data?.role_title !== el.role_title
             })
             setRoleData(final)
         }
+    }, [response])
+    const handlegetRoleList = () => {
+        dispatch(getRolesList({}))
     }
     return (
         <>

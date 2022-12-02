@@ -1,9 +1,14 @@
-import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE, FORGOT_PASSWORD, FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR, USERREGISTER, USERREGISTER_ERROR, START_LOADING, STOP_LOADING } from '../types'
+import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE, FORGOT_PASSWORD, FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR, USERREGISTER, USERREGISTER_ERROR, START_LOADING, STOP_LOADING, REMOVE_USERDATA } from '../types'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import apiEndPoints from '../../components/utilities/apiEndPoints';
 import { apiCall } from '../../components/utilities/httpClient';
 import { handleApiError } from 'app/components/ErrorMessage/HandleApiErrors';
+const initialState = {
+    response: null,
+    detail: false,
+    create: false,
+};
 
 export const userLogin = (loginDetail: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -187,7 +192,7 @@ export const userLogout = () => async (dispatch: any) => {
 export const jwtTokenGenrate = () => async (dispatch: any) => {
     try {
         const res = await apiCall("get", apiEndPoints.JWTTOKEN, {});
-        // console.log('res TKEN API: ', res);
+        console.log('res TKEN API: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: TOKEN_GENRATE,
@@ -229,3 +234,18 @@ export const userRegister = (item: any) => async (dispatch: any) => {
         })
     }
 }
+export const removeAuthUser = () => async (dispatch: any) => {
+    try {
+        dispatch({
+            type: REMOVE_USERDATA,
+            payload: null,
+        });
+    } catch (e) {
+        dispatch({
+            type: USERREGISTER_ERROR,
+            payload: console.log(e),
+        });
+    }
+}
+
+

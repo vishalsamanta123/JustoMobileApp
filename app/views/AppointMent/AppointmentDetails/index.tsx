@@ -8,7 +8,6 @@ import { AddBooking } from 'app/Redux/Actions/AppointmentCLAction'
 
 const AppointmentDetails = ({ navigation, route }: any) => {
   const data = route?.params || {}
-  console.log('data: ', data);
   const [BookingData, setBookingData] = useState({})
   console.log('BookingData: ', BookingData);
   const dispatch: any = useDispatch()
@@ -33,8 +32,8 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   const handleBackPress = () => {
     navigation.goBack()
   }
-  const handleVistorUpdate = () => {
-    navigation.navigate('VisitorUpdate')
+  const handleVistorUpdate = (data: any) => {
+    navigation.navigate('VisitorUpdate', data)
   }
   const handleUpdateStatus = (data: any) => {
   console.log('data FollowUpAdd: ', data);

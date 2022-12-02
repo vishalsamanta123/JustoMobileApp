@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
-import { BG_MAIN_COLOUR, BLACK_COLOR, FONT_FAMILY_EXTRABOLD, FONT_FAMILY_MEDIUM, FONT_FAMILY_SEMIBOLD, GRAY_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant';
+import { BG_MAIN_COLOUR, BLACK_COLOR, FONT_FAMILY_EXTRABOLD, FONT_FAMILY_MEDIUM, FONT_FAMILY_SEMIBOLD, GRAY_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR, WHITE_COLOR_LIGHT } from '../../../../components/utilities/constant';
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -64,8 +64,53 @@ const styles = StyleSheet.create({
     inputWrap: {
         marginTop: normalizeSpacing(30),
     },
+    inputContVw: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    smallBox: {
+        backgroundColor: WHITE_COLOR,
+        width: '15%',
+        borderRadius: 10,
+        elevation: 5,
+        shadowColor: '#171717',
+        shadowOffset: { width: 0, height: 1 },
+        borderColor: GRAY_COLOR,
+        borderWidth: 0.7,
+        marginHorizontal: normalize(5),
+        height: 45,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    budgetInput: {
+        backgroundColor: WHITE_COLOR,
+        width: '30%',
+        borderRadius: 10,
+        elevation: 5,
+        shadowColor: '#171717',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 1,
+        borderColor: GRAY_COLOR,
+        borderWidth: 0.7,
+        color: BLACK_COLOR,
+    },
+    smallCont: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: normalizeSpacing(6),
+        marginTop: normalize(14),
+    },
+    headingsTxt: {
+        fontSize: normalize(16),
+        color: PRIMARY_THEME_COLOR,
+        marginBottom: normalize(8),
+        fontFamily: FONT_FAMILY_SEMIBOLD
+    },
     selectsView: {
-        marginTop: normalize(10)
+        marginTop: normalize(14),
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     selectsTxt: {
         fontSize: normalize(18),

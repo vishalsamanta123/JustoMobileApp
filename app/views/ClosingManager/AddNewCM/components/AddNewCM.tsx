@@ -119,6 +119,8 @@ const AddNewCMView = (props: any) => {
                                 ...props.addNewCMData, adhar_no: val
                             })
                         }}
+                        maxLength={12}
+                        keyboardtype={'number-pad'}
                     />
                 </View>
                 <View style={styles.inputWrap}>
@@ -257,8 +259,8 @@ const AddNewCMView = (props: any) => {
                         maxHeight={300}
                         onFocus={() => props.handlegetCityList()}
                         labelField="city_name"
-                        valueField={'_id'}
-                        value={props.addNewCMData?.city}
+                        valueField={'city_id'}
+                        value={props.addNewCMData?.city_id}
                         onChange={(item: any) => {
                             props.setAddNewCMData({
                                 ...props.addNewCMData,

@@ -5,8 +5,10 @@ import { BLACK_COLOR, PRIMARY_THEME_COLOR, PURPLE_COLOR, RED_COLOR, WHITE_COLOR,
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import Button from '../../../../components/Button';
+import moment from 'moment';
 
 const ClosingManagersItem = (props: any) => {
+    console.log('props: ', props.items);
     return (
         <View style={styles.IteamView}>
             <View style={styles.Txtview} >
@@ -20,43 +22,60 @@ const ClosingManagersItem = (props: any) => {
             </View>
             <View style={styles.Txtview} >
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>No. of Visit :</Text>
+                    <Text style={styles.projectTxt}>No. of Booking :</Text>
                 </View>
                 {/* <View><Text>:</Text></View> */}
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.total_visit}</Text>
+                    <Text style={styles.nameTxt}>{props.items.total_booking != '' ||
+                        props.items.total_booking != undefined ?
+                        props.items.total_booking : '0'}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>No. of Site Visit :</Text>
+                    <Text style={styles.projectTxt}>No. of Closing :</Text>
                 </View>
                 {/* <View><Text>:</Text></View> */}
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.total_site_visit}</Text>
+                    <Text style={styles.nameTxt}>{props.items.total_closing_booking != "" ||
+                        props.items.total_closing_booking != undefined ?
+                        props.items.total_closing_booking : '0'}</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>No. of Colse Visit :</Text>
+                    <Text style={styles.projectTxt}>Mobile No. :</Text>
                 </View>
                 {/* <View><Text>:</Text></View> */}
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.total_closing_lead}</Text>
+                    <Text style={styles.nameTxt}>{props.items.mobile}</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Closing Percentage :</Text>
+                    <Text style={styles.projectTxt}>Email :</Text>
                 </View>
                 {/* <View><Text>:</Text></View> */}
                 <View style={styles.nameContainer}>
                     <Text style={[styles.nameTxt, {
                         color: BLACK_COLOR
-                    }]}>{props.items.total_closing_percentage}</Text>
+                    }]}>{props.items.email}</Text>
                 </View>
             </View>
-            <View style={styles.buttonContainer}>
+            <View style={styles.Txtview} >
+                <View style={styles.projectContainer}>
+                    <Text style={styles.projectTxt}>Last Login :</Text>
+                </View>
+                {/* <View><Text>:</Text></View> */}
+                <View style={styles.nameContainer}>
+                    <Text style={[styles.nameTxt, {
+                        color: BLACK_COLOR
+                    }]}>{props.items.last_login != "" ||
+                        props.items.last_login != undefined ?
+                        moment(props.items.last_login).format('YYYY-MM-DD') : ''}</Text>
+                </View>
+            </View>
+            {/* <View style={styles.buttonContainer}>
                 <Button
                     width={78}
                     height={30}
@@ -69,39 +88,15 @@ const ClosingManagersItem = (props: any) => {
                     border={10}
                     handleBtnPress={() => props.onPressEditCM('edit')}
                 />
-                {/*  <Button
-                    width={78}
-                    height={30}
-                    bgcolor={WHITE_COLOR}
-                    bordercolor={props.items.status === 'Deactive' ? GREEN_COLOR : RED_COLOR}
-                    borderWidth={1}
-                    btnTxtcolor={props.items.status === 'Deactive' ? GREEN_COLOR : RED_COLOR}
-                    buttonText={props.items.status === 'Deactive' ? strings.active : strings.deactive}
-                    btnTxtsize={14}
-                    border={10}
-                    handleBtnPress={() => props.onPressStatus()}
-                /> */}
-                <Button
-                    width={85}
-                    height={30}
-                    bgcolor={WHITE_COLOR}
-                    bordercolor={PRIMARY_THEME_COLOR}
-                    borderWidth={1}
-                    btnTxtcolor={PRIMARY_THEME_COLOR}
-                    buttonText={strings.allocateCp}
-                    btnTxtsize={14}
-                    textTransform={null}
-                    border={10}
-                    handleBtnPress={() => props.onPressAllocate()}
-                />
                 <TouchableOpacity style={styles.Viewbutton}
-                    onPress={() => props.onPressView()}>
+                    onPress={() => props.onPressView()}
+                >
                     <Image
                         source={images.forwardArrow}
                         style={styles.arrow}
                     />
                 </TouchableOpacity>
-            </View>
+            </View> */}
         </View>
     );
 };

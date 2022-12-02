@@ -82,5 +82,9 @@ export default {
   VISITOR_STATUS_UPDATE: "/visit/updateVisitStatus",
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
-  GET_USERVISTLIST: '/visit/getUserVisitList'
+  GET_USERVISTLIST: '/visit/getUserVisitList',
+
+  //closing head
+  GET_CLOSINGMANAGER: "/userManage/getClosingManagerListOnCH",
+
 };

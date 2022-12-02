@@ -155,7 +155,7 @@ const AppointmentDtailsItem = (props: any) => {
           buttonText={strings.visitorupdate}
           btnTxtsize={14}
           border={10}
-          handleBtnPress={() => props.handleVistorUpdate()}
+          handleBtnPress={() => props.handleVistorUpdate(item)}
         />
         <Button
           width={150}

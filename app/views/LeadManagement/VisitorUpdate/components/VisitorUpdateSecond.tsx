@@ -5,11 +5,16 @@ import TopScreensViewer from './TopScreensViewer'
 import Header from "../../../../components/Header";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
-import { BLACK_COLOR, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, DATE_FORMAT, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import InputField from "../../../../components/InputField";
 import { RadioButton } from "react-native-paper";
 import Button from "../../../../components/Button";
 import { normalize, normalizeSpacing } from "../../../../components/scaleFontSize";
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
+import { TextInput } from "react-native-gesture-handler";
+import DropdownInput from "app/components/DropDown";
+import Styles from '../../../../components/Modals/styles'
 
 const VisitorUpdateView = (props: any) => {
     return (
@@ -33,29 +38,120 @@ const VisitorUpdateView = (props: any) => {
                     <Text style={styles.typeTxt}>Property Required</Text>
                     <View style={styles.typeBorders} />
                 </View>
-                <View style={styles.inputWrap}>
-                    <InputField
-                        placeholderText={"Configuration"}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
-                        headingText={"Configuration"}
+                <View style={[styles.inputWrap, { marginTop: normalizeSpacing(16) }]}>
+                    <DropdownInput
+                        headingText={'Configuration'}
+                        placeholder={props.updateForm?.configuration ?
+                            props.updateForm?.configuration : 'Configuration'}
+                        data={props?.masterDatas}
+                        inputWidth={'100%'}
+                        paddingLeft={16}
+                        maxHeight={300}
+                        labelField={"title"}
+                        valueField={'_id'}
+                        value={props?.updateForm?.configuration_id}
+                        onChange={(item: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                configuration_id: item._id,
+                                configuration: item.title
+                            })
+                        }}
+                        newRenderItem={(item: any) => {
+                            return (
+                                <>
+                                    <View style={Styles.item}>
+                                        <Text style={Styles.textItem}>{item.title}</Text>
+                                    </View>
+                                </>
+                            );
+                        }}
                     />
                 </View>
                 <View style={styles.inputWrap}>
-                    <InputField
+                    <InputCalender
+                        leftIcon={images.event}
+                        mode={"date"}
                         placeholderText={"Expected Possession Date"}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
                         headingText={"Expected Possession Date"}
+                        editable={false}
+                        dateData={(data: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                expected_possession_date: moment(data).format(DATE_FORMAT),
+                            });
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                expected_possession_date: moment(data).format(DATE_FORMAT),
+                            });
+                        }}
+                        value={props?.updateForm?.expected_possession_date != "" ||
+                            props?.updateForm?.expected_possession_date != undefined
+                            ? moment(props?.updateForm?.expected_possession_date).format(DATE_FORMAT) :
+                            ''
+                        }
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
                         placeholderText={"Area"}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                areain_sqlft: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.areain_sqlft?.toString()}
                         headingText={"Area"}
+                        keyboardtype={'number-pad'}
                     />
+                </View>
+                <View style={styles.smallCont}>
+                    <Text style={[styles.headingsTxt, { width: '55%' }]}>Min Budget</Text>
+                    <Text style={[styles.headingsTxt, { width: '50%' }]}>Max Budget</Text>
+                </View>
+                <View style={styles.inputContVw}>
+                    <TextInput
+                        value={props?.updateForm?.min_budget?.toString()}
+                        onChangeText={(data: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                min_budget: data
+                            })
+                        }}
+                        keyboardType={'number-pad'}
+                        placeholder='Min Budget'
+                        style={styles.budgetInput} />
+                    <TouchableOpacity
+                        onPress={() => props.setUpdateForm({
+                            ...props.formData,
+                            min_budget_type: props?.updateForm?.min_budget_type === 'C' ? "L" : "C",
+                        })}
+                        style={styles.smallBox}>
+                        <Text style={{ color: BLACK_COLOR }}>{props?.updateForm?.min_budget_type}</Text>
+                    </TouchableOpacity>
+                    <TextInput
+                        value={props?.updateForm?.max_budget?.toString()}
+                        onChangeText={(data: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                max_budget: data
+                            })
+                        }}
+                        keyboardType={'number-pad'}
+                        placeholder='Max Budget'
+                        style={[styles.budgetInput, { marginLeft: 20 }]} />
+                    <TouchableOpacity
+                        onPress={() => props.setUpdateForm({
+                            ...props.updateForm,
+                            max_budget_type: props?.updateForm?.max_budget_type === "C" ? "L" : "C",
+                        })}
+                        style={styles.smallBox}>
+                        <Text style={{ color: BLACK_COLOR }}>{props?.updateForm?.max_budget_type}</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.selectsView}>
                     <Text style={styles.selectsTxt}>{"Nature Of Fuding"}</Text>
@@ -64,12 +160,12 @@ const VisitorUpdateView = (props: any) => {
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
                         <TouchableOpacity onPress={() => props.setUpdateForm({
                             ...props.updateForm,
-                            funding_nature: 'loan'
+                            funding_type: 'loan'
                         })}
                             style={styles.checkBoxVw}>
                             <Image
                                 style={styles.checksVw}
-                                source={props.updateForm.funding_nature === "loan"
+                                source={props.updateForm.funding_type === "loan"
                                     ? images.check
                                     : null
                                 }
@@ -80,12 +176,12 @@ const VisitorUpdateView = (props: any) => {
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
                         <TouchableOpacity onPress={() => props.setUpdateForm({
                             ...props.updateForm,
-                            funding_nature: 'selfFund'
+                            funding_type: 'self'
                         })}
                             style={styles.checkBoxVw}>
                             <Image
                                 style={styles.checksVw}
-                                source={props.updateForm.funding_nature === "selfFund"
+                                source={props.updateForm.funding_type === "self"
                                     ? images.check
                                     : null
                                 }
@@ -96,12 +192,12 @@ const VisitorUpdateView = (props: any) => {
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
                         <TouchableOpacity onPress={() => props.setUpdateForm({
                             ...props.updateForm,
-                            funding_nature: 'both'
+                            funding_type: 'both'
                         })}
                             style={styles.checkBoxVw}>
                             <Image
                                 style={styles.checksVw}
-                                source={props.updateForm.funding_nature === "both"
+                                source={props.updateForm.funding_type === "both"
                                     ? images.check
                                     : null
                                 }
@@ -117,12 +213,12 @@ const VisitorUpdateView = (props: any) => {
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
                         <TouchableOpacity onPress={() => props.setUpdateForm({
                             ...props.updateForm,
-                            puropse: 'endUser'
+                            purpose: 'end user'
                         })}
                             style={styles.checkBoxVw}>
                             <Image
                                 style={styles.checksVw}
-                                source={props.updateForm.puropse === "endUser"
+                                source={props.updateForm.purpose === "end user"
                                     ? images.check
                                     : null
                                 }
@@ -133,12 +229,12 @@ const VisitorUpdateView = (props: any) => {
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
                         <TouchableOpacity onPress={() => props.setUpdateForm({
                             ...props.updateForm,
-                            puropse: 'investment'
+                            purpose: 'invest'
                         })}
                             style={styles.checkBoxVw}>
                             <Image
                                 style={styles.checksVw}
-                                source={props.updateForm.puropse === "investment"
+                                source={props.updateForm.purpose === "invest"
                                     ? images.check
                                     : null
                                 }

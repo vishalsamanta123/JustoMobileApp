@@ -1,4 +1,4 @@
-import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, updatepasswordReducer, userData } from "./AuthReducer";
+import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, updatepasswordReducer, userData, userReducer } from "./AuthReducer";
 import { agencyCreateFormReducer, agencyReducer } from "./AgencyReducer";
 import { SourcingManagerReducer } from "./SourcingManagerReducer";
 import { agentReducer } from "./AgentReducer";
@@ -9,11 +9,13 @@ import { followUpReducer } from "./FollowUpReducer";
 import { masterDataReducer } from "./MasterReducer";
 import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
 import { appointmentCLReducer } from "./AppointmentCLReducer";
+import { ClosingManagerReducer } from "./ClosingManagerReducer";
 
 export default {
     loadingReducer: loadingReducer,
     userData: userData,
     login: authStore,
+    userReducer: userReducer,
     forgotResponce: forgotReducer,
     otpVerifyResponce: otpVerifyReducer,
     updatepasswordResponce: updatepasswordReducer,
@@ -37,4 +39,7 @@ export default {
     visitorDataList: visitorListReducer,
     editVisitorData: editVisitorReducer,
     addVisitorData: addVisitorReducer,
+
+    //closing model
+    ClosingManager: ClosingManagerReducer
 }

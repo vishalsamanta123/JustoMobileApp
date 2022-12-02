@@ -56,12 +56,12 @@ const VisitorUpdateView = (props: any) => {
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
                         <TouchableOpacity onPress={() => props.setUpdateForm({
                             ...props.updateForm,
-                            occupation: 'selfEmployee'
+                            occupation: 'self employee'
                         })}
                             style={styles.checkBoxVw}>
                             <Image
                                 style={styles.checksVw}
-                                source={props.updateForm.occupation === "selfEmployee"
+                                source={props.updateForm.occupation === "self employee"
                                     ? images.check
                                     : null
                                 }
@@ -88,18 +88,30 @@ const VisitorUpdateView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        placeholderText={"Configuration"}
+                        placeholderText={"Designation"}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
-                        headingText={"Configuration"}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                desigantion: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.desigantion}
+                        headingText={"Designation"}
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        placeholderText={"Expected Possession Date"}
+                        placeholderText={"Office Address"}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
-                        headingText={"Expected Possession Date"}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                office_address: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.office_address}
+                        headingText={"Office Address"}
                     />
                 </View>
             </ScrollView>
