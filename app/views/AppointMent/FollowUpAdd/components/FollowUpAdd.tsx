@@ -5,10 +5,13 @@ import Button from "../../../../components/Button";
 import DropdownInput from "../../../../components/DropDown";
 import Header from "../../../../components/Header";
 import InputField from "../../../../components/InputField";
-import { PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
+import { GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import FollupListItem from './FollowupListItem'
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
+import Styles from "../../AppointmentDetails/Components/Styles";
 
 const FollowUpAddView = (props: any) => {
     return (
@@ -27,26 +30,97 @@ const FollowUpAddView = (props: any) => {
             />
             <View style={styles.topItemsVw}>
                 <DropdownInput
+                    headingText={'Status'}
                     placeholder={strings.status}
-                    value={props.value}
-                    setValue={props.setValue}
-                    onChange={(data: any) => {
-                        props.setValue(data)
+                    data={props?.masterDatas}
+                    inputWidth={'100%'}
+                    paddingLeft={16}
+                    maxHeight={300}
+                    onFocus={() => props.handleMasterDatas(5)}
+                    labelField="title"
+                    valueField={'_id'}
+                    value={props?.formData?.followup_status}
+                    onChange={(item: any) => {
+                        props.setFormData({
+                            ...props.formData, followup_status: item._id,
+                        })
+                    }}
+                    newRenderItem={(item: any) => {
+                        return (
+                            <>
+                                <View style={{
+                                    padding: 17,
+                                    flexDirection: "row",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}>
+                                    <Text style={{
+                                        flex: 1,
+                                        fontSize: 16,
+                                        color: GRAY_LIGHT_COLOR
+                                    }}>{item.title}</Text>
+                                </View>
+                            </>
+                        );
                     }}
                 />
                 <View style={styles.inputWrap}>
-                    <InputField
-                        placeholderText={"Date & Time"}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
-                        rightImgSrc={images.event}
+                    <InputCalender
+                        headingText={'Date'}
+                        mode={'date'}
+                        leftIcon={images.event}
+                        placeholderText={"Date"}//can edit
+                        editable={false}
+                        // onChangeText={() => { }}
+                        dateData={(data: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                next_followup_date: moment(data).format('YYYY-MM-DD')
+                            })
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                next_followup_date: moment(data).format('YYYY-MM-DD')
+                            })
+                        }}
+                        value={props?.formData?.next_followup_date}
+                    />
+                </View>
+                <View style={styles.inputWrap}>
+                    <InputCalender
+                        headingText={'Time'}
+                        mode={'time'}
+                        leftIcon={images.timer}
+                        placeholderText={"Time"}//can edit
+                        editable={false}
+                        // onChangeText={() => { }}
+                        dateData={(data: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                followup_time: moment(data).format('LT')
+                            })
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                followup_time: moment(data).format('LT')
+                            })
+                        }}
+                        value={props?.formData?.followup_time}
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        headingText={'Description'}
                         placeholderText={"Description"}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(val: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                remark: val,
+                            })
+                        }}
                         multiline={true}
                         inputheight={100}
                     />
@@ -55,12 +129,20 @@ const FollowUpAddView = (props: any) => {
                     <Button
                         width={320}
                         btnTxtsize={18}
-                        textTransform={'uppercase'}
                         buttonText={strings.update + " " + strings.followupHeader}
+                        handleBtnPress={() => props.handleUpdateStatus()}
                     />
                 </View>
+                {/* <View style={styles.inputWrap}>
+                    <Button
+                        width={320}
+                        btnTxtsize={18}
+                        buttonText={strings.allfollowup}
+                        handleBtnPress={() => props.handleAllFollowUp()}
+                    />
+                </View> */}
             </View>
-            <View style={styles.listView}>
+            {/* <View style={styles.listView}>
                 <FlatList
                     data={props.DATA}
                     showsVerticalScrollIndicator={false}
@@ -68,7 +150,7 @@ const FollowUpAddView = (props: any) => {
                     // onPressView={props.onPressView}
                     />}
                 />
-            </View>
+            </View> */}
         </View>
     )
 }

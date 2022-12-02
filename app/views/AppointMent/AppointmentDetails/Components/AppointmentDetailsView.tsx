@@ -47,6 +47,9 @@ const AppointmentDetailsView = (props: any) => {
             <ReadyToBookModal
                 Visible={readyToBooK}
                 setIsVisible={() => setReadyToBooK(false)}
+                setBookingData={props.setBookingData}
+                BookingData={props.BookingData}
+                handleBooking={props.handleBooking}
             />
         </View>
     )

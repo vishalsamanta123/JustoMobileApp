@@ -111,7 +111,7 @@ const AppointmentItem = (props: any) => {
                         btnTxtsize={14}
                         border={10}
                         handleBtnPress={() => {
-                            props.handleDropLocation(props?.items)
+                            props.setappointmentid(props?.items?._id)
                             props.setLocationModel(true)
                         }}
                         textTransform={'uppercase'}

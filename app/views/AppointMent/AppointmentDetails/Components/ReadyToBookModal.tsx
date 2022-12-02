@@ -9,6 +9,8 @@ import { Dropdown } from "react-native-element-dropdown";
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import { WHITE_COLOR } from "../../../../components/utilities/constant";
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
 
 const ReadyToBookModal = (props: any) => {
     return (
@@ -24,11 +26,24 @@ const ReadyToBookModal = (props: any) => {
                         </View>
                     </View>
                     <View style={styles.inputWrap}>
-                        <InputField
-                            placeholderText={'Booking Date'}
-                            handleInputBtnPress={() => { }}
-                            onChangeText={() => { }}
-                            rightImgSrc={images.event}
+                        <InputCalender
+                            mode={'date'}
+                            leftIcon={images.event}
+                            placeholderText={"Booking Date"}
+                            editable={false}
+                            dateData={(data: any) => {
+                                props.setBookingData({
+                                    ...props.BookingData,
+                                    booking_date: moment(data).format('YYYY-MM-DD')
+                                })
+                            }}
+                            setDateshow={(data: any) => {
+                                props.setBookingData({
+                                    ...props.BookingData,
+                                    booking_date: moment(data).format('YYYY-MM-DD')
+                                })
+                            }}
+                            value={props.BookingData?.booking_date}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -36,12 +51,21 @@ const ReadyToBookModal = (props: any) => {
                             placeholderText={"Comment"}
                             handleInputBtnPress={() => { }}
                             inputheight={80}
-                            onChangeText={() => { }}
+                            valueshow={props.BookingData?.description}
+                            onChangeText={(val: any) => {
+                                props.setBookingData({
+                                    ...props.BookingData,
+                                    description: val
+                                })
+                            }}
                         />
                     </View>
                     <View style={{ marginVertical: 20 }}>
                         <Button
-                            handleBtnPress={() => props.setIsVisible(false)}
+                            handleBtnPress={() => {
+                                props.setIsVisible(false)
+                                props.handleBooking()
+                            }}
                             buttonText={props.doneBttnTxt ? props.doneBttnTxt : strings.Confirm} />
                     </View>
                 </View>

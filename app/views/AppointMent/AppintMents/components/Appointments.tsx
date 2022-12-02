@@ -16,12 +16,12 @@ const AppointmentListView = (props: any) => {
     const [locationModel, setLocationModel] = useState(false)
     const [allocateModel, setAllocateModel] = useState(false)
     const [dropLocation, setDropLocation] = useState({})
+    const [appointmentid, setappointmentid] = useState('')
     const dispatch: any = useDispatch()
-    console.log('dropLocation: ', dropLocation);
     const handleDropLocation = (data: any) => {
-        if (locationModel === false) {
+        if (appointmentid) {
             dispatch(AddDropLocation({
-                appointment_id: data?._id,
+                appointment_id: appointmentid,
                 drop_off_location: dropLocation
             }))
         }
@@ -56,7 +56,7 @@ const AppointmentListView = (props: any) => {
                         <AppointmentsItem
                             items={item}
                             onPressView={props.onPressView}
-                            handleDropLocation={handleDropLocation}
+                            setappointmentid={setappointmentid}
                             setAllocateModel={setAllocateModel}
                             setLocationModel={setLocationModel}
                         />}
