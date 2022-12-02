@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const AppointmentDetails = ({ navigation, route }: any) => {
   const data = route?.params || {}
-  console.log('data: ', data);
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
   useFocusEffect(
@@ -21,8 +20,8 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   const handleBackPress = () => {
     navigation.goBack()
   }
-  const handleVistorUpdate = () => {
-    navigation.navigate('VisitorUpdate')
+  const handleVistorUpdate = (data: any) => {
+    navigation.navigate('VisitorUpdate', data)
   }
   const handleUpdateStatus = () => {
     navigation.navigate('FollowUpAdd')
