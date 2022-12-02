@@ -18,7 +18,7 @@ const PropertyDetails = ({ navigation, route }: any) => {
     navigation.goBack();
   };
   const onPressCreatevisit = () => {
-    // navigation.navigate('AddNewVisitorScreen')
+    navigation.navigate('AddNewVisitorScreen')
   };
   return (
     <>

@@ -8,6 +8,7 @@ import {
   AGENT_LIST,
   CREATE_AGENCY,
   CREATE_AGENCY_ERROR,
+  EDIT_AGENCY,
   EDIT_AGENT,
   GET_AGENCY_DETAIL,
   GET_AGENT_DETAIL,
@@ -100,8 +101,8 @@ export const AgencyCreateFormRemove = () => async (dispatch: any) => {
 };
 
 export const createAgency = (item: any) => async (dispatch: any) => {
+  console.log("item: PARAMS CREATE AGENCY", item);
   try {
-    console.log("item: PARAMS", item);
     const header = {
       "Content-Type": "multipart/form-data",
       "access-control-allow-origin": "*",
@@ -135,17 +136,23 @@ export const createAgency = (item: any) => async (dispatch: any) => {
   }
 };
 export const editAgent = (params: any) => async (dispatch: any) => {
+  console.log("params: ", params);
   dispatch({ type: START_LOADING });
   try {
     const header = {
       "Content-Type": "multipart/form-data",
       "access-control-allow-origin": "*",
     };
-    const res = await apiCall("post", apiEndPoints.EDIT_AGENT_, params, header);
+    const res = await apiCall(
+      "post",
+      apiEndPoints.EDIT_CHANNELPARTNER,
+      params,
+      header
+    );
     console.log("res: in AGENCY EDIT", res);
     if (res.data.status == 200) {
       dispatch({
-        type: EDIT_AGENT,
+        type: EDIT_AGENCY,
         payload: res.data,
       });
     } else {

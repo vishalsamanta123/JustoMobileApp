@@ -32,6 +32,9 @@ const PropertyDetailView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
   const { response, loading } = propertyData;
+  const onPressCreatevisit = () => {
+    navigation.navigate('AddNewVisitorScreen', { type: 'propertySelect', data: propertydetail })
+  };
 
   useEffect(() => {
     if (response && response?.status === 200) {
@@ -114,7 +117,7 @@ const PropertyDetailView = (props: any) => {
         {approveStatus !== 1 &&
           approveStatus !== 3 ? (
             <Button
-              handleBtnPress={() => props.onPressCreatevisit()}
+              handleBtnPress={() => onPressCreatevisit()}
               buttonText={strings.createVisit}
               width={150}
               height={45}

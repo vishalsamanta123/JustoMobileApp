@@ -51,6 +51,7 @@ const CompanyDetails = (props: any) => {
             placeholderText={"Agency Name"}
             handleInputBtnPress={() => { }}
             headingText={"RealeEstate Company"}
+            valueshow={props?.agencyData?.agency_name}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props?.agencyData, agency_name: val
@@ -62,7 +63,7 @@ const CompanyDetails = (props: any) => {
           <InputField
             placeholderText={"GST"}
             handleInputBtnPress={() => { }}
-            valueshow={props?.agencyData?.gst}
+            valueshow={props?.agencyData?.agencies?.gst}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props?.agencyData, gst: val
@@ -74,10 +75,10 @@ const CompanyDetails = (props: any) => {
           <InputField
             placeholderText={"RERA Registration"}
             handleInputBtnPress={() => { }}
-            valueshow={props?.agencyData?.rera_certificate}
+            valueshow={props?.agencyData?.agencies?.registration_no}
             onChangeText={(val: any) => {
               props.setAgencyData({
-                ...props?.agencyData, rera_registration: val
+                ...props?.agencyData, registration_no: val
               })
             }}
           />
