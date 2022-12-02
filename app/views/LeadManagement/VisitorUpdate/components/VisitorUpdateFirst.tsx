@@ -5,11 +5,13 @@ import TopScreensViewer from './TopScreensViewer'
 import Header from "../../../../components/Header";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
-import { BLACK_COLOR, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, DATE_FORMAT, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import InputField from "../../../../components/InputField";
 import { RadioButton } from "react-native-paper";
 import Button from "../../../../components/Button";
 import { normalize } from "../../../../components/scaleFontSize";
+import moment from "moment";
+import InputCalender from "app/components/InputCalender";
 
 const VisitorUpdateView = (props: any) => {
     return (
@@ -32,8 +34,15 @@ const VisitorUpdateView = (props: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         placeholderText={"Name"}
+                        editable={false}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                property_title: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.property_title}
                         headingText={"Property Name"}
                     />
                 </View>
@@ -45,7 +54,13 @@ const VisitorUpdateView = (props: any) => {
                     <InputField
                         placeholderText={"Name"}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                first_name: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.first_name}
                         headingText={"Visitor Name"}
                     />
                 </View>
@@ -53,7 +68,13 @@ const VisitorUpdateView = (props: any) => {
                     <InputField
                         placeholderText={"Aadhar No."}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                adhar_no: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.adhar_no?.toString()}
                         headingText={"Aadhar No."}
                     />
                 </View>
@@ -61,7 +82,13 @@ const VisitorUpdateView = (props: any) => {
                     <InputField
                         placeholderText={"Pancard No."}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                pancard_no: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.pancard_no?.toString()}
                         headingText={"Pancard No."}
                     />
                 </View>
@@ -69,10 +96,10 @@ const VisitorUpdateView = (props: any) => {
                     <Text style={styles.selectsTxt}>{strings.gender}</Text>
                     <View style={styles.radioView}>
                         <RadioButton
-                            value="first"
-                            status={props.updateForm.gender === "male" ? "checked" : "unchecked"}
+                            value="1"
+                            status={props.updateForm.gender === 1 ? "checked" : "unchecked"}
                             onPress={() => props.setUpdateForm({
-                                gender: 'male'
+                                gender: 1
                             })}
                             color={PRIMARY_THEME_COLOR}
                         />
@@ -81,7 +108,7 @@ const VisitorUpdateView = (props: any) => {
                                 styles.radioTxt,
                                 {
                                     color:
-                                        props.updateForm.gender === "male" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                                        props.updateForm.gender === 1 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                                 },
                             ]}
                         >
@@ -90,10 +117,10 @@ const VisitorUpdateView = (props: any) => {
                     </View>
                     <View style={styles.radioView}>
                         <RadioButton
-                            value="second"
-                            status={props.updateForm.gender === "female" ? "checked" : "unchecked"}
+                            value="2"
+                            status={props.updateForm.gender === 2 ? "checked" : "unchecked"}
                             onPress={() => props.setUpdateForm({
-                                gender: 'female'
+                                gender: 2
                             })}
                             color={PRIMARY_THEME_COLOR}
                         />
@@ -102,7 +129,7 @@ const VisitorUpdateView = (props: any) => {
                                 styles.radioTxt,
                                 {
                                     color:
-                                        props.updateForm.gender === "female" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                                        props.updateForm.gender === 2 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                                 },
                             ]}
                         >
@@ -111,35 +138,74 @@ const VisitorUpdateView = (props: any) => {
                     </View>
                 </View>
                 <View style={styles.inputWrap}>
-                    <InputField
+                    <InputCalender
+                        leftIcon={images.event}
+                        mode={"date"}
                         placeholderText={"Date of Birth"}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
                         headingText={"Date of Birth"}
-                        rightImgSrc={images.event}
+                        editable={false}
+                        dateData={(data: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                birth_date: moment(data).format(DATE_FORMAT),
+                            });
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                birth_date: moment(data).format(DATE_FORMAT),
+                            });
+                        }}
+                        value={props?.updateForm?.birth_date != "" ||
+                            props?.updateForm?.birth_date != undefined
+                            ? moment(props?.updateForm?.birth_date).format(DATE_FORMAT) :
+                            ''
+                        }
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
                         placeholderText={"Mobile No."}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                mobile: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.mobile?.toString()}
                         headingText={"Mobile No."}
+                        keyboardtype={'number-pad'}
+                        maxLength={10}
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
                         placeholderText={"WhatsApp No."}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                whatsapp_no: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.whatsapp_no?.toString()}
                         headingText={"WhatsApp No."}
+                        keyboardtype={'number-pad'}
+                        maxLength={10}
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
                         placeholderText={"Email Address"}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                email: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.email}
                         headingText={"Email Address"}
                     />
                 </View>
@@ -147,7 +213,13 @@ const VisitorUpdateView = (props: any) => {
                     <InputField
                         placeholderText={"Location"}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                location: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.location}
                         headingText={"Location"}
                     />
                 </View>

@@ -1,5 +1,5 @@
 import { View, Text, StatusBar } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Styles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRIMARY_THEME_COLOR_DARK } from '../../../../components/utilities/constant';
@@ -8,9 +8,13 @@ import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import AppointmentDtailsItem from './AppointmentDtailsItem';
 import Button from '../../../../components/Button';
+import { useSelector } from 'react-redux';
+import ReadyToBookModal from './ReadyToBookModal';
 
 const AppointmentDetailsView = (props: any) => {
     const insets = useSafeAreaInsets();
+    const [readyToBooK, setReadyToBooK] = useState(false)
+    const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
     return (
         <View style={styles.mainContainer}>
             <View
@@ -29,11 +33,21 @@ const AppointmentDetailsView = (props: any) => {
                 headerStyle={styles.headerStyle}
             />
             <View style={styles.propertyListView}>
-                <AppointmentDtailsItem />
+                <AppointmentDtailsItem
+                    item={response?.data}
+                    handleUpdateStatus={props.handleUpdateStatus}
+                    handleVistorUpdate={props.handleVistorUpdate}
+                />
             </View>
             <View style={styles.bntView}>
-                <Button buttonText={strings.updatestatus}  />
+                <Button buttonText={strings.updatestatus} handleBtnPress={() => props.handleUpdateStatus()} />
+                <View style={{ marginVertical: 10 }} />
+                <Button buttonText={strings.readytoBookHeader} handleBtnPress={() => setReadyToBooK(true)} />
             </View>
+            <ReadyToBookModal
+                Visible={readyToBooK}
+                setIsVisible={() => setReadyToBooK(false)}
+            />
         </View>
     )
 }

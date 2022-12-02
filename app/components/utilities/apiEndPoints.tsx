@@ -65,6 +65,7 @@ export default {
   GET_APPOINTMENT_DETAILS: '/appointment/getAppointmentDetails',
   ADD_APPOINTMENT: '/appointment/addAppointment',
   EDIT_APPOINTMENT: '/appointment/editAppointment',
+  ADD_DROPLOCATION: '/appointment/addDropOffLocation',
 
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
@@ -81,5 +82,9 @@ export default {
   VISITOR_STATUS_UPDATE: "/visit/updateVisitStatus",
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
-  GET_USERVISTLIST: '/visit/getUserVisitList'
+  GET_USERVISTLIST: '/visit/getUserVisitList',
+
+  //closing head
+  GET_CLOSINGMANAGER: "/userManage/getClosingManagerListOnCH",
+
 };

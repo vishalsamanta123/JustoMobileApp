@@ -103,7 +103,7 @@ const AppointmentsScreen = ({ navigation }: any) => {
         navigation.toggleDrawer()
     };
     const onPressView = (items: any) => {
-        navigation.navigate('AppointmentDetailMain', { items })
+        navigation.navigate('AppointmentDetailMain',  items )
     };
     const handleScanQr = (items: any) => {
         navigation.navigate('ScanQr')
@@ -115,10 +115,11 @@ const AppointmentsScreen = ({ navigation }: any) => {
                 setFilterisVisible={setFilterisVisible}
                 handleDrawerPress={handleDrawerPress}
                 onPressView={onPressView}
-                DATA={DATA}
+                DATA={appointmentList}
                 handleScanQr={handleScanQr}
                 dropLocisVisible={dropLocisVisible}
                 setDropLocisVisible={setDropLocisVisible}
+                getAppointmentList={getAppointmentList}
             />
         </>
     )

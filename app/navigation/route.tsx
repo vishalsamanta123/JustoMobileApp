@@ -74,6 +74,7 @@ import AllocateCPScreen from "app/views/SourcingManagers/CPAllocate";
 import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
 import AddNewVisitorScreen from "app/views/LeadManagement/AddNewVisitor";
+import FollowUpAddScreen from "app/views/AppointMent/FollowUpAdd";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -81,6 +82,7 @@ const AuthStack = createNativeStackNavigator();
 const AuthLoading = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const screenOptions = { headerShown: false, gestureEnabled: true };
+
 const DrawerComponent = () => {
   return (
     <Drawer.Navigator
@@ -186,6 +188,7 @@ const AppComponent = () => {
       />
       <AppStack.Screen name="FollUpAdd" component={FollUpAddScreen} />
       <AppStack.Screen name="VisitorUpdate" component={VisitorUpdateScreen} />
+      <AppStack.Screen name="FollowUpAdd" component={FollowUpAddScreen} />
 
       {/* LeaderBoard  */}
       <AppStack.Screen
@@ -202,6 +205,7 @@ const AppComponent = () => {
     </AppStack.Navigator>
   );
 };
+
 const AuthComponent = () => {
   return (
     <AuthStack.Navigator screenOptions={screenOptions}>
@@ -228,11 +232,12 @@ const AuthLoadingComponent = () => {
 
   useEffect(() => {
     checklogin()
-  }, [response])
+  }, [response, authToken])
 
   const checklogin = async () => {
     if (response && authToken) {
-      if (response.status === 200) {
+      if (response?.status === 200) {
+        await AsyncStorage.setItem("token", response.token);
         await setDefaultHeader("token", response.token);
         await AsyncStorage.setItem('loginData', JSON.stringify(response))
       } else {
@@ -246,16 +251,21 @@ const AuthLoadingComponent = () => {
   async function tokenGenrate() {
     try {
       const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
-      if (data) {
+      if (data?.status === 200) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);
+      } else {
+        ErrorMessage({
+          msg: data?.message,
+          backgroundColor: RED_COLOR
+        })
       }
     } catch (error) {
       // console.log(error);
     }
   }
   useEffect(() => {
-    if (response == null || response?.status == 201 || response?.status == 401) {
+    if (response == null || response?.status === 201 || response?.status === 401) {
       tokenGenrate()
     } else {
       setDefaultHeader("token", response?.token);

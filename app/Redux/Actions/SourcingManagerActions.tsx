@@ -8,7 +8,6 @@ export const getSourcingManagerList = () => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.GET_SOURCING_MANAGER_LIST, {});
         if (res?.data?.status === 200) {
-            console.log('res.data: ', res.data);
             dispatch({
                 type: GET_SOURCINGMANAGER_LIST,
                 payload: res.data
@@ -63,7 +62,7 @@ export const getSourcingManagerDetail = (parma: any) => async (dispatch: any) =>
     }
 }
 export const getAssignCPList = (parma: any) => async (dispatch: any) => {
-console.log('parma: ', parma);
+    console.log('parma: ', parma);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_ASSIGNCP_LIST, parma);
@@ -94,7 +93,7 @@ console.log('parma: ', parma);
     }
 }
 export const assignCPSM = (parma: any) => async (dispatch: any) => {
-console.log('parma: ', parma);
+    console.log('parma: ', parma);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.ASSIGNCP_SM, parma);

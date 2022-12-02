@@ -21,7 +21,7 @@ const ClosingDetailsView = (props: any) => {
                 handleOnLeftIconPress={props.handleDrawerPress}
                 headerStyle={styles.headerStyle}
                 RightFirstIconStyle={styles.RightFirstIconStyle}
-                handleOnRightFirstIconPress={() => props.setFilterisVisible(true)}
+                // handleOnRightFirstIconPress={() => props.setFilterisVisible(true)}
                 statusBarColor={PRIMARY_THEME_COLOR}
                 barStyle={'light-content'}
             />
