@@ -43,12 +43,13 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     gst: "",
     company_pancard: "",
     declaration_letter_of_company: { uri: "" },
-    rera_registration: "",
+    registration_no: "",
     company_bank_name: "",
     company_branch_name: "",
     company_account_no: "",
     company_ifsc_code: "",
     _id: "",
+    agency_name: "",
   });
   console.log("agencyData", agencyData);
 
@@ -61,12 +62,24 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
   useEffect(() => {
     if (type === "edit") {
       if (response?.status === 200) {
+        console.log("response?.data[0]: ", response?.data[0]);
         setAgencyData({
           ...response?.data[0],
           bank_name: response?.data[0]?.cp_bank_detail?.bank_name,
           branch_name: response?.data[0]?.cp_bank_detail?.branch_name,
           account_no: response?.data[0]?.cp_bank_detail?.account_no,
           ifsc_code: response?.data[0]?.cp_bank_detail?.ifsc_code,
+          gst: response?.data[0]?.agencies?.gst,
+          agency_name: response?.data[0]?.agencies?.agency_name,
+          company_bank_name:
+            response?.data[0]?.agencies?.agency_bank_detail?.bank_name,
+          company_branch_name:
+            response?.data[0]?.agencies?.agency_bank_detail?.branch_name,
+          company_account_no:
+            response?.data[0]?.agencies?.agency_bank_detail?.account_no,
+          company_ifsc_code:
+            response?.data[0]?.agencies?.agency_bank_detail?.ifsc_code,
+          rera_certificate: response?.data[0]?.rera_certificate,
         });
       }
       // setAgencyData({ ...registrationData.response, sourcing_manager: userData?.data?._id })
@@ -150,21 +163,21 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         errorMessage =
           "Rera Certificate No. is require. Please enter Rera Certificate No.";
       } else if (
-        agencyData.rera_certificate?.uri == "" ||
-        agencyData.rera_certificate?.uri == undefined
+        agencyData.rera_certificate == null ||
+        agencyData.rera_certificate == undefined
       ) {
         isError = false;
         errorMessage =
           "Rera Certificate Image is require. Please Choose Rera Certificate Image";
       } else if (
-        agencyData?.propidership_declaration_letter?.uri == "" ||
-        agencyData.propidership_declaration_letter?.uri == undefined
+        agencyData?.propidership_declaration_letter == null ||
+        agencyData?.propidership_declaration_letter == undefined
       ) {
         isError = false;
         errorMessage =
           "Propidership Declaration Letter Image is require. Please Choose Propidership Declaration Letter Image";
       } else if (
-        agencyData.cancel_cheaque == "" ||
+        agencyData.cancel_cheaque == null ||
         agencyData.cancel_cheaque == undefined
       ) {
         isError = false;
@@ -204,22 +217,22 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         isError = false;
         errorMessage = "GST No. is require. Please enter GST No.";
       } else if (
-        agencyData.company_pancard == "" ||
+        agencyData.company_pancard == null ||
         agencyData.company_pancard == undefined
       ) {
         isError = false;
         errorMessage =
           "Company pancard Image is require. Please Choose Company pancard";
       } else if (
-        agencyData.declaration_letter_of_company?.uri == "" ||
-        agencyData.declaration_letter_of_company?.uri == undefined
+        agencyData.declaration_letter_of_company == null ||
+        agencyData.declaration_letter_of_company == undefined
       ) {
         isError = false;
         errorMessage =
           "Declaration letter of company Image is require. Please Choose Declaration letter of company";
       } else if (
-        agencyData.rera_registration == "" ||
-        agencyData.rera_registration == undefined
+        agencyData.registration_no == "" ||
+        agencyData.registration_no == undefined
       ) {
         isError = false;
         errorMessage =
@@ -279,10 +292,17 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
 
         const formData = new FormData();
         if (type === "edit") {
-          formData.append("agent_id", agencyData?._id);
+          formData.append("agency_id", agencyData?._id);
+          formData.append("cp_id", agencyData?._id);
+          formData.append("address", location[0]);
+          formData.append("pin_code", "4545456");
         }
         formData.append("email", agencyData?.email);
+        formData.append("registration_no", agencyData?.registration_no);
         formData.append("owner_name", agencyData?.owner_name);
+        if (type != "edit") {
+          formData.append("agency_name", agencyData?.agency_name);
+        }
         formData.append("primary_mobile", agencyData?.primary_mobile);
         formData.append("whatsapp_number", agencyData?.whatsapp_number);
         formData.append("adhar_no", agencyData?.adhar_no);
@@ -294,7 +314,15 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         );
         formData.append("location", location[0]);
         formData.append("latitude", latitude[0]);
-        formData.append("longitude", longitude[0]);
+        formData.append("bank_name", agencyData?.bank_name);
+        formData.append("branch_name", agencyData?.branch_name);
+        formData.append("account_no", agencyData?.account_no);
+        formData.append("ifsc_code", agencyData?.ifsc_code);
+        formData.append("gst", agencyData?.gst);
+        formData.append("company_bank_name", agencyData?.company_bank_name);
+        formData.append("company_branch_name", agencyData?.company_branch_name);
+        formData.append("company_account_no", agencyData?.company_account_no);
+        formData.append("company_ifsc_code", agencyData?.company_ifsc_code);
         formData.append(
           "working_location",
           JSON.stringify(agencyData?.working_location)
@@ -313,6 +341,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           dispatch(editAgent(formData));
         } else if (type === "add") {
           dispatch(createAgency(formData));
+          dispatch(AgencyCreateFormRemove());
         }
         if (response?.status === 200) {
           dispatch(AgencyCreateFormRemove());

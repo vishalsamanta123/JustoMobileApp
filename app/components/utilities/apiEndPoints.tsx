@@ -16,6 +16,7 @@ export default {
 
   // CREATE CHANNEL PARTNER
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
+  EDIT_CHANNELPARTNER: '/channelPartner/updateChannelPartner',
   CHECKEMAILMOBILE: '/auth/checkEmailMobile',
   GET_SOURCINGMANAGER: '/channelPartner/getListSourcingManager',
 
