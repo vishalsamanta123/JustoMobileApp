@@ -66,6 +66,8 @@ export default {
   ADD_APPOINTMENT: '/appointment/addAppointment',
   EDIT_APPOINTMENT: '/appointment/editAppointment',
   ADD_DROPLOCATION: '/appointment/addDropOffLocation',
+  ADD_BOOKING: '/booking/addBooking',
+  ALLOCATE_CM: '/appointment/appointmentAlocateClosinManager',
 
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",

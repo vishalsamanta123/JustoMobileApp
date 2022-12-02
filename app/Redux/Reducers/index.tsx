@@ -8,6 +8,7 @@ import { appointmentReducer } from "./AppointmentWithCpReducer";
 import { followUpReducer } from "./FollowUpReducer";
 import { masterDataReducer } from "./MasterReducer";
 import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
+import { appointmentCLReducer } from "./AppointmentCLReducer";
 import { ClosingManagerReducer } from "./ClosingManagerReducer";
 
 export default {
@@ -29,6 +30,9 @@ export default {
     appointment: appointmentReducer,
     followUp: followUpReducer,
     masterData: masterDataReducer,
+
+    // Appointment CL
+    appointmentCL: appointmentCLReducer,
 
     // visit modal
     visitorData: visitorReducer,

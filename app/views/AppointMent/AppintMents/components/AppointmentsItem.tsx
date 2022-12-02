@@ -111,7 +111,7 @@ const AppointmentItem = (props: any) => {
                         btnTxtsize={14}
                         border={10}
                         handleBtnPress={() => {
-                            props.handleDropLocation(props?.items)
+                            props.setappointmentid(props?.items?._id)
                             props.setLocationModel(true)
                         }}
                         textTransform={'uppercase'}
@@ -127,7 +127,12 @@ const AppointmentItem = (props: any) => {
                     buttonText={strings.allocate}
                     btnTxtsize={14}
                     border={10}
-                    handleBtnPress={() => props.setAllocateModel(true)}
+                    handleBtnPress={() => {
+                        props.setAllocatedCM({
+                            ...props.allocatedCM, appointment_id: props.items?._id
+                        })
+                        props.setAllocateModel(true)
+                    }}
                     textTransform={'uppercase'}
                 />
             </View>

@@ -28,18 +28,18 @@ const AllocateModal = (props: any) => {
                         <DropdownInput
                             placeholder={'Select New Closing Manager'}
                             headingText={'Select New Closing Manager'}
-                            data={props?.allProperty}
-                            disable={props.type == 'edit' ? true : false}
+                            data={props?.ClosingMList}
+                            onFocus={() => props.getCMList()}
                             inputWidth={'100%'}
                             paddingLeft={16}
                             maxHeight={300}
-                            labelField="property_title"
-                            valueField={'_id'}
-                            value={props?.formData?.property_id}
+                            labelField="user_name"
+                            valueField={'user_id'}
+                            value={props?.formData?.user_id}
                             onChange={(item: any) => {
-                                props.setFormData({
-                                    ...props.formData,
-                                    property_id: item.property_id,
+                                props.setAllocatedCM({
+                                    ...props.allocatedCM,
+                                    user_id: item.user_id,
                                 })
                             }}
                             newRenderItem={(item: any) => {
@@ -55,7 +55,7 @@ const AllocateModal = (props: any) => {
                                                 flex: 1,
                                                 fontSize: 16,
                                                 color: GRAY_LIGHT_COLOR
-                                            }}>{item.property_title}</Text>
+                                            }}>{item.user_name}</Text>
                                         </View>
                                     </>
                                 );
@@ -64,7 +64,10 @@ const AllocateModal = (props: any) => {
                     </View>
                     <View style={{ marginVertical: 20 }}>
                         <Button
-                            handleBtnPress={() => props.setIsVisible(false)}
+                            handleBtnPress={() => {
+                                props.handleAllocateCM()
+                                props.setIsVisible(false)
+                            }}
                             buttonText={props.doneBttnTxt ? props.doneBttnTxt : strings.Confirm} />
                     </View>
                 </View>
