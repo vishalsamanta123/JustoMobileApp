@@ -1,5 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
 import Loader from 'app/components/CommonScreen/Loader';
+import { getClosingManagerList } from 'app/Redux/Actions/ClosingManager';
 import { getSourcingManagerList } from 'app/Redux/Actions/SourcingManagerActions';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image } from 'react-native';
@@ -12,7 +13,7 @@ const ClosingDetailScreen = ({ navigation }: any) => {
     const [ClosingManagers, setClosingManagers] = useState<any>([])
     const [offSET, setOffset] = useState(0)
     const dispatch: any = useDispatch()
-    const { response = {}, list = '' } = useSelector((state: any) => state.SourcingManager) || {}
+    const { response = {}, list = '' } = useSelector((state: any) => state.ClosingManager) || {}
     const [filterData, setFilterData] = useState({
         start_date: '',
         end_date: '',
@@ -21,35 +22,24 @@ const ClosingDetailScreen = ({ navigation }: any) => {
 
     useFocusEffect(
         React.useCallback(() => {
-            getCMList(offSET)
+            getCMList()
             return () => { };
         }, [navigation, list])
     );
     useEffect(() => {
         if (list || response?.status) {
-            if (offSET === 0) {
-                setClosingManagers(response?.data)
-            } else {
-                setClosingManagers([...ClosingManagers, ...response?.data])
-            }
+            setClosingManagers(response?.data)
         }
     }, [response])
-    const getCMList = (offset: any) => {
-        setOffset(offset)
-        dispatch(getSourcingManagerList())
+    const getCMList = () => {
+        dispatch(getClosingManagerList({}))
     }
 
     const onRefresh = () => {
-        setFilterData({
-            start_date: '',
-            end_date: '',
-            followup_for: ''
-        })
-        getCMList(0)
-        // props.setFilter({})
+        getCMList()
     }
     const handleFilterApply = () => {
-        getCMList(0)
+        getCMList()
     }
 
     const handleDrawerPress = () => {
