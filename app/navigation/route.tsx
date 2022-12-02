@@ -74,6 +74,7 @@ import AllocateCPScreen from "app/views/SourcingManagers/CPAllocate";
 import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
 import AddNewVisitorScreen from "app/views/LeadManagement/AddNewVisitor";
+import FollowUpAddScreen from "app/views/AppointMent/FollowUpAdd";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -186,6 +187,7 @@ const AppComponent = () => {
       />
       <AppStack.Screen name="FollUpAdd" component={FollUpAddScreen} />
       <AppStack.Screen name="VisitorUpdate" component={VisitorUpdateScreen} />
+      <AppStack.Screen name="FollowUpAdd" component={FollowUpAddScreen} />
 
       {/* LeaderBoard  */}
       <AppStack.Screen

@@ -64,6 +64,7 @@ export default {
   GET_APPOINTMENT_DETAILS: '/appointment/getAppointmentDetails',
   ADD_APPOINTMENT: '/appointment/addAppointment',
   EDIT_APPOINTMENT: '/appointment/editAppointment',
+  ADD_DROPLOCATION: '/appointment/addDropOffLocation',
 
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",

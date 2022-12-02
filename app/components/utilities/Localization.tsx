@@ -213,6 +213,8 @@ const strings = new LocalizedStrings({
     appointmentType: 'Appointment Type',
     appointmentWith: 'Appointment With',
     doneappointment: 'Done Appointment',
+    visitorupdate: 'Visitor Update',
+    viewfollowup: 'View Follow-Up',
 
     // Pickup request
     PickuprequestHeader: 'Pickup Request',
