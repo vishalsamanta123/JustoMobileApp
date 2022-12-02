@@ -59,6 +59,8 @@ const AppointmentListView = (props: any) => {
                             setappointmentid={setappointmentid}
                             setAllocateModel={setAllocateModel}
                             setLocationModel={setLocationModel}
+                            setAllocatedCM={props.setAllocatedCM}
+                            allocatedCM={props.allocatedCM}
                         />}
                     refreshing={false}
                     onRefresh={() => {
@@ -73,6 +75,11 @@ const AppointmentListView = (props: any) => {
             <AllocateModal
                 Visible={allocateModel}
                 setIsVisible={() => setAllocateModel(false)}
+                getCMList={props.getCMList}
+                ClosingMList={props.ClosingMList}
+                setAllocatedCM={props.setAllocatedCM}
+                allocatedCM={props.allocatedCM}
+                handleAllocateCM={props.handleAllocateCM}
             />
             <DropLocationModal
                 Visible={locationModel}

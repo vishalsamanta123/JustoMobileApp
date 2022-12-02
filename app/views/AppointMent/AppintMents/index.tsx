@@ -4,6 +4,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { getAllAppointmentList } from "app/Redux/Actions/AppointmentWithCpActions";
 import { useDispatch, useSelector } from "react-redux";
+import { getClosingManagerList } from "app/Redux/Actions/ClosingManager";
+import { AllocateCM } from "app/Redux/Actions/AppointmentCLAction";
 
 const AppointmentsScreen = ({ navigation }: any) => {
     const DATA: any = [
@@ -63,9 +65,13 @@ const AppointmentsScreen = ({ navigation }: any) => {
     const [dropLocisVisible, setDropLocisVisible] = useState(false)
     const [filterisVisible, setFilterisVisible] = useState(false)
     const [appointmentList, setAppointmentList] = useState<any>([])
+    const [ClosingMList, setClosingMList] = useState<any>([])
+    const [allocatedCM, setAllocatedCM] = useState({})
+    console.log('allocatedCM: ', allocatedCM);
     const [offSET, setOffset] = useState(0)
     const dispatch: any = useDispatch()
     const { response = {}, list = '' } = useSelector((state: any) => state.appointment)
+    const CMList = useSelector((state: any) => state.ClosingManager) || {}
     const [filterData, setFilterData] = useState({
         start_date: '',
         end_date: '',
@@ -86,6 +92,10 @@ const AppointmentsScreen = ({ navigation }: any) => {
             }
         }
     }, [response])
+    useEffect(() => {
+        setClosingMList(CMList?.response?.data)
+    }, [CMList?.response])
+    
     const getAppointmentList = (offset: any) => {
         setOffset(offset)
         dispatch(getAllAppointmentList({
@@ -102,11 +112,19 @@ const AppointmentsScreen = ({ navigation }: any) => {
         navigation.toggleDrawer()
     };
     const onPressView = (items: any) => {
-        navigation.navigate('AppointmentDetailMain',  items )
+        navigation.navigate('AppointmentDetailMain', items)
     };
     const handleScanQr = (items: any) => {
         navigation.navigate('ScanQr')
     };
+
+    const getCMList = () => {
+        dispatch(getClosingManagerList({}))
+    }
+
+    const handleAllocateCM = () => {
+        dispatch(AllocateCM(allocatedCM))
+    }
     return (
         <>
             <AppointmentView
@@ -119,6 +137,11 @@ const AppointmentsScreen = ({ navigation }: any) => {
                 dropLocisVisible={dropLocisVisible}
                 setDropLocisVisible={setDropLocisVisible}
                 getAppointmentList={getAppointmentList}
+                getCMList={getCMList}
+                ClosingMList={ClosingMList}
+                setAllocatedCM={setAllocatedCM}
+                allocatedCM={allocatedCM}
+                handleAllocateCM={handleAllocateCM}
             />
         </>
     )
