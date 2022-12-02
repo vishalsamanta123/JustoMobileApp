@@ -24,7 +24,9 @@ import moment from "moment";
 import MultiLocation from "app/components/MultiLocation";
 
 const AgentBasicInfoView = (props: any) => {
-  console.log("props: ", props?.agencyData?.date_of_birth);
+  console.log("props:.props?.agencyData ", props?.agencyData);
+  console.log('props.type: ', props.type);
+
   const handleDelete = (item: any, index: any) => {
     var array: any[] = [...props?.agencyData?.working_location];
     array?.splice(index, 1);
@@ -54,11 +56,13 @@ const AgentBasicInfoView = (props: any) => {
           style={[styles.imageCircle, { backgroundColor: GRAY_COLOR }]}
         >
           {props.type == "edit" ? (
-            props?.agencyData?.profile_picture === ""
-          ) : props?.agencyData?.profile_picture?.uri === "" ? (
             <Image
               style={styles.DummyloginBanner}
-              source={images.user}
+              source={{
+                uri: props.agencyData?.profile_picture?.uri
+                  ? props.agencyData?.profile_picture?.uri
+                  : props.agencyData?.profile_picture,
+              }}
               resizeMode="contain"
             />
           ) : (
