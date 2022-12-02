@@ -82,7 +82,7 @@ const locationsView = (props: any) => {
         <Modal deviceHeight={0}
             isVisible={props.Visible}>
             <Header
-                headerText={'Working Location'}
+                headerText={props.headerText ? props.headerText : 'Working Location'}
                 headerStyle={styles.headerStyle}
                 headerTextStyle={styles.headerTextStyle}
                 leftImageSrc={images.close}

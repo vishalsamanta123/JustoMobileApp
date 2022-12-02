@@ -68,6 +68,36 @@ const styles = StyleSheet.create({
         width: normalizeWidth(30),
         height: normalizeHeight(30)
     },
-
+    bookingModelVw: {
+        backgroundColor: WHITE_COLOR,
+        paddingHorizontal: 10,
+        borderRadius: 10
+    },
+    topTxt: {
+        color: BLACK_COLOR,
+        fontFamily: FONT_FAMILY_EXTRABOLD,
+        fontSize: normalize(18),
+    },
+    topContainer: {
+        flexDirection: "row",
+        marginVertical: normalizeSpacing(10),
+        justifyContent: "space-between",
+        marginHorizontal: normalizeSpacing(10),
+    },
+    bottomTxt: {
+        color: BLACK_COLOR,
+        fontSize: normalize(18),
+        fontFamily: FONT_FAMILY_SEMIBOLD,
+        textAlign: "center",
+    },
+    closeIcon: {
+        tintColor: "red",
+        width: normalizeWidth(30),
+        height: normalizeHeight(30),
+    },
+    inputWrap: {
+        marginTop: normalizeSpacing(20),
+        width: '100%'
+    },
 })
 export default styles;

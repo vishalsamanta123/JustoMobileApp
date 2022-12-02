@@ -5,6 +5,7 @@ import strings from '../../../../components/utilities/Localization';
 import { BLACK_COLOR, CALL_COLOR, GRAY_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, BG_MAIN_COLOUR, WHITE_COLOR, WHITE_COLOR_LIGHT, YELLOW_COLOR } from '../../../../components/utilities/constant';
 import images from '../../../../assets/images';
 import Button from '../../../../components/Button';
+import moment from 'moment';
 
 const AppointmentItem = (props: any) => {
     return (
@@ -14,7 +15,7 @@ const AppointmentItem = (props: any) => {
                     <Text style={styles.projectTxt}>Visitor Name :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.visitorName}</Text>
+                    <Text style={styles.nameTxt}>{props.items.customer_first_name}</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
@@ -22,7 +23,9 @@ const AppointmentItem = (props: any) => {
                     <Text style={styles.projectTxt}>Date & Time :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.siteVisitDate}</Text>
+                    <Text style={styles.nameTxt}>{
+                        `${moment(props.items.appointment_date).format('DD-MM-YYYY')} ${props.items.appointment_time}`
+                    }</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
@@ -30,7 +33,7 @@ const AppointmentItem = (props: any) => {
                     <Text style={styles.projectTxt}>Lead No. :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.leadNo}</Text>
+                    <Text style={styles.nameTxt}>{props.items.lead_no}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -46,7 +49,7 @@ const AppointmentItem = (props: any) => {
                     <Text style={styles.projectTxt}>Visit Score :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.visitScore}</Text>
+                    <Text style={styles.nameTxt}>{props.items.lead_score}</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
@@ -55,9 +58,12 @@ const AppointmentItem = (props: any) => {
                 </View>
                 <View style={styles.nameContainer}>
                     <Text style={[styles.nameTxt, {
-                        color: props.items.status == 'confirmatin Pending' ? BLACK_COLOR :
-                            props.items.status == 'Subscribe' ? YELLOW_COLOR : 'red'
-                    }]}>{props.items.status}</Text>
+                        color: props.items.status == 1 ? 'red' :
+                            props.items.status == 2 ? YELLOW_COLOR : BLACK_COLOR
+                    }]}>{
+                            props.items.status === 1 ? 'Pending' :
+                                props.items.status === 2 ? 'Confirm' : 'Completed'
+                        }</Text>
                 </View>
             </View>
             <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
@@ -65,7 +71,9 @@ const AppointmentItem = (props: any) => {
                     <Text style={styles.projectTxt}>Assign to :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.assignTo}</Text>
+                    <Text style={styles.nameTxt}>{
+                        props.items.assign_appointment?.[0]?.user_name
+                    }</Text>
                 </View>
             </View>
             <View style={styles.buttonContainer}>
@@ -90,6 +98,25 @@ const AppointmentItem = (props: any) => {
                 </TouchableOpacity>
             </View>
             <View style={[styles.buttonContainer, { justifyContent: 'center' }]}>
+                {props.items.pickup === 'Yes' &&
+
+                    <Button
+                        width={150}
+                        height={30}
+                        bgcolor={WHITE_COLOR}
+                        bordercolor={PRIMARY_THEME_COLOR}
+                        borderWidth={1}
+                        btnTxtcolor={PRIMARY_THEME_COLOR}
+                        buttonText={strings.dropLocation}
+                        btnTxtsize={14}
+                        border={10}
+                        handleBtnPress={() => {
+                            props.handleDropLocation(props?.items)
+                            props.setLocationModel(true)
+                        }}
+                        textTransform={'uppercase'}
+                    />
+                }
                 <Button
                     width={100}
                     height={30}
@@ -100,20 +127,7 @@ const AppointmentItem = (props: any) => {
                     buttonText={strings.allocate}
                     btnTxtsize={14}
                     border={10}
-                    handleLinkPress={() => props.handleLinkPress}
-                    textTransform={'uppercase'}
-                />
-                <Button
-                    width={150}
-                    height={30}
-                    bgcolor={WHITE_COLOR}
-                    bordercolor={PRIMARY_THEME_COLOR}
-                    borderWidth={1}
-                    btnTxtcolor={PRIMARY_THEME_COLOR}
-                    buttonText={strings.dropLocation}
-                    btnTxtsize={14}
-                    border={10}
-                    handleLinkPress={() => props.handleLinkPress}
+                    handleBtnPress={() => props.setAllocateModel(true)}
                     textTransform={'uppercase'}
                 />
             </View>
