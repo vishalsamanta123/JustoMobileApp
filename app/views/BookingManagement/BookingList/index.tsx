@@ -1,8 +1,17 @@
-import React from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import { getBookingList } from "app/Redux/Actions/BookingActions";
+import { getAllFollowUpList } from "app/Redux/Actions/FollowUpActions";
+import React, { useEffect, useState } from "react";
 import { Alert } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import BookingListView from './components/BookingList'
 
 const BookingListScreen = ({ navigation }: any) => {
+    const [BookingList, setBookingList] = useState<any>([]);
+    const [offSET, setOffset] = useState(0);
+    const dispatch: any = useDispatch();
+    const { response = {}, list = "" } = useSelector(
+      (state: any) => state.booking)
     const DATA: any = [
         {
             customerName: 'ABC',
@@ -53,18 +62,44 @@ const BookingListScreen = ({ navigation }: any) => {
             booking_amt: '10 L'
         },
     ];
+    useFocusEffect(
+        React.useCallback(() => {
+          getFollowupList(offSET, []);
+          return () => {};
+        }, [navigation, list])
+      );
+      useEffect(() => {
+        if (list) {
+          if (offSET == 0 || offSET == undefined) {
+            setBookingList(response?.data);
+          } else {
+            setBookingList([...BookingList, ...response?.data]);
+          }
+        }
+      }, [response]);
+    
+      const getFollowupList = (offset: any, array: any) => {
+        setOffset(offset);
+        dispatch(
+            getBookingList({
+            offset: offset,
+            limit: 3,
+          })
+        );
+        // toGetDatas(array)
+      };
     const handleDrawerPress = () => {
         navigation.toggleDrawer()
     };
 
-    const handleView = () => {
-        navigation.navigate('BookingDetails')
+    const handleView = (data: any) => {
+        navigation.navigate('BookingDetails', data)
     }
     return (
         <>
             <BookingListView
                 handleDrawerPress={handleDrawerPress}
-                DATA={DATA}
+                DATA={BookingList}
                 handleView={handleView}
             />
         </>
