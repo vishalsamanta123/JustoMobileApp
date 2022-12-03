@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AppointmentDetailsView from './Components/AppointmentDetailsView'
 import { useFocusEffect } from '@react-navigation/native'
@@ -35,8 +35,10 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   const handleVistorUpdate = (data: any) => {
     navigation.navigate('VisitorUpdate', data)
   }
+  const handleViewFollowUp = (data: any) => {
+    navigation.navigate('AllFollowUpScreen', data)
+  }
   const handleUpdateStatus = (data: any) => {
-  console.log('data FollowUpAdd: ', data);
     navigation.navigate('FollowUpAdd', response?.data)
   }
   const handleBooking = () => {
@@ -45,6 +47,7 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   return (
     <AppointmentDetailsView
       handleUpdateStatus={handleUpdateStatus}
+      handleViewFollowUp={handleViewFollowUp}
       handleBackPress={handleBackPress}
       handleVistorUpdate={handleVistorUpdate}
       setBookingData={setBookingData}

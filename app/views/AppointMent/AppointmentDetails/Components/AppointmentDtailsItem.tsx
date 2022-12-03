@@ -167,7 +167,7 @@ const AppointmentDtailsItem = (props: any) => {
           buttonText={strings.viewfollowup}
           btnTxtsize={14}
           border={10}
-          handleBtnPress={() => props.handleUpdateStatus()}
+          handleBtnPress={() => props.handleViewFollowUp(item)}
         />
       </View>
     </ScrollView>
