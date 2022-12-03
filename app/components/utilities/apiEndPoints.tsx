@@ -42,6 +42,7 @@ export default {
   PROPERTYSUBSCRIBE: "/property/userSubscribeUnsubscribeProperty",
   PROPERTYALLOCATELIST: "/property/getPropertyAlocateUserList",
   ALLOCATEPROPERTYTOUSER: "/property/propertyAllocateToUsers",
+  GET_PROPERTY_COMPETITOR: "/property/getPropertyCompetitorList",
 
 
 
@@ -66,13 +67,18 @@ export default {
   ADD_APPOINTMENT: '/appointment/addAppointment',
   EDIT_APPOINTMENT: '/appointment/editAppointment',
   ADD_DROPLOCATION: '/appointment/addDropOffLocation',
-  ADD_BOOKING: '/booking/addBooking',
   ALLOCATE_CM: '/appointment/appointmentAlocateClosinManager',
+  // BOOKING
+  ADD_BOOKING: '/booking/addBooking',
+  GET_BOOKINGLIST: '/booking/getBookingList',
+  GET_BOOKINGDETAIL: '/booking/getBookingdetails',
+  UPDATE_BOOKINGSTATUS: '/booking/updateBooking',
+  CANCEL_BOOKING: '/booking/bookingStatusUpdate',
 
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
 
-     // Folloe-Up
+  // Folloe-Up
   GET_FOLLOWUP_LIST: '/followupStatus/getFollowupList',
   GET_FOLLOWUP_DETAILS: '/followupStatus/getFollowupDetails',
   UPDATE_FOLLOWUP: '/followupStatus/updatefollowup',

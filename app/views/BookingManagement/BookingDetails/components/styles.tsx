@@ -94,5 +94,16 @@ const styles = StyleSheet.create({
         color: BLACK_COLOR,
         fontFamily: FONT_FAMILY_SEMIBOLD
     },
+    item: {
+        padding: 17,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    textItem: {
+        flex: 1,
+        fontSize: 16,
+        color: GRAY_LIGHT_COLOR
+    },
 })
 export default styles;

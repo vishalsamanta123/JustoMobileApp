@@ -2,7 +2,7 @@ import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVer
 import { agencyCreateFormReducer, agencyReducer } from "./AgencyReducer";
 import { SourcingManagerReducer } from "./SourcingManagerReducer";
 import { agentReducer } from "./AgentReducer";
-import { propertyDetailReducer, propertyReducer } from "./propertyReducers";
+import { competitorpropertyReducer, propertyDetailReducer, propertyReducer } from "./propertyReducers";
 import { settingReducer } from "./SettingReducer";
 import { appointmentReducer } from "./AppointmentWithCpReducer";
 import { followUpReducer } from "./FollowUpReducer";
@@ -10,6 +10,7 @@ import { masterDataReducer } from "./MasterReducer";
 import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
 import { appointmentCLReducer } from "./AppointmentCLReducer";
 import { ClosingManagerReducer } from "./ClosingManagerReducer";
+import { BookingReducer, cancelBookingReducer } from "./BookingReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -24,6 +25,7 @@ export default {
     agency: agencyReducer,
     SourcingManager: SourcingManagerReducer,
     propertyData: propertyReducer,
+    competitorproperty: competitorpropertyReducer,
     propertydetailData: propertyDetailReducer,
     agentData: agentReducer,
     settingData: settingReducer,
@@ -33,6 +35,10 @@ export default {
 
     // Appointment CL
     appointmentCL: appointmentCLReducer,
+
+    // Booking
+    booking: BookingReducer,
+    cancelBooking: cancelBookingReducer,
 
     // visit modal
     visitorData: visitorReducer,

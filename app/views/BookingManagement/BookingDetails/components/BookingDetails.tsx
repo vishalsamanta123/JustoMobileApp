@@ -8,8 +8,12 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import BookingDetailsIteam from './BookingDetailsIteam'
 import CancelModal from "./CancelBooking";
+import { useSelector } from "react-redux";
 
 const BookingDetailsView = (props: any) => {
+    const { response = {}, detail = "" } = useSelector(
+        (state: any) => state.booking)
+    console.log('response: ', response?.data);
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -23,7 +27,7 @@ const BookingDetailsView = (props: any) => {
                 barStyle={'light-content'}
             />
             <View style={styles.detailsItemView}>
-                <BookingDetailsIteam />
+                <BookingDetailsIteam item={response?.data?.length > 0 ? response?.data : []} />
             </View>
             <View style={styles.btnContainer}>
                 <Button
@@ -44,11 +48,14 @@ const BookingDetailsView = (props: any) => {
                     btnTxtcolor={WHITE_COLOR}
                     btnTxtsize={14}
                     textTransform={"uppercase"}
-                    handleBtnPress={() => props.setCancelBooking(true)}
+                    handleBtnPress={() => props.setCancelBookingModel(true)}
                 />
                 <CancelModal
-                    Visible={props.cancelBooking}
-                    setIsVisible={props.setCancelBooking}
+                    cancelDataPress={props.cancelBookingPress}
+                    Visible={props.cancelBookingModel}
+                    setIsVisible={props.setCancelBookingModel}
+                    cancelValue={props.cancelValue}
+                    setCancelValue={props.setCancelValue}
                 />
             </View>
         </View>

@@ -20,7 +20,7 @@ const BookingListView = (props: any) => {
                     data={props.DATA}
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => <BookingListItem items={item}
-                        onPressView={() => props.handleView()}
+                        onPressView={() => props.handleView(item)}
                     />}
                 />
             </View>
