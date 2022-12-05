@@ -22,7 +22,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
   const { userData = {} } = useSelector((state: any) => state.userData);
 
   const [agencyData, setAgencyData] = useState({
-    profile_picture: type === "edit" ? "" : { uri: "" },
+    profile_picture: type === "edit" ? "" : "",
     owner_name: "",
     adhar_no: "",
     pancard_no: "",
@@ -33,8 +33,8 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     email: "",
     working_location: [],
     rera_certificate_no: "",
-    rera_certificate: { uri: "" },
-    propidership_declaration_letter: { uri: "" },
+    rera_certificate: "",
+    propidership_declaration_letter: "",
     cancel_cheaque: "",
     bank_name: "",
     branch_name: "",
@@ -42,7 +42,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     ifsc_code: "",
     gst: "",
     company_pancard: "",
-    declaration_letter_of_company: { uri: "" },
+    declaration_letter_of_company: "",
     registration_no: "",
     company_bank_name: "",
     company_branch_name: "",
@@ -84,7 +84,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       }
       // setAgencyData({ ...registrationData.response, sourcing_manager: userData?.data?._id })
     }
-  }, [navigation, response]);
+  }, [response]);
 
   useLayoutEffect(() => {
     const { data = {} } = route?.params;
@@ -328,11 +328,11 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           JSON.stringify(agencyData?.working_location)
         );
         formData.append("rera_certificate_no", agencyData?.rera_certificate_no);
-        agencyData?.profile_picture != "" &&
+        typeof agencyData?.profile_picture === "object" &&
           formData.append("profile_picture", agencyData?.profile_picture);
-        agencyData?.rera_certificate?.uri != "" &&
+        typeof agencyData?.rera_certificate === "object" &&
           formData.append("rera_certificate", agencyData?.rera_certificate);
-        agencyData?.propidership_declaration_letter?.uri &&
+        typeof agencyData?.propidership_declaration_letter === "object" &&
           formData.append(
             "propidership_declaration_letter",
             agencyData?.propidership_declaration_letter

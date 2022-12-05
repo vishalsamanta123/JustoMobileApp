@@ -25,7 +25,7 @@ import MultiLocation from "app/components/MultiLocation";
 
 const AgentBasicInfoView = (props: any) => {
   console.log("props:.props?.agencyData ", props?.agencyData);
-  console.log('props.type: ', props.type);
+  console.log("props.type: ", props.type);
 
   const handleDelete = (item: any, index: any) => {
     var array: any[] = [...props?.agencyData?.working_location];
@@ -72,7 +72,7 @@ const AgentBasicInfoView = (props: any) => {
                 source={{
                   uri: props.agencyData?.profile_picture?.uri
                     ? props.agencyData?.profile_picture?.uri
-                    : props.agencyData?.profile_picture,
+                    : "",
                 }}
                 resizeMode="contain"
               />

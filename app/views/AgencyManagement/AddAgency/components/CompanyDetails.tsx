@@ -75,10 +75,10 @@ const CompanyDetails = (props: any) => {
           <InputField
             placeholderText={"RERA Registration"}
             handleInputBtnPress={() => { }}
-            valueshow={props?.agencyData?.agencies?.registration_no}
+            valueshow={props?.agencyData?.rera_certificate_no}
             onChangeText={(val: any) => {
               props.setAgencyData({
-                ...props?.agencyData, registration_no: val
+                ...props?.agencyData, rera_certificate_no: val
               })
             }}
           />
