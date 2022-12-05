@@ -5,13 +5,15 @@ import Button from '../../../../components/Button'
 import { normalize } from '../../../../components/scaleFontSize'
 import strings from '../../../../components/utilities/Localization'
 
-const BookingDetailsItem = () => {
+const BookingDetailsItem = (props: any) => {
+    const item = props?.item[0] || {}
+    console.log('item: ', item);
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
                 <View style={styles.topTxtView}>
                     <Text style={styles.topTxt}>Visitor Score </Text>
-                    <Text style={styles.topTxt}>250</Text>
+                    <Text style={styles.topTxt}>{item?.leads?.lead_score}</Text>
                 </View>
                 <View style={styles.topBtnView}>
                     <TouchableOpacity
@@ -35,7 +37,7 @@ const BookingDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>2 BHK</Text>
+                        <Text style={styles.nameTxt}>{item?.leads?.customer?.configuration}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -44,7 +46,7 @@ const BookingDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>600</Text>
+                        <Text style={styles.nameTxt}>{item?.leads?.customer?.area}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -53,7 +55,7 @@ const BookingDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>50L</Text>
+                        <Text style={styles.nameTxt}>{item?.leads?.customer?.budget}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -62,7 +64,11 @@ const BookingDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>Ready to Book</Text>
+                        <Text style={styles.nameTxt}>{
+                            item?.booking_status === 1 ? 'Pending' :
+                                item?.booking_status === 2 ? 'Confirm' :
+                                    item?.booking_status === 3 ? 'Completed' : 'Booking Cancel'
+                        }</Text>
                     </View>
                 </View>
             </>
@@ -72,7 +78,7 @@ const BookingDetailsItem = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>ABC</Text>
+                    <Text style={styles.nameTxt}>{item?.properties?.property_title}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -81,7 +87,7 @@ const BookingDetailsItem = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>Rajeev</Text>
+                    <Text style={styles.nameTxt}>{item?.leads?.customer?.first_name}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -90,7 +96,7 @@ const BookingDetailsItem = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>ABC</Text>
+                    <Text style={styles.nameTxt}>{item?.creaters?.user_name}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -99,7 +105,7 @@ const BookingDetailsItem = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>17/05/2021 11:00 AM</Text>
+                    <Text style={styles.nameTxt}>nullll</Text>
                 </View>
             </View>
             <>
@@ -112,7 +118,7 @@ const BookingDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>1000000</Text>
+                        <Text style={styles.nameTxt}>{item?.booking_amount}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -121,7 +127,7 @@ const BookingDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>100000</Text>
+                        <Text style={styles.nameTxt}>{item?.tranjection_upi_cheque_number}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -130,7 +136,7 @@ const BookingDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>1000000</Text>
+                        <Text style={styles.nameTxt}>nulllll</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -139,7 +145,10 @@ const BookingDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>100000</Text>
+                        <Text style={styles.nameTxt}>{
+                            item?.payment_type === 1 ? 'Cash' :
+                                item?.payment_type === 2 ? 'cheque' : 'upi/online'
+                        }</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -148,7 +157,7 @@ const BookingDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>2 BHK/1</Text>
+                        <Text style={styles.nameTxt}>{'nullllll'}</Text>
                     </View>
                 </View>
             </>
