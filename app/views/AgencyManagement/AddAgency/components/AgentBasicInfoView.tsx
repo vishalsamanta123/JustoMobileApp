@@ -106,6 +106,7 @@ const AgentBasicInfoView = (props: any) => {
             handleInputBtnPress={() => {}}
             headingText={"Adhar No."}
             valueshow={props.agencyData?.adhar_no}
+            keyboardtype={'number-pad'}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData,
@@ -215,6 +216,7 @@ const AgentBasicInfoView = (props: any) => {
             handleInputBtnPress={() => {}}
             headingText={"Mobile No."}
             valueshow={props.agencyData?.primary_mobile?.toString()}
+            keyboardtype={'number-pad'}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData,
@@ -229,6 +231,7 @@ const AgentBasicInfoView = (props: any) => {
             handleInputBtnPress={() => {}}
             headingText={"WhatsApp No."}
             valueshow={props.agencyData?.whatsapp_number?.toString()}
+            keyboardtype={'number-pad'}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData,

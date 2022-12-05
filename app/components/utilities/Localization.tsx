@@ -61,6 +61,7 @@ const strings = new LocalizedStrings({
     videocontentHeader: 'Videos',
     cataloguecontentHeader: 'Catalogue',
     createVisit: 'CREATE VISIT',
+    visits: 'Visits',
     gender: "Gender :",
     male: "Male",
     female: "Female",

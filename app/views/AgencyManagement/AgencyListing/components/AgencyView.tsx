@@ -29,45 +29,6 @@ const AgencyView = (props: any) => {
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
-  const DATA: any = [
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      rerano: '123566648',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'Active'
-    },
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      rerano: '123566648',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'Deactive'
-    },
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      rerano: '123566648',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'Active'
-    },
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      rerano: '123566648',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'Deactive'
-    },
-  ];
-
   const onPressView = () => {
     navigation.navigate('AgencyDetails')
   }
@@ -124,7 +85,7 @@ const AgencyView = (props: any) => {
         <View style={styles.propertyListViewsec}>
         <FlatList
             showsVerticalScrollIndicator={false}
-            data={props?.agentList}
+            data={Array.isArray(props?.agentList) ? props?.agentList : []}
             ListEmptyComponent={<EmptyListScreen message={strings.agent} />}
             renderItem={({ item }) =>
               <AgencyListItem items={item} setIsVisible={setIsVisible}
