@@ -75,6 +75,7 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
 import AddNewVisitorScreen from "app/views/LeadManagement/AddNewVisitor";
 import FollowUpAddScreen from "app/views/AppointMent/FollowUpAdd";
+import axios from "axios";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -250,7 +251,20 @@ const AuthLoadingComponent = () => {
   }
   async function tokenGenrate() {
     try {
-      const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
+      const options = {
+        headers: {"content-type": "application/json"}
+      }
+     const data = await axios.get('https://itinformatix.org:3044/api/token/jwtToken', options)
+      .then(res => {
+        console.log('res', res.data)
+        return res.data
+
+      }).catch(e => {
+        console.log('e', e)
+
+      })
+      // const { data } = await apiCall("GET", apiEndPoints.JWTTOKEN, null);
+      console.log('data', data)
       if (data?.status === 200) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);
@@ -265,7 +279,8 @@ const AuthLoadingComponent = () => {
     }
   }
   useEffect(() => {
-    if (response == null || response?.status === 201 || response?.status === 401) {
+    console.log('response', response)
+    if (response == null || response?.status === 201 || response?.status === 401 || response?.status === 400) {
       tokenGenrate()
     } else {
       setDefaultHeader("token", response?.token);
