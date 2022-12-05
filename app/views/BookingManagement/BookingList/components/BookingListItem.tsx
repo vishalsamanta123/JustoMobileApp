@@ -5,6 +5,7 @@ import strings from '../../../../components/utilities/Localization';
 import { BLACK_COLOR, GREEN_COLOR, PURPLE_COLOR, WHITE_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant';
 import images from '../../../../assets/images';
 import Button from '../../../../components/Button';
+import moment from 'moment';
 
 const BookingListItem = (props: any) => {
     return (
@@ -14,7 +15,7 @@ const BookingListItem = (props: any) => {
                     <Text style={styles.projectTxt}>Booking Date :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.createddate}</Text>
+                    <Text style={styles.nameTxt}>{moment(props.items.booking_date).format('DD-MM-YYYY')}</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
@@ -22,7 +23,7 @@ const BookingListItem = (props: any) => {
                     <Text style={styles.projectTxt}>Customer Name :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.customerName}</Text>
+                    <Text style={styles.nameTxt}>{props.items.customer_first_name}</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
@@ -38,7 +39,7 @@ const BookingListItem = (props: any) => {
                     <Text style={styles.projectTxt}>Configuration :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.configure}</Text>
+                    <Text style={styles.nameTxt}>{props.items.configuration}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -46,7 +47,9 @@ const BookingListItem = (props: any) => {
                     <Text style={styles.projectTxt}>Budget :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.budget}</Text>
+                    <Text style={styles.nameTxt}>{
+                        `${props.items.min_budget}${props.items.min_budget_type} - ${props.items.max_budget}${props.items.max_budget_type}`
+                    }</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
@@ -54,7 +57,7 @@ const BookingListItem = (props: any) => {
                     <Text style={styles.projectTxt}>Booking Amount :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.booking_amt}</Text>
+                    <Text style={styles.nameTxt}>{props.items.booking_amount}</Text>
                 </View>
             </View>
             <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
@@ -62,7 +65,11 @@ const BookingListItem = (props: any) => {
                     <Text style={styles.projectTxt}>Status :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.status}</Text>
+                    <Text style={styles.nameTxt}>{
+                        props?.items?.booking_status === 1 ? 'Pending' :
+                            props?.items?.booking_status === 2 ? 'Confirm' :
+                                props?.items?.booking_status === 3 ? 'Completed' : 'Booking Cancel'
+                    }</Text>
                 </View>
             </View>
             <View style={styles.buttonContainer}>

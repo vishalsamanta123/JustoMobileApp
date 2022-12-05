@@ -28,7 +28,7 @@ const AppointmentDetailsView = (props: any) => {
             <View style={styles.propertyListView}>
                 <AppointmentDtailsItem
                     item={response?.data}
-                    handleUpdateStatus={props.handleUpdateStatus}
+                    handleViewFollowUp={props.handleViewFollowUp}
                     handleVistorUpdate={props.handleVistorUpdate}
                 />
             </View>
