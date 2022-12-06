@@ -8,13 +8,13 @@ import DatePicker from 'react-native-date-picker'
 import moment from 'moment';
 
 const InputCalender = (props: any) => {
+  const [open, setOpen] = useState(false)
   const onConfirmDate = (date: any) => {
     setOpen(false)
     props.setDateshow(date)
     props.dateData(date)
   }
 
-  const [open, setOpen] = useState(false)
   const {
     inputWidth = '90%',
     editable = true,

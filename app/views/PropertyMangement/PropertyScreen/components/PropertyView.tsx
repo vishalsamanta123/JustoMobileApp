@@ -41,7 +41,6 @@ const PropertyView = (props: any) => {
 
   useEffect(() => {
     if (propertyData?.response) {
-    console.log('propertyData: ', propertyData);
       const { response, loading ,list} = propertyData;
      if(list){
       if (response?.status === 200 ) {
