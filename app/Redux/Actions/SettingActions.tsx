@@ -4,18 +4,21 @@ import { apiCall } from "app/components/utilities/httpClient";
 
 export const updateUserSettingData =
   (userDetail: any) => async (dispatch: any) => {
+  console.log('userDetail: ', userDetail);
     dispatch({ type: START_LOADING })
     try {
-      const header = {
-        "Content-Type": "multipart/form-data",
-        "access-control-allow-origin": "*",
-      };
-      const res = await apiCall(
-        "post",
-        apiEndPoints.EDITUSER,
-        userDetail,
-        header
-      );
+      const res = await apiCall("post", apiEndPoints.EDITUSER, userDetail);
+      console.log('res: ', res);
+      // const header = {
+      //   "Content-Type": "multipart/form-data",
+      //   "access-control-allow-origin": "*",
+      // };
+      // const res = await apiCall(
+      //   "post",
+      //   apiEndPoints.EDITUSER,
+      //   userDetail,
+      //   header
+      // );
       if (res?.data?.status == 200) {
         dispatch({
           type: UPDATE_PROFILE,

@@ -1,4 +1,4 @@
-import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, FORGOT_PASSWORD, FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL, USERREGISTER_ERROR, USERREGISTER, START_LOADING, STOP_LOADING, REMOVE_USERDATA } from '../types'
+import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, FORGOT_PASSWORD, FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL, USERREGISTER_ERROR, USERREGISTER, START_LOADING, STOP_LOADING, REMOVE_USERDATA, GET_USER_DETAILS, GET_USER_DETAILS_ERROR } from '../types'
 
 const initialState = {
     response: null,
@@ -42,6 +42,10 @@ const initialStateForm = {
     loading: true,
     changepassword: false,
     error: false
+}
+const initialStateUserDetails = {
+    response: null,
+
 }
 export function loadingReducer(state = { loading: false }, action: any) {
     switch (action.type) {
@@ -127,6 +131,7 @@ export function authStore(state = initialState, action: any) {
                 response: action.payload,
                 // authToken: false
             }
+       
         default: return state
     }
 
@@ -313,6 +318,24 @@ export function userReducer(state = initialStateForm, action: any) {
                 create: false,
                 response: action.payload,
             };
+        default:
+            return state;
+    }
+}
+export function userDetailReducer(state = initialStateUserDetails, action: any) {
+    switch (action.type) {
+        case GET_USER_DETAILS:
+            return {
+                ...state,
+                response: action.payload,
+                // authToken: false
+            }
+        case GET_USER_DETAILS_ERROR:
+            return {
+                ...state,
+                response: action.payload,
+                // authToken: false
+            }
         default:
             return state;
     }

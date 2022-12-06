@@ -46,7 +46,7 @@ const AddNewSMView = (props: any) => {
                         :
                         <Image
                             style={styles.loginBanner}
-                            source={{ uri: props.addNewSmData?.profile_picture?.uri }}
+                            source={{ uri: props.addNewSmData?.profile_picture?.uri ? props.addNewSmData?.profile_picture?.uri : props.addNewSmData?.profile_picture }}
                             resizeMode="contain"
                         />
                     }
@@ -93,6 +93,7 @@ const AddNewSMView = (props: any) => {
                         placeholderText={"First Name"}
                         handleInputBtnPress={() => { }}
                         headingText={"SM First Name"}
+                        valueshow={props.addNewSmData?.firstname}
                         onChangeText={(val: any) => {
                             props.setAddNewSmData({
                                 ...props.addNewSmData, firstname: val
@@ -105,6 +106,7 @@ const AddNewSMView = (props: any) => {
                         placeholderText={"Last Name"}
                         handleInputBtnPress={() => { }}
                         headingText={"SM Last Name"}
+                        valueshow={props.addNewSmData?.lastname}
                         onChangeText={(val: any) => {
                             props.setAddNewSmData({
                                 ...props.addNewSmData, lastname: val
@@ -117,6 +119,7 @@ const AddNewSMView = (props: any) => {
                         placeholderText={"Adhar No."}
                         handleInputBtnPress={() => { }}
                         headingText={"Adhar No."}
+                        valueshow={props.addNewSmData?.adhar_no}
                         onChangeText={(val: any) => {
                             props.setAddNewSmData({
                                 ...props.addNewSmData, adhar_no: val
@@ -129,6 +132,7 @@ const AddNewSMView = (props: any) => {
                         placeholderText={"Pancard No."}
                         handleInputBtnPress={() => { }}
                         headingText={"Pancard No."}
+                        valueshow={props.addNewSmData?.pancard_no}
                         onChangeText={(val: any) => {
                             props.setAddNewSmData({
                                 ...props.addNewSmData, pancard_no: val
@@ -163,7 +167,7 @@ const AddNewSMView = (props: any) => {
                     </View>
                     <View style={styles.radioView}>
                         <RadioButton
-                            value="second"
+                            value="Female"
                             status={props.addNewSmData?.gender === 2 ? "checked" : "unchecked"}
                             onPress={() => {
                                 props.setAddNewSmData({
@@ -211,6 +215,7 @@ const AddNewSMView = (props: any) => {
                         placeholderText={"Mobile No."}
                         handleInputBtnPress={() => { }}
                         headingText={"Mobile No."}
+                        valueshow={props.addNewSmData?.mobile}
                         onChangeText={(val: any) => {
                             props.setAddNewSmData({
                                 ...props.addNewSmData, mobile: val
@@ -223,6 +228,7 @@ const AddNewSMView = (props: any) => {
                         placeholderText={"WhatsApp No."}
                         handleInputBtnPress={() => { }}
                         headingText={"WhatsApp No."}
+                        valueshow={props.addNewSmData?.whatsapp_no}
                         onChangeText={(val: any) => {
                             props.setAddNewSmData({
                                 ...props.addNewSmData, whatsapp_no: val
@@ -235,6 +241,7 @@ const AddNewSMView = (props: any) => {
                         placeholderText={"Email Address"}
                         handleInputBtnPress={() => { }}
                         headingText={"Email Address"}
+                        valueshow={props.addNewSmData?.email}
                         onChangeText={(val: any) => {
                             props.setAddNewSmData({
                                 ...props.addNewSmData, email: val
@@ -278,6 +285,7 @@ const AddNewSMView = (props: any) => {
                         placeholderText={"Area"}
                         handleInputBtnPress={() => { }}
                         headingText={"Area"}
+                        valueshow={props.addNewSmData?.area}
                         onChangeText={(val: any) => {
                             props.setAddNewSmData({
                                 ...props.addNewSmData, area: val
@@ -287,7 +295,7 @@ const AddNewSMView = (props: any) => {
                 </View>
                 <View style={{ marginVertical: 10, marginBottom: 20 }}>
                     <Button
-                        handleBtnPress={() => props.onPressCreate()}
+                        handleBtnPress={() => props?.type === 'edit' ? props.onPressCreate() : props.onPressCreate('edit') }
                         textTransform={null}
                         buttonText={props?.type === 'edit' ? strings.updateSM : strings.createSM} />
                 </View>
