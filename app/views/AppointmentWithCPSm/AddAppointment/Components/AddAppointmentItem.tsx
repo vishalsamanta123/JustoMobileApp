@@ -74,7 +74,7 @@ const AddAppointmentItem = (props: any) => {
                         paddingLeft={16}
                         maxHeight={300}
                         labelField="label"
-                        valueField={props.addAppointmentForm?.type}
+                        valueField={'value'}
                         value={props.addAppointmentForm?.type}
                         onChange={(item: any) => {
                             props.setAddAppointmentForm({
@@ -110,7 +110,7 @@ const AddAppointmentItem = (props: any) => {
                         maxHeight={300}
                         onFocus={() => props.getVisitorsList()}
                         labelField="first_name"
-                        valueField={props.addAppointmentForm?.lead_name}
+                        valueField={'_id'}
                         value={props.addAppointmentForm?.lead_name}
                         onChange={(item: any) => {
                             props.setAddAppointmentForm({

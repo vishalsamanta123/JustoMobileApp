@@ -37,7 +37,7 @@ const AddNewSMView = (props: any) => {
                     onPress={() => setProfile(true)}
                     style={[styles.imageCircle]}
                 >
-                    {!props.addNewSmData?.profile_picture?.uri ?
+                    {!props.addNewSmData?.profile_picture ?
                         <Image
                             style={styles.DummyloginBanner}
                             source={images.user}
@@ -67,7 +67,7 @@ const AddNewSMView = (props: any) => {
                         paddingLeft={16}
                         maxHeight={300}
                         onFocus={() => props.handlegetRoleList()}
-                        labelField="title"
+                        labelField="role_title"
                         valueField={'_id'}
                         value={props.addNewSmData?.city}
                         onChange={(item: any) => {
@@ -251,8 +251,8 @@ const AddNewSMView = (props: any) => {
                         paddingLeft={16}
                         maxHeight={300}
                         onFocus={() => props.handlegetCityList()}
-                        labelField="title"
-                        valueField={'_id'}
+                        labelField="city_name"
+                        valueField={'city_id'}
                         value={props.addNewSmData?.city}
                         onChange={(item: any) => {
                             props.setAddNewSmData({
