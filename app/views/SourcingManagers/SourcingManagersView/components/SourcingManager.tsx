@@ -41,7 +41,7 @@ const SourcingDetailsView = (props: any) => {
                     data={props?.sourcingManagers}
                     renderItem={({ item }) => <SourcingManagersItem items={item}
                         // setIsVisible={setIsVisible} onPressView={onPressView}
-                        onPressEditSM={() => props.handleAddNewSM('edit')}
+                        onPressEditSM={() => props.handleAddNewSM('edit',item )}
                         onPressAllocate={() => props.onPressAllocateCp(item)}
                         onPressView={() => props.onPressViews(item)}
                         onPressStatus={() => props.setStatus(true)}
