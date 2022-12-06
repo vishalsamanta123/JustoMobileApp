@@ -1,4 +1,4 @@
-import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, updatepasswordReducer, userData, userReducer } from "./AuthReducer";
+import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, updatepasswordReducer, userData, userDetailReducer, userReducer } from "./AuthReducer";
 import { agencyCreateFormReducer, agencyReducer } from "./AgencyReducer";
 import { SourcingManagerReducer } from "./SourcingManagerReducer";
 import { agentReducer } from "./AgentReducer";
@@ -14,6 +14,7 @@ import { BookingReducer, cancelBookingReducer } from "./BookingReducer";
 
 export default {
     loadingReducer: loadingReducer,
+    userDetail: userDetailReducer,
     userData: userData,
     login: authStore,
     userReducer: userReducer,

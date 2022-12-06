@@ -13,6 +13,7 @@ export default {
   GETUSERFILTERDATA: "/userManage/getUserFilterData",
   EDITUSER: "/auth/editUserProfile",
   USERSTATUSUPDATE: "/userManage/userStatusUpdate",
+  GET_USERPROFILE: '/auth/getUserProfile',
 
   // CREATE CHANNEL PARTNER
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
