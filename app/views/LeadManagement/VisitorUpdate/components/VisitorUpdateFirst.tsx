@@ -30,7 +30,8 @@ const VisitorUpdateView = (props: any) => {
             <View style={styles.noMoveVw}>
                 <TopScreensViewer type={props.screenType} />
             </View>
-            <ScrollView contentContainerStyle={styles.wrap}>
+            <ScrollView keyboardShouldPersistTaps={'handled'}
+                contentContainerStyle={styles.wrap}>
                 <View style={styles.inputWrap}>
                     <InputField
                         placeholderText={"Name"}
@@ -211,16 +212,17 @@ const VisitorUpdateView = (props: any) => {
                 </View>
                 <View style={[styles.inputWrap, { marginBottom: normalize(10) }]}>
                     <InputField
+                        inputType={'location'}
                         placeholderText={"Location"}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={(text: any) => {
+                        headingText={"Location"}
+                        onPressSelect={(data: any, detail: any) => {
                             props.setUpdateForm({
                                 ...props.updateForm,
-                                location: text
+                                location: data?.description,
+                                latitude: detail?.geometry?.location?.lat,
+                                logitude: detail?.geometry?.location?.lng,
                             })
                         }}
-                        valueshow={props?.updateForm?.location}
-                        headingText={"Location"}
                     />
                 </View>
             </ScrollView>
