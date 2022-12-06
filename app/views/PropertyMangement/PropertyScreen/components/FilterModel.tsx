@@ -17,18 +17,10 @@ import {
 
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch();
-  const [startdate, setStartDate] = useState(
-    new Date(moment(new Date()).format("YYYY-MM-DD"))
-  );
-  const [enddate, setEndDate] = useState(
-    new Date(moment(new Date()).format("YYYY-MM-DD"))
-  );
-
   const data = [
     { label: "Active", value: "1" },
     { label: "Inactive", value: "2" },
   ];
-  const [statusValue, setStatusValue] = useState(null);
   const renderItem = (item: any) => {
     return (
       <View style={styles.item}>
@@ -52,8 +44,8 @@ const FilterModal = (props: any) => {
       getFilterProperty({
         offset: 0,
         limit: 5,
-        start_date: startdate,
-        end_date: enddate,
+        start_date: props.filterform.start_date,
+        end_date: props.filterform.end_date,
         location: props.filterform.location,
         property_name: props.filterform.property_name,
         property_type: props.filterform.property_type,
@@ -187,7 +179,10 @@ const FilterModal = (props: any) => {
                 placeholder="Select Status"
                 value={props.filterform.property_type}
                 onChange={(item) => {
-                  props.setFilterform({ property_type: item.value });
+                  props.setFilterform({
+                    ...props.filterform,
+                    property_type: item.value,
+                  });
                 }}
                 renderItem={renderItem}
               />

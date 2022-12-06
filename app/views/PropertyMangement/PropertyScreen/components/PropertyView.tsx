@@ -75,53 +75,18 @@ const PropertyView = (props: any) => {
     }
   }, [masterData]);
 
-
-
-
-
-  const DATA: any = [
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'confirmatin Pending',
-      createddate: '11/10/2022'
-    },
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'Subscribe',
-      createddate: '11/10/2022'
-    },
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'Unsubscribe',
-      createddate: '11/10/2022'
-    },
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'confirmatin Pending ',
-      createddate: '11/10/2022'
-    },
-  ];
-
   const onPressView = (items: any) => {
     navigation.navigate('PropertyDetails', items)
   }
   const onRefresh = () => {
+    setFilterform({
+      ...props.filterform,
+      start_date: "",
+      end_date: "",
+      location: "",
+      property_name: "",
+      property_type: "",
+    });
     props.getallproperty()
   }
   const confirmStatus = (items : any ) => {
