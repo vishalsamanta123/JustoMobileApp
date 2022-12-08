@@ -75,10 +75,10 @@ const CompanyDetails = (props: any) => {
           <InputField
             placeholderText={"RERA Registration"}
             handleInputBtnPress={() => { }}
-            valueshow={props?.agencyData?.agencies?.registration_no}
+            valueshow={props?.agencyData?.rera_registration}
             onChangeText={(val: any) => {
               props.setAgencyData({
-                ...props?.agencyData, registration_no: val
+                ...props?.agencyData, rera_registration: val
               })
             }}
           />
@@ -103,7 +103,7 @@ const CompanyDetails = (props: any) => {
                 setVisible(true)
               }}
             >
-              <Text style={{ color: props?.agencyData?.company_pancard ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
+              <Text style={{ color: props?.agencyData?.pancard ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -204,7 +204,7 @@ const CompanyDetails = (props: any) => {
         imageData={(data: any) => {
           if (panvisible) {
             props.setAgencyData({
-              ...props?.agencyData, company_pancard: data
+              ...props?.agencyData, pancard: data
             })
             setpanVisible(false)
           } else {

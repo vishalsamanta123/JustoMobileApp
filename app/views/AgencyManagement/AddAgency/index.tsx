@@ -15,14 +15,14 @@ import AgentBasicInfoView from "./components/AgentBasicInfoView";
 import CompanyDetails from "./components/CompanyDetails";
 
 const AgentBasicInfo = ({ navigation, route }: any) => {
-  const { type, data } = route.params;
+  const { type, data } = route.params || {};
 
   const dispatch: any = useDispatch();
   const [formType, setFormType] = useState(0);
   const { userData = {} } = useSelector((state: any) => state.userData);
 
   const [agencyData, setAgencyData] = useState({
-    profile_picture: type === "edit" ? "" : { uri: "" },
+    profile_picture: type === "edit" ? "" : "",
     owner_name: "",
     adhar_no: "",
     pancard_no: "",
@@ -33,17 +33,17 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     email: "",
     working_location: [],
     rera_certificate_no: "",
-    rera_certificate: { uri: "" },
-    propidership_declaration_letter: { uri: "" },
+    rera_certificate: "",
+    propidership_declaration_letter: "",
     cancel_cheaque: "",
     bank_name: "",
     branch_name: "",
     account_no: "",
     ifsc_code: "",
     gst: "",
-    company_pancard: "",
-    declaration_letter_of_company: { uri: "" },
-    registration_no: "",
+    pancard: "",
+    declaration_letter_of_company: "",
+    rera_registration: "",
     company_bank_name: "",
     company_branch_name: "",
     company_account_no: "",
@@ -62,15 +62,16 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
   useEffect(() => {
     if (type === "edit") {
       if (response?.status === 200) {
-        console.log("response?.data[0]: ", response?.data[0]);
         setAgencyData({
           ...response?.data[0],
           bank_name: response?.data[0]?.cp_bank_detail?.bank_name,
           branch_name: response?.data[0]?.cp_bank_detail?.branch_name,
           account_no: response?.data[0]?.cp_bank_detail?.account_no,
           ifsc_code: response?.data[0]?.cp_bank_detail?.ifsc_code,
+          cancel_cheaque: response?.data[0]?.cp_bank_detail?.cancel_cheaque,
           gst: response?.data[0]?.agencies?.gst,
           agency_name: response?.data[0]?.agencies?.agency_name,
+          rera_registration: response?.data[0]?.agencies?.rera_registration,
           company_bank_name:
             response?.data[0]?.agencies?.agency_bank_detail?.bank_name,
           company_branch_name:
@@ -80,11 +81,13 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           company_ifsc_code:
             response?.data[0]?.agencies?.agency_bank_detail?.ifsc_code,
           rera_certificate: response?.data[0]?.rera_certificate,
+          pancard: response?.data[0]?.agencies?.pancard,
+          declaration_letter_of_company: response?.data[0]?.agencies?.declaration_letter_of_company,
         });
       }
       // setAgencyData({ ...registrationData.response, sourcing_manager: userData?.data?._id })
     }
-  }, [navigation, response]);
+  }, [response]);
 
   useLayoutEffect(() => {
     const { data = {} } = route?.params;
@@ -217,8 +220,8 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         isError = false;
         errorMessage = "GST No. is require. Please enter GST No.";
       } else if (
-        agencyData.company_pancard == null ||
-        agencyData.company_pancard == undefined
+        agencyData.pancard == null ||
+        agencyData.pancard == undefined
       ) {
         isError = false;
         errorMessage =
@@ -231,8 +234,8 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         errorMessage =
           "Declaration letter of company Image is require. Please Choose Declaration letter of company";
       } else if (
-        agencyData.registration_no == "" ||
-        agencyData.registration_no == undefined
+        agencyData.rera_registration == "" ||
+        agencyData.rera_registration == undefined
       ) {
         isError = false;
         errorMessage =
@@ -298,7 +301,8 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           formData.append("pin_code", "4545456");
         }
         formData.append("email", agencyData?.email);
-        formData.append("registration_no", agencyData?.registration_no);
+        // formData.append("registration_no", agencyData?.registration_no);
+        formData.append("rera_registration", agencyData?.rera_registration);
         formData.append("owner_name", agencyData?.owner_name);
         if (type != "edit") {
           formData.append("agency_name", agencyData?.agency_name);
@@ -328,15 +332,31 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           JSON.stringify(agencyData?.working_location)
         );
         formData.append("rera_certificate_no", agencyData?.rera_certificate_no);
-        agencyData?.profile_picture != "" &&
+        typeof agencyData?.profile_picture === "object" &&
           formData.append("profile_picture", agencyData?.profile_picture);
-        agencyData?.rera_certificate?.uri != "" &&
+        typeof agencyData?.rera_certificate === "object" &&
           formData.append("rera_certificate", agencyData?.rera_certificate);
-        agencyData?.propidership_declaration_letter?.uri &&
+        typeof agencyData?.propidership_declaration_letter === "object" &&
           formData.append(
             "propidership_declaration_letter",
             agencyData?.propidership_declaration_letter
           );
+        typeof agencyData?.cancel_cheaque === "object" &&
+          formData.append(
+            "cancel_cheaque",
+            agencyData?.cancel_cheaque
+          );
+        typeof agencyData?.pancard === "object" &&
+          formData.append(
+            "pancard",
+            agencyData?.pancard
+          );
+        typeof agencyData?.declaration_letter_of_company === "object" &&
+          formData.append(
+            "declaration_letter_of_company",
+            agencyData?.declaration_letter_of_company
+          );
+          
         if (type === "edit") {
           dispatch(editAgent(formData));
         } else if (type === "add") {

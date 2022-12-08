@@ -21,7 +21,7 @@ const AgencyListing = ({navigation}: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getAgentList(offSET, {})
+      getAgencyList(offSET, {})
       return () => { };
     }, [navigation])
   );
@@ -36,7 +36,7 @@ const AgencyListing = ({navigation}: any) => {
     }
   }, [response])
 
-  const getAgentList = (offset: any, filterData: any) => {
+  const getAgencyList = (offset: any, filterData: any) => {
     setOffset(offset)
     dispatch(getAllAgentList({
       offset: offset,
@@ -106,7 +106,7 @@ const AgencyListing = ({navigation}: any) => {
       Onreachedend={Onreachedend}
       offSET={offSET}
       moreData={moreData}
-      getAgentList={getAgentList}
+      getAgencyList={getAgencyList}
       setOffset={setOffset}
       setAgentList={setAgentList} />;
 };
