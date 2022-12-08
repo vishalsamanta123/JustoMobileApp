@@ -46,7 +46,17 @@ const AgencyView = (props: any) => {
       search_by_location: '',
       status: ''
     })
-    props.getAgentList(0, {})
+    props.getAgencyList(0, {})
+  }
+  const onReset = () => {
+    props.setFilterData({
+      startdate: '',
+      enddate: '',
+      search_by_name: '',
+      search_by_location: '',
+      status: ''
+    })
+    props.getAgencyList(0, {})
   }
 
   return (
@@ -86,7 +96,7 @@ const AgencyView = (props: any) => {
         <FlatList
             showsVerticalScrollIndicator={false}
             data={Array.isArray(props?.agentList) ? props?.agentList : []}
-            ListEmptyComponent={<EmptyListScreen message={strings.agent} />}
+            ListEmptyComponent={<EmptyListScreen message={strings.agency} />}
             renderItem={({ item }) =>
               <AgencyListItem items={item} setIsVisible={setIsVisible}
                 onPressView={props.onPressView}
@@ -95,7 +105,7 @@ const AgencyView = (props: any) => {
             }
             onEndReached={() => {
               if (props?.agentList?.length < props?.moreData) {
-                props.getAgentList(props?.agentList?.length > 2 ?
+                props.getAgencyList(props?.agentList?.length > 2 ?
                   props.offSET + 1 : 0, props.filterData)
               }
             }}
@@ -111,7 +121,7 @@ const AgencyView = (props: any) => {
         textshow={strings.deactivconfirmation + ' ' + strings.agencyHeader + '?'}
         confirmtype={'CONFIRMATION'}
       />
-      <FilterModal Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
+      <FilterModal getAgencyList={props.getAgencyList} onReset={onReset} setFilterData={props.setFilterData} filterData={props.filterData}  Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
     </View>
   );
 };
