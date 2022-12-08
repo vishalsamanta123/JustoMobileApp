@@ -70,25 +70,6 @@ const LoginScreen = ({ navigation }: any) => {
     password: '',
     login_type: 1
   })
-  const loginSelector = useSelector((state: any) => state.login);
-  useEffect(() => {
-    checklogin()
-  }, [loginSelector])
-
-  const checklogin = async () => {
-    if (loginSelector.response && loginSelector.authToken) {
-      if (loginSelector.response.status === 200) {
-        await setDefaultHeader("token", loginSelector.response.token);
-        await AsyncStorage.setItem('loginData', JSON.stringify(loginSelector.response))
-        navigation.navigate('DashboardScreenView');
-      } else {
-        ErrorMessage({
-          msg: loginSelector?.response?.message,
-          backgroundColor: RED_COLOR
-        })
-      }
-    }
-  }
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''

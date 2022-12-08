@@ -9,6 +9,8 @@ import strings from "../../../components/utilities/Localization";
 import { GREEN_COLOR, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, RED_COLOR, WHITE_COLOR } from "../../../components/utilities/constant";
 
 const DashboardView = (props: any) => {
+  const targetData = props?.dashboardData?.target || {}
+  const achieveTargetData = props?.dashboardData?.achievetarget || {}
   const [isEnabled, setIsEnabled] = useState(false);
   const insets = useSafeAreaInsets();
   const DATA: any = [
@@ -110,11 +112,16 @@ const DashboardView = (props: any) => {
               </View>
               <View style={styles.welcomeView}>
                 <Text style={styles.welcomeToText}>Welcome to</Text>
-                <Text style={styles.welcomeNameText}>Yogesh Sarode</Text>
+                <Text style={styles.welcomeNameText}>{props?.dashboardData?.user_name}</Text>
               </View>
             </View>
             <View style={styles.qrCodeView}>
-              <Image source={images.qrCode} style={styles.qrCodeImage} />
+              {props?.dashboardData?.qrcode != "" ?
+                <Image source={{ uri: props?.dashboardData?.qrcode }}
+                  style={styles.qrCodeImage} />
+                :
+                <Image source={images.qrCode} style={styles.qrCodeImage} />
+              }
               <TouchableOpacity style={styles.linkImageView}>
                 <Image source={images.link} style={styles.linkImage} />
               </TouchableOpacity>

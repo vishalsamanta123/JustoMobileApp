@@ -35,7 +35,14 @@ import rootReducers from './Reducers';
 
 // export default store;
 
-
+function saveToLocalStorage(state: any) {
+  try {
+    const serialisedState = JSON.stringify(state);
+    AsyncStorage.setItem("persistantState", serialisedState);
+  } catch (e) {
+    console.warn(e);
+  }
+}
 const config = {
   key: 'root',
   storage: AsyncStorage,
@@ -49,6 +56,7 @@ const reducers = persistCombineReducers(config, rootReducers);
 const enhancers = [applyMiddleware(...middleware)];
 const persistConfig: any = { enhancers };
 const store = createStore(reducers, undefined, compose(...enhancers));
+store.subscribe(() => saveToLocalStorage(store.getState()));
 const persistor = persistStore(store, persistConfig, () => {
 });
 const configureStore = () => {
