@@ -11,6 +11,7 @@ import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReduc
 import { appointmentCLReducer } from "./AppointmentCLReducer";
 import { ClosingManagerReducer } from "./ClosingManagerReducer";
 import { BookingReducer, cancelBookingReducer } from "./BookingReducer";
+import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -33,6 +34,10 @@ export default {
     appointment: appointmentReducer,
     followUp: followUpReducer,
     masterData: masterDataReducer,
+
+    //Dashboard
+    dashboardData: dashboardReducer,
+    statusUpdateData: statusUpdateReducer,
 
     // Appointment CL
     appointmentCL: appointmentCLReducer,

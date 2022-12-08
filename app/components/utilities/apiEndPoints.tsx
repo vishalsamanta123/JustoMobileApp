@@ -15,6 +15,10 @@ export default {
   USERSTATUSUPDATE: "/userManage/userStatusUpdate",
   GET_USERPROFILE: '/auth/getUserProfile',
 
+  //Dashboard 
+  DASHBOARD_SOURCING: '/dashboard/dashboardDetailSourcing',
+  DASHBOARD_CLOSING: '/dashboard/dashboardDetailClosing',
+  UPDATE_USER_STATUS: '/auth/userOnlineStatusUpdate',
   // CREATE CHANNEL PARTNER
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
   EDIT_CHANNELPARTNER: '/channelPartner/updateChannelPartner',
