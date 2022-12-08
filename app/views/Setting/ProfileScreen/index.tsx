@@ -29,12 +29,12 @@ const ProfileScreen = ({ navigation, route }: any) => {
       // getAgentList(offSET, [])
       getDetail();
       return () => { };
-    }, [navigation])
+    }, [navigation, detail])
   );
 
-  useEffect(() => {
-    getDetail();
-  }, [isFocused]);
+  // useEffect(() => {
+  //   getDetail();
+  // }, [isFocused]);
 
   const getDetail = async () => {
     const userData: any = await AsyncStorage.getItem("loginData");

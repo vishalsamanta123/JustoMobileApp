@@ -61,9 +61,11 @@ export const getAllPropertyCompetitor = (params: any) => async (dispatch: any) =
     }
 };
 export const getFilterProperty = (params: any) => async (dispatch: any) => {
+console.log('params: IN FILTER PROPERTY', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYFILTER, params);
+        console.log('res: FOR FILTERED PROPERTY', res);
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_LIST,

@@ -7,7 +7,27 @@ import strings from "../../../../components/utilities/Localization";
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import DropdownInput from "../../../../components/DropDown";
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
+import { DATE_FORMAT } from "app/components/utilities/constant";
+import { Dropdown } from "react-native-element-dropdown";
 const FilterModal = (props: any) => {
+  const data = [
+    { label: "Active", value: true },
+    { label: "InActive", value: false },
+
+  ];
+  const renderItem = (item: any) => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.textItem}>{item.label}</Text>
+      </View>
+    );
+  };
+  const handleFilter = () => {
+    props.setIsVisible(false)
+    props.getAgencyList(0, props.filterData)
+  }
   return (
     <View>
       <Modal isVisible={props.Visible}>
@@ -23,38 +43,109 @@ const FilterModal = (props: any) => {
           <View style={styles.borderView} />
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
-              <InputField
+              <InputCalender
+                mode={"date"}
+                leftIcon={images.event}
                 placeholderText={"Start Date"}
-                handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
-                rightImgSrc={images.event}
+                editable={false}
+                dateData={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    startdate: moment(data).format(DATE_FORMAT),
+                  });
+                }}
+                setDateshow={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    startdate: moment(data).format(DATE_FORMAT),
+                  });
+                }}
+                value={props?.filterData?.startdate}
               />
             </View>
             <View style={styles.inputWrap}>
-              <InputField
+              <InputCalender
+                mode={"date"}
+                leftIcon={images.event}
                 placeholderText={"End Date"}
-                handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
-                rightImgSrc={images.event}
+                editable={false}
+                dateData={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    enddate: moment(data).format(DATE_FORMAT),
+                  });
+                }}
+                setDateshow={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    enddate: moment(data).format(DATE_FORMAT),
+                  });
+                }}
+                value={props?.filterData?.enddate}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Name"}
-                handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
+                onChangeText={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    search_by_name: data,
+                  });
+                }}
+                valueshow={props?.filterData?.search_by_name}
+                handleInputBtnPress={() => {}}
               />
             </View>
+            <InputField
+                valueshow={props?.filterData?.search_by_location}
+                inputType={'location'}
+                onPressSelect={(data: any, detail: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    search_by_location: data?.description,
+                  })
+                }}
+                onChangeText={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    search_by_location: data?.description,
+                  })
+                }}
+              />
             <View style={styles.inputWrap}>
-              <DropdownInput
-                placeholder={'Search by Status'}
-                value={props.value}
-                setValue={props.setValue}
+              <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                iconStyle={styles.iconStyle}
+                data={data}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="Select Status"
+                value={props?.filterData?.status}
+                onChange={(item) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    status: item.value,
+                  });
+                }}
+                renderItem={renderItem}
               />
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply} />
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <Button
+                width={135}
+                buttonText={strings.reset}
+                handleBtnPress={() => props.onReset()} />
+              <Button
+                width={135}
+                handleBtnPress={() => handleFilter()}
+                buttonText={strings.apply} />
+            </View>
           </View>
         </View>
       </Modal>
