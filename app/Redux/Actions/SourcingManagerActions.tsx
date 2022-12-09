@@ -7,6 +7,7 @@ export const getSourcingManagerList = () => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_SOURCING_MANAGER_LIST, {});
+        console.log('res GET_SOURCING_MANAGER_LIST: ', res);
         if (res?.data?.status === 200) {
             dispatch({
                 type: GET_SOURCINGMANAGER_LIST,

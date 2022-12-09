@@ -66,7 +66,7 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
     }
 
     const onPressCreate = (BtnType: any) => {
-    console.log('BtnType: ', BtnType);
+    // console.log('BtnType: ', BtnType);
         if (type === 'edit') {
             dispatch(updateUserSettingData(addNewSmData))
         } else {

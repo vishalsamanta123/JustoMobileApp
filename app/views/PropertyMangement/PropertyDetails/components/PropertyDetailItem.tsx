@@ -15,9 +15,10 @@ const PropertyDetailItem = (props: any) => {
     return videos;
   });
   const documentarray = props.propertydocument?.filter((el: any) => {
-    const count = el.document_type == "document";
-    return count;
-  });
+    const count = el.document_type == 'document'
+    return count
+  })
+
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>

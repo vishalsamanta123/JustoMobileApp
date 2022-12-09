@@ -1,7 +1,7 @@
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { BLACK_COLOR } from '../utilities/constant';
+import { BLACK_COLOR, GRAY_LIGHT_COLOR } from '../utilities/constant';
 import { normalizeHeight } from '../scaleFontSize';
 
 const CommonInput = (props: any) => {
@@ -22,7 +22,8 @@ const CommonInput = (props: any) => {
             width: props.inputWidth,
             height: normalizeHeight(props.inputheight),
             textAlignVertical: 'top',
-            top: props.topping
+            top: props.topping,
+            color: GRAY_LIGHT_COLOR
           }]}
           onChangeText={val => props.onChangeText(val)}
           onSubmitEditing={onSubmit}
