@@ -6,15 +6,14 @@ import { normalizeSpacing } from "../../../../components/scaleFontSize";
 import images from "../../../../assets/images";
 
 const PropertyDetailItem = (props: any) => {
-
   const imagearray = props.propertydocument?.filter((el: any) => {
-    const images = el.document_type == 'image'
-    return images
-  })
+    const images = el.document_type == "image";
+    return images;
+  });
   const videoarray = props.propertydocument?.filter((el: any) => {
-    const videos = el.document_type == 'video'
-    return videos
-  })
+    const videos = el.document_type == "video";
+    return videos;
+  });
   const documentarray = props.propertydocument?.filter((el: any) => {
     const count = el.document_type == 'document'
     return count
@@ -27,16 +26,22 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Status </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{(props.items.status) ? 'Active' : 'Inactive'}</Text>
+          <Text style={styles.nameTxt}>
+            {props.items.status ? "Active" : "Inactive"}
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Project Name </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.property_title}</Text>
         </View>
@@ -45,7 +50,9 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>No. of visitor </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.total_visitor}</Text>
         </View>
@@ -54,7 +61,9 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>No. of site visit </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.site_visit}</Text>
         </View>
@@ -63,7 +72,9 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Close visit </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.close_visit}</Text>
         </View>
@@ -72,7 +83,9 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Location </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.location}</Text>
         </View>
@@ -81,7 +94,9 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Property Type </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.property_type_title}</Text>
         </View>
@@ -90,7 +105,9 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Start Date </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.start_date}</Text>
         </View>
@@ -99,7 +116,9 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>End Date </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.end_date}</Text>
         </View>
@@ -117,9 +136,10 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Configuration </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
-
           {props.configurations.map((configuration: any) => (
             <Text
               key={configuration._id}
@@ -128,12 +148,13 @@ const PropertyDetailItem = (props: any) => {
                 {
                   borderBottomColor: GRAY_COLOR,
                   borderBottomWidth: 1,
-                  width: '100%',
+                  width: "100%",
                 },
               ]}
             >
-
-              {configuration.configuration_type}/ Min - {configuration.min_rate}{configuration.min_rate_type}/ Max - {configuration.max_rate}{configuration.max_rate_type}
+              {configuration.configuration_type}/ Min - {configuration.min_rate}
+              {configuration.min_rate_type}/ Max - {configuration.max_rate}
+              {configuration.max_rate_type}
             </Text>
           ))}
           {/*   <Text
@@ -167,9 +188,10 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Amenity </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
-
           {props.amenity.map((amenity: any) => (
             <Text
               key={amenity._id}
@@ -178,11 +200,10 @@ const PropertyDetailItem = (props: any) => {
                 {
                   borderBottomColor: GRAY_COLOR,
                   borderBottomWidth: 1,
-                  width: '100%',
+                  width: "100%",
                 },
               ]}
             >
-
               {amenity.title}
             </Text>
           ))}
@@ -194,7 +215,7 @@ const PropertyDetailItem = (props: any) => {
               {
                 borderBottomColor: GRAY_COLOR,
                 borderBottomWidth: 1,
-                width: '100%',
+                width: "100%",
               },
             ]}
           >
@@ -218,7 +239,9 @@ const PropertyDetailItem = (props: any) => {
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Content </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
           {/* <Text style={styles.nameTxt}>Images</Text>
           <View style={styles.ImageSliderContainer}>
@@ -267,63 +290,65 @@ const PropertyDetailItem = (props: any) => {
             </>
           ) : null}
 
-
-
-
-          {videoarray.length > 0 ?
+          {videoarray.length > 0 ? (
             <>
               <Text style={styles.nameTxt}>Videos</Text>
               <View style={styles.ImageSliderContainer}>
-                {videoarray.map((videos: any, index: any) => (
-                  <Image
-                    key={index}
-                    source={images.buildings}
-                    style={styles.imageSlider}
-
-                  />
-                ))
-                }
-                <TouchableOpacity style={styles.shadowView} onPress={() => props.onpresContent('VideoContent', videoarray)}>
-                  <Image
-                    source={images.forwardArrow}
-                    style={styles.arrow}
-                  />
+                {videoarray.map((videos: any, index: any) =>
+                  index <= 2 ? (
+                    <Image
+                      key={index}
+                      source={images.buildings}
+                      style={styles.imageSlider}
+                    />
+                  ) : null
+                )}
+                <TouchableOpacity
+                  style={styles.shadowView}
+                  onPress={() =>
+                    props.onpresContent("VideoContent", videoarray)
+                  }
+                >
+                  <Image source={images.forwardArrow} style={styles.arrow} />
                 </TouchableOpacity>
               </View>
             </>
-            : null}
+          ) : null}
 
-          {documentarray.length > 0 ? <>
-            <Text style={styles.nameTxt}>Catalogue</Text>
-            <View style={styles.ImageSliderContainer}>
-              {documentarray.map((documents: any, index: any) => (
-                index <= 2 ?
-                  <Image
-                    key={index}
-                    source={images.pdfIcone}
-                    style={styles.imageSlider}
+          {documentarray.length > 0 ? (
+            <>
+              <Text style={styles.nameTxt}>Catalogue</Text>
+              <View style={styles.ImageSliderContainer}>
+                {documentarray.map((documents: any, index: any) =>
+                  index <= 2 ? (
+                    <Image
+                      key={index}
+                      source={images.pdfIcone}
+                      style={styles.imageSlider}
+                    />
+                  ) : null
+                )}
 
-                  />
-                  : null
-              ))
-              }
-
-              <TouchableOpacity style={styles.shadowView} onPress={() => props.onpresContent('CatalogueContent', documentarray)}>
-                <Image
-                  source={images.forwardArrow}
-                  style={styles.arrow}
-                />
-              </TouchableOpacity>
-            </View>
-          </>
-            : null}
+                <TouchableOpacity
+                  style={styles.shadowView}
+                  onPress={() =>
+                    props.onpresContent("CatalogueContent", documentarray)
+                  }
+                >
+                  <Image source={images.forwardArrow} style={styles.arrow} />
+                </TouchableOpacity>
+              </View>
+            </>
+          ) : null}
         </View>
       </View>
       <View style={[styles.Txtview, { borderBottomWidth: 0 }]}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Pickup Allowed </Text>
         </View>
-        <View><Text>:</Text></View>
+        <View>
+          <Text>:</Text>
+        </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.pickup}</Text>
         </View>

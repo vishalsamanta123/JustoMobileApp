@@ -68,7 +68,6 @@ export const forgotemailverify = (params: any) => async (dispatch: any) => {
 }
 
 export const otpVerify = (params: any) => async (dispatch: any) => {
-    console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.OTPVERIFY, params);
         if (res.data.status === 200) {
@@ -144,12 +143,10 @@ export const updatepassword = (params: any) => async (dispatch: any) => {
 }
 
 export const changePassword = (params: any) => async (dispatch: any) => {
-    console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.CHANGEPASSWORD, params);
         console.log('res ====: ', res);
         if (res.data.status === 200) {
-            console.log('res.data.status: ', res.data.status);
             /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
             dispatch({
                 type: CHANGEPASSWORD,
@@ -172,6 +169,7 @@ export const changePassword = (params: any) => async (dispatch: any) => {
 }
 
 export const userLogout = () => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         await AsyncStorage.removeItem("persistantState");
         await AsyncStorage.removeItem("AuthToken");
@@ -186,6 +184,9 @@ export const userLogout = () => async (dispatch: any) => {
             type: LOGIN_ERROR,
             payload: console.log(e),
         })
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
     }
 }
 
@@ -211,7 +212,7 @@ export const jwtTokenGenrate = () => async (dispatch: any) => {
     }
 }
 export const userRegister = (item: any) => async (dispatch: any) => {
-console.log('item userRegisteruserRegister: ', item);
+    console.log('item userRegisteruserRegister: ', item);
     try {
         const res = await apiCall("post", apiEndPoints.REGISTERANDADDUSER, item);
         console.log('res REGISTERANDADDUSER: ', res);

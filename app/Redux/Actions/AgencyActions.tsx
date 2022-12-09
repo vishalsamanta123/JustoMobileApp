@@ -136,7 +136,7 @@ export const createAgency = (item: any) => async (dispatch: any) => {
   }
 };
 export const editAgent = (params: any) => async (dispatch: any) => {
-  console.log("params: ", params);
+  console.log("params: IN EDIT", params);
   dispatch({ type: START_LOADING });
   try {
     const header = {

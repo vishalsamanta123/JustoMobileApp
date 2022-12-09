@@ -229,15 +229,13 @@ const AuthComponent = () => {
 
 const AuthLoadingComponent = () => {
   const { response, authToken = false } = useSelector((state: any) => state.login);
-
   useEffect(() => {
     checklogin()
-  }, [response, authToken])
+  }, [response])
 
   const checklogin = async () => {
     if (response && authToken) {
-      if (response?.status === 200) {
-        await AsyncStorage.setItem("token", response.token);
+      if (response.status === 200) {
         await setDefaultHeader("token", response.token);
         await AsyncStorage.setItem('loginData', JSON.stringify(response))
       } else {
@@ -265,7 +263,8 @@ const AuthLoadingComponent = () => {
     }
   }
   useEffect(() => {
-    if (response == null || response?.status === 201 || response?.status === 401 || response?.status === 400) {
+    if (response === null || response?.status == 201 ||
+      response?.status == 401 || response?.status == 400) {
       tokenGenrate()
     } else {
       setDefaultHeader("token", response?.token);
