@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { BLACK_COLOR, PRIMARY_THEME_COLOR, PURPLE_COLOR, RED_COLOR, WHITE_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant';
+import { BLACK_COLOR, DATE_FORMAT, PRIMARY_THEME_COLOR, PURPLE_COLOR, RED_COLOR, WHITE_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import Button from '../../../../components/Button';
@@ -72,7 +72,7 @@ const ClosingManagersItem = (props: any) => {
                         color: BLACK_COLOR
                     }]}>{props.items.last_login != "" ||
                         props.items.last_login != undefined ?
-                        moment(props.items.last_login).format('YYYY-MM-DD') : ''}</Text>
+                        moment(props.items.last_login).format(DATE_FORMAT) : ''}</Text>
                 </View>
             </View>
             {/* <View style={styles.buttonContainer}>

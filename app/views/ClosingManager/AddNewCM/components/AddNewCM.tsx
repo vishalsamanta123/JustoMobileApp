@@ -5,7 +5,7 @@ import Header from '../../../../components/Header';
 import InputField from '../../../../components/InputField';
 import styles from './styles';
 import { RadioButton } from "react-native-paper";
-import { BLACK_COLOR, GRAY_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant';
+import { BLACK_COLOR, DATE_FORMAT, GRAY_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant';
 import Button from '../../../../components/Button';
 import strings from '../../../../components/utilities/Localization';
 import PicturePickerModal from '../../../../components/Modals/PicturePicker';
@@ -195,17 +195,17 @@ const AddNewCMView = (props: any) => {
                         dateData={(data: any) => {
                             props.setAddNewCMData({
                                 ...props.addNewCMData,
-                                dateofbirth: moment(data).format('YYYY-MM-DD')
+                                dateofbirth: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         setDateshow={(data: any) => {
                             props.setAddNewCMData({
                                 ...props.addNewCMData,
-                                dateofbirth: moment(data).format('YYYY-MM-DD')
+                                dateofbirth: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         value={props?.addNewCMData?.dateofbirth ?
-                            moment(props?.addNewCMData?.dateofbirth).format('DD-MM-YYYY')
+                            moment(props?.addNewCMData?.dateofbirth).format(DATE_FORMAT)
                             : ''}
                     />
                 </View>
@@ -288,6 +288,7 @@ const AddNewCMView = (props: any) => {
                                 ...props.addNewCMData, area: val
                             })
                         }}
+                        keyboardtype={'number-pad'}
                     />
                 </View>
                 <View style={{ marginVertical: 10, marginBottom: 20 }}>

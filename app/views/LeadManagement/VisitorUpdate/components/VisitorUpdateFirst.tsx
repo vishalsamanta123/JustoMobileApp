@@ -145,6 +145,7 @@ const VisitorUpdateView = (props: any) => {
                         placeholderText={"Date of Birth"}
                         headingText={"Date of Birth"}
                         editable={false}
+                        maximumDate={new Date()}
                         dateData={(data: any) => {
                             props.setUpdateForm({
                                 ...props.updateForm,
@@ -215,6 +216,13 @@ const VisitorUpdateView = (props: any) => {
                         inputType={'location'}
                         placeholderText={"Location"}
                         headingText={"Location"}
+                        valueshow={props?.updateForm?.location}
+                        onChangeText={(data: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                location: data,
+                            })
+                        }}
                         onPressSelect={(data: any, detail: any) => {
                             props.setUpdateForm({
                                 ...props.updateForm,

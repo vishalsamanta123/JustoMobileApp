@@ -395,6 +395,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
               setAgencyData={setAgencyData}
               onPressNext={onPressNext}
               setFormType={setFormType}
+              type={type}
             />
           ) : (
             <CompanyDetails
@@ -402,6 +403,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
               setAgencyData={setAgencyData}
               onPressNext={onPressNext}
               setFormType={setFormType}
+              type={type}
             />
           )}
         </>
