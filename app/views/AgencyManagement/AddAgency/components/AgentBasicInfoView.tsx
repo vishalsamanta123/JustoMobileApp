@@ -70,11 +70,13 @@ const AgentBasicInfoView = (props: any) => {
             <View style={styles.imageCircle}>
               <Image
                 style={styles.loginBanner}
-                source={{
-                  uri: props.agencyData?.profile_picture?.uri
-                    ? props.agencyData?.profile_picture?.uri
-                    : "",
-                }}
+                source={
+                  props.agencyData?.profile_picture?.uri ?
+                    {
+                      uri: props.agencyData?.profile_picture?.uri
+                    }
+                    : images.user
+                }
                 resizeMode="contain"
               />
             </View>
@@ -218,6 +220,7 @@ const AgentBasicInfoView = (props: any) => {
             headingText={"Mobile No."}
             valueshow={props.agencyData?.primary_mobile?.toString()}
             keyboardtype={'number-pad'}
+            maxLength={10}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData,
@@ -233,6 +236,7 @@ const AgentBasicInfoView = (props: any) => {
             headingText={"WhatsApp No."}
             valueshow={props.agencyData?.whatsapp_number?.toString()}
             keyboardtype={'number-pad'}
+            maxLength={10}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData,

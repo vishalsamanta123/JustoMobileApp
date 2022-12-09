@@ -79,7 +79,7 @@ const AddNewSMView = (props: any) => {
             onFocus={() => props.handlegetRoleList()}
             labelField="role_title"
             valueField={"_id"}
-            value={props.addNewSmData?.city}
+            value={props.addNewSmData?.role_id}
             onChange={(item: any) => {
               props.setAddNewSmData({
                 ...props.addNewSmData,
@@ -287,14 +287,14 @@ const AddNewSMView = (props: any) => {
           <DropdownInput
             headingText={strings.city}
             placeholder={strings.city}
-            data={props.cityData}
+            data={Array.isArray(props.cityData) ? props.cityData : []}
             inputWidth={"100%"}
             paddingLeft={16}
             maxHeight={300}
             onFocus={() => props.handlegetCityList()}
             labelField="city_name"
             valueField={"city_id"}
-            value={props.addNewSmData?.city}
+            value={props.addNewSmData?.city_id}
             onChange={(item: any) => {
               props.setAddNewSmData({
                 ...props.addNewSmData,

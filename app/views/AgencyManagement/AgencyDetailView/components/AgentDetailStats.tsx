@@ -5,6 +5,7 @@ import { GRAY_COLOR } from "../../../../components/utilities/constant";
 import { normalizeSpacing } from "../../../../components/scaleFontSize";
 
 const PropertyDetailItem = (props: any) => {
+  const item = props?.items
   return (
     <View>
       <View style={styles.Txtview}>
@@ -13,7 +14,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.closingper}</Text>
+          <Text style={styles.nameTxt}>{item?.closingper}</Text>
         </View>
       </View>
      
@@ -23,7 +24,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.visitor}</Text>
+          <Text style={styles.nameTxt}>{item?.visitor}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -32,7 +33,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.siteVisit}</Text>
+          <Text style={styles.nameTxt}>{item?.siteVisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -41,7 +42,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.closeVisit}</Text>
+          <Text style={styles.nameTxt}>{item?.closeVisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -50,7 +51,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lastlogin}</Text>
+          <Text style={styles.nameTxt}>{item?.lastlogin}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -59,7 +60,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lastvisit}</Text>
+          <Text style={styles.nameTxt}>{item?.lastvisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -68,7 +69,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lastsitevisit}</Text>
+          <Text style={styles.nameTxt}>{item?.lastsitevisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -77,7 +78,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lastclosevisit}</Text>
+          <Text style={styles.nameTxt}>{item?.lastclosevisit}</Text>
         </View>
       </View>
       
