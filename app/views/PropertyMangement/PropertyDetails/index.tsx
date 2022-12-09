@@ -28,7 +28,11 @@ const PropertyDetails = ({ navigation, route }: any) => {
   }
   return (
     <>
-      <PropertyDetailView data={data} handleAllocatePress={handleAllocatePress} handleBackPress={handleBackPress} onPressCreatevisit={onPressCreatevisit} setIsloading={setIsloading} />
+      <PropertyDetailView data={data}
+        handleAllocatePress={handleAllocatePress}
+        handleBackPress={handleBackPress}
+        onPressCreatevisit={onPressCreatevisit}
+        setIsloading={setIsloading} />
     </>
   )
 }

@@ -13,6 +13,7 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import {
   BLACK_COLOR,
+  DATE_FORMAT,
   GRAY_COLOR,
   PRIMARY_THEME_COLOR,
 } from "../../../../components/utilities/constant";
@@ -89,7 +90,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Name"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Agent Name"}
             valueshow={props.agencyData?.owner_name}
             onChangeText={(val: any) => {
@@ -103,7 +104,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Adhar No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Adhar No."}
             valueshow={props.agencyData?.adhar_no}
             keyboardtype={'number-pad'}
@@ -118,7 +119,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Pancard No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Pancard No."}
             valueshow={props.agencyData?.pancard_no}
             onChangeText={(val: any) => {
@@ -194,18 +195,18 @@ const AgentBasicInfoView = (props: any) => {
             dateData={(data: any) => {
               props.setAgencyData({
                 ...props.agencyData,
-                date_of_birth: moment(data).format("YYYY-MM-DD"),
+                date_of_birth: moment(data).format(DATE_FORMAT),
               });
             }}
             setDateshow={(data: any) => {
               props.setAgencyData({
                 ...props.agencyData,
-                date_of_birth: moment(data).format("YYYY-MM-DD"),
+                date_of_birth: moment(data).format(DATE_FORMAT),
               });
             }}
             value={
               props?.agencyData?.date_of_birth !== ""
-                ? moment(props?.agencyData?.date_of_birth).format("DD-MM-YYYY")
+                ? moment(props?.agencyData?.date_of_birth).format(DATE_FORMAT)
                 : null
             }
           />
@@ -213,7 +214,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Mobile No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Mobile No."}
             valueshow={props.agencyData?.primary_mobile?.toString()}
             keyboardtype={'number-pad'}
@@ -228,7 +229,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"WhatsApp No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"WhatsApp No."}
             valueshow={props.agencyData?.whatsapp_number?.toString()}
             keyboardtype={'number-pad'}
@@ -243,7 +244,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Email Address"}
             valueshow={props.agencyData?.email}
             onChangeText={(val: any) => {
@@ -288,7 +289,7 @@ const AgentBasicInfoView = (props: any) => {
                       {
                         borderBottomWidth:
                           props?.agencyData?.working_location?.length - 1 ===
-                          index
+                            index
                             ? 0
                             : 0.6,
                       },
