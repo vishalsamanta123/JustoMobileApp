@@ -33,7 +33,7 @@ const PropertyDetailView = (props: any) => {
   const navigation: any = useNavigation();
   const { response, loading } = propertyData;
   const onPressCreatevisit = () => {
-    // navigation.navigate('AddNewVisitorScreen', { type: 'propertySelect', data: propertydetail })
+    navigation.navigate('AddNewVisitorScreen', { type: 'propertySelect', data: propertydetail })
   };
 
   useEffect(() => {
