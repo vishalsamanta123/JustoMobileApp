@@ -32,9 +32,9 @@ const ProfileScreen = ({ navigation, route }: any) => {
     }, [navigation, detail])
   );
 
-  // useEffect(() => {
-  //   getDetail();
-  // }, [isFocused]);
+  useEffect(() => {
+    getDetail();
+  }, [isFocused]);
 
   const getDetail = async () => {
     const userData: any = await AsyncStorage.getItem("loginData");
@@ -52,7 +52,7 @@ const ProfileScreen = ({ navigation, route }: any) => {
 
   useEffect( () => {
     toGetDatas()
-  }, [response])
+  }, [response, navigation])
 
 
   const toGetDatas = async () => {

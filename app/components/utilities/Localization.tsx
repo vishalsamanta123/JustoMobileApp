@@ -155,6 +155,7 @@ const strings = new LocalizedStrings({
     Agencydetail: 'Agency Detail',
     userbankinfo: 'User Bank Info',
     createnewagency: 'Create New Agency',
+    editagency: 'Edit Agency',
     confirmation: 'Confirmation',
     active: 'Active',
     searchAgency: 'Search Agency',
