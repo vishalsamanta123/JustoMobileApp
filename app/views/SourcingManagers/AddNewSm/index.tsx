@@ -69,10 +69,11 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
     // console.log('BtnType: ', BtnType);
         if (type === 'edit') {
             dispatch(updateUserSettingData(addNewSmData))
+            navigation.goBack()
         } else {
             dispatch(userRegister(addNewSmData))
+            navigation.goBack()
         }
-        // navigation.goBack()
     }
     const handlegetCityList = () => {
         dispatch(getCityList({}))

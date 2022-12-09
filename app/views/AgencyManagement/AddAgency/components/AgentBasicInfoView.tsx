@@ -69,11 +69,13 @@ const AgentBasicInfoView = (props: any) => {
             <View style={styles.imageCircle}>
               <Image
                 style={styles.loginBanner}
-                source={{
-                  uri: props.agencyData?.profile_picture?.uri
-                    ? props.agencyData?.profile_picture?.uri
-                    : "",
-                }}
+                source={
+                  props.agencyData?.profile_picture?.uri ?
+                    {
+                      uri: props.agencyData?.profile_picture?.uri
+                    }
+                    : images.user
+                }
                 resizeMode="contain"
               />
             </View>
@@ -89,7 +91,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Name"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Agent Name"}
             valueshow={props.agencyData?.owner_name}
             onChangeText={(val: any) => {
@@ -103,7 +105,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Adhar No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Adhar No."}
             valueshow={props.agencyData?.adhar_no}
             keyboardtype={'number-pad'}
@@ -118,7 +120,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Pancard No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Pancard No."}
             valueshow={props.agencyData?.pancard_no}
             onChangeText={(val: any) => {
@@ -213,10 +215,11 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Mobile No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Mobile No."}
             valueshow={props.agencyData?.primary_mobile?.toString()}
             keyboardtype={'number-pad'}
+            maxLength={10}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData,
@@ -228,10 +231,11 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"WhatsApp No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"WhatsApp No."}
             valueshow={props.agencyData?.whatsapp_number?.toString()}
             keyboardtype={'number-pad'}
+            maxLength={10}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData,
@@ -243,7 +247,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Email Address"}
             valueshow={props.agencyData?.email}
             onChangeText={(val: any) => {
@@ -288,7 +292,7 @@ const AgentBasicInfoView = (props: any) => {
                       {
                         borderBottomWidth:
                           props?.agencyData?.working_location?.length - 1 ===
-                          index
+                            index
                             ? 0
                             : 0.6,
                       },

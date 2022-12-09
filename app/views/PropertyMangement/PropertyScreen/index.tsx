@@ -55,11 +55,11 @@ const PropertyScreen = ({ navigation }: any) => {
     }))
   };
   const handleAllocatePress = (item: any) => {
-    console.log('item: ', item.property_id);
-    dispatch(getManagerList({
-      property_id: item.property_id
-    }))
-    navigation.navigate('AllocatePropertyScreen', { id: item.property_id })
+    // console.log('item: ', item.property_id);
+    // dispatch(getManagerList({
+    //   property_id: item._id
+    // }))
+    navigation.navigate('AllocatePropertyScreen', item?._id)
   }
   return (
     <>
