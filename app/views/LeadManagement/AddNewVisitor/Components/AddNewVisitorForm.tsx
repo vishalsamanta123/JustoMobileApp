@@ -4,7 +4,7 @@ import { RadioButton } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import images from '../../../../assets/images';
 import InputField from '../../../../components/InputField';
-import { PRIMARY_THEME_COLOR, BLACK_COLOR } from '../../../../components/utilities/constant';
+import { PRIMARY_THEME_COLOR, BLACK_COLOR, DATE_FORMAT } from '../../../../components/utilities/constant';
 import strings from '../../../../components/utilities/Localization';
 import styles from './Styles';
 import Styles from '../../../../components/Modals/styles'
@@ -221,18 +221,18 @@ const AddNewVisitorForm = (props: any) => {
                             dateData={(data: any) => {
                                 props.setFormData({
                                     ...props.formData,
-                                    birth_date: moment(data).format('YYYY-MM-DD'),
+                                    birth_date: moment(data).format(DATE_FORMAT),
                                 })
                             }}
                             setDateshow={(data: any) => {
                                 props.setFormData({
                                     ...props.formData,
-                                    birth_date: moment(data).format('YYYY-MM-DD'),
+                                    birth_date: moment(data).format(DATE_FORMAT),
                                 })
                             }}
                             value={props?.formData?.birth_date === '' ||
                                 props?.formData?.birth_date === undefined || props?.formData?.birth_date === null ?
-                                '' : moment(props?.formData?.birth_date).format('YYYY-MM-DD')}
+                                '' : moment(props?.formData?.birth_date).format(DATE_FORMAT)}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -350,20 +350,20 @@ const AddNewVisitorForm = (props: any) => {
                             dateData={(data: any) => {
                                 props.setFormData({
                                     ...props.formData,
-                                    expected_possession_date: moment(data).format('YYYY-MM-DD'),
+                                    expected_possession_date: moment(data).format(DATE_FORMAT),
                                 })
                             }}
                             setDateshow={(data: any) => {
                                 props.setFormData({
                                     ...props.formData,
-                                    expected_possession_date: moment(data).format('YYYY-MM-DD'),
+                                    expected_possession_date: moment(data).format(DATE_FORMAT),
                                 })
                             }}
                             value={props?.formData?.expected_possession_date === '' ||
                                 props?.formData?.expected_possession_date === undefined ||
                                 props?.formData?.expected_possession_date === null ?
                                 '' :
-                                moment(props?.formData?.expected_possession_date).format('YYYY-MM-DD')}
+                                moment(props?.formData?.expected_possession_date).format(DATE_FORMAT)}
                         />
                     </View>
                     <View style={styles.inputWrap}>

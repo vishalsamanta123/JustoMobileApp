@@ -11,7 +11,6 @@ import { GREEN_COLOR, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, RED_COLOR, 
 const DashboardView = (props: any) => {
   const targetData = props?.dashboardData?.target || {}
   const achieveTargetData = props?.dashboardData?.achievetarget || {}
-  const [isEnabled, setIsEnabled] = useState(false);
   const insets = useSafeAreaInsets();
   const DATA: any = [
     {
@@ -56,9 +55,6 @@ const DashboardView = (props: any) => {
       </TouchableOpacity>
     );
   };
-  const handleSwitcPress = () => {
-    setIsEnabled(!isEnabled);
-  };
   return (
     <>
       <View style={styles.mainContainerWrap}>
@@ -83,8 +79,8 @@ const DashboardView = (props: any) => {
                 <Text style={styles.statusText}>Status</Text>
                 <View style={styles.switchView}>
                   <Switch
-                    value={isEnabled}
-                    onValueChange={(val) => handleSwitcPress()}
+                    value={props?.isEnabled === 1 ? true : false}
+                    onValueChange={(val) => props.updateStatusPress(props?.isEnabled)}
                     //disabled={false}
                     backgroundActive={GREEN_COLOR}
                     backgroundInactive={RED_COLOR}
@@ -116,8 +112,8 @@ const DashboardView = (props: any) => {
               </View>
             </View>
             <View style={styles.qrCodeView}>
-              {props?.dashboardData?.qrcode != "" ?
-                <Image source={{ uri: props?.dashboardData?.qrcode }}
+              {props?.dashboardData?.qrcode != "" || props?.dashboardData?.qr_code ?
+                <Image source={{ uri: props?.dashboardData?.qrcode || props?.dashboardData?.qr_code }}
                   style={styles.qrCodeImage} />
                 :
                 <Image source={images.qrCode} style={styles.qrCodeImage} />

@@ -6,7 +6,7 @@ import VisitorUpdateThirdView from "./components/VisitorUpdateThird";
 import { addVisitorRemove, editVisitor, getVisitorDetail, } from "app/Redux/Actions/LeadsActions";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import ErrorMessage from "app/components/ErrorMessage";
-import { GREEN_COLOR } from "app/components/utilities/constant";
+import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
 
 const VisitorUpdateScreen = ({ navigation, route }: any) => {
     const data = route?.params || 0
@@ -57,9 +57,9 @@ const VisitorUpdateScreen = ({ navigation, route }: any) => {
         property_type_title: '',
     });
     useLayoutEffect(() => {
-        if (data._id) {
+        if (data.lead_id) {
             dispatch(getVisitorDetail({
-                lead_id: data._id
+                lead_id: data?.lead_id
             }))
         }
     }, [detail])
@@ -109,9 +109,32 @@ const VisitorUpdateScreen = ({ navigation, route }: any) => {
             })
         }
     }, [editData])
+    const validation = () => {
+        let isError = true;
+        let errorMessage: any = ''
+        if (updateForm?.property_id === '' && updateForm?.property_type_title === '') {
+            isError = false;
+            errorMessage = "Please select property name"
+        } else if (updateForm?.first_name === '' || updateForm?.first_name === undefined) {
+            isError = false;
+            errorMessage = "Please fill visitor name"
+        } else if (updateForm?.mobile === '' || updateForm?.mobile === undefined) {
+            isError = false;
+            errorMessage = "Please fill mobile number"
+        }
+        if (errorMessage !== '') {
+            ErrorMessage({
+                msg: errorMessage,
+                backgroundColor: RED_COLOR
+            })
+        }
+        return isError;
+    }
     const onPressNext = (type: any) => {
         if (type != null) {
-            setScreenType(type)
+            if (validation()) {
+                setScreenType(type)
+            }
         } else {
             const edit_params = {
                 lead_id: updateForm?.lead_id,

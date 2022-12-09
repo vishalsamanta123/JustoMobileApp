@@ -6,7 +6,7 @@ import DropdownInput from '../../../../components/DropDown'
 import strings from '../../../../components/utilities/Localization'
 import images from '../../../../assets/images'
 import { RadioButton } from 'react-native-paper'
-import { PRIMARY_THEME_COLOR, BLACK_COLOR, GRAY_LIGHT_COLOR } from '../../../../components/utilities/constant'
+import { PRIMARY_THEME_COLOR, BLACK_COLOR, GRAY_LIGHT_COLOR, DATE_FORMAT, TIME_FORMAT } from '../../../../components/utilities/constant'
 import Button from '../../../../components/Button'
 import InputCalender from 'app/components/InputCalender'
 import moment from 'moment'
@@ -27,13 +27,13 @@ const AddAppointmentItem = (props: any) => {
                         dateData={(data: any) => {
                             props.setAddAppointmentForm({
                                 ...props.addAppointmentForm,
-                                appointment_date: moment(data).format('YYYY-MM-DD')
+                                appointment_date: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         setDateshow={(data: any) => {
                             props.setAddAppointmentForm({
                                 ...props.addAppointmentForm,
-                                appointment_date: moment(data).format('YYYY-MM-DD')
+                                appointment_date: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         value={moment(props.addAppointmentForm?.appointment_date).format('DD-MM-YYYY')}
@@ -50,13 +50,13 @@ const AddAppointmentItem = (props: any) => {
                         dateData={(data: any) => {
                             props.setAddAppointmentForm({
                                 ...props.addAppointmentForm,
-                                appointment_time: moment(data).format('LT')
+                                appointment_time: moment(data).format(TIME_FORMAT)
                             })
                         }}
                         setDateshow={(data: any) => {
                             props.setAddAppointmentForm({
                                 ...props.addAppointmentForm,
-                                appointment_time: moment(data).format('LT')
+                                appointment_time: moment(data).format(TIME_FORMAT)
                             })
                         }}
                         value={props.addAppointmentForm?.appointment_time}
@@ -140,7 +140,7 @@ const AddAppointmentItem = (props: any) => {
                     <Button
                         btnTxtsize={16}
                         handleBtnPress={() => props.handleBtnPress()}
-                        buttonText={props.type === strings.edit ? strings.editNewappointment :  strings.addNewappointment}
+                        buttonText={props.type === strings.edit ? strings.editNewappointment : strings.addNewappointment}
                     />
                 </View>
             </View>

@@ -9,7 +9,7 @@ import InputField from "../../../../components/InputField";
 import DropdownInput from "../../../../components/DropDown";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
-import { GRAY_LIGHT_COLOR } from "app/components/utilities/constant";
+import { DATE_FORMAT, GRAY_LIGHT_COLOR } from "app/components/utilities/constant";
 
 const FilterModal = (props: any) => {
   return (
@@ -35,13 +35,13 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    start_date: moment(data).format('YYYY-MM-DD')
+                    start_date: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    start_date: moment(data).format('YYYY-MM-DD')
+                    start_date: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 value={moment(props.filterData?.start_date).format('DD-MM-YYYY')}
@@ -56,13 +56,13 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    appointment_date: moment(data).format('YYYY-MM-DD')
+                    appointment_date: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    appointment_date: moment(data).format('YYYY-MM-DD')
+                    appointment_date: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 value={moment(props.filterData?.appointment_date).format('DD-MM-YYYY')}

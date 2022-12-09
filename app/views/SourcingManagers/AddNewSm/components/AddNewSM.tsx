@@ -7,6 +7,7 @@ import styles from "./styles";
 import { RadioButton } from "react-native-paper";
 import {
   BLACK_COLOR,
+  DATE_FORMAT,
   GRAY_COLOR,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
@@ -101,7 +102,7 @@ const AddNewSMView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"First Name"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"SM First Name"}
             valueshow={props.addNewSmData?.firstname}
             onChangeText={(val: any) => {
@@ -115,7 +116,7 @@ const AddNewSMView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Last Name"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"SM Last Name"}
             valueshow={props.addNewSmData?.lastname}
             onChangeText={(val: any) => {
@@ -129,7 +130,7 @@ const AddNewSMView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Adhar No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Adhar No."}
             keyboardtype={'number-pad'}
             valueshow={props.addNewSmData?.adhar_no}
@@ -144,7 +145,7 @@ const AddNewSMView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Pancard No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Pancard No."}
             valueshow={props.addNewSmData?.pancard_no}
             onChangeText={(val: any) => {
@@ -224,24 +225,24 @@ const AddNewSMView = (props: any) => {
             dateData={(data: any) => {
               props.setAddNewSmData({
                 ...props.addNewSmData,
-                dateofbirth: moment(data).format("YYYY-MM-DD"),
+                dateofbirth: moment(data).format(DATE_FORMAT),
               });
             }}
             setDateshow={(data: any) => {
               props.setAddNewSmData({
                 ...props.addNewSmData,
-                dateofbirth: moment(data).format("YYYY-MM-DD"),
+                dateofbirth: moment(data).format(DATE_FORMAT),
               });
             }}
             value={moment(props?.addNewSmData?.dateofbirth).format(
-              "DD-MM-YYYY"
+              DATE_FORMAT
             )}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Mobile No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Mobile No."}
             keyboardtype={"number-pad"}
             valueshow={props.addNewSmData?.mobile}
@@ -256,7 +257,7 @@ const AddNewSMView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"WhatsApp No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"WhatsApp No."}
             keyboardtype={'number-pad'}
             valueshow={props.addNewSmData?.whatsapp_no}
@@ -271,7 +272,7 @@ const AddNewSMView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Email Address"}
             valueshow={props.addNewSmData?.email}
             onChangeText={(val: any) => {
@@ -317,7 +318,7 @@ const AddNewSMView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Area"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Area"}
             valueshow={props.addNewSmData?.area}
             onChangeText={(val: any) => {

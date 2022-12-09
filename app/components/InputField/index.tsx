@@ -36,26 +36,23 @@ const InputField = (props: any) => {
   return (
     <View>
       {inputType === "location" ? (
-        <ScrollView keyboardShouldPersistTaps={'handled'}>
-          <LocationInput
-            editable={editable}
-            headingText={props.headingText}
-            headingTextWidth={props.headingTextWidth}
-            onPressSelect={props.onPressSelect}
-            placeholderText={props.placeholderText}
-            valueshow={props.valueshow}
-            onBlur={props.onBlur}
-            textInputProps={
-              props.textInputProps
-                ? props.textInputProps
-                : {
-                    placeholderTextColor: BLACK_COLOR,
-                  }
-            }
-            handleInputBtnPress={props.handleInputBtnPress}
-            rightImgSrc={props.rightImgSrc}
-          />
-        </ScrollView>
+
+        <LocationInput
+          editable={editable}
+          headingText={props.headingText}
+          headingTextWidth={props.headingTextWidth}
+          onPressSelect={props.onPressSelect}
+          placeholderText={props.placeholderText}
+          valueshow={props.valueshow}
+          onBlur={props.onBlur}
+          textInputProps={props.textInputProps ? props.textInputProps : {
+            placeholderTextColor: BLACK_COLOR,
+            onChangeText: (val: any) => props.onChangeText(val),
+            value: props.valueshow,
+          }}
+          handleInputBtnPress={props.handleInputBtnPress}
+          rightImgSrc={props.rightImgSrc}
+        />
       ) : (
         <CommonInput
           editable={editable}

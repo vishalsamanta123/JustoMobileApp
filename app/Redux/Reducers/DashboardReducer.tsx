@@ -38,13 +38,13 @@ export function dashboardReducer(state = initialStateForm, action: any) {
 export function statusUpdateReducer(state = initialStateForm, action: any) {
     switch (action.type) {
         case USER_STATUS_UPDATE:
-            return {
+            return {// get response
                 ...state,
                 data: true,
                 response: action.payload,
             };
         case STATUS_UPDATE_DATA:
-            return {
+            return {// remove response
                 ...state,
                 data: false,
                 response: action.payload,

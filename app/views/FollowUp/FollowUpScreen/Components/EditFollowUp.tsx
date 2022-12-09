@@ -2,7 +2,9 @@ import { View, Text, StatusBar, TextInput } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./Styles";
 import {
+  DATE_FORMAT,
   PRIMARY_THEME_COLOR_DARK,
+  TIME_FORMAT,
   WHITE_COLOR,
 } from "../../../../components/utilities/constant";
 import Header from "../../../../components/Header";
@@ -54,7 +56,7 @@ const EditFollowUp = ({ navigation, route }: any) => {
         setIsloading(true);
         dispatch(getAllFollowUpDetails({ followup_id: followUpId?._id }));
       }
-      return () => {};
+      return () => { };
     }, [navigation, detail])
   );
 
@@ -149,13 +151,13 @@ const EditFollowUp = ({ navigation, route }: any) => {
             dateData={(data: any) => {
               setFormData({
                 ...formData,
-                next_followup_date: moment(data).format("YYYY-MM-DD"),
+                next_followup_date: moment(data).format(DATE_FORMAT),
               });
             }}
             setDateshow={(data: any) => {
               setFormData({
                 ...formData,
-                next_followup_date: moment(data).format("YYYY-MM-DD"),
+                next_followup_date: moment(data).format(DATE_FORMAT),
               });
             }}
             value={
@@ -176,13 +178,13 @@ const EditFollowUp = ({ navigation, route }: any) => {
             dateData={(data: any) => {
               setFormData({
                 ...formData,
-                followup_time: moment(data).format("LT"),
+                followup_time: moment(data).format(TIME_FORMAT),
               });
             }}
             setDateshow={(data: any) => {
               setFormData({
                 ...formData,
-                followup_time: moment(data).format("LT"),
+                followup_time: moment(data).format(TIME_FORMAT),
               });
             }}
             value={formData?.followup_time}
@@ -191,7 +193,7 @@ const EditFollowUp = ({ navigation, route }: any) => {
         <View style={styles.inputWarp}>
           <InputField
             placeholderText={"Description"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Description"}
             multiline={true}
             inputheight={200}
