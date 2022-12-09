@@ -214,6 +214,7 @@ export const userRegister = (item: any) => async (dispatch: any) => {
 console.log('item userRegisteruserRegister: ', item);
     try {
         const res = await apiCall("post", apiEndPoints.REGISTERANDADDUSER, item);
+        console.log('res REGISTERANDADDUSER: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: USERREGISTER,
@@ -231,7 +232,7 @@ console.log('item userRegisteruserRegister: ', item);
     catch (e) {
         dispatch({
             type: USERREGISTER_ERROR,
-            payload: console.log(e),
+            payload: console.log('e', e),
         })
     }
 }

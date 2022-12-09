@@ -186,7 +186,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         dispatch(editVisitor(edit_params))
       } else {
         const add_params = {
-          module_id: '',
           first_name: formData?.first_name,
           email: formData?.email,
           mobile: formData?.mobile,
@@ -202,7 +201,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           desigantion: formData?.desigantion,
           office_address: formData?.office_address,
           configuration_id: formData?.configuration_id,
-          configuration: formData?.configuration,
+          configuration: formData?.configuration ?? '' ,
           areain_sqlft: formData?.areain_sqlft,
           budget: formData.max_budget,
           funding_type: formData?.funding_type,

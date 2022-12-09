@@ -62,7 +62,7 @@ const AddNewSMView = (props: any) => {
                     <DropdownInput
                         headingText={'Select Role'}
                         placeholder={'Select Role'}
-                        data={props.roleData}
+                        data={Array.isArray(props.roleData) ? props.roleData : []}
                         inputWidth={'100%'}
                         paddingLeft={16}
                         maxHeight={300}

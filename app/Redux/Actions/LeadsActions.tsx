@@ -61,6 +61,7 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
     }
 };
 export const addVisitor = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.ADD_VISITOR_, params);

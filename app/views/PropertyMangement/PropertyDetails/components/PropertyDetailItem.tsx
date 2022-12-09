@@ -19,7 +19,7 @@ const PropertyDetailItem = (props: any) => {
     const count = el.document_type == 'document'
     return count
   })
-  
+
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -119,7 +119,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-         
+
           {props.configurations.map((configuration: any) => (
             <Text
               key={configuration._id}
@@ -240,57 +240,63 @@ const PropertyDetailItem = (props: any) => {
             </TouchableOpacity>
           </View> */}
 
-          {imagearray.length > 0 ? <>
-            <Text style={styles.nameTxt}>Images</Text>
-            <View style={styles.ImageSliderContainer}>
-              {imagearray.map((imagearray: any, index : any) => (
-                <Image
-                  key={index}
-                  source={{ uri: imagearray.base_url + imagearray.document }}
-                  style={styles.imageSlider}
+          {imagearray.length > 0 ? (
+            <>
+              <Text style={styles.nameTxt}>Images</Text>
+              <View style={styles.ImageSliderContainer}>
+                {imagearray.map((imagearray: any, index: any) =>
+                  index <= 2 ? (
+                    <Image
+                      key={index}
+                      source={{
+                        uri: imagearray.base_url + imagearray.document,
+                      }}
+                      style={styles.imageSlider}
+                    />
+                  ) : null
+                )}
+                <TouchableOpacity
+                  style={styles.shadowView}
+                  onPress={() =>
+                    props.onpresContent("ImageContent", imagearray)
+                  }
+                >
+                  <Image source={images.forwardArrow} style={styles.arrow} />
+                </TouchableOpacity>
+              </View>
+            </>
+          ) : null}
 
-                />
-              ))
-              }
-              <TouchableOpacity style={styles.shadowView} onPress={() => props.onpresContent('ImageContent', imagearray)}>
-                <Image
-                  source={images.forwardArrow}
-                  style={styles.arrow}
-                />
-              </TouchableOpacity>
-            </View>
-          </>
-            : null}
 
 
 
+          {videoarray.length > 0 ?
+            <>
+              <Text style={styles.nameTxt}>Videos</Text>
+              <View style={styles.ImageSliderContainer}>
+                {videoarray.map((videos: any, index: any) => (
+                  <Image
+                    key={index}
+                    source={images.buildings}
+                    style={styles.imageSlider}
 
-          {videoarray.length > 0 ? <>
-            <Text style={styles.nameTxt}>Videos</Text>
-            <View style={styles.ImageSliderContainer}>
-              {videoarray.map((videos : any , index : any) => (
-                <Image
-                  key={index}
-                  source={images.buildings}
-                  style={styles.imageSlider}
-
-                />
-              ))
-              }
-              <TouchableOpacity style={styles.shadowView} onPress={() => props.onpresContent('VideoContent', videoarray)}>
-                <Image
-                  source={images.forwardArrow}
-                  style={styles.arrow}
-                />
-              </TouchableOpacity>
-            </View>
-          </>
+                  />
+                ))
+                }
+                <TouchableOpacity style={styles.shadowView} onPress={() => props.onpresContent('VideoContent', videoarray)}>
+                  <Image
+                    source={images.forwardArrow}
+                    style={styles.arrow}
+                  />
+                </TouchableOpacity>
+              </View>
+            </>
             : null}
 
           {documentarray.length > 0 ? <>
             <Text style={styles.nameTxt}>Catalogue</Text>
             <View style={styles.ImageSliderContainer}>
-              {documentarray.map((documents : any , index : any) => (
+              {documentarray.map((documents: any, index: any) => (
                 index <= 2 ?
                   <Image
                     key={index}

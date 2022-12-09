@@ -265,7 +265,7 @@ const AuthLoadingComponent = () => {
     }
   }
   useEffect(() => {
-    if (response == null || response?.status === 201 || response?.status === 401) {
+    if (response == null || response?.status === 201 || response?.status === 401 || response?.status === 400) {
       tokenGenrate()
     } else {
       setDefaultHeader("token", response?.token);
