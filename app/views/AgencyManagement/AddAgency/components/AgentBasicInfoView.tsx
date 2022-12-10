@@ -259,6 +259,20 @@ const AgentBasicInfoView = (props: any) => {
             }}
           />
         </View>
+        <View style={styles.inputWrap}>
+          <InputField
+            placeholderText={"Address"}
+            handleInputBtnPress={() => { }}
+            headingText={"Address"}
+            valueshow={props.agencyData?.address}
+            onChangeText={(val: any) => {
+              props.setAgencyData({
+                ...props.agencyData,
+                address: val,
+              });
+            }}
+          />
+        </View>
         {/*  <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Sourcing Manager"}

@@ -16,6 +16,7 @@ const customDrawer = ({ navigation }: any) => {
   const isDrawerOpen = useDrawerStatus() === 'open';
   const insets = useSafeAreaInsets()
   const [userData, setUserData] = useState<any>([])
+  console.log('userData: ', userData);
   useEffect(() => {
     fetchData()
   }, [])
@@ -102,15 +103,15 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('PropertyScreenView') }}
         />
         <DrawerTabSection
-          type={'closingmanager,Closing TL'}
+          type={'Closing Manager,Closing TL'}
           iconSource={images.property}
           tabTitle={strings.appointmentHeader}
           handleDrawerNavigation={() => { navigation.navigate('Appointments') }}
         />
         <DrawerTabSection
-          type={'postsales,Closing TL,closingmanager'}
+          type={'postsales,Closing TL,Closing Manager'}
           iconSource={images.lead}
-          tabTitle={userData?.type === 'Closing TL' || 'closingmanager' ?
+          tabTitle={userData?.type === 'Closing TL' || 'Closing Manager' ?
             strings.readytoBookHeader : strings.bookingRequestHead}
           handleDrawerNavigation={() => { navigation.navigate('BookingList') }}
         />
@@ -139,13 +140,13 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('LeadManagementScreen') }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,Sourcing Manager,closingmanager,Closing TL'}
+          type={'Sourcing TL,Sourcing Manager,Closing Manager,Closing TL'}
           iconSource={images.event}
           tabTitle={strings.followupHeader}
           handleDrawerNavigation={() => { navigation.navigate('FollowUpScreen'); }}
         />
         <DrawerTabSection
-          type={'closingmanager,Closing TL'}
+          type={'Closing Manager,Closing TL'}
           iconSource={images.property}
           tabTitle={strings.recoveryHeader}
         />
@@ -174,22 +175,22 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('PickupRequest'); }}
         />
         {/* <DrawerTabSection
-          type={'Sourcing Manager,closingmanager,Closing TL'}
+          type={'Sourcing Manager,Closing Manager,Closing TL'}
           iconSource={images.report}
           tabTitle={strings.reportHeader}
         /> */}
         {/*  <DrawerTabSection
-          type={'Sourcing Manager,closingmanager,Closing TL'}
+          type={'Sourcing Manager,Closing Manager,Closing TL'}
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
         />
         <DrawerTabSection
-          type={'Sourcing Manager,closingmanager,Closing TL'}
+          type={'Sourcing Manager,Closing Manager,Closing TL'}
           iconSource={images.support}
           tabTitle={strings.supportForumHeader}
         />
         <DrawerTabSection
-          type={'Sourcing Manager,closingmanager'}
+          type={'Sourcing Manager,Closing Manager'}
           iconSource={images.support}
           tabTitle={strings.supportHeader}
         />
