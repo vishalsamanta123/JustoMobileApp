@@ -116,13 +116,6 @@ const PropertyView = (props: any) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR,
-          height: insets.top,
-        }}
-      />
-      <StatusBar barStyle={'light-content'} />
 
       <Header
         leftImageSrc={images.menu}

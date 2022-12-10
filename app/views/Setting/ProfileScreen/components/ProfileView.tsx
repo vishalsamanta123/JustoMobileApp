@@ -49,9 +49,11 @@ const ProfileView = (props: any) => {
           <View style={styles.usernameWrap}>
             <Image
               style={styles.userImage}
-              source={{
-                uri: allDetails?.base_url + allDetails?.profile_picture,
-              }}
+              source={
+                allDetails?.profile_picture ?
+                {uri: allDetails?.base_url + allDetails?.profile_picture}
+                : images.user
+              }
             />
             <Text style={styles.userNameText}>
               {allDetails?.firstname?.toUpperCase() +

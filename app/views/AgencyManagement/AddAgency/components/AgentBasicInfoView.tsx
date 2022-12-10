@@ -135,7 +135,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.genderView}>
           <Text style={styles.genderTxt}>{strings.gender}</Text>
           <View style={styles.radioView}>
-            <RadioButton
+            <RadioButton.Android
               value={props.agencyData?.gender}
               status={props.agencyData.gender === 1 ? "checked" : "unchecked"}
               onPress={() => {
@@ -161,7 +161,7 @@ const AgentBasicInfoView = (props: any) => {
             </Text>
           </View>
           <View style={styles.radioView}>
-            <RadioButton
+            <RadioButton.Android
               value={props.agencyData?.gender}
               status={props.agencyData.gender === 2 ? "checked" : "unchecked"}
               onPress={() => {

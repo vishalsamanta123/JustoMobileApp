@@ -1,12 +1,9 @@
 import { useFocusEffect } from '@react-navigation/native';
-import Loader from 'app/components/CommonScreen/Loader';
 import { getAgentDetail } from 'app/Redux/Actions/AgentActions';
-import { getUserDetails, userRegister } from 'app/Redux/Actions/AuthActions';
+import {  userRegister } from 'app/Redux/Actions/AuthActions';
 import { getCityList, getRolesList } from 'app/Redux/Actions/MasterActions';
 import { updateUserSettingData } from 'app/Redux/Actions/SettingActions';
-import { getSourcingManagerDetail } from 'app/Redux/Actions/SourcingManagerActions';
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AddNewSM from './components/AddNewSM'
 
@@ -95,7 +92,6 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
     }
     return (
         <>
-            {/* {isLoading ? <Loader /> : null} */}
             <AddNewSM
                 onPressBack={onPressBack}
                 onPressCreate={onPressCreate}

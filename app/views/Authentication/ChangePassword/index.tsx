@@ -6,7 +6,6 @@ import { UPDATEPASSWORD_NULL } from '../../../Redux/types';
 import ErrorMessage from '../../../components/ErrorMessage';
 import strings from '../../../components/utilities/Localization';
 import { updatepassword } from '../../../Redux/Actions/AuthActions';
-import Loader from '../../../components/CommonScreen/Loader';
 
 const ChangePassword = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
@@ -96,7 +95,6 @@ const ChangePassword = ({ navigation, route }: any) => {
 
   return (
     <>
-      {isloading ? <Loader /> : null}
       <ChangePasswordView
         setPasswordDate={setPasswordDate}
         passwordDate={passwordDate}

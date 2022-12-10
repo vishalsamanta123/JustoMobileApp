@@ -83,7 +83,7 @@ const EditProfileScreen = ({ navigation, route }: any) => {
     }
   }
   
-  const handleNextPress = () => {
+  const handleNextPress = async () => {
     console.log('editData: DDDDDDD ', editData);
     const formData: any = new FormData();
     formData.append("user_id", editData?._id);
@@ -118,6 +118,7 @@ const EditProfileScreen = ({ navigation, route }: any) => {
     formData.append("profile_picture", editData?.profile_picture);
     dispatch(addAgentForm(editData))
     dispatch(updateUserSettingData(formData));
+    await AsyncStorage.setItem('userData', JSON.stringify(formData))
     handleResponse()
   };
 

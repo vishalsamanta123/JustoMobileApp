@@ -3,7 +3,6 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import FollowUpView from "./Components/FollowUpView";
 import { useDispatch, useSelector } from "react-redux";
 import { useFocusEffect } from "@react-navigation/native";
-import Loader from "app/components/CommonScreen/Loader";
 import { getAllFollowUpList } from "app/Redux/Actions/FollowUpActions";
 
 const FollowUpScreen = ({ navigation }: any) => {
@@ -64,7 +63,6 @@ const FollowUpScreen = ({ navigation }: any) => {
   const toGetDatas = (array: any) => {};
   return (
     <>
-      {isloading ? <Loader /> : null}
       <FollowUpView
         handleDrawerPress={handleDrawerPress}
         getFollowupList={getFollowupList}

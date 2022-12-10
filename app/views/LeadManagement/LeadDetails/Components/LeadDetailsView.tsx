@@ -1,6 +1,6 @@
 import { View, Text, StatusBar } from 'react-native'
 import React from 'react'
-import { BLACK_COLOR, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, WHITE_COLOR } from '../../../../components/utilities/constant'
+import { BLACK_COLOR, Isios, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, WHITE_COLOR } from '../../../../components/utilities/constant'
 import Header from '../../../../components/Header'
 import images from '../../../../assets/images'
 import strings from '../../../../components/utilities/Localization'
@@ -31,7 +31,7 @@ const LeadDetailsView = (props: any) => {
       <View style={styles.btnContainer}>
         <Button
           buttonText={strings.ScheduleSitevisite}
-          width={150}
+          width={Isios ? 180 : 150}
           height={45}
           bgcolor={PRIMARY_THEME_COLOR_DARK}
           btnTxtcolor={WHITE_COLOR}
@@ -45,7 +45,7 @@ const LeadDetailsView = (props: any) => {
           height={45}
           bgcolor={PRIMARY_THEME_COLOR_DARK}
           btnTxtcolor={WHITE_COLOR}
-          btnTxtsize={14}
+          btnTxtsize={Isios ? 12 : 14}
           textTransform={"uppercase"}
           handleBtnPress={() => props.handleStatusUpdate()}
         />

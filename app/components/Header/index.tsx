@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { PRIMARY_THEME_COLOR_DARK } from '../utilities/constant';
+import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK } from '../utilities/constant';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Header = (props: any) => {
@@ -10,7 +10,7 @@ const Header = (props: any) => {
     <>
       <View
         style={{
-          backgroundColor: PRIMARY_THEME_COLOR_DARK,
+          backgroundColor: PRIMARY_THEME_COLOR,
           height: insets.top,
         }}
       />

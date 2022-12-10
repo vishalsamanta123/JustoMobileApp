@@ -3,7 +3,6 @@ import AllFollowUpView from './Components/AllFollowUpView'
 import { useFocusEffect } from '@react-navigation/native'
 import { allfollowupRemove, getAllFollowUpList } from 'app/Redux/Actions/FollowUpActions'
 import { useDispatch, useSelector } from 'react-redux'
-import Loader from 'app/components/CommonScreen/Loader'
 
 const AllFollowUpScreen = ({ navigation, route }: any) => {
   const data = route?.params || {}
@@ -43,7 +42,6 @@ const AllFollowUpScreen = ({ navigation, route }: any) => {
   }
   return (
     <>
-      {isloading ? <Loader /> : null}
       <AllFollowUpView
         handleBackPres={handleBackPres}
         allFollowUpList={allFollowUpList}

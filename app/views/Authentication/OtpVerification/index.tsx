@@ -6,7 +6,6 @@ import strings from '../../../components/utilities/Localization';
 import ErrorMessage from '../../../components/ErrorMessage';
 import { GREEN_COLOR, RED_COLOR } from '../../../components/utilities/constant';
 import { otpVerify, Resendotp } from '../../../Redux/Actions/AuthActions';
-import Loader from '../../../components/CommonScreen/Loader';
 
 const OtpVerificationScreen = ({ navigation, route }: any) => {
   const { type, email } = route?.params || {}
@@ -112,7 +111,6 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
 
   return (
     <>
-      {isloading ? <Loader /> : null}
       <OtpVerificationView
         otp={otp}
         setOtp={setOtp}
