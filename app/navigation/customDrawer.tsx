@@ -38,11 +38,11 @@ const customDrawer = ({ navigation }: any) => {
           <View style={styles.NameContainer}>
             <Image
               style={styles.UserImge}
-              resizeMode={'contain'}
+              resizeMode={'cover'}
               //source={require('../assets/images/buildings.jpeg')}
               source={userData?.base_url ?
                 { uri: userData?.base_url + userData?.profile_picture }
-                : images.dummyUser
+                : images.user
               }
             />
             <View style={styles.UserNameView}>
@@ -54,7 +54,7 @@ const customDrawer = ({ navigation }: any) => {
                 {/* Warren Hussen */}
               </Text>
               <Text style={[styles.UserAddress, { width: 140 }]}>
-                Florida, US
+                {userData?.city}
               </Text>
             </View>
             <TouchableOpacity style={styles.closeDrawerView} onPress={toggleDrawer}>

@@ -17,7 +17,6 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { useFocusEffect } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "app/components/CommonScreen/Loader";
 import DropdownInput from "app/components/DropDown";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import Styles from "../../../../components/DropDown/styles";
@@ -91,14 +90,6 @@ const EditFollowUp = ({ navigation, route }: any) => {
   };
   return (
     <View style={styles.mainContainer}>
-      {isloading ? <Loader /> : null}
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR_DARK,
-          height: insets.top,
-        }}
-      />
-      <StatusBar barStyle={"light-content"} />
       <Header
         leftImageSrc={images.backArrow}
         rightSecondImageScr={images.notification}

@@ -5,7 +5,6 @@ import ErrorMessage from '../../../components/ErrorMessage'
 import { RED_COLOR } from '../../../components/utilities/constant'
 import strings from '../../../components/utilities/Localization'
 import { forgotemailverify } from '../../../Redux/Actions/AuthActions'
-import Loader from '../../../components/CommonScreen/Loader'
 import ForgotPasswordView from './components/ForgotPasswordView'
 
 const ForgotPassword = ({navigation}: any) => {
@@ -82,7 +81,6 @@ const ForgotPassword = ({navigation}: any) => {
   }
   return (
     <>
-    {isloading ? <Loader /> : null}
    <ForgotPasswordView
     handleOtp={handleOtp} 
     email={email} 

@@ -43,6 +43,7 @@ export const userLogin = (loginDetail: any) => async (dispatch: any) => {
 }
 
 export const forgotemailverify = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.FORGOTPASSWORD, params);
         if (res.data.status === 200) {
@@ -65,9 +66,13 @@ export const forgotemailverify = (params: any) => async (dispatch: any) => {
             payload: 'Server Error',
         })
     }
+    finally {
+        dispatch({ type: STOP_LOADING });
+    }
 }
 
 export const otpVerify = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.OTPVERIFY, params);
         if (res.data.status === 200) {
@@ -90,8 +95,12 @@ export const otpVerify = (params: any) => async (dispatch: any) => {
             payload: 'Server Error',
         })
     }
+    finally {
+        dispatch({ type: STOP_LOADING });
+    }
 }
 export const Resendotp = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.RESENDOTP, params);
         if (res.data.status === 200) {
@@ -114,10 +123,14 @@ export const Resendotp = (params: any) => async (dispatch: any) => {
             payload: 'Server Error',
         })
     }
+    finally {
+        dispatch({ type: STOP_LOADING });
+    }
 }
 
 
 export const updatepassword = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.UPDATEPASSWORD, params);
         if (res.data.status === 200) {
@@ -140,9 +153,13 @@ export const updatepassword = (params: any) => async (dispatch: any) => {
             payload: 'Server Error',
         })
     }
+    finally {
+        dispatch({ type: STOP_LOADING });
+    }
 }
 
 export const changePassword = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.CHANGEPASSWORD, params);
         console.log('res ====: ', res);
@@ -165,6 +182,9 @@ export const changePassword = (params: any) => async (dispatch: any) => {
             type: UPDATEPASSWORD_ERROR,
             payload: 'Server Error',
         })
+    }
+    finally {
+        dispatch({ type: STOP_LOADING });
     }
 }
 
@@ -213,6 +233,7 @@ export const jwtTokenGenrate = () => async (dispatch: any) => {
 }
 export const userRegister = (item: any) => async (dispatch: any) => {
     console.log('item userRegisteruserRegister: ', item);
+    dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.REGISTERANDADDUSER, item);
         console.log('res REGISTERANDADDUSER: ', res);
@@ -236,8 +257,12 @@ export const userRegister = (item: any) => async (dispatch: any) => {
             payload: console.log('e', e),
         })
     }
+    finally {
+        dispatch({ type: STOP_LOADING });
+    }
 }
 export const getUserDetails = (item: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.GET_USERPROFILE, item);
         if (res.data.status == 200) {
@@ -259,6 +284,9 @@ export const getUserDetails = (item: any) => async (dispatch: any) => {
             type: GET_USER_DETAILS_ERROR,
             payload: console.log(e),
         })
+    }
+    finally {
+        dispatch({ type: STOP_LOADING });
     }
 }
 export const removeAuthUser = () => async (dispatch: any) => {

@@ -96,7 +96,7 @@ const VisitorUpdateView = (props: any) => {
                 <View style={styles.selectsView}>
                     <Text style={styles.selectsTxt}>{strings.gender}</Text>
                     <View style={styles.radioView}>
-                        <RadioButton
+                        <RadioButton.Android
                             value="1"
                             status={props.updateForm.gender === 1 ? "checked" : "unchecked"}
                             onPress={() => props.setUpdateForm({
@@ -117,7 +117,7 @@ const VisitorUpdateView = (props: any) => {
                         </Text>
                     </View>
                     <View style={styles.radioView}>
-                        <RadioButton
+                        <RadioButton.Android
                             value="2"
                             status={props.updateForm.gender === 2 ? "checked" : "unchecked"}
                             onPress={() => props.setUpdateForm({

@@ -7,7 +7,6 @@ import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import { BLACK_COLOR, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import InputField from "../../../../components/InputField";
-import { RadioButton } from "react-native-paper";
 import Button from "../../../../components/Button";
 import { normalize, normalizeSpacing } from "../../../../components/scaleFontSize";
 

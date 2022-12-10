@@ -1,4 +1,3 @@
-import Loader from 'app/components/CommonScreen/Loader';
 import ErrorMessage from 'app/components/ErrorMessage';
 import { GREEN_COLOR } from 'app/components/utilities/constant';
 import { removeAuthUser, userRegister } from 'app/Redux/Actions/AuthActions';

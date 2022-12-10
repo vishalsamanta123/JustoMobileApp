@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import 'react-native-gesture-handler';
 import Loader from 'app/components/CommonScreen/Loader';
 import useLoader from 'app/components/useLoader';

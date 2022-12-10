@@ -1,8 +1,9 @@
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM, EDIT_AGENT } from "../types";
+import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM, EDIT_AGENT, STOP_LOADING, START_LOADING } from "../types";
 
 export const addAgent = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
     try {
         const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
         const res = await apiCall("post", apiEndPoints.ADD_AGENT_, params, header);
@@ -19,6 +20,9 @@ export const addAgent = (params: any) => async (dispatch: any) => {
             type: AGENT_ERROR,
             payload: console.log(e),
         });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING });
     }
 };
 export const addAgentForm = (params: any) => async (dispatch: any) => {
@@ -37,6 +41,7 @@ export const addAgentForm = (params: any) => async (dispatch: any) => {
 
 export const getAgentDetail = (params: any) => async (dispatch: any) => {
 console.log('params: ', params);
+dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.GETUSERDETAIL, params);
         console.log('res: GET_AGENT_DETAIL_', res.data);
@@ -59,5 +64,8 @@ console.log('params: ', params);
             type: AGENT_ERROR,
             payload: console.log(e),
         });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING });
     }
 };

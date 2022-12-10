@@ -89,6 +89,7 @@ console.log('params: IN FILTER PROPERTY', params);
 };
 
 export const getPropertyDetail = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.GETPROPERTYDETAIL, params);
 
@@ -109,8 +110,12 @@ export const getPropertyDetail = (params: any) => async (dispatch: any) => {
             payload: console.log(e),
         });
     }
+    finally {
+        dispatch({ type: STOP_LOADING });
+    }
 };
 export const statusUpdate = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYSUBSCRIBE, params);
         if (res.data.status == 200) {
@@ -129,6 +134,9 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
             type: PROPERTY_ERROR,
             payload: console.log(e),
         });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING });
     }
 };
 export const getManagerList = (params: any) => async (dispatch: any) => {
@@ -160,6 +168,7 @@ export const getManagerList = (params: any) => async (dispatch: any) => {
 };
 export const allocatePropertyToUser = (params: any) => async (dispatch: any) => {
     console.log('params: ', params);
+    dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.ALLOCATEPROPERTYTOUSER, params);
         console.log('res: IN ALLOCATE', res);
@@ -179,6 +188,9 @@ export const allocatePropertyToUser = (params: any) => async (dispatch: any) => 
             type: PROPERTY_ERROR,
             payload: console.log(e),
         });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING });
     }
 };
 export const removePropertyCompetitor = () => async (dispatch: any) => {

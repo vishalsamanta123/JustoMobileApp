@@ -9,7 +9,6 @@ import strings from '../../../components/utilities/Localization';
 import ErrorMessage from '../../../components/ErrorMessage';
 import { setDefaultHeader } from '../../../components/utilities/httpClient';
 import { userLogin } from '../../../Redux/Actions/AuthActions';
-import Loader from '../../../components/CommonScreen/Loader';
 
 const LoginScreen = ({ navigation }: any) => {
   // const [validEmail, setIsValidEmail] = useState(false);
