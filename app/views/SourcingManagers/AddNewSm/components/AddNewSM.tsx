@@ -47,7 +47,7 @@ const AddNewSMView = (props: any) => {
             <Image
               style={styles.DummyloginBanner}
               source={images.user}
-              resizeMode="contain"
+              resizeMode="cover"
             />
           ) : (
             <Image
@@ -57,7 +57,7 @@ const AddNewSMView = (props: any) => {
                   ? props.addNewSmData?.profile_picture?.uri
                   : props.addNewSmData?.profile_picture,
               }}
-              resizeMode="contain"
+              resizeMode="cover"
             />
           )}
           <View style={styles.editView}>
@@ -159,7 +159,7 @@ const AddNewSMView = (props: any) => {
         <View style={styles.genderView}>
           <Text style={styles.genderTxt}>{strings.gender}</Text>
           <View style={styles.radioView}>
-            <RadioButton
+            <RadioButton.Android
               value="Male"
               status={
                 props.addNewSmData?.gender === 1 ? "checked" : "unchecked"
@@ -187,7 +187,7 @@ const AddNewSMView = (props: any) => {
             </Text>
           </View>
           <View style={styles.radioView}>
-            <RadioButton
+            <RadioButton.Android
               value="Female"
               status={
                 props.addNewSmData?.gender === 2 ? "checked" : "unchecked"

@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
   },
   budgetView: {
     flexDirection: 'row',
+    
   },
   smallBox: {
     width: "15%",
@@ -122,11 +123,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginLeft: 5,
     borderRadius: 10,
+    height: normalizeHeight(50)
   },
   budgetInput: {
     backgroundColor: WHITE_COLOR,
     width: '30%',
-    borderRadius: 10
+    borderRadius: 10,
+    height: normalizeHeight(50),
+    paddingLeft: normalizeSpacing(10)
   },
   headingsTxt: {
     fontSize: normalize(16),

@@ -16,13 +16,6 @@ const AllFollowUpView = (props: any) => {
   const insets = useSafeAreaInsets();
   return (
     <View style={styles.mainConatiner}>
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR_DARK,
-          height: insets.top,
-        }}
-      />
-      <StatusBar backgroundColor={PRIMARY_THEME_COLOR} barStyle={"light-content"} />
       <Header
         leftImageSrc={images.backArrow}
         rightSecondImageScr={images.notification}

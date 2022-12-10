@@ -117,7 +117,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.genderView}>
             <Text style={styles.genderTxt}>{strings.gender}</Text>
             <View style={styles.radioView}>
-              <RadioButton
+              <RadioButton.Android
                 value={editData?.gender}
                 status={editData?.gender === 1 ? "checked" : "unchecked"}
                 onPress={() =>
@@ -141,7 +141,7 @@ const EditProfileView = (props: any) => {
               </Text>
             </View>
             <View style={styles.radioView}>
-              <RadioButton
+              <RadioButton.Android
                 value={editData?.gender}
                 status={editData?.gender === 2 ? "checked" : "unchecked"}
                 onPress={() =>

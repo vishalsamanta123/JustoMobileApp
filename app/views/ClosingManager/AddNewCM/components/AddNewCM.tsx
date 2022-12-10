@@ -139,7 +139,7 @@ const AddNewCMView = (props: any) => {
                 <View style={styles.genderView}>
                     <Text style={styles.genderTxt}>{strings.gender}</Text>
                     <View style={styles.radioView}>
-                        <RadioButton
+                        <RadioButton.Android
                             value="Male"
                             status={props.addNewCMData?.gender === 1 ? "checked" : "unchecked"}
                             onPress={() => {
@@ -162,7 +162,7 @@ const AddNewCMView = (props: any) => {
                         </Text>
                     </View>
                     <View style={styles.radioView}>
-                        <RadioButton
+                        <RadioButton.Android
                             value="second"
                             status={props.addNewCMData?.gender === 2 ? "checked" : "unchecked"}
                             onPress={() => {

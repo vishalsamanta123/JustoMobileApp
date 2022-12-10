@@ -38,13 +38,6 @@ const AddNewVisitorForm = (props: any) => {
     }, [response])
     return (
         <View style={styles.mainContainer}>
-            <View
-                style={{
-                    backgroundColor: PRIMARY_THEME_COLOR,
-                    height: insets.top,
-                }}
-            />
-            <StatusBar backgroundColor={PRIMARY_THEME_COLOR} barStyle={"light-content"} />
             <Header
                 headerText={
                     props.type == 'edit' ?
@@ -167,7 +160,7 @@ const AddNewVisitorForm = (props: any) => {
                     <View style={styles.genderView}>
                         <Text style={styles.genderTxt}>{strings.gender}</Text>
                         <View style={styles.radioView}>
-                            <RadioButton
+                            <RadioButton.Android
                                 value="1"
                                 status={props?.formData?.gender === 1 ? "checked" : "unchecked"}
                                 onPress={() => props.setFormData({
@@ -189,7 +182,7 @@ const AddNewVisitorForm = (props: any) => {
                             </Text>
                         </View>
                         <View style={styles.radioView}>
-                            <RadioButton
+                            <RadioButton.Android
                                 value="2"
                                 status={props?.formData?.gender === 2 ? "checked" : "unchecked"}
                                 onPress={() => props.setFormData({
@@ -397,7 +390,9 @@ const AddNewVisitorForm = (props: any) => {
                                     })
                                 }}
                                 keyboardType={'number-pad'}
-                                placeholder='Min Budget' style={styles.budgetInput} />
+                                placeholder='Min Budget'
+                                 style={styles.budgetInput}
+                                 />
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
@@ -431,7 +426,7 @@ const AddNewVisitorForm = (props: any) => {
                         <Text style={styles.headingsTxt}>Nature Of Funding</Text>
                         <View style={{ flexDirection: "row" }}>
                             <View style={styles.radioView}>
-                                <RadioButton
+                                <RadioButton.Android
                                     value="loan"
                                     status={props?.formData?.funding_type === "loan" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
@@ -453,7 +448,7 @@ const AddNewVisitorForm = (props: any) => {
                                 </Text>
                             </View>
                             <View style={styles.radioView}>
-                                <RadioButton
+                                <RadioButton.Android
                                     value="self"
                                     status={props?.formData?.funding_type === "self" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
@@ -475,7 +470,7 @@ const AddNewVisitorForm = (props: any) => {
                                 </Text>
                             </View>
                             <View style={styles.radioView}>
-                                <RadioButton
+                                <RadioButton.Android
                                     value="both"
                                     status={props?.formData?.funding_type === "both" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
@@ -548,7 +543,7 @@ const AddNewVisitorForm = (props: any) => {
                         <Text style={styles.headingsTxt}>Purpose</Text>
                         <View style={{ flexDirection: "row" }}>
                             <View style={styles.radioView}>
-                                <RadioButton
+                                <RadioButton.Android
                                     value="end user"
                                     status={props?.formData?.purpose === "end user" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
@@ -570,7 +565,7 @@ const AddNewVisitorForm = (props: any) => {
                                 </Text>
                             </View>
                             <View style={styles.radioView}>
-                                <RadioButton
+                                <RadioButton.Android
                                     value="invest"
                                     status={props?.formData?.purpose === "invest" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
@@ -598,7 +593,7 @@ const AddNewVisitorForm = (props: any) => {
                         <Text style={styles.headingsTxt}>Occupation</Text>
                         <View style={{ flexDirection: "row", width: '100%' }}>
                             <View style={styles.radioView}>
-                                <RadioButton
+                                <RadioButton.Android
                                     value="salaried"
                                     status={props?.formData?.occupation === "salaried" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
@@ -620,7 +615,7 @@ const AddNewVisitorForm = (props: any) => {
                                 </Text>
                             </View>
                             <View style={styles.radioView}>
-                                <RadioButton
+                                <RadioButton.Android
                                     value="self employee"
                                     status={props?.formData?.occupation === "self employee" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
@@ -642,7 +637,7 @@ const AddNewVisitorForm = (props: any) => {
                                 </Text>
                             </View>
                             <View style={styles.radioView}>
-                                <RadioButton
+                                <RadioButton.Android
                                     value="professional"
                                     status={props?.formData?.occupation === "professional" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({

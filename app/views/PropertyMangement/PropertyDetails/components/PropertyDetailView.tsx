@@ -18,7 +18,6 @@ import Button from "../../../../components/Button";
 import ConfirmModal from "../../../../components/Modals/ConfirmModal";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import Loader from "../../../../components/CommonScreen/Loader";
 
 const PropertyDetailView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
@@ -85,16 +84,6 @@ const PropertyDetailView = (props: any) => {
   };
   return (
     <View style={styles.mainContainer}>
-
-      {loading ? <Loader /> : null}
-
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR_DARK,
-          height: insets.top,
-        }}
-      />
-      <StatusBar barStyle={"light-content"} />
       <Header
         leftImageSrc={images.backArrow}
         rightSecondImageScr={images.notification}

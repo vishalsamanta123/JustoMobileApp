@@ -1,8 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
-import Loader from 'app/components/CommonScreen/Loader';
 import { getSourcingManagerList } from 'app/Redux/Actions/SourcingManagerActions';
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import SourcingDetailsView from './components/SourcingManager'
 

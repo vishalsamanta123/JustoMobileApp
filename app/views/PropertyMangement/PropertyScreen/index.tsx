@@ -1,10 +1,7 @@
 import { useFocusEffect } from '@react-navigation/native';
-import ErrorMessage from 'app/components/ErrorMessage';
-import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant';
-import React, { useLayoutEffect, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../../../components/CommonScreen/Loader';
-import { getAllProperty, getManagerList, statusUpdate } from '../../../Redux/Actions/propertyActions';
+import { getAllProperty, statusUpdate } from '../../../Redux/Actions/propertyActions';
 import PropertyView from './components/PropertyView';
 
 const PropertyScreen = ({ navigation }: any) => {

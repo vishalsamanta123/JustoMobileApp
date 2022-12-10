@@ -1,7 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import FollowUpDetailsView from './Components/FollowUpDetailsView'
 import { useDispatch, useSelector } from 'react-redux'
-import Loader from 'app/components/CommonScreen/Loader'
 import { useFocusEffect } from '@react-navigation/native'
 import { getAllFollowUpDetails } from 'app/Redux/Actions/FollowUpActions'
 
@@ -38,7 +37,6 @@ const FollowUpDetails = ({ navigation, route }: any) => {
 
   return (
     <>
-      {isloading ? <Loader /> : null}
       <FollowUpDetailsView handleBackPress={handleBackPress} handleStatusUpdate={handleStatusUpdate} />
     </>
   )

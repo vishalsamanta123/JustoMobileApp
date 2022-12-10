@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { BLACK_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, PURPLE_COLOR, RED_COLOR, WHITE_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant';
+import { BLACK_COLOR, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR, PURPLE_COLOR, RED_COLOR, WHITE_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import Button from '../../../../components/Button';
@@ -82,7 +82,7 @@ const SourcingManagersItem = (props: any) => {
                     handleBtnPress={() => props.onPressStatus()}
                 /> */}
                 <Button
-                    width={85}
+                    width={Isios ? 100 : 85}
                     height={30}
                     bgcolor={WHITE_COLOR}
                     bordercolor={PRIMARY_THEME_COLOR}

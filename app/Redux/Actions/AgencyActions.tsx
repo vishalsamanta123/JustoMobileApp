@@ -102,6 +102,7 @@ export const AgencyCreateFormRemove = () => async (dispatch: any) => {
 
 export const createAgency = (item: any) => async (dispatch: any) => {
   console.log("item: PARAMS CREATE AGENCY", item);
+  dispatch({ type: START_LOADING });
   try {
     const header = {
       "Content-Type": "multipart/form-data",
@@ -133,6 +134,9 @@ export const createAgency = (item: any) => async (dispatch: any) => {
       type: CREATE_AGENCY_ERROR,
       payload: console.log(e),
     });
+  }
+  finally {
+    dispatch({ type: STOP_LOADING });
   }
 };
 export const editAgent = (params: any) => async (dispatch: any) => {
