@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
+import { DATE_FORMAT } from "app/components/utilities/constant";
 
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch()
@@ -75,13 +76,13 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    startdate: moment(data).format('YYYY-MM-DD')
+                    startdate: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    startdate: moment(data).format('YYYY-MM-DD')
+                    startdate: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 value={props.filterData.startdate}
@@ -97,13 +98,13 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    enddate: moment(data).format('YYYY-MM-DD')
+                    enddate: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    enddate: moment(data).format('YYYY-MM-DD')
+                    enddate: moment(data).format(DATE_FORMAT)
                   })
                 }}
               />

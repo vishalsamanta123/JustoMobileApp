@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE, FORGOT_PASSWORD, FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR, USERREGISTER, USERREGISTER_ERROR, START_LOADING, STOP_LOADING, REMOVE_USERDATA } from '../types'
+import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE, FORGOT_PASSWORD, FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR, USERREGISTER, USERREGISTER_ERROR, START_LOADING, STOP_LOADING, REMOVE_USERDATA, GET_USER_DETAILS, GET_USER_DETAILS_ERROR } from '../types'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import apiEndPoints from '../../components/utilities/apiEndPoints';
@@ -68,7 +68,6 @@ export const forgotemailverify = (params: any) => async (dispatch: any) => {
 }
 
 export const otpVerify = (params: any) => async (dispatch: any) => {
-    console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.OTPVERIFY, params);
         if (res.data.status === 200) {
@@ -144,12 +143,10 @@ export const updatepassword = (params: any) => async (dispatch: any) => {
 }
 
 export const changePassword = (params: any) => async (dispatch: any) => {
-    console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.CHANGEPASSWORD, params);
         console.log('res ====: ', res);
         if (res.data.status === 200) {
-            console.log('res.data.status: ', res.data.status);
             /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
             dispatch({
                 type: CHANGEPASSWORD,
@@ -172,6 +169,7 @@ export const changePassword = (params: any) => async (dispatch: any) => {
 }
 
 export const userLogout = () => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         await AsyncStorage.removeItem("persistantState");
         await AsyncStorage.removeItem("AuthToken");
@@ -186,6 +184,9 @@ export const userLogout = () => async (dispatch: any) => {
             type: LOGIN_ERROR,
             payload: console.log(e),
         })
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
     }
 }
 
@@ -211,8 +212,10 @@ export const jwtTokenGenrate = () => async (dispatch: any) => {
     }
 }
 export const userRegister = (item: any) => async (dispatch: any) => {
+    console.log('item userRegisteruserRegister: ', item);
     try {
         const res = await apiCall("post", apiEndPoints.REGISTERANDADDUSER, item);
+        console.log('res REGISTERANDADDUSER: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: USERREGISTER,
@@ -230,6 +233,30 @@ export const userRegister = (item: any) => async (dispatch: any) => {
     catch (e) {
         dispatch({
             type: USERREGISTER_ERROR,
+            payload: console.log('e', e),
+        })
+    }
+}
+export const getUserDetails = (item: any) => async (dispatch: any) => {
+    try {
+        const res = await apiCall("post", apiEndPoints.GET_USERPROFILE, item);
+        if (res.data.status == 200) {
+            dispatch({
+                type: GET_USER_DETAILS,
+                payload: res.data
+            })
+        } else {
+            handleApiError(res?.data)
+            dispatch({
+                type: GET_USER_DETAILS_ERROR,
+                payload: []
+            })
+        }
+
+    }
+    catch (e) {
+        dispatch({
+            type: GET_USER_DETAILS_ERROR,
             payload: console.log(e),
         })
     }

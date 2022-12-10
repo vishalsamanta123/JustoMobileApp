@@ -2,14 +2,15 @@ import { useFocusEffect } from "@react-navigation/native";
 import ErrorMessage from "app/components/ErrorMessage";
 import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
 import { allocatePropertyToUser, getManagerList } from "app/Redux/Actions/propertyActions";
+import { getAssignCPList } from "app/Redux/Actions/SourcingManagerActions";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AllocateCP from "./components/AllocateCP";
 
 const AllocatePropertyScreen = ({ navigation, route }: any) => {
-  const {id , type} = route?.params || {}
+  const { id, type } = route?.params || {}
   const { response = {}, list } =
-  useSelector((state: any) => state.propertyData) || [];
+    useSelector((state: any) => state.propertyData) || [];
 
   const [cpList, setCpList] = useState<any>([]);
   const dispatch: any = useDispatch();
@@ -32,39 +33,14 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
         })
       );
       // const constantArry: any[] = [...response.data];
-      return () => {};
+      return () => { };
     }, [navigation, list])
   );
   useEffect(() => {
     setCpList(response?.data);
     setSelected(response?.data?.filter((item: any) => item?.allocate_status?.length > 0))
-    /* setSelectedLoginIdCp(
-      response?.data?.filter((item: any) =>
-       {
-        const getid : any =  item?.allocate_status?.length > 0 
-        if(getid){
-          return item
-          //console.log('item?._id: ', item?._id);
-        }
-        
-      }).reduce((obj : any , key : any) => {
-      console.log('obj: ', obj);
 
-
-      }, [])
-    ) */
-
-      /*  const names = Object.keys(user)
-    .filter((key) => key.includes("Name"))
-    .reduce((obj, key) => {
-        return Object.assign(obj, {
-          [key]: user[key]
-        });
-  }, {}); */
-
-
-
-    if(response.status === 200) {
+    if (response.status === 200) {
       // ErrorMessage({
       //   msg: response.message,
       //   backgroundColor: GREEN_COLOR
@@ -76,10 +52,10 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
       })
     }
   }, [response])
-  
+
   const handleSelects = (items: any) => {
 
-    
+
     var array: any[] = [...selectedCp];
     var arrayLoginID: any[] = [...selectedLoginIdCp];
     array.push(items);
@@ -135,7 +111,7 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
       CPDetails={CPDetails}
       setCPDetails={setCPDetails}
       handleAddTarget={handleAddTarget}
-      // onPressCreate={onPressCreate}
+    // onPressCreate={onPressCreate}
     />
   );
 };

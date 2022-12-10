@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
     borderRadius: normalizeSpacing(50),
   },
   DummyloginBanner: {
-    width: normalizeSpacing(80),
-    height: normalizeSpacing(80),
+    width: normalizeSpacing(100),
+    height: normalizeSpacing(100),
     borderRadius: normalizeSpacing(50),
   },
   loginBannerView: {

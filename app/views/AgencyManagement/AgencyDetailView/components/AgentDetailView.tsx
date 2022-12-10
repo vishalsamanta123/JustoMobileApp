@@ -14,7 +14,6 @@ import moment from 'moment'
 
 
 const PropertyDetailView = (props: any) => {
-  const insets = useSafeAreaInsets();
 
   const layout = useWindowDimensions();
 

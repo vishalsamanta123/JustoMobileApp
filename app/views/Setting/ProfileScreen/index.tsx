@@ -29,7 +29,7 @@ const ProfileScreen = ({ navigation, route }: any) => {
       // getAgentList(offSET, [])
       getDetail();
       return () => { };
-    }, [navigation])
+    }, [navigation, detail])
   );
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const ProfileScreen = ({ navigation, route }: any) => {
 
   useEffect( () => {
     toGetDatas()
-  }, [response])
+  }, [response, navigation])
 
 
   const toGetDatas = async () => {

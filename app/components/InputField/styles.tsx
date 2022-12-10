@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     top: normalizeSpacing(-15),
     left: normalizeSpacing(20),
     zIndex: 1,
-    // backgroundColor: 'transparent',
   },
   inputHeadingText: {
     fontSize: normalize(Isios ? 14 : 16),

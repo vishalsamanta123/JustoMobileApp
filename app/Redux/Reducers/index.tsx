@@ -1,4 +1,4 @@
-import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, updatepasswordReducer, userData, userReducer } from "./AuthReducer";
+import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, updatepasswordReducer, userData, userDetailReducer, userReducer } from "./AuthReducer";
 import { agencyCreateFormReducer, agencyReducer } from "./AgencyReducer";
 import { SourcingManagerReducer } from "./SourcingManagerReducer";
 import { agentReducer } from "./AgentReducer";
@@ -11,9 +11,11 @@ import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReduc
 import { appointmentCLReducer } from "./AppointmentCLReducer";
 import { ClosingManagerReducer } from "./ClosingManagerReducer";
 import { BookingReducer, cancelBookingReducer } from "./BookingReducer";
+import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 
 export default {
     loadingReducer: loadingReducer,
+    userDetail: userDetailReducer,
     userData: userData,
     login: authStore,
     userReducer: userReducer,
@@ -32,6 +34,10 @@ export default {
     appointment: appointmentReducer,
     followUp: followUpReducer,
     masterData: masterDataReducer,
+
+    //Dashboard
+    dashboardData: dashboardReducer,
+    statusUpdateData: statusUpdateReducer,
 
     // Appointment CL
     appointmentCL: appointmentCLReducer,

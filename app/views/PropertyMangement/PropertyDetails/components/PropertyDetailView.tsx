@@ -114,11 +114,9 @@ const PropertyDetailView = (props: any) => {
       <View style={[styles.btnContainer, {
         justifyContent:  'center'
       }]}>
-        {approveStatus !== 1 &&
-          approveStatus !== 3 ? (
             <Button
-              handleBtnPress={() => onPressCreatevisit()}
-              buttonText={strings.createVisit}
+              handleBtnPress={() => props.handleAllocatePress()}
+              buttonText={strings.allocate}
               width={150}
               height={45}
               bordercolor={GRAY_COLOR}
@@ -127,7 +125,17 @@ const PropertyDetailView = (props: any) => {
               btnTxtsize={15}
               textTransform={"uppercase"}
             />
-          ) : null}
+            <Button
+              handleBtnPress={() => onPressCreatevisit()}
+              buttonText={strings.visits}
+              width={150}
+              height={45}
+              bordercolor={GRAY_COLOR}
+              borderWidth={1}
+              // btnTxtcolor={PRIMARY_THEME_COLOR}
+              btnTxtsize={15}
+              textTransform={"uppercase"}
+            />
       </View>
 
       <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} />

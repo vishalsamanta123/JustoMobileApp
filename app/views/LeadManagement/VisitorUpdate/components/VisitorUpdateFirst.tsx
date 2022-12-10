@@ -30,7 +30,8 @@ const VisitorUpdateView = (props: any) => {
             <View style={styles.noMoveVw}>
                 <TopScreensViewer type={props.screenType} />
             </View>
-            <ScrollView contentContainerStyle={styles.wrap}>
+            <ScrollView keyboardShouldPersistTaps={'handled'}
+                contentContainerStyle={styles.wrap}>
                 <View style={styles.inputWrap}>
                     <InputField
                         placeholderText={"Name"}
@@ -144,6 +145,7 @@ const VisitorUpdateView = (props: any) => {
                         placeholderText={"Date of Birth"}
                         headingText={"Date of Birth"}
                         editable={false}
+                        maximumDate={new Date()}
                         dateData={(data: any) => {
                             props.setUpdateForm({
                                 ...props.updateForm,
@@ -211,16 +213,24 @@ const VisitorUpdateView = (props: any) => {
                 </View>
                 <View style={[styles.inputWrap, { marginBottom: normalize(10) }]}>
                     <InputField
+                        inputType={'location'}
                         placeholderText={"Location"}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={(text: any) => {
+                        headingText={"Location"}
+                        valueshow={props?.updateForm?.location}
+                        onChangeText={(data: any) => {
                             props.setUpdateForm({
                                 ...props.updateForm,
-                                location: text
+                                location: data,
                             })
                         }}
-                        valueshow={props?.updateForm?.location}
-                        headingText={"Location"}
+                        onPressSelect={(data: any, detail: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                location: data?.description,
+                                latitude: detail?.geometry?.location?.lat,
+                                logitude: detail?.geometry?.location?.lng,
+                            })
+                        }}
                     />
                 </View>
             </ScrollView>

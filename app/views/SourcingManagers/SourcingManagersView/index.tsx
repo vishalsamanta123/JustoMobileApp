@@ -56,9 +56,9 @@ const SourcingDetailScreen = ({ navigation }: any) => {
     const handleDrawerPress = () => {
         navigation.toggleDrawer();
     };
-    const handleAddNewSM = (type: any) => {
+    const handleAddNewSM = (type: any, data: any) => {
         if (type === 'edit') {
-            navigation.navigate('AddNewSM', { type })
+            navigation.navigate('AddNewSM', { type : type, data: data })
         } else {
             navigation.navigate('AddNewSM')
         }

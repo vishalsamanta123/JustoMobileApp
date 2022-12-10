@@ -10,7 +10,12 @@ import AddNewCM from './components/AddNewCM'
 
 const AddNewCMScreen = ({ navigation, route }: any) => {
     const dispatch: any = useDispatch()
-    const [addNewCMData, setAddNewCMData] = useState<any>({})
+    const [addNewCMData, setAddNewCMData] = useState<any>({
+        module_id: '',
+        address: "indore12",
+        latitude: "21",
+        longitude: '31',
+    })
     const [cityData, setCityData] = useState<any>([])
     const [roleData, setRoleData] = useState<any>([])
     const { userData = {} } = useSelector((state: any) => state.userData)
@@ -32,7 +37,9 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
     }
 
     const onPressCreate = () => {
+        // if (validation()) {
         dispatch(userRegister(addNewCMData))
+        // }
         // navigation.goBack()
     }
     const handlegetCityList = () => {

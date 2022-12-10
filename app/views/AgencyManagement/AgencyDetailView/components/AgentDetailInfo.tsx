@@ -7,6 +7,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import strings from "app/components/utilities/Localization";
 
 const PropertyDetailItem = (props: any) => {
+  const item = props?.items
   return (
     <ScrollView>
       <View style={styles.Txtview}>
@@ -17,7 +18,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.status ? strings.active : strings.deactive}</Text>
+          <Text style={styles.nameTxt}>{item?.status ? strings.active : strings.deactive}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -28,7 +29,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.AgentName}</Text>
+          <Text style={styles.nameTxt}>{item?.AgentName}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -39,7 +40,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.Mobileno}</Text>
+          <Text style={styles.nameTxt}>{item?.Mobileno}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -50,7 +51,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.Email}</Text>
+          <Text style={styles.nameTxt}>{item?.Email}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -61,7 +62,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.whatsappno}</Text>
+          <Text style={styles.nameTxt}>{item?.whatsappno}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -72,7 +73,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.rerano}</Text>
+          <Text style={styles.nameTxt}>{item?.rerano}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -83,7 +84,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.aadharno}</Text>
+          <Text style={styles.nameTxt}>{item?.aadharno}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -94,7 +95,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.pancardno}</Text>
+          <Text style={styles.nameTxt}>{item?.pancardno}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -105,7 +106,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.location}</Text>
+          <Text style={styles.nameTxt}>{item?.location}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -116,7 +117,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.workingfrom}</Text>
+          <Text style={styles.nameTxt}>{item?.workingfrom}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

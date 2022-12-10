@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Alert } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import PropertyDetailView from './components/PropertyDetailView';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPropertyDetail } from '../../../Redux/Actions/propertyActions';
+import { getManagerList, getPropertyDetail } from '../../../Redux/Actions/propertyActions';
 
 const PropertyDetails = ({ navigation, route }: any) => {
   const [isloading, setIsloading] = useState(false)
@@ -20,9 +20,19 @@ const PropertyDetails = ({ navigation, route }: any) => {
   const onPressCreatevisit = () => {
     navigation.navigate('AddNewVisitorScreen')
   };
+  const handleAllocatePress = () => {
+    dispatch(getManagerList({
+      property_id: data.property_id
+    }))
+    navigation.navigate('AllocatePropertyScreen', { id: data.property_id })
+  }
   return (
     <>
-      <PropertyDetailView data={data} handleBackPress={handleBackPress} onPressCreatevisit={onPressCreatevisit} setIsloading={setIsloading} />
+      <PropertyDetailView data={data}
+        handleAllocatePress={handleAllocatePress}
+        handleBackPress={handleBackPress}
+        onPressCreatevisit={onPressCreatevisit}
+        setIsloading={setIsloading} />
     </>
   )
 }

@@ -9,7 +9,8 @@ import strings from "../../../components/utilities/Localization";
 import { GREEN_COLOR, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, RED_COLOR, WHITE_COLOR } from "../../../components/utilities/constant";
 
 const DashboardView = (props: any) => {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const targetData = props?.dashboardData?.target || {}
+  const achieveTargetData = props?.dashboardData?.achievetarget || {}
   const insets = useSafeAreaInsets();
   const DATA: any = [
     {
@@ -54,9 +55,6 @@ const DashboardView = (props: any) => {
       </TouchableOpacity>
     );
   };
-  const handleSwitcPress = () => {
-    setIsEnabled(!isEnabled);
-  };
   return (
     <>
       <View style={styles.mainContainerWrap}>
@@ -74,8 +72,8 @@ const DashboardView = (props: any) => {
                 <Text style={styles.statusText}>Status</Text>
                 <View style={styles.switchView}>
                   <Switch
-                    value={isEnabled}
-                    onValueChange={(val) => handleSwitcPress()}
+                    value={props?.isEnabled === 1 ? true : false}
+                    onValueChange={(val) => props.updateStatusPress(props?.isEnabled)}
                     //disabled={false}
                     backgroundActive={GREEN_COLOR}
                     backgroundInactive={RED_COLOR}
@@ -103,11 +101,16 @@ const DashboardView = (props: any) => {
               </View>
               <View style={styles.welcomeView}>
                 <Text style={styles.welcomeToText}>Welcome to</Text>
-                <Text style={styles.welcomeNameText}>Yogesh Sarode</Text>
+                <Text style={styles.welcomeNameText}>{props?.dashboardData?.user_name}</Text>
               </View>
             </View>
             <View style={styles.qrCodeView}>
-              <Image source={images.qrCode} style={styles.qrCodeImage} />
+              {props?.dashboardData?.qrcode != "" || props?.dashboardData?.qr_code ?
+                <Image source={{ uri: props?.dashboardData?.qrcode || props?.dashboardData?.qr_code }}
+                  style={styles.qrCodeImage} />
+                :
+                <Image source={images.qrCode} style={styles.qrCodeImage} />
+              }
               <TouchableOpacity style={styles.linkImageView}>
                 <Image source={images.link} style={styles.linkImage} />
               </TouchableOpacity>
