@@ -9,6 +9,7 @@ import { PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import LeaderBoardItems from './LeaderBoardItems'
+import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 
 const LeaderBoardView = (props: any) => {
     return (
@@ -23,7 +24,8 @@ const LeaderBoardView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
                 barStyle={'light-content'}
             />
-            <View style={styles.topItemsVw}>
+            <ComingSoonScreen />
+            {/* <View style={styles.topItemsVw}>
                 <InputField
                     placeholderText={'Search Project Name'}
                     handleInputBtnPress={() => { }}
@@ -49,7 +51,7 @@ const LeaderBoardView = (props: any) => {
                         )
                     }}
                 />
-            </View>
+            </View> */}
         </View>
     )
 }

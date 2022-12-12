@@ -10,6 +10,7 @@ const DashboardScreen = ({ navigation }: any) => {
   const getLoginType = useSelector((state: any) => state.login);
   const statusData = useSelector((state: any) => state.statusUpdateData) || {}
   const { response = {}, } = useSelector((state: any) => state.dashboardData);
+  console.log('response: ', response);
   const [dashboardData, setDashboardData] = useState({})
   const [isEnabled, setIsEnabled] = useState<any>();
 

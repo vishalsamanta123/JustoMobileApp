@@ -17,7 +17,7 @@ const strings = new LocalizedStrings({
     bookingRequestHead: 'Booking Request',
     playVideo: 'Play',
     recoveryHeader: 'Recovery',
-    saleToolHeader: 'Sales tools',
+    saleToolHeader: 'Sales Tools',
     agencyHeader: 'Agency(CP)',
     leadManagementHeader: 'Lead Management',
     appointmentWithCPHeader: 'Appointment With CP',
@@ -85,6 +85,7 @@ const strings = new LocalizedStrings({
     bookNow: 'Book Now',
     browse: 'Browse',
     reset: 'RESET',
+    comingSoon: 'Coming Soon',
 
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
