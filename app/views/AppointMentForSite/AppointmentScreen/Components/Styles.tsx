@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
   projectContainer: {
     flex: 2.6,
     alignItems: 'flex-start',
-    height: '100%',
-    marginLeft:normalizeSpacing(15)
+    // height: '100%',
+    marginLeft: normalizeSpacing(15),
   },
   projectTxt: {
     fontSize: normalize(15),

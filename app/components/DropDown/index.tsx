@@ -28,7 +28,7 @@ const DropdownInput = (props: any) => {
                     style={[styles.dropdown, {
                         width: inputWidth,
                         height: normalizeHeight(inputheight),
-                        paddingLeft: normalize(paddingLeft)
+                        paddingLeft: normalize(paddingLeft),
                     }]}
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={props.selectedTextStyle ? props.selectedTextStyle : styles.selectedTextStyle}

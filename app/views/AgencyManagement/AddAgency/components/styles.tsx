@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
   wrap: {
     flexGrow: 1,
     marginHorizontal: normalizeSpacing(20),
-    alignItems: 'center',
   },
   headingText: {
     fontSize: normalize(18),
@@ -47,7 +46,8 @@ const styles = StyleSheet.create({
     height: normalizeHeight(100),
     width: normalizeWidth(100),
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignSelf: 'center'
   },
   pickerImageVw: {
     width: normalizeWidth(100),
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: normalizeSpacing(10),
+    alignSelf: 'center'
   },
   loginBanner: {
     width: normalizeSpacing(100),

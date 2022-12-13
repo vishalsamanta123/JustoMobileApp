@@ -1,16 +1,157 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, Alert, ScrollView } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import AddAppointmentView from './Components/AddAppointmentView'
+import { useDispatch, useSelector } from 'react-redux'
+import { addAppointment, editAppointment, getAppointmentDetail, removeEditUser } from 'app/Redux/Actions/AppointmentWithCpActions'
+import { getAllLeadsList } from 'app/Redux/Actions/LeadsActions'
+import { getAllProperty } from 'app/Redux/Actions/propertyActions'
+import ErrorMessage from 'app/components/ErrorMessage'
+import { GREEN_COLOR } from 'app/components/utilities/constant'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
-  const data = route?.params?.type || null
+  const { type = "", item = {} } = route?.params || {}
+  const dispatch: any = useDispatch()
+  const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
+  console.log('response: ', response);
+  const leadData = useSelector((state: any) => state.visitorDataList) || {}
+  const propertyData = useSelector((state: any) => state.propertyData) || {}
+  const editAppointmentData = useSelector((state: any) => state.editAddAppointment) || {}
+  const [leadList, setLeadList] = useState<any>([])
+  const [propertyList, setPropertyList] = useState<any>([])
+  const [appointMentForm, setAppointMentForm] = useState({
+    module_id: "",
+    lead_id: '',
+    property_id: '',
+    appointment_date: '',
+    appointment_time: '',
+    pickup: 'No',
+    type: '',
+    pickup_address: '',
+    pickup_location: '',
+    pickup_latitude: '',
+    pickup_longitude: '',
+    number_of_guest: '',
+    property_title: '',
+    first_name: ''
+  })
+  useEffect(() => {
+    if (type === 'edit') {
+      getUserDetails()
+    }
+  }, [type])
+  useEffect(() => {
+    if (editAppointmentData?.response?.status === 200) {
+      navigation.navigate('AppointmentForSite')
+      dispatch(removeEditUser())
+      ErrorMessage({
+        msg: editAppointmentData?.response?.message,
+        backgroundColor: GREEN_COLOR,
+      })
+      setAppointMentForm({
+        module_id: "",
+        lead_id: '',
+        property_id: '',
+        appointment_date: '',
+        appointment_time: '',
+        pickup: 'No',
+        type: '',
+        pickup_address: '',
+        pickup_location: '',
+        pickup_latitude: '',
+        pickup_longitude: '',
+        number_of_guest: '',
+        property_title: '',
+        first_name: ''
+      })
+    }
+  }, [editAppointmentData])
+  useEffect(() => {
+    if (leadData?.response?.status === 200) {
+      setLeadList(leadData?.response?.data)
+    } else {
+      setLeadList([])
+    }
+    if (propertyData?.response?.status === 200) {
+      setPropertyList(propertyData?.response?.data)
+    } else {
+      setPropertyList([])
+    }
+  }, [leadData, propertyData])
+  const getLeadList = () => {
+    dispatch(getAllLeadsList({
+      offset: 0,
+      limit: 100,
+    }))
+  }
+  const getPropertyList = () => {
+    dispatch(getAllProperty({
+      offset: 0,
+      limit: 100,
+    }))
+  }
+  useEffect(() => {
+    if (type === 'edit' && response?.status === 200) {
+      setAppointMentForm({
+        module_id: "",
+        lead_id: response?.data[0]?.lead_id,
+        first_name: response?.data[0]?.customer_first_name,
+        property_id: response?.data[0]?.property_id,
+        property_title: response?.data[0]?.property_title,
+        appointment_date: response?.data[0]?.appointment_date,
+        appointment_time: response?.data[0]?.appointment_time,
+        pickup: response?.data[0]?.pickup,
+        type: response?.data[0]?.type,
+        pickup_address: response?.data[0]?.pickup_address,
+        pickup_location: response?.data[0]?.pickup_location,
+        pickup_latitude: response?.data[0]?.pickup_latitude,
+        pickup_longitude: response?.data[0]?.pickup_longitude,
+        number_of_guest: response?.data[0]?.number_of_guest,
+      })
+    }
+  }, [response])
+  const getUserDetails = () => {
+    dispatch(getAppointmentDetail({
+      appointment_id: item?._id ? item?._id : ''
+    }))
+  }
   const handleBackPress = () => {
     navigation.goBack()
   }
+
+  const onPressAddEdit = () => {
+    const params = {
+      module_id: "",
+      lead_id: appointMentForm?.lead_id,
+      property_id: appointMentForm?.property_id,
+      appointment_date: appointMentForm?.appointment_date,
+      appointment_time: appointMentForm?.appointment_time,
+      pickup: appointMentForm?.pickup,
+      pickup_address: appointMentForm?.pickup_address,
+      pickup_location: appointMentForm?.pickup_location,
+      pickup_latitude: appointMentForm?.pickup_latitude,
+      pickup_longitude: appointMentForm?.pickup_longitude,
+      number_of_guest: appointMentForm?.number_of_guest,
+      type: 1,
+      drop_off_location: appointMentForm?.pickup_address,
+    }
+    if (type === 'edit') {
+      dispatch(editAppointment({ ...params, appointment_id: item?._id }))
+    } else {
+      dispatch(addAppointment(params))
+    }
+  }
   return (
     <AddAppointmentView
-      data={data}
-      handleBackPress={handleBackPress} />
+      type={type}
+      setAppointMentForm={setAppointMentForm}
+      appointMentForm={appointMentForm}
+      handleBackPress={handleBackPress}
+      getLeadList={getLeadList}
+      getPropertyList={getPropertyList}
+      leadList={leadList}
+      propertyList={propertyList}
+      onPressAddEdit={onPressAddEdit}
+    />
   )
 }
 

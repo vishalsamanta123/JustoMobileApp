@@ -12,11 +12,11 @@ import {
 } from '../utilities/constant';
 
 const styles = StyleSheet.create({
- 
   centered: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: '70%'
   },
   title: {
     fontSize: 20,

@@ -110,7 +110,7 @@ const AddAppointmentItem = (props: any) => {
                         onFocus={() => props.getVisitorsList()}
                         labelField="first_name"
                         valueField={'_id'}
-                        value={props.addAppointmentForm?.lead_name}
+                        value={props.addAppointmentForm?.lead_id}
                         onChange={(item: any) => {
                             props.setAddAppointmentForm({
                                 ...props.addAppointmentForm,

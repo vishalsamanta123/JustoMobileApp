@@ -10,16 +10,18 @@ import { useNavigation } from '@react-navigation/native';
 import FilterModal from './AppointmentModal';
 import Button from '../../../../components/Button';
 import AppointMentForSiteList from './AppointMentForSiteList'
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 const AppointmentView = (props: any) => {
+    const loadingref = false
     const navigation: any = useNavigation()
     const [FilterisVisible, setFilterisVisible] = useState(false)
-    const onPressView = () => {
-        navigation.navigate('AppointmentForSiteDetail')
+    const onPressView = (item: any) => {
+        navigation.navigate('AppointmentForSiteDetail', item)
     }
-    const onPressAddNew = (type: any) => {
+    const onPressAddNew = (type: any, item: any) => {
         if (type === 'edit') {
-            navigation.navigate('AddAppointmentForSite', { type })
+            navigation.navigate('AddAppointmentForSite', { type, item })
         } else {
             navigation.navigate('AddAppointmentForSite')
         }
@@ -43,23 +45,46 @@ const AppointmentView = (props: any) => {
                     height={30}
                     buttonText={strings.addNewappointment}
                     btnTxtsize={14}
-                    handleBtnPress={() => onPressAddNew(null)}
+                    handleBtnPress={() => onPressAddNew(null, {})}
                 />
             </View>
             <View style={styles.listView}>
                 <FlatList
-                    data={props.Data}
+                    data={props.siteAppointments}
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => <AppointMentForSiteList items={item}
-                        onPressView={() => onPressView()}
-                        onEditPress={() => onPressAddNew('edit')}
+                        onPressView={() => onPressView(item)}
+                        onEditPress={() => onPressAddNew('edit', item)}
                     />}
+                    ListEmptyComponent={
+                        <EmptyListScreen message={'Appointment'} />}
+                    onRefresh={() => {
+                        props.setFilterData({
+                            appointment_with: '',
+                            status: '',
+                            start_date: '',
+                            end_date: '',
+                            customer_name: '',
+                            property_name: ''
+                        })
+                        props.getAppointmentList(0, {})
+                    }}
+                    refreshing={loadingref}
+                    onEndReached={() => {
+                        if (props?.siteAppointments?.length < props?.moreData) {
+                            props.getAppointmentList(props?.siteAppointments?.length > 2 ? props.offSET + 1 : 0, props.filterData)
+                        }
+                    }}
                 />
             </View>
             <FilterModal
                 setFilterData={props.setFilterData}
                 filterData={props.filterData}
-                Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
+                Visible={FilterisVisible}
+                getAppointmentList={props.getAppointmentList}
+                setIsVisible={setFilterisVisible}
+                setSiteAppointments={props.setSiteAppointments}
+            />
         </View>
     )
 }
