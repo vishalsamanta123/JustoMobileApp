@@ -116,12 +116,6 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('BookingList') }}
         />
         <DrawerTabSection
-          type={'postsales'}
-          iconSource={images.lead}
-          tabTitle={strings.bookingRequestHead}
-          handleDrawerNavigation={() => { navigation.navigate('BookingList') }}
-        />
-        <DrawerTabSection
           type={'Sourcing TL'}
           iconSource={images.property}
           tabTitle={strings.SourcingManagersHeader}
@@ -146,11 +140,6 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('FollowUpScreen'); }}
         />
         <DrawerTabSection
-          type={'Closing Manager,Closing TL'}
-          iconSource={images.property}
-          tabTitle={strings.recoveryHeader}
-        />
-        <DrawerTabSection
           type={'Sourcing TL,Sourcing Manager'}
           iconSource={images.event}
           tabTitle={strings.appointmentWithCPHeader}
@@ -161,6 +150,12 @@ const customDrawer = ({ navigation }: any) => {
           iconSource={images.event}
           tabTitle={strings.appointmentForVisitHeader}
           handleDrawerNavigation={() => { navigation.navigate('AppointmentForSite'); }}
+        />
+        <DrawerTabSection
+          type={'postsales'}
+          iconSource={images.lead}
+          tabTitle={strings.bookingRequestHead}
+          handleDrawerNavigation={() => { navigation.navigate('BookingList') }}
         />
         <DrawerTabSection
           type={'Sourcing Manager'}
@@ -174,34 +169,48 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.PickuprequestHeader}
           handleDrawerNavigation={() => { navigation.navigate('PickupRequest'); }}
         />
-        {/* <DrawerTabSection
-          type={'Sourcing Manager,Closing Manager,Closing TL'}
-          iconSource={images.report}
-          tabTitle={strings.reportHeader}
-        /> */}
-        {/*  <DrawerTabSection
-          type={'Sourcing Manager,Closing Manager,Closing TL'}
-          iconSource={images.chat}
-          tabTitle={strings.chatHeader}
-        />
         <DrawerTabSection
           type={'Sourcing Manager,Closing Manager,Closing TL'}
           iconSource={images.support}
           tabTitle={strings.supportForumHeader}
+          handleDrawerNavigation={() => { navigation.navigate('SupportForum'); }}
         />
         <DrawerTabSection
           type={'Sourcing Manager,Closing Manager'}
           iconSource={images.support}
+          handleDrawerNavigation={() => { navigation.navigate('Support'); }}
           tabTitle={strings.supportHeader}
         />
-        <DrawerTabSection iconSource={images.report} tabTitle={strings.reportHeader} />
-        <DrawerTabSection iconSource={images.chat} tabTitle={strings.chatHeader} />
+        <DrawerTabSection
+          type={'Closing Manager,Closing TL'}
+          iconSource={images.property}
+          tabTitle={strings.recoveryHeader}
+          handleDrawerNavigation={() => { navigation.navigate('Recovery'); }}
+        />
+        <DrawerTabSection
+          iconSource={images.report}
+          type={'Sourcing Manager,Closing Manager,Closing TL'}
+          handleDrawerNavigation={() => { navigation.navigate('Report'); }}
+          tabTitle={strings.reportHeader} />
+        <DrawerTabSection
+          type={'Sourcing Manager,Closing Manager,Closing TL'}
+          handleDrawerNavigation={() => { navigation.navigate('Chat'); }}
+          iconSource={images.chat} tabTitle={strings.chatHeader} />
         <DrawerTabSection
           type={'Closing TL'}
-          iconSource={images.support} tabTitle={strings.supportHeader} /> */}
+          handleDrawerNavigation={() => { navigation.navigate('PickupRequest'); }}
+          iconSource={images.support}
+          tabTitle={strings.supportHeader} />
+        <DrawerTabSection
+          type={'Closing Manager,Closing TL'}
+          iconSource={images.support}
+          tabTitle={strings.saleToolHeader}
+          handleDrawerNavigation={() => { navigation.navigate('SalesTools'); }}
+        />
         <DrawerTabSection
           type={'all'}
-          iconSource={images.setting} tabTitle={strings.settingHeader} handleDrawerNavigation={() => {
+          iconSource={images.setting}
+          tabTitle={strings.settingHeader} handleDrawerNavigation={() => {
             navigation.navigate('SettingScreen');
           }} />
         <DrawerTabSection

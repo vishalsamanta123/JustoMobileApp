@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import axios from "axios";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
@@ -75,7 +76,12 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
 import AddNewVisitorScreen from "app/views/LeadManagement/AddNewVisitor";
 import FollowUpAddScreen from "app/views/AppointMent/FollowUpAdd";
-import axios from "axios";
+import SupportScreen from "app/views/Support";
+import SupportForumScreen from "app/views/SupportForum";
+import SalesToolsScreen from "app/views/SalesTools";
+import ReportScreen from "app/views/Report";
+import ChatViewScreen from "app/views/Chat";
+import RecoveryScreen from "app/views/Recovery";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -114,6 +120,12 @@ const DrawerComponent = () => {
       <Drawer.Screen name="BookingList" component={BookingListScreen} />
       <Drawer.Screen name="PickupRequest" component={PickupRequestScreen} />
       <Drawer.Screen name="LeaderBoard" component={LeaderBoardScreen} />
+      <Drawer.Screen name="SupportForum" component={SupportForumScreen} />
+      <Drawer.Screen name="Support" component={SupportScreen} />
+      <Drawer.Screen name="SalesTools" component={SalesToolsScreen} />
+      <Drawer.Screen name="Report" component={ReportScreen} />
+      <Drawer.Screen name="Chat" component={ChatViewScreen} />
+      <Drawer.Screen name="Recovery" component={RecoveryScreen} />
       {/* <Drawer.Screen name="profile" component={ProfileScreen}  /> */}
     </Drawer.Navigator>
   );
@@ -250,17 +262,17 @@ const AuthLoadingComponent = () => {
   async function tokenGenrate() {
     try {
       const options = {
-        headers: {"content-type": "application/json"}
+        headers: { "content-type": "application/json" }
       }
-     const data = await axios.get('https://itinformatix.org:3044/api/token/jwtToken', options)
-      .then(res => {
-        console.log('res', res.data)
-        return res.data
+      const data = await axios.get('https://itinformatix.org:3044/api/token/jwtToken', options)
+        .then(res => {
+          console.log('res', res.data)
+          return res.data
 
-      }).catch(e => {
-        console.log('e', e)
+        }).catch(e => {
+          console.log('e', e)
 
-      })
+        })
       // const { data } = await apiCall("GET", apiEndPoints.JWTTOKEN, null);
       console.log('data', data)
       if (data?.status === 200) {
