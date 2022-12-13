@@ -109,7 +109,7 @@ const FilterModal = (props: any) => {
                 onChangeText={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    search_by_location: data?.description,
+                    search_by_location: data,
                   })
                 }}
               />

@@ -20,7 +20,6 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch();
   const [formType, setFormType] = useState(0);
   const { userData = {} } = useSelector((state: any) => state.userData);
-
   const [agencyData, setAgencyData] = useState({
     profile_picture: type === "edit" ? "" : "",
     owner_name: "",
@@ -50,14 +49,17 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     company_ifsc_code: "",
     _id: "",
     agency_name: "",
+    location: '',
+    latitude: '',
+    longitude: '',
   });
-  console.log("agencyData", agencyData);
 
   const [imagePicker, setImagePicker] = useState(false);
   const [locationModel, setLocationModel] = useState(false);
 
   const registrationData = useSelector((state: any) => state.agencyForm);
   const { response = {}, detail } = useSelector((state: any) => state.agency);
+  console.log('response: response', response);
 
   useEffect(() => {
     if (type === "edit") {
@@ -148,6 +150,13 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       } else if (agencyData.email == undefined || agencyData.email == "") {
         isError = false;
         errorMessage = "Email is require. Please enter Email";
+      } else if (
+        agencyData.location == undefined ||
+        agencyData.location == ""
+      ) {
+        isError = false;
+        errorMessage =
+          "Address is require. Please enter Address";
       } else if (
         agencyData.working_location.length === 0 ||
         agencyData.working_location === undefined
@@ -283,23 +292,13 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       }
     } else {
       if (validation()) {
-        const location = agencyData?.working_location?.map((item: any) => {
-          return item.location;
-        });
-        const latitude = agencyData?.working_location?.map((item: any) => {
-          return item.latitude;
-        });
-        const longitude = agencyData?.working_location?.map((item: any) => {
-          return item.longitude;
-        });
-
         const formData = new FormData();
         if (type === "edit") {
           formData.append("agency_id", agencyData?._id);
           formData.append("cp_id", agencyData?._id);
-          formData.append("address", location[0]);
           formData.append("pin_code", "4545456");
         }
+        formData.append("address", agencyData?.location);
         formData.append("email", agencyData?.email);
         // formData.append("registration_no", agencyData?.registration_no);
         formData.append("rera_registration", agencyData?.rera_registration);
@@ -316,8 +315,9 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           "date_of_birth",
           agencyData?.date_of_birth ? agencyData?.date_of_birth : "10/11/2000"
         );
-        formData.append("location", location[0]);
-        formData.append("latitude", latitude[0]);
+        formData.append("location", agencyData?.location);
+        formData.append("latitude", agencyData?.latitude);
+        formData.append("longitude", agencyData?.longitude);
         formData.append("bank_name", agencyData?.bank_name);
         formData.append("branch_name", agencyData?.branch_name);
         formData.append("account_no", agencyData?.account_no);
@@ -356,7 +356,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
             "declaration_letter_of_company",
             agencyData?.declaration_letter_of_company
           );
-          
+
         if (type === "edit") {
           dispatch(editAgent(formData));
         } else if (type === "add") {
