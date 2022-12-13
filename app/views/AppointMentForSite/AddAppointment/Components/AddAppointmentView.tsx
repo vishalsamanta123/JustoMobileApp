@@ -12,9 +12,6 @@ import { useNavigation } from '@react-navigation/native';
 const AddAppointmentView = (props: any) => {
     const insets = useSafeAreaInsets();
     const navigation: any = useNavigation()
-    const [value, setValue] = useState(null)
-    const [gender, setGender] = useState("Male");
-    const [checked, setChecked] = React.useState("first");
     const handleBtnPress = () => {
         navigation.navigate('AppointmentForSite')
     }
@@ -23,7 +20,7 @@ const AddAppointmentView = (props: any) => {
             <Header
                 leftImageSrc={images.backArrow}
                 rightSecondImageScr={images.notification}
-                headerText={props.data === 'edit' ? strings.editNewappointment :
+                headerText={props.type === 'edit' ? strings.editNewappointment :
                     strings.addNewappointment}
                 leftImageIconStyle={styles.RightFirstIconStyle}
                 handleOnLeftIconPress={() => props.handleBackPress()}
@@ -31,12 +28,15 @@ const AddAppointmentView = (props: any) => {
             />
             <View style={styles.AddAppointmentView}>
                 <AddAppointmentItem
-                    setValue={setValue}
-                    value={value}
-                    setChecked={setChecked}
-                    checked={checked}
+                    type={props.type}
                     handleBtnPress={handleBtnPress}
-                    data={props.data}
+                    appointMentForm={props.appointMentForm}
+                    setAppointMentForm={props.setAppointMentForm}
+                    getLeadList={props.getLeadList}
+                    getPropertyList={props.getPropertyList}
+                    leadList={props?.leadList}
+                    propertyList={props?.propertyList}
+                    onPressAddEdit={props.onPressAddEdit}
                 />
             </View>
         </View>

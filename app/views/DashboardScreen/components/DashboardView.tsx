@@ -1,14 +1,15 @@
-import { View, Text, StatusBar, ScrollView, Image, FlatList, TouchableOpacity, } from "react-native";
+import React, { useState } from "react";
+import { View, Text, ScrollView, Image, FlatList, TouchableOpacity, } from "react-native";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Switch } from 'react-native-switch';
-import React, { useState } from "react";
 import Header from "../../../components/Header";
 import images from "../../../assets/images";
 import styles from "./styles";
 import strings from "../../../components/utilities/Localization";
-import { GREEN_COLOR, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, RED_COLOR, WHITE_COLOR } from "../../../components/utilities/constant";
+import { GREEN_COLOR, RED_COLOR, WHITE_COLOR } from "../../../components/utilities/constant";
 
 const DashboardView = (props: any) => {
+  console.log('props?.dashboardData: ', props?.dashboardData);
   const targetData = props?.dashboardData?.target || {}
   const achieveTargetData = props?.dashboardData?.achievetarget || {}
   const insets = useSafeAreaInsets();
@@ -122,7 +123,7 @@ const DashboardView = (props: any) => {
                 <Text style={styles.cardText}>Visit Target</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.numberText}>250/1000</Text>
+                <Text style={styles.numberText}>{achieveTargetData?.achieve_visit_target}/{targetData?.booking_target}</Text>
               </View>
             </View>
             <View style={styles.secondCardView}>
@@ -130,7 +131,7 @@ const DashboardView = (props: any) => {
                 <Text style={styles.cardText}>Site Visit Target</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.numberText}>250/1000</Text>
+                <Text style={styles.numberText}>{achieveTargetData?.achieve_site_visit_target}/{targetData?.site_visit_target}</Text>
               </View>
             </View>
             <View style={styles.thirdCardView}>
@@ -138,7 +139,7 @@ const DashboardView = (props: any) => {
                 <Text style={styles.cardText}>Closing Target</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.numberText}>250/1000</Text>
+                <Text style={styles.numberText}>{achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}</Text>
               </View>
             </View>
           </View>
@@ -150,7 +151,7 @@ const DashboardView = (props: any) => {
                 </Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>250/1000</Text>
+                <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_site_visit}</Text>
               </View>
             </View>
             <View style={styles.thirdPortioncardView}>
@@ -160,7 +161,7 @@ const DashboardView = (props: any) => {
                 </Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>250/1000</Text>
+                <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_close_visit}</Text>
               </View>
             </View>
             <View style={styles.thirdPortioncardView}>
@@ -168,7 +169,7 @@ const DashboardView = (props: any) => {
                 <Text style={styles.thirdPortionCardText}>Today Visit</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>250/1000</Text>
+                <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_visit}</Text>
               </View>
             </View>
             <View style={styles.thirdPortioncardView}>
@@ -176,7 +177,7 @@ const DashboardView = (props: any) => {
                 <Text style={styles.thirdPortionCardText}>Active CP</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>250/1000</Text>
+                <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.active_cp}</Text>
               </View>
             </View>
             <View style={styles.thirdPortioncardView}>
@@ -184,7 +185,8 @@ const DashboardView = (props: any) => {
                 <Text style={styles.thirdPortionCardText}>Closing Target</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>250/1000</Text>
+                <Text style={styles.thirdPortionNumberText}>
+                  {achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}</Text>
               </View>
             </View>
           </View>

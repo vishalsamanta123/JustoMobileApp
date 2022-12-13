@@ -49,7 +49,7 @@ const AddNewVisitorForm = (props: any) => {
                 leftImageIconStyle={styles.RightFirstIconStyle}
                 handleOnLeftIconPress={props.handleBackPress}
             />
-            <ScrollView>
+            <ScrollView keyboardShouldPersistTaps={'handled'}>
                 <View style={styles.wrap}>
                     <Text style={styles.headingText}>{strings.visitordetails}</Text>
                     <View style={[styles.inputWrap]}>
@@ -286,6 +286,15 @@ const AddNewVisitorForm = (props: any) => {
                             }}
                             valueshow={props?.formData?.location}
                             headingText={"Location"}
+                            inputType={'location'}
+                            onPressSelect={(data: any, detail: any) => {
+                                props.setFormData({
+                                    ...props.formData,
+                                    location: data?.description,
+                                    latitude: detail?.geometry?.location?.lat,
+                                    longitude: detail?.geometry?.location?.lng,
+                                })
+                            }}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -391,8 +400,8 @@ const AddNewVisitorForm = (props: any) => {
                                 }}
                                 keyboardType={'number-pad'}
                                 placeholder='Min Budget'
-                                 style={styles.budgetInput}
-                                 />
+                                style={styles.budgetInput}
+                            />
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,

@@ -4,7 +4,7 @@ import { SourcingManagerReducer } from "./SourcingManagerReducer";
 import { agentReducer } from "./AgentReducer";
 import { competitorpropertyReducer, propertyDetailReducer, propertyReducer } from "./propertyReducers";
 import { settingReducer } from "./SettingReducer";
-import { appointmentReducer } from "./AppointmentWithCpReducer";
+import { appointmentReducer, editAddAppointmentReducer } from "./AppointmentWithCpReducer";
 import { followUpReducer } from "./FollowUpReducer";
 import { masterDataReducer } from "./MasterReducer";
 import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
@@ -32,6 +32,7 @@ export default {
     agentData: agentReducer,
     settingData: settingReducer,
     appointment: appointmentReducer,
+    editAddAppointment: editAddAppointmentReducer,
     followUp: followUpReducer,
     masterData: masterDataReducer,
 
