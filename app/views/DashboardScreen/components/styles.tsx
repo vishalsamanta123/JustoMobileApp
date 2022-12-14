@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
-import {normalize, normalizeHeight, normalizeSpacing, normalizeWidth} from '../../../components/scaleFontSize';
-import {BLACK_COLOR, BLUE_COLOR, FONT_FAMILY_EXTRABOLD, FONT_FAMILY_SEMIBOLD, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, PURPLE_COLOR, WHITE_COLOR, WHITE_COLOR_LIGHT, YELLOW_COLOR} from '../../../components/utilities/constant';
+import { StyleSheet } from 'react-native';
+import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../components/scaleFontSize';
+import { BLACK_COLOR, BLUE_COLOR, FONT_FAMILY_EXTRABOLD, FONT_FAMILY_SEMIBOLD, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, PURPLE_COLOR, WHITE_COLOR, WHITE_COLOR_LIGHT, YELLOW_COLOR } from '../../../components/utilities/constant';
 
 const styles = StyleSheet.create({
   wrap: {
@@ -17,8 +17,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dashboardScroll: {
-    flex: 1,
-    // backgroundColor: 'red',
+    flexGrow: 1,
   },
   dashboardWrap: {
     flex: 1,
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
     marginLeft: normalizeSpacing(10),
   },
   switchStyle: {
-    transform: [{ scaleX: .8 }, { scaleY: .8 }] 
+    transform: [{ scaleX: .8 }, { scaleY: .8 }]
   },
   welcomeView: {
     paddingVertical: normalizeSpacing(10),
@@ -139,7 +138,7 @@ const styles = StyleSheet.create({
   },
   thirdPortioncardView: {
     shadowColor: '#171717',
-    shadowOffset: {width: 0, height: 5},
+    shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.2,
     shadowRadius: 10,
     elevation: 10,
@@ -175,7 +174,7 @@ const styles = StyleSheet.create({
     marginVertical: normalizeSpacing(2),
     borderBottomColor: WHITE_COLOR,
     borderBottomWidth: 3,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   headingText: {
     flex: 1,
@@ -187,7 +186,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     flex: 1,
-    padding: normalizeSpacing(5),
+    paddingVertical: normalizeSpacing(5),
     color: PRIMARY_THEME_COLOR,
     fontSize: normalize(11),
     fontFamily: FONT_FAMILY_EXTRABOLD,

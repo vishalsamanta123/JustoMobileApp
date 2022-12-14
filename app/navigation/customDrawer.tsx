@@ -16,7 +16,6 @@ const customDrawer = ({ navigation }: any) => {
   const isDrawerOpen = useDrawerStatus() === 'open';
   const insets = useSafeAreaInsets()
   const [userData, setUserData] = useState<any>([])
-  console.log('userData: ', userData);
   useEffect(() => {
     fetchData()
   }, [])

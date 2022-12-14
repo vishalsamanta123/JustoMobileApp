@@ -9,7 +9,6 @@ import strings from "../../../components/utilities/Localization";
 import { GREEN_COLOR, RED_COLOR, WHITE_COLOR } from "../../../components/utilities/constant";
 
 const DashboardView = (props: any) => {
-  console.log('props?.dashboardData: ', props?.dashboardData);
   const targetData = props?.dashboardData?.target || {}
   const achieveTargetData = props?.dashboardData?.achievetarget || {}
   const insets = useSafeAreaInsets();
@@ -48,10 +47,12 @@ const DashboardView = (props: any) => {
   const renderItem = ({ item }: any) => {
     return (
       <TouchableOpacity style={styles.headingView}>
-        <Text style={styles.itemText}>{item.cpName}</Text>
-        <Text style={styles.itemText}>{item.visitor}</Text>
-        <Text style={styles.itemText}>{item.siteVisit}</Text>
-        <Text style={styles.itemText}>{item.closeLead}</Text>
+        <Text style={styles.itemText}>{props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ?
+          item.user_name : props.getLoginType?.response?.data?.role_title === 'Sourcing Manager'
+            ? item.agent_name : strings.notfount}</Text>
+        <Text style={styles.itemText}>{item.total_visit}</Text>
+        <Text style={styles.itemText}>{item.total_site_visit}</Text>
+        <Text style={styles.itemText}>{item.total_closing_lead}</Text>
         <Image source={images.rightArrow} style={styles.rightArrowImage} />
       </TouchableOpacity>
     );
@@ -66,7 +67,8 @@ const DashboardView = (props: any) => {
           handleOnLeftIconPress={props.handleDrawerPress}
           headerStyle={styles.headerStyle}
         />
-        <ScrollView style={styles.dashboardScroll} bounces={false}>
+        <ScrollView showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.dashboardScroll} bounces={false}>
           <View style={styles.dashboardWrap}>
             <View style={styles.nameView}>
               <View style={styles.statusView}>
@@ -192,17 +194,37 @@ const DashboardView = (props: any) => {
           </View>
           <View style={styles.bottomSection}>
             <View style={styles.headingView}>
-              <Text style={styles.headingText}>CP NAME</Text>
-              <Text style={styles.headingText}>VISITOR</Text>
-              <Text style={styles.headingText}>SITE VISIT</Text>
-              <Text style={styles.headingText}>CLOSE LEAD</Text>
+              {props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ?
+                <>
+                  <Text style={styles.headingText}>SM NAME</Text>
+                  <Text style={styles.headingText}>VISITOR</Text>
+                  <Text style={styles.headingText}>SITE VISIT</Text>
+                  <Text style={styles.headingText}>CLOSE LEAD</Text>
+                </>
+                :
+                <>
+                  {props?.getLoginType?.response?.data?.role_title === 'Sourcing Manager' &&
+                    <>
+                      <Text style={styles.headingText}>CP NAME</Text>
+                      <Text style={styles.headingText}>VISITOR</Text>
+                      <Text style={styles.headingText}>SITE VISIT</Text>
+                      <Text style={styles.headingText}>CLOSE LEAD</Text>
+                    </>
+                  }
+                </>
+              }
             </View>
-            <FlatList data={DATA} renderItem={renderItem} />
-            <TouchableOpacity style={styles.headingView}>
-              <Text style={[styles.headingText, styles.knowMoreText]}>
-                Know More
-              </Text>
-            </TouchableOpacity>
+            <FlatList
+              data={props?.listData}
+              renderItem={renderItem} />
+            {props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ||
+              props?.getLoginType?.response?.data?.role_title === 'Sourcing Manager' ?
+              <TouchableOpacity style={styles.headingView}>
+                <Text style={[styles.headingText, styles.knowMoreText]}>
+                  Know More
+                </Text>
+              </TouchableOpacity> : null
+            }
           </View>
         </ScrollView>
       </View>
