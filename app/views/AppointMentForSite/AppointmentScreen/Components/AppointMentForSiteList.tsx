@@ -3,8 +3,9 @@ import React from 'react'
 import styles from './Styles'
 import images from '../../../../assets/images'
 import strings from '../../../../components/utilities/Localization'
-import { PURPLE_COLOR, CALL_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant'
+import { PURPLE_COLOR, CALL_COLOR, WHITE_COLOR, DATE_FORMAT, TIME_FORMAT } from '../../../../components/utilities/constant'
 import Button from '../../../../components/Button'
+import moment from 'moment'
 
 const AppointMentForSiteList = (props: any) => {
   return (
@@ -15,7 +16,14 @@ const AppointMentForSiteList = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props?.items?.site_date + " " + props?.items?.time}</Text>
+          <Text style={styles.nameTxt}>{
+            props?.items?.appointment_date === '' || props?.items?.appointment_date === undefined ?
+              strings.notfount : moment(props?.items?.appointment_date).format(DATE_FORMAT)
+          }<Text style={styles.nameTxt}>
+              {props?.items?.appointment_time === '' || props?.items?.appointment_time === undefined ?
+                strings.notfount : " " + props?.items?.appointment_time}
+            </Text>
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -24,7 +32,7 @@ const AppointMentForSiteList = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props?.items?.visitor_name}</Text>
+          <Text style={styles.nameTxt}>{props?.items?.customer_first_name}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -33,7 +41,7 @@ const AppointMentForSiteList = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props?.items?.leadNo}</Text>
+          <Text style={styles.nameTxt}>{props?.items?.lead_no}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -51,7 +59,9 @@ const AppointMentForSiteList = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props?.items?.status}</Text>
+          <Text style={styles.nameTxt}>{props.items.status == 1 ? 'Pending' :
+            props.items.status == 2 ? 'Confirm' :
+              props.items.status == 3 ? 'Compleat' : 'Appoiment cancel'}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -60,11 +70,11 @@ const AppointMentForSiteList = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props?.items?.visit_score}</Text>
+          <Text style={styles.nameTxt}>{props?.items?.lead_score}</Text>
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', top: 8 }}>
           <Button
             width={80}
             height={30}
@@ -89,7 +99,9 @@ const AppointMentForSiteList = (props: any) => {
             border={10}
           />
         </View>
-        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props?.items)}>
+        <TouchableOpacity style={styles.Viewbutton}
+          onPress={() => props.onPressView()}
+        >
           <Image
             source={images.forwardArrow}
             style={styles.arrow}

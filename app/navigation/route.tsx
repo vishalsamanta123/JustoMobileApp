@@ -80,8 +80,10 @@ import SupportScreen from "app/views/Support";
 import SupportForumScreen from "app/views/SupportForum";
 import SalesToolsScreen from "app/views/SalesTools";
 import ReportScreen from "app/views/Report";
-import ChatViewScreen from "app/views/Chat";
+import ChatViewScreen from "app/views/ChatManagement/Chat";
 import RecoveryScreen from "app/views/Recovery";
+import PropertyChat from "app/views/ChatManagement/PropertyChat";
+import ChatScreen from "app/views/ChatManagement/PropertyChat/components/ChatScreen";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -159,7 +161,10 @@ const AppComponent = () => {
       <AppStack.Screen name="AddNewSM" component={AddNewSM} />
       <AppStack.Screen name="AllocateCP" component={AllocateCPScreen} />
       <AppStack.Screen name="SMDetails" component={SMDetails} />
-      <AppStack.Screen name="AddNewVisitorScreen" component={AddNewVisitorScreen} />
+      <AppStack.Screen
+        name="AddNewVisitorScreen"
+        component={AddNewVisitorScreen}
+      />
 
       {/* Closing Management Screens */}
       <AppStack.Screen name="AddNewCM" component={AddNewCM} />
@@ -203,6 +208,10 @@ const AppComponent = () => {
       <AppStack.Screen name="VisitorUpdate" component={VisitorUpdateScreen} />
       <AppStack.Screen name="FollowUpAdd" component={FollowUpAddScreen} />
 
+      {/* Chat  */}
+      <AppStack.Screen name="PropertyChat" component={PropertyChat} />
+      <AppStack.Screen name="ChatScreen" component={ChatScreen} />
+
       {/* LeaderBoard  */}
       <AppStack.Screen
         name="LeaderBoardSearch"
@@ -241,71 +250,77 @@ const AuthComponent = () => {
 };
 
 const AuthLoadingComponent = () => {
-  const { response, authToken = false } = useSelector((state: any) => state.login);
+  const { response, authToken = false } = useSelector(
+    (state: any) => state.login
+  );
   useEffect(() => {
-    checklogin()
-  }, [response])
+    checklogin();
+  }, [response]);
 
   const checklogin = async () => {
     if (response && authToken) {
       if (response.status === 200) {
         await setDefaultHeader("token", response.token);
-        await AsyncStorage.setItem('loginData', JSON.stringify(response))
+        await AsyncStorage.setItem("loginData", JSON.stringify(response));
       } else {
         ErrorMessage({
           msg: response?.message,
-          backgroundColor: RED_COLOR
-        })
+          backgroundColor: RED_COLOR,
+        });
       }
     }
-  }
+  };
   async function tokenGenrate() {
     try {
       const options = {
-        headers: { "content-type": "application/json" }
-      }
-      const data = await axios.get('https://itinformatix.org:3044/api/token/jwtToken', options)
-        .then(res => {
-          console.log('res', res.data)
-          return res.data
-
-        }).catch(e => {
-          console.log('e', e)
-
+        headers: { "content-type": "application/json" },
+      };
+      const data = await axios
+        .get("https://itinformatix.org:3044/api/token/jwtToken", options)
+        .then((res) => {
+          console.log("res", res.data);
+          return res.data;
         })
+        .catch((e) => {
+          console.log("e", e);
+        });
       // const { data } = await apiCall("GET", apiEndPoints.JWTTOKEN, null);
-      console.log('data', data)
+      console.log("data", data);
       if (data?.status === 200) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);
       } else {
         ErrorMessage({
           msg: data?.message,
-          backgroundColor: RED_COLOR
-        })
+          backgroundColor: RED_COLOR,
+        });
       }
     } catch (error) {
       // console.log(error);
     }
   }
   useEffect(() => {
-    if (response === null || response?.status == 201 ||
-      response?.status == 401 || response?.status == 400) {
-      tokenGenrate()
+    if (
+      response === null ||
+      response?.status == 201 ||
+      response?.status == 401 ||
+      response?.status == 400
+    ) {
+      tokenGenrate();
     } else {
       setDefaultHeader("token", response?.token);
     }
-  }, [response])
+  }, [response]);
   return (
     <AuthLoading.Navigator screenOptions={screenOptions}>
-      {!authToken ?
-        <AuthLoading.Screen component={AuthComponent} name="Auth" /> :
+      {!authToken ? (
+        <AuthLoading.Screen component={AuthComponent} name="Auth" />
+      ) : (
         <AuthLoading.Screen component={AppComponent} name="App" />
-      }
+      )}
     </AuthLoading.Navigator>
-  )
-
-}
+  );
+};
 
 const Route = () => {
   return (

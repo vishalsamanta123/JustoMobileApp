@@ -228,7 +228,7 @@ const VisitorUpdateView = (props: any) => {
                                 ...props.updateForm,
                                 location: data?.description,
                                 latitude: detail?.geometry?.location?.lat,
-                                logitude: detail?.geometry?.location?.lng,
+                                longitude: detail?.geometry?.location?.lng,
                             })
                         }}
                     />

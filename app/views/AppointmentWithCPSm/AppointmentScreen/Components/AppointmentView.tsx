@@ -28,7 +28,6 @@ const AppointmentView = (props: any) => {
         { key: 'second', title: 'SM Appointment With CP' },
     ]);
     const [visitorList, setVisiitorList] = useState<any>([])
-    console.log('visitorList ===>>>: ', visitorList);
     useEffect(() => {
         if (list) {
             setVisiitorList(response?.data)

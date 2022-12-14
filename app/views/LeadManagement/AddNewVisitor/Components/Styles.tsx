@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   wrap: {
     flex: 1,
     margin: normalizeSpacing(10),
-    alignItems: 'center'
+    // alignItems: 'center'
   },
   headingText: {
     fontSize: normalize(18),

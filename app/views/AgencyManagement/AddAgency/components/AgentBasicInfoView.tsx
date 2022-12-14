@@ -25,9 +25,6 @@ import moment from "moment";
 import MultiLocation from "app/components/MultiLocation";
 
 const AgentBasicInfoView = (props: any) => {
-  console.log("props:.props?.agencyData ", props?.agencyData);
-  console.log("props.type: ", props.type);
-
   const handleDelete = (item: any, index: any) => {
     var array: any[] = [...props?.agencyData?.working_location];
     array?.splice(index, 1);
@@ -262,14 +259,22 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Address"}
-            handleInputBtnPress={() => { }}
             headingText={"Address"}
-            valueshow={props.agencyData?.address}
+            valueshow={props.agencyData?.location}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData,
-                address: val,
+                location: val,
               });
+            }}
+            inputType={'location'}
+            onPressSelect={(data: any, detail: any) => {
+              props.setAgencyData({
+                ...props.agencyData,
+                location: data?.description,
+                latitude: detail?.geometry?.location?.lat,
+                longitude: detail?.geometry?.location?.lng,
+              })
             }}
           />
         </View>

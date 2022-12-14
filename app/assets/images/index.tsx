@@ -33,6 +33,9 @@ const images = {
   editIcon: require('./editIcon.png'),
   edit: require('./edit.png'),
   pdfIcone: require('./pdfIcone.png'),
+  search: require('./search.png'),
+  send: require('./send.png'),
+  attach: require('./attach.png'),
 };
 
 export default images;

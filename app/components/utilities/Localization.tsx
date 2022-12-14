@@ -110,6 +110,8 @@ const strings = new LocalizedStrings({
     unsubscribe: 'Unsubscribe',
     subscribe: 'Subscribe',
     city: 'City',
+    propertyChat: 'Property chat',
+    user: 'User',
 
     /**Confirm Model**/
     ConfirmationModalTxt: 'Select the reason for\r\nunsubscribe this property.',
