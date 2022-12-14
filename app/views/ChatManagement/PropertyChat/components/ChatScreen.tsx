@@ -141,6 +141,13 @@ const ChatScreen = ({ navigation, route }: any) => {
             style={styles.attachIconImage}
           />
         </TouchableOpacity>
+        {/* <TouchableOpacity onPress={(messages: any) => onSend(messages)}>
+          <Image
+            source={images.send}
+            // resizeMode={"contain"}
+            style={styles.attachIconImage}
+          />
+        </TouchableOpacity> */}
       </View>
     );
   };
@@ -160,7 +167,7 @@ const ChatScreen = ({ navigation, route }: any) => {
         leftImageSrc={images.backArrow}
         // rightFirstImageScr={images.filter}
         // rightSecondImageScr={images.notification}
-        headerText={item}
+        headerText={item.name}
         leftImageIconStyle={styles.leftImageIconStyle}
         handleOnLeftIconPress={handleBackPress}
         headerStyle={styles.headerStyle}

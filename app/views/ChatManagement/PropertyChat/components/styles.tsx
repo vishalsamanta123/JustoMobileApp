@@ -6,6 +6,7 @@ import {
 } from "app/components/scaleFontSize";
 import {
   BLACK_COLOR,
+  BORDER_COLOR,
   FONT_FAMILY_SEMIBOLD,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
@@ -23,6 +24,9 @@ const styles = StyleSheet.create({
   RightFirstIconStyle: {
     tintColor: WHITE_COLOR,
   },
+  RightSecondIconStyle: {
+    tintColor: WHITE_COLOR,
+  },
   leftImageIconStyle: {
     tintColor: WHITE_COLOR,
   },
@@ -30,9 +34,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: normalizeSpacing(20),
+    alignItems: "center",
+    padding: normalizeSpacing(15),
     borderBottomWidth: 0.6,
-    borderBottomColor: BLACK_COLOR,
+    borderBottomColor: BORDER_COLOR,
   },
   iconStyle: {
     height: normalizeHeight(20),
@@ -41,6 +46,8 @@ const styles = StyleSheet.create({
   userText: {
     fontSize: normalize(15),
     fontFamily: FONT_FAMILY_SEMIBOLD,
+    marginLeft: normalize(20),
+    color: PRIMARY_THEME_COLOR,
   },
   chatPrimaryInputStyle: {
     // marginBottom: normalizeSpacing(15),
@@ -52,7 +59,7 @@ const styles = StyleSheet.create({
     marginHorizontal: normalizeSpacing(15),
     borderWidth: 0,
     width: "80%",
-    justifyContent: 'center'
+    justifyContent: "center",
     // backgroundColor: "red",
   },
   sendIconView: {
@@ -80,6 +87,15 @@ const styles = StyleSheet.create({
   attachIconImage: {
     height: normalizeHeight(30),
     width: normalizeWidth(30),
+  },
+  profileImage: {
+    height: normalizeHeight(35),
+    width: normalizeWidth(35),
+    borderRadius: normalize(35),
+  },
+  straight: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 

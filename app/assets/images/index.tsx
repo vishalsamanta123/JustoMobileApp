@@ -36,6 +36,7 @@ const images = {
   search: require('./search.png'),
   send: require('./send.png'),
   attach: require('./attach.png'),
+  addCircle: require('./addCircle.png'),
 };
 
 export default images;
