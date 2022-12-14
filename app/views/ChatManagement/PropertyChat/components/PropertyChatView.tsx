@@ -9,36 +9,44 @@ import { useNavigation } from "@react-navigation/native";
 import SearchBar from "app/components/SearchBar";
 import strings from "app/components/utilities/Localization";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
+import FastImages from "app/components/FastImage";
 
 const PropertyChatView = (props: any) => {
-  const {handleBackPress, chatData} = props
-  const navigation: any = useNavigation()
-  const [filteredData, setFilteredData] = useState(chatData.userName);
+  const { handleBackPress, chatData } = props;
   console.log('chatData: ', chatData);
-  const handleChatPress = (item: any) =>{
-  console.log('item: in CHAT PRESS ', item);
-    console.log('hellooo')
-    navigation.navigate('ChatScreen', item)
-  }
-  const renderPropertyList = (item: any) => {
-    console.log("item: ", item);
+  const navigation: any = useNavigation();
+  // const [filteredData, setFilteredData] = useState(chatData);
+  // console.log("chatData: ", chatData);
+  const handleChatPress = (item: any) => {
+    console.log("item: in CHAT PRESS ", item);
+    console.log("hellooo");
+    navigation.navigate("ChatScreen", item);
+  };
+  const renderPropertyList = (item: any, index: any) => {
+    console.log("item: IN PROPERTY", item);
     return (
-        <TouchableOpacity onPress={() => handleChatPress(item)} style={styles.chatListView}>
-          <Text style={styles.userText}>{item}</Text>
-          <Image
-            source={images.rightArrow}
-            style={styles.iconStyle}
+      <TouchableOpacity
+        onPress={() => handleChatPress(item)}
+        style={styles.chatListView}
+      >
+        <View style={styles.straight}>
+          <FastImages
+            source={{ uri: item.profile }}
+            style={styles.profileImage}
           />
-        </TouchableOpacity>
+          <Text style={styles.userText}>{item?.name}</Text>
+        </View>
+        <Image source={images.rightArrow} style={styles.iconStyle} />
+      </TouchableOpacity>
     );
   };
   const handleChangeText = (val: any) => {
     console.log("val: ", val);
-    const final = chatData.userName?.filter(function (el: any) {
-      const name = `${el}`;
-      return name?.toLowerCase().indexOf(val.toLowerCase()) > -1;
-    });
-    setFilteredData(final);
+    // const final = chatData.userName?.filter(function (el: any) {
+    // const name = `${el}`;
+    // return name?.toLowerCase().indexOf(val.toLowerCase()) > -1;
+    // });
+    // setFilteredData(final);
   };
   const onSubmit = (val: any) => {
     console.log("onSubmit");
@@ -47,10 +55,11 @@ const PropertyChatView = (props: any) => {
     <View style={styles.mainContainer}>
       <Header
         leftImageSrc={images.backArrow}
-        // rightFirstImageScr={images.filter}
-        // rightSecondImageScr={images.notification}
+        rightFirstImageScr={images.notification}
+        rightSecondImageScr={images.addCircle}
         headerText={chatData.property}
         leftImageIconStyle={styles.leftImageIconStyle}
+        RightSecondIconStyle={styles.RightSecondIconStyle}
         handleOnLeftIconPress={handleBackPress}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}
@@ -63,10 +72,9 @@ const PropertyChatView = (props: any) => {
         onSubmit={onSubmit}
       />
       <FlatList
-        data={filteredData}
-        renderItem={(item) => renderPropertyList(item.item)}
+        data={chatData?.userChatData}
+        renderItem={({item, index}) => renderPropertyList(item, index)}
         ListEmptyComponent={<EmptyListScreen message={strings.user} />}
-
       />
     </View>
   );

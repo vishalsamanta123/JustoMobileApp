@@ -21,9 +21,9 @@ const SearchBar = (props: any) => {
         autoCapitalize={"none"}
         // value={props.value}
       ></TextInput>
-      <TouchableOpacity style={styles.searchIconTouch} onPress={props.onSubmit}>
+      {/* <TouchableOpacity style={styles.searchIconTouch} onPress={props.onSubmit}>
         <Image source={images.search} style={styles.searchIconImg} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };
