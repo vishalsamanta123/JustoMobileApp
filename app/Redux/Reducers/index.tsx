@@ -12,6 +12,7 @@ import { appointmentCLReducer } from "./AppointmentCLReducer";
 import { ClosingManagerReducer } from "./ClosingManagerReducer";
 import { BookingReducer, cancelBookingReducer } from "./BookingReducer";
 import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
+import { notificationListReducer } from "./NotificationReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -35,6 +36,7 @@ export default {
     editAddAppointment: editAddAppointmentReducer,
     followUp: followUpReducer,
     masterData: masterDataReducer,
+    notificationData: notificationListReducer,
 
     //Dashboard
     dashboardData: dashboardReducer,

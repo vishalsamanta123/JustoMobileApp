@@ -13,9 +13,7 @@ const SettingScreen = ({ navigation, route }: any) => {
       dispatch(userLogout())
       navigation.navigate('AuthLoading');
     } else {
-      if (navigateTo != 'notification') {
         navigation.navigate(navigateTo, data)
-      }
     }
   }
   return (
