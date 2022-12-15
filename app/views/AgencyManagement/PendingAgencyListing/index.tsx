@@ -1,20 +1,18 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
-import { getAllPendingAgentList } from 'app/Redux/Actions/AgencyActions';
+import ErrorMessage from 'app/components/ErrorMessage';
+import { GREEN_COLOR } from 'app/components/utilities/constant';
+import { getAssignCPList, updateAssignCP } from 'app/Redux/Actions/SourcingManagerActions';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PendingAgencyView from './components/PendingAgencyView';
 
 const PendingAgencyListing = ({ navigation }: any) => {
-
-  const [pendingAgencyList, setPendingAgency] = useState<any>([])
-  const [offSET, setOffset] = useState(0)
   const dispatch: any = useDispatch()
-  const { response = {}, } = useSelector((state: any) => state.agency) || {}
-  const [filterData, setFilterData] = useState({
-    start_date: '',
-    end_date: '',
-    followup_for: ''
-  })
+  const { response = {}, } = useSelector((state: any) => state.SourcingManager) || {}
+  const statusUpdate = useSelector((state: any) => state.agencyStatus) || {}
+  const [pendingAgency, setPendingAgency] = useState<any>([])
+  const [statusChange, setStatusChange] = useState<any>({})
 
   useFocusEffect(
     React.useCallback(() => {
@@ -23,20 +21,47 @@ const PendingAgencyListing = ({ navigation }: any) => {
     }, [navigation])
   );
   useEffect(() => {
-    if (response?.status) {
+    if (response?.status === 200) {
       setPendingAgency(response?.data)
+    } else {
+      setPendingAgency([])
     }
   }, [response])
-  const getPendingList = () => {
-    dispatch(getAllPendingAgentList({}))
+  useEffect(() => {
+    // if (statusUpdate?.response?.status === 200) {
+    //   ErrorMessage({
+    //     msg: statusUpdate?.response?.message,
+    //     backgroundColor: GREEN_COLOR,
+    //   });
+    // }
+  }, [])
+  const getPendingList = async () => {
+    const userData: any = await AsyncStorage.getItem("loginData");
+    if (JSON.parse(userData)?.data?.user_id) {
+      dispatch(getAssignCPList({
+        user_id: JSON.parse(userData)?.data?.user_id,
+        status: 1
+      }))
+    }
   }
 
   const handleBackPress = () => {
     navigation.goBack();
   };
+  const handleUpdateAssignCP = (item: any) => {
+    dispatch(updateAssignCP({
+      user_id: item?._id,
+      status: 1
+    }))
+  }
   return <PendingAgencyView
-    pendingAgencyList={pendingAgencyList}
-    handleBackPress={handleBackPress} />;
+    pendingAgency={pendingAgency}
+    statusChange={statusChange}
+    setStatusChange={setStatusChange}
+    handleBackPress={handleBackPress}
+    handleUpdateAssignCP={handleUpdateAssignCP}
+    getPendingList={getPendingList}
+  />;
 };
 
 export default PendingAgencyListing;

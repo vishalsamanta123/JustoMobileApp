@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { ASSIGNCP_SM, ASSIGNCP_SM_ERROR, GET_ASSIGNCP_LIST, GET_ASSIGNCP_LIST_ERROR, GET_SOURCINGMANAGER_DETAIL, GET_SOURCINGMANAGER_DETAIL_ERROR, GET_SOURCINGMANAGER_LIST, GET_SOURCINGMANAGER_LIST_ERROR, START_LOADING, STOP_LOADING } from "../types";
+import { ASSIGNCP_SM, ASSIGNCP_SM_ERROR, GET_ASSIGNCP_LIST, GET_ASSIGNCP_LIST_ERROR, GET_SOURCINGMANAGER_DETAIL, GET_SOURCINGMANAGER_DETAIL_ERROR, GET_SOURCINGMANAGER_LIST, GET_SOURCINGMANAGER_LIST_ERROR, START_LOADING, STOP_LOADING, UPDATE_ASSIGN_CP_STATUS, UPDATE_ASSIGN_CP_STATUS_ERR } from "../types";
 
 export const getSourcingManagerList = () => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -109,6 +109,36 @@ export const assignCPSM = (parma: any) => async (dispatch: any) => {
             handleApiError(res?.data)
             dispatch({
                 type: ASSIGNCP_SM_ERROR,
+                payload: [],
+            })
+        }
+    }
+    catch (e) {
+        console.log('e: ', e);
+        dispatch({
+            type: ASSIGNCP_SM_ERROR,
+            payload: console.log(e),
+        })
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+}
+export const updateAssignCP = (parma: any) => async (dispatch: any) => {
+    console.log('parma: ', parma);
+    dispatch({ type: START_LOADING })
+    try {
+        const res = await apiCall("post", apiEndPoints.STATUS_UPDATE_ASSIGN_CP, parma);
+        console.log('res ASSIGNCP_SM: ', res);
+        if (res?.data?.status === 200) {
+            dispatch({
+                type: UPDATE_ASSIGN_CP_STATUS,
+                payload: res.data
+            })
+        } else {
+            handleApiError(res?.data)
+            dispatch({
+                type: UPDATE_ASSIGN_CP_STATUS_ERR,
                 payload: [],
             })
         }
