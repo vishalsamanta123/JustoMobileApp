@@ -14,6 +14,7 @@ import moment from 'moment'
 
 
 const PropertyDetailView = (props: any) => {
+  const data = props?.allDetails || {};
 
   const layout = useWindowDimensions();
 
@@ -26,33 +27,33 @@ const PropertyDetailView = (props: any) => {
 
   const DATAINFO: any =
   {
-    status: props?.allDetails?.status ? props?.allDetails?.status : '',
-    AgentName: props?.allDetails?.agent_name ? props?.allDetails?.agent_name : '',
-    Mobileno: props?.allDetails?.primary_mobile ? props?.allDetails?.primary_mobile : '',
-    Email: props?.allDetails?.email ? props?.allDetails?.email : '',
-    whatsappno: props?.allDetails?.whatsapp_number ? props?.allDetails?.whatsapp_number : '',
-    rerano: props?.allDetails?.rera_certificate_no ? props?.allDetails?.rera_certificate_no : '',
-    aadharno: props?.allDetails?.adhar_no ? props?.allDetails?.adhar_no : '',
-    pancardno: props?.allDetails?.pancard_no ? props?.allDetails?.pancard_no : '',
-    location: props?.allDetails?.location ? props?.allDetails?.location : '',
-    workingfrom: props?.allDetails?.createdDate ? moment(props?.allDetails?.createdDate).format('MMM Do YYYY') : '',
-    workinglocation: props?.allDetails?.working_location ? props?.allDetails?.working_location : '',
+    status: data?.status ? data?.status : '',
+    AgentName: data?.owner_name ? data?.owner_name : '',
+    Mobileno: data?.primary_mobile ? data?.primary_mobile : '',
+    Email: data?.email ? data?.email : '',
+    whatsappno: data?.whatsapp_number ? data?.whatsapp_number : '',
+    rerano: data?.rera_certificate_no ? data?.rera_certificate_no : '',
+    aadharno: data?.adhar_no ? data?.adhar_no : '',
+    pancardno: data?.pancard_no ? data?.pancard_no : '',
+    location: data?.location ? data?.location : '',
+    workingfrom: data?.createdDate ? moment(data?.createdDate).format('MMM Do YYYY') : '',
+    workinglocation: data?.working_location ? data?.working_location : '',
   };
   const DATASTATS: any =
   {
-    closingper: props?.allDetails?.agent_stats?.total_closing_percentage,
-    visitor: props?.allDetails?.agent_stats?.total_visit,
-    siteVisit: props?.allDetails?.agent_stats?.total_site_visit,
-    closeVisit: props?.allDetails?.agent_stats?.lastclosevisit ?
-      moment(props?.allDetails?.agent_stats?.lastclosevisit).format('llll') : '',
-    lastlogin: props?.allDetails?.agent_stats?.last_login ?
-      moment(props?.allDetails?.agent_stats?.last_login).format('llll') : '',
-    lastvisit: props?.allDetails?.agent_stats?.last_lead_crate ?
-      moment(props?.allDetails?.agent_stats?.last_lead_crate).format('llll') : '',
-    lastsitevisit: props?.allDetails?.agent_stats?.last_site_visit ?
-      moment(props?.allDetails?.agent_stats?.last_site_visit).format('llll') : '',
-    lastclosevisit: props?.allDetails?.agent_stats?.last_closing_lead ?
-      moment(props?.allDetails?.agent_stats?.last_closing_lead).format('llll') : '',
+    closingper: data?.agent_stats?.total_closing_percentage,
+    visitor: data?.agent_stats?.total_visit,
+    siteVisit: data?.agent_stats?.total_site_visit,
+    closeVisit: data?.agent_stats?.lastclosevisit ?
+      moment(data?.agent_stats?.lastclosevisit).format('llll') : '',
+    lastlogin: data?.agent_stats?.last_login ?
+      moment(data?.agent_stats?.last_login).format('llll') : '',
+    lastvisit: data?.agent_stats?.last_lead_crate ?
+      moment(data?.agent_stats?.last_lead_crate).format('llll') : '',
+    lastsitevisit: data?.agent_stats?.last_site_visit ?
+      moment(data?.agent_stats?.last_site_visit).format('llll') : '',
+    lastclosevisit: data?.agent_stats?.last_closing_lead ?
+      moment(data?.agent_stats?.last_closing_lead).format('llll') : '',
   };
   const FirstRoute = () => (
     <AgentDetailInfo items={DATAINFO} />
@@ -122,7 +123,7 @@ const PropertyDetailView = (props: any) => {
           renderScene={renderScene}
           onIndexChange={setIndex}
           initialLayout={{ width: layout.width }}
-          //pagerStyle={{backgroundColor:'red'}}
+        //pagerStyle={{backgroundColor:'red'}}
 
         />
 

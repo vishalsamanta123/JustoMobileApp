@@ -36,6 +36,8 @@ const images = {
   search: require('./search.png'),
   send: require('./send.png'),
   attach: require('./attach.png'),
+  camera: require('./camera.png'),
+  gallery: require('./gallery.png'),
 };
 
 export default images;
