@@ -84,6 +84,7 @@ import ChatViewScreen from "app/views/ChatManagement/Chat";
 import RecoveryScreen from "app/views/Recovery";
 import PropertyChat from "app/views/ChatManagement/PropertyChat";
 import ChatScreen from "app/views/ChatManagement/PropertyChat/components/ChatScreen";
+import Notification from "app/views/Setting/Notification";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -224,6 +225,7 @@ const AppComponent = () => {
       <AppStack.Screen name="EditProfileScreen" component={EditProfileScreen} />
       <AppStack.Screen name="changePassword" component={ChangePasswordScreen} />
       <AppStack.Screen name="separateLink" component={SeparateLinkScreen} />
+      <AppStack.Screen name="notification" component={Notification} />
     </AppStack.Navigator>
   );
 };

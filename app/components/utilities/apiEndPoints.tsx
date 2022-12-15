@@ -84,6 +84,7 @@ export default {
 
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
+  NOTIFICATION_LIST: "/notification/getNotificationList",
 
   // Folloe-Up
   GET_FOLLOWUP_LIST: '/followupStatus/getFollowupList',
