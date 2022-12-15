@@ -4,6 +4,7 @@ import {
   CREATE_AGENCY,
   CREATE_AGENCY_ERROR,
   GET_AGENCY_DETAIL,
+  PENDING_AGENCY_LIST,
 } from "../types";
 
 const initialStateForm = {
@@ -42,6 +43,13 @@ export function agencyCreateFormReducer(state = initialStateForm, action: any) {
 export function agencyReducer(state = initialState, action: any) {
   switch (action.type) {
     case CREATE_AGENCY:
+      return {
+        ...state,
+        update: false,
+        create: true,
+        response: action.payload,
+      };
+    case PENDING_AGENCY_LIST:
       return {
         ...state,
         update: false,

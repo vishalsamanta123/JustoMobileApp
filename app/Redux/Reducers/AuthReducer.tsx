@@ -119,18 +119,18 @@ export function authStore(state = initialState, action: any) {
                 response: action.payload,
                 // authToken: false
             }
-        case USERREGISTER:
-            return {
-                ...state,
-                response: action.payload,
-                // authToken: false
-            }
-        case USERREGISTER_ERROR:
-            return {
-                ...state,
-                response: action.payload,
-                // authToken: false
-            }
+        // case USERREGISTER:
+        //     return {
+        //         ...state,
+        //         response: action.payload,
+        //         // authToken: false
+        //     }
+        // case USERREGISTER_ERROR:
+        //     return {
+        //         ...state,
+        //         response: action.payload,
+        //         // authToken: false
+        //     }
        
         default: return state
     }

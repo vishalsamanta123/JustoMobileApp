@@ -12,6 +12,8 @@ import {
   EDIT_AGENT,
   GET_AGENCY_DETAIL,
   GET_AGENT_DETAIL,
+  PENDING_AGENCY_LIST,
+  PENDING_AGENCY_LIST_ERROR,
   START_LOADING,
   STOP_LOADING,
 } from "../types";
@@ -37,6 +39,33 @@ export const getAllAgentList = (params: any) => async (dispatch: any) => {
   } catch (e) {
     dispatch({
       type: AGENT_ERROR,
+      payload: console.log(e),
+    });
+  } finally {
+    dispatch({ type: STOP_LOADING });
+  }
+};
+export const getAllPendingAgentList = (params: any) => async (dispatch: any) => {
+  console.log("params: ", params);
+  dispatch({ type: START_LOADING });
+  try {
+    const res = await apiCall("post", apiEndPoints.PENDING_AGENTLIST, params);
+    console.log("res: PENDING_AGENT_LIST ", res);
+    if (res.data.status == 200) {
+      dispatch({
+        type: PENDING_AGENCY_LIST,
+        payload: res.data,
+      });
+    } else {
+      handleApiError(res.data);
+      dispatch({
+        type: PENDING_AGENCY_LIST_ERROR,
+        payload: [],
+      });
+    }
+  } catch (e) {
+    dispatch({
+      type: PENDING_AGENCY_LIST_ERROR,
       payload: console.log(e),
     });
   } finally {
