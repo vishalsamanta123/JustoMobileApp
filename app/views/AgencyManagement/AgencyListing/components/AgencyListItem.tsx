@@ -15,7 +15,7 @@ const AgencyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Agency Name :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props?.items.agent_name}</Text>
+          <Text style={styles.nameTxt}>{props?.items.agency_name}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
