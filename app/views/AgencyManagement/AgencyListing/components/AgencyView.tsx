@@ -36,7 +36,7 @@ const AgencyView = (props: any) => {
     navigation.navigate('PendingAgencyList')
   }
   const onPressAddnewAgency = () => {
-    navigation.navigate('AddnewAgency', {type: 'add'})
+    navigation.navigate('AddnewAgency', { type: 'add' })
   }
   const onRefresh = () => {
     props.setFilterData({
@@ -93,7 +93,7 @@ const AgencyView = (props: any) => {
 
         </View>
         <View style={styles.propertyListViewsec}>
-        <FlatList
+          <FlatList
             showsVerticalScrollIndicator={false}
             data={Array.isArray(props?.agentList) ? props?.agentList : []}
             ListEmptyComponent={<EmptyListScreen message={strings.agency} />}
@@ -121,7 +121,13 @@ const AgencyView = (props: any) => {
         textshow={strings.deactivconfirmation + ' ' + strings.agencyHeader + '?'}
         confirmtype={'CONFIRMATION'}
       />
-      <FilterModal getAgencyList={props.getAgencyList} onReset={onReset} setFilterData={props.setFilterData} filterData={props.filterData}  Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
+      <FilterModal
+        getAgencyList={props.getAgencyList}
+        onReset={onReset}
+        setFilterData={props.setFilterData}
+        filterData={props.filterData}
+        Visible={FilterisVisible}
+        setIsVisible={setFilterisVisible} />
     </View>
   );
 };

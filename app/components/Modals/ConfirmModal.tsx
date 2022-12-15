@@ -34,7 +34,10 @@ const ConfirmModal = (props: any) => {
             <View />
             <Text style={styles.topTxt}>{props.stringshow ? props.stringshow : strings.confirmation}</Text>
             <View>
-              <TouchableOpacity onPress={() => props.setIsVisible(false)}>
+              <TouchableOpacity onPress={() => {
+                props.setIsVisible(false)
+                props.setStatusChange ? props.setStatusChange({}) : null
+              }}>
                 <Image source={images.close} style={styles.closeIcon} />
               </TouchableOpacity>
             </View>
@@ -49,10 +52,22 @@ const ConfirmModal = (props: any) => {
                 </View>
                 <View style={{ marginVertical: 10, flexDirection: 'row' }}>
                   <View style={styles.btnview}>
-                    <Button buttonText={strings.no} width={120} height={40} handleBtnPress={() => props.setIsVisible(false)} />
+                    <Button
+                      buttonText={strings.no}
+                      width={120} height={40}
+                      handleBtnPress={() => {
+                        props.setIsVisible(false)
+                        props.setStatusChange ? props.setStatusChange({}) : null
+                      }} />
                   </View>
                   <View style={styles.btnview}>
-                    <Button buttonText={strings.yes} width={120} height={40} handleBtnPress={() => props.setIsVisible(false)} />
+                    <Button
+                      buttonText={strings.yes}
+                      width={120} height={40}
+                      handleBtnPress={() => {
+                        props?.handleYesResponse ? props.handleYesResponse() : null
+                        props.setIsVisible(false)
+                      }} />
                   </View>
                 </View>
               </View>

@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, FlatList } from 'react-native';
+import { View, Text, StatusBar, FlatList, Alert } from 'react-native';
 import React, { useState } from 'react';
 import styles from './styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -19,10 +19,12 @@ import {
   WHITE_COLOR,
 } from '../../../../components/utilities/constant';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 
 
 const PendingAgencyView = (props: any) => {
+  const loadingref = false
   const [isVisible, setIsVisible] = useState(false)
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
@@ -65,11 +67,11 @@ const PendingAgencyView = (props: any) => {
     },
   ];
 
-  const onPressView = () => {
-    // navigation.navigate('AgencyDetails')
+  const onPressView = (data: any) => {
+    navigation.navigate('AgencyDetails', { data })
   }
-  const showpendinglist = () => {
-    navigation.navigate('PendingAgencyList')
+  const onRefresh = () => {
+    props.getPendingList()
   }
 
   return (
@@ -101,13 +103,28 @@ const PendingAgencyView = (props: any) => {
         <View style={styles.propertyListViewsec}>
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={DATA}
-            renderItem={({ item }) => <PendingAgencyList items={item} setIsVisible={setIsVisible} onPressView={onPressView} />}
+            data={Array.isArray(props?.pendingAgency) ? props?.pendingAgency : []}
+            ListEmptyComponent={<EmptyListScreen message={strings.agency} />}
+            renderItem={({ item }) => <PendingAgencyList
+              items={item} setIsVisible={setIsVisible}
+              onPressView={onPressView}
+              setStatusChange={props.setStatusChange}
+            />}
+            refreshing={loadingref}
+            onRefresh={() => onRefresh()}
           />
         </View>
       </View>
-      <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} />
-      {/* <FilterModal /> */}
+      <ConfirmModal
+        Visible={isVisible}
+        setIsVisible={setIsVisible}
+        stringshow={strings.confirmation}
+        textshow={strings.activeconfirmation
+          + ' ' + strings.agencyHeader + '?'}
+        confirmtype={'CONFIRMATION'}
+        setStatusChange={props.setStatusChange}
+        handleYesResponse={() => props.handleUpdateAssignCP(props.statusChange)}
+      />
     </View>
   );
 };

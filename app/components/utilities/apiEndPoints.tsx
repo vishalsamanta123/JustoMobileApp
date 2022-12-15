@@ -33,6 +33,7 @@ export default {
   GET_SOURCING_MANAGER_LIST: '/userManage/getUserSourcingManagerList',
   GET_SOURCING_MANAGER_DETAIL: '/userManage/getUserSourcingManagerDetail',
   GET_ASSIGNCP_LIST: '/userManage/getAssignCPList',
+  STATUS_UPDATE_ASSIGN_CP: '/userManage/smUpdateAssignCpStatus',
   ASSIGNCP_SM: '/userManage/cpAssignSorcingManager',
 
 

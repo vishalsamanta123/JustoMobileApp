@@ -169,6 +169,7 @@ const strings = new LocalizedStrings({
     createAgent: 'Create Agent',
     updatepassword: 'Update Password',
     deactivconfirmation: 'Are You sure you want to Deactive this',
+    activeconfirmation: 'Are you sure you want to Active this',
 
     // All Leads
     visitor: 'Visitor',
