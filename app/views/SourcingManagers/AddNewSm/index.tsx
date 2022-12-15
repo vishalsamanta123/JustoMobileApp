@@ -13,7 +13,7 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
     const [cityData, setCityData] = useState<any>([])
     const [roleData, setRoleData] = useState<any>([])
     const [isLoading, setIsLoading] = useState(false)
-    // const { userData = {} } = useSelector((state: any) => state.userData)
+    const { userData = {} } = useSelector((state: any) => state.userData)
     const { response = {}, Roleresponse = {} } = useSelector((state: any) => state.masterData) || {}
 
     const SMDetails = useSelector((state: any) => state.agentData)
@@ -82,10 +82,10 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
         dispatch(getRolesList({}))
         if (Roleresponse?.status === 200) {
             if (Roleresponse?.data?.length > 0) {
-                // const final = Roleresponse?.data?.filter((el: any) => {
-                //     return userData?.data?.role_title !== el.role_title
-                // })
-                setRoleData(Roleresponse?.data)
+                const final = Roleresponse?.data?.filter((el: any) => {
+                    return userData?.data?.role_title !== el.role_title
+                })
+                setRoleData(final)
             }
 
         }
