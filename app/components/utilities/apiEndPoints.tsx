@@ -61,6 +61,7 @@ export default {
 
   //Agent Management
   AGENTLIST: "/channelPartner/getchannelPartnerList",
+  PENDING_AGENTLIST: "/channelPartner/getchannelPartnerList",
   GET_AGENT_DETAIL_: "/channelPartner/getChannelPartnersDetails",
   AGENT_STATUS_UPDATE: "/channelPartner/ApproveChannelpartnerbysourcinghead",
   ADD_AGENT_: "/channelPartner/createAgent",
@@ -73,6 +74,7 @@ export default {
   EDIT_APPOINTMENT: '/appointment/editAppointment',
   ADD_DROPLOCATION: '/appointment/addDropOffLocation',
   ALLOCATE_CM: '/appointment/appointmentAlocateClosinManager',
+  PICKUP_LIST: 'appointment/getPickupAddressList',
   // BOOKING
   ADD_BOOKING: '/booking/addBooking',
   GET_BOOKINGLIST: '/booking/getBookingList',

@@ -58,34 +58,35 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
   const [locationModel, setLocationModel] = useState(false);
 
   const registrationData = useSelector((state: any) => state.agencyForm);
-  const { response = {}, detail } = useSelector((state: any) => state.agency);
+  const { response = {}, detail } = useSelector((state: any) => state.agency) || []
   console.log('response: response', response);
 
   useEffect(() => {
     if (type === "edit") {
       if (response?.status === 200) {
-        setAgencyData({
-          ...response?.data[0],
-          bank_name: response?.data[0]?.cp_bank_detail?.bank_name,
-          branch_name: response?.data[0]?.cp_bank_detail?.branch_name,
-          account_no: response?.data[0]?.cp_bank_detail?.account_no,
-          ifsc_code: response?.data[0]?.cp_bank_detail?.ifsc_code,
-          cancel_cheaque: response?.data[0]?.cp_bank_detail?.cancel_cheaque,
-          gst: response?.data[0]?.agencies?.gst,
-          agency_name: response?.data[0]?.agencies?.agency_name,
-          rera_registration: response?.data[0]?.agencies?.rera_registration,
-          company_bank_name:
-            response?.data[0]?.agencies?.agency_bank_detail?.bank_name,
-          company_branch_name:
-            response?.data[0]?.agencies?.agency_bank_detail?.branch_name,
-          company_account_no:
-            response?.data[0]?.agencies?.agency_bank_detail?.account_no,
-          company_ifsc_code:
-            response?.data[0]?.agencies?.agency_bank_detail?.ifsc_code,
-          rera_certificate: response?.data[0]?.rera_certificate,
-          pancard: response?.data[0]?.agencies?.pancard,
-          declaration_letter_of_company: response?.data[0]?.agencies?.declaration_letter_of_company,
-        });
+        if (response?.data?.length > 0)
+          setAgencyData({
+            ...response?.data[0],
+            bank_name: response?.data[0]?.cp_bank_detail?.bank_name ?? '',
+            branch_name: response?.data[0]?.cp_bank_detail?.branch_name ?? '',
+            account_no: response?.data[0]?.cp_bank_detail?.account_no ?? '',
+            ifsc_code: response?.data[0]?.cp_bank_detail?.ifsc_code ?? '',
+            cancel_cheaque: response?.data[0]?.cp_bank_detail?.cancel_cheaque ?? '',
+            gst: response?.data[0]?.agencies?.gst ?? '',
+            agency_name: response?.data[0]?.agencies?.agency_name ?? '',
+            rera_registration: response?.data[0]?.agencies?.rera_registration ?? '',
+            company_bank_name:
+              response?.data[0]?.agencies?.agency_bank_detail?.bank_name ?? '',
+            company_branch_name:
+              response?.data[0]?.agencies?.agency_bank_detail?.branch_name ?? '',
+            company_account_no:
+              response?.data[0]?.agencies?.agency_bank_detail?.account_no ?? '',
+            company_ifsc_code:
+              response?.data[0]?.agencies?.agency_bank_detail?.ifsc_code ?? '',
+            rera_certificate: response?.data[0]?.rera_certificate ?? '',
+            pancard: response?.data[0]?.agencies?.pancard ?? '',
+            declaration_letter_of_company: response?.data[0]?.agencies?.declaration_letter_of_company ?? '',
+          });
       }
       // setAgencyData({ ...registrationData.response, sourcing_manager: userData?.data?._id })
     }

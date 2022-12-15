@@ -16,10 +16,12 @@ const App = () => {
       // console.log("Connection type", state.type);
       console.log("Is connected?", state.isConnected);
       setisConnec(state.isConnected)
-      ErrorMessage({
-        msg: state.isConnected ? 'Back to online' : 'No Connection',
-        backgroundColor: state.isConnected ? GREEN_COLOR : BLACK_COLOR
-      })
+      if (!state.isConnected) {
+        ErrorMessage({
+          msg: 'No Connection',
+          backgroundColor: BLACK_COLOR
+        })
+      }
     });
 
     return () => {

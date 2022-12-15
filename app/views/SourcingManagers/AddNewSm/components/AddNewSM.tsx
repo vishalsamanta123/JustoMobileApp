@@ -72,7 +72,7 @@ const AddNewSMView = (props: any) => {
           <DropdownInput
             headingText={"Select Role"}
             placeholder={"Select Role"}
-            data={props.roleData}
+            data={props?.roleData}
             inputWidth={"100%"}
             paddingLeft={16}
             maxHeight={300}
@@ -244,6 +244,7 @@ const AddNewSMView = (props: any) => {
             placeholderText={"Mobile No."}
             handleInputBtnPress={() => { }}
             headingText={"Mobile No."}
+            maxLength={10}
             keyboardtype={"number-pad"}
             valueshow={props.addNewSmData?.mobile}
             onChangeText={(val: any) => {

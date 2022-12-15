@@ -1,7 +1,7 @@
 import ErrorMessage from 'app/components/ErrorMessage';
 import { GREEN_COLOR } from 'app/components/utilities/constant';
-import { removeAuthUser, userRegister } from 'app/Redux/Actions/AuthActions';
 import { getCityList, getRolesList } from 'app/Redux/Actions/MasterActions';
+import { removeAuthUser, userRegister } from 'app/Redux/Actions/SettingActions';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';

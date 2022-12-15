@@ -1,8 +1,7 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { getAgentDetail } from 'app/Redux/Actions/AgentActions';
-import {  userRegister } from 'app/Redux/Actions/AuthActions';
 import { getCityList, getRolesList } from 'app/Redux/Actions/MasterActions';
-import { updateUserSettingData } from 'app/Redux/Actions/SettingActions';
+import { updateUserSettingData, userRegister } from 'app/Redux/Actions/SettingActions';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddNewSM from './components/AddNewSM'
@@ -27,7 +26,7 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
                     })
                 );
             } else {
-                console.log()
+                console.log('Adddd')
             }
             return () => { };
         }, [navigation, SMDetails?.detail])
@@ -35,6 +34,7 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
 
     useEffect(() => {
         if (SMDetails?.response) {
+        console.log('SMDetails?.response: ', SMDetails?.response);
             setAddNewSmData({
                 ...addNewSmData ,
                 profile_picture: SMDetails?.response?.data?.base_url + SMDetails?.response?.data?.profile_picture,

@@ -1,13 +1,20 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { AgencyCreateFormRemove, getAllAgentList } from 'app/Redux/Actions/AgencyActions';
+import { getAssignCPList } from 'app/Redux/Actions/SourcingManagerActions';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AgencyView from './components/AgencyView';
 
-const AgencyListing = ({navigation}: any) => {
-  const { response = {}, list = false } = useSelector((state: any) => state.agentData)
+const AgencyListing = ({ navigation }: any) => {
+  const { response = {}, list = false } =
+    useSelector((state: any) => state.SourcingManager) || []
+  const SmCpList = useSelector((state: any) => state.SourcingManager) || []
+  // console.log('SmCpList: ', SmCpList?.response?.data);
+
+  const { userData = {} } = useSelector((state: any) => state.userData) || []
   const moreData = response?.total_data || 0
   const [agentList, setAgentList] = useState<any>([])
+  console.log('agentList: ', agentList);
   const [offSET, setOffset] = useState(0)
   const [filterData, setFilterData] = useState({
     startdate: '',
@@ -29,26 +36,37 @@ const AgencyListing = ({navigation}: any) => {
   useEffect(() => {
     if (list) {
       if (offSET === 0) {
+        console.log('response?.data: ', response?.data);
         setAgentList(response?.data)
       } else {
         setAgentList([...agentList, ...response?.data])
       }
+    } else {
+      setAgentList(SmCpList?.response?.data)
     }
   }, [response])
 
   const getAgencyList = (offset: any, filterData: any) => {
     setOffset(offset)
-    dispatch(getAllAgentList({
-      offset: offset,
-      limit: 3,
-      module_id: '',
-      start_date: filterData?.startdate ? filterData?.startdate : '',
-      end_date: filterData?.enddate ? filterData?.enddate : '',
-      user_type: 2,
-      search_by_name: filterData?.search_by_name ? filterData?.search_by_name : '',
-      search_by_location: filterData?.search_by_location ? filterData?.search_by_location : '',
-      status: filterData?.status ? filterData?.status : '',
-    }))
+    if (userData?.data?.role_title === 'Sourcing Manager') {
+      dispatch(
+        getAssignCPList({
+          user_id: userData?.data?.user_id
+        })
+      );
+    } else {
+      dispatch(getAllAgentList({
+        offset: offset,
+        limit: 3,
+        module_id: '',
+        start_date: filterData?.startdate ? filterData?.startdate : '',
+        end_date: filterData?.enddate ? filterData?.enddate : '',
+        user_type: 1,
+        search_by_name: filterData?.search_by_name ? filterData?.search_by_name : '',
+        search_by_location: filterData?.search_by_location ? filterData?.search_by_location : '',
+        status: filterData?.status ? filterData?.status : '',
+      }))
+    }
   }
 
   const handleDrawerPress = () => {
@@ -96,19 +114,19 @@ const AgencyListing = ({navigation}: any) => {
     }))
   };
   return <AgencyView
-      handleDrawerPress={handleDrawerPress}
-      setChangeStatus={setChangeStatus}
-      handleStatusChange={handleStatusChange}
-      setFilterData={setFilterData}
-      filterData={filterData}
-      onPressView={onPressView}
-      agentList={agentList}
-      Onreachedend={Onreachedend}
-      offSET={offSET}
-      moreData={moreData}
-      getAgencyList={getAgencyList}
-      setOffset={setOffset}
-      setAgentList={setAgentList} />;
+    handleDrawerPress={handleDrawerPress}
+    setChangeStatus={setChangeStatus}
+    handleStatusChange={handleStatusChange}
+    setFilterData={setFilterData}
+    filterData={filterData}
+    onPressView={onPressView}
+    agentList={agentList}
+    Onreachedend={Onreachedend}
+    offSET={offSET}
+    moreData={moreData}
+    getAgencyList={getAgencyList}
+    setOffset={setOffset}
+    setAgentList={setAgentList} />;
 };
 
 export default AgencyListing;
