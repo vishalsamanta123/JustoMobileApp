@@ -39,6 +39,8 @@ const images = {
   camera: require('./camera.png'),
   gallery: require('./gallery.png'),
   addCircle: require('./addCircle.png'),
+  lock: require('./lock.png'),
+  bell: require('./notification.png'),
 };
 
 export default images;

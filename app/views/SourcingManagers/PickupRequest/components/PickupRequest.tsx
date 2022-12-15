@@ -29,8 +29,9 @@ const PickupRequestView = (props: any) => {
                     data={props?.DATA}
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => <PickupRequestsList items={item}
-                    // onPressView={onPressView} 
                     />}
+                    onRefresh={() => props.onRefresh()}
+                    refreshing={false}
                 />
             </View>
             <FilterModal
