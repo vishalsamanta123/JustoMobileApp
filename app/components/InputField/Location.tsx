@@ -41,9 +41,13 @@ const LocationInput = (props: any) => {
                         paddingLeft: normalizeSpacing(Isios ? 5 : 15),
                         fontFamily: FONT_FAMILY_SEMIBOLD,
                         opacity: 0.6,
+                        color: BLACK_COLOR
                     },
                     predefinedPlacesDescription: {
-                        color: '#1faadb',
+                        color: BLACK_COLOR,
+                    },
+                    description: {
+                        color: BLACK_COLOR,
                     },
                 }}
                 onPress={(data, details = null) => {

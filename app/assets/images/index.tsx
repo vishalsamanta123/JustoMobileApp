@@ -38,6 +38,7 @@ const images = {
   attach: require('./attach.png'),
   camera: require('./camera.png'),
   gallery: require('./gallery.png'),
+  addCircle: require('./addCircle.png'),
 };
 
 export default images;

@@ -8,6 +8,7 @@ import { PRIMARY_THEME_COLOR } from "app/components/utilities/constant";
 import { useNavigation } from "@react-navigation/native";
 import SearchBar from "app/components/SearchBar";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
+import FastImages from "app/components/FastImage";
 
 const ChatViewView = (props: any) => {
   const { DATA } = props;
@@ -35,7 +36,13 @@ const ChatViewView = (props: any) => {
         onPress={() => handleChatPress(item)}
         style={styles.chatListView}
       >
-        <Text style={styles.propertyText}>{item.property}</Text>
+        <View style={styles.straight}>
+          <FastImages
+            source={{ uri: item.image }}
+            style={styles.profileImage}
+          />
+          <Text style={styles.propertyText}>{item.property}</Text>
+        </View>
         <Image source={images.rightArrow} style={styles.iconStyle} />
       </TouchableOpacity>
     );
@@ -45,7 +52,7 @@ const ChatViewView = (props: any) => {
       <Header
         leftImageSrc={images.menu}
         // rightFirstImageScr={images.filter}
-        // rightSecondImageScr={images.notification}
+        rightSecondImageScr={images.notification}
         headerText={strings.chatHeader}
         handleOnLeftIconPress={props.handleDrawerPress}
         headerStyle={styles.headerStyle}
