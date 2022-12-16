@@ -120,7 +120,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         agencyData.adhar_no == ""
       ) {
         isError = false;
-        errorMessage = "Adhar No. is require. Please enter Adhar No.";
+        errorMessage = "Aadhaar No. is require. Please enter Aadhaar No.";
       } else if (
         agencyData.pancard_no == undefined ||
         agencyData.pancard_no == ""
