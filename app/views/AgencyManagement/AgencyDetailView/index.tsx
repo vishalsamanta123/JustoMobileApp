@@ -10,21 +10,19 @@ import AgentDetailView from "./components/AgentDetailView";
 const AgentDetail = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch();
   const { response = {}, detail } = useSelector((state: any) => state.agency);
-
   const [allDetails, setAllDetails] = useState({});
 
   useLayoutEffect(() => {
-    const { data = {} } = route?.params;
+    const { data = {} } = route?.params || {};
     if (data.cp_id) {
-      dispatch(
-        getAgencyDetail({
-          cp_id: data.cp_id,
-        })
+      dispatch(getAgencyDetail({
+        cp_id: data.cp_id,
+      })
       );
     }
   }, [navigation, detail]);
   useEffect(() => {
-    if (detail) {
+    if (response?.status === 200) {
       setAllDetails(response?.data[0]);
     }
   }, [response]);

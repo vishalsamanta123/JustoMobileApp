@@ -4,6 +4,8 @@ import {
   CREATE_AGENCY,
   CREATE_AGENCY_ERROR,
   GET_AGENCY_DETAIL,
+  REMOVE_UPDATE_ASSIGN_CP,
+  UPDATE_ASSIGN_CP_STATUS,
 } from "../types";
 
 const initialStateForm = {
@@ -68,3 +70,23 @@ export function agencyReducer(state = initialState, action: any) {
       return state;
   }
 }
+export function agencyStatusReducer(state = initialStateForm, action: any) {
+  switch (action.type) {
+    case UPDATE_ASSIGN_CP_STATUS:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        response: action.payload,
+      };
+    case REMOVE_UPDATE_ASSIGN_CP:
+      return {
+        ...state,
+        create: false,
+        response: action.payload,
+      };
+    default:
+      return state;
+  }
+}
+
