@@ -75,7 +75,7 @@ console.log('props: ', props.items);
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
             color: BLACK_COLOR
-          }]}>{props.items.status ? strings.active : strings.deactive}</Text>
+          }]}>{props.items.active_status ? strings.active : strings.deactive}</Text>
         </View>
       </View>
 

@@ -12,38 +12,7 @@ const DashboardView = (props: any) => {
   const targetData = props?.dashboardData?.target || {}
   const achieveTargetData = props?.dashboardData?.achievetarget || {}
   const insets = useSafeAreaInsets();
-  const DATA: any = [
-    {
-      cpName: 'Rohit Sharma',
-      visitor: 123,
-      siteVisit: 234,
-      closeLead: 600,
-    },
-    {
-      cpName: 'Sachin Tendulkar',
-      visitor: 37,
-      siteVisit: 345,
-      closeLead: 600,
-    },
-    {
-      cpName: 'Virat kohli',
-      visitor: 57,
-      siteVisit: 3,
-      closeLead: 600,
-    },
-    {
-      cpName: 'Ramesh Suresh',
-      visitor: 48,
-      siteVisit: 6,
-      closeLead: 600,
-    },
-    {
-      cpName: 'Danieal vitoree',
-      visitor: 768,
-      siteVisit: 867,
-      closeLead: 600,
-    },
-  ];
+  const role = props?.getLoginType?.response?.data?.role_title || {}
   const renderItem = ({ item }: any) => {
     return (
       <TouchableOpacity style={styles.headingView}>
@@ -87,16 +56,6 @@ const DashboardView = (props: any) => {
                     inActiveText={''}
                     // barHeight={1}
                     circleBorderWidth={2}
-                  /*  activeText={'On'}
-                   inActiveText={'Off'}
-                   circleSize={30}
-                   barHeight={1}
-                   circleBorderWidth={3}
-                   backgroundActive={'green'}
-                   backgroundInactive={'gray'}
-                   circleActiveColor={'#30a566'}
-                   circleInActiveColor={'#000000'} */
-
                   />
 
 
@@ -119,79 +78,121 @@ const DashboardView = (props: any) => {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.secondPortion}>
-            <View style={styles.firstCardView}>
-              <View style={styles.cardTextView}>
-                <Text style={styles.cardText}>Visit Target</Text>
+          {/* Top Section */}
+          {role === 'Sourcing TL' || role === 'Sourcing Manager' ?
+            <>
+              <View style={styles.secondPortion}>
+                <View style={styles.firstCardView}>
+                  <View style={styles.cardTextView}>
+                    <Text style={styles.cardText}>Visit Target</Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.numberText}>{achieveTargetData?.achieve_visit_target}/{targetData?.booking_target}</Text>
+                  </View>
+                </View>
+                <View style={styles.secondCardView}>
+                  <View style={styles.cardTextView}>
+                    <Text style={styles.cardText}>Site Visit Target</Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.numberText}>{achieveTargetData?.achieve_site_visit_target}/{targetData?.site_visit_target}</Text>
+                  </View>
+                </View>
               </View>
-              <View style={styles.numberView}>
-                <Text style={styles.numberText}>{achieveTargetData?.achieve_visit_target}/{targetData?.booking_target}</Text>
+              {/* Bottom Section */}
+              <View style={styles.thirdPortion}>
+                <View style={styles.thirdPortioncardView}>
+                  <View style={styles.thirdPortionCardTextView}>
+                    <Text style={styles.thirdPortionCardText}>Today Visit</Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_visit}</Text>
+                  </View>
+                </View>
+                <View style={styles.thirdPortioncardView}>
+                  <View style={styles.thirdPortionCardTextView}>
+                    <Text style={styles.thirdPortionCardText} numberOfLines={2}>
+                      Today Site Visit
+                    </Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_site_visit}</Text>
+                  </View>
+                </View>
+                <View style={styles.thirdPortioncardView}>
+                  <View style={styles.thirdPortionCardTextView}>
+                    <Text style={styles.thirdPortionCardText}>{props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ? 'Active SM' : 'Active CP'}</Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.thirdPortionNumberText}>{
+                      role === 'Sourcing TL' ? props?.dashboardData?.total_sorcing_manager : props?.dashboardData?.active_cp
+                    }</Text>
+                  </View>
+                </View>
               </View>
-            </View>
-            <View style={styles.secondCardView}>
-              <View style={styles.cardTextView}>
-                <Text style={styles.cardText}>Site Visit Target</Text>
+            </>
+            :
+            <>
+              <View style={styles.secondPortion}>
+                <View style={styles.thirdCardView}>
+                  <View style={styles.cardTextView}>
+                    <Text style={styles.cardText}>Closing Target</Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.numberText}>{achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}</Text>
+                  </View>
+                </View>
+                <View style={styles.secondCardView}>
+                  <View style={styles.cardTextView}>
+                    <Text style={styles.cardText}>Booking Target</Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.numberText}>{achieveTargetData?.achieve_site_visit_target}/{targetData?.site_visit_target}</Text>
+                  </View>
+                </View>
               </View>
-              <View style={styles.numberView}>
-                <Text style={styles.numberText}>{achieveTargetData?.achieve_site_visit_target}/{targetData?.site_visit_target}</Text>
+              {/* Bottom Section */}
+              <View style={styles.thirdPortion}>
+                <View style={styles.thirdPortioncardView}>
+                  <View style={styles.thirdPortionCardTextView}>
+                    <Text style={styles.thirdPortionCardText}>
+                      Today Closed Visit
+                    </Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_close_visit}</Text>
+                  </View>
+                </View>
+                <View style={styles.thirdPortioncardView}>
+                  <View style={styles.thirdPortionCardTextView}>
+                    <Text style={styles.thirdPortionCardText}>
+                      Today Booking
+                    </Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_close_visit}</Text>
+                  </View>
+                </View>
+                <View style={styles.thirdPortioncardView}>
+                  <View style={styles.thirdPortionCardTextView}>
+                    <Text style={styles.thirdPortionCardText}>{role === 'Closing TL' ? 'Active CM' : 'Total Ready to Booking'}</Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.thirdPortionNumberText}>{role === 'Closing TL' ? props?.dashboardData?.total_closing_manager : props?.dashboardData?.total_ready_booking}</Text>
+                  </View>
+                </View>
+                <View style={styles.thirdPortioncardView}>
+                  <View style={styles.thirdPortionCardTextView}>
+                    <Text style={styles.thirdPortionCardText}>Closing Target</Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.thirdPortionNumberText}>
+                      {achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}</Text>
+                  </View>
+                </View>
               </View>
-            </View>
-            <View style={styles.thirdCardView}>
-              <View style={styles.cardTextView}>
-                <Text style={styles.cardText}>Closing Target</Text>
-              </View>
-              <View style={styles.numberView}>
-                <Text style={styles.numberText}>{achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.thirdPortion}>
-            <View style={styles.thirdPortioncardView}>
-              <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText} numberOfLines={2}>
-                  Today Site Visit
-                </Text>
-              </View>
-              <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_site_visit}</Text>
-              </View>
-            </View>
-            <View style={styles.thirdPortioncardView}>
-              <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>
-                  Today Closed Visit
-                </Text>
-              </View>
-              <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_close_visit}</Text>
-              </View>
-            </View>
-            <View style={styles.thirdPortioncardView}>
-              <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>Today Visit</Text>
-              </View>
-              <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_visit}</Text>
-              </View>
-            </View>
-            <View style={styles.thirdPortioncardView}>
-              <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>Active CP</Text>
-              </View>
-              <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.active_cp}</Text>
-              </View>
-            </View>
-            <View style={styles.thirdPortioncardView}>
-              <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>Closing Target</Text>
-              </View>
-              <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>
-                  {achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}</Text>
-              </View>
-            </View>
-          </View>
+            </>
+          }
           <View style={styles.bottomSection}>
             <View style={styles.headingView}>
               {props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ?

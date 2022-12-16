@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, Linking } from "react-native";
 import React from "react";
 import styles from "./Styles";
 import {
@@ -110,7 +110,11 @@ const LeadManagementItem = (props: any) => {
           btnTxtsize={14}
           textTransform={null}
           border={10}
-        // handleBtnPress={() => ()}
+        handleBtnPress={() => {
+          Linking?.openURL(
+            `tel:${props?.items?.mobile}`
+          )
+        }}
         />
         <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>
           <Image

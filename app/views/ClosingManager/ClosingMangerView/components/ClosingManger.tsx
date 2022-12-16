@@ -8,6 +8,7 @@ import ClosingManagersItem from './ClosingMangerItem'
 import strings from '../../../../components/utilities/Localization';
 import ConfirmModal from '../../../../components/Modals/ConfirmModal';
 import FilterModal from '../../../../components/Modals/FilterModal';
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 const ClosingDetailsView = (props: any) => {
     const loadingref = false
@@ -45,6 +46,7 @@ const ClosingDetailsView = (props: any) => {
                     />}
                     refreshing={loadingref}
                     onRefresh={() => props.onRefresh()}
+                    ListEmptyComponent={<EmptyListScreen message={strings.closingManagerHeader} />}
                 />
             </View>
             <ConfirmModal
