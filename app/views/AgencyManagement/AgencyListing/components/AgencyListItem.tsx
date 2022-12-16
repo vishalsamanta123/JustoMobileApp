@@ -7,7 +7,7 @@ import images from '../../../../assets/images';
 import Button from '../../../../components/Button';
 
 const AgencyListItem = (props: any) => {
-
+console.log('props: ', props.items);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >
@@ -96,13 +96,16 @@ const AgencyListItem = (props: any) => {
           width={78}
           height={30}
           bgcolor={WHITE_COLOR}
-          bordercolor={props.items.active_status ? RED_COLOR : GREEN_COLOR}
+          bordercolor={props.items.status === false ? RED_COLOR : GREEN_COLOR}
           borderWidth={1}
-          btnTxtcolor={props.items.active_status ? RED_COLOR : GREEN_COLOR}
-          buttonText={props.items.active_status ? strings.deactive : strings.active }
+          btnTxtcolor={props.items.status === false ? RED_COLOR : GREEN_COLOR}
+          buttonText={props.items.status === false ? strings.deactive : strings.active}
           btnTxtsize={14}
           border={10}
-          handleBtnPress={() => props.setIsVisible(true)}
+          handleBtnPress={() => {
+            props.setIsVisible(true)
+            props?.setChangeStatus(props.items)
+          }}
         />
         <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items, 'view')} >
           <Image
@@ -111,7 +114,7 @@ const AgencyListItem = (props: any) => {
           />
         </TouchableOpacity>
       </View>
-      
+
     </View>
   );
 };

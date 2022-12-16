@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import ErrorMessage from 'app/components/ErrorMessage';
 import { GREEN_COLOR } from 'app/components/utilities/constant';
-import { getAssignCPList, updateAssignCP } from 'app/Redux/Actions/SourcingManagerActions';
+import { getAssignCPList, removeAssignCpStatus, updateAssignCP } from 'app/Redux/Actions/SourcingManagerActions';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PendingAgencyView from './components/PendingAgencyView';
@@ -28,13 +28,15 @@ const PendingAgencyListing = ({ navigation }: any) => {
     }
   }, [response])
   useEffect(() => {
-    // if (statusUpdate?.response?.status === 200) {
-    //   ErrorMessage({
-    //     msg: statusUpdate?.response?.message,
-    //     backgroundColor: GREEN_COLOR,
-    //   });
-    // }
-  }, [])
+    if (statusUpdate?.response?.status === 200) {
+      ErrorMessage({
+        msg: statusUpdate?.response?.message,
+        backgroundColor: GREEN_COLOR,
+      });
+      dispatch(removeAssignCpStatus())
+      getPendingList()
+    }
+  }, [statusUpdate])
   const getPendingList = async () => {
     const userData: any = await AsyncStorage.getItem("loginData");
     if (JSON.parse(userData)?.data?.user_id) {

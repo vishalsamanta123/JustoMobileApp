@@ -120,6 +120,8 @@ const AgencyView = (props: any) => {
         stringshow={strings.confirmation}
         textshow={strings.deactivconfirmation + ' ' + strings.agencyHeader + '?'}
         confirmtype={'CONFIRMATION'}
+        setStatusChange={props.setChangeStatus}
+        handleYesResponse={() => props.handleStatusChange(props.changeStatus)}
       />
       <FilterModal
         getAgencyList={props.getAgencyList}
