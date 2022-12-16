@@ -8,6 +8,7 @@ import SourcingManagersItem from './SourcingManagersItem'
 import strings from '../../../../components/utilities/Localization';
 import ConfirmModal from '../../../../components/Modals/ConfirmModal';
 import FilterModal from '../../../../components/Modals/FilterModal';
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 const SourcingDetailsView = (props: any) => {
     const loadingref = false
@@ -48,6 +49,7 @@ const SourcingDetailsView = (props: any) => {
                     />}
                     refreshing={loadingref}
                     onRefresh={() => props.onRefresh()}
+                    ListEmptyComponent={<EmptyListScreen message={strings.SourcingManagersHeader} />}
                 />
             </View>
             <ConfirmModal
