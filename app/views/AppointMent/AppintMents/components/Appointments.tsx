@@ -11,6 +11,7 @@ import AllocateModal from "./AllocateModal";
 import DropLocationModal from "./DropLocationModal";
 import { useDispatch } from "react-redux";
 import { AddDropLocation } from "app/Redux/Actions/AppointmentCLAction";
+import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 
 const AppointmentListView = (props: any) => {
     const [locationModel, setLocationModel] = useState(false)
@@ -52,6 +53,7 @@ const AppointmentListView = (props: any) => {
                 <FlatList
                     data={props.DATA}
                     showsVerticalScrollIndicator={false}
+                    ListEmptyComponent={<EmptyListScreen message={strings.appointmentHeader} />}
                     renderItem={({ item }) =>
                         <AppointmentsItem
                             items={item}

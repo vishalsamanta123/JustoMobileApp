@@ -5,6 +5,7 @@ import Header from "../../../../components/Header";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import BookingListItem from './BookingListItem'
+import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 
 const BookingListView = (props: any) => {
     return (
@@ -19,6 +20,7 @@ const BookingListView = (props: any) => {
                 <FlatList
                     data={props.DATA}
                     showsVerticalScrollIndicator={false}
+                    ListEmptyComponent={<EmptyListScreen message={strings.bookingListHeader} />}
                     renderItem={({ item }) => <BookingListItem items={item}
                         onPressView={() => props.handleView(item)}
                     />}

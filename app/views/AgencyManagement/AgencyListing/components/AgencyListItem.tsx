@@ -75,7 +75,7 @@ const AgencyListItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
             color: BLACK_COLOR
-          }]}>{props.items.status ? strings.active : strings.deactive}</Text>
+          }]}>{props.items.active_status ? strings.active : strings.deactive}</Text>
         </View>
       </View>
 
@@ -96,10 +96,10 @@ const AgencyListItem = (props: any) => {
           width={78}
           height={30}
           bgcolor={WHITE_COLOR}
-          bordercolor={props.items.status ? RED_COLOR : GREEN_COLOR}
+          bordercolor={props.items.active_status ? RED_COLOR : GREEN_COLOR}
           borderWidth={1}
-          btnTxtcolor={props.items.status ? RED_COLOR : GREEN_COLOR}
-          buttonText={props.items.status ? strings.deactive : strings.active }
+          btnTxtcolor={props.items.active_status ? RED_COLOR : GREEN_COLOR}
+          buttonText={props.items.active_status ? strings.deactive : strings.active }
           btnTxtsize={14}
           border={10}
           handleBtnPress={() => props.setIsVisible(true)}

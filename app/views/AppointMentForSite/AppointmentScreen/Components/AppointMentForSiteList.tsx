@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Linking } from 'react-native'
 import React from 'react'
 import styles from './Styles'
 import images from '../../../../assets/images'
@@ -97,6 +97,11 @@ const AppointMentForSiteList = (props: any) => {
             buttonText={strings.call}
             btnTxtsize={14}
             border={10}
+            handleBtnPress={() => {
+              Linking?.openURL(
+                  `tel:${props.items?.mobile}`
+              )
+          }}
           />
         </View>
         <TouchableOpacity style={styles.Viewbutton}

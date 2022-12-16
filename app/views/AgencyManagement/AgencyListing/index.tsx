@@ -7,7 +7,7 @@ import AgencyView from './components/AgencyView';
 
 const AgencyListing = ({ navigation }: any) => {
   const { response = {}, list = false } =
-    useSelector((state: any) => state.SourcingManager) || []
+    useSelector((state: any) => state.agentData) || []
   const SmCpList = useSelector((state: any) => state.SourcingManager) || []
   // console.log('SmCpList: ', SmCpList?.response?.data);
 
@@ -34,39 +34,17 @@ const AgencyListing = ({ navigation }: any) => {
   );
 
   useEffect(() => {
-    if (list) {
-      if (offSET === 0) {
-        console.log('response?.data: ', response?.data);
-        setAgentList(response?.data)
-      } else {
-        setAgentList([...agentList, ...response?.data])
-      }
-    } else {
-      setAgentList(SmCpList?.response?.data)
-    }
-  }, [response])
+    setAgentList(SmCpList?.response?.data)
+  }, [SmCpList])
 
   const getAgencyList = (offset: any, filterData: any) => {
     setOffset(offset)
-    if (userData?.data?.role_title === 'Sourcing Manager') {
-      dispatch(
-        getAssignCPList({
-          user_id: userData?.data?.user_id
-        })
-      );
-    } else {
-      dispatch(getAllAgentList({
-        offset: offset,
-        limit: 3,
-        module_id: '',
-        start_date: filterData?.startdate ? filterData?.startdate : '',
-        end_date: filterData?.enddate ? filterData?.enddate : '',
-        user_type: 1,
-        search_by_name: filterData?.search_by_name ? filterData?.search_by_name : '',
-        search_by_location: filterData?.search_by_location ? filterData?.search_by_location : '',
-        status: filterData?.status ? filterData?.status : '',
-      }))
-    }
+    // if (userData?.data?.role_title === 'Sourcing Manager') {
+    dispatch(
+      getAssignCPList({
+        user_id: userData?.data?.user_id
+      })
+    );
   }
 
   const handleDrawerPress = () => {
