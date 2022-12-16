@@ -91,7 +91,7 @@ const PendingAgencyView = (props: any) => {
       />
       <View style={styles.propertyListView}>
         {/* <View style={styles.btnView}>
-            <TouchableOpacity
+            <TouchableOpacity 
             onPress={() => null}
             style={[styles.button, { borderColor: BLACK_COLOR, backgroundColor: PRIMARY_THEME_COLOR }]} >
             <Text style={[styles.buttonTxt, {

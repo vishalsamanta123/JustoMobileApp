@@ -1,6 +1,8 @@
 import { useFocusEffect } from '@react-navigation/native';
+import ErrorMessage from 'app/components/ErrorMessage';
+import { GREEN_COLOR } from 'app/components/utilities/constant';
 import { AgencyCreateFormRemove, getAllAgentList } from 'app/Redux/Actions/AgencyActions';
-import { getAssignCPList } from 'app/Redux/Actions/SourcingManagerActions';
+import { getAssignCPList, removeAssignCpStatus, updateAssignCP } from 'app/Redux/Actions/SourcingManagerActions';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AgencyView from './components/AgencyView';
@@ -8,13 +10,11 @@ import AgencyView from './components/AgencyView';
 const AgencyListing = ({ navigation }: any) => {
   const { response = {}, list = false } =
     useSelector((state: any) => state.SourcingManager) || []
+  const statusUpdate = useSelector((state: any) => state.agencyStatus) || {}
   const SmCpList = useSelector((state: any) => state.SourcingManager) || []
-  // console.log('SmCpList: ', SmCpList?.response?.data);
-
   const { userData = {} } = useSelector((state: any) => state.userData) || []
   const moreData = response?.total_data || 0
   const [agentList, setAgentList] = useState<any>([])
-  console.log('agentList: ', agentList);
   const [offSET, setOffset] = useState(0)
   const [filterData, setFilterData] = useState({
     startdate: '',
@@ -23,7 +23,7 @@ const AgencyListing = ({ navigation }: any) => {
     search_by_location: '',
     status: ''
   })
-  const [changeStatus, setChangeStatus] = useState({ _id: '', status: false })
+  const [changeStatus, setChangeStatus] = useState({})
   const dispatch: any = useDispatch()
 
   useFocusEffect(
@@ -36,7 +36,6 @@ const AgencyListing = ({ navigation }: any) => {
   useEffect(() => {
     if (list) {
       if (offSET === 0) {
-        console.log('response?.data: ', response?.data);
         setAgentList(response?.data)
       } else {
         setAgentList([...agentList, ...response?.data])
@@ -69,26 +68,24 @@ const AgencyListing = ({ navigation }: any) => {
     }
   }
 
+  useEffect(() => {
+    if (statusUpdate?.response?.status === 200) {
+      ErrorMessage({
+        msg: statusUpdate?.response?.message,
+        backgroundColor: GREEN_COLOR,
+      });
+      dispatch(removeAssignCpStatus())
+      getAgencyList(offSET, {})
+    }
+  }, [statusUpdate])
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
-  const handleStatusChange = () => {
-    // dispatch(statusUpdate({
-    //   cp_id: changeStatus?._id,
-    //   status: changeStatus?.status ? false : true,
-    // }))
-    // dispatch(getAllAgentList({
-    //   offset: 0,
-    //   limit: 3,
-    //   module_id: '',
-    //   start_date: '',
-    //   end_date: '',
-    //   user_type: 2,
-    //   search_by_name: '',
-    //   search_by_location: '',
-    //   status: ''
-    // }))
-    setChangeStatus({ _id: '', status: false })
+  const handleStatusChange = (item: any) => {
+    dispatch(updateAssignCP({
+      user_id: item?._id,
+      status: 2
+    }))
   }
   const onPressView = (data: any, type: any) => {
     if (type === 'edit') {
@@ -116,6 +113,7 @@ const AgencyListing = ({ navigation }: any) => {
   return <AgencyView
     handleDrawerPress={handleDrawerPress}
     setChangeStatus={setChangeStatus}
+    changeStatus={changeStatus}
     handleStatusChange={handleStatusChange}
     setFilterData={setFilterData}
     filterData={filterData}

@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { ASSIGNCP_SM, ASSIGNCP_SM_ERROR, GET_ASSIGNCP_LIST, GET_ASSIGNCP_LIST_ERROR, GET_SOURCINGMANAGER_DETAIL, GET_SOURCINGMANAGER_DETAIL_ERROR, GET_SOURCINGMANAGER_LIST, GET_SOURCINGMANAGER_LIST_ERROR, START_LOADING, STOP_LOADING, UPDATE_ASSIGN_CP_STATUS, UPDATE_ASSIGN_CP_STATUS_ERR } from "../types";
+import { ASSIGNCP_SM, ASSIGNCP_SM_ERROR, GET_ASSIGNCP_LIST, GET_ASSIGNCP_LIST_ERROR, GET_SOURCINGMANAGER_DETAIL, GET_SOURCINGMANAGER_DETAIL_ERROR, GET_SOURCINGMANAGER_LIST, GET_SOURCINGMANAGER_LIST_ERROR, REMOVE_UPDATE_ASSIGN_CP, START_LOADING, STOP_LOADING, UPDATE_ASSIGN_CP_STATUS, UPDATE_ASSIGN_CP_STATUS_ERR } from "../types";
 
 export const getSourcingManagerList = () => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -152,5 +152,18 @@ export const updateAssignCP = (parma: any) => async (dispatch: any) => {
     }
     finally {
         dispatch({ type: STOP_LOADING })
+    }
+}
+export const removeAssignCpStatus = () => async (dispatch: any) => {
+    try {
+        dispatch({
+            type: REMOVE_UPDATE_ASSIGN_CP,
+            payload: null,
+        });
+    } catch (e) {
+        dispatch({
+            type: UPDATE_ASSIGN_CP_STATUS_ERR,
+            payload: console.log(e),
+        });
     }
 }

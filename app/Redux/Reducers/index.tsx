@@ -1,5 +1,5 @@
 import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, updatepasswordReducer, userData, userDetailReducer, userReducer } from "./AuthReducer";
-import { agencyCreateFormReducer, agencyReducer } from "./AgencyReducer";
+import { agencyCreateFormReducer, agencyReducer, agencyStatusReducer } from "./AgencyReducer";
 import { SourcingManagerReducer } from "./SourcingManagerReducer";
 import { agentReducer } from "./AgentReducer";
 import { competitorpropertyReducer, propertyDetailReducer, propertyReducer } from "./propertyReducers";
@@ -27,6 +27,7 @@ export default {
     changePasswordResponse: changePasswordReducer,
     agencyForm: agencyCreateFormReducer,
     agency: agencyReducer,
+    agencyStatus: agencyStatusReducer,
     SourcingManager: SourcingManagerReducer,
     propertyData: propertyReducer,
     competitorproperty: competitorpropertyReducer,
