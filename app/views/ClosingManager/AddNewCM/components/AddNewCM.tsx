@@ -12,6 +12,7 @@ import PicturePickerModal from '../../../../components/Modals/PicturePicker';
 import moment from 'moment';
 import InputCalender from 'app/components/InputCalender';
 import DropdownInput from 'app/components/DropDown';
+import { normalizeSpacing } from 'app/components/scaleFontSize';
 
 const AddNewCMView = (props: any) => {
     const [profile, setProfile] = React.useState(false);
@@ -19,7 +20,8 @@ const AddNewCMView = (props: any) => {
     return (
         <View style={styles.mainContainer}>
             <Header
-                headerText={props?.type === 'edit' ? strings.editCM : strings.addNewCM}
+                headerText={strings.addNewCM}
+                // headerText={props?.type === 'edit' ? strings.editCM : strings.addNewCM}
                 headerStyle={styles.headerStyle}
                 headerTextStyle={styles.headerTextStyle}
                 leftImageSrc={images.backArrow}
@@ -30,21 +32,28 @@ const AddNewCMView = (props: any) => {
                 barStyle={'light-content'}
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
-            <ScrollView contentContainerStyle={styles.wrap}>
+            <ScrollView keyboardShouldPersistTaps={'handled'}
+                contentContainerStyle={styles.wrap}>
                 <TouchableOpacity
                     onPress={() => setProfile(true)}
                     style={[styles.imageCircle]}
                 >
-                    {!props.addNewCMData?.profile_picture?.uri ?
+                    {props.addNewCMData?.profile_picture?.uri ||
+                        props.addNewCMData?.profile_picture != '' ?
+                        <Image
+                            style={styles.loginBanner}
+                            source={{
+                                uri:
+                                    props.addNewCMData?.profile_picture?.uri
+                                        ? props.addNewCMData?.profile_picture?.uri
+                                        : props.addNewCMData?.profile_picture,
+
+                            }}
+                            resizeMode="contain"
+                        /> :
                         <Image
                             style={styles.DummyloginBanner}
                             source={images.user}
-                            resizeMode="contain"
-                        />
-                        :
-                        <Image
-                            style={styles.loginBanner}
-                            source={{ uri: props.addNewCMData?.profile_picture?.uri }}
                             resizeMode="contain"
                         />
                     }
@@ -58,13 +67,14 @@ const AddNewCMView = (props: any) => {
                 </TouchableOpacity>
                 <View style={styles.inputWrap}>
                     <DropdownInput
-                        headingText={'Select Role'}
-                        placeholder={'Select Role'}
-                        data={props.roleData}
+                        headingText={'Selected Role'}
+                        placeholder={'Closing Manager'}
+                        // data={props.roleData}
                         inputWidth={'100%'}
+                        disable={true}
                         paddingLeft={16}
                         maxHeight={300}
-                        onFocus={() => props.handlegetRoleList()}
+                        // onFocus={() => props.handlegetRoleList()}
                         labelField="role_title"
                         valueField={'_id'}
                         value={props.addNewCMData?.role_id}
@@ -95,6 +105,7 @@ const AddNewCMView = (props: any) => {
                                 ...props.addNewCMData, firstname: val
                             })
                         }}
+                        valueshow={props?.addNewCMData?.firstname}
                     />
                 </View>
                 <View style={styles.inputWrap}>
@@ -107,6 +118,7 @@ const AddNewCMView = (props: any) => {
                                 ...props.addNewCMData, lastname: val
                             })
                         }}
+                        valueshow={props?.addNewCMData?.lastname}
                     />
                 </View>
                 <View style={styles.inputWrap}>
@@ -119,6 +131,7 @@ const AddNewCMView = (props: any) => {
                                 ...props.addNewCMData, adhar_no: val
                             })
                         }}
+                        valueshow={props?.addNewCMData?.adhar_no}
                         maxLength={12}
                         keyboardtype={'number-pad'}
                     />
@@ -133,6 +146,7 @@ const AddNewCMView = (props: any) => {
                                 ...props.addNewCMData, pancard_no: val
                             })
                         }}
+                        valueshow={props?.addNewCMData?.pancard_no}
                         maxLength={10}
                     />
                 </View>
@@ -204,9 +218,11 @@ const AddNewCMView = (props: any) => {
                                 dateofbirth: moment(data).format(DATE_FORMAT)
                             })
                         }}
-                        value={props?.addNewCMData?.dateofbirth ?
-                            moment(props?.addNewCMData?.dateofbirth).format(DATE_FORMAT)
-                            : ''}
+                        value={props?.addNewCMData?.dateofbirth === '' ||
+                            props?.addNewCMData?.dateofbirth === undefined ||
+                            props?.addNewCMData?.dateofbirth === null ?
+                            ""
+                            : moment(props?.addNewCMData?.dateofbirth).format(DATE_FORMAT)}
                     />
                 </View>
                 <View style={styles.inputWrap}>
@@ -219,6 +235,7 @@ const AddNewCMView = (props: any) => {
                                 ...props.addNewCMData, mobile: val
                             })
                         }}
+                        valueshow={props?.addNewCMData?.mobile}
                         maxLength={10}
                         keyboardtype={'number-pad'}
                     />
@@ -233,6 +250,7 @@ const AddNewCMView = (props: any) => {
                                 ...props.addNewCMData, whatsapp_no: val
                             })
                         }}
+                        valueshow={props?.addNewCMData?.whatsapp_no}
                         maxLength={10}
                         keyboardtype={'number-pad'}
                     />
@@ -247,12 +265,16 @@ const AddNewCMView = (props: any) => {
                                 ...props.addNewCMData, email: val
                             })
                         }}
+                        valueshow={props?.addNewCMData?.email}
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <DropdownInput
                         headingText={strings.city}
-                        placeholder={strings.city}
+                        placeholder={
+                            props.addNewCMData?.city === '' || props.addNewCMData?.city_id === null
+                                || props.addNewCMData?.city_id === undefined ?
+                                strings.city : props.addNewCMData?.city}
                         data={props.cityData}
                         inputWidth={'100%'}
                         paddingLeft={16}
@@ -288,14 +310,38 @@ const AddNewCMView = (props: any) => {
                                 ...props.addNewCMData, area: val
                             })
                         }}
-                        keyboardtype={'number-pad'}
+                        valueshow={props?.addNewCMData?.area}
+                    />
+                </View>
+                <View style={{ marginTop: normalizeSpacing(30), }}>
+                    <InputField
+                        placeholderText={"Address"}
+                        headingText={"Address"}
+                        valueshow={props.addNewCMData?.address}
+                        onChangeText={(val: any) => {
+                            props.setAddNewCMData({
+                                ...props.addNewCMData,
+                                address: val,
+                            });
+                        }}
+                        inputType={'location'}
+                        onPressSelect={(data: any, detail: any) => {
+                            props.setAddNewCMData({
+                                ...props.addNewCMData,
+                                address: data?.description,
+                                latitude: detail?.geometry?.location?.lat,
+                                longitude: detail?.geometry?.location?.lng
+                            })
+                        }}
                     />
                 </View>
                 <View style={{ marginVertical: 10, marginBottom: 20 }}>
                     <Button
                         handleBtnPress={() => props.onPressCreate()}
                         textTransform={null}
-                        buttonText={props?.type === 'edit' ? strings.updateCM : strings.createCM} />
+                        buttonText={props?.type === 'edit' ? strings.updateCM :
+                            strings.createCM}
+                    />
                 </View>
             </ScrollView>
             <PicturePickerModal

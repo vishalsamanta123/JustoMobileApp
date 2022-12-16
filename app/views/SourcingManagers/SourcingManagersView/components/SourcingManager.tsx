@@ -15,13 +15,13 @@ const SourcingDetailsView = (props: any) => {
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.menu}
-                rightFirstImageScr={images.filter}
+                // rightFirstImageScr={images.filter}
                 rightSecondImageScr={images.notification}
                 headerText={strings.SourcingManagersHeader}
                 handleOnLeftIconPress={props.handleDrawerPress}
                 headerStyle={styles.headerStyle}
                 RightFirstIconStyle={styles.RightFirstIconStyle}
-                handleOnRightFirstIconPress={() => props.setFilterisVisible(true)}
+                // handleOnRightFirstIconPress={() => props.setFilterisVisible(true)}
                 statusBarColor={PRIMARY_THEME_COLOR}
                 barStyle={'light-content'}
             />

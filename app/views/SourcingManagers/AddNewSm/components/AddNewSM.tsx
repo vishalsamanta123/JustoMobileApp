@@ -18,6 +18,7 @@ import PicturePickerModal from "../../../../components/Modals/PicturePicker";
 import moment from "moment";
 import InputCalender from "app/components/InputCalender";
 import DropdownInput from "app/components/DropDown";
+import { normalizeSpacing } from "app/components/scaleFontSize";
 
 const AddNewSMView = (props: any) => {
   const [gender, setGender] = useState("Male");
@@ -38,7 +39,8 @@ const AddNewSMView = (props: any) => {
         barStyle={"light-content"}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <ScrollView contentContainerStyle={styles.wrap}>
+      <ScrollView keyboardShouldPersistTaps={'handled'}
+        contentContainerStyle={styles.wrap}>
         <TouchableOpacity
           onPress={() => setProfile(true)}
           style={[styles.imageCircle]}
@@ -70,13 +72,13 @@ const AddNewSMView = (props: any) => {
         </TouchableOpacity>
         <View style={styles.inputWrap}>
           <DropdownInput
-            headingText={"Select Role"}
-            placeholder={"Select Role"}
+            headingText={"Selected Role"}
+            placeholder={"Sourcing Manager"}
             data={props?.roleData}
+            disable={true}
             inputWidth={"100%"}
             paddingLeft={16}
             maxHeight={300}
-            onFocus={() => props.handlegetRoleList()}
             labelField="role_title"
             valueField={"_id"}
             value={props.addNewSmData?.role_id}
@@ -140,6 +142,7 @@ const AddNewSMView = (props: any) => {
                 adhar_no: val,
               });
             }}
+            maxLength={12}
           />
         </View>
         <View style={styles.inputWrap}>
@@ -154,6 +157,7 @@ const AddNewSMView = (props: any) => {
                 pancard_no: val,
               });
             }}
+            maxLength={10}
           />
         </View>
         <View style={styles.genderView}>
@@ -228,15 +232,18 @@ const AddNewSMView = (props: any) => {
                 dateofbirth: moment(data).format(DATE_FORMAT),
               });
             }}
+            maximumDate={new Date()}
             setDateshow={(data: any) => {
               props.setAddNewSmData({
                 ...props.addNewSmData,
                 dateofbirth: moment(data).format(DATE_FORMAT),
               });
             }}
-            value={moment(props?.addNewSmData?.dateofbirth).format(
-              DATE_FORMAT
-            )}
+            value={
+              props?.addNewSmData?.dateofbirth === null ||
+                props?.addNewSmData?.dateofbirth === undefined ||
+                props?.addNewSmData?.dateofbirth === '' ? '' :
+                moment(props?.addNewSmData?.dateofbirth).format(DATE_FORMAT)}
           />
         </View>
         <View style={styles.inputWrap}>
@@ -260,6 +267,7 @@ const AddNewSMView = (props: any) => {
             placeholderText={"WhatsApp No."}
             handleInputBtnPress={() => { }}
             headingText={"WhatsApp No."}
+            maxLength={10}
             keyboardtype={'number-pad'}
             valueshow={props.addNewSmData?.whatsapp_no}
             onChangeText={(val: any) => {
@@ -287,7 +295,9 @@ const AddNewSMView = (props: any) => {
         <View style={styles.inputWrap}>
           <DropdownInput
             headingText={strings.city}
-            placeholder={strings.city}
+            placeholder={props.addNewSmData?.city != '' ?
+              props.addNewSmData?.city :
+              strings.city}
             data={Array.isArray(props.cityData) ? props.cityData : []}
             inputWidth={"100%"}
             paddingLeft={16}
@@ -306,11 +316,9 @@ const AddNewSMView = (props: any) => {
             newRenderItem={(item: any) => {
               return (
                 <>
-                  {props.isloading !== false && (
-                    <View style={styles.item}>
-                      <Text style={styles.textItem}>{item.city_name}</Text>
-                    </View>
-                  )}
+                  <View style={styles.item}>
+                    <Text style={styles.textItem}>{item.city_name}</Text>
+                  </View>
                 </>
               );
             }}
@@ -327,6 +335,29 @@ const AddNewSMView = (props: any) => {
                 ...props.addNewSmData,
                 area: val,
               });
+            }}
+          />
+        </View>
+        <View style={{ marginTop: normalizeSpacing(30), }}>
+          <InputField
+            placeholderText={"Address"}
+            handleInputBtnPress={() => { }}
+            headingText={"Address"}
+            valueshow={props.addNewSmData?.address}
+            onChangeText={(val: any) => {
+              props.setAddNewSmData({
+                ...props.addNewSmData,
+                address: val,
+              });
+            }}
+            inputType={'location'}
+            onPressSelect={(data: any, detail: any) => {
+              props.setAddNewSmData({
+                ...props.addNewSmData,
+                address: data?.description,
+                latitude: detail?.geometry?.location?.lat,
+                longitude: detail?.geometry?.location?.lng
+              })
             }}
           />
         </View>

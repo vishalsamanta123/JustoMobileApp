@@ -36,9 +36,7 @@ export const getSourcingManagerDetail = (parma: any) => async (dispatch: any) =>
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_SOURCING_MANAGER_DETAIL, parma);
-        console.log('res GET_SOURCING_MANAGER_DETAIL: ', res);
         if (res?.data?.status === 200) {
-            console.log('res.data: ', res.data);
             dispatch({
                 type: GET_SOURCINGMANAGER_DETAIL,
                 payload: res.data

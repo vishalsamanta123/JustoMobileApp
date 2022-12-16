@@ -21,11 +21,13 @@ const ClosingDetailScreen = ({ navigation }: any) => {
         React.useCallback(() => {
             getCMList()
             return () => { };
-        }, [navigation, list])
+        }, [navigation])
     );
     useEffect(() => {
-        if (list || response?.status) {
+        if (response?.status === 200) {
             setClosingManagers(response?.data)
+        } else {
+            setClosingManagers([])
         }
     }, [response])
     const getCMList = () => {
@@ -42,16 +44,14 @@ const ClosingDetailScreen = ({ navigation }: any) => {
     const handleDrawerPress = () => {
         navigation.toggleDrawer();
     };
-    const handleAddNewCM = (type: any) => {
+    const handleAddNewCM = (type: any, data: any) => {
         if (type === 'edit') {
-            navigation.navigate('AddNewCM', { type })
+            navigation.navigate('AddNewCM', { type, data })
         } else {
             navigation.navigate('AddNewCM')
         }
     };
-    const onPressAllocateCp = (item: any) => {
-        // navigation.navigate('AllocateCP', item?._id)
-    }
+
     const onPressViews = (item: any) => {
         navigation.navigate('CMDetails', item)
     }
@@ -62,7 +62,6 @@ const ClosingDetailScreen = ({ navigation }: any) => {
             filterisVisible={filterisVisible}
             setFilterisVisible={setFilterisVisible}
             handleAddNewCM={handleAddNewCM}
-            onPressAllocateCp={onPressAllocateCp}
             onPressViews={onPressViews}
             status={status}
             setStatus={setStatus}

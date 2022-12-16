@@ -1,5 +1,8 @@
 import { useFocusEffect } from '@react-navigation/native';
+import ErrorMessage from 'app/components/ErrorMessage';
+import { GREEN_COLOR, RED_COLOR, validateEmail } from 'app/components/utilities/constant';
 import { getAgentDetail } from 'app/Redux/Actions/AgentActions';
+import { removeAuthUser } from 'app/Redux/Actions/AuthActions';
 import { getCityList, getRolesList } from 'app/Redux/Actions/MasterActions';
 import { updateUserSettingData, userRegister } from 'app/Redux/Actions/SettingActions';
 import React, { useEffect, useState } from 'react';
@@ -9,14 +12,43 @@ import AddNewSM from './components/AddNewSM'
 const AddNewSMScreen = ({ navigation, route }: any) => {
     const { type, data } = route?.params || ""
     const dispatch: any = useDispatch()
-    const [addNewSmData, setAddNewSmData] = useState<any>({})
+    const userDataSucess = useSelector((state: any) => state.userReducer)
+    const [addNewSmData, setAddNewSmData] = useState<any>({
+        role_id: "63466085fadec47fe8e96bb7",
+        profile_picture: "",
+        firstname: "",
+        lastname: "",
+        adhar_no: "",
+        pancard_no: "",
+        gender: "",
+        dateofbirth: "",
+        mobile: "",
+        whatsapp_no: "",
+        email: "",
+        city: "",
+        city_id: "",
+        area: "",
+        user_id: "",
+        address: "",
+        latitude: "",
+        longitude: "",
+    })
     const [cityData, setCityData] = useState<any>([])
     const [roleData, setRoleData] = useState<any>([])
-    const [isLoading, setIsLoading] = useState(false)
     const { userData = {} } = useSelector((state: any) => state.userData)
     const { response = {}, Roleresponse = {} } = useSelector((state: any) => state.masterData) || {}
-
     const SMDetails = useSelector((state: any) => state.agentData)
+
+    useEffect(() => {
+        if (userDataSucess?.response?.status === 200 && userDataSucess?.create) {
+            dispatch(removeAuthUser())
+            navigation.goBack()
+            ErrorMessage({
+                msg: userDataSucess?.response?.message,
+                backgroundColor: GREEN_COLOR
+            })
+        }
+    }, [userDataSucess])
     useFocusEffect(
         React.useCallback(() => {
             if (type === 'edit') {
@@ -25,35 +57,36 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
                         user_id: data?._id,
                     })
                 );
-            } else {
-                console.log('Adddd')
             }
             return () => { };
         }, [navigation, SMDetails?.detail])
     );
 
     useEffect(() => {
-        if (SMDetails?.response) {
-        console.log('SMDetails?.response: ', SMDetails?.response);
-            setAddNewSmData({
-                ...addNewSmData ,
-                profile_picture: SMDetails?.response?.data?.base_url + SMDetails?.response?.data?.profile_picture,
-                role_id: SMDetails?.response?.data?.role_id,
-                firstname: SMDetails?.response?.data?.firstname,
-                lastname: SMDetails?.response?.data?.lastname,
-                adhar_no: SMDetails?.response?.data?.adhar_no,
-                pancard_no: SMDetails?.response?.data?.pancard_no,
-                gender: SMDetails?.response?.data?.gender,
-                dateofbirth: SMDetails?.response?.data?.dateofbirth,
-                mobile: SMDetails?.response?.data?.mobile,
-                whatsapp_no: SMDetails?.response?.data?.whatsapp_no,
-                email: SMDetails?.response?.data?.email,
-                city: SMDetails?.response?.data?.city,
-                city_id: SMDetails?.response?.data?.city_id,
-                area: SMDetails?.response?.data?.area,
-                user_id: SMDetails?.response?.data?._id ?? '' 
-            })
-            // setAddNewSmData(SMDetails?.response?.data)
+        if (type === 'edit') {
+            if (SMDetails?.response) {
+                setAddNewSmData({
+                    ...addNewSmData,
+                    profile_picture: SMDetails?.response?.data?.base_url + SMDetails?.response?.data?.profile_picture,
+                    role_id: "63466085fadec47fe8e96bb7",
+                    firstname: SMDetails?.response?.data?.firstname,
+                    lastname: SMDetails?.response?.data?.lastname,
+                    adhar_no: SMDetails?.response?.data?.adhar_no,
+                    pancard_no: SMDetails?.response?.data?.pancard_no,
+                    gender: SMDetails?.response?.data?.gender,
+                    dateofbirth: SMDetails?.response?.data?.dateofbirth,
+                    mobile: SMDetails?.response?.data?.mobile,
+                    whatsapp_no: SMDetails?.response?.data?.whatsapp_no,
+                    email: SMDetails?.response?.data?.email,
+                    city: SMDetails?.response?.data?.city,
+                    city_id: SMDetails?.response?.data?.city_id,
+                    area: SMDetails?.response?.data?.area,
+                    user_id: SMDetails?.response?.data?._id ?? '',
+                    address: SMDetails?.response?.data?.address,
+                    latitude: SMDetails?.response?.data?.latitude,
+                    longitude: SMDetails?.response?.data?.longitude
+                })
+            }
         }
     }, [SMDetails?.response])
 
@@ -62,14 +95,84 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
         navigation.goBack()
     }
 
+    const validation = () => {
+        let isError = true;
+        let errorMessage: any = "";
+        if (addNewSmData.firstname == undefined || addNewSmData.firstname == "") {
+            isError = false;
+            errorMessage = "First Name is require. Please enter first name";
+        } else if (addNewSmData.lastname == undefined || addNewSmData.lastname == "") {
+            isError = false;
+            errorMessage = "Last Name is require. Please enter last name";
+        } else if (addNewSmData.adhar_no == undefined || addNewSmData.adhar_no == "") {
+            isError = false;
+            errorMessage = "Aadhar Number is require. Please enter aadhar number";
+        } else if (addNewSmData.pancard_no == undefined || addNewSmData.pancard_no == "") {
+            isError = false;
+            errorMessage = "Pancard Number is require. Please enter pancard number";
+        } else if (addNewSmData.gender == undefined || addNewSmData.gender == "") {
+            isError = false;
+            errorMessage = "Gender is require. Please select gender";
+        } else if (addNewSmData.dateofbirth == undefined || addNewSmData.dateofbirth == "") {
+            isError = false;
+            errorMessage = "Date Of Birth is require. Please select date of birth";
+        } else if (addNewSmData.mobile == undefined || addNewSmData.mobile == "") {
+            isError = false;
+            errorMessage = "Mobile Number is require. Please enter mobile number";
+        } else if (addNewSmData.whatsapp_no == undefined || addNewSmData.whatsapp_no == "") {
+            isError = false;
+            errorMessage = "Whatsapp Number is require. Please enter whatsapp number";
+        } else if (addNewSmData.email == undefined || addNewSmData.email == "") {
+            isError = false;
+            errorMessage = "Email is require. Please enter email";
+        } else if (validateEmail.test(addNewSmData.email) === false) {
+            isError = false;
+            errorMessage = "Email is Not Correct. Please enter correct email";
+        } else if (addNewSmData.city_id == undefined || addNewSmData.city_id == "") {
+            isError = false;
+            errorMessage = "City is require. Please select city";
+        } else if (addNewSmData.area == undefined || addNewSmData.area == "") {
+            isError = false;
+            errorMessage = "Area is require. Please enter area";
+        } else if (addNewSmData.address == undefined || addNewSmData.address == "") {
+            isError = false;
+            errorMessage = "Address is require. Please enter address";
+        }
+        if (errorMessage !== "") {
+            ErrorMessage({
+                msg: errorMessage,
+                backgroundColor: RED_COLOR,
+            });
+        }
+        return isError;
+    }
     const onPressCreate = (BtnType: any) => {
-    // console.log('BtnType: ', BtnType);
-        if (type === 'edit') {
-            dispatch(updateUserSettingData(addNewSmData))
-            navigation.goBack()
-        } else {
-            dispatch(userRegister(addNewSmData))
-            navigation.goBack()
+        if (validation()) {
+            const newFormdata = new FormData();
+            if (addNewSmData?.profile_picture?.uri) {
+                newFormdata.append("profile_picture", addNewSmData.profile_picture)
+            }
+            newFormdata.append("role_id", addNewSmData.role_id)
+            newFormdata.append("firstname", addNewSmData.firstname)
+            newFormdata.append("lastname", addNewSmData.lastname)
+            newFormdata.append("pancard_no", addNewSmData.pancard_no)
+            newFormdata.append("gender", addNewSmData.gender)
+            newFormdata.append("mobile", addNewSmData.mobile)
+            newFormdata.append("dateofbirth", addNewSmData.dateofbirth)
+            newFormdata.append("whatsapp_no", addNewSmData.whatsapp_no)
+            newFormdata.append("email", addNewSmData.email)
+            newFormdata.append("city", addNewSmData.city)
+            newFormdata.append("city_id", addNewSmData.city_id)
+            newFormdata.append("area", addNewSmData.area)
+            newFormdata.append("user_id", addNewSmData.user_id)
+            newFormdata.append("address", addNewSmData.address)
+            newFormdata.append("latitude", addNewSmData.latitude)
+            newFormdata.append("longitude", addNewSmData.longitude)
+            if (type === 'edit') {
+                dispatch(updateUserSettingData(addNewSmData))
+            } else {
+                dispatch(userRegister(addNewSmData))
+            }
         }
     }
     const handlegetCityList = () => {
@@ -87,7 +190,6 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
                 })
                 setRoleData(final)
             }
-
         }
     }
     return (

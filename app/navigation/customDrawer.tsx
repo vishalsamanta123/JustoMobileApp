@@ -54,7 +54,7 @@ const customDrawer = ({ navigation }: any) => {
                 {/* Warren Hussen */}
               </Text>
               <Text style={[styles.UserAddress, { width: 140 }]}>
-                {userData?.city}
+                {userData?.city ?? ''}
               </Text>
             </View>
             <TouchableOpacity style={styles.closeDrawerView} onPress={toggleDrawer}>

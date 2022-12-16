@@ -15,7 +15,7 @@ const ClosingDetailsView = (props: any) => {
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.menu}
-                rightFirstImageScr={images.filter}
+                // rightFirstImageScr={images.filter}
                 rightSecondImageScr={images.notification}
                 headerText={strings.closingManagerHeader}
                 handleOnLeftIconPress={props.handleDrawerPress}
@@ -32,7 +32,7 @@ const ClosingDetailsView = (props: any) => {
                     buttonText={strings.addNewCM}
                     textTransform={null}
                     btnTxtsize={15}
-                    handleBtnPress={() => props.handleAddNewCM()}
+                    handleBtnPress={() => props.handleAddNewCM('add', {})}
                 />
             </View>
             <View style={styles.listViewsec}>
@@ -40,11 +40,8 @@ const ClosingDetailsView = (props: any) => {
                     showsVerticalScrollIndicator={false}
                     data={props?.ClosingManagers}
                     renderItem={({ item }) => <ClosingManagersItem items={item}
-                        // setIsVisible={setIsVisible} onPressView={onPressView}
-                        onPressEditCM={() => props.handleAddNewCM('edit')}
-                        onPressAllocate={() => props.onPressAllocateCp(item)}
+                        onPressEditCM={() => props.handleAddNewCM('edit', item)}
                         onPressView={() => props.onPressViews(item)}
-                        onPressStatus={() => props.setStatus(true)}
                     />}
                     refreshing={loadingref}
                     onRefresh={() => props.onRefresh()}

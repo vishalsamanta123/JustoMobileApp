@@ -103,5 +103,6 @@ export default {
 
   //closing head
   GET_CLOSINGMANAGER: "/userManage/getClosingManagerListOnCH",
+  GETCMDETAIL: "/userManage/getUserClosingManagerDetail",
 
 };

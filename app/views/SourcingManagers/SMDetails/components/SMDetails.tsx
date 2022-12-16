@@ -14,9 +14,7 @@ import { useSelector } from 'react-redux';
 
 const SMDetailsView = (props: any) => {
     const [SMdetail, setSMdetail] = useState([])
-    console.log('SMdetail: ', SMdetail);
     const { response = {}, detail = '' } = useSelector((state: any) => state.SourcingManager)
-    console.log('response GET_SOURCING_MANAGER_DETAIL: ', response);
     useEffect(() => {
         if (response && response?.status === 200) {
             if (response?.data?.length > 0) {

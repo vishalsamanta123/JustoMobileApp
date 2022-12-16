@@ -4,13 +4,14 @@ import { View, Text } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
 import Button from "../../../../components/Button";
 import { normalize } from "../../../../components/scaleFontSize";
-import { BLACK_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, DATE_FORMAT } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 
 const StatsView = (props: any) => {
     const item = props?.items || {}
-    const current_target = item?.current_target?.length > 0 ? item?.current_target?.[0] : []
+    const current_target = props?.item?.current_target?.length > 0 ?
+        props?.item?.current_target?.[0] : {}
     return (
         <ScrollView>
             <View style={styles.Txtview}>
@@ -46,7 +47,11 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{moment(item?.user_states?.last_login).format('DD-MM-YYYY')}</Text>
+                    <Text style={styles.nameTxt}>{
+                        item?.user_states?.last_login === '' ||
+                            item?.user_states?.last_login === null ||
+                            item?.user_states?.last_login === undefined ?
+                            "" : moment(item?.user_states?.last_login).format(DATE_FORMAT)}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -76,84 +81,93 @@ const StatsView = (props: any) => {
                     <Text style={styles.nameTxt}>{item?.user_states?.last_closing_lead}</Text>
                 </View>
             </View>
-            <Text style={styles.bigTitlesTxt}>Current Target</Text>
-            <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
-                <View><Text>:</Text></View>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Month</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>
-                        {
-                            current_target?.month
-                        }
-                    </Text>
-                </View>
-            </View>
-            <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Start Date</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{moment(current_target?.start_date).format('DD-MM-YYYY')}</Text>
-                </View>
-            </View>
-            <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>End Date</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{moment(current_target?.end_date).format('DD-MM-YYYY')}</Text>
-                </View>
-            </View>
-            <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Visit target</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>
-                        {current_target?.visitTarget ?
-
-                            `${current_target?.visitTarget} / ${current_target?.achieve_visit_target}`
-                            : null
-                        }
-                    </Text>
-                </View>
-            </View>
-            <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Site visit target</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>
-                        {current_target?.site_visit_target ?
-
-                            `${current_target?.site_visit_target} / ${current_target?.achieve_site_visit_target}`
-                            : null
-                        }
-                    </Text>
-                </View>
-            </View>
-            <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Close target</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>
-                        {current_target?.closing_target ?
-
-                            `${current_target?.closing_target} / ${current_target?.achieve_closing_target}`
-                            : null
-                        }
-                    </Text>
-                </View>
-            </View>
+            {props?.item?.current_target?.length > 0 ?
+                <>
+                    <Text style={styles.bigTitlesTxt}>Current Target</Text>
+                    <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
+                        <View><Text>:</Text></View>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Month</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>
+                                {current_target?.month}
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Start Date</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{
+                                current_target?.start_date === '' ||
+                                    current_target?.start_date === null ||
+                                    current_target?.start_date === undefined ?
+                                    "" :
+                                    moment(current_target?.start_date).format('DD-MM-YYYY')}</Text>
+                        </View>
+                    </View>
+                    <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>End Date</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{
+                                current_target?.end_date === '' ||
+                                    current_target?.end_date === null ||
+                                    current_target?.end_date === undefined ?
+                                    "" :
+                                    moment(current_target?.end_date).format('DD-MM-YYYY')}</Text>
+                        </View>
+                    </View>
+                    <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Visit target</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>
+                                {current_target?.visitTarget ?
+                                    `${current_target?.visitTarget} / ${current_target?.achieve_visit_target}`
+                                    : null
+                                }
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Site visit target</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>
+                                {current_target?.site_visit_target ?
+                                    `${current_target?.site_visit_target} / ${current_target?.achieve_site_visit_target}`
+                                    : null
+                                }
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Close target</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>
+                                {current_target?.closing_target ?
+                                    `${current_target?.closing_target} / ${current_target?.achieve_closing_target}`
+                                    : null
+                                }
+                            </Text>
+                        </View>
+                    </View>
+                </> : null
+            }
         </ScrollView>
     )
 }

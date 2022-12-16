@@ -1,20 +1,26 @@
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
 import {
-    GET_CLOSINGMANAGER_LIST, GET_CLOSINGMANAGER_LIST_ERROR, GET_CLOSINGMANAGER_DETAIL, GET_CLOSINGMANAGER_DETAIL_ERROR, STOP_LOADING, START_LOADING
+    GET_CLOSINGMANAGER_LIST, GET_CLOSINGMANAGER_LIST_ERROR,
+    GET_CLOSINGMANAGER_DETAIL, GET_CLOSINGMANAGER_DETAIL_ERROR,
+    STOP_LOADING, START_LOADING
 } from "../types";
 
 export const getClosingManagerList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.GET_CLOSINGMANAGER, {});
+        console.log('res: GET_CLOSINGMANAGER', res);
         if (res.data.status == 200) {
             dispatch({
                 type: GET_CLOSINGMANAGER_LIST,
                 payload: res.data,
             });
         } else {
-            return [];
+            dispatch({
+                type: GET_CLOSINGMANAGER_LIST_ERROR,
+                payload: console.log(res),
+            });
         }
     } catch (e) {
         dispatch({
@@ -30,20 +36,17 @@ export const getClosingManagerList = (params: any) => async (dispatch: any) => {
 export const getClosingDetail = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING });
     try {
-        const res = await apiCall("post", apiEndPoints.GETUSERDETAIL, params);
+        const res = await apiCall("post", apiEndPoints.GETCMDETAIL, params);
         if (res.data.status === 200) {
             dispatch({
                 type: GET_CLOSINGMANAGER_DETAIL,
                 payload: res.data,
             });
-
+        } else {
             dispatch({
                 type: GET_CLOSINGMANAGER_DETAIL_ERROR,
                 payload: res.data.data[0],
             });
-
-        } else {
-            return [];
         }
     } catch (e) {
         dispatch({

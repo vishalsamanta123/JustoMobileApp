@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         marginHorizontal: normalizeSpacing(10),
         marginVertical: normalizeSpacing(10),
-        alignItems: 'center',
+        // alignItems: 'center',
     },
     headingText: {
         fontSize: normalize(18),
@@ -38,10 +38,12 @@ const styles = StyleSheet.create({
         height: normalizeHeight(100),
         width: normalizeWidth(100),
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignSelf: 'center',
     },
     inputWrap: {
         marginTop: normalizeSpacing(30),
+        alignItems: 'center'
     },
     genderView: {
         flexDirection: 'row',

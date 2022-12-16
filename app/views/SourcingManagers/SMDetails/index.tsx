@@ -6,7 +6,6 @@ import SMDetailsView from './components/SMDetails';
 
 const SMDetailsScreen = ({ navigation, route }: any) => {
     const data = route?.params || {}
-    console.log('data: ', data);
     const dispatch: any = useDispatch()
     const { response = {}, detail = '' } = useSelector((state: any) => state.SourcingManager)
     useFocusEffect(

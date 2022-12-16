@@ -13,90 +13,25 @@ import Button from '../../../../components/Button';
 import { useSelector } from 'react-redux';
 
 const CMDetailsView = (props: any) => {
-    const [SMdetail, setSMdetail] = useState([])
-    const { response = {}, detail = '' } = useSelector((state: any) => state.SourcingManager)
-    useEffect(() => {
-        if (response && response?.status === 200) {
-            if (response?.data?.length > 0) {
-                setSMdetail(response?.data[0] ? response?.data[0] : []);
-            }
-        } else {
-            setSMdetail([]);
-            //errorToast(response.message);
-        }
-    }, [response])
-    const DATAINFO: any =
-    {
-        AgentName: 'ABC',
-        Mobileno: '12586663',
-        Email: 'Abc@gmail.com',
-        whatsappno: '8890898779',
-        rerano: '12345699',
-        aadharno: '12345699',
-        pancardno: 'AAAAA2225A',
-        gst: 'ABC123',
-        workingfrom: '22/10/2021',
-        workinglocation: ['indoe', 'Dewash'],
-        allocatedCp: [
-            {
-                id: 1,
-                cpName: 'CP 1'
-            },
-            {
-                id: 2,
-                cpName: 'CP 2'
-            },
-            {
-                id: 3,
-                cpName: 'CP 3'
-            },
-            {
-                id: 4,
-                cpName: 'CP 4'
-            },
-        ]
-    };
-    const DATASTATS: any =
-    {
-        closingper: 10,
-        visitor: 123,
-        siteVisit: 234,
-        closeVisit: 600,
-        lastlogin: '2 min ago',
-        lastvisit: '2 min ago',
-        lastsitevisit: '2 min ago',
-        lastclosevisit: '2 min ago',
-        month: 'March',
-        startDate: '01/02/2022',
-        endDate: '10/02/2022',
-        visitTarget: '10/02',
-        siteVisitTarget: '15/02',
-        closeTarget: '12/02',
-    };
-
-
     const layout = useWindowDimensions();
-
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         { key: 'first', title: 'Stats' },
-        { key: 'second', title: 'SM Info' },
+        { key: 'second', title: 'CM Info' },
     ]);
 
     const renderTabBar = (props: any) => (
         <TabBar
             activeColor={TABBAR_COLOR}
-            //inactiveColor={'#F4F4F4'} 
             {...props}
             indicatorStyle={{ borderWidth: 2, borderColor: TABBAR_COLOR }}
             style={{ backgroundColor: PRIMARY_THEME_COLOR_DARK }} />
     );
     const FirstRoute = () => (
-        <StatsView items={SMdetail} handleCpAllocation={props.handleCpAllocationPress} />
+        <StatsView items={props?.CMdetail} />
     );
-
     const SecondRoute = () => (
-        <CMInfoView items={SMdetail} handleCpAllocation={props.handleCpAllocationPress} />
+        <CMInfoView items={props?.CMdetail} />
     );
     const renderScene = SceneMap({
         first: FirstRoute,
@@ -107,7 +42,7 @@ const CMDetailsView = (props: any) => {
             <Header
                 leftImageSrc={images.backArrow}
                 rightSecondImageScr={images.notification}
-                headerText={strings.SMDetails}
+                headerText={strings.CMDetails}
                 headerStyle={styles.headerStyle}
                 RightFirstIconStyle={styles.leftImageIconStyle}
                 leftImageIconStyle={styles.leftImageIconStyle}
@@ -132,16 +67,6 @@ const CMDetailsView = (props: any) => {
                     renderScene={renderScene}
                     onIndexChange={setIndex}
                     initialLayout={{ width: layout.width }}
-                />
-            </View>
-            <View style={{ marginVertical: 12, alignItems: 'center', }}>
-                <Button
-                    width={150}
-                    height={40}
-                    btnTxtsize={16}
-                    textTransform={null}
-                    buttonText={strings.cpAllocation}
-                    handleBtnPress={() => props.handleCpAllocationPress()}
                 />
             </View>
         </View>

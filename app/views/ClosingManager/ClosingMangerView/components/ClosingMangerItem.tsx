@@ -8,7 +8,6 @@ import Button from '../../../../components/Button';
 import moment from 'moment';
 
 const ClosingManagersItem = (props: any) => {
-    console.log('props: ', props.items);
     return (
         <View style={styles.IteamView}>
             <View style={styles.Txtview} >
@@ -75,7 +74,7 @@ const ClosingManagersItem = (props: any) => {
                         moment(props.items.last_login).format(DATE_FORMAT) : ''}</Text>
                 </View>
             </View>
-            {/* <View style={styles.buttonContainer}>
+            <View style={styles.buttonContainer}>
                 <Button
                     width={78}
                     height={30}
@@ -86,7 +85,7 @@ const ClosingManagersItem = (props: any) => {
                     buttonText={strings.edit}
                     btnTxtsize={14}
                     border={10}
-                    handleBtnPress={() => props.onPressEditCM('edit')}
+                    handleBtnPress={() => props.onPressEditCM('edit', props.items)}
                 />
                 <TouchableOpacity style={styles.Viewbutton}
                     onPress={() => props.onPressView()}
@@ -96,7 +95,7 @@ const ClosingManagersItem = (props: any) => {
                         style={styles.arrow}
                     />
                 </TouchableOpacity>
-            </View> */}
+            </View>
         </View>
     );
 };

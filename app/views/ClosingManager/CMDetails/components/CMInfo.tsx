@@ -8,7 +8,6 @@ import strings from "../../../../components/utilities/Localization";
 
 const SMInfoView = (props: any) => {
     const item = props?.items || {}
-    const allocate_cp = item?.allocate_cp?.length > 0 ? item?.allocate_cp : []
     return (
         <ScrollView>
             <View style={styles.Txtview}>
@@ -17,7 +16,10 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item.user_name}</Text>
+                    <Text style={styles.nameTxt}>{
+                        item.user_name === '' || item.user_name === undefined ||
+                            item.user_name === null ? '' :
+                            item.user_name}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -26,7 +28,10 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item.adhar_no}</Text>
+                    <Text style={styles.nameTxt}>{
+                        item.user_name === '' || item.user_name === undefined ||
+                            item.user_name === null ? '' :
+                            item.adhar_no}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -35,7 +40,10 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item.pancard_no}</Text>
+                    <Text style={styles.nameTxt}>{
+                        item.user_name === '' || item.user_name === undefined ||
+                            item.user_name === null ? '' :
+                            item.pancard_no}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -44,7 +52,10 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item.area}</Text>
+                    <Text style={styles.nameTxt}>{
+                        item.address === '' || item.address === undefined ||
+                            item.address === null ? '' :
+                            item.address}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -53,7 +64,10 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item.email}</Text>
+                    <Text style={styles.nameTxt}>{
+                        item.email === '' || item.email === undefined ||
+                            item.email === null ? '' :
+                            item.email}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -62,7 +76,10 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item.mobile}</Text>
+                    <Text style={styles.nameTxt}>{
+                        item.mobile === '' || item.mobile === undefined ||
+                            item.mobile === null ? '' :
+                            item.mobile}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -71,30 +88,11 @@ const SMInfoView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item.whatsapp_no}</Text>
+                    <Text style={styles.nameTxt}>{
+                        item.whatsapp_no === '' || item.whatsapp_no === undefined ||
+                            item.whatsapp_no === null ? '' :
+                            item.whatsapp_no}</Text>
                 </View>
-            </View>
-            <View style={[styles.Txtview, styles.allocatsVw]}>
-                <Text style={[styles.projectTxt, { color: BLACK_COLOR }]}>Allocated CP</Text>
-            </View>
-            <View style={styles.allocatsBox}>
-                {allocate_cp?.length > 0 ?
-                    <>
-                        {allocate_cp?.map((item: any, index: any) => {
-                            return (
-                                <View style={styles.innerBoxVw}>
-                                    <Text style={{color: GRAY_LIGHT_COLOR}}>{item.user_name}</Text>
-                                    <TouchableOpacity>
-                                        <Image
-                                            source={images.close}
-                                            style={styles.crossVw}
-                                        />
-                                    </TouchableOpacity>
-                                </View>
-                            )
-                        })}
-                    </> : <Text style={styles.noSelectedTxt}>{strings.noCpSelected}</Text>
-                }
             </View>
         </ScrollView>
     )

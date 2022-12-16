@@ -1,4 +1,4 @@
-import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, FORGOT_PASSWORD, FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL, USERREGISTER_ERROR, USERREGISTER, START_LOADING, STOP_LOADING, REMOVE_USERDATA, GET_USER_DETAILS, GET_USER_DETAILS_ERROR } from '../types'
+import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, FORGOT_PASSWORD, FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL, USERREGISTER_ERROR, USERREGISTER, START_LOADING, STOP_LOADING, REMOVE_USERDATA, GET_USER_DETAILS, GET_USER_DETAILS_ERROR, UPDATE_PROFILE } from '../types'
 
 const initialState = {
     response: null,
@@ -131,7 +131,7 @@ export function authStore(state = initialState, action: any) {
         //         response: action.payload,
         //         // authToken: false
         //     }
-       
+
         default: return state
     }
 
@@ -306,6 +306,13 @@ export function changePasswordReducer(state = changePasswordinitialState, action
 export function userReducer(state = initialStateForm, action: any) {
     switch (action.type) {
         case USERREGISTER:
+            return {
+                ...state,
+                detail: false,
+                create: true,
+                response: action.payload,
+            };
+        case UPDATE_PROFILE:
             return {
                 ...state,
                 detail: false,
