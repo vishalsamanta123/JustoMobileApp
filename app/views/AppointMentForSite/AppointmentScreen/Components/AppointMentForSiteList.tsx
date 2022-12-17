@@ -3,11 +3,12 @@ import React from 'react'
 import styles from './Styles'
 import images from '../../../../assets/images'
 import strings from '../../../../components/utilities/Localization'
-import { PURPLE_COLOR, CALL_COLOR, WHITE_COLOR, DATE_FORMAT, TIME_FORMAT } from '../../../../components/utilities/constant'
+import { PURPLE_COLOR, CALL_COLOR, WHITE_COLOR, DATE_FORMAT, TIME_FORMAT, BLACK_COLOR } from '../../../../components/utilities/constant'
 import Button from '../../../../components/Button'
 import moment from 'moment'
 
 const AppointMentForSiteList = (props: any) => {
+  console.log('props: ', props.items.status);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
@@ -59,9 +60,11 @@ const AppointMentForSiteList = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.status == 1 ? 'Pending' :
+          <Text style={[styles.nameTxt, { color: props.items.status == 5 ? 'red' : BLACK_COLOR }]}>{props.items.status == 1 ? 'Pending' :
             props.items.status == 2 ? 'Confirm' :
-              props.items.status == 3 ? 'Compleat' : 'Appoiment cancel'}</Text>
+              props.items.status == 3 ? 'Compleat' :
+                props.items.status == 5 ? 'Appoiment cancel' : ''}
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -99,9 +102,9 @@ const AppointMentForSiteList = (props: any) => {
             border={10}
             handleBtnPress={() => {
               Linking?.openURL(
-                  `tel:${props.items?.mobile}`
+                `tel:${props.items?.mobile}`
               )
-          }}
+            }}
           />
         </View>
         <TouchableOpacity style={styles.Viewbutton}

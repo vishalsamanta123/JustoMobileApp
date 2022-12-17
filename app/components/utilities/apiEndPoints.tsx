@@ -101,6 +101,7 @@ export default {
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
   GET_USERVISTLIST: '/visit/getUserVisitList',
+  CLOSE_VISIT: '/visit/closeVisit',
 
   //closing head
   GET_CLOSINGMANAGER: "/userManage/getClosingManagerListOnCH",

@@ -58,11 +58,12 @@ const AppointmentItem = (props: any) => {
                 </View>
                 <View style={styles.nameContainer}>
                     <Text style={[styles.nameTxt, {
-                        color: props.items.status == 1 ? 'red' :
+                        color: props.items.status == 1 || props.items.status == 5  ? 'red' :
                             props.items.status == 2 ? YELLOW_COLOR : BLACK_COLOR
                     }]}>{
                             props.items.status === 1 ? 'Pending' :
-                                props.items.status === 2 ? 'Confirm' : 'Completed'
+                                props.items.status === 2 ? 'Confirm' :
+                                    props.items.status === 5 ? 'Close' : 'Completed'
                         }</Text>
                 </View>
             </View>

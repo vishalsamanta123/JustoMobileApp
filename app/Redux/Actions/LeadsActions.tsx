@@ -3,7 +3,7 @@ import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
 import {
     GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR,
-    ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, GET_USERVISIT_LIST, GET_USERVISIT_LIST_ERROR
+    ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, GET_USERVISIT_LIST, GET_USERVISIT_LIST_ERROR, CLOSEVISIT, CLOSEVISIT_ERROR
 } from "../types";
 
 export const getAllLeadsList = (params: any) => async (dispatch: any) => {
@@ -172,3 +172,32 @@ export const getUserVisitList = (params: any) => async (dispatch: any) => {
         dispatch({ type: STOP_LOADING })
     }
 };
+
+export const closeVisit = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
+    dispatch({ type: START_LOADING })
+    try {
+        const res = await apiCall("post", apiEndPoints.CLOSE_VISIT, params);
+        console.log('res CLOSE_VISIT: ', res);
+        if (res.data.status === 200) {
+            dispatch({
+                type: CLOSEVISIT,
+                payload: res.data,
+            });
+        } else {
+            handleApiError(res.data)
+            dispatch({
+                type: CLOSEVISIT_ERROR,
+                payload: [],
+            });
+        }
+    } catch (e) {
+        dispatch({
+            type: CLOSEVISIT_ERROR,
+            payload: console.log(e),
+        });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+}

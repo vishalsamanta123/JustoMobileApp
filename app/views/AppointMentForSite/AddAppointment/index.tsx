@@ -10,6 +10,7 @@ import { GREEN_COLOR } from 'app/components/utilities/constant'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { type = "", item = {} } = route?.params || {}
+  console.log('item: ', item);
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
   console.log('response: ', response);

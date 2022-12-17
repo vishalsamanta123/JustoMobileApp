@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
 import styles from './Styles'
 import images from '../../../../assets/images'
-import { DATE_FORMAT } from 'app/components/utilities/constant'
+import { BLACK_COLOR, DATE_FORMAT } from 'app/components/utilities/constant'
 import moment from 'moment'
 import strings from 'app/components/utilities/Localization'
 
@@ -94,9 +94,14 @@ const AppointmentDtailsItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props?.detail?.status === 1 ? 'Pending' :
+          {/* <Text style={styles.nameTxt}>{props?.detail?.status === 1 ? 'Pending' :
             props?.detail?.status === 2 ? 'Confirm' :
-              props?.detail?.status === 3 ? 'Complete' : 'Appointment cancel'}</Text>
+              props?.detail?.status === 3 ? 'Complete' : 'Appointment cancel'}</Text> */}
+          <Text style={[styles.nameTxt, { color: props?.detail?.status == 5 ? 'red' : BLACK_COLOR }]}>{props?.detail?.status == 1 ? 'Pending' :
+            props?.detail?.status == 2 ? 'Confirm' :
+              props?.detail?.status == 3 ? 'Compleat' :
+                props?.detail?.status == 5 ? 'Appoiment cancel' : ''}
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
