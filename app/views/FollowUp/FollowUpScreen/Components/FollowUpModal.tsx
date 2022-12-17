@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
@@ -11,19 +11,14 @@ import { dropdownData } from "../../../../components/utilities/DemoData";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { DATE_FORMAT } from "app/components/utilities/constant";
+import DropdownInput from "app/components/DropDown";
 const FilterModal = (props: any) => {
-  const [value, setValue] = useState(null);
-  console.log('props?.filterData?.enddate: ', props?.filterData?.enddate);
-
-  useEffect(() => {
-    props.setFilterData({
-      startdate: "",
-      enddate: "",
-      search_by_visisor_name: "",
-      search_configuration: "",
-      visit_score: "",
-    })
-  }, [])
+  const followupforData = [
+    { label: 'Lead', value: 1 },
+    { label: 'Site Visit', value: 2 },
+    { label: 'Booking', value: 3 },
+    { label: 'Registration', value: 4 },
+  ]
 
   const renderItem = (item: any) => {
     return (
@@ -33,8 +28,9 @@ const FilterModal = (props: any) => {
     );
   };
   return (
-    <View>
-      <Modal isVisible={props.Visible}>
+    <Modal isVisible={props.Visible}>
+      <ScrollView keyboardShouldPersistTaps={'handled'}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchfollowup}</Text>
@@ -50,7 +46,7 @@ const FilterModal = (props: any) => {
               <InputCalender
                 leftIcon={images.event}
                 mode={"date"}
-                placeholderText={"Start Date"} //can edit
+                placeholderText={"Start Date"}
                 editable={false}
                 dateData={(data: any) => {
                   props.setFilterData({
@@ -64,16 +60,16 @@ const FilterModal = (props: any) => {
                     startdate: moment(data).format(DATE_FORMAT),
                   });
                 }}
-                value={props?.filterData?.startdate != '' ? moment(props?.filterData?.startdate).format(
-                  "DD-MM-YYYY"
-                ) : 'Start Date'}
+                value={props?.filterData?.startdate === '' ||
+                  props?.filterData?.startdate === undefined ?
+                  'Start Date' : moment(props?.filterData?.startdate).format(DATE_FORMAT)}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputCalender
                 leftIcon={images.event}
                 mode={"date"}
-                placeholderText={"End Date"} //can edit
+                placeholderText={"End Date"}
                 editable={false}
                 dateData={(data: any) => {
                   props.setFilterData({
@@ -87,39 +83,46 @@ const FilterModal = (props: any) => {
                     enddate: moment(data).format(DATE_FORMAT),
                   });
                 }}
-                value={props?.filterData?.enddate != '' ? moment(props?.filterData?.enddate).format(
-                  "DD-MM-YYYY"
-                ) : 'End Date'}
+                value={props?.filterData?.enddate === '' ||
+                  props?.filterData?.enddate === undefined ?
+                  ""
+                  : moment(props?.filterData?.enddate).format(DATE_FORMAT)}
               />
             </View>
             <View style={styles.inputWrap}>
-              <Dropdown
+              <DropdownInput
                 style={styles.dropdown}
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle}
                 iconStyle={styles.iconStyle}
-                data={dropdownData}
+                data={followupforData}
                 maxHeight={300}
                 labelField="label"
-                valueField="value"
+                valueField={'value'}
                 placeholder="Search by Type"
-                value={value}
-                onChange={(item) => {
-                  setValue(item.value);
+                value={props.filterData.followup_for}
+                onChange={(item: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    followup_for: item.value
+                  })
                 }}
-                renderItem={renderItem}
+                newRenderItem={renderItem}
               />
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
             <Button
-              handleBtnPress={() => props.setIsVisible(false)}
+              handleBtnPress={() => {
+                props.setIsVisible(false)
+                props.getFollowupList(0, props.filterData)
+              }}
               buttonText={strings.apply}
             />
           </View>
         </View>
-      </Modal>
-    </View>
+      </ScrollView>
+    </Modal>
   );
 };
 

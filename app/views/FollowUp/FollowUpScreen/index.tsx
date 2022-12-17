@@ -6,22 +6,17 @@ import { useFocusEffect } from "@react-navigation/native";
 import { getAllFollowUpList } from "app/Redux/Actions/FollowUpActions";
 
 const FollowUpScreen = ({ navigation }: any) => {
-  const [filter, setFilter] = useState(null);
-  const [isloading, setIsloading] = useState(false);
   const [followUpList, setFollowUpList] = useState<any>([]);
   const [offSET, setOffset] = useState(0);
   const dispatch: any = useDispatch();
   const { response = {}, list = "" } = useSelector(
     (state: any) => state.followUp
   );
-  console.log("response: followUp", response);
   const moreData = response?.total_data || 0;
   const [filterData, setFilterData] = useState({
     startdate: "",
     enddate: "",
-    search_by_visisor_name: "",
-    search_configuration: "",
-    visit_score: "",
+    followup_for: ''
   });
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
@@ -29,14 +24,13 @@ const FollowUpScreen = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getFollowupList(offSET, []);
-      return () => {};
+      getFollowupList(offSET, {});
+      return () => { };
     }, [navigation, list])
   );
   useEffect(() => {
-    if (list) {
-      setIsloading(false);
-      if (offSET == 0 || offSET == undefined) {
+    if (response?.status === 200) {
+      if (offSET === 0 || offSET === undefined) {
         setFollowUpList(response?.data);
       } else {
         setFollowUpList([...followUpList, ...response?.data]);
@@ -44,23 +38,18 @@ const FollowUpScreen = ({ navigation }: any) => {
     }
   }, [response]);
 
-  const getFollowupList = (offset: any, array: any) => {
-    setIsloading(true);
+  const getFollowupList = (offset: any, data: any) => {
     setOffset(offset);
     dispatch(
       getAllFollowUpList({
         offset: offset,
         limit: 3,
-        start_date: filterData.startdate,
-        end_date: filterData.enddate,
-        search_by_visisor_name: filterData.search_by_visisor_name,
-        search_configuration: filterData.search_configuration,
-        visit_score: filterData.visit_score,
+        start_date: data?.startdate ? data?.startdate : '',
+        end_date: data?.enddate ? data?.enddate : '',
+        followup_for: data?.followup_for ? data?.followup_for : '',
       })
     );
-    // toGetDatas(array)
   };
-  const toGetDatas = (array: any) => {};
   return (
     <>
       <FollowUpView

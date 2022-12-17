@@ -74,14 +74,13 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     dispatch(getAllMaster({
       type: 2
     }))
-    handleMasterDatas()
   }, [])
 
-  const handleMasterDatas = () => {
+  useEffect(() => {
     if (masterData?.response?.status === 200) {
       setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
     }
-  }
+  }, [masterData])
 
   useEffect(() => {
     dispatch(getAllProperty({
@@ -201,7 +200,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           desigantion: formData?.desigantion,
           office_address: formData?.office_address,
           configuration_id: formData?.configuration_id,
-          configuration: formData?.configuration ?? '' ,
+          configuration: formData?.configuration ?? '',
           areain_sqlft: formData?.areain_sqlft,
           budget: formData.max_budget,
           funding_type: formData?.funding_type,

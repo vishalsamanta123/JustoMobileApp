@@ -33,12 +33,9 @@ const FollowUpView = (props: any) => {
     props.setFilterData({
       startdate: "",
       enddate: "",
-      search_by_name: "",
-      search_by_location: "",
-      status: "",
+      followup_for: "",
     });
-    props.getFollowupList(0, []);
-    // props.setFilter({})
+    props.getFollowupList(0, {});
   };
   return (
     <View style={styles.mainContainer}>
@@ -54,7 +51,7 @@ const FollowUpView = (props: any) => {
       />
       <View style={styles.followupItemView}>
         <FlatList
-          data={props?.followUpList}
+          data={Array.isArray(props?.followUpList) ? props?.followUpList : []}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <FollowUpItem
@@ -68,11 +65,10 @@ const FollowUpView = (props: any) => {
           refreshing={loadingref}
           ListEmptyComponent={<EmptyListScreen message={strings.followup} />}
           onEndReached={() => {
-            if (props?.followUpList?.length < props.moreData) {
-              console.log("onEndReached: ");
+            if (props?.followUpList?.length < props?.moreData) {
               props.getFollowupList(
                 props?.followUpList?.length > 2 ? props.offSET + 1 : 0,
-                props?.followUpList
+                props?.filterData
               );
             }
           }}
@@ -83,6 +79,7 @@ const FollowUpView = (props: any) => {
         setIsVisible={setFilterisVisible}
         setFilterData={props.setFilterData}
         filterData={props.filterData}
+        getFollowupList={props.getFollowupList}
       />
     </View>
   );

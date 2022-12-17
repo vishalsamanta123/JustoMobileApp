@@ -27,7 +27,7 @@ const LeadManagementScreen = ({ navigation }: any) => {
   );
 
   useEffect(() => {
-    if (list) {
+    if (response?.status === 200) {
       if (offSET === 0 || offSET === undefined) {
         setVisiitorList(response?.data)
       } else {

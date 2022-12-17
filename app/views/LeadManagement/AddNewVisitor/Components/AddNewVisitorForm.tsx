@@ -370,7 +370,7 @@ const AddNewVisitorForm = (props: any) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <InputField
-                            placeholderText={"Area"}
+                            placeholderText={"Area(Sq ft.)"}
                             handleInputBtnPress={() => { }}
                             onChangeText={(data: any) => {
                                 props.setFormData({
@@ -379,7 +379,7 @@ const AddNewVisitorForm = (props: any) => {
                                 })
                             }}
                             valueshow={props?.formData?.areain_sqlft}
-                            headingText={"Area"}
+                            headingText={"Area(Sq ft.)"}
                             keyboardtype={'number-pad'}
                         // keyboardtype={'phone-pad'}
                         />

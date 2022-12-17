@@ -15,6 +15,7 @@ import {
 } from "../types";
 
 export const getAllFollowUpList = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
   dispatch({ type: START_LOADING });
   try {
     const res = await apiCall("post", apiEndPoints.GET_FOLLOWUP_LIST, params);
