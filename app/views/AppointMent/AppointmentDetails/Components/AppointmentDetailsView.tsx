@@ -27,15 +27,38 @@ const AppointmentDetailsView = (props: any) => {
             />
             <View style={styles.propertyListView}>
                 <AppointmentDtailsItem
-                    item={response?.data}
+                    item={response?.data?.length ? response?.data[0] : 0}
                     handleViewFollowUp={props.handleViewFollowUp}
                     handleVistorUpdate={props.handleVistorUpdate}
                 />
             </View>
             <View style={styles.bntView}>
-                <Button buttonText={strings.updatestatus} handleBtnPress={() => props.handleUpdateStatus()} />
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Button
+                        buttonText={'Close Visit'}
+                        // handleBtnPress={() => setReadyToBooK(true)}
+                        width={150}
+                    />
+                    <Button
+                        buttonText={'rescheduled'}
+                        // handleBtnPress={() => props.handleUpdateStatus()}
+                        width={150}
+                    />
+                </View>
                 <View style={{ marginVertical: 10 }} />
-                <Button buttonText={strings.readytoBookHeader} handleBtnPress={() => setReadyToBooK(true)} />
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Button
+                        buttonText={'Book Now'}
+                        // handleBtnPress={() => props.handleUpdateStatus()}
+                        width={150}
+                    />
+
+                    <Button
+                        buttonText={strings.readytoBookHeader}
+                        handleBtnPress={() => setReadyToBooK(true)}
+                        width={150}
+                    />
+                </View>
             </View>
             <ReadyToBookModal
                 Visible={readyToBooK}

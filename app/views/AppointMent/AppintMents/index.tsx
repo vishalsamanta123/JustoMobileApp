@@ -94,7 +94,7 @@ const AppointmentsScreen = ({ navigation }: any) => {
     }, [response])
     useEffect(() => {
         setClosingMList(CMList?.response?.data)
-    }, [CMList?.response])
+    }, [CMList])
     
     const getAppointmentList = (offset: any) => {
         setOffset(offset)

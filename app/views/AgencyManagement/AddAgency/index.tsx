@@ -94,10 +94,10 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
 
   useLayoutEffect(() => {
     const { data = {} } = route?.params;
-    if (data._id) {
+    if (data.cp_id) {
       dispatch(
         getAgencyDetail({
-          cp_id: data._id,
+          cp_id: data.cp_id,
         })
       );
     }

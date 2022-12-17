@@ -8,9 +8,11 @@ import {
     GET_APPOINTMENT_LIST_ERROR, REMOVE_ADD_EDIT_APPOINTMENT, START_LOADING, STOP_LOADING
 } from "../types";
 export const getAllAppointmentList = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_APPOINTMENT_LIST, params);
+        console.log('res GET_APPOINTMENT_LIST: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: GET_APPOINTMENT_LIST,
@@ -37,6 +39,7 @@ export const getAppointmentDetail = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_APPOINTMENT_DETAILS, params);
+        console.log('res GET_APPOINTMENT_DETAILS: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: GET_APPOINTMENT_DETAILS,

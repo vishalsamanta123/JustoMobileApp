@@ -9,9 +9,17 @@ import { AddBooking } from 'app/Redux/Actions/AppointmentCLAction'
 const AppointmentDetails = ({ navigation, route }: any) => {
   const data = route?.params || {}
   const [BookingData, setBookingData] = useState({})
-  console.log('BookingData: ', BookingData);
+  // console.log('BookingData: ', BookingData);
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     dispatch(getAppointmentDetail({
+  //       appointment_id: data?._id
+  //     }))
+  //     return () => { };
+  //   }, [navigation, detail])
+  // );
   useFocusEffect(
     React.useCallback(() => {
       dispatch(getAppointmentDetail({
@@ -19,7 +27,7 @@ const AppointmentDetails = ({ navigation, route }: any) => {
       }))
       return () => { };
     }, [navigation, detail])
-  );
+);
 
   useEffect(() => {
     setBookingData({

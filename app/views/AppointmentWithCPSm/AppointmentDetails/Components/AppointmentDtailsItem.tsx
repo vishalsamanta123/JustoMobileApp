@@ -4,7 +4,8 @@ import styles from './Styles'
 import moment from 'moment'
 
 const AppointmentDtailsItem = (props : any) => {
-  const appdetail = props?.status
+  const appdetail = props?.status || {}
+  console.log('appdetail: ', appdetail);
   return (
     <ScrollView>
       <View style={styles.Txtview}>
@@ -31,7 +32,7 @@ const AppointmentDtailsItem = (props : any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>11:30 PM</Text>
+          <Text style={styles.nameTxt}>{appdetail?.appointment_time}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

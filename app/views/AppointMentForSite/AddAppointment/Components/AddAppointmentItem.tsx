@@ -84,6 +84,7 @@ const AddAppointmentItem = (props: any) => {
                     <InputCalender
                         leftIcon={images.event}
                         mode={"date"}
+                        minimumDate={new Date()}
                         placeholderText={strings.appointmentDate}
                         headingText={strings.appointmentDate}
                         editable={false}
