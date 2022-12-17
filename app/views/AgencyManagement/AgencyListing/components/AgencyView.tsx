@@ -56,6 +56,7 @@ const AgencyView = (props: any) => {
       search_by_location: "",
       status: "",
     });
+    setFilterisVisible(false)
     props.getAgencyList(0, {});
   };
 

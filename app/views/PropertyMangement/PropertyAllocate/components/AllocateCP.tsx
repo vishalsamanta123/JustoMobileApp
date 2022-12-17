@@ -15,13 +15,13 @@ import { useNavigation } from '@react-navigation/native';
 
 const AllocateCPView = (props: any) => {
 
-const {userData={}} = useSelector((state: any) => state.userData)
+    const { userData = {} } = useSelector((state: any) => state.userData)
 
 
 
     const navigation: any = useNavigation();
     const { response = {}, allocated } =
-    useSelector((state: any) => state.propertyData) || [];
+        useSelector((state: any) => state.propertyData) || [];
     // useEffect(() => {
     //     if(response.status === 200) {
     //       ErrorMessage({
@@ -36,17 +36,17 @@ const {userData={}} = useSelector((state: any) => state.userData)
     //     }
     //   }, [allocated])
 
-      useEffect(() => {
-        let ordersData = props?.selectedCp?.map((data : any) => {
-        
-          return data?._id
-         }
+    useEffect(() => {
+        let ordersData = props?.selectedCp?.map((data: any) => {
+
+            return data?._id
+        }
         );
 
         console.log('ordersData: ', ordersData);
         props.setSelectedLoginIdCp(ordersData)
-    
-      }, [props.selectedCp]);
+
+    }, [props.selectedCp]);
 
     return (
         <View style={styles.mainContainer}>
@@ -63,22 +63,25 @@ const {userData={}} = useSelector((state: any) => state.userData)
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
             <View style={styles.containerVw}>
-                <Text style={styles.headerTxt}>{userData?.data?.role_title === "Sourcing TL" ? 'Allocate to New SM' : strings.newAllocateTxt}</Text>
+                <Text style={styles.headerTxt}>{
+                    userData?.data?.role_title === "Sourcing TL" ? 'Allocate to New SM' :
+                        userData?.data?.role_title === "Closing TL" ? 'Allocate to New CM' :
+                            strings.newAllocateTxt}</Text>
                 <View style={styles.selectedBox}>
                     {props?.selectedCp?.length > 0 ?
                         <>
 
-                                                        
+
                             {props?.selectedCp?.map((item: any, index: any) => {
-                            console.log('item: ', item._id);
-                            
-                        /*    var arrayLoginID: any[] = [...props.selectedLoginIdCp];
-                            
-                            console.log('arrayLoginID: ', arrayLoginID);
-                            arrayLoginID.push(item?._id);
-                            props.setSelectedLoginIdCp(arrayLoginID);  */
-                              
-                              //props.setSelectedLoginIdCp([...props.selectedLoginIdCp,item._id])
+                                console.log('item: ', item._id);
+
+                                /*    var arrayLoginID: any[] = [...props.selectedLoginIdCp];
+                                    
+                                    console.log('arrayLoginID: ', arrayLoginID);
+                                    arrayLoginID.push(item?._id);
+                                    props.setSelectedLoginIdCp(arrayLoginID);  */
+
+                                //props.setSelectedLoginIdCp([...props.selectedLoginIdCp,item._id])
 
                                 return (
                                     <View style={[styles.innerBoxVw, { justifyContent: 'flex-start' }]}>
@@ -92,7 +95,10 @@ const {userData={}} = useSelector((state: any) => state.userData)
                                     </View>
                                 )
                             })}
-                        </> : <Text style={styles.noSelectedTxt}>{userData?.data?.role_title === "Sourcing TL" ? 'No SM Selected' : strings.noCpSelected}</Text>
+                        </> : <Text style={styles.noSelectedTxt}>{
+                            userData?.data?.role_title === "Sourcing TL" ? 'No SM Selected' :
+                                userData?.data?.role_title === "Closing TL" ? 'Allocate to New CM' :
+                                    strings.noCpSelected}</Text>
                     }
                 </View>
                 <TextInput
@@ -115,8 +121,8 @@ const {userData={}} = useSelector((state: any) => state.userData)
                                     style={styles.innerBoxVwlist}>
                                     <Text style={styles.innerBoxVwlistfont}>{item.user_name}</Text>
                                     <TouchableOpacity onPress={() => !getSelected?.toString()
-                                                ?.includes(item.user_name)
-                                                ? props.handleSelects(item) : console.log('')}
+                                        ?.includes(item.user_name)
+                                        ? props.handleSelects(item) : console.log('')}
                                         style={styles.checkBoxVw}>
                                         <Image
                                             style={styles.checksVw}
@@ -132,9 +138,9 @@ const {userData={}} = useSelector((state: any) => state.userData)
                         }}
                     /> : null
                 }
-               
+
             </View>
-              <View style={styles.btncontener}>
+            <View style={styles.btncontener}>
                 <Button
                     width={150}
                     height={40}

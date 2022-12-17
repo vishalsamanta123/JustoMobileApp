@@ -3,7 +3,7 @@ import ErrorMessage from 'app/components/ErrorMessage';
 import { GREEN_COLOR } from 'app/components/utilities/constant';
 import { getAllAgentList } from 'app/Redux/Actions/AgencyActions';
 import { dashboardClosingData, dashboardSourcingData, userStatusUpdateData, userStatusUpdater } from 'app/Redux/Actions/Dashboard';
-import { getSourcingManagerList } from 'app/Redux/Actions/SourcingManagerActions';
+import { getAssignCPList, getSourcingManagerList } from 'app/Redux/Actions/SourcingManagerActions';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DashboardView from './components/DashboardView';
@@ -14,7 +14,7 @@ const DashboardScreen = ({ navigation }: any) => {
   const statusData = useSelector((state: any) => state.statusUpdateData) || {}
   const { response = {}, } = useSelector((state: any) => state.dashboardData);
   const SMListData = useSelector((state: any) => state.SourcingManager)
-  const CPListData = useSelector((state: any) => state.agentData)
+  // const CPListData = useSelector((state: any) => state.agentData)
   const [dashboardData, setDashboardData] = useState({})
   const [listData, setListData] = useState<any>([])
   const [isEnabled, setIsEnabled] = useState<any>();
@@ -25,17 +25,11 @@ const DashboardScreen = ({ navigation }: any) => {
       dispatch(getSourcingManagerList())
     } else {
       if (getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
-        dispatch(getAllAgentList({
-          offset: 0,
-          limit: 5,
-          module_id: '',
-          start_date: '',
-          end_date: '',
-          user_type: 2,
-          search_by_name: '',
-          search_by_location: '',
-          status: '',
-        }))
+        dispatch(
+          getAssignCPList({
+            user_id: getLoginType?.response?.data?.user_id,
+          })
+        )
       } else {
         setListData([])
       }
@@ -46,16 +40,12 @@ const DashboardScreen = ({ navigation }: any) => {
       setDashboardData(response?.data)
       setIsEnabled(response?.data?.online_status)
     }
-    if (getLoginType?.response?.data?.role_title === 'Sourcing TL') {
+    if (getLoginType?.response?.data?.role_title === 'Sourcing TL' || getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
       if (SMListData?.response?.status === 200) {
         setListData(SMListData?.response?.data)
       }
-    } else if (getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
-      if (CPListData?.response?.status === 200) {
-        setListData(CPListData?.response?.data)
-      }
     }
-  }, [response, SMListData, CPListData])
+  }, [response, SMListData])
   const getDashboard = async () => {
     const userData: any = await AsyncStorage.getItem("loginData");
     if (
@@ -78,15 +68,15 @@ const DashboardScreen = ({ navigation }: any) => {
   }
   const updateStatusPress = (data: any) => {
     dispatch(userStatusUpdateData({
-      online_status: data === 0 ? 1 : 0
+      online_status: data === 1 ? 2 : 1
     }))
   }
   useEffect(() => {
     if (statusData?.data && statusData?.response?.status === 200) {
-      setIsEnabled(isEnabled === 0 ? 1 : 0)
+      setIsEnabled(isEnabled === 1 ? 2 : 1)
       dispatch(userStatusUpdater())
       ErrorMessage({
-        msg: response?.message,
+        msg: statusData?.response?.message,
         backgroundColor: GREEN_COLOR
       })
     }

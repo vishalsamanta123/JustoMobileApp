@@ -8,7 +8,6 @@ import Button from '../../../../components/Button'
 import moment from 'moment'
 
 const AppointMentForSiteList = (props: any) => {
-  console.log('props: ', props.items.status);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>

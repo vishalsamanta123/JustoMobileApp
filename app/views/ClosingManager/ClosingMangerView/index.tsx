@@ -27,7 +27,7 @@ const ClosingDetailScreen = ({ navigation }: any) => {
         if (response?.status === 200) {
             setClosingManagers(response?.data)
         } else {
-            setClosingManagers([])
+            // setClosingManagers([])
         }
     }, [response])
     const getCMList = () => {

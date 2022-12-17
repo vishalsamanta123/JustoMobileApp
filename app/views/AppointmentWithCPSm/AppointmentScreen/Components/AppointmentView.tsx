@@ -14,6 +14,7 @@ import MyAppointment from './MyAppointment';
 import { useDispatch, useSelector } from 'react-redux';
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 import { getUserVisitList } from 'app/Redux/Actions/LeadsActions';
+import ComingSoonScreen from 'app/components/CommonScreen/ComingSoon';
 
 const AppointmentView = (props: any) => {
     const dispatch: any = useDispatch()
@@ -28,19 +29,19 @@ const AppointmentView = (props: any) => {
         { key: 'second', title: 'SM Appointment With CP' },
     ]);
     const [visitorList, setVisiitorList] = useState<any>([])
-    useEffect(() => {
-        if (list) {
-            setVisiitorList(response?.data)
-        }
-    }, [response])
+    // useEffect(() => {
+    //     if (list) {
+    //         setVisiitorList(response?.data)
+    //     }
+    // }, [response])
 
-    useEffect(() => {
-        if (index == 1) {
-            props.getAppointmentList(0, 2)
-        } else {
-            props.getAppointmentList(0, 1)
-        }
-    }, [index])
+    // useEffect(() => {
+    //     if (index == 1) {
+    //         props.getAppointmentList(0, 2)
+    //     } else {
+    //         props.getAppointmentList(0, 1)
+    //     }
+    // }, [index])
 
 
 
@@ -148,7 +149,8 @@ const AppointmentView = (props: any) => {
                 barStyle={'light-content'}
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
-            <View style={{ marginVertical: 10, alignItems: 'flex-end' }}>
+            <ComingSoonScreen />
+            {/* <View style={{ marginVertical: 10, alignItems: 'flex-end' }}>
                 <Button
                     width={200}
                     height={30}
@@ -173,7 +175,7 @@ const AppointmentView = (props: any) => {
                 filterData={props.filterData}
                 visitorList={visitorList}
                 getVisitorsList={getVisitorsList}
-            />
+            /> */}
         </View>
     )
 }

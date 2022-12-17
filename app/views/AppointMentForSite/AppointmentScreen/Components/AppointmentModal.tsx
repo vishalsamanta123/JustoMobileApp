@@ -108,7 +108,7 @@ const FilterModal = (props: any) => {
                 }}
               />
             </View>
-            <View style={styles.inputWrap}>
+            {/* <View style={styles.inputWrap}>
               <DropdownInput
                 placeholder={strings.appointmentWith}
                 value={props.filterData.appointment_with}
@@ -140,7 +140,7 @@ const FilterModal = (props: any) => {
                   );
                 }}
               />
-            </View>
+            </View> */}
             <View style={styles.inputWrap}>
               <DropdownInput
                 placeholder={strings.status}
