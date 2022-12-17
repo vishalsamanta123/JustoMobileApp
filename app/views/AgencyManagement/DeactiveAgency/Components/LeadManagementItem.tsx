@@ -1,14 +1,6 @@
 import { View, Text, TouchableOpacity, Image, Linking } from "react-native";
 import React from "react";
 import styles from "./Styles";
-import {
-  BLACK_COLOR,
-  CALL_COLOR,
-  WHITE_COLOR,
-  YELLOW_COLOR,
-} from "../../../../components/utilities/constant";
-import images from "../../../../assets/images";
-import Button from "../../../../components/Button";
 import strings from "../../../../components/utilities/Localization";
 import moment from "moment";
 
@@ -80,45 +72,23 @@ const LeadManagementItem = (props: any) => {
             style={[
               styles.nameTxt,
               {
-                color:
-                  props.items.lead_status == 6 ? "red" : BLACK_COLOR
-                },
-              ]}
-              >
+                // color:
+                //   props.items.lead_status == "confirmatin Pending"
+                //     ? BLACK_COLOR
+                //     : props.items.status == "Subscribe"
+                //       ? YELLOW_COLOR
+                //       : "red",
+              },
+            ]}
+          >
             {props.items.lead_status === 1 ? "Create Lead" :
               props.items.lead_status === 2 ? "Follow-up" :
                 props.items.lead_status === 3 ? "Site Visit/Appointment" :
                   props.items.lead_status === 4 ? "Booking" :
-                    props.items.lead_status === 5 ? "Registration" :
-                      props.items.lead_status === 6 && "Close"
+                    props.items.lead_status === 5 && "Registration"
             }
           </Text>
         </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          width={85}
-          height={30}
-          bgcolor={null}
-          bordercolor={CALL_COLOR}
-          borderWidth={1}
-          btnTxtcolor={CALL_COLOR}
-          buttonText={strings.call}
-          btnTxtsize={14}
-          textTransform={null}
-          border={10}
-          handleBtnPress={() => {
-            Linking?.openURL(
-              `tel:${props?.items?.mobile}`
-            )
-          }}
-        />
-        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>
-          <Image
-            source={images.forwardArrow}
-            style={styles.arrow}
-          />
-        </TouchableOpacity>
       </View>
     </View>
   );

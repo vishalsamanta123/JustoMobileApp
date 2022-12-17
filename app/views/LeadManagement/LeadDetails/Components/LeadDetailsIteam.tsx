@@ -5,6 +5,7 @@ import Button from '../../../../components/Button'
 import { normalize } from '../../../../components/scaleFontSize'
 import strings from '../../../../components/utilities/Localization'
 import moment from 'moment'
+import { BLACK_COLOR } from 'app/components/utilities/constant'
 
 const LeadDetailsIteam = (props: any) => {
     const item = props?.items || {}
@@ -89,12 +90,16 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}> {item?.lead_status === 1 ? "Create Lead" :
-                        item?.lead_status === 2 ? "Follow-up" :
-                            item?.lead_status === 3 ? "Site Visit/Appointment" :
-                                item?.lead_status === 4 ? "Booking" :
-                                    item?.lead_status === 5 && "Registration"
-                    }</Text>
+                    <Text style={[styles.nameTxt, {
+                        color: item?.lead_status === 6 ? 'red' : BLACK_COLOR
+                    }]}>
+                        {item?.lead_status === 1 ? "Create Lead" :
+                            item?.lead_status === 2 ? "Follow-up" :
+                                item?.lead_status === 3 ? "Site Visit/Appointment" :
+                                    item?.lead_status === 4 ? "Booking" :
+                                        item?.lead_status === 5 ? "Registration" :
+                                            item?.lead_status === 6 && "Close"
+                        }</Text>
                 </View>
             </View>
             {/* Property Required */}

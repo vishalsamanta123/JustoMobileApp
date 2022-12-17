@@ -67,7 +67,8 @@ export default {
   AGENT_STATUS_UPDATE: "/channelPartner/ApproveChannelpartnerbysourcinghead",
   ADD_AGENT_: "/channelPartner/createAgent",
   EDIT_AGENT_: "/channelPartner/editAgent",
-
+  TRANSFER_VISIT: "/channelPartner/transferVisitAgent",
+  GET_CP_ACTIVE_LEAD: "/channelPartner/getCpActiveLead",
   // Appointment
   GET_APPOINTMENT_LIST: '/appointment/getAppointmentList',
   GET_APPOINTMENT_DETAILS: '/appointment/getAppointmentDetails',
@@ -100,6 +101,7 @@ export default {
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
   GET_USERVISTLIST: '/visit/getUserVisitList',
+  CLOSE_VISIT: '/visit/closeVisit',
 
   //closing head
   GET_CLOSINGMANAGER: "/userManage/getClosingManagerListOnCH",

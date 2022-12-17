@@ -106,7 +106,7 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
             errorMessage = "Last Name is require. Please enter last name";
         } else if (addNewSmData.adhar_no == undefined || addNewSmData.adhar_no == "") {
             isError = false;
-            errorMessage = "Aadhar Number is require. Please enter aadhar number";
+            errorMessage = "Aadhaar Number is require. Please enter Aadhaar number";
         } else if (addNewSmData.pancard_no == undefined || addNewSmData.pancard_no == "") {
             isError = false;
             errorMessage = "Pancard Number is require. Please enter pancard number";
