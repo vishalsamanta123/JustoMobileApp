@@ -7,7 +7,6 @@ import moment from 'moment'
 import strings from 'app/components/utilities/Localization'
 
 const AppointmentDtailsItem = (props: any) => {
-  console.log('props: ', props.detail);
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.topTxtView}>

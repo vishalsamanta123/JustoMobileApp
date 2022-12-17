@@ -15,21 +15,21 @@ const AppointmentScreenCPSM = ({ navigation }: any) => {
     end_date: '',
     customer_name: '',
   })
-  useFocusEffect(
-    React.useCallback(() => {
-      getAppointmentList(offSET, 1)
-      return () => { };
-    }, [navigation, list])
-  );
-  useEffect(() => {
-    if (list) {
-      if (offSET == 0) {
-        setAppointmentList(response?.data)
-      } else {
-        setAppointmentList([...appointmentList, ...response?.data])
-      }
-    }
-  }, [response])
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     getAppointmentList(offSET, 1)
+  //     return () => { };
+  //   }, [navigation, list])
+  // );
+  // useEffect(() => {
+  //   if (list) {
+  //     if (offSET == 0) {
+  //       setAppointmentList(response?.data)
+  //     } else {
+  //       setAppointmentList([...appointmentList, ...response?.data])
+  //     }
+  //   }
+  // }, [response])
   const getAppointmentList = (offset: any, type: any) => {
     setOffset(offset)
     dispatch(getAllAppointmentList({

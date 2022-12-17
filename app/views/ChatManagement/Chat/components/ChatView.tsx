@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import SearchBar from "app/components/SearchBar";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 import FastImages from "app/components/FastImage";
+import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 
 const ChatViewView = (props: any) => {
   const { DATA } = props;
@@ -60,7 +61,8 @@ const ChatViewView = (props: any) => {
         statusBarColor={PRIMARY_THEME_COLOR}
         barStyle={"light-content"}
       />
-      <SearchBar
+      <ComingSoonScreen />
+      {/* <SearchBar
         placeholderText={strings.searchProperty}
         onChangeText={handleChangeText}
         onSubmit={onSubmit}
@@ -70,7 +72,7 @@ const ChatViewView = (props: any) => {
         renderItem={(item) => renderPropertyList(item.item)}
         ListEmptyComponent={<EmptyListScreen message={strings.propertyChat} />}
         keyboardShouldPersistTaps
-      />
+      /> */}
     </View>
   );
 };

@@ -10,11 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeVisit } from "app/Redux/Actions/LeadsActions";
 import InputField from "../InputField";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
+import ErrorMessage from "../ErrorMessage";
 
 const CancelModal = (props: any) => {
     const data = props?.data?.length > 0 ? props?.data[0] : []
     const dispatch: any = useDispatch()
-    const {response = {}} = useSelector((state: any) => state.masterData)
+    const { response = {} } = useSelector((state: any) => state.masterData)
     const [masterDataShow, setmasterDataShow] = useState([])
     const [closeVisitData, setcloseVisitData] = useState({
         lead_id: data?.lead_id,
@@ -25,18 +26,18 @@ const CancelModal = (props: any) => {
     })
 
     useLayoutEffect(() => {
-      dispatch(getAllMaster({
-        type: 8
-      }))
-      return () => {};
+        dispatch(getAllMaster({
+            type: 8
+        }))
+        return () => { };
     }, [])
     useEffect(() => {
-    
-      return () => {
-        setmasterDataShow(response?.data)
-      }
+
+        return () => {
+            setmasterDataShow(response?.data)
+        }
     }, [response])
-    
+
     const renderItem = (item: any) => {
         return (
             <View style={styles.item}>
@@ -45,8 +46,15 @@ const CancelModal = (props: any) => {
         );
     };
     const handleClosePress = () => {
-        
-        dispatch(closeVisit(closeVisitData))
+        if (closeVisitData?.resion !== '') {
+            props.setIsVisible(false)
+            dispatch(closeVisit(closeVisitData))
+        } else {
+            ErrorMessage({
+                msg: 'Please select the Reasone',
+                backgroundColor: 'red'
+            })
+        }
     }
 
     return (
@@ -105,7 +113,7 @@ const CancelModal = (props: any) => {
                         <Button buttonText={strings.Confirm}
                             //handleBtnPress={() => props.setIsVisible(false)} />
                             handleBtnPress={() => {
-                                props.setIsVisible(false)
+
                                 handleClosePress()
                             }}
                         />
