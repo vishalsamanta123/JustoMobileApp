@@ -27,7 +27,7 @@ const AppointmentDetails = ({ navigation, route }: any) => {
       }))
       return () => { };
     }, [navigation, detail])
-);
+  );
 
   useEffect(() => {
     setBookingData({
@@ -42,6 +42,9 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   }
   const handleVistorUpdate = (data: any) => {
     navigation.navigate('VisitorUpdate', data)
+  }
+  const onPressBookNow = () => {
+    navigation.navigate('Booking', response?.data[0])
   }
   const handleViewFollowUp = (data: any) => {
     navigation.navigate('AllFollowUpScreen', data)
@@ -61,6 +64,7 @@ const AppointmentDetails = ({ navigation, route }: any) => {
       setBookingData={setBookingData}
       BookingData={BookingData}
       handleBooking={handleBooking}
+      onPressBookNow={onPressBookNow}
     />
   )
 }

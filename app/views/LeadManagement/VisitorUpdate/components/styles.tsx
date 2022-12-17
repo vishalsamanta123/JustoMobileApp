@@ -75,8 +75,6 @@ const styles = StyleSheet.create({
         elevation: 5,
         shadowColor: '#171717',
         shadowOffset: { width: 0, height: 1 },
-        borderColor: GRAY_COLOR,
-        borderWidth: 0.7,
         marginHorizontal: normalize(5),
         height: 45,
         justifyContent: 'center',
@@ -92,7 +90,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 1,
         borderColor: GRAY_COLOR,
-        borderWidth: 0.7,
         color: BLACK_COLOR,
     },
     smallCont: {
@@ -114,19 +111,19 @@ const styles = StyleSheet.create({
     },
     selectsTxt: {
         fontSize: normalize(18),
-        fontWeight: 'bold',
         color: BLACK_COLOR,
+        fontFamily: FONT_FAMILY_SEMIBOLD
     },
     straightVw: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         marginVertical: normalize(8),
+        marginRight: normalize(10)
     },
     radioView: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginHorizontal: normalizeSpacing(10)
     },
     radioTxt: {
         fontSize: normalize(18),
@@ -163,14 +160,14 @@ const styles = StyleSheet.create({
     },
     checkBoxVw: {
         backgroundColor: WHITE_COLOR,
-        paddingVertical: 2,
-        borderWidth: 0.5
+        padding: normalizeSpacing(3),
+        borderWidth: 0.5,
+        borderRadius: normalize(5)
     },
     checkTxt: {
-        fontSize: normalize(13),
+        fontSize: normalize(13.5),
         color: BLACK_COLOR,
         fontFamily: FONT_FAMILY_MEDIUM,
-        marginLeft: normalize(10)
     },
     checksVw: {
         width: normalizeWidth(5),

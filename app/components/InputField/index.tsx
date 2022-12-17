@@ -36,7 +36,6 @@ const InputField = (props: any) => {
   return (
     <View>
       {inputType === "location" ? (
-
         <LocationInput
           editable={editable}
           headingText={props.headingText}

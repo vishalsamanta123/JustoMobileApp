@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_CITY_LIST, GET_CITY_LIST_ERROR, GET_ROLE_LIST, GET_ROLE_LIST_ERROR, GET_SOURCING_MANAGER, GET_SOURCING_MANAGER_ERROR, MASTER_ERROR, MASTER_LIST, START_LOADING, STOP_LOADING } from "../types";
+import { GET_CITY_LIST, GET_CITY_LIST_ERROR, GET_ROLE_LIST, GET_ROLE_LIST_ERROR, GET_SOURCING_MANAGER, GET_SOURCING_MANAGER_ERROR, MASTER_ERROR, MASTER_LIST, PROPERTY_CONFIGURATION, PROPERTY_CONFIGURATION_ERROR, START_LOADING, STOP_LOADING } from "../types";
 
 export const getCityList = (item: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -77,6 +77,31 @@ export const getAllMaster = (params: any) => async (dispatch: any) => {
     } catch (e) {
         dispatch({
             type: MASTER_ERROR,
+            payload: console.log(e),
+        });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+};
+export const getPropertyConfig = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
+    try {
+        const res = await apiCall("post", apiEndPoints.GET_PROPERTYCONFIGURATION, params);
+        if (res.data.status == 200) {
+            dispatch({
+                type: PROPERTY_CONFIGURATION,
+                payload: res.data,
+            });
+        } else {
+            dispatch({
+                type: PROPERTY_CONFIGURATION_ERROR,
+                payload: [],
+            });
+        }
+    } catch (e) {
+        dispatch({
+            type: PROPERTY_CONFIGURATION_ERROR,
             payload: console.log(e),
         });
     }

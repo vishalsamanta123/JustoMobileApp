@@ -49,7 +49,7 @@ export default {
   PROPERTYALLOCATELIST: "/property/getPropertyAlocateUserList",
   ALLOCATEPROPERTYTOUSER: "/property/propertyAllocateToUsers",
   GET_PROPERTY_COMPETITOR: "/property/getPropertyCompetitorList",
-
+  GET_PROPERTYCONFIGURATION: "/property/getPropertyConfigurationsList",
 
 
   // MASTER START

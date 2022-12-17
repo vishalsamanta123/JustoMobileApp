@@ -45,6 +45,7 @@ export const dashboardClosingData = (userDetail: any) => async (dispatch: any) =
             apiEndPoints.DASHBOARD_CLOSING,
             {}
         );
+        console.log('res:GET_DASHBOARD_CLOSING ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: GET_DASHBOARD_CLOSING,
