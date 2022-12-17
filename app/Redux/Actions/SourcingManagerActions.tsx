@@ -65,7 +65,7 @@ export const getAssignCPList = (parma: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_ASSIGNCP_LIST, parma);
-        console.log('res GET_ASSIGNCP_LIST: ', res);
+        // console.log('res GET_ASSIGNCP_LIST: ', res);
         if (res?.data?.status === 200) {
             console.log('res.data: ', res.data);
             dispatch({

@@ -131,9 +131,9 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Adhar No."}
+            placeholderText={"Aadhaar No."}
             handleInputBtnPress={() => { }}
-            headingText={"Adhar No."}
+            headingText={"Aadhaar No."}
             keyboardtype={'number-pad'}
             valueshow={props.addNewSmData?.adhar_no}
             onChangeText={(val: any) => {
@@ -324,11 +324,11 @@ const AddNewSMView = (props: any) => {
             }}
           />
         </View>
-        <View style={styles.inputWrap}>
+        <View style={{ marginTop: normalizeSpacing(30), }}>
           <InputField
-            placeholderText={"Area"}
+            placeholderText={"Area Location"}
             handleInputBtnPress={() => { }}
-            headingText={"Area"}
+            headingText={"Area Location"}
             valueshow={props.addNewSmData?.area}
             onChangeText={(val: any) => {
               props.setAddNewSmData({
@@ -336,13 +336,22 @@ const AddNewSMView = (props: any) => {
                 area: val,
               });
             }}
+            inputType={'location'}
+            onPressSelect={(data: any, detail: any) => {
+              props.setAddNewSmData({
+                ...props.addNewSmData,
+                area: data?.description,
+                latitude: detail?.geometry?.location?.lat,
+                longitude: detail?.geometry?.location?.lng
+              })
+            }}
           />
         </View>
-        <View style={{ marginTop: normalizeSpacing(30), }}>
+        <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Address"}
+            placeholderText={"House Address"}
             handleInputBtnPress={() => { }}
-            headingText={"Address"}
+            headingText={"House Address"}
             valueshow={props.addNewSmData?.address}
             onChangeText={(val: any) => {
               props.setAddNewSmData({
@@ -350,15 +359,7 @@ const AddNewSMView = (props: any) => {
                 address: val,
               });
             }}
-            inputType={'location'}
-            onPressSelect={(data: any, detail: any) => {
-              props.setAddNewSmData({
-                ...props.addNewSmData,
-                address: data?.description,
-                latitude: detail?.geometry?.location?.lat,
-                longitude: detail?.geometry?.location?.lng
-              })
-            }}
+           
           />
         </View>
         <View style={{ marginVertical: 10, marginBottom: 20 }}>

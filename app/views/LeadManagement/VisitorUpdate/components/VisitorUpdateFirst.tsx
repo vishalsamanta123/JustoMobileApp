@@ -67,7 +67,7 @@ const VisitorUpdateView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        placeholderText={"Aadhar No."}
+                        placeholderText={"Aadhaar No."}
                         handleInputBtnPress={() => { }}
                         onChangeText={(text: any) => {
                             props.setUpdateForm({
@@ -76,7 +76,7 @@ const VisitorUpdateView = (props: any) => {
                             })
                         }}
                         valueshow={props?.updateForm?.adhar_no?.toString()}
-                        headingText={"Aadhar No."}
+                        headingText={"Aadhaar No."}
                     />
                 </View>
                 <View style={styles.inputWrap}>
