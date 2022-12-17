@@ -1,12 +1,16 @@
+import DropdownInput from "app/components/DropDown";
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
 import React from "react";
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
 import Header from "../../../../components/Header";
 import InputField from "../../../../components/InputField";
 import PicturePickerModal from "../../../../components/Modals/PicturePicker";
 import { normalize } from "../../../../components/scaleFontSize";
-import { BLUE_COLOR, CALL_COLOR, Isios, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
+import Styles from 'app/components/Modals/styles'
+import { BLUE_COLOR, CALL_COLOR, DATE_FORMAT, Isios, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 
@@ -24,82 +28,171 @@ const BookingView = (props: any) => {
                 barStyle={'light-content'}
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
-            <View style={styles.containerVw}>
-                <View style={styles.inputWrap}>
-                    <InputField
-                        placeholderText={"Amount"}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
-                        headingText={"Booking Amount"}
-                    />
-                </View>
-                <View style={styles.inputWrap}>
-                    <InputField
-                        placeholderText={"Number"}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
-                        headingText={"Cheque No."}
-                    />
-                </View>
-                <View style={styles.inputWrap}>
-                    <InputField
-                        placeholderText={"Payment Type"}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
-                        headingText={"Type"}
-                    />
-                </View>
-                <View style={styles.straightVw}>
-                    <Text style={styles.titleTxt}>Cheque Photo    :</Text>
-                    <Button
-                        width={130}
-                        height={45}
-                        buttonText={strings.browse}
-                        bgcolor={CALL_COLOR}
-                        border={14}
-                        handleBtnPress={() => props.setBrowse(true)}
-                    />
-                </View>
-                <View style={[styles.straightVw, { marginTop: normalize(20) }]}>
-                    <View style={{ width: '48%' }}>
+            <ScrollView keyboardShouldPersistTaps={'handled'}
+                contentContainerStyle={{ flexGrow: 1 }}>
+                <View style={styles.containerVw}>
+                    <View style={styles.inputWrap}>
                         <InputField
-                            headTxtSize={Isios ? 12 : 12}
-                            placeholderText={"Configuration"}
-                            handleInputBtnPress={() => { }}
-                            onChangeText={() => { }}
-                            headingText={"Purchase Configuration"}
+                            placeholderText={"Amount"}
+                            onChangeText={(data: any) => {
+                                props.setBookingData({
+                                    ...props.bookingData,
+                                    booking_amount: data
+                                })
+                            }}
+                            valueshow={props?.bookingData?.booking_amount}
+                            keyboardtype={'number-pad'}
+                            headingText={"Booking Amount"}
                         />
                     </View>
-                    <View style={{ width: '48%' }}>
+                    <View style={styles.inputWrap}>
                         <InputField
-                            placeholderText={"Qty"}
+                            placeholderText={"Number"}
                             handleInputBtnPress={() => { }}
-                            onChangeText={() => { }}
-                            headingText={"Qty"}
+                            onChangeText={(data: any) => {
+                                props.setBookingData({
+                                    ...props.bookingData,
+                                    tranjection_upi_cheque_number: data
+                                })
+                            }}
+                            valueshow={props?.bookingData?.tranjection_upi_cheque_number}
+                            headingText={"Cheque No."}
+                        />
+                    </View>
+                    <View style={styles.inputWrap}>
+                        <InputField
+                            placeholderText={"Cheque"}
+                            editable={false}
+                            onChangeText={(data: any) => {
+                                props.setBookingData({
+                                    ...props.bookingData,
+                                    payment_type: data
+                                })
+                            }}
+                            valueshow={props?.bookingData?.payment_type}
+                            headingText={"Payment Type"}
+                        />
+                    </View>
+                    <View style={styles.straightVw}>
+                        <Text style={[styles.titleTxt, {
+                            bottom: typeof props?.bookingData?.cheque_image === 'object' ? 8 : 0
+                        }]}>Cheque Photo : </Text>
+                        <View>
+                            <Button
+                                width={130}
+                                height={45}
+                                buttonText={strings.browse}
+                                bgcolor={CALL_COLOR}
+                                border={14}
+                                handleBtnPress={() => props.setBrowse(true)}
+                            />
+                            {typeof props?.bookingData?.cheque_image === 'object' ?
+                                <Text style={{ fontSize: 12, textAlign: "center" }}>{"Cheque Added"}</Text> : null
+                            }
+                        </View>
+
+                    </View>
+                    {/* <View style={styles.inputWrap}>
+                    <InputCalender
+                        mode={'date'}
+                        leftIcon={images.event}
+                        placeholderText={"Booking Date"}
+                        editable={false}
+                        dateData={(data: any) => {
+                            props.setBookingData({
+                                ...props.booking_date,
+                                booking_date: moment(data).format(DATE_FORMAT)
+                            })
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setBookingData({
+                                ...props.bookingData,
+                                booking_date: moment(data).format(DATE_FORMAT)
+                            })
+                        }}
+                        value={props.bookingData?.booking_date}
+                    />
+                </View> */}
+                    <View style={[styles.straightVw, { marginTop: normalize(20) }]}>
+                        <View style={{ width: '48%' }}>
+                            <DropdownInput
+                                headingText={'Pur. Configuration'}
+                                placeholder={props?.bookingData?.coniguration ?
+                                    props?.bookingData?.coniguration : 'Configuration'}
+                                data={Array.isArray(props?.masterDatas) ? props?.masterDatas : []}
+                                inputWidth={'100%'}
+                                paddingLeft={16}
+                                maxHeight={300}
+                                labelField={"configuration_title"}
+                                valueField={'configuration_id'}
+                                value={props?.bookingData?.configuration_id}
+                                onChange={(item: any) => {
+                                    props.setBookingData({
+                                        ...props.bookingData,
+                                        coniguration_id: item.configuration_id,
+                                        coniguration: item.configuration_title
+                                    })
+                                }}
+                                newRenderItem={(item: any) => {
+                                    return (
+                                        <>
+                                            <View style={Styles.item}>
+                                                <Text style={Styles.textItem}>{item.configuration_title}</Text>
+                                            </View>
+                                        </>
+                                    );
+                                }}
+                            />
+                        </View>
+                        <View style={{ width: '48%' }}>
+                            <InputField
+                                placeholderText={"Qty"}
+                                handleInputBtnPress={() => { }}
+                                headingText={"Qty"}
+                                keyboardtype={'number-pad'}
+                                onChangeText={(data: any) => {
+                                    props.setBookingData({
+                                        ...props.bookingData,
+                                        quantity: data
+                                    })
+                                }}
+                                valueshow={props?.bookingData?.quantity}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.inputWrap}>
+                        <InputField
+                            headingText={"Comment"}
+                            placeholderText={"Comment"}
+                            inputheight={80}
+                            onChangeText={(data: any) => {
+                                props.setBookingData({
+                                    ...props.bookingData,
+                                    description: data
+                                })
+                            }}
+                            valueshow={props?.bookingData?.description}
+                        />
+                    </View>
+                    <View style={{ marginVertical: normalize(30) }}>
+                        <Button
+                            buttonText={strings.bookNow}
+                            bgcolor={CALL_COLOR}
+                            border={14}
+                            handleBtnPress={() => props.handleBookPress()}
                         />
                     </View>
                 </View>
-                <View style={styles.inputWrap}>
-                    <InputField
-                        headingText={"Comment"}
-                        placeholderText={"Comment"}
-                        handleInputBtnPress={() => { }}
-                        inputheight={80}
-                        onChangeText={() => { }}
-                    />
-                </View>
-                <View style={{ marginVertical: normalize(30) }}>
-                    <Button
-                        buttonText={strings.bookNow}
-                        bgcolor={CALL_COLOR}
-                        border={14}
-                        handleBtnPress={() => props.handleBookPress()}
-                    />
-                </View>
-            </View>
+            </ScrollView>
             <PicturePickerModal
                 Visible={props.browse}
                 setVisible={props.setBrowse}
+                imageData={(data: any) => {
+                    props.setBookingData({
+                        ...props.bookingData,
+                        cheque_image: data,
+                    });
+                }}
             />
         </View>
     )

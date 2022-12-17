@@ -169,9 +169,9 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
             newFormdata.append("latitude", addNewSmData.latitude)
             newFormdata.append("longitude", addNewSmData.longitude)
             if (type === 'edit') {
-                dispatch(updateUserSettingData(addNewSmData))
+                dispatch(updateUserSettingData(newFormdata))
             } else {
-                dispatch(userRegister(addNewSmData))
+                dispatch(userRegister(newFormdata))
             }
         }
     }

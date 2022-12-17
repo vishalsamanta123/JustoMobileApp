@@ -1,4 +1,4 @@
-import { GET_CITY_LIST, GET_CITY_LIST_ERROR, GET_ROLE_LIST, GET_ROLE_LIST_ERROR, GET_SOURCING_MANAGER, GET_SOURCING_MANAGER_ERROR, MASTER_ERROR, MASTER_LIST } from "../types";
+import { GET_CITY_LIST, GET_CITY_LIST_ERROR, GET_ROLE_LIST, GET_ROLE_LIST_ERROR, GET_SOURCING_MANAGER, GET_SOURCING_MANAGER_ERROR, MASTER_ERROR, MASTER_LIST, PROPERTY_CONFIGURATION } from "../types";
 
 
 const initialState = {
@@ -28,6 +28,13 @@ export function masterDataReducer(state = initialState, action: any) {
         loading: false,
       }
     case MASTER_LIST:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        response: action.payload,
+      };
+    case PROPERTY_CONFIGURATION:
       return {
         ...state,
         detail: false,

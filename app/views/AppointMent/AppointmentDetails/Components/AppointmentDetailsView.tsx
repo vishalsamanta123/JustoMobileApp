@@ -13,6 +13,8 @@ import ReadyToBookModal from './ReadyToBookModal';
 import CancelModal from 'app/components/Modals/CancelModal';
 
 const AppointmentDetailsView = (props: any) => {
+    const getLoginType = useSelector((state: any) => state.login);
+    const { userData = {} } = useSelector((state: any) => state.userData);
     const insets = useSafeAreaInsets();
     const [readyToBooK, setReadyToBooK] = useState(false)
     const [cancelAppoitment, setCancelAppoitment] = useState(false)
@@ -52,11 +54,14 @@ const AppointmentDetailsView = (props: any) => {
                         </View>
                         <View style={{ marginVertical: 10 }} />
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <Button
-                                buttonText={'Book Now'}
-                                // handleBtnPress={() => props.handleUpdateStatus()}
-                                width={150}
-                            />
+                            {userData?.data?.role_title === 'Closing Manager' ||
+                                getLoginType?.response?.data?.role_title === 'Closing Manager' ?
+                                <Button
+                                    buttonText={'Book Now'}
+                                    handleBtnPress={() => props.onPressBookNow()}
+                                    width={150}
+                                /> : null
+                            }
 
                             <Button
                                 buttonText={strings.readytoBookHeader}

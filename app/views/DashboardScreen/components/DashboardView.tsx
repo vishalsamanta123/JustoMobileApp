@@ -9,6 +9,7 @@ import strings from "../../../components/utilities/Localization";
 import { GREEN_COLOR, RED_COLOR, WHITE_COLOR } from "../../../components/utilities/constant";
 
 const DashboardView = (props: any) => {
+  console.log('props?.dashboardData: ', props?.dashboardData);
   const targetData = props?.dashboardData?.target || {}
   const achieveTargetData = props?.dashboardData?.achievetarget || {}
   const insets = useSafeAreaInsets();
@@ -156,6 +157,16 @@ const DashboardView = (props: any) => {
                 <View style={styles.thirdPortioncardView}>
                   <View style={styles.thirdPortionCardTextView}>
                     <Text style={styles.thirdPortionCardText}>
+                      Today Site Visit
+                    </Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_site_visit}</Text>
+                  </View>
+                </View>
+                <View style={styles.thirdPortioncardView}>
+                  <View style={styles.thirdPortionCardTextView}>
+                    <Text style={styles.thirdPortionCardText}>
                       Today Closed Visit
                     </Text>
                   </View>
@@ -170,26 +181,28 @@ const DashboardView = (props: any) => {
                     </Text>
                   </View>
                   <View style={styles.numberView}>
-                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_close_visit}</Text>
+                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_booking}</Text>
                   </View>
                 </View>
                 <View style={styles.thirdPortioncardView}>
                   <View style={styles.thirdPortionCardTextView}>
-                    <Text style={styles.thirdPortionCardText}>{role === 'Closing TL' ? 'Active CM' : 'Total Ready to Booking'}</Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.thirdPortionNumberText}>{role === 'Closing TL' ? props?.dashboardData?.total_closing_manager : props?.dashboardData?.total_ready_booking}</Text>
-                  </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
-                  <View style={styles.thirdPortionCardTextView}>
-                    <Text style={styles.thirdPortionCardText}>Closing Target</Text>
+                    <Text style={styles.thirdPortionCardText}>Ready to Book</Text>
                   </View>
                   <View style={styles.numberView}>
                     <Text style={styles.thirdPortionNumberText}>
-                      {achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}</Text>
+                      {props?.dashboardData?.total_ready_booking}</Text>
                   </View>
                 </View>
+                {role === 'Closing TL' ?
+                  <View style={styles.thirdPortioncardView}>
+                    <View style={styles.thirdPortionCardTextView}>
+                      <Text style={styles.thirdPortionCardText}>{'Active CM'}</Text>
+                    </View>
+                    <View style={styles.numberView}>
+                      <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_closing_manager}</Text>
+                    </View>
+                  </View> : null
+                }
               </View>
             </>
           }

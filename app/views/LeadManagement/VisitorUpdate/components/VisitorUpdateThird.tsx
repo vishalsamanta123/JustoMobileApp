@@ -9,6 +9,7 @@ import { BLACK_COLOR, PRIMARY_THEME_COLOR } from "../../../../components/utiliti
 import InputField from "../../../../components/InputField";
 import Button from "../../../../components/Button";
 import { normalize, normalizeSpacing } from "../../../../components/scaleFontSize";
+import { RadioButton } from "react-native-paper";
 
 const VisitorUpdateView = (props: any) => {
     return (
@@ -36,52 +37,40 @@ const VisitorUpdateView = (props: any) => {
                     <Text style={styles.selectsTxt}>{"Occupation"}</Text>
                 </View>
                 <View style={styles.straightVw}>
-                    <View style={[styles.radioView, { marginHorizontal: 0 }]}>
-                        <TouchableOpacity onPress={() => props.setUpdateForm({
-                            ...props.updateForm,
-                            occupation: 'salaried'
-                        })}
-                            style={styles.checkBoxVw}>
-                            <Image
-                                style={styles.checksVw}
-                                source={props.updateForm.occupation === "salaried"
-                                    ? images.check
-                                    : null
-                                }
-                            />
-                        </TouchableOpacity>
+                    <View style={[styles.radioView, {}]}>
+                        <RadioButton.Android
+                            value={props.updateForm?.occupation}
+                            status={props.updateForm.occupation === "salaried" ? "checked" : "unchecked"}
+                            onPress={() => props.setUpdateForm({
+                                ...props.updateForm,
+                                occupation: 'salaried'
+                            })}
+                            color={PRIMARY_THEME_COLOR}
+                        />
                         <Text style={styles.checkTxt}>{'Salaried'}</Text>
                     </View>
-                    <View style={[styles.radioView, { marginHorizontal: 0 }]}>
-                        <TouchableOpacity onPress={() => props.setUpdateForm({
-                            ...props.updateForm,
-                            occupation: 'self employee'
-                        })}
-                            style={styles.checkBoxVw}>
-                            <Image
-                                style={styles.checksVw}
-                                source={props.updateForm.occupation === "self employee"
-                                    ? images.check
-                                    : null
-                                }
-                            />
-                        </TouchableOpacity>
+                    <View style={[styles.radioView, {}]}>
+                        <RadioButton.Android
+                            value={props.updateForm?.occupation}
+                            status={props.updateForm.occupation === "self employee" ? "checked" : "unchecked"}
+                            onPress={() => props.setUpdateForm({
+                                ...props.updateForm,
+                                occupation: 'self employee'
+                            })}
+                            color={PRIMARY_THEME_COLOR}
+                        />
                         <Text style={styles.checkTxt}>{'Self Employed'}</Text>
                     </View>
-                    <View style={[styles.radioView, { marginHorizontal: 0 }]}>
-                        <TouchableOpacity onPress={() => props.setUpdateForm({
-                            ...props.updateForm,
-                            occupation: 'professional'
-                        })}
-                            style={styles.checkBoxVw}>
-                            <Image
-                                style={styles.checksVw}
-                                source={props.updateForm.occupation === "professional"
-                                    ? images.check
-                                    : null
-                                }
-                            />
-                        </TouchableOpacity>
+                    <View style={[styles.radioView, {}]}>
+                        <RadioButton.Android
+                            value={props.updateForm?.occupation}
+                            status={props.updateForm.occupation === "professional" ? "checked" : "unchecked"}
+                            onPress={() => props.setUpdateForm({
+                                ...props.updateForm,
+                                occupation: 'professional'
+                            })}
+                            color={PRIMARY_THEME_COLOR}
+                        />
                         <Text style={styles.checkTxt}>{'Professional'}</Text>
                     </View>
                 </View>

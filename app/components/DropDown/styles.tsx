@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     // backgroundColor: 'transparent',
   },
   inputHeadingText: {
-    fontSize: normalize(Isios ? 14 : 16),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: PRIMARY_THEME_COLOR,
   },

@@ -158,88 +158,68 @@ const VisitorUpdateView = (props: any) => {
                 </View>
                 <View style={styles.straightVw}>
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
-                        <TouchableOpacity onPress={() => props.setUpdateForm({
-                            ...props.updateForm,
-                            funding_type: 'loan'
-                        })}
-                            style={styles.checkBoxVw}>
-                            <Image
-                                style={styles.checksVw}
-                                source={props.updateForm.funding_type === "loan"
-                                    ? images.check
-                                    : null
-                                }
-                            />
-                        </TouchableOpacity>
+                        <RadioButton.Android
+                            value={props.updateForm?.funding_type}
+                            status={props.updateForm.funding_type === "loan" ? "checked" : "unchecked"}
+                            onPress={() => props.setUpdateForm({
+                                ...props.updateForm,
+                                funding_type: 'loan'
+                            })}
+                            color={PRIMARY_THEME_COLOR}
+                        />
                         <Text style={styles.checkTxt}>{'Loan'}</Text>
                     </View>
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
-                        <TouchableOpacity onPress={() => props.setUpdateForm({
-                            ...props.updateForm,
-                            funding_type: 'self'
-                        })}
-                            style={styles.checkBoxVw}>
-                            <Image
-                                style={styles.checksVw}
-                                source={props.updateForm.funding_type === "self"
-                                    ? images.check
-                                    : null
-                                }
-                            />
-                        </TouchableOpacity>
+                        <RadioButton.Android
+                            value={props.updateForm?.funding_type}
+                            status={props.updateForm.funding_type === "self" ? "checked" : "unchecked"}
+                            onPress={() => props.setUpdateForm({
+                                ...props.updateForm,
+                                funding_type: 'self'
+                            })}
+                            color={PRIMARY_THEME_COLOR}
+                        />
                         <Text style={styles.checkTxt}>{'Self Funding'}</Text>
                     </View>
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
-                        <TouchableOpacity onPress={() => props.setUpdateForm({
-                            ...props.updateForm,
-                            funding_type: 'both'
-                        })}
-                            style={styles.checkBoxVw}>
-                            <Image
-                                style={styles.checksVw}
-                                source={props.updateForm.funding_type === "both"
-                                    ? images.check
-                                    : null
-                                }
-                            />
-                        </TouchableOpacity>
+                        <RadioButton.Android
+                            value={props.updateForm?.funding_type}
+                            status={props.updateForm.funding_type === "both" ? "checked" : "unchecked"}
+                            onPress={() => props.setUpdateForm({
+                                ...props.updateForm,
+                                funding_type: 'both'
+                            })}
+                            color={PRIMARY_THEME_COLOR}
+                        />
                         <Text style={styles.checkTxt}>{'Both'}</Text>
                     </View>
                 </View>
                 <View style={styles.selectsView}>
                     <Text style={styles.selectsTxt}>{"Purpose"}</Text>
                 </View>
-                <View style={[styles.straightVw, { width: '70%' }]}>
+                <View style={[styles.straightVw, { width: '80%' }]}>
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
-                        <TouchableOpacity onPress={() => props.setUpdateForm({
-                            ...props.updateForm,
-                            purpose: 'end user'
-                        })}
-                            style={styles.checkBoxVw}>
-                            <Image
-                                style={styles.checksVw}
-                                source={props.updateForm.purpose === "end user"
-                                    ? images.check
-                                    : null
-                                }
-                            />
-                        </TouchableOpacity>
+                        <RadioButton.Android
+                            value={props.updateForm?.purpose}
+                            status={props.updateForm.purpose === "end user" ? "checked" : "unchecked"}
+                            onPress={() => props.setUpdateForm({
+                                ...props.updateForm,
+                                purpose: 'end user'
+                            })}
+                            color={PRIMARY_THEME_COLOR}
+                        />
                         <Text style={styles.checkTxt}>{'End User'}</Text>
                     </View>
                     <View style={[styles.radioView, { marginHorizontal: 0 }]}>
-                        <TouchableOpacity onPress={() => props.setUpdateForm({
-                            ...props.updateForm,
-                            purpose: 'invest'
-                        })}
-                            style={styles.checkBoxVw}>
-                            <Image
-                                style={styles.checksVw}
-                                source={props.updateForm.purpose === "invest"
-                                    ? images.check
-                                    : null
-                                }
-                            />
-                        </TouchableOpacity>
+                        <RadioButton.Android
+                            value={props.updateForm?.purpose}
+                            status={props.updateForm.purpose === "invest" ? "checked" : "unchecked"}
+                            onPress={() => props.setUpdateForm({
+                                ...props.updateForm,
+                                purpose: 'invest'
+                            })}
+                            color={PRIMARY_THEME_COLOR}
+                        />
                         <Text style={styles.checkTxt}>{'Investment'}</Text>
                     </View>
                 </View>
