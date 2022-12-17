@@ -7,7 +7,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import strings from "app/components/utilities/Localization";
 
 const PropertyDetailItem = (props: any) => {
-  const item = props?.items
+  const item = props?.items || {}
   return (
     <ScrollView>
       <View style={styles.Txtview}>

@@ -23,7 +23,9 @@ const AgentDetail = ({ navigation, route }: any) => {
   }, [navigation, detail]);
   useEffect(() => {
     if (response?.status === 200) {
-      setAllDetails(response?.data[0]);
+      if (response?.data?.length > 0) {
+        setAllDetails(response?.data[0]);
+      }
     }
   }, [response]);
 

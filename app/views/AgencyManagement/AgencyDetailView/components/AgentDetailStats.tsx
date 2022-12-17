@@ -5,7 +5,7 @@ import { GRAY_COLOR } from "../../../../components/utilities/constant";
 import { normalizeSpacing } from "../../../../components/scaleFontSize";
 
 const PropertyDetailItem = (props: any) => {
-  const item = props?.items
+  const item = props?.items || {}
   return (
     <View>
       <View style={styles.Txtview}>

@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const AllocateCPView = (props: any) => {
 
-
+const {userData={}} = useSelector((state: any) => state.userData)
 
 
 
@@ -63,7 +63,7 @@ const AllocateCPView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
             <View style={styles.containerVw}>
-                <Text style={styles.headerTxt}>{strings.newAllocateTxt}</Text>
+                <Text style={styles.headerTxt}>{userData?.data?.role_title === "Sourcing TL" ? 'Allocate to New SM' : strings.newAllocateTxt}</Text>
                 <View style={styles.selectedBox}>
                     {props?.selectedCp?.length > 0 ?
                         <>
@@ -92,7 +92,7 @@ const AllocateCPView = (props: any) => {
                                     </View>
                                 )
                             })}
-                        </> : <Text style={styles.noSelectedTxt}>{strings.noCpSelected}</Text>
+                        </> : <Text style={styles.noSelectedTxt}>{userData?.data?.role_title === "Sourcing TL" ? 'No SM Selected' : strings.noCpSelected}</Text>
                     }
                 </View>
                 <TextInput

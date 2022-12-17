@@ -96,7 +96,7 @@ const VisitorUpdateView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        placeholderText={"Area"}
+                        placeholderText={"Area(Sq ft.)"}
                         handleInputBtnPress={() => { }}
                         onChangeText={(text: any) => {
                             props.setUpdateForm({
@@ -105,7 +105,7 @@ const VisitorUpdateView = (props: any) => {
                             })
                         }}
                         valueshow={props?.updateForm?.areain_sqlft?.toString()}
-                        headingText={"Area"}
+                        headingText={"Area(Sq ft.)"}
                         keyboardtype={'number-pad'}
                     />
                 </View>

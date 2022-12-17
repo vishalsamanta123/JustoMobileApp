@@ -16,7 +16,7 @@ const FollowUpDetailsView = (props: any) => {
   const navigation: any = useNavigation()
   const { response = {} } = useSelector((state: any) => state.followUp)
   const onpressSchedule = () => {
-    navigation.navigate('AddAppointmentScreen')
+    navigation.navigate('AddAppointmentForSite')
   }
   return (
     <View style={styles.mainContainer}>
