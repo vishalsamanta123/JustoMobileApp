@@ -26,6 +26,13 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE_COLOR,
     borderRadius: 5,
   },
+  descTxt:{
+    color: BLACK_COLOR,
+    fontSize: normalize(18),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    textAlign: "center",
+    marginTop: normalizeSpacing(10)
+  },
   borderView: {
     borderBottomColor: GRAY_COLOR,
     borderBottomWidth: 1,

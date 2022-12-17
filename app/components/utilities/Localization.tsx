@@ -19,6 +19,7 @@ const strings = new LocalizedStrings({
     recoveryHeader: 'Recovery',
     saleToolHeader: 'Sales Tools',
     agencyHeader: 'Agency(CP)',
+    agencyDeactiveHeader: 'Agency Deactive',
     leadManagementHeader: 'Lead Management',
     appointmentWithCPHeader: 'Appointment With CP',
     appointmentForVisitHeader: 'Appointment For Site Visit',
@@ -85,6 +86,7 @@ const strings = new LocalizedStrings({
     bookNow: 'Book Now',
     browse: 'Browse',
     reset: 'RESET',
+    transfer: 'transfer',
     comingSoon: 'Coming Soon',
 
 
@@ -163,6 +165,7 @@ const strings = new LocalizedStrings({
     active: 'Active',
     searchAgency: 'Search Agency',
     apply: 'Apply',
+    transferVisit: 'Transfer Visit',
     no: 'No',
     yes: 'Yes',
     agency: 'Agency',
@@ -181,6 +184,7 @@ const strings = new LocalizedStrings({
     visitordetails: 'Visitor Details',
     visitorAppointmentdetails: 'Visitor Appointment Details',
     searchvisitor: 'Search Visitor',
+    selectAgency: 'Select Agency',
     propertyrequire: 'Property Require',
     createVisitor: 'Create Visitor',
     Statusupdate: 'Status Update',
