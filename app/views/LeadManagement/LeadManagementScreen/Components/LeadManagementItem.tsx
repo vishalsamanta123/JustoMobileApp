@@ -80,20 +80,17 @@ const LeadManagementItem = (props: any) => {
             style={[
               styles.nameTxt,
               {
-                // color:
-                //   props.items.lead_status == "confirmatin Pending"
-                //     ? BLACK_COLOR
-                //     : props.items.status == "Subscribe"
-                //       ? YELLOW_COLOR
-                //       : "red",
-              },
-            ]}
-          >
+                color:
+                  props.items.lead_status == 6 ? "red" : BLACK_COLOR
+                },
+              ]}
+              >
             {props.items.lead_status === 1 ? "Create Lead" :
               props.items.lead_status === 2 ? "Follow-up" :
                 props.items.lead_status === 3 ? "Site Visit/Appointment" :
                   props.items.lead_status === 4 ? "Booking" :
-                    props.items.lead_status === 5 && "Registration"
+                    props.items.lead_status === 5 ? "Registration" :
+                      props.items.lead_status === 6 && "Close"
             }
           </Text>
         </View>
@@ -110,11 +107,11 @@ const LeadManagementItem = (props: any) => {
           btnTxtsize={14}
           textTransform={null}
           border={10}
-        handleBtnPress={() => {
-          Linking?.openURL(
-            `tel:${props?.items?.mobile}`
-          )
-        }}
+          handleBtnPress={() => {
+            Linking?.openURL(
+              `tel:${props?.items?.mobile}`
+            )
+          }}
         />
         <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>
           <Image

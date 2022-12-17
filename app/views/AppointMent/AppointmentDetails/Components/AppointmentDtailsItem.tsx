@@ -87,11 +87,12 @@ const AppointmentDtailsItem = (props: any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
-            color: item.status == 1 ? 'red' :
+            color: item.status == 1 || item.status == 5 ? 'red' :
               item.status == 2 ? YELLOW_COLOR : BLACK_COLOR
           }]}>{
               item.status === 1 ? 'Pending' :
-                item.status === 2 ? 'Confirm' : 'Completed'
+                item.status === 2 ? 'Confirm' :
+                  item.status == 5 ? 'Close' : 'Completed'
             }</Text>
         </View>
       </View>
@@ -142,21 +143,23 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={{
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         marginVertical: normalizeSpacing(20)
       }}>
-        <Button
-          width={150}
-          height={30}
-          bgcolor={WHITE_COLOR}
-          bordercolor={PRIMARY_THEME_COLOR}
-          borderWidth={1}
-          btnTxtcolor={PRIMARY_THEME_COLOR}
-          buttonText={strings.visitorupdate}
-          btnTxtsize={14}
-          border={10}
-          handleBtnPress={() => props.handleVistorUpdate(item)}
-        />
+        {
+          item.status !== 5 &&
+          (<Button
+            width={150}
+            height={30}
+            bgcolor={WHITE_COLOR}
+            bordercolor={PRIMARY_THEME_COLOR}
+            borderWidth={1}
+            btnTxtcolor={PRIMARY_THEME_COLOR}
+            buttonText={strings.visitorupdate}
+            btnTxtsize={14}
+            border={10}
+            handleBtnPress={() => props.handleVistorUpdate(item)}
+          />)}
         <Button
           width={150}
           height={30}
