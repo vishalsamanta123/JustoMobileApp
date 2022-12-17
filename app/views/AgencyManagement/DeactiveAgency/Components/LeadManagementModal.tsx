@@ -33,11 +33,17 @@ const FilterModal = (props: any) => {
     );
   }, []);
 
-  const dataconfiguration = response?.data?.length > 0 ? response?.data : [];
+  const dataconfiguration =
+    response?.data?.length > 0
+      ? response?.data.filter((item: any) => item._id !== smData._id)
+      : [];
+  console.log('dataconfiguration: ', dataconfiguration);
 
   const handleTranferPress = () => {
-    dispatch(transferVisitList(transferData));
-    props.setIsVisible(false)
+    if (transferData.new_user_id !== "") {
+      dispatch(transferVisitList(transferData));
+      props.setIsVisible(false);
+    }
   };
 
   const visitorRender = (item: any) => {
@@ -78,6 +84,7 @@ const FilterModal = (props: any) => {
                 labelField="user_name"
                 valueField="_id"
                 placeholder="Select Agency"
+                value={transferData?.new_user_id}
                 onChange={(item: any) => {
                   setTransferData({
                     ...transferData,
