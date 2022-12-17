@@ -35,6 +35,7 @@ const FilterModal = (props: any) => {
       visit_score: '',
     })
     props.setIsVisible(false)
+    props.getVisitorsListApi(0, [])
   }
 
   const configRender = (item: any) => {

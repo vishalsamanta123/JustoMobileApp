@@ -37,7 +37,7 @@ export function ClosingManagerReducer(state = initialState, action: any) {
                 response: action.payload,
             };
 
-
+            
         default:
             return state;
     }

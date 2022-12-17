@@ -169,13 +169,13 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('PickupRequest'); }}
         />
         <DrawerTabSection
-          type={'Sourcing Manager,Closing Manager,Closing TL'}
+          type={'all'}
           iconSource={images.support}
           tabTitle={strings.supportForumHeader}
           handleDrawerNavigation={() => { navigation.navigate('SupportForum'); }}
         />
         <DrawerTabSection
-          type={'Sourcing Manager,Closing Manager'}
+          type={'all'}
           iconSource={images.support}
           handleDrawerNavigation={() => { navigation.navigate('Support'); }}
           tabTitle={strings.supportHeader}
@@ -188,11 +188,11 @@ const customDrawer = ({ navigation }: any) => {
         />
         <DrawerTabSection
           iconSource={images.report}
-          type={'Sourcing Manager,Closing Manager,Closing TL'}
+          type={'all'}
           handleDrawerNavigation={() => { navigation.navigate('Report'); }}
           tabTitle={strings.reportHeader} />
         <DrawerTabSection
-          type={'Sourcing Manager,Closing Manager,Closing TL'}
+          type={'all'}
           handleDrawerNavigation={() => { navigation.navigate('Chat'); }}
           iconSource={images.chat} tabTitle={strings.chatHeader} />
         <DrawerTabSection
