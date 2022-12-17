@@ -67,7 +67,8 @@ export default {
   AGENT_STATUS_UPDATE: "/channelPartner/ApproveChannelpartnerbysourcinghead",
   ADD_AGENT_: "/channelPartner/createAgent",
   EDIT_AGENT_: "/channelPartner/editAgent",
-
+  TRANSFER_VISIT: "/channelPartner/transferVisitAgent",
+  GET_CP_ACTIVE_LEAD: "/channelPartner/getCpActiveLead",
   // Appointment
   GET_APPOINTMENT_LIST: '/appointment/getAppointmentList',
   GET_APPOINTMENT_DETAILS: '/appointment/getAppointmentDetails',

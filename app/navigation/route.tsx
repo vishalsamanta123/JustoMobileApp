@@ -85,10 +85,11 @@ import RecoveryScreen from "app/views/Recovery";
 import PropertyChat from "app/views/ChatManagement/PropertyChat";
 import ChatScreen from "app/views/ChatManagement/PropertyChat/components/ChatScreen";
 import Notification from "app/views/Setting/Notification";
+import DeactiveAgencyScreen from "app/views/AgencyManagement/DeactiveAgency";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
-const AuthStack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator(); 
 const AuthLoading = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const screenOptions = { headerShown: false, gestureEnabled: true };
@@ -175,6 +176,7 @@ const AppComponent = () => {
       <AppStack.Screen name="FollowUpDetails" component={FollowUpDetails} />
       <AppStack.Screen name="EditFollowUp" component={EditFollowUp} />
       <AppStack.Screen name="AllFollowUpScreen" component={AllFollowUpScreen} />
+      <AppStack.Screen name="DeactiveAgency" component={DeactiveAgencyScreen} />
 
       {/* Appointment with CPSM */}
       <AppStack.Screen

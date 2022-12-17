@@ -102,9 +102,9 @@ const AgentBasicInfoView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Adhar No."}
+            placeholderText={"Aadhaar No."}
             handleInputBtnPress={() => { }}
-            headingText={"Adhar No."}
+            headingText={"Aadhaar No."}
             valueshow={props.agencyData?.adhar_no}
             keyboardtype={'number-pad'}
             onChangeText={(val: any) => {

@@ -78,7 +78,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Aadhar no. </Text>
+          <Text style={styles.projectTxt}>Aadhaar no. </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -89,7 +89,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Pan card no. </Text>
+          <Text style={styles.projectTxt}>Pancard no. </Text>
         </View>
         <View>
           <Text>:</Text>

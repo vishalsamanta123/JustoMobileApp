@@ -121,7 +121,7 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
             errorMessage = "Last Name is require. Please enter last name";
         } else if (addNewCMData.adhar_no == undefined || addNewCMData.adhar_no == "") {
             isError = false;
-            errorMessage = "Aadhar Number is require. Please enter aadhar number";
+            errorMessage = "Aadhaar Number is require. Please enter Aadhaar number";
         } else if (addNewCMData.pancard_no == undefined || addNewCMData.pancard_no == "") {
             isError = false;
             errorMessage = "Pancard Number is require. Please enter pancard number";

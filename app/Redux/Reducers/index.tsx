@@ -14,6 +14,7 @@ import { BookingReducer, cancelBookingReducer } from "./BookingReducer";
 import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 import { notificationListReducer } from "./NotificationReducer";
 import { PickUpReducer } from "./PickUpReducer";
+import { transferVisitorReducer, transferVisitReducer } from "./TransferVisitReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -39,6 +40,8 @@ export default {
     followUp: followUpReducer,
     masterData: masterDataReducer,
     notificationData: notificationListReducer,
+    transferVisitData: transferVisitReducer,
+    transferVisitorData: transferVisitorReducer,
 
     //Dashboard
     dashboardData: dashboardReducer,

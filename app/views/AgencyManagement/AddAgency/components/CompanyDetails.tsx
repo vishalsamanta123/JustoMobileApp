@@ -111,7 +111,7 @@ const CompanyDetails = (props: any) => {
           ]}
         >
           <View style={{ flex: 1 }}>
-            <Text style={styles.headingText}>Pan Card</Text>
+            <Text style={styles.headingText}>Pancard</Text>
           </View>
           <View>
             <TouchableOpacity

@@ -24,7 +24,7 @@ const SMInfoView = (props: any) => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Aadhar no.</Text>
+                    <Text style={styles.projectTxt}>Aadhaar no.</Text>
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
@@ -36,7 +36,7 @@ const SMInfoView = (props: any) => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Pan Card no.</Text>
+                    <Text style={styles.projectTxt}>Pancard no.</Text>
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
