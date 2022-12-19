@@ -5,7 +5,6 @@ import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 
 export const updateUserSettingData =
   (userDetail: any) => async (dispatch: any) => {
-    console.log('userDetail: params', userDetail);
     dispatch({ type: START_LOADING })
     try {
       const header = {
@@ -36,11 +35,9 @@ export const updateUserSettingData =
   };
 
 export const userRegister = (item: any) => async (dispatch: any) => {
-  console.log('item: ', item);
   dispatch({ type: START_LOADING });
   try {
     const res = await apiCall("post", apiEndPoints.REGISTERANDADDUSER, item);
-    console.log('res REGISTERANDADDUSER: ', res);
     if (res.data.status == 200) {
       dispatch({
         type: USERREGISTER,

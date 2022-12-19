@@ -100,7 +100,6 @@ export const checkPermissions = async (permission: any) => {
       res = true;
       break;
     case RESULTS.GRANTED:
-      // console.log('RESULTS.GRANTED: ', RESULTS.GRANTED);
       res = true;
       break;
     case RESULTS.BLOCKED:
@@ -206,10 +205,7 @@ export const requestPermissions = async (permission: any) => {
 
 export const openPermissionSetting = (msgHeading: any, message: any,
   onPressCancel = () => {
-    //  console.log(' cancel presed')
-     }) => {
-  // console.log('message: ', message);
-  // console.log('msgHeading: ', msgHeading);
+  }) => {
   Alert.alert(msgHeading, message, [
     {
       text: 'Not Now',

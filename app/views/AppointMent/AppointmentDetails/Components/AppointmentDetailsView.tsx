@@ -19,7 +19,6 @@ const AppointmentDetailsView = (props: any) => {
     const [readyToBooK, setReadyToBooK] = useState(false)
     const [cancelAppoitment, setCancelAppoitment] = useState(false)
     const { response = {}, detail = '' } = useSelector((state: any) => state.appointment) || []
-    console.log('response: ', response);
     return (
         <View style={styles.mainContainer}>
             <Header

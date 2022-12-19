@@ -14,12 +14,6 @@ import Video from "react-native-video";
 
 const Videoplay = (props: any) => {
     const dispatch: any = useDispatch()
-    console.log("Videoplay -> props.itemDetail", props.itemDetail?.document_type)
-
-
-
-
-
     return (
         <View>
             <Modal isVisible={props.Visible}>

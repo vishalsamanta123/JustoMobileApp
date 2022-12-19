@@ -37,7 +37,6 @@ const FilterModal = (props: any) => {
     response?.data?.length > 0
       ? response?.data.filter((item: any) => item._id !== smData._id)
       : [];
-  console.log('dataconfiguration: ', dataconfiguration);
 
   const handleTranferPress = () => {
     if (transferData.new_user_id !== "") {

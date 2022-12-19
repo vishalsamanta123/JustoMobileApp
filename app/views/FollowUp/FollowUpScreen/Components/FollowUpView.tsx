@@ -19,7 +19,6 @@ const FollowUpView = (props: any) => {
   const navigation: any = useNavigation();
   const [FilterisVisible, setFilterisVisible] = useState(false);
   const onPressView = (id: any) => {
-    console.log("id: ", id);
     navigation.navigate("FollowUpDetails", id);
   };
   const onPressEdit = (data: any) => {

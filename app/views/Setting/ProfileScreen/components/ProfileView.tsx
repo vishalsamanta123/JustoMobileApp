@@ -22,10 +22,6 @@ const ProfileView = (props: any) => {
       setAllDetails(allDetailsall?.response?.data);
     }
   };
-  console.log(
-    "allDetails?.profile_picture: ",
-    allDetails?.base_url + allDetails?.profile_picture
-  );
 
   return (
     <View style={styles.mainContainer}>
