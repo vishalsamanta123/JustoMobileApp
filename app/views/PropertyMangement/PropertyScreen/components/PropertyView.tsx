@@ -45,18 +45,8 @@ const PropertyView = (props: any) => {
      if(list){
       if (response?.status === 200 ) {
         setPropertyList(response?.data);
-        props.setIsloading(loading);
-       /*  ErrorMessage({
-          msg: response.message,
-          backgroundColor: GREEN_COLOR
-        }) */
       } else {
         setPropertyList([]);
-        //errorToast(response.message);
-        ErrorMessage({
-          msg: response.message,
-          backgroundColor: RED_COLOR
-        })
       }
      }
     }
@@ -67,7 +57,6 @@ const PropertyView = (props: any) => {
       const { response } = masterData;
       if (response?.status === 200) {
         setMasterDataShow(response?.data);
-        //props.setIsloading(loading);
       } else {
         setMasterDataShow([]);
         //errorToast(response.message);

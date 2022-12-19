@@ -35,13 +35,15 @@ const AgencyListing = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getAgencyList(offSET, {});
-      return () => {};
-    }, [navigation])
+      getAgencyList(0, {});
+      return () => { };
+    }, [navigation, statusUpdate])
   );
 
   useEffect(() => {
-    setAgentList(SmCpList?.response?.data);
+    if (SmCpList?.response?.status === 200) {
+      setAgentList(SmCpList?.response?.data);
+    }
   }, [SmCpList]);
 
   const getAgencyList = (offset: any, filterData: any) => {
@@ -61,7 +63,6 @@ const AgencyListing = ({ navigation }: any) => {
         backgroundColor: GREEN_COLOR,
       });
       dispatch(removeAssignCpStatus());
-      getAgencyList(offSET, {});
     }
   }, [statusUpdate]);
   const handleDrawerPress = () => {

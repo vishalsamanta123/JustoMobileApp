@@ -1,3 +1,4 @@
+import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "../../components/utilities/apiEndPoints";
 import { apiCall } from "../../components/utilities/httpClient";
 import { ALLOCATE_PROPERTY_TO_USER, GETPROPERTY_DETAIL, PROPERTY_COMPETITOR_LIST, PROPERTY_ERROR, PROPERTY_LIST, PROPERTY_STATUS_UPDATE, REMOVE_PROPERTYCOMPETITOR, SOURCING_MANAGER_LIST, START_LOADING, STOP_LOADING } from "../types";
@@ -16,9 +17,9 @@ export const getAllProperty = (params: any) => async (dispatch: any) => {
                 type: PROPERTY_ERROR,
                 payload: [],
             });
+            handleApiError(res?.data)
         }
     } catch (e) {
-
         dispatch({
             type: PROPERTY_ERROR,
             payload: console.log(e),
@@ -42,14 +43,15 @@ export const getAllPropertyCompetitor = (params: any) => async (dispatch: any) =
                 type: PROPERTY_COMPETITOR_LIST,
                 payload: res.data,
             });
+            handleApiError(res?.data)
         } else {
             dispatch({
                 type: PROPERTY_ERROR,
                 payload: [],
             });
+            handleApiError(res?.data)
         }
     } catch (e) {
-
         dispatch({
             type: PROPERTY_ERROR,
             payload: console.log(e),
@@ -73,6 +75,7 @@ export const getFilterProperty = (params: any) => async (dispatch: any) => {
                 type: PROPERTY_LIST,
                 payload: [],
             });
+            handleApiError(res?.data)
         }
     } catch (e) {
         dispatch({
@@ -100,6 +103,7 @@ export const getPropertyDetail = (params: any) => async (dispatch: any) => {
                 type: GETPROPERTY_DETAIL,
                 payload: [],
             });
+            handleApiError(res?.data)
         }
     } catch (e) {
         dispatch({
@@ -125,6 +129,7 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
                 type: PROPERTY_ERROR,
                 payload: [],
             });
+            handleApiError(res?.data)
         }
     } catch (e) {
         dispatch({
@@ -150,6 +155,7 @@ export const getManagerList = (params: any) => async (dispatch: any) => {
                 type: PROPERTY_ERROR,
                 payload: [],
             });
+            handleApiError(res?.data)
         }
     } catch (e) {
         dispatch({
@@ -171,6 +177,7 @@ export const allocatePropertyToUser = (params: any) => async (dispatch: any) => 
                 payload: res.data,
             });
         } else {
+            handleApiError(res?.data)
             dispatch({
                 type: PROPERTY_ERROR,
                 payload: [],
