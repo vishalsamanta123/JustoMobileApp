@@ -110,9 +110,8 @@ const customDrawer = ({ navigation }: any) => {
         <DrawerTabSection
           type={'postsales,Closing TL,Closing Manager'}
           iconSource={images.lead}
-          tabTitle={userData?.type === 'Closing TL' || 'Closing Manager' ?
-            strings.readytoBookHeader : strings.bookingRequestHead}
-          handleDrawerNavigation={() => { navigation.navigate('BookingList') }}
+          tabTitle={strings.readytoBookHeader}
+          handleDrawerNavigation={() => { navigation.navigate('BookingList', {type: 'readyToBook'}) }}
         />
         <DrawerTabSection
           type={'Sourcing TL'}
@@ -151,10 +150,10 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => { navigation.navigate('AppointmentForSite'); }}
         />
         <DrawerTabSection
-          type={'postsales'}
+          type={'postsales,Closing Manager,Closing TL'}
           iconSource={images.lead}
           tabTitle={strings.bookingRequestHead}
-          handleDrawerNavigation={() => { navigation.navigate('BookingList') }}
+          handleDrawerNavigation={() => { navigation.navigate('BookingList', {type: 'request'}) }}
         />
         <DrawerTabSection
           type={'Sourcing Manager'}

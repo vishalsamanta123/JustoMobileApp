@@ -7,12 +7,12 @@ import { Alert } from "react-native";
 import { AddBooking, removeAddBookingData } from "app/Redux/Actions/AppointmentCLAction";
 import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
 import ErrorMessage from "app/components/ErrorMessage";
+import { updateBookingDetailStatus } from "app/Redux/Actions/BookingActions";
 
 const BookingScreen = ({ navigation, route }: any) => {
-    const getBookingData = route?.params || {}
+    const { getBookingData = {}, type = '' } = route?.params || {}
     const dispatch: any = useDispatch()
     const [bookingData, setBookingData] = useState({
-        //booking_id:6364b8a20ed08c8c28872719,
         lead_id: getBookingData?.lead_id ? getBookingData?.lead_id : '',
         property_id: getBookingData?.property_id ? getBookingData?.property_id : "",
         customer_id: getBookingData?.customer_id ? getBookingData?.customer_id : "",
@@ -24,10 +24,12 @@ const BookingScreen = ({ navigation, route }: any) => {
         coniguration: '',
         coniguration_id: "",
         quantity: "",
-        description: ''
+        description: '',
+        booking_id: getBookingData?._id ? getBookingData?._id : ''
     })
     const masterData = useSelector((state: any) => state.masterData) || {}
     const addedBookingData = useSelector((state: any) => state.addedBooking) || {}
+    const {response = {}} = useSelector((state: any) => state.booking) || {}
     const [masterDatas, setMasterDatas] = useState<any>([])
     useEffect(() => {
         dispatch(getPropertyConfig({
@@ -96,6 +98,7 @@ const BookingScreen = ({ navigation, route }: any) => {
             }
             newFormdata.append("lead_id", bookingData.lead_id)
             newFormdata.append("customer_id", bookingData.customer_id)
+            newFormdata.append("property_id", bookingData.property_id)
             newFormdata.append("coniguration", bookingData.coniguration)
             newFormdata.append("coniguration_id", bookingData.coniguration_id)
             newFormdata.append("quantity", bookingData.quantity)
@@ -104,7 +107,15 @@ const BookingScreen = ({ navigation, route }: any) => {
             newFormdata.append("payment_type", bookingData.payment_type)
             newFormdata.append("booking_date", bookingData.booking_date)
             newFormdata.append("description", bookingData.description)
-            dispatch(AddBooking(newFormdata))
+            newFormdata.append("booking_status", 2)
+            if (type === 'readyToBook') {
+            newFormdata.append("booking_id", bookingData?.booking_id)
+            }
+            if (type === 'readyToBook') {
+                dispatch(updateBookingDetailStatus(newFormdata))
+            }else{
+                dispatch(AddBooking(newFormdata))
+            }
         }
     }
     return (

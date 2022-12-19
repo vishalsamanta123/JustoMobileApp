@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import BookingDetailsView from './components/BookingDetails'
 
 const BookingDetailsScreen = ({ navigation, route }: any) => {
-    const booingId = route?.params || {}
+    const { data = {}, type = '' } = route?.params || {}
+    console.log('type: ', type);
     const dispatch: any = useDispatch()
     const [cancelBookingModel, setCancelBookingModel] = useState(false)
     const [cancelValue, setCancelValue] = useState({
@@ -26,7 +27,7 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
         React.useCallback(() => {
             dispatch(
                 getBookingDetail({
-                    booking_id: booingId?._id
+                    booking_id: data?._id
                 })
             )
             return () => { };
@@ -51,7 +52,7 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
     const cancelBookingPress = (data: any) => {
         const params = {
             module_id: "",
-            booking_id: booingId?._id,
+            booking_id: data?._id,
             booking_status: 4,
             resion: cancelValue.reason,
             competitor_id: cancelValue.property_id,
@@ -60,6 +61,9 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
         }
         dispatch(cancelBooking(params))
     }
+    const onPressBookNow = () => {
+        navigation.navigate('Booking', {getBookingData : response?.data?.length > 0 ?  response?.data[0] : [], type: 'readyToBook'})
+      }
     return (
         <>
             <BookingDetailsView
@@ -70,6 +74,8 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
                 cancelValue={cancelValue}
                 setCancelValue={setCancelValue}
                 cancelBookingPress={cancelBookingPress}
+                type={type}
+                onPressBookNow={onPressBookNow}
             />
         </>
     )

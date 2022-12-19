@@ -1,4 +1,4 @@
-import { ADD_BOOKING, ADD_BOOKING_ERROR, ADD_DROPLOCATION, ADD_DROPLOCATION_ERROR, ALLOCATE_CM_APPOINTMENT, ALLOCATE_CM_APPOINTMENT_ERROR, REMOVE_ADD_BOOKING } from "../types";
+import { ADD_BOOKING, ADD_BOOKING_ERROR, ADD_DROPLOCATION, ADD_DROPLOCATION_ERROR, ALLOCATE_CM_APPOINTMENT, ALLOCATE_CM_APPOINTMENT_ERROR, BOOKING_STATUS_UPDATE, REMOVE_ADD_BOOKING } from "../types";
 
 const initialState = {
     response: null,
@@ -49,11 +49,18 @@ export function addBookingReducer(state = initialState, action: any) {
                 create: true,
                 response: action.payload,
             };
+        case BOOKING_STATUS_UPDATE:
+            return {
+                ...state,
+                detail: false,
+                create: true,
+                response: action.payload,
+            };
         case REMOVE_ADD_BOOKING:
             return {
                 ...state,
                 create: false,
-                response: action.payload,
+                response: null,
             };
         default:
             return state;
