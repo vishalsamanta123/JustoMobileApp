@@ -13,12 +13,10 @@ import { userLogin } from '../../../Redux/Actions/AuthActions';
 const LoginScreen = ({ navigation }: any) => {
   // const [validEmail, setIsValidEmail] = useState(false);
   // const toast: any = useToast();
-  // console.log('validEmail: ', validEmail);
   // const [loginData, setLoginData] = useState({
   //   email: '',
   //   pass: '',
   // })
-  // console.log('loginData: ', loginData);
   // const handleEmailChange = (val: any) => {
 
   //   if (val.length <= 0) {
@@ -30,7 +28,6 @@ const LoginScreen = ({ navigation }: any) => {
   //   }
   // };
   // const handlePasswordChange = (val: any) => {
-  //   console.log('val', val);
   // };
   // const handleLoginPress = async () => {
   //   if (!loginData.email || !loginData.pass) {
@@ -47,7 +44,6 @@ const LoginScreen = ({ navigation }: any) => {
   //   const finalData = users.find((el: any) => {
   //     return el.email == loginData.email && el.password == loginData.pass
   //   })
-  //   console.log('finalData: ', finalData);
   //   if(finalData){
   //     await AsyncStorage.setItem('userData', JSON.stringify(finalData))
   //     navigation.replace('DashboardScreenView');
@@ -96,7 +92,6 @@ const LoginScreen = ({ navigation }: any) => {
         backgroundColor: RED_COLOR
       })
     }
-    //console.log('isError: ', isError);
     return isError;
   }
   const handleLoginPress = () => {

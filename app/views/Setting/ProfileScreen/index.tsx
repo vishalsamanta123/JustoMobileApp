@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfileView from './components/ProfileView';
 
 const ProfileScreen = ({ navigation, route }: any) => {
-  // console.log('route', route);
   // const HandleBackPress = () => {
   //     navigation.goBack();
   // }
@@ -38,7 +37,6 @@ const ProfileScreen = ({ navigation, route }: any) => {
 
   const getDetail = async () => {
     const userData: any = await AsyncStorage.getItem("loginData");
-    // console.log('userData: ', userData);
     if (JSON.parse(userData).data._id) {
       setIsloading(true);
       dispatch(

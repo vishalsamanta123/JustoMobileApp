@@ -18,10 +18,8 @@ const AddAppointmentView = (props: any) => {
         appointment_id: props?.data?._id,
         type: props?.data?.type,
     });
-    console.log('addAppointmentForm: ', addAppointmentForm);
     const handleBtnPress = () => {
         props.handleAddAppointment(addAppointmentForm)
-        console.log('addAppointmentForm: ', addAppointmentForm);
         // navigation.navigate('AppointmentScreen')
     }
     // useEffect(() => {

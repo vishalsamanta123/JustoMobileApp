@@ -32,7 +32,6 @@ const NotificationView = (props: any) => {
 
   const renderItem = (data: any) => {
     const { subject, message } = data.item;
-    console.log("data: ", data);
     return (
       <TouchableHighlight
         onPress={() => console.log("You touched me")}

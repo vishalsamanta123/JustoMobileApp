@@ -32,12 +32,10 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
         latitude: "",
         longitude: "",
     })
-    console.log("addNewCMData",addNewCMData)
     const [cityData, setCityData] = useState<any>([])
     const userDataSucess = useSelector((state: any) => state.userReducer)
     const { response = {}, Roleresponse = {} } = useSelector((state: any) => state.masterData) || {}
     const detailsData = useSelector((state: any) => state.ClosingManager)
-    console.log('?.response?.data[0]: ', detailsData?.response?.data[0]);
 
     useFocusEffect(
         React.useCallback(() => {

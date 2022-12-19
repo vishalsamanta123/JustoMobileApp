@@ -13,17 +13,12 @@ import FastImages from "app/components/FastImage";
 
 const PropertyChatView = (props: any) => {
   const { handleBackPress, chatData } = props;
-  console.log('chatData: ', chatData);
   const navigation: any = useNavigation();
   // const [filteredData, setFilteredData] = useState(chatData);
-  // console.log("chatData: ", chatData);
   const handleChatPress = (item: any) => {
-    console.log("item: in CHAT PRESS ", item);
-    console.log("hellooo");
     navigation.navigate("ChatScreen", item);
   };
   const renderPropertyList = (item: any, index: any) => {
-    console.log("item: IN PROPERTY", item);
     return (
       <TouchableOpacity
         onPress={() => handleChatPress(item)}
@@ -41,7 +36,6 @@ const PropertyChatView = (props: any) => {
     );
   };
   const handleChangeText = (val: any) => {
-    console.log("val: ", val);
     // const final = chatData.userName?.filter(function (el: any) {
     // const name = `${el}`;
     // return name?.toLowerCase().indexOf(val.toLowerCase()) > -1;
@@ -49,7 +43,6 @@ const PropertyChatView = (props: any) => {
     // setFilteredData(final);
   };
   const onSubmit = (val: any) => {
-    console.log("onSubmit");
   };
   return (
     <View style={styles.mainContainer}>

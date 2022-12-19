@@ -13,7 +13,6 @@ const ImageContent = ({ navigation,route }: any) => {
   const insets = useSafeAreaInsets();
 
   const dataimage = route?.params || []
-  console.log('dataimage: ', typeof dataimage === 'string');
   const handleBackPress = () => {
     navigation.goBack();
   };

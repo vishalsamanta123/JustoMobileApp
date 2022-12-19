@@ -21,7 +21,6 @@ import DocumentPicker from "react-native-document-picker";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
-  console.log("item: in CHAT VIEW", item);
   const [messages, setMessages] = useState<any>([]);
   const [pickerVisible, setPickerVisible] = useState<any>();
 
@@ -61,7 +60,6 @@ const ChatScreen = ({ navigation, route }: any) => {
   }, []);
 
   const renderMessage = (data: any) => {
-    console.log("data: ", data);
     return (
       <View style={{ backgroundColor: "red" }}>
         <Text>kskjdvj</Text>
@@ -153,7 +151,6 @@ const ChatScreen = ({ navigation, route }: any) => {
   };
 
   const renderImageMessage = (data: any) => {
-  console.log('data: ', data);
     return (
       <View>
         <Image />
@@ -185,7 +182,6 @@ const ChatScreen = ({ navigation, route }: any) => {
         showUserAvatar
         renderBubble={(data: any) => renderBubble(data)}
         // renderMessageImage={(props: any) => {
-        // console.log('props: ', props);
         //   return renderImageMessage(props)
         //   // return (
         //   //   <Image source={images.agency} style={{height: 30, width: 30}}/>

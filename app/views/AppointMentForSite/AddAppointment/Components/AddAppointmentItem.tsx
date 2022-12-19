@@ -32,7 +32,6 @@ const AddAppointmentItem = (props: any) => {
                         valueField={'lead_id'}
                         value={props?.appointMentForm?.lead_id}
                         onChange={(item: any) => {
-                            console.log('item ====: ', item);
                             setpickUp(item?.pickup)
                             props.setAppointMentForm({
                                 ...props.appointMentForm,

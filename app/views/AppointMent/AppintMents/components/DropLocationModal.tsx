@@ -53,9 +53,6 @@ const DropLocationModal = (props: any) => {
                                     },
                                 }}
                                 onPress={(data, details = null) => {
-                                    console.log('details: ', details);
-                                    console.log('data: ', data);
-                                    // onPressSelect(data, details)
                                     props.setDropLocation(data?.description)
                                 }}
                                 query={{

@@ -31,12 +31,9 @@ const EditFollowUp = ({ navigation, route }: any) => {
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.followUp
   );
-  console.log("responseeeeeeeeeeeeeeeeeeeee: ", response);
-
   const dispatch: any = useDispatch();
   const insets = useSafeAreaInsets();
   const [formData, setFormData] = useState<any>({});
-  console.log('formData: ', formData);
   const [masterDatas, setMasterDatas] = useState<any>([]);
   const masterData = useSelector((state: any) => state.masterData) || {};
 
