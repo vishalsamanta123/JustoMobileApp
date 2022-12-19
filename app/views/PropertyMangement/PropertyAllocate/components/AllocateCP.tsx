@@ -42,8 +42,6 @@ const AllocateCPView = (props: any) => {
             return data?._id
         }
         );
-
-        console.log('ordersData: ', ordersData);
         props.setSelectedLoginIdCp(ordersData)
 
     }, [props.selectedCp]);
@@ -70,14 +68,9 @@ const AllocateCPView = (props: any) => {
                 <View style={styles.selectedBox}>
                     {props?.selectedCp?.length > 0 ?
                         <>
-
-
                             {props?.selectedCp?.map((item: any, index: any) => {
-                                console.log('item: ', item._id);
-
                                 /*    var arrayLoginID: any[] = [...props.selectedLoginIdCp];
                                     
-                                    console.log('arrayLoginID: ', arrayLoginID);
                                     arrayLoginID.push(item?._id);
                                     props.setSelectedLoginIdCp(arrayLoginID);  */
 

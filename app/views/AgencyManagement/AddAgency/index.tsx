@@ -59,7 +59,6 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
 
   const registrationData = useSelector((state: any) => state.agencyForm);
   const { response = {}, detail } = useSelector((state: any) => state.agency) || []
-  console.log('response: response', response);
 
   useEffect(() => {
     if (type === "edit") {
@@ -282,7 +281,6 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         backgroundColor: RED_COLOR,
       });
     }
-    // console.log('isError: ', isError);
     return isError;
   };
 

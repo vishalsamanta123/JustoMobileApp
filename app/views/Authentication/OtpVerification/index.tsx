@@ -9,7 +9,6 @@ import { otpVerify, Resendotp } from '../../../Redux/Actions/AuthActions';
 
 const OtpVerificationScreen = ({ navigation, route }: any) => {
   const { type, email } = route?.params || {}
-  console.log('email: ', email);
   const dispatch: any = useDispatch()
   const [otp, setOtp] = useState('');
   // const [email, setEmail,] = useState();
@@ -20,7 +19,6 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
 
   const otpVerifySelector = useSelector((state: any) => state.otpVerifyResponce);
   //const loading = otpVerifySelector.loading
-  //console.log("OtpVerificationScreen -> otpVerifySelector", otpVerifySelector)
 
   useEffect(() => {
     checkverify()
@@ -87,7 +85,6 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
     const params = {
       email: email,
     }
-    //console.log("handleResendOtp -> params", params)
     dispatch(Resendotp(params))
   }
 

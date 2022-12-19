@@ -10,7 +10,6 @@ export const getAllLeadsList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.VISITORLIST, params);
-        console.log('res VISITORLIST: ', res);
         if (res?.data?.status == 200) {
             dispatch({
                 type: VISITOR_LIST,
@@ -61,7 +60,6 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
     }
 };
 export const addVisitor = (params: any) => async (dispatch: any) => {
-    console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.ADD_VISITOR_, params);
@@ -145,11 +143,9 @@ export const getVisitorDetail = (params: any) => async (dispatch: any) => {
     }
 };
 export const getUserVisitList = (params: any) => async (dispatch: any) => {
-    console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_USERVISTLIST, params);
-        console.log('res GET_USERVISTLIST: ', res);
         if (res.data.status === 200) {
             dispatch({
                 type: GET_USERVISIT_LIST,
@@ -174,11 +170,9 @@ export const getUserVisitList = (params: any) => async (dispatch: any) => {
 };
 
 export const closeVisit = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.CLOSE_VISIT, params);
-        console.log('res CLOSE_VISIT: ', res);
         if (res.data.status === 200) {
             dispatch({
                 type: CLOSEVISIT,

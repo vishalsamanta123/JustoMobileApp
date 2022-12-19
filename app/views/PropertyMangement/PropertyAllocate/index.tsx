@@ -9,7 +9,6 @@ import AllocateCP from "./components/AllocateCP";
 
 const AllocatePropertyScreen = ({ navigation, route }: any) => {
   const { id, type } = route?.params || {}
-  console.log('id =====: ', id);
   const { response = {}, list } =
     useSelector((state: any) => state.propertyData) || [];
 
@@ -87,7 +86,6 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
   };
   const handleAddTarget = () => {
     setCPDetails(false);
-    console.log('selectedLoginIdCp: ', selectedLoginIdCp);
     dispatch(
       allocatePropertyToUser({
         user_id: selectedLoginIdCp,

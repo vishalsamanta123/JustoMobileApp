@@ -13,7 +13,6 @@ const AllocateCPScreen = ({ navigation, route }: any) => {
   const { response = {}, list } = useSelector((state: any) => state.SourcingManager) || [];
 
   const [cpList, setCpList] = useState<any>([]);
-  console.log('cpList: ', cpList);
   const dispatch: any = useDispatch();
   const [selectedCp, setSelected] = useState<any>([]);
   const [selectedLoginIdCp, setSelectedLoginIdCp] = useState<any>([]);
@@ -77,7 +76,6 @@ const AllocateCPScreen = ({ navigation, route }: any) => {
   };
   const handleAddTarget = () => {
     setCPDetails(false);
-    console.log('selectedLoginIdCp: ', selectedLoginIdCp);
     dispatch(
       assignCPSM({
         user_id: id,

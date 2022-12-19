@@ -13,8 +13,6 @@ const CatalogueContent = ({navigation,route}: any) => {
   const insets = useSafeAreaInsets();
 
   const datadocuments = route?.params || []
-  console.log("ImageContent -> items", datadocuments)
-
   const handleBackPress = () => {
     navigation.goBack();
   };

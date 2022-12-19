@@ -6,7 +6,6 @@ export const getAllProperty = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYLIST, params);
-        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_LIST,
@@ -61,11 +60,9 @@ export const getAllPropertyCompetitor = (params: any) => async (dispatch: any) =
     }
 };
 export const getFilterProperty = (params: any) => async (dispatch: any) => {
-console.log('params: IN FILTER PROPERTY', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYFILTER, params);
-        console.log('res: FOR FILTERED PROPERTY', res);
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_LIST,
@@ -141,10 +138,8 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
 };
 export const getManagerList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
-    console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYALLOCATELIST, params);
-        console.log('res: IN MAnAGERS', res);
         if (res.data.status == 200) {
             dispatch({
                 type: SOURCING_MANAGER_LIST,
@@ -167,11 +162,9 @@ export const getManagerList = (params: any) => async (dispatch: any) => {
     }
 };
 export const allocatePropertyToUser = (params: any) => async (dispatch: any) => {
-    console.log('params: ', params);
     dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.ALLOCATEPROPERTYTOUSER, params);
-        console.log('res: IN ALLOCATE', res);
         if (res?.data?.status == 200) {
             dispatch({
                 type: ALLOCATE_PROPERTY_TO_USER,

@@ -96,6 +96,7 @@ const BookingScreen = ({ navigation, route }: any) => {
             }
             newFormdata.append("lead_id", bookingData.lead_id)
             newFormdata.append("customer_id", bookingData.customer_id)
+            newFormdata.append("property_id", bookingData.property_id)
             newFormdata.append("coniguration", bookingData.coniguration)
             newFormdata.append("coniguration_id", bookingData.coniguration_id)
             newFormdata.append("quantity", bookingData.quantity)

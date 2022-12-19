@@ -282,14 +282,11 @@ const AuthLoadingComponent = () => {
       const data = await axios
         .get("https://itinformatix.org:3044/api/token/jwtToken", options)
         .then((res) => {
-          console.log("res", res.data);
           return res.data;
         })
         .catch((e) => {
-          console.log("e", e);
         });
       // const { data } = await apiCall("GET", apiEndPoints.JWTTOKEN, null);
-      console.log("data", data);
       if (data?.status === 200) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);
@@ -300,7 +297,6 @@ const AuthLoadingComponent = () => {
         });
       }
     } catch (error) {
-      // console.log(error);
     }
   }
   useEffect(() => {

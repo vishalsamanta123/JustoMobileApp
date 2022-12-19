@@ -9,7 +9,6 @@ import { AddBooking } from 'app/Redux/Actions/AppointmentCLAction'
 const AppointmentDetails = ({ navigation, route }: any) => {
   const data = route?.params || {}
   const [BookingData, setBookingData] = useState({})
-  // console.log('BookingData: ', BookingData);
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
   // useFocusEffect(

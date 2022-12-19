@@ -13,7 +13,6 @@ import { useSelector } from "react-redux";
 const BookingDetailsView = (props: any) => {
     const { response = {}, detail = "" } = useSelector(
         (state: any) => state.booking)
-    console.log('response: ', response?.data);
     return (
         <View style={styles.mainContainer}>
             <Header

@@ -15,11 +15,9 @@ import {
 } from "../types";
 
 export const getAllFollowUpList = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
   dispatch({ type: START_LOADING });
   try {
     const res = await apiCall("post", apiEndPoints.GET_FOLLOWUP_LIST, params);
-    console.log("resGET_FOLLOWUP_LIST: ", res);
     if (res.data.status == 200) {
       dispatch({
         type: GET_FOLLOWUP_LIST,
@@ -48,7 +46,6 @@ export const getAllFollowUpDetails = (params: any) => async (dispatch: any) => {
       apiEndPoints.GET_FOLLOWUP_DETAILS,
       params
     );
-    console.log("res GET_FOLLOWUP_DETAILS: ", res);
     if (res.data.status == 200) {
       dispatch({
         type: FOLLOWUP_DETAILS,
@@ -61,7 +58,6 @@ export const getAllFollowUpDetails = (params: any) => async (dispatch: any) => {
       });
     }
   } catch (e) {
-    console.log("e: ", e);
     dispatch({
       type: FOLLOWUP_DETAILS_ERROR,
       payload: console.log(e),
@@ -71,11 +67,9 @@ export const getAllFollowUpDetails = (params: any) => async (dispatch: any) => {
   }
 };
 export const updateFollowUp = (params: any) => async (dispatch: any) => {
-  console.log("params: ", params);
   dispatch({ type: START_LOADING });
   try {
     const res = await apiCall("post", apiEndPoints.UPDATE_FOLLOWUP, params);
-    console.log("res UPDATE_FOLLOWUP ===: ", res);
     if (res.data.status == 200) {
       dispatch({
         type: UPDATE_FOLLOWUP,
@@ -88,7 +82,6 @@ export const updateFollowUp = (params: any) => async (dispatch: any) => {
       });
     }
   } catch (e) {
-    console.log("e: ", e);
     dispatch({
       type: UPDATE_FOLLOWUP_ERROR,
       payload: console.log(e),
@@ -98,11 +91,9 @@ export const updateFollowUp = (params: any) => async (dispatch: any) => {
   }
 };
 export const addFollowUp = (params: any) => async (dispatch: any) => {
-  console.log("params: ", params);
   dispatch({ type: START_LOADING });
   try {
     const res = await apiCall("post", apiEndPoints.ADD_FOLLOWUP, params);
-    console.log("res ADD_FOLLOWUP ===: ", res);
     if (res.data.status == 200) {
       dispatch({
         type: ADD_FOLLOWUP,
@@ -115,7 +106,6 @@ export const addFollowUp = (params: any) => async (dispatch: any) => {
       });
     }
   } catch (e) {
-    console.log("e: ", e);
     dispatch({
       type: ADD_FOLLOWUP_ERROR,
       payload: console.log(e),

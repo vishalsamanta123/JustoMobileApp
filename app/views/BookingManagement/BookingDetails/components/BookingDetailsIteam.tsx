@@ -7,7 +7,6 @@ import strings from '../../../../components/utilities/Localization'
 
 const BookingDetailsItem = (props: any) => {
     const item = props?.item[0] || {}
-    console.log('item: ', item);
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>

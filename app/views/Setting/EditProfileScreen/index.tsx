@@ -29,13 +29,10 @@ import { useFocusEffect } from "@react-navigation/native";
 const EditProfileScreen = ({ navigation, route }: any) => {
   const allDetails = route?.params;
   const dispatch: any = useDispatch();
-  console.log('allDetails:  ======', allDetails?.allDetails);
 
   const { response = {}, update = "" } = useSelector(
     (state: any) => state.settingData
     );
-    console.log('response: ', response);
- 
   const agentdetail  = useSelector(
     (state: any) => state.addAgentForm
     );
@@ -54,10 +51,7 @@ const EditProfileScreen = ({ navigation, route }: any) => {
 
   const getDetail = async () => {
     const userData: any = await AsyncStorage.getItem("loginData");
-    console.log('userData: ', userData);
     if (JSON.parse(userData).data._id) {
-    console.log('JSON.parse(userData).data._id: ', JSON.parse(userData).data._id);
-      // setIsloading(true);
       dispatch(
         getAgentDetail({
           user_id: JSON.parse(userData).data?._id,
@@ -73,7 +67,6 @@ const EditProfileScreen = ({ navigation, route }: any) => {
   // }
 
   const handleResponse=()=>{
-    console.log('agentdetail: ', agentdetail);
     if (update) {
       ErrorMessage({
         msg: response.message,
@@ -84,7 +77,6 @@ const EditProfileScreen = ({ navigation, route }: any) => {
   }
   
   const handleNextPress = async () => {
-    console.log('editData: DDDDDDD ', editData);
     const formData: any = new FormData();
     formData.append("user_id", editData?._id);
     // formData.append("agent_name", editData?.agent_name);

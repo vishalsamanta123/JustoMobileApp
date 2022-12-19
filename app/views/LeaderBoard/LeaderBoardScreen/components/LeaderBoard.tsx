@@ -24,8 +24,7 @@ const LeaderBoardView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
                 barStyle={'light-content'}
             />
-            <ComingSoonScreen />
-            {/* <View style={styles.topItemsVw}>
+            <View style={styles.topItemsVw}>
                 <InputField
                     placeholderText={'Search Project Name'}
                     handleInputBtnPress={() => { }}
@@ -51,7 +50,7 @@ const LeaderBoardView = (props: any) => {
                         )
                     }}
                 />
-            </View> */}
+            </View>
         </View>
     )
 }

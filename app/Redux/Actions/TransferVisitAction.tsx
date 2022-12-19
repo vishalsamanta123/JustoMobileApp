@@ -4,10 +4,8 @@ import { GET_CP_ACTIVE_LEAD, GET_CP_ACTIVE_LEAD_ERROR, REMOVE_TRANSFER_VISIT_DAT
 
 export const transferVisitList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
-    console.log('params: transferVisitList', params);
     try {
         const res = await apiCall("post", apiEndPoints.TRANSFER_VISIT, params);
-        console.log('res: IN TRANSFER_VISIT', res);
         if (res.data.status == 200) {
             dispatch({
                 type: TRANSFER_VISIT_DATA,
@@ -46,10 +44,8 @@ export const removeTransferVisit = () => async (dispatch: any) => {
 
 export const getCpActiveLead = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
-    console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.GET_CP_ACTIVE_LEAD, params);
-        console.log('res: IN GET_CP_ACTIVE_LEAD', res);
         if (res.data.status == 200) {
             dispatch({
                 type: GET_CP_ACTIVE_LEAD,

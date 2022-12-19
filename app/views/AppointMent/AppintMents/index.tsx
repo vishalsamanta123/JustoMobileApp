@@ -67,7 +67,6 @@ const AppointmentsScreen = ({ navigation }: any) => {
     const [appointmentList, setAppointmentList] = useState<any>([])
     const [ClosingMList, setClosingMList] = useState<any>([])
     const [allocatedCM, setAllocatedCM] = useState({})
-    console.log('allocatedCM: ', allocatedCM);
     const [offSET, setOffset] = useState(0)
     const dispatch: any = useDispatch()
     const { response = {}, list = '' } = useSelector((state: any) => state.appointment)

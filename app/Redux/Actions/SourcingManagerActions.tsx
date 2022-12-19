@@ -7,7 +7,6 @@ export const getSourcingManagerList = () => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_SOURCING_MANAGER_LIST, {});
-        console.log('res GET_SOURCING_MANAGER_LIST: ', res);
         if (res?.data?.status === 200) {
             dispatch({
                 type: GET_SOURCINGMANAGER_LIST,
@@ -22,7 +21,6 @@ export const getSourcingManagerList = () => async (dispatch: any) => {
         }
     }
     catch (e) {
-        console.log('e: ', e);
         dispatch({
             type: GET_SOURCINGMANAGER_LIST_ERROR,
             payload: console.log(e),
@@ -50,7 +48,6 @@ export const getSourcingManagerDetail = (parma: any) => async (dispatch: any) =>
         }
     }
     catch (e) {
-        console.log('e: ', e);
         dispatch({
             type: GET_SOURCINGMANAGER_DETAIL_ERROR,
             payload: console.log(e),
@@ -61,13 +58,10 @@ export const getSourcingManagerDetail = (parma: any) => async (dispatch: any) =>
     }
 }
 export const getAssignCPList = (parma: any) => async (dispatch: any) => {
-    console.log('parma: ', parma);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_ASSIGNCP_LIST, parma);
-        // console.log('res GET_ASSIGNCP_LIST: ', res);
         if (res?.data?.status === 200) {
-            console.log('res.data: ', res.data);
             dispatch({
                 type: GET_ASSIGNCP_LIST,
                 payload: res.data
@@ -81,7 +75,6 @@ export const getAssignCPList = (parma: any) => async (dispatch: any) => {
         }
     }
     catch (e) {
-        console.log('e: ', e);
         dispatch({
             type: GET_ASSIGNCP_LIST_ERROR,
             payload: console.log(e),
@@ -92,13 +85,10 @@ export const getAssignCPList = (parma: any) => async (dispatch: any) => {
     }
 }
 export const assignCPSM = (parma: any) => async (dispatch: any) => {
-    console.log('parma: ', parma);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.ASSIGNCP_SM, parma);
-        console.log('res ASSIGNCP_SM: ', res);
         if (res?.data?.status === 200) {
-            console.log('res.data: ', res.data);
             dispatch({
                 type: ASSIGNCP_SM,
                 payload: res.data
@@ -112,7 +102,6 @@ export const assignCPSM = (parma: any) => async (dispatch: any) => {
         }
     }
     catch (e) {
-        console.log('e: ', e);
         dispatch({
             type: ASSIGNCP_SM_ERROR,
             payload: console.log(e),
@@ -123,11 +112,9 @@ export const assignCPSM = (parma: any) => async (dispatch: any) => {
     }
 }
 export const updateAssignCP = (parma: any) => async (dispatch: any) => {
-    console.log('parma: ', parma);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.STATUS_UPDATE_ASSIGN_CP, parma);
-        console.log('res ASSIGNCP_SM: ', res);
         if (res?.data?.status === 200) {
             dispatch({
                 type: UPDATE_ASSIGN_CP_STATUS,
@@ -142,7 +129,6 @@ export const updateAssignCP = (parma: any) => async (dispatch: any) => {
         }
     }
     catch (e) {
-        console.log('e: ', e);
         dispatch({
             type: ASSIGNCP_SM_ERROR,
             payload: console.log(e),
