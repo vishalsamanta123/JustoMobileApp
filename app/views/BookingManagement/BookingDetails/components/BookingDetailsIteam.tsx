@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Linking } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import Button from '../../../../components/Button'
@@ -12,19 +12,37 @@ const BookingDetailsItem = (props: any) => {
             <View style={styles.topDetailsView}>
                 <View style={styles.topTxtView}>
                     <Text style={styles.topTxt}>Visitor Score </Text>
-                    <Text style={styles.topTxt}>{item?.leads?.lead_score}</Text>
+                    <Text style={styles.topTxt}>{item?.lead_score}</Text>
                 </View>
                 <View style={styles.topBtnView}>
                     <TouchableOpacity
-                        style={styles.button} >
+                        style={styles.button}
+                        onPress={() => {
+                            Linking?.openURL(
+                                `tel:${item?.leads?.customer?.mobile}`
+                            )
+                        }}
+                    >
                         <Text style={styles.buttonTxt}>Call</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={styles.button} >
+                        style={styles.button}
+                        onPress={() => {
+                            Linking?.openURL(
+                                `sms:${item?.leads?.customer?.mobile}`
+                            )
+                        }}
+                    >
                         <Text style={styles.buttonTxt}>SMS</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={styles.button} >
+                        style={styles.button}
+                        onPress={() => {
+                            Linking?.openURL(
+                                `https:wa.me/${item?.leads?.customer?.whatsapp_no}`
+                            )
+                        }}
+                    >
                         <Text style={[styles.buttonTxt, { fontSize: normalize(10) }]}>WhatsApp</Text>
                     </TouchableOpacity>
                 </View>
@@ -36,7 +54,7 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.leads?.customer?.configuration}</Text>
+                        <Text style={styles.nameTxt}>{item?.coniguration}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -45,7 +63,7 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.leads?.customer?.area}</Text>
+                        <Text style={styles.nameTxt}>{item?.leads?.customer?.areain_sqlft}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -98,7 +116,7 @@ const BookingDetailsItem = (props: any) => {
                     <Text style={styles.nameTxt}>{item?.creaters?.user_name}</Text>
                 </View>
             </View>
-            <View style={styles.Txtview}>
+            {/* <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
                     <Text style={styles.projectTxt}>Closing Date</Text>
                 </View>
@@ -106,7 +124,7 @@ const BookingDetailsItem = (props: any) => {
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>nullll</Text>
                 </View>
-            </View>
+            </View> */}
             <>
                 <View style={styles.headdingView}>
                     <Text style={styles.headdingTxt}>{strings.bookingDetails}</Text>
@@ -135,7 +153,7 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>nulllll</Text>
+                        <Text style={styles.nameTxt}></Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -145,8 +163,8 @@ const BookingDetailsItem = (props: any) => {
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
                         <Text style={styles.nameTxt}>{
-                            item?.payment_type === 1 ? 'Cash' :
-                                item?.payment_type === 2 ? 'cheque' : 'upi/online'
+                            item?.payment_type === "1" ? 'Cash' :
+                                item?.payment_type === "2" ? 'cheque' : 'upi/online'
                         }</Text>
                     </View>
                 </View>
@@ -156,7 +174,9 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{'nullllll'}</Text>
+                        <Text style={styles.nameTxt}>
+                            {item?.coniguration || item?.quantity &&
+                                `${item?.coniguration} / ${item?.quantity}`}</Text>
                     </View>
                 </View>
             </>

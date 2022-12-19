@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Linking } from 'react-native';
 import React from 'react';
 import styles from './styles';
 import strings from '../../../../components/utilities/Localization';
@@ -34,32 +34,37 @@ const BookingListItem = (props: any) => {
                     <Text style={styles.nameTxt}>{props.items.booking_status}</Text>
                 </View>
             </View>
-            <View style={styles.Txtview} >
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Configuration :</Text>
-                </View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.configuration}</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Budget :</Text>
-                </View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{
-                        `${props.items.min_budget}${props.items.min_budget_type} - ${props.items.max_budget}${props.items.max_budget_type}`
-                    }</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview} >
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Booking Amount :</Text>
-                </View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.booking_amount}</Text>
-                </View>
-            </View>
+            {(props.type === 'request' ?
+                <>
+                    <View style={styles.Txtview} >
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Configuration :</Text>
+                        </View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{props.items.configuration}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Budget :</Text>
+                        </View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{
+                                `${props.items.min_budget}${props.items.min_budget_type} - ${props.items.max_budget}${props.items.max_budget_type}`
+                            }</Text>
+                        </View>
+                    </View>
+                    <View style={styles.Txtview} >
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Booking Amount :</Text>
+                        </View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{props.items.booking_amount}</Text>
+                        </View>
+                    </View>
+                </>
+                : null
+            )}
             <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
                 <View style={styles.projectContainer}>
                     <Text style={styles.projectTxt}>Status :</Text>
@@ -83,6 +88,11 @@ const BookingListItem = (props: any) => {
                     buttonText={strings.call}
                     btnTxtsize={14}
                     border={10}
+                    handleBtnPress={() => {
+                        Linking?.openURL(
+                            `tel:${props.items?.mobile}`
+                        )
+                    }}
                 />
                 <TouchableOpacity style={styles.Viewbutton}
                     onPress={() => props.onPressView(props.items)}

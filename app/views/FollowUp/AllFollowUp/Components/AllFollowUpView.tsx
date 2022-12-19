@@ -13,7 +13,6 @@ import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen'
 
 const AllFollowUpView = (props: any) => {
   const { response = {}, list = '' } = useSelector((state: any) => state.followUp)
-  const insets = useSafeAreaInsets();
   return (
     <View style={styles.mainConatiner}>
       <Header
@@ -35,6 +34,8 @@ const AllFollowUpView = (props: any) => {
               props.getFollowupList(props?.allFollowUpList?.length > 4 ? props.offSET + 1 : 0, props?.allFollowUpList)
             }
           }}
+          onRefresh={() => props.getFollowupList(0, [])}
+          refreshing={false}
         />
       </View>
     </View>
