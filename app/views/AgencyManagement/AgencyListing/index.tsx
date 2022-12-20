@@ -45,11 +45,17 @@ const AgencyListing = ({ navigation }: any) => {
   }, [SmCpList]);
 
   const getAgencyList = (offset: any, filterData: any) => {
+  console.log('filterData: ', filterData);
     setOffset(offset);
     // if (userData?.data?.role_title === 'Sourcing Manager') {
     dispatch(
       getAssignCPList({
         user_id: userData?.data?.user_id,
+        startdate: filterData.startdate,
+        enddate: filterData.enddate,
+        search_by_name: filterData.search_by_name,
+        search_by_location: filterData.search_by_location,
+        status: filterData.status,
       })
     );
   };

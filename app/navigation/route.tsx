@@ -86,10 +86,12 @@ import PropertyChat from "app/views/ChatManagement/PropertyChat";
 import ChatScreen from "app/views/ChatManagement/PropertyChat/components/ChatScreen";
 import Notification from "app/views/Setting/Notification";
 import DeactiveAgencyScreen from "app/views/AgencyManagement/DeactiveAgency";
+import auth from "@react-native-firebase/auth";
+import { updateFirebase } from "app/Redux/Actions/FirebaseActions";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
-const AuthStack = createNativeStackNavigator(); 
+const AuthStack = createNativeStackNavigator();
 const AuthLoading = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const screenOptions = { headerShown: false, gestureEnabled: true };
@@ -257,15 +259,39 @@ const AuthLoadingComponent = () => {
   const { response, authToken = false } = useSelector(
     (state: any) => state.login
   );
+  const firebaseData = useSelector((state: any) => state.firebaseData);
+  const dispatch: any = useDispatch();
   useEffect(() => {
     checklogin();
   }, [response]);
 
   const checklogin = async () => {
     if (response && authToken) {
+    console.log('response: IN LOGIN ', response);
       if (response.status === 200) {
-        await setDefaultHeader("token", response.token);
-        await AsyncStorage.setItem("loginData", JSON.stringify(response));
+        if (
+          typeof response?.data?.firebase_id === "undefined"
+        ) {
+          auth()
+            .createUserWithEmailAndPassword(response?.data?.email, "123456")
+            .then(async (res) => {
+              console.log("res: ", res.user.uid);
+              console.log("User account created & signed in!");
+              await setDefaultHeader("token", response.token);
+              await AsyncStorage.setItem("loginData", JSON.stringify(response));
+              dispatch(updateFirebase({ firebase_id: res.user.uid }));
+              // checklogin()
+            });
+        } else {
+          auth()
+            .signInWithEmailAndPassword(response?.data?.email, "123456")
+            .then(async (res) => {
+              console.log("res: ", res.user.uid);
+              console.log("User signed in!");
+              await setDefaultHeader("token", response.token);
+              await AsyncStorage.setItem("loginData", JSON.stringify(response));
+            });
+        }
       } else {
         ErrorMessage({
           msg: response?.message,
@@ -282,11 +308,14 @@ const AuthLoadingComponent = () => {
       const data = await axios
         .get("https://itinformatix.org:3044/api/token/jwtToken", options)
         .then((res) => {
+          console.log("res", res.data);
           return res.data;
         })
         .catch((e) => {
+          console.log("e", e);
         });
       // const { data } = await apiCall("GET", apiEndPoints.JWTTOKEN, null);
+      console.log("data", data);
       if (data?.status === 200) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);
@@ -297,6 +326,7 @@ const AuthLoadingComponent = () => {
         });
       }
     } catch (error) {
+      // console.log(error);
     }
   }
   useEffect(() => {
@@ -306,8 +336,10 @@ const AuthLoadingComponent = () => {
       response?.status == 401 ||
       response?.status == 400
     ) {
+      console.log("TOKEN GENERATE");
       tokenGenrate();
     } else {
+      console.log("SET DEFAULT");
       setDefaultHeader("token", response?.token);
     }
   }, [response]);
