@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import BookingListView from './components/BookingList'
 
 const BookingListScreen = ({ navigation, route }: any) => {
-  const { type='' } = route?.params || {}
+  const { type = '' } = route?.params || {}
   console.log('type: ', type);
   const [BookingList, setBookingList] = useState<any>([]);
   const [offSET, setOffset] = useState(0);
@@ -24,11 +24,13 @@ const BookingListScreen = ({ navigation, route }: any) => {
     }, [navigation, list, type])
   );
   useEffect(() => {
-    if (list) {
-      if (offSET == 0 || offSET == undefined) {
-        setBookingList(response?.data);
-      } else {
-        setBookingList([...BookingList, ...response?.data]);
+    if (response?.status === 200) {
+      if (response?.data?.length > 0) {
+        if (offSET == 0 || offSET == undefined) {
+          setBookingList(response?.data);
+        } else {
+          setBookingList([...BookingList, ...response?.data]);
+        }
       }
     }
   }, [response]);
@@ -39,7 +41,7 @@ const BookingListScreen = ({ navigation, route }: any) => {
       getBookingList({
         offset: offset,
         limit: 3,
-        booking_status: type === 'readyToBook' ?  1 : 2
+        booking_status: type === 'readyToBook' ? 1 : 2
       })
     );
     // toGetDatas(array)
