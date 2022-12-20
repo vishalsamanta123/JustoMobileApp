@@ -86,10 +86,12 @@ import PropertyChat from "app/views/ChatManagement/PropertyChat";
 import ChatScreen from "app/views/ChatManagement/PropertyChat/components/ChatScreen";
 import Notification from "app/views/Setting/Notification";
 import DeactiveAgencyScreen from "app/views/AgencyManagement/DeactiveAgency";
+import auth from "@react-native-firebase/auth";
+
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
-const AuthStack = createNativeStackNavigator(); 
+const AuthStack = createNativeStackNavigator();
 const AuthLoading = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const screenOptions = { headerShown: false, gestureEnabled: true };
@@ -264,6 +266,13 @@ const AuthLoadingComponent = () => {
   const checklogin = async () => {
     if (response && authToken) {
       if (response.status === 200) {
+        console.log("response: IN LOGIN ", response);
+        auth()
+          .signInWithEmailAndPassword(response?.data?.email, '123456')
+          .then((res: any) => {
+            console.log(res);
+            console.log("User logged-in successfully!", res);
+          });
         await setDefaultHeader("token", response.token);
         await AsyncStorage.setItem("loginData", JSON.stringify(response));
       } else {
