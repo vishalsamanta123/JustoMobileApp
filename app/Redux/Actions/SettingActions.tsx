@@ -35,6 +35,7 @@ export const updateUserSettingData =
   };
 
 export const userRegister = (item: any) => async (dispatch: any) => {
+console.log('item: ', item);
   dispatch({ type: START_LOADING });
   try {
     const header = {

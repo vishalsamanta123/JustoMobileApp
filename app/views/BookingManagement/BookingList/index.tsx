@@ -1,8 +1,6 @@
 import { useFocusEffect } from "@react-navigation/native";
 import { getBookingList } from "app/Redux/Actions/BookingActions";
-import { getAllFollowUpList } from "app/Redux/Actions/FollowUpActions";
 import React, { useEffect, useState } from "react";
-import { Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import BookingListView from './components/BookingList'
 
@@ -44,7 +42,6 @@ const BookingListScreen = ({ navigation, route }: any) => {
         booking_status: type === 'readyToBook' ? 1 : 2
       })
     );
-    // toGetDatas(array)
   };
   const handleDrawerPress = () => {
     navigation.toggleDrawer()

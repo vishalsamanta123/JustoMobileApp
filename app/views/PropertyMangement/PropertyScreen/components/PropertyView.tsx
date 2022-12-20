@@ -53,10 +53,10 @@ const PropertyView = (props: any) => {
       } else {
         setPropertyList([]);
         //errorToast(response.message);
-        ErrorMessage({
-          msg: response.message,
-          backgroundColor: RED_COLOR
-        })
+        // ErrorMessage({
+        //   msg: response.message,
+        //   backgroundColor: RED_COLOR
+        // })
       }
      }
     }

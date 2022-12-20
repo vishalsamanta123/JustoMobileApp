@@ -6,6 +6,7 @@ export const getAllProperty = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYLIST, params);
+        console.log('res PROPERTYLIST: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_LIST,

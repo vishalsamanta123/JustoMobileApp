@@ -37,7 +37,7 @@ const AppointmentDetailsView = (props: any) => {
                 />
             </View>
             <View style={styles.bntView}>
-                {response?.data[0]?.status !== 5 &&
+                {response?.data[0]?.status !== 5 && response?.data[0]?.status !== 4 && response?.data[0]?.status !== 3 ?
                     <>
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <Button
@@ -69,6 +69,7 @@ const AppointmentDetailsView = (props: any) => {
                             />
                         </View>
                     </>
+                    : null
                 }
             </View>
             <ReadyToBookModal

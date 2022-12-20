@@ -4,8 +4,10 @@ import styles from './styles'
 import Button from '../../../../components/Button'
 import { normalize } from '../../../../components/scaleFontSize'
 import strings from '../../../../components/utilities/Localization'
+import { BLACK_COLOR } from 'app/components/utilities/constant'
 
 const BookingDetailsItem = (props: any) => {
+    console.log('props: ', props);
     const item = props?.item[0] || {}
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -81,11 +83,15 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{
-                            item?.booking_status === 1 ? 'Pending' :
-                                item?.booking_status === 2 ? 'Confirm' :
-                                    item?.booking_status === 3 ? 'Completed' : 'Booking Cancel'
-                        }</Text>
+                        {/* booking_status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 =booking cancel} */}
+                        <Text style={[styles.nameTxt, {
+                            color: item?.booking_status === 1 || item?.booking_status === 4 ? 'red' : BLACK_COLOR
+                        }]}>{
+                                item?.booking_status === 1 ? 'Pending' :
+                                    item?.booking_status === 2 ? 'Confirm' :
+                                        item?.booking_status === 3 ? 'Completed' :
+                                            item?.booking_status === 4 && 'Booking Cancel'
+                            }</Text>
                     </View>
                 </View>
             </>
@@ -125,61 +131,64 @@ const BookingDetailsItem = (props: any) => {
                     <Text style={styles.nameTxt}>nullll</Text>
                 </View>
             </View> */}
-            <>
-                <View style={styles.headdingView}>
-                    <Text style={styles.headdingTxt}>{strings.bookingDetails}</Text>
-                </View>
-                <View style={styles.Txtview}>
-                    <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Booking Amount</Text>
+            {props?.type !== 'readyToBook' ? (
+                <>
+                    <View style={styles.headdingView}>
+                        <Text style={styles.headdingTxt}>{strings.bookingDetails}</Text>
                     </View>
-                    <View><Text>:</Text></View>
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.booking_amount}</Text>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Booking Amount</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{item?.booking_amount}</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.Txtview}>
-                    <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Cheque No.</Text>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Cheque No.</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{item?.tranjection_upi_cheque_number}</Text>
+                        </View>
                     </View>
-                    <View><Text>:</Text></View>
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.tranjection_upi_cheque_number}</Text>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Cheque Status</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}></Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.Txtview}>
-                    <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Cheque Status</Text>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Payment Type</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{
+                                item?.payment_type === "1" ? 'Cash' :
+                                    item?.payment_type === "2" ? 'cheque' : 'upi/online'
+                            }</Text>
+                        </View>
                     </View>
-                    <View><Text>:</Text></View>
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}></Text>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Configuration Qty</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>
+                                {item?.coniguration && item?.quantity ?
+                                    `${item?.coniguration} / ${item?.quantity}` : null}</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.Txtview}>
-                    <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Payment Type</Text>
-                    </View>
-                    <View><Text>:</Text></View>
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{
-                            item?.payment_type === "1" ? 'Cash' :
-                                item?.payment_type === "2" ? 'cheque' : 'upi/online'
-                        }</Text>
-                    </View>
-                </View>
-                <View style={styles.Txtview}>
-                    <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Configuration Qty</Text>
-                    </View>
-                    <View><Text>:</Text></View>
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>
-                            {item?.coniguration || item?.quantity &&
-                                `${item?.coniguration} / ${item?.quantity}`}</Text>
-                    </View>
-                </View>
-            </>
+                </>)
+                : null
+            }
         </ScrollView>
     )
 }
