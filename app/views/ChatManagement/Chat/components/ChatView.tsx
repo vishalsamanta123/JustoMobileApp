@@ -13,14 +13,12 @@ import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 
 const ChatViewView = (props: any) => {
   const { DATA } = props;
-  console.log("DATA: ", DATA);
   const [filteredData, setFilteredData] = useState(DATA);
   const navigation: any = useNavigation();
   const handleChatPress = (item: any) => {
     navigation.navigate("PropertyChat", item);
   };
   const handleChangeText = (val: any) => {
-    console.log("val: ", val);
     const final = DATA?.filter(function (el: any) {
       const name = `${el.property}`;
       return name?.toLowerCase().indexOf(val.toLowerCase()) > -1;
@@ -28,10 +26,8 @@ const ChatViewView = (props: any) => {
     setFilteredData(final);
   };
   const onSubmit = (val: any) => {
-    console.log("onSubmit");
   };
   const renderPropertyList = (item: any) => {
-    console.log("item: ", item);
     return (
       <TouchableOpacity
         onPress={() => handleChatPress(item)}

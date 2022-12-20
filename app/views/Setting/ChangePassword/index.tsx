@@ -10,7 +10,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CHANGEPASSWORD_NULL } from "app/Redux/types";
 
 const ChangePasswordScreen = ({ navigation, route }: any) => {
-console.log('route: ', route);
   const dispatch: any = useDispatch();
   const [passwordData, setPasswordData] = useState({
     oldPassword: "",
@@ -20,13 +19,11 @@ console.log('route: ', route);
   const [isVisibleOldPassword, setIsVisibleOldPassword] = useState(true);
   const [isVisibleNewPassword, setIsVisibleNewPassword] = useState(true);
   const [isVisibleCnfmPassword, setIsVisibleCnfmPassword] = useState(true);
-  console.log('passwordData: ', passwordData);
  
   const [email, setEmail] = useState("");
   const { response = {}, changepassword = false } = useSelector(
     (state: any) => state.changePasswordResponse
     );
-    console.log('response: in CHANGE PASSWORD ', response);
 
   useEffect(() => {
     if(changepassword === true){
@@ -63,7 +60,6 @@ console.log('route: ', route);
     navigation.goBack();
   };
   const validation = () => {
-    console.log('VALIDATIOB')
     let isError = true;
     let errorMessage: any = "";
 
@@ -93,10 +89,7 @@ console.log('route: ', route);
   };
 
   const handleChangePress = () => {
-    console.log('CHANGE PRESS')
     if (validation()) {
-      console.log("VALIDATED");
-      // console.log('email: ', email);
 
       const params = {
         old_password: passwordData.oldPassword,

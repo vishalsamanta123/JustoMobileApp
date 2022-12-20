@@ -8,7 +8,6 @@ import FollowUpAddView from './components/FollowUpAdd'
 
 const FollowUpAddScreen = ({ navigation, route }: any) => {
     const followUpId = route?.params || {}
-    console.log('followUpId: ', followUpId);
     const [value, setValue] = useState(null)
     const [masterDatas, setMasterDatas] = useState<any>([])
     const [formData, setFormData] = useState({
@@ -20,7 +19,6 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
         followup_time: '',
         followup_for:  2
     })
-    console.log('formData: ', formData);
     const DATA: any = [
         {
             followupBy: 'ABC',

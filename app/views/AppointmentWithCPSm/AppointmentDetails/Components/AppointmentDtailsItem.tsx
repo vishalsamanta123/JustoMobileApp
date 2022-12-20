@@ -5,7 +5,6 @@ import moment from 'moment'
 
 const AppointmentDtailsItem = (props : any) => {
   const appdetail = props?.status || {}
-  console.log('appdetail: ', appdetail);
   return (
     <ScrollView>
       <View style={styles.Txtview}>

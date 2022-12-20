@@ -10,10 +10,8 @@ import strings from 'app/components/utilities/Localization'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { data, type } = route?.params || {}
-  console.log('data: ', data);
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorData)
-  // console.log('response: ', response);
   const addAppointmentData = useSelector((state: any) => state.appointment)
   const [visitorList, setVisiitorList] = useState<any>([])
   useEffect(() => {

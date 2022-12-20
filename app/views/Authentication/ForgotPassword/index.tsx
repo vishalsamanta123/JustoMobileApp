@@ -19,7 +19,6 @@ const ForgotPassword = ({navigation}: any) => {
 
   const checklogin = async () => {
       if (forgotSelector.response && forgotSelector.forgot) {
-        // console.log("checklogin -> forgotSelector.response.status", forgotSelector.response.status)
         if (forgotSelector.response.status === 200) {
               dispatch({
                 type: FORGOT_NULL,

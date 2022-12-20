@@ -14,11 +14,9 @@ export const userLogin = (loginDetail: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.LOGIN, loginDetail);
-        console.log('res: ', res?.data);
         if (res.data.status === 200) {
             await AsyncStorage.setItem("AuthToken", res?.data?.token);
             await AsyncStorage.setItem("userData", JSON.stringify(res?.data?.data));
-            console.log('res?.data: ', res?.data);
             dispatch({
                 type: USER_LOGIN,
                 payload: res.data
@@ -162,7 +160,6 @@ export const changePassword = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.CHANGEPASSWORD, params);
-        console.log('res ====: ', res);
         if (res.data.status === 200) {
             /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
             dispatch({
@@ -213,7 +210,6 @@ export const userLogout = () => async (dispatch: any) => {
 export const jwtTokenGenrate = () => async (dispatch: any) => {
     try {
         const res = await apiCall("get", apiEndPoints.JWTTOKEN, {});
-        console.log('res TKEN API: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: TOKEN_GENRATE,

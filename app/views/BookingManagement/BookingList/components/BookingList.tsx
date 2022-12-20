@@ -12,18 +12,31 @@ const BookingListView = (props: any) => {
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.menu}
-                headerText={strings.bookingListHeader}
+                headerText={props?.type === 'readyToBook' ? strings.readytoBookHeader : strings.bookingRequestHead}
                 handleOnLeftIconPress={props.handleDrawerPress}
                 headerStyle={styles.headerStyle}
             />
             <View style={styles.listView}>
                 <FlatList
-                    data={props.DATA}
+                    data={Array.isArray(props.DATA) ? props.DATA : []}
                     showsVerticalScrollIndicator={false}
-                    ListEmptyComponent={<EmptyListScreen message={strings.bookingListHeader} />}
-                    renderItem={({ item }) => <BookingListItem items={item}
+                    ListEmptyComponent={<EmptyListScreen message={props?.type === 'readyToBook' ? strings.readytoBookHeader : strings.bookingRequestHead} />}
+                    renderItem={({ item }) => <BookingListItem items={item} type={props?.type}
                         onPressView={() => props.handleView(item)}
                     />}
+                    onEndReached={() => {
+                        if (props?.DATA?.length < props?.moreData) {
+                            props.getBookingLits(
+                                props?.DATA?.length > 2 ? props.offSET + 1 : 0,
+                                props?.filterData
+                            );
+                        }
+                    }}
+                    refreshing={false}
+                    onRefresh={() => {
+                        props.getBookingLits(0)
+                        props.setBookingList([])
+                    }}
                 />
             </View>
         </View>

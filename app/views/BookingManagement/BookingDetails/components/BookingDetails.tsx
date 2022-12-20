@@ -9,11 +9,15 @@ import styles from "./styles";
 import BookingDetailsIteam from './BookingDetailsIteam'
 import CancelModal from "./CancelBooking";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 const BookingDetailsView = (props: any) => {
     const { response = {}, detail = "" } = useSelector(
         (state: any) => state.booking)
-    console.log('response: ', response?.data);
+    const navigation: any = useNavigation()
+    const onPressBookNow = () => {
+        navigation.navigate('Booking', { getBookingData: response?.data?.length > 0 ? response?.data[0] : [], type: 'readyToBook' })
+    }
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -30,7 +34,7 @@ const BookingDetailsView = (props: any) => {
                 <BookingDetailsIteam item={response?.data?.length > 0 ? response?.data : []} />
             </View>
             <View style={styles.btnContainer}>
-                <Button
+                {props?.type === 'readyToBook' && (<Button
                     buttonText={strings.Statusupdate}
                     width={150}
                     height={45}
@@ -39,7 +43,7 @@ const BookingDetailsView = (props: any) => {
                     btnTxtsize={12}
                     textTransform={"uppercase"}
                     handleBtnPress={() => props.handleStatusUpdate()}
-                />
+                />)}
                 <Button
                     buttonText={strings.cancelBooking}
                     width={150}
@@ -50,14 +54,24 @@ const BookingDetailsView = (props: any) => {
                     textTransform={"uppercase"}
                     handleBtnPress={() => props.setCancelBookingModel(true)}
                 />
-                <CancelModal
-                    cancelDataPress={props.cancelBookingPress}
-                    Visible={props.cancelBookingModel}
-                    setIsVisible={props.setCancelBookingModel}
-                    cancelValue={props.cancelValue}
-                    setCancelValue={props.setCancelValue}
-                />
             </View>
+            {props?.type === 'readyToBook' && (
+                <View style={styles.btnContainer}>
+                    <Button
+                        buttonText={'Book Now'}
+                        handleBtnPress={() => onPressBookNow()}
+                        width={150}
+                        height={45}
+                    />
+                </View>
+            )}
+            <CancelModal
+                cancelDataPress={props.cancelBookingPress}
+                Visible={props.cancelBookingModel}
+                setIsVisible={props.setCancelBookingModel}
+                cancelValue={props.cancelValue}
+                setCancelValue={props.setCancelValue}
+            />
         </View>
     )
 }

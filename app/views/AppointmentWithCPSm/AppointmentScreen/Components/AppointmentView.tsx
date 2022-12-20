@@ -64,7 +64,6 @@ const AppointmentView = (props: any) => {
 
     );
     const onPressView = (items: any) => {
-        console.log("onPressView -> items", items)
         navigation.navigate('AppointmentDetails', items)
     }
     const onPressEdit = (items: any) => {
@@ -96,7 +95,6 @@ const AppointmentView = (props: any) => {
             refreshing={loadingref}
             onEndReached={() => {
                 if (props.appointmentList?.length < response?.total_data) {
-                    console.log('onEndReached: ');
                     props.getAppointmentList(props.appointmentList?.length > 2 ? props.offSET + 1 : 0, 1)
                 }
             }}
@@ -123,7 +121,6 @@ const AppointmentView = (props: any) => {
             refreshing={loadingref}
             onEndReached={() => {
                 if (props.appointmentList?.length < response?.total_data) {
-                    console.log('onEndReached: ');
                     props.getAppointmentList(props.appointmentList?.length > 2 ? props.offSET + 1 : 0, 2)
                 }
             }}

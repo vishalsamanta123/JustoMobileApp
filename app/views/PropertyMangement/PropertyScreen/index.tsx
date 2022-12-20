@@ -16,7 +16,6 @@ const PropertyScreen = ({ navigation }: any) => {
 
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
   const { response, loading, updateStatus, list } = propertyData;
-  console.log('response: ', response);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -52,8 +51,6 @@ const PropertyScreen = ({ navigation }: any) => {
     }))
   };
   const handleAllocatePress = (item: any) => {
-  console.log('item: ', item);
-    // console.log('item: ', item.property_id);
     // dispatch(getManagerList({
     //   property_id: item._id
     // }))

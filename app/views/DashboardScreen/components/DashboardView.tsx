@@ -9,7 +9,6 @@ import strings from "../../../components/utilities/Localization";
 import { GREEN_COLOR, RED_COLOR, WHITE_COLOR } from "../../../components/utilities/constant";
 
 const DashboardView = (props: any) => {
-  console.log('props?.dashboardData: ', props?.dashboardData);
   const targetData = props?.dashboardData?.target || {}
   const achieveTargetData = props?.dashboardData?.achievetarget || {}
   const insets = useSafeAreaInsets();

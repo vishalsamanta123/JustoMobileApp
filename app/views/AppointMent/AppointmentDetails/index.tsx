@@ -9,7 +9,6 @@ import { AddBooking } from 'app/Redux/Actions/AppointmentCLAction'
 const AppointmentDetails = ({ navigation, route }: any) => {
   const data = route?.params || {}
   const [BookingData, setBookingData] = useState({})
-  // console.log('BookingData: ', BookingData);
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
   // useFocusEffect(
@@ -44,7 +43,7 @@ const AppointmentDetails = ({ navigation, route }: any) => {
     navigation.navigate('VisitorUpdate', data)
   }
   const onPressBookNow = () => {
-    navigation.navigate('Booking', response?.data[0])
+    navigation.navigate('Booking', {getBookingData : response?.data?.length > 0 ?  response?.data[0] : [], type: ''})
   }
   const handleViewFollowUp = (data: any) => {
     navigation.navigate('AllFollowUpScreen', data)
@@ -53,7 +52,7 @@ const AppointmentDetails = ({ navigation, route }: any) => {
     navigation.navigate('AddAppointmentForSite', {item : response?.data[0]})
   }
   const handleBooking = () => {
-    dispatch(AddBooking(BookingData))
+    dispatch(AddBooking({...BookingData, booking_status: 1}))
   }
   return (
     <AppointmentDetailsView

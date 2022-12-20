@@ -13,8 +13,6 @@ const App = () => {
   const [isConnect, setisConnec] = useState<any>(false)
   useEffect(() => {
     const unsubscribe: any = NetInfo.addEventListener(state => {
-      // console.log("Connection type", state.type);
-      console.log("Is connected?", state.isConnected);
       setisConnec(state.isConnected)
       if (!state.isConnected) {
         ErrorMessage({

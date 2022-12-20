@@ -40,11 +40,9 @@ export const addAgentForm = (params: any) => async (dispatch: any) => {
 };
 
 export const getAgentDetail = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
 dispatch({ type: START_LOADING });
     try {
         const res = await apiCall("post", apiEndPoints.GETUSERDETAIL, params);
-        console.log('res: GET_AGENT_DETAIL_', res.data);
         if (res.data.status === 200) {
             dispatch({
                 type: GET_AGENT_DETAIL,
