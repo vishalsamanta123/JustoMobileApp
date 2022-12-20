@@ -31,7 +31,7 @@ const BookingDetailsView = (props: any) => {
                 barStyle={'light-content'}
             />
             <View style={styles.detailsItemView}>
-                <BookingDetailsIteam item={response?.data?.length > 0 ? response?.data : []} />
+                <BookingDetailsIteam item={response?.data?.length > 0 ? response?.data : []} type={props?.type} />
             </View>
             <View style={styles.btnContainer}>
                 {props?.type === 'readyToBook' && (<Button
@@ -60,6 +60,7 @@ const BookingDetailsView = (props: any) => {
                     <Button
                         buttonText={'Book Now'}
                         handleBtnPress={() => onPressBookNow()}
+                        bgcolor={PRIMARY_THEME_COLOR_DARK}
                         width={150}
                         height={45}
                     />

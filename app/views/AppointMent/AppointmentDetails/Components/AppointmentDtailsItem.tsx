@@ -10,6 +10,7 @@ import { normalizeSpacing } from 'app/components/scaleFontSize'
 
 const AppointmentDtailsItem = (props: any) => {
   const item = props?.item || {}
+  console.log('item: ', item);
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>
@@ -87,12 +88,15 @@ const AppointmentDtailsItem = (props: any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
-            color: item.status == 1 || item.status == 5 ? 'red' :
+            color: item.status == 1 || item.status == 5 || item.status == 4  ? 'red' :
               item.status == 2 ? YELLOW_COLOR : BLACK_COLOR
           }]}>{
+            // status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 = Appoiment cancel, 5= close}
               item.status === 1 ? 'Pending' :
                 item.status === 2 ? 'Confirm' :
-                  item.status == 5 ? 'Close' : 'Completed'
+                item.status === 3 ? 'Completed' :
+                item.status === 4 ? 'Appoiment cancel' :
+                  item.status == 5 && 'Close'
             }</Text>
         </View>
       </View>

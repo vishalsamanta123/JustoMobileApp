@@ -405,7 +405,7 @@ const AddNewVisitorForm = (props: any) => {
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
-                                    min_budget_type: props?.formData?.min_budget_type === 'C' ? "L" : "C",
+                                    min_budget_type: props?.formData?.min_budget_type === 'Cr.' ? "L" : "Cr.",
                                 })}
                                 style={styles.smallBox}>
                                 <Text style={{ color: BLACK_COLOR }}>{props?.formData?.min_budget_type}</Text>
@@ -424,7 +424,7 @@ const AddNewVisitorForm = (props: any) => {
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
-                                    max_budget_type: props?.formData?.max_budget_type === "C" ? "L" : "C",
+                                    max_budget_type: props?.formData?.max_budget_type === "Cr." ? "L" : "Cr.",
                                 })}
                                 style={styles.smallBox}>
                                 <Text style={{ color: BLACK_COLOR }}>{props?.formData?.max_budget_type}</Text>
@@ -521,7 +521,7 @@ const AddNewVisitorForm = (props: any) => {
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
-                                    min_emi_budget_type: props?.formData?.min_emi_budget_type === 'C' ? "L" : "C",
+                                    min_emi_budget_type: props?.formData?.min_emi_budget_type === 'Cr.' ? "L" : "Cr.",
                                 })}
                                 style={styles.smallBox}>
                                 <Text>{props?.formData?.min_emi_budget_type}</Text>
@@ -541,7 +541,7 @@ const AddNewVisitorForm = (props: any) => {
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
-                                    max_emi_budget_type: props?.formData?.max_emi_budget_type === 'C' ? "L" : "C",
+                                    max_emi_budget_type: props?.formData?.max_emi_budget_type === 'Cr.' ? "L" : "Cr.",
                                 })}
                                 style={styles.smallBox}>
                                 <Text>{props?.formData?.max_emi_budget_type}</Text>

@@ -62,7 +62,7 @@ const DashboardView = (props: any) => {
                 </View>
               </View>
               <View style={styles.welcomeView}>
-                <Text style={styles.welcomeToText}>Welcome to</Text>
+                <Text style={styles.welcomeToText}>Welcome</Text>
                 <Text style={styles.welcomeNameText}>{props?.dashboardData?.user_name}</Text>
               </View>
             </View>

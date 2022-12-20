@@ -138,7 +138,10 @@ const AllocateCPView = (props: any) => {
                     width={150}
                     height={40}
                     btnTxtsize={16}
-                    buttonText={strings.cpAllocation}
+                    buttonText={
+                        userData?.data?.role_title === "Sourcing TL" ? 'SM Allocation' :
+                        userData?.data?.role_title === "Closing TL" ? 'CM Allocation' :
+                        strings.cpAllocation}
                     textTransform={null}
                     handleBtnPress={() => props.handleAddTarget()}
                 />

@@ -35,9 +35,15 @@ export const updateUserSettingData =
   };
 
 export const userRegister = (item: any) => async (dispatch: any) => {
+console.log('item: ', item);
   dispatch({ type: START_LOADING });
   try {
-    const res = await apiCall("post", apiEndPoints.REGISTERANDADDUSER, item);
+    const header = {
+      "Content-Type": "multipart/form-data",
+      "access-control-allow-origin": "*",
+    };
+    const res = await apiCall("post", apiEndPoints.REGISTERANDADDUSER, item, header);
+    console.log('res REGISTERANDADDUSER: ', res);
     if (res.data.status == 200) {
       dispatch({
         type: USERREGISTER,
