@@ -2,28 +2,21 @@ import { View, Text, StatusBar, FlatList, Alert } from 'react-native';
 import React, { useState } from 'react';
 import styles from './styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import PendingAgencyList from './PendingAgencyListItem';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization'
 import ConfirmModal from '../../../../components/Modals/ConfirmModal';
-import { PRIMARY_THEME_COLOR_DARK } from '../../../../components/utilities/constant';
 
 import {
-  BLACK_COLOR,
-  FONT_FAMILY_EXTRABOLD,
-  FONT_FAMILY_SEMIBOLD,
-  GRAY_COLOR,
   PRIMARY_THEME_COLOR,
-  WHITE_COLOR,
 } from '../../../../components/utilities/constant';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
+import AllowAgencyListing from './AllowAgencyListingItem';
 
 
 
-const PendingAgencyView = (props: any) => {
+const AllowAgencyView = (props: any) => {
   const loadingref = false
   const [isVisible, setIsVisible] = useState(false)
   const insets = useSafeAreaInsets();
@@ -42,7 +35,7 @@ const PendingAgencyView = (props: any) => {
         leftImageSrc={images.backArrow}
         // rightFirstImageScr={images.filter}
         rightSecondImageScr={images.notification}
-        headerText={strings.pendingconfirm}
+        headerText={strings.AllocateRequest}
         handleOnLeftIconPress={props.handleBackPress}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}
@@ -67,7 +60,7 @@ const PendingAgencyView = (props: any) => {
             showsVerticalScrollIndicator={false}
             data={Array.isArray(props?.pendingAgency) ? props?.pendingAgency : []}
             ListEmptyComponent={<EmptyListScreen message={strings.agency} />}
-            renderItem={({ item }) => <PendingAgencyList
+            renderItem={({ item }) => <AllowAgencyListing
               items={item} setIsVisible={setIsVisible}
               onPressView={onPressView}
               setStatusChange={props.setStatusChange}
@@ -91,4 +84,4 @@ const PendingAgencyView = (props: any) => {
   );
 };
 
-export default PendingAgencyView;
+export default AllowAgencyView;

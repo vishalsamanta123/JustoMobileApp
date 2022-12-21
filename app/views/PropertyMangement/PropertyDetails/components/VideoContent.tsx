@@ -18,6 +18,7 @@ const VideoContent = ({navigation,route}: any) => {
   const [itemDetail,setItemDetail] = useState({})
   const insets = useSafeAreaInsets();
   const datavideos = route?.params || []
+  console.log('datavideos: ', datavideos);
   const handleBackPress = () => {
     navigation.goBack();
   };
@@ -66,7 +67,11 @@ const VideoContent = ({navigation,route}: any) => {
           
             <Image
               //source={item.image}
-              source={images.buildings}
+              source={
+                item?.video_thumbnail ? 
+                {uri: item?.base_url + item?.video_thumbnail} :
+                images.buildings
+              }
               style={{
                 width: '100%',
                 height: normalizeHeight(300),

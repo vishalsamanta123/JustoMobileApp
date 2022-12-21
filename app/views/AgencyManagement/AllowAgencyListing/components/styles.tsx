@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
   headerStyle: {
     backgroundColor: PRIMARY_THEME_COLOR,
   },
+  leftImageIconStyle: {
+    tintColor: WHITE_COLOR,
+  },
   RightFirstIconStyle: {
     tintColor: WHITE_COLOR,
   },
@@ -25,17 +28,12 @@ const styles = StyleSheet.create({
     margin: normalizeSpacing(2),
   },
   btnView: {
-    // flex: 0.6,
-    // top: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    // marginLeft: normalizeSpacing(22),
-    marginBottom: normalizeSpacing(10),
-  },
-  btnView1: {
-    alignItems: 'center',
-    marginBottom: normalizeSpacing(15),
+    flex: 0.6,
+    top: 5,
+    //margin: normalizeSpacing(3),
+    flexDirection: 'row-reverse',
+    marginLeft: normalizeSpacing(22),
+    //backgroundColor:'red'
   },
   propertyListViewsec: {
     flex: 5.4,
@@ -117,7 +115,6 @@ const styles = StyleSheet.create({
     color: WHITE_COLOR,
     textAlign: 'center'
   },
-
 });
 
 export default styles;

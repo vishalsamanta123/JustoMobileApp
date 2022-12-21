@@ -1,6 +1,6 @@
 import apiEndPoints from "../../components/utilities/apiEndPoints";
 import { apiCall } from "../../components/utilities/httpClient";
-import { ALLOCATE_PROPERTY_TO_USER, GETPROPERTY_DETAIL, PROPERTY_COMPETITOR_LIST, PROPERTY_ERROR, PROPERTY_LIST, PROPERTY_STATUS_UPDATE, REMOVE_PROPERTYCOMPETITOR, SOURCING_MANAGER_LIST, START_LOADING, STOP_LOADING } from "../types";
+import { ALLOCATE_PROPERTY_TO_USER, GETPROPERTY_DETAIL, GET_ALLOCATE_REQUEST, GET_ALLOCATE_REQUEST_ERROR, PROPERTY_COMPETITOR_LIST, PROPERTY_ERROR, PROPERTY_LIST, PROPERTY_STATUS_UPDATE, REMOVE_PROPERTYCOMPETITOR, SOURCING_MANAGER_LIST, START_LOADING, STOP_LOADING } from "../types";
 
 export const getAllProperty = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -201,3 +201,30 @@ export const removePropertyCompetitor = () => async (dispatch: any) => {
     }
 }
 
+
+export const getAllocateRequest = () => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
+    try {
+        const res = await apiCall("post", apiEndPoints.ALLOCATEREQUEST, {});
+        console.log('res ALLOCATEREQUEST: ', res);
+        if (res?.data?.status == 200) {
+            dispatch({
+                type: GET_ALLOCATE_REQUEST,
+                payload: res.data,
+            });
+        } else {
+            dispatch({
+                type: GET_ALLOCATE_REQUEST_ERROR,
+                payload: [],
+            });
+        }
+    } catch (e) {
+        dispatch({
+            type: GET_ALLOCATE_REQUEST_ERROR,
+            payload: console.log(e),
+        });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING });
+    }
+};

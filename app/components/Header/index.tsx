@@ -3,9 +3,11 @@ import React from 'react';
 import styles from './styles';
 import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK } from '../utilities/constant';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 const Header = (props: any) => {
   const insets = useSafeAreaInsets();
+  const navigation: any = useNavigation()
   return (
     <>
       <View
@@ -31,6 +33,7 @@ const Header = (props: any) => {
         </View>
         <View style={styles.rightIconsWrap}>
           {props.rightFirstImageScr ?
+          
             <TouchableOpacity onPress={props.handleOnRightFirstIconPress}>
               <Image
                 source={props.rightFirstImageScr}
@@ -39,7 +42,10 @@ const Header = (props: any) => {
             </TouchableOpacity> : null
           }
           {props.rightSecondImageScr ?
-            <TouchableOpacity onPress={props.handleOnRightSecondIconPress}>
+            <TouchableOpacity onPress={() => {
+              props.handleOnRightSecondIconPress ? props.handleOnRightSecondIconPress() :
+              navigation.navigate('notification')
+            }}>
               <Image
                 source={props.rightSecondImageScr}
                 style={[styles.imageStyle, props.RightSecondIconStyle]}

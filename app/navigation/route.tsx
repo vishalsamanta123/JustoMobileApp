@@ -86,6 +86,7 @@ import PropertyChat from "app/views/ChatManagement/PropertyChat";
 import ChatScreen from "app/views/ChatManagement/PropertyChat/components/ChatScreen";
 import Notification from "app/views/Setting/Notification";
 import DeactiveAgencyScreen from "app/views/AgencyManagement/DeactiveAgency";
+import AllowAgencyListing from "app/views/AgencyManagement/AllowAgencyListing";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -153,6 +154,10 @@ const AppComponent = () => {
       <AppStack.Screen
         name="PendingAgencyList"
         component={PendingAgencyListScreen}
+      />
+      <AppStack.Screen
+        name="AllowAgencyListing"
+        component={AllowAgencyListing}
       />
       <AppStack.Screen name="AgencyDetails" component={AgencyDetails} />
       <AppStack.Screen name="AddnewAgency" component={AddnewAgency} />

@@ -38,6 +38,9 @@ const AgencyView = (props: any) => {
   const onPressAddnewAgency = () => {
     navigation.navigate("AddnewAgency", { type: "add" });
   };
+  const onPressAllow = () => {
+    navigation.navigate("AllowAgencyListing");
+  };
   const onRefresh = () => {
     props.setFilterData({
       startdate: "",
@@ -76,49 +79,72 @@ const AgencyView = (props: any) => {
       />
       <View style={styles.propertyListView}>
         <View style={styles.btnView}>
-          <TouchableOpacity
-            onPress={() => onPressAddnewAgency()}
-            style={[
-              styles.button,
-              {
-                borderColor: BLACK_COLOR,
-                backgroundColor: PRIMARY_THEME_COLOR,
-              },
-            ]}
-          >
-            <Text
+            <TouchableOpacity
+              onPress={() => onPressAddnewAgency()}
               style={[
-                styles.buttonTxt,
+                styles.button,
                 {
-                  color: WHITE_COLOR,
+                  borderColor: BLACK_COLOR,
+                  backgroundColor: PRIMARY_THEME_COLOR,
                 },
               ]}
             >
-              {strings.addnewAgency}
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={[
+                  styles.buttonTxt,
+                  {
+                    color: WHITE_COLOR,
+                  },
+                ]}
+              >
+                {strings.addnewAgency}
+              </Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => ShowPendinglist()}
-            style={[
-              styles.button,
-              {
-                borderColor: BLACK_COLOR,
-                backgroundColor: PRIMARY_THEME_COLOR,
-              },
-            ]}
-          >
-            <Text
+            <TouchableOpacity
+              onPress={() => ShowPendinglist()}
               style={[
-                styles.buttonTxt,
+                styles.button,
                 {
-                  color: WHITE_COLOR,
+                  borderColor: BLACK_COLOR,
+                  backgroundColor: PRIMARY_THEME_COLOR,
                 },
               ]}
             >
-              {strings.pendingconfirm}
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={[
+                  styles.buttonTxt,
+                  {
+                    color: WHITE_COLOR,
+                  },
+                ]}
+              >
+                {strings.pendingconfirm}
+              </Text>
+            </TouchableOpacity>
+        </View>
+        <View style={styles.btnView1}>
+            <TouchableOpacity
+              onPress={() => onPressAllow()}
+              style={[
+                styles.button,
+                {
+                  borderColor: BLACK_COLOR,
+                  backgroundColor: PRIMARY_THEME_COLOR,
+                },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.buttonTxt,
+                  {
+                    color: WHITE_COLOR,
+                  },
+                ]}
+              >
+                {strings.AllocateRequest}
+              </Text>
+            </TouchableOpacity>
         </View>
         <View style={styles.propertyListViewsec}>
           <FlatList

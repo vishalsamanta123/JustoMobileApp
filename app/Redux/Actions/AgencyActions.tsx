@@ -10,6 +10,7 @@ import {
   CREATE_AGENCY_ERROR,
   EDIT_AGENCY,
   GET_AGENCY_DETAIL,
+  REMOVE_AGENCY,
   START_LOADING,
   STOP_LOADING,
 } from "../types";
@@ -166,3 +167,17 @@ export const editAgent = (params: any) => async (dispatch: any) => {
     dispatch({ type: STOP_LOADING });
   }
 };
+
+export const removeAgency = () => async (dispatch: any) => {
+  try {
+      dispatch({
+          type: REMOVE_AGENCY,
+          payload: null,
+      });
+  } catch (e) {
+      dispatch({
+          type: AGENT_ERROR,
+          payload: console.log(e),
+      });
+  }
+}

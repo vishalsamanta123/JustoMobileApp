@@ -3,7 +3,9 @@ import {
   AGENCY_CREATE_FORM_ERROR,
   CREATE_AGENCY,
   CREATE_AGENCY_ERROR,
+  EDIT_AGENCY,
   GET_AGENCY_DETAIL,
+  REMOVE_AGENCY,
   REMOVE_UPDATE_ASSIGN_CP,
   UPDATE_ASSIGN_CP_STATUS,
 } from "../types";
@@ -80,6 +82,32 @@ export function agencyStatusReducer(state = initialStateForm, action: any) {
         response: action.payload,
       };
     case REMOVE_UPDATE_ASSIGN_CP:
+      return {
+        ...state,
+        create: false,
+        response: action.payload,
+      };
+    default:
+      return state;
+  }
+}
+export function addEditAgencyReducer(state = initialStateForm, action: any) {
+  switch (action.type) {
+    case CREATE_AGENCY:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        response: action.payload,
+      };
+    case EDIT_AGENCY:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        response: action.payload,
+      };
+    case REMOVE_AGENCY:
       return {
         ...state,
         create: false,

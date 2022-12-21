@@ -1,5 +1,5 @@
 import { Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "app/components/Header";
 import styles from "./styles";
 import strings from "app/components/utilities/Localization";
@@ -13,9 +13,23 @@ import { SwipeListView } from "react-native-swipe-list-view";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 
 const NotificationView = (props: any) => {
-  const { onPressBack, data } = props;
+  const { onPressBack, data } = props || {}
   const { response = [] } = useSelector((state: any) => state.notificationData);
-  const [listData, setListData] = useState(response.data);
+  console.log('response in notification: ', response);
+  const [listData, setListData] = useState<any>([]);
+
+
+  useEffect(() => {
+    if (response?.status === 200) {
+      if (response?.data?.length > 0) {
+        setListData(response?.data)
+      }
+    }
+
+    return () => {
+    }
+  }, [response])
+
 
   const closeRow = (rowMap: any, rowKey: any) => {
     if (rowMap[rowKey]) {
@@ -24,14 +38,14 @@ const NotificationView = (props: any) => {
   };
   const deleteRow = (rowMap: any, rowKey: any) => {
     closeRow(rowMap, rowKey);
-    const newData = [...listData];
+    const newData: any = [...listData];
     const prevIndex = listData.findIndex((item: any) => item.key === rowKey);
     newData.splice(prevIndex, 1);
     setListData(newData);
   };
 
   const renderItem = (data: any) => {
-    const { subject, message } = data.item;
+    const { subject, message } = data?.item;
     return (
       <TouchableHighlight
         onPress={() => console.log("You touched me")}
@@ -61,7 +75,7 @@ const NotificationView = (props: any) => {
   return (
     <View style={styles.mainContainer}>
       <Header
-        headerText={data.heading}
+        headerText={strings.notification}
         headerStyle={styles.headerStyle}
         leftImageSrc={images.backArrow}
         leftImageIconStyle={styles.leftImageIconStyle}
@@ -70,7 +84,7 @@ const NotificationView = (props: any) => {
         statusBarColor={PRIMARY_THEME_COLOR}
       />
       <SwipeListView
-        data={listData}
+        data={Array.isArray(listData) ? listData : []}
         renderItem={renderItem}
         renderHiddenItem={renderHiddenItem}
         leftOpenValue={75}

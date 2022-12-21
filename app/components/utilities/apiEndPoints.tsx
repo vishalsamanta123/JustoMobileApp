@@ -50,6 +50,7 @@ export default {
   ALLOCATEPROPERTYTOUSER: "/property/propertyAllocateToUsers",
   GET_PROPERTY_COMPETITOR: "/property/getPropertyCompetitorList",
   GET_PROPERTYCONFIGURATION: "/property/getPropertyConfigurationsList",
+  ALLOCATEREQUEST: 'property/getCpListForPropertyAllocateRequest',
 
 
   // MASTER START

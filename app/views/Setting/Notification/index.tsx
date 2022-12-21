@@ -18,7 +18,7 @@ const Notification = ({ navigation, route }: any) => {
   const onPressBack = () => {
     navigation.goBack();
   };
-  return <NotificationView onPressBack={onPressBack} data={route.params} />;
+  return <NotificationView onPressBack={onPressBack} data={route?.params} />;
 };
 
 export default Notification;

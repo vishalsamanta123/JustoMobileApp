@@ -88,6 +88,7 @@ const strings = new LocalizedStrings({
     reset: 'RESET',
     transfer: 'transfer',
     comingSoon: 'Coming Soon',
+    notification: 'Notification',
 
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
@@ -154,6 +155,7 @@ const strings = new LocalizedStrings({
     /*** agency ***/
     addnewAgency: 'Add new Agency',
     pendingconfirm: 'Pending Confirm',
+    AllocateRequest: 'Allocate Request',
     edit: 'Edit',
     confirm: 'Confirm',
     deactive: 'Deactive',

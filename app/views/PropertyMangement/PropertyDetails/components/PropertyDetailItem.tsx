@@ -14,6 +14,7 @@ const PropertyDetailItem = (props: any) => {
     const videos = el.document_type == "video";
     return videos;
   });
+  console.log('videoarray: ', videoarray);
   const documentarray = props.propertydocument?.filter((el: any) => {
     const count = el.document_type == 'document'
     return count
@@ -298,7 +299,13 @@ const PropertyDetailItem = (props: any) => {
                   index <= 2 ? (
                     <Image
                       key={index}
-                      source={images.buildings}
+                      source={
+                        videos?.video_thumbnail ?
+                          {
+                            uri: videos?.base_url + videos?.video_thumbnail,
+                          }
+                          : images.buildings
+                      }
                       style={styles.imageSlider}
                     />
                   ) : null

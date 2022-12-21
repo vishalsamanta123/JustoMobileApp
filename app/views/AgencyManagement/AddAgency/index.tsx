@@ -1,11 +1,12 @@
 import ErrorMessage from "app/components/ErrorMessage";
-import { RED_COLOR } from "app/components/utilities/constant";
+import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
 import {
   AgencyCreateForm,
   AgencyCreateFormRemove,
   createAgency,
   editAgent,
   getAgencyDetail,
+  removeAgency,
 } from "app/Redux/Actions/AgencyActions";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -59,6 +60,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
 
   const registrationData = useSelector((state: any) => state.agencyForm);
   const { response = {}, detail } = useSelector((state: any) => state.agency) || []
+  const addEditAgency = useSelector((state: any) => state.addEditAgency) || []
 
   useEffect(() => {
     if (type === "edit") {
@@ -101,11 +103,16 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       );
     }
   }, [navigation, detail]);
-  // useEffect(() => {
-  //   if (detail) {
-  //     setAgencyData(response?.data[0]);
-  //   }
-  // }, [response]);
+  useEffect(() => {
+    if (addEditAgency?.response?.status === 200) {
+      dispatch(removeAgency());
+      navigation.navigate("AgencyListing");
+      ErrorMessage({
+        msg: addEditAgency?.response?.message,
+        backgroundColor: GREEN_COLOR
+      })
+    }
+  }, [addEditAgency]);
 
   const validation = () => {
     let isError = true;
@@ -362,10 +369,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           dispatch(createAgency(formData));
           dispatch(AgencyCreateFormRemove());
         }
-        if (response?.status === 200) {
-          dispatch(AgencyCreateFormRemove());
-          navigation.navigate("AgencyListing");
-        }
+
       }
     }
   };

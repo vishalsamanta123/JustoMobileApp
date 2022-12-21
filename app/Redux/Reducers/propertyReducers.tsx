@@ -5,7 +5,9 @@ import {
   ALLOCATE_PROPERTY_TO_USER,
   PROPERTY_ERROR,
   PROPERTY_COMPETITOR_LIST,
-  REMOVE_PROPERTYCOMPETITOR
+  REMOVE_PROPERTYCOMPETITOR,
+  GET_ALLOCATE_REQUEST,
+  GET_ALLOCATE_REQUEST_ERROR
 } from "../types";
 
 const initialState = {
@@ -102,6 +104,24 @@ export function propertyReducer(state = initialState, action: any) {
         list: false,
         response: action.payload,
         allocated: true
+      };
+    case GET_ALLOCATE_REQUEST:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        list: false,
+        response: action.payload,
+        allocated: false
+      };
+    case GET_ALLOCATE_REQUEST_ERROR:
+      return {
+        ...state,
+        detail: false,
+        create: false,
+        list: false,
+        response: action.payload,
+        allocated: false
       };
     default:
       return state;

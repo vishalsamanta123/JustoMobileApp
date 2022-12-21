@@ -6,7 +6,7 @@ import { BLACK_COLOR, GREEN_COLOR, RED_COLOR, WHITE_COLOR, YELLOW_COLOR } from '
 import images from '../../../../assets/images';
 import Button from '../../../../components/Button';
 
-const PendingAgencyListing = (props: any) => {
+const AllowAgencyListing = (props: any) => {
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >
@@ -19,6 +19,18 @@ const PendingAgencyListing = (props: any) => {
               || props?.items?.agent_name === undefined ?
               strings.notfount :
               props?.items?.agent_name}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview} >
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Property Name :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{
+            props?.items?.property_title === null || props?.items?.property_title === ''
+              || props?.items?.property_title === undefined ?
+              strings.notfount :
+              props?.items?.property_title}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -120,4 +132,4 @@ const PendingAgencyListing = (props: any) => {
   );
 };
 
-export default PendingAgencyListing;
+export default AllowAgencyListing;
