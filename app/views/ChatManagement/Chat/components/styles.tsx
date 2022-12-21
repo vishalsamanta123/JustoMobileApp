@@ -17,6 +17,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    marginBottom: 20,
+
   },
   headerStyle: {
     backgroundColor: PRIMARY_THEME_COLOR,
@@ -51,6 +53,48 @@ const styles = StyleSheet.create({
     height: normalizeHeight(35),
     width: normalizeWidth(35),
     borderRadius: normalize(35),
-  }
+  },
+  sendIconView: {
+    marginRight: normalizeSpacing(0),
+    height: normalizeSpacing(40),
+    width: normalizeSpacing(40),
+    borderWidth: 0,
+    borderRadius: 40,
+    backgroundColor: PRIMARY_THEME_COLOR,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  sendImage: {
+    height: normalizeHeight(25),
+    width: normalizeWidth(25),
+    tintColor: WHITE_COLOR,
+  },
+  attachIconView: {
+    marginRight: normalizeSpacing(0),
+    alignItems: "center",
+    justifyContent: "center",
+    // backgroundColor: "red",
+    flexDirection: "row",
+  },
+  attachIconImage: {
+    height: normalizeHeight(30),
+    width: normalizeWidth(30),
+  },
+  leftImageIconStyle: {
+    tintColor: WHITE_COLOR,
+  },
+  chatPrimaryInputStyle: {
+    // marginBottom: normalizeSpacing(15),
+    borderWidth: 1,
+    borderRadius: normalize(10),
+    borderColor: PRIMARY_THEME_COLOR,
+  },
+  chatContainerInputStyle: {
+    marginHorizontal: normalizeSpacing(15),
+    borderWidth: 0,
+    width: "80%",
+    justifyContent: "center",
+    // backgroundColor: "red",
+  },
 });
 export default styles;

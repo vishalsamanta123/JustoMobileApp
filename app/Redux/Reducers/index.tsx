@@ -16,6 +16,7 @@ import { notificationListReducer } from "./NotificationReducer";
 import { PickUpReducer } from "./PickUpReducer";
 import { transferVisitorReducer, transferVisitReducer } from "./TransferVisitReducer";
 import { firebaseReducer } from "./FirebaseReducer";
+import { ChatReducer } from "./ChatReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -56,6 +57,11 @@ export default {
     booking: BookingReducer,
     cancelBooking: cancelBookingReducer,
     addedBooking: addBookingReducer,
+    
+    // chat
+    chatData: ChatReducer,
+    
+
 
     // visit modal
     visitorData: visitorReducer,

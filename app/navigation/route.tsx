@@ -83,7 +83,7 @@ import ReportScreen from "app/views/Report";
 import ChatViewScreen from "app/views/ChatManagement/Chat";
 import RecoveryScreen from "app/views/Recovery";
 import PropertyChat from "app/views/ChatManagement/PropertyChat";
-import ChatScreen from "app/views/ChatManagement/PropertyChat/components/ChatScreen";
+import ChatScreen from "app/views/ChatManagement/Chat/components/ChatScreen";
 import Notification from "app/views/Setting/Notification";
 import DeactiveAgencyScreen from "app/views/AgencyManagement/DeactiveAgency";
 import auth from "@react-native-firebase/auth";
@@ -270,26 +270,30 @@ const AuthLoadingComponent = () => {
     console.log('response: IN LOGIN ', response);
       if (response.status === 200) {
         if (
-          typeof response?.data?.firebase_id === "undefined"
+          typeof response?.data?.firebase_id === "undefined" || response?.data?.firebase_id === null
         ) {
+          console.log('if = = = = = = =>>')
           auth()
             .createUserWithEmailAndPassword(response?.data?.email, "123456")
             .then(async (res) => {
-              console.log("res: ", res.user.uid);
+              console.log("res: IN CREATE", res.user.uid);
               console.log("User account created & signed in!");
               await setDefaultHeader("token", response.token);
               await AsyncStorage.setItem("loginData", JSON.stringify(response));
+              await AsyncStorage.setItem("firebase_id", JSON.stringify(res.user.uid));
               dispatch(updateFirebase({ firebase_id: res.user.uid }));
               // checklogin()
             });
         } else {
+          console.log('else = = = = = = =>>')
           auth()
             .signInWithEmailAndPassword(response?.data?.email, "123456")
             .then(async (res) => {
-              console.log("res: ", res.user.uid);
+              console.log("res: IN SIGN IN", res.user.uid);
               console.log("User signed in!");
               await setDefaultHeader("token", response.token);
               await AsyncStorage.setItem("loginData", JSON.stringify(response));
+              await AsyncStorage.setItem("firebase_id", JSON.stringify(res.user.uid));
             });
         }
       } else {

@@ -1,4 +1,7 @@
-import React from "react";
+import { useIsFocused } from "@react-navigation/native";
+import { getAllUserChatList } from "app/Redux/Actions/ChatActions";
+import React, { useEffect, useLayoutEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ChatView from "./components/ChatView";
 
 const ChatViewScreen = ({ navigation }: any) => {
@@ -260,13 +263,26 @@ const ChatViewScreen = ({ navigation }: any) => {
         "https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cHJvcGVydHl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
     },
   ];
+  const isFocused = useIsFocused();
+
+
+  const { response = {},  } = useSelector((state: any) => state.chatData);
+
+  const dispatch: any = useDispatch();
+
+//   useEffect(() => {
+//     dispatch(getAllUserChatList({
+//         limit: 100,
+//         offset: 0
+//     }))
+// }, [navigation, isFocused])
 
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
   return (
     <>
-      <ChatView DATA={DATA} handleDrawerPress={handleDrawerPress} />
+      <ChatView chatlist={response?.data} handleDrawerPress={handleDrawerPress} />
     </>
   );
 };
