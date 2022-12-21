@@ -35,21 +35,29 @@ const AgencyListing = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getAgencyList(offSET, {});
-      return () => {};
-    }, [navigation])
+      getAgencyList(0, {});
+      return () => { };
+    }, [navigation, statusUpdate])
   );
 
   useEffect(() => {
-    setAgentList(SmCpList?.response?.data);
+    if (SmCpList?.response?.status === 200) {
+      setAgentList(SmCpList?.response?.data);
+    }
   }, [SmCpList]);
 
   const getAgencyList = (offset: any, filterData: any) => {
+  console.log('filterData: ', filterData);
     setOffset(offset);
     // if (userData?.data?.role_title === 'Sourcing Manager') {
     dispatch(
       getAssignCPList({
         user_id: userData?.data?.user_id,
+        startdate: filterData.startdate,
+        enddate: filterData.enddate,
+        search_by_name: filterData.search_by_name,
+        search_by_location: filterData.search_by_location,
+        status: filterData.status,
       })
     );
   };
@@ -61,7 +69,6 @@ const AgencyListing = ({ navigation }: any) => {
         backgroundColor: GREEN_COLOR,
       });
       dispatch(removeAssignCpStatus());
-      getAgencyList(offSET, {});
     }
   }, [statusUpdate]);
   const handleDrawerPress = () => {

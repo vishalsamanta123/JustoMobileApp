@@ -1,36 +1,47 @@
-import { View, Text, Image, TouchableOpacity, StatusBar, Platform } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import styles from './styles';
-import images from '../assets/images';
-import strings from '../components/utilities/Localization';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { DrawerContentScrollView, useDrawerStatus } from '@react-navigation/drawer';
-import { PRIMARY_THEME_COLOR } from '../components/utilities/constant';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { userLogout } from '../Redux/Actions/AuthActions';
-import { useDispatch } from 'react-redux';
-
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StatusBar,
+  Platform,
+} from "react-native";
+import React, { useEffect, useState } from "react";
+import styles from "./styles";
+import images from "../assets/images";
+import strings from "../components/utilities/Localization";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  DrawerContentScrollView,
+  useDrawerStatus,
+} from "@react-navigation/drawer";
+import { PRIMARY_THEME_COLOR } from "../components/utilities/constant";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { userLogout } from "../Redux/Actions/AuthActions";
+import { useDispatch } from "react-redux";
+import auth from "@react-native-firebase/auth";
 
 const customDrawer = ({ navigation }: any) => {
-  const dispatch: any = useDispatch()
-  const isDrawerOpen = useDrawerStatus() === 'open';
-  const insets = useSafeAreaInsets()
-  const [userData, setUserData] = useState<any>([])
+  const dispatch: any = useDispatch();
+  const isDrawerOpen = useDrawerStatus() === "open";
+  const insets = useSafeAreaInsets();
+  const [userData, setUserData] = useState<any>([]);
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
-    const data: any = await AsyncStorage.getItem('userData')
-    setUserData(JSON.parse(data))
-  }
+    const data: any = await AsyncStorage.getItem("userData");
+    setUserData(JSON.parse(data));
+  };
   const toggleDrawer = () => {
     navigation.toggleDrawer();
-  }
+  };
   const onpressLogout = async () => {
-    dispatch(userLogout())
-    navigation.navigate('AuthLoading');
-  }
+    dispatch(userLogout());
+    auth().signOut();
+    navigation.navigate("AuthLoading");
+  };
   const ProfileSection = () => {
     return (
       <TouchableOpacity style={styles.MainContainer}>
@@ -38,11 +49,12 @@ const customDrawer = ({ navigation }: any) => {
           <View style={styles.NameContainer}>
             <Image
               style={styles.UserImge}
-              resizeMode={'cover'}
+              resizeMode={"cover"}
               //source={require('../assets/images/buildings.jpeg')}
-              source={userData?.base_url ?
-                { uri: userData?.base_url + userData?.profile_picture }
-                : images.user
+              source={
+                userData?.base_url
+                  ? { uri: userData?.base_url + userData?.profile_picture }
+                  : images.user
               }
             />
             <View style={styles.UserNameView}>
@@ -50,169 +62,232 @@ const customDrawer = ({ navigation }: any) => {
                 numberOfLines={1}
                 style={[styles.UserNameText, { width: 120 }]}
               >
-                {userData?.user_name ? userData?.user_name : `${userData?.firstname} ${userData?.lastname}`}
+                {userData?.user_name
+                  ? userData?.user_name
+                  : `${userData?.firstname} ${userData?.lastname}`}
                 {/* Warren Hussen */}
               </Text>
               <Text style={[styles.UserAddress, { width: 140 }]}>
-                {userData?.city ?? ''}
+                {userData?.city ?? ""}
               </Text>
             </View>
-            <TouchableOpacity style={styles.closeDrawerView} onPress={toggleDrawer}>
-              {isDrawerOpen && <Image style={styles.closeDrawerImage} source={images.leftArrow} />}
+            <TouchableOpacity
+              style={styles.closeDrawerView}
+              onPress={toggleDrawer}
+            >
+              {isDrawerOpen && (
+                <Image
+                  style={styles.closeDrawerImage}
+                  source={images.leftArrow}
+                />
+              )}
             </TouchableOpacity>
           </View>
         </View>
       </TouchableOpacity>
     );
-  }
+  };
   const DrawerTabSection = (props: any) => {
     return (
       <>
-        {props?.type?.includes(userData?.role_title) || props?.type == 'all' ?
-          <TouchableOpacity style={styles.drawerTouch} onPress={props.handleDrawerNavigation}>
+        {props?.type?.includes(userData?.role_title) || props?.type == "all" ? (
+          <TouchableOpacity
+            style={styles.drawerTouch}
+            onPress={props.handleDrawerNavigation}
+          >
             <Image source={props.iconSource} style={styles.drawerIconStyle} />
             <Text style={styles.drawerText}>{props.tabTitle}</Text>
           </TouchableOpacity>
-          : null}
+        ) : null}
       </>
-    )
-  }
+    );
+  };
   return (
     <View style={styles.drawerMain}>
-      <View style={{ backgroundColor: PRIMARY_THEME_COLOR, height: insets.top }} />
-      <StatusBar barStyle={'light-content'} />
+      <View
+        style={{ backgroundColor: PRIMARY_THEME_COLOR, height: insets.top }}
+      />
+      <StatusBar barStyle={"light-content"} />
       <ProfileSection />
-      <DrawerContentScrollView contentContainerStyle={{ paddingTop: 0, }} >
+      <DrawerContentScrollView contentContainerStyle={{ paddingTop: 0 }}>
         <DrawerTabSection
-          type={'all'}
+          type={"all"}
           iconSource={images.dashboard}
           tabTitle={strings.dashboardHeader}
-          handleDrawerNavigation={() => { navigation.navigate('DashboardScreen') }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("DashboardScreen");
+          }}
         />
         <DrawerTabSection
-          type={'Closing TL'}
+          type={"Closing TL"}
           iconSource={images.property}
           tabTitle={strings.closingManagerHeader}
-          handleDrawerNavigation={() => { navigation.navigate('ClosingManager') }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("ClosingManager");
+          }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,Sourcing Manager,Closing TL'}
+          type={"Sourcing TL,Sourcing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.propertyManagementHeader}
-          handleDrawerNavigation={() => { navigation.navigate('PropertyScreenView') }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("PropertyScreenView");
+          }}
         />
         <DrawerTabSection
-          type={'Closing Manager,Closing TL'}
+          type={"Closing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.appointmentHeader}
-          handleDrawerNavigation={() => { navigation.navigate('Appointments') }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("Appointments");
+          }}
         />
         <DrawerTabSection
-          type={'postsales,Closing TL,Closing Manager'}
+          type={"postsales,Closing TL,Closing Manager"}
           iconSource={images.lead}
           tabTitle={strings.readytoBookHeader}
-          handleDrawerNavigation={() => { navigation.navigate('BookingList', {type: 'readyToBook'}) }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("BookingList", { type: "readyToBook" });
+          }}
         />
         <DrawerTabSection
-          type={'Sourcing TL'}
+          type={"Sourcing TL"}
           iconSource={images.property}
           tabTitle={strings.SourcingManagersHeader}
-          handleDrawerNavigation={() => { navigation.navigate('SourcingManager') }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("SourcingManager");
+          }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,Sourcing Manager'}
+          type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.agency}
           tabTitle={strings.agencyHeader}
-          handleDrawerNavigation={() => { navigation.navigate('AgencyListing') }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("AgencyListing");
+          }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,Sourcing Manager'}
+          type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.lead}
           tabTitle={strings.leadManagementHeader}
-          handleDrawerNavigation={() => { navigation.navigate('LeadManagementScreen') }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("LeadManagementScreen");
+          }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,Sourcing Manager,Closing Manager,Closing TL'}
+          type={"Sourcing TL,Sourcing Manager,Closing Manager,Closing TL"}
           iconSource={images.event}
           tabTitle={strings.followupHeader}
-          handleDrawerNavigation={() => { navigation.navigate('FollowUpScreen'); }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("FollowUpScreen");
+          }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,Sourcing Manager'}
+          type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.event}
           tabTitle={strings.appointmentWithCPHeader}
-          handleDrawerNavigation={() => { navigation.navigate('AppointmentScreenCPSM'); }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("AppointmentScreenCPSM");
+          }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,Sourcing Manager'}
+          type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.event}
           tabTitle={strings.appointmentForVisitHeader}
-          handleDrawerNavigation={() => { navigation.navigate('AppointmentForSite'); }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("AppointmentForSite");
+          }}
         />
         <DrawerTabSection
-          type={'postsales,Closing Manager,Closing TL'}
+          type={"postsales,Closing Manager,Closing TL"}
           iconSource={images.lead}
           tabTitle={strings.bookingRequestHead}
-          handleDrawerNavigation={() => { navigation.navigate('BookingList', {type: 'request'}) }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("BookingList", { type: "request" });
+          }}
         />
         <DrawerTabSection
-          type={'Sourcing Manager'}
+          type={"Sourcing Manager"}
           iconSource={images.event}
           tabTitle={strings.leaderBoardHeader}
-          handleDrawerNavigation={() => { navigation.navigate('LeaderBoard'); }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("LeaderBoard");
+          }}
         />
         <DrawerTabSection
-          type={'Sourcing TL,Sourcing Manager'}
+          type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.event}
           tabTitle={strings.PickuprequestHeader}
-          handleDrawerNavigation={() => { navigation.navigate('PickupRequest'); }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("PickupRequest");
+          }}
         />
         <DrawerTabSection
-          type={'all'}
+          type={"all"}
           iconSource={images.support}
           tabTitle={strings.supportForumHeader}
-          handleDrawerNavigation={() => { navigation.navigate('SupportForum'); }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("SupportForum");
+          }}
         />
         <DrawerTabSection
-          type={'all'}
+          type={"all"}
           iconSource={images.support}
-          handleDrawerNavigation={() => { navigation.navigate('Support'); }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("Support");
+          }}
           tabTitle={strings.supportHeader}
         />
         <DrawerTabSection
-          type={'Closing Manager,Closing TL'}
+          type={"Closing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.recoveryHeader}
-          handleDrawerNavigation={() => { navigation.navigate('Recovery'); }}
+          handleDrawerNavigation={() => {
+            navigation.navigate("Recovery");
+          }}
         />
         <DrawerTabSection
           iconSource={images.report}
-          type={'all'}
-          handleDrawerNavigation={() => { navigation.navigate('Report'); }}
-          tabTitle={strings.reportHeader} />
-        <DrawerTabSection
-          type={'all'}
-          handleDrawerNavigation={() => { navigation.navigate('Chat'); }}
-          iconSource={images.chat} tabTitle={strings.chatHeader} />
-        <DrawerTabSection
-          type={'Closing TL'}
-          handleDrawerNavigation={() => { navigation.navigate('PickupRequest'); }}
-          iconSource={images.support}
-          tabTitle={strings.supportHeader} />
-        <DrawerTabSection
-          type={'Closing Manager,Closing TL'}
-          iconSource={images.support}
-          tabTitle={strings.saleToolHeader}
-          handleDrawerNavigation={() => { navigation.navigate('SalesTools'); }}
+          type={"all"}
+          handleDrawerNavigation={() => {
+            navigation.navigate("Report");
+          }}
+          tabTitle={strings.reportHeader}
         />
         <DrawerTabSection
-          type={'all'}
-          iconSource={images.setting}
-          tabTitle={strings.settingHeader} handleDrawerNavigation={() => {
-            navigation.navigate('SettingScreen');
-          }} />
+          type={"all"}
+          handleDrawerNavigation={() => {
+            navigation.navigate("Chat");
+          }}
+          iconSource={images.chat}
+          tabTitle={strings.chatHeader}
+        />
         <DrawerTabSection
-          type={'all'}
+          type={"Closing TL"}
+          handleDrawerNavigation={() => {
+            navigation.navigate("PickupRequest");
+          }}
+          iconSource={images.support}
+          tabTitle={strings.supportHeader}
+        />
+        <DrawerTabSection
+          type={"Closing Manager,Closing TL"}
+          iconSource={images.support}
+          tabTitle={strings.saleToolHeader}
+          handleDrawerNavigation={() => {
+            navigation.navigate("SalesTools");
+          }}
+        />
+        <DrawerTabSection
+          type={"all"}
+          iconSource={images.setting}
+          tabTitle={strings.settingHeader}
+          handleDrawerNavigation={() => {
+            navigation.navigate("SettingScreen");
+          }}
+        />
+        <DrawerTabSection
+          type={"all"}
           iconSource={images.logout}
           tabTitle={strings.logout}
           handleDrawerNavigation={() => onpressLogout()}
@@ -220,11 +295,14 @@ const customDrawer = ({ navigation }: any) => {
       </DrawerContentScrollView>
       <View style={styles.versionView}>
         <View style={styles.drawerTouch}>
-          <Text style={styles.drawerText}>{strings.versionText}{'1.00.00'}</Text>
+          <Text style={styles.drawerText}>
+            {strings.versionText}
+            {"1.00.00"}
+          </Text>
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 export default customDrawer;

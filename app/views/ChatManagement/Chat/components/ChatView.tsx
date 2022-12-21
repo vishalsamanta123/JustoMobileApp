@@ -1,5 +1,5 @@
 import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import Header from "app/components/Header";
 import images from "app/assets/images";
@@ -10,24 +10,37 @@ import SearchBar from "app/components/SearchBar";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 import FastImages from "app/components/FastImage";
 import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
+import { useSelector } from "react-redux";
 
 const ChatViewView = (props: any) => {
-  const { DATA } = props;
-  const [filteredData, setFilteredData] = useState(DATA);
+  
+  const [filteredData, setFilteredData] = useState([]);
+  useEffect(() => {
+    setFilteredData(props.chatlist)
+  }, [props.chatlist])
   const navigation: any = useNavigation();
   const handleChatPress = (item: any) => {
-    navigation.navigate("PropertyChat", item);
+    navigation.navigate("ChatScreen", item);
   };
   const handleChangeText = (val: any) => {
-    const final = DATA?.filter(function (el: any) {
+    const final = props?.chatlist?.data?.filter(function (el: any) {
       const name = `${el.property}`;
       return name?.toLowerCase().indexOf(val.toLowerCase()) > -1;
     });
     setFilteredData(final);
   };
-  const onSubmit = (val: any) => {
-  };
-  const renderPropertyList = (item: any) => {
+  const onSubmit = (val: any) => {};
+  const renderChatList = (item: any) => {
+    const role =
+      item?.roles === "Sourcing TL"
+        ? "TL"
+        : item?.roles === "Sourcing Manager"
+        ? "SM"
+        : item?.roles === "Closing Manager"
+        ? "CM"
+        : item?.roles === "Closing TL"
+        ? "CTL"
+        : "Agent";
     return (
       <TouchableOpacity
         onPress={() => handleChatPress(item)}
@@ -35,10 +48,10 @@ const ChatViewView = (props: any) => {
       >
         <View style={styles.straight}>
           <FastImages
-            source={{ uri: item.image }}
+            source={{ uri: item.base_url + item.profile_picture }}
             style={styles.profileImage}
           />
-          <Text style={styles.propertyText}>{item.property}</Text>
+          <Text style={styles.propertyText}>{`${item.user_name} (${role})`}</Text>
         </View>
         <Image source={images.rightArrow} style={styles.iconStyle} />
       </TouchableOpacity>
@@ -65,7 +78,7 @@ const ChatViewView = (props: any) => {
       />
       <FlatList
         data={filteredData}
-        renderItem={(item) => renderPropertyList(item.item)}
+        renderItem={(item) => renderChatList(item.item)}
         ListEmptyComponent={<EmptyListScreen message={strings.propertyChat} />}
         keyboardShouldPersistTaps
       /> */}

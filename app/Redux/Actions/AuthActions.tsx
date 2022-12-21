@@ -11,6 +11,7 @@ const initialState = {
 };
 
 export const userLogin = (loginDetail: any) => async (dispatch: any) => {
+console.log('loginDetail: ', loginDetail);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.LOGIN, loginDetail);
@@ -191,6 +192,7 @@ export const userLogout = () => async (dispatch: any) => {
         await AsyncStorage.removeItem("persistantState");
         await AsyncStorage.removeItem("AuthToken");
         await AsyncStorage.removeItem('userData')
+        await AsyncStorage.removeItem('firebase_id')
         dispatch({
             type: USER_LOGOUT,
             payload: null

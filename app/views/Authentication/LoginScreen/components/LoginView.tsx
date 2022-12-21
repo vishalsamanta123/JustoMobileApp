@@ -14,8 +14,8 @@ const LoginView = (props: any) => {
   return (
     <ScrollView keyboardShouldPersistTaps={'handled'}
       contentContainerStyle={styles.mainContainer}>
-        <View style={styles.logoView}>
-          <Image style={styles.logoImage} source={images.logoWhiteBG} />
+      <View style={styles.logoView}>
+        <Image style={styles.logoImage} source={images.logoWhiteBG} />
       </View>
       <View style={styles.inputView}>
         <View style={styles.inputWrap}>
@@ -34,7 +34,7 @@ const LoginView = (props: any) => {
           <InputField
             placeholderText={"Password"}
             rightImgSrc={
-              isVisiblePassword ? images.showPassword : images.hiddenPassword
+              isVisiblePassword ? images.hiddenPassword : images.showPassword
             }
             handleInputBtnPress={handlePasswordBtnPress}
             isSecureText={isVisiblePassword}
@@ -45,7 +45,7 @@ const LoginView = (props: any) => {
             }}
           />
         </View>
-        <TouchableOpacity style={styles.forgotTouch} onPress={()=> props.handleForgotPress()}>
+        <TouchableOpacity style={styles.forgotTouch} onPress={() => props.handleForgotPress()}>
           <Text style={styles.forgotText}>{strings.forgotPassword}</Text>
         </TouchableOpacity>
         <View style={styles.btnView}>
