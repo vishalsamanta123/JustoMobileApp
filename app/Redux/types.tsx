@@ -169,6 +169,10 @@ export const BOOKING_CANCEL = 'BOOKING_CANCEL'
 export const BOOKING_CANCEL_ERROR = 'BOOKING_CANCEL_ERROR'
 export const REMOVE_BOOKING = 'REMOVE_BOOKING'
 
+// Chat Management
+export const GET_ALL_USER_CHAT_LIST = 'GET_ALL_USER_CHAT_LIST'
+export const CHAT_ERROR = 'CHAT_ERROR'
+
 // Update setting
 
 export const UPDATE_PROFILE = 'UPDATE_PROFILE'

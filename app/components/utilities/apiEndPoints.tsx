@@ -15,6 +15,7 @@ export default {
   USERSTATUSUPDATE: "/userManage/userStatusUpdate",
   GET_USERPROFILE: '/auth/getUserProfile',
   FIREBASE_UPDATE: '/auth/firebaseIdUpdate',
+  FIREBASE_DATABASE_URL: "https://justo-d8d17-default-rtdb.firebaseio.com/",
 
   //Dashboard 
   DASHBOARD_SOURCING: '/dashboard/dashboardDetailSourcing',
@@ -84,7 +85,11 @@ export default {
   GET_BOOKINGDETAIL: '/booking/getBookingdetails',
   UPDATE_BOOKINGSTATUS: '/booking/updateBooking',
   CANCEL_BOOKING: '/booking/bookingStatusUpdate',
-
+  
+  // Chat Management
+  GET_ALL_USER_CHAT_LIST: '/chat/getAllUserListForChat',
+  
+  
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
   NOTIFICATION_LIST: "/notification/getNotificationList",
