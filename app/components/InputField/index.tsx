@@ -73,37 +73,6 @@ const InputField = (props: any) => {
           rightImgSrc={props.rightImgSrc}
         />
       )}
-      {/* <View style={styles.inputHeadinView}>
-        <Text style={styles.inputHeadingText}>{props.headingText}</Text>
-      </View>
-      <View style={styles.mainContainer}>
-        <TextInput
-          style={[styles.input, {
-            width: inputWidth,
-            height: normalizeHeight(inputheight),
-            textAlignVertical: 'top',
-            top: topping,
-            color: GRAY_LIGHT_COLOR
-          }]}
-          onChangeText={val => props.onChangeText(val)}
-          onSubmitEditing={onSubmit}
-          placeholder={props.placeholderText}
-          placeholderTextColor={BLACK_COLOR}
-          secureTextEntry={props.isSecureText}
-          autoCapitalize={'none'}
-          editable={editable}
-          multiline={multiline}
-          keyboardType={keyboardtype}
-          value={props.valueshow}
-          maxLength={props.maxLength}
-          onBlur={props.onBlur}
-        />
-        <TouchableOpacity
-          onPress={props.handleInputBtnPress}
-          disabled={!props.handleInputBtnPress}>
-          <Image style={styles.rightImage} source={props.rightImgSrc} />
-        </TouchableOpacity>
-      </View> */}
     </View>
   );
 };

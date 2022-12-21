@@ -13,7 +13,8 @@ const PicturePickerModal = (props: any) => {
             width: 100,
             height: 100,
             cropping: true,
-            multiple: props.multiple ? props.multiple : false
+            multiple: props.multiple ? props.multiple : false,
+            compressImageQuality: 0.8,
         }).then((image: any) => {
             props.setVisible(false);
             props.imageData(
@@ -32,7 +33,8 @@ const PicturePickerModal = (props: any) => {
             width: 100,
             height: 100,
             cropping: true,
-            multiple: props.multiple ? props.multiple : false
+            multiple: props.multiple ? props.multiple : false,
+            compressImageQuality: 0.8,
         }).then((image: any) => {
             props.setVisible(false);
             props.imageData(

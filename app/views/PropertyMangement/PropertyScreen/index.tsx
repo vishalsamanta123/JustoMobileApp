@@ -8,12 +8,9 @@ const PropertyScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const [limit, setLimit] = useState(10)
   const [offset, setOffset] = useState(0)
-  const [isloading, setIsloading] = useState(false)
   const [currentStatus, setCurrentStatus] = useState(1)
   const [currentProperty, setCurrentProperty] = useState({})
   const [resion, setResion] = useState('')
-
-
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
   const { response, loading, updateStatus, list } = propertyData;
 
@@ -24,7 +21,6 @@ const PropertyScreen = ({ navigation }: any) => {
     }, [navigation, list]))
 
   const handleStatusChange = () => {
-    setIsloading(true)
     dispatch(statusUpdate({
       property_id: currentProperty,
       approve_status: currentStatus === 1 ? 2 : currentStatus === 2 ? 3 : 2,
@@ -37,7 +33,6 @@ const PropertyScreen = ({ navigation }: any) => {
     dispatch(getAllProperty({
       offset: 0,
       limit: limit,
-
     }))
   }
   const handleDrawerPress = () => {
@@ -62,7 +57,6 @@ const PropertyScreen = ({ navigation }: any) => {
         handleDrawerPress={handleDrawerPress}
         Onreachedend={Onreachedend}
         getallproperty={getallproperty}
-        setIsloading={setIsloading}
         handleStatusChange={() => handleStatusChange()}
         currentStatus={currentStatus}
         setCurrentStatus={setCurrentStatus}
