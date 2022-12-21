@@ -270,12 +270,12 @@ const ChatViewScreen = ({ navigation }: any) => {
 
   const dispatch: any = useDispatch();
 
-//   useEffect(() => {
-//     dispatch(getAllUserChatList({
-//         limit: 100,
-//         offset: 0
-//     }))
-// }, [navigation, isFocused])
+  useEffect(() => {
+    dispatch(getAllUserChatList({
+        limit: 100,
+        offset: 0
+    }))
+}, [navigation, isFocused])
 
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
