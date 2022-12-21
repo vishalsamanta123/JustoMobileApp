@@ -70,8 +70,8 @@ const ChatViewView = (props: any) => {
         statusBarColor={PRIMARY_THEME_COLOR}
         barStyle={"light-content"}
       />
-      <ComingSoonScreen />
-      {/* <SearchBar
+      {/* <ComingSoonScreen /> */}
+      <SearchBar
         placeholderText={strings.searchProperty}
         onChangeText={handleChangeText}
         onSubmit={onSubmit}
@@ -81,7 +81,7 @@ const ChatViewView = (props: any) => {
         renderItem={(item) => renderChatList(item.item)}
         ListEmptyComponent={<EmptyListScreen message={strings.propertyChat} />}
         keyboardShouldPersistTaps
-      /> */}
+      />
     </View>
   );
 };
