@@ -26,14 +26,14 @@ const BookingListItem = (props: any) => {
                     <Text style={styles.nameTxt}>{props.items.customer_first_name}</Text>
                 </View>
             </View>
-            <View style={styles.Txtview} >
+            {/* <View style={styles.Txtview} >
                 <View style={styles.projectContainer}>
                     <Text style={styles.projectTxt}>Booking Status :</Text>
                 </View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>{props.items.booking_status}</Text>
                 </View>
-            </View>
+            </View> */}
             {(props.type === 'request' ?
                 <>
                     <View style={styles.Txtview} >
@@ -41,7 +41,9 @@ const BookingListItem = (props: any) => {
                             <Text style={styles.projectTxt}>Configuration :</Text>
                         </View>
                         <View style={styles.nameContainer}>
-                            <Text style={styles.nameTxt}>{props.items.configuration}</Text>
+                            <Text style={styles.nameTxt}>{
+                                props.items.configuration_title?.length > 0 ?
+                                    props.items.configuration_title[0] : ''}</Text>
                         </View>
                     </View>
                     <View style={styles.Txtview}>
@@ -50,7 +52,9 @@ const BookingListItem = (props: any) => {
                         </View>
                         <View style={styles.nameContainer}>
                             <Text style={styles.nameTxt}>{
-                                `${props.items.min_budget}${props.items.min_budget_type} - ${props.items.max_budget}${props.items.max_budget_type}`
+                                props.items.min_budget || props.items.max_budget ?
+                                    `${props.items.min_budget}${props.items.min_budget_type} - ${props.items.max_budget}${props.items.max_budget_type}`
+                                    : null
                             }</Text>
                         </View>
                     </View>
@@ -67,14 +71,18 @@ const BookingListItem = (props: any) => {
             )}
             <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Status :</Text>
+                    <Text style={styles.projectTxt}>Booking Status :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{
-                        props?.items?.booking_status === 1 ? 'Pending' :
-                            props?.items?.booking_status === 2 ? 'Confirm' :
-                                props?.items?.booking_status === 3 ? 'Completed' : 'Booking Cancel'
-                    }</Text>
+                    {/* booking_status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 =booking cancel} */}
+                    <Text style={[styles.nameTxt, {
+                        color: props?.items?.booking_status === 1 || props?.items?.booking_status === 4 ? 'red' : BLACK_COLOR
+                    }]}>{
+                            props?.items?.booking_status === 1 ? 'Pending' :
+                                props?.items?.booking_status === 2 ? 'Confirm' :
+                                    props?.items?.booking_status === 3 ? 'Completed' :
+                                        props?.items?.booking_status === 4 && 'Booking Cancel'
+                        }</Text>
                 </View>
             </View>
             <View style={styles.buttonContainer}>

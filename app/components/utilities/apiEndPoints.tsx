@@ -14,6 +14,7 @@ export default {
   EDITUSER: "/auth/editUserProfile",
   USERSTATUSUPDATE: "/userManage/userStatusUpdate",
   GET_USERPROFILE: '/auth/getUserProfile',
+  FIREBASE_UPDATE: '/auth/firebaseIdUpdate',
 
   //Dashboard 
   DASHBOARD_SOURCING: '/dashboard/dashboardDetailSourcing',

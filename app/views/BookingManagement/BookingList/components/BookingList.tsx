@@ -12,7 +12,7 @@ const BookingListView = (props: any) => {
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.menu}
-                headerText={strings.bookingListHeader}
+                headerText={props?.type === 'readyToBook' ? strings.readytoBookHeader : strings.bookingRequestHead}
                 handleOnLeftIconPress={props.handleDrawerPress}
                 headerStyle={styles.headerStyle}
             />
@@ -20,7 +20,7 @@ const BookingListView = (props: any) => {
                 <FlatList
                     data={Array.isArray(props.DATA) ? props.DATA : []}
                     showsVerticalScrollIndicator={false}
-                    ListEmptyComponent={<EmptyListScreen message={strings.bookingListHeader} />}
+                    ListEmptyComponent={<EmptyListScreen message={props?.type === 'readyToBook' ? strings.readytoBookHeader : strings.bookingRequestHead} />}
                     renderItem={({ item }) => <BookingListItem items={item} type={props?.type}
                         onPressView={() => props.handleView(item)}
                     />}

@@ -13,6 +13,8 @@ import PicturePickerModal from "../../../components/Modals/PicturePicker";
 import AgentBankInfo from "./components/AgencyBankInfo";
 import AgentBasicInfoView from "./components/AgentBasicInfoView";
 import CompanyDetails from "./components/CompanyDetails";
+import auth from '@react-native-firebase/auth';
+
 
 const AgentBasicInfo = ({ navigation, route }: any) => {
   const { type, data } = route.params || {};
@@ -360,6 +362,20 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           dispatch(editAgent(formData));
         } else if (type === "add") {
           dispatch(createAgency(formData));
+          auth()
+          .createUserWithEmailAndPassword(agencyData?.email, "123456")
+          .then(() => {
+            console.log("User account created & signed in!");
+          })
+          .catch((error) => {
+            if (error.code === "auth/email-already-in-use") {
+              console.log("That email address is already in use!");
+            }
+            if (error.code === "auth/invalid-email") {
+              console.log("That email address is invalid!");
+            }
+            console.error(error);
+          });
           dispatch(AgencyCreateFormRemove());
         }
         if (response?.status === 200) {
