@@ -30,38 +30,37 @@ const ChatScreen = ({ navigation, route }: any) => {
   const isFocused = useIsFocused();
   const [keys, setkeys] = useState([]);
   const [messages, setMessages] = useState<any>([]);
-  console.log('messages: ', messages);
-  const [senderID, setSenderID] = useState<any>(null);
+  const [senderID, setSenderID] = useState<any>("");
   const [pickerVisible, setPickerVisible] = useState<any>();
 
-  // useEffect(() => {
-  //   setMessages([
-  //     {
-  //       _id: 1,
-  //       text: "Hello developer",
-  //       createdAt: new Date(),
-  //       user: {
-  //         _id: 2,
-  //         name: "React Native",
-  //         avatar: "https://placeimg.com/140/140/any",
-  //       },
-  //     },
-  //     {
-  //       _id: 2,
-  //       text: "Hello developer",
-  //       createdAt: new Date(),
-  //       user: {
-  //         _id: 1,
-  //         name: "React Native",
-  //         avatar: "https://placeimg.com/140/140/any",
-  //       },
-  //     },
-  //   ]);
-  // }, []);
+  useEffect(() => {
+    setMessages([
+      // {
+      //   _id: 1222,
+      //   text: "Hello developer",
+      //   createdAt: new Date(),
+      //   user: {
+      //     _id: 1222222,
+      //     name: "React Native",
+      //     avatar: "https://placeimg.com/140/140/any",
+      //   },
+      // },
+      // {
+      //   _id: 22222,
+      //   text: "hell0 surendra",
+      //   createdAt: new Date(),
+      //   user: {
+      //     _id: senderID,
+      //     name: "React Native",
+      //     avatar: "https://placeimg.com/140/140/any",
+      //   },
+      // },
+    ]);
+  }, []);
 
   useEffect(() => {
     getMsgList();
-  }, [senderID, isFocused]);
+  }, []);
 
   const handleBackPress = () => {
     navigation.goBack();
@@ -93,10 +92,10 @@ const ChatScreen = ({ navigation, route }: any) => {
 
   const getMsgList = async () => {
     await AsyncStorage.setItem("isNotification", "2");
-    const asyncSenderID: any = await AsyncStorage.getItem("firebase_id")
-    const senderID: any = JSON.parse(asyncSenderID)
-    // setSenderID(senderID)
-    console.log('kkkkkkkk', senderID > item?.firebase_id)
+    const asyncSenderID: any = await AsyncStorage.getItem("firebase_id");
+    const senderID: any = JSON.parse(asyncSenderID);
+    setSenderID(senderID);
+    console.log("kkkkkkkk", senderID > item?.firebase_id);
     console.log(
       "========>>>>>>",
       senderID > item?.firebase_id
@@ -112,7 +111,7 @@ const ChatScreen = ({ navigation, route }: any) => {
           ? senderID + "-" + item?.firebase_id
           : item?.firebase_id + "-" + senderID
       )
-      .limitToLast(10)
+      // .limitToLast(10)
       .on("value", async (snapshot: any) => {
         console.log("snapshot: ", snapshot);
         if (snapshot?.val()) {
@@ -130,8 +129,27 @@ const ChatScreen = ({ navigation, route }: any) => {
           const msgArray = generateItems(
             message_array.filter((i: any) => i?.["delete-" + senderID] == false)
           );
-          setMessages(msgArray);
           console.log("msgArray: ", msgArray);
+
+          const finalChatArray = msgArray.map((item: any) => {
+            console.log("TYPEOF senderID: ", typeof senderID);
+
+            console.log("item: ", item);
+            return {
+              _id: item?.msgId,
+              text: item?.text,
+              createdAt: new Date(),
+              user: {
+                _id: item?._id,
+                name: "React Native",
+                avatar: "https://placeimg.com/140/140/any",
+              },
+            };
+          });
+          // setMessages((previousMessages: any) =>
+          //   GiftedChat.append(previousMessages, finalChatArray)
+          // );
+          setMessages(finalChatArray);
         }
         //  else {
         //   setIsLoadMore(false);
@@ -141,7 +159,8 @@ const ChatScreen = ({ navigation, route }: any) => {
 
   const _handleChatSend = async (msg: any) => {
     const asyncSenderID: any = await AsyncStorage.getItem("firebase_id");
-    const senderID: any = JSON.parse(asyncSenderID)
+    const senderID: any = JSON.parse(asyncSenderID);
+    setSenderID(senderID);
     console.log("senderID: ", senderID);
     const params = {
       createdAt: new Date().toISOString(),
@@ -177,7 +196,6 @@ const ChatScreen = ({ navigation, route }: any) => {
   };
 
   const onSend = useCallback((messages: any) => {
-    console.log("messages: ", messages[0].text);
     // setMessages((previousMessages: any) =>
     //   GiftedChat.append(previousMessages, messages)
     // );
@@ -327,6 +345,7 @@ const ChatScreen = ({ navigation, route }: any) => {
             />
           );
         }}
+        maxComposerHeight={100}
         renderSend={renderSend}
         renderComposer={renderComposer}
       />
