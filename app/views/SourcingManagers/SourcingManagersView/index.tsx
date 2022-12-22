@@ -34,7 +34,7 @@ const SourcingDetailScreen = ({ navigation }: any) => {
     }, [response])
     const getSMList = (offset: any) => {
         setOffset(offset)
-        dispatch(getSourcingManagerList())
+        dispatch(getSourcingManagerList({}))
         // toGetDatas(array)
     }
 

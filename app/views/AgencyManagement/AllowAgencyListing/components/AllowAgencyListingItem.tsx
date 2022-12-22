@@ -109,10 +109,10 @@ const AllowAgencyListing = (props: any) => {
           width={78}
           height={30}
           bgcolor={WHITE_COLOR}
-          bordercolor={props.items.active_status === false ? GREEN_COLOR : RED_COLOR}
+          bordercolor={GREEN_COLOR}
           borderWidth={1}
-          btnTxtcolor={props.items.active_status === false ? GREEN_COLOR : RED_COLOR}
-          buttonText={props.items.active_status === false ? strings.active : strings.deactive}
+          btnTxtcolor={GREEN_COLOR}
+          buttonText={strings.allocate}
           btnTxtsize={14}
           border={10}
           handleBtnPress={() => {
