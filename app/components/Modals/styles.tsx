@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE_COLOR,
     borderRadius: 5,
   },
-  descTxt:{
+  descTxt: {
     color: BLACK_COLOR,
     fontSize: normalize(18),
     fontFamily: FONT_FAMILY_SEMIBOLD,
@@ -90,6 +90,15 @@ const styles = StyleSheet.create({
   textItem: {
     flex: 1,
     fontSize: 16,
+  },
+  propertyVw: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+},
+  addNewBttn: {
+    alignSelf: 'flex-end',
+    marginBottom: normalizeSpacing(6)
   },
   placeholderStyle: {
     fontSize: 16,
@@ -163,11 +172,11 @@ const styles = StyleSheet.create({
     color: WHITE_COLOR,
     fontFamily: FONT_FAMILY_REGULAR
   },
-  selecttxtmodel  : { 
+  selecttxtmodel: {
     marginVertical: normalizeSpacing(10),
-    fontFamily:FONT_FAMILY_EXTRABOLD,
-    fontSize:18
-},
+    fontFamily: FONT_FAMILY_EXTRABOLD,
+    fontSize: 18
+  },
 });
 
 export default styles;

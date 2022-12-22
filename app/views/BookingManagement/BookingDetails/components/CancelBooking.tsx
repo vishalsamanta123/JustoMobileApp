@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
@@ -10,6 +10,7 @@ import DropdownInput from "../../../../components/DropDown";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import { getAllPropertyCompetitor, removePropertyCompetitor } from "app/Redux/Actions/propertyActions";
+import { normalizeSpacing } from "app/components/scaleFontSize";
 
 const CancelModal = (props: any) => {
     const dispatch: any = useDispatch()
@@ -17,7 +18,8 @@ const CancelModal = (props: any) => {
     const [propertyCompetitor, setPropertyCompetitor] = useState<any>()
     const [propetyInput, setPropetyInput] = useState<any>(false)
     const masterData = useSelector((state: any) => state.masterData) || {}
-    const propertData = useSelector((state: any) => state.propertyData) || {}
+    const propertyData = useSelector((state: any) => state.competitorproperty) || {}
+
     const handleMasterDatas = (data: any) => {
         dispatch(getAllMaster({
             type: data
@@ -26,23 +28,19 @@ const CancelModal = (props: any) => {
 
     const handleCompetitorProperty = () => {
         dispatch(getAllPropertyCompetitor({}))
-        if (propertData?.response) {
-            getPropertyList()
-        }
     }
-    const getPropertyList = () => {
-        if (propertData?.response?.status === 200) {
-            setPropertyCompetitor(propertData?.response?.data)
-            dispatch(removePropertyCompetitor())
+    useEffect(() => {
+        if (propertyData?.response?.status === 200) {
+            setPropertyCompetitor(propertyData?.response?.data)
         } else {
-            if (propertData?.response?.status === 201) {
+            if (propertyData?.response?.status === 201 ||
+                propertyData?.response?.data?.length > 0) {
                 setPropetyInput(true)
                 setPropertyCompetitor([])
                 dispatch(removePropertyCompetitor())
             }
         }
-    }
-
+    }, [propertyData])
     useEffect(() => {
         if (masterData?.response?.status === 200) {
             setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
@@ -51,18 +49,22 @@ const CancelModal = (props: any) => {
 
     const handleCancel = () => {
         props.setIsVisible(false)
+        setPropetyInput(false)
         if (props?.cancelValue?.reason != '') {
             props.cancelDataPress()
         }
     }
     return (
-        <View>
-            <Modal isVisible={props.Visible}>
+        <Modal isVisible={props.Visible}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
                 <View style={styles.mainContainer}>
                     <View style={styles.topContainer}>
                         <Text style={styles.topTxt}>{strings.cancel + " " + strings.bookingRequestHead}</Text>
                         <View>
-                            <TouchableOpacity onPress={() => props.setIsVisible(false)}>
+                            <TouchableOpacity onPress={() => {
+                                props.setIsVisible(false)
+                                setPropetyInput(false)
+                            }}>
                                 <Image source={images.close} style={styles.closeIcon} />
                             </TouchableOpacity>
                         </View>
@@ -77,7 +79,7 @@ const CancelModal = (props: any) => {
                                 inputWidth={'100%'}
                                 paddingLeft={16}
                                 maxHeight={300}
-                                onFocus={() => handleMasterDatas(7)}
+                                onFocus={() => handleMasterDatas(8)}
                                 labelField="title"
                                 valueField={'_id'}
                                 value={props?.cancelValue?.reason}
@@ -99,7 +101,23 @@ const CancelModal = (props: any) => {
                             />
                         </View>
                         <View style={styles.inputWrap}>
-                            <Text style={styles.titleTxt}>{strings.selectproperty}</Text>
+                            <View style={styles.propertyVw}>
+                                <Text style={styles.titleTxt}>{propetyInput ? "Property Name" :
+                                    strings.selectproperty}</Text>
+                                {!propetyInput && props?.cancelValue?.property_id === '' ||
+                                    props?.cancelValue?.property_id === undefined
+                                    ?
+                                    <View style={styles.addNewBttn}>
+                                        <Button
+                                            width={80}
+                                            height={25}
+                                            btnTxtsize={12}
+                                            buttonText={'Add New'}
+                                            handleBtnPress={() => setPropetyInput(true)}
+                                        />
+                                    </View> : null
+                                }
+                            </View>
                             {propetyInput ?
                                 <InputField
                                     placeholderText={"Property Name"}
@@ -141,7 +159,6 @@ const CancelModal = (props: any) => {
                                     }}
                                 />
                             }
-
                         </View>
                         <View style={styles.inputWrap}>
                             <Text style={styles.titleTxt}>{"Comment"}</Text>
@@ -165,8 +182,8 @@ const CancelModal = (props: any) => {
                             buttonText={strings.cancelBooking} />
                     </View>
                 </View>
-            </Modal>
-        </View>
+            </ScrollView>
+        </Modal>
     );
 };
 

@@ -10,7 +10,6 @@ import BookingDetailsView from './components/BookingDetails'
 
 const BookingDetailsScreen = ({ navigation, route }: any) => {
     const { data = {}, type = '' } = route?.params || {}
-    console.log('type: ', type);
     const dispatch: any = useDispatch()
     const [cancelBookingModel, setCancelBookingModel] = useState(false)
     const [cancelValue, setCancelValue] = useState({
