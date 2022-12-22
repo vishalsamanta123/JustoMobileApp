@@ -6,13 +6,13 @@ import { useNavigation } from '@react-navigation/native';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization'
-import ConfirmModal from '../../../../components/Modals/ConfirmModal';
 
 import {
   PRIMARY_THEME_COLOR,
 } from '../../../../components/utilities/constant';
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 import AllowAgencyListing from './AllowAgencyListingItem';
+import AllocateConfirmModal from './AllocateConfirmModal';
 
 
 
@@ -70,7 +70,7 @@ const AllowAgencyView = (props: any) => {
           />
         </View>
       </View>
-      <ConfirmModal
+      <AllocateConfirmModal
         Visible={isVisible}
         setIsVisible={setIsVisible}
         stringshow={strings.confirmation}
@@ -78,6 +78,7 @@ const AllowAgencyView = (props: any) => {
           + ' ' + strings.agencyHeader + '?'}
         confirmtype={'CONFIRMATION'}
         setStatusChange={props.setStatusChange}
+        statusChange={props.statusChange}
         handleYesResponse={() => props.handleUpdateAssignCP(props.statusChange)}
       />
     </View>
