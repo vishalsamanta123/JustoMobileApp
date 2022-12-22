@@ -22,7 +22,7 @@ const DashboardScreen = ({ navigation }: any) => {
   useEffect(() => {
     getDashboard()
     if (getLoginType?.response?.data?.role_title === 'Sourcing TL') {
-      dispatch(getSourcingManagerList())
+      dispatch(getSourcingManagerList({}))
     } else {
       if (getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
         dispatch(
