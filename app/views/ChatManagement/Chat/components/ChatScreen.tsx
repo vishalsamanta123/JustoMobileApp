@@ -18,12 +18,17 @@ import {
 } from "app/components/utilities/constant";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import DocumentPicker from "react-native-document-picker";
+import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+
+import storage from "@react-native-firebase/storage";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { firebase } from "@react-native-firebase/database";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { useIsFocused } from "@react-navigation/native";
 import moment from "moment";
+import ImagePicker from "react-native-image-crop-picker";
+import { normalizeSpacing } from "app/components/scaleFontSize";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
@@ -32,7 +37,7 @@ const ChatScreen = ({ navigation, route }: any) => {
   const [messages, setMessages] = useState<any>([]);
   const [senderID, setSenderID] = useState<any>("");
   const [pickerVisible, setPickerVisible] = useState<any>();
-
+  // const [imgUrl, setimgUrl] = useState("");
   useEffect(() => {
     setMessages([
       // {
@@ -95,14 +100,6 @@ const ChatScreen = ({ navigation, route }: any) => {
     const asyncSenderID: any = await AsyncStorage.getItem("firebase_id");
     const senderID: any = JSON.parse(asyncSenderID);
     setSenderID(senderID);
-    console.log("kkkkkkkk", senderID > item?.firebase_id);
-    console.log(
-      "========>>>>>>",
-      senderID > item?.firebase_id
-        ? senderID + "-" + item?.firebase_id
-        : item?.firebase_id + "-" + senderID
-    );
-
     await firebase
       .app()
       .database(apiEndPoints.FIREBASE_DATABASE_URL)
@@ -113,7 +110,6 @@ const ChatScreen = ({ navigation, route }: any) => {
       )
       // .limitToLast(10)
       .on("value", async (snapshot: any) => {
-        console.log("snapshot: ", snapshot);
         if (snapshot?.val()) {
           var copy: any = Object.keys(snapshot?.val());
           setkeys(copy);
@@ -125,19 +121,14 @@ const ChatScreen = ({ navigation, route }: any) => {
               ...childSnapshot.val(),
             });
           });
-          console.log("message_array: ", message_array);
           const msgArray = generateItems(
             message_array.filter((i: any) => i?.["delete-" + senderID] == false)
           );
-          console.log("msgArray: ", msgArray);
-
           const finalChatArray = msgArray.map((item: any) => {
-            console.log("TYPEOF senderID: ", typeof senderID);
-
-            console.log("item: ", item);
             return {
               _id: item?.msgId,
               text: item?.text,
+              image: item?.image,
               createdAt: new Date(),
               user: {
                 _id: item?._id,
@@ -161,7 +152,6 @@ const ChatScreen = ({ navigation, route }: any) => {
     const asyncSenderID: any = await AsyncStorage.getItem("firebase_id");
     const senderID: any = JSON.parse(asyncSenderID);
     setSenderID(senderID);
-    console.log("senderID: ", senderID);
     const params = {
       createdAt: new Date().toISOString(),
       text: msg.trim(),
@@ -191,7 +181,6 @@ const ChatScreen = ({ navigation, route }: any) => {
       .then((ref) => {
         // setReplyOnEvent("");
         // setReplyMessage(null);
-        console.log("ref: ", ref);
       });
   };
 
@@ -217,12 +206,12 @@ const ChatScreen = ({ navigation, route }: any) => {
           right: {
             borderTopRightRadius: 15,
             backgroundColor: PRIMARY_THEME_COLOR,
-            // marginBottom: 30,
+            marginBottom: normalizeSpacing(5),
           },
           left: {
             borderTopLeftRadius: 15,
             backgroundColor: WHITE_COLOR,
-            // marginBottom: 30,
+            marginBottom: normalizeSpacing(5),
           },
         }}
         // containerToPreviousStyle={{
@@ -233,11 +222,10 @@ const ChatScreen = ({ navigation, route }: any) => {
         //   right: { borderTopRightRadius: 15 },
         //   left: { borderTopLeftRadius: 15 },
         // }}
-        // containerStyle={{
-        //   right: { borderTopRightRadius: 15 },
-        //   left: { borderTopLeftRadius: 15 },
-
-        // }}
+        containerStyle={{
+          right: { borderTopRightRadius: 15 },
+          left: { borderTopLeftRadius: 15 },
+        }}
       />
     );
   };
@@ -256,26 +244,105 @@ const ChatScreen = ({ navigation, route }: any) => {
   };
 
   const handleAttachPress = async () => {
-    const result = await DocumentPicker.pick();
-    setMessages([
-      {
-        image: result[0].uri,
-        user: {
-          _id: 1,
-          name: "React Native",
-          avatar: "https://placeimg.com/140/140/any",
-        },
-      },
-      ...messages,
-    ]);
+    // const result = await ImagePicker.openPicker({
+    //   width: 100,
+    //   height: 100,
+    //   cropping: true,
+    //   multiple: false,
+    //   compressImageQuality: 0.8,
+    // }).then((image: any) => {
+    //   return image;
+    //   // props.setVisible(false);
+    //   // props.imageData({
+    //   //   uri: image?.path,
+    //   //   type: image?.mime,
+    //   //   name: image?.path?.substring(image?.path?.lastIndexOf("/") + 1),
+    //   // });
+    // });
+
+    const options: any = {
+      mediaType: "mixed",
+    };
+
+    const result: any = await launchImageLibrary(options);
+
+    // const result: any = await DocumentPicker.pickSingle();
+
+
+    let url: any;
+    if (result?.assets[0]?.type !== "video/mp4") {
+      const reference = storage().ref(`images/${result?.assets[0]?.fileName}`);
+      const pathToFile = result?.assets[0]?.uri;
+      await reference.putFile(pathToFile);
+      url = await storage()
+        .ref(`images/${result?.assets[0]?.fileName}`)
+        .getDownloadURL();
+
+      // setimgUrl(url);
+    } else {
+      const reference = storage().ref(`video/${result?.assets[0]?.fileName}`);
+      const pathToFile = result?.assets[0]?.uri;
+      await reference.putFile(pathToFile);
+      url = await storage()
+        .ref(`video/${result?.assets[0]?.fileName}`)
+        .getDownloadURL();
+      // setimgUrl(url);
+    }
+
+    const asyncSenderID: any = await AsyncStorage.getItem("firebase_id");
+    const senderID: any = JSON.parse(asyncSenderID);
+    setSenderID(senderID);
+    const params = {
+      createdAt: new Date().toISOString(),
+      // text: msg.trim(),
+      image: url,
+      type: "image",
+      senderUserId: senderID,
+      recevierID: item?.firebase_id,
+      _id: senderID,
+      // firstName: item?.firstName,
+      ["isRead-" + senderID]: true,
+      ["isRead-" + item?.firebase_id]: false,
+      isDelete: false,
+      ["delete-" + senderID]: false,
+      ["delete-" + item?.firebase_id]: false,
+      // replyMessage: replyMessage,
+      // replyOnEvent: replyOnEvent,
+    };
+    // ref?.current?.scrollToOffset({animated: true, y: 0});
+    await firebase
+      .app()
+      .database(apiEndPoints.FIREBASE_DATABASE_URL)
+      .ref(
+        senderID > item?.firebase_id
+          ? senderID + "-" + item?.firebase_id
+          : item?.firebase_id + "-" + senderID
+      )
+      .push()
+      .set(params)
+      .then((ref) => {
+        setMessages([
+          {
+            _id: item?.msgId,
+            image: url,
+            user: {
+              _id: senderID,
+              name: "React Native",
+              avatar: "https://placeimg.com/140/140/any",
+            },
+          },
+          ...messages,
+        ]);
+      });
+
     // setMessages((previousMessages: any) =>
     //   GiftedChat.append(previousMessages,[...messages, {image: result[0].uri, user: {
-    //     _id: 1,
+    //     _id: senderID,
     //     name: "React Native",
     //     avatar: "https://placeimg.com/140/140/any",
     //   }}])
     // );
-    renderMessage(result);
+    // renderMessage(result);
   };
   const renderComposer = (props: any) => {
     return (
@@ -302,7 +369,22 @@ const ChatScreen = ({ navigation, route }: any) => {
   const renderImageMessage = (data: any) => {
     return (
       <View>
-        <Image />
+        <Image
+          source={{
+            uri: data.currentMessage.image
+              ? data.currentMessage.image
+              : messages.image,
+          }}
+          style={{
+            height: 200,
+            width: 200,
+            borderTopRightRadius: 15,
+            borderTopLeftRadius: 15,
+            borderColor: PRIMARY_THEME_COLOR,
+            borderWidth: 4,
+          }}
+          resizeMode={"cover"}
+        />
       </View>
     );
   };
@@ -330,12 +412,12 @@ const ChatScreen = ({ navigation, route }: any) => {
         alwaysShowSend
         showUserAvatar
         renderBubble={(data: any) => renderBubble(data)}
-        // renderMessageImage={(props: any) => {
-        //   return renderImageMessage(props)
-        //   // return (
-        //   //   <Image source={images.agency} style={{height: 30, width: 30}}/>
-        //   // );
-        // }}
+        renderMessageImage={(props: any) => {
+          return renderImageMessage(props);
+        }}
+        renderMessageVideo={(props: any) => {
+          return renderImageMessage(props);
+        }}
         renderInputToolbar={(props: any) => {
           return (
             <InputToolbar
@@ -345,7 +427,6 @@ const ChatScreen = ({ navigation, route }: any) => {
             />
           );
         }}
-        maxComposerHeight={100}
         renderSend={renderSend}
         renderComposer={renderComposer}
       />
