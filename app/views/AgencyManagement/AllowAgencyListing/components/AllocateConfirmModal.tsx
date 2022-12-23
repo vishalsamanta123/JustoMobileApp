@@ -20,7 +20,7 @@ const data = [
   { label: "Item 8", value: "8" },
 ];
 const AllocateConfirmModal = (props: any) => {
-  console.log('props: ', props.statusChange);
+  console.log('props ===: ', props.statusChange);
   const [value, setValue] = useState(null);
   const [allocateData, setAllocateData] = useState<any>({
     cp_id: [],

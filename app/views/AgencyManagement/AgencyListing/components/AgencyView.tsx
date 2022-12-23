@@ -21,13 +21,14 @@ import {
 } from "../../../../components/utilities/constant";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
+import { useSelector } from "react-redux";
 
 const AgencyView = (props: any) => {
   const loadingref = false;
   const [isVisible, setIsVisible] = useState(false);
   const [newVisitor, setNewVisitor] = useState(false);
   const [FilterisVisible, setFilterisVisible] = useState(false);
-  const insets = useSafeAreaInsets();
+  const { userData = {} } = useSelector((state: any) => state.userData)
   const navigation: any = useNavigation();
   const onPressView = () => {
     navigation.navigate("AgencyDetails");
@@ -79,51 +80,52 @@ const AgencyView = (props: any) => {
       />
       <View style={styles.propertyListView}>
         <View style={styles.btnView}>
-            <TouchableOpacity
-              onPress={() => onPressAddnewAgency()}
+          <TouchableOpacity
+            onPress={() => onPressAddnewAgency()}
+            style={[
+              styles.button,
+              {
+                borderColor: BLACK_COLOR,
+                backgroundColor: PRIMARY_THEME_COLOR,
+              },
+            ]}
+          >
+            <Text
               style={[
-                styles.button,
+                styles.buttonTxt,
                 {
-                  borderColor: BLACK_COLOR,
-                  backgroundColor: PRIMARY_THEME_COLOR,
+                  color: WHITE_COLOR,
                 },
               ]}
             >
-              <Text
-                style={[
-                  styles.buttonTxt,
-                  {
-                    color: WHITE_COLOR,
-                  },
-                ]}
-              >
-                {strings.addnewAgency}
-              </Text>
-            </TouchableOpacity>
+              {strings.addnewAgency}
+            </Text>
+          </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => ShowPendinglist()}
+          <TouchableOpacity
+            onPress={() => ShowPendinglist()}
+            style={[
+              styles.button,
+              {
+                borderColor: BLACK_COLOR,
+                backgroundColor: PRIMARY_THEME_COLOR,
+              },
+            ]}
+          >
+            <Text
               style={[
-                styles.button,
+                styles.buttonTxt,
                 {
-                  borderColor: BLACK_COLOR,
-                  backgroundColor: PRIMARY_THEME_COLOR,
+                  color: WHITE_COLOR,
                 },
               ]}
             >
-              <Text
-                style={[
-                  styles.buttonTxt,
-                  {
-                    color: WHITE_COLOR,
-                  },
-                ]}
-              >
-                {strings.pendingconfirm}
-              </Text>
-            </TouchableOpacity>
+              {strings.pendingconfirm}
+            </Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.btnView1}>
+        {userData?.data?.role_title !== 'Sourcing Manager' ?
+          (<View style={styles.btnView1}>
             <TouchableOpacity
               onPress={() => onPressAllow()}
               style={[
@@ -145,7 +147,9 @@ const AgencyView = (props: any) => {
                 {strings.AllocateRequest}
               </Text>
             </TouchableOpacity>
-        </View>
+          </View>)
+          : null
+        }
         <View style={styles.propertyListViewsec}>
           <FlatList
             showsVerticalScrollIndicator={false}

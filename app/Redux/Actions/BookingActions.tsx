@@ -88,9 +88,11 @@ export const updateBookingDetailStatus = (params: any) => async (dispatch: any) 
     }
 };
 export const cancelBooking = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.CANCEL_BOOKING, params);
+        console.log('res CANCEL_BOOKING: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: BOOKING_CANCEL,
