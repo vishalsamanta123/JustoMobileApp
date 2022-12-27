@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Linking } from 'react-native';
 import React from 'react';
 import styles from './styles';
 import strings from '../../../../components/utilities/Localization';
@@ -6,8 +6,10 @@ import { BLACK_COLOR, CALL_COLOR, GRAY_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, PRI
 import images from '../../../../assets/images';
 import Button from '../../../../components/Button';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 
 const AppointmentItem = (props: any) => {
+    const { userData = {} } = useSelector((state: any) => state.userData)
     return (
         <View style={styles.IteamView}>
             <View style={styles.Txtview} >
@@ -91,6 +93,11 @@ const AppointmentItem = (props: any) => {
                     buttonText={strings.call}
                     btnTxtsize={14}
                     border={10}
+                    handleBtnPress={() => {
+                        Linking.openURL(
+                            `tel:${props.items?.mobile}`
+                        )
+                    }}
                 />
                 <TouchableOpacity style={styles.Viewbutton}
                     onPress={() => props.onPressView(props.items)}
@@ -101,45 +108,49 @@ const AppointmentItem = (props: any) => {
                     />
                 </TouchableOpacity>
             </View>
-            <View style={[styles.buttonContainer, { justifyContent: 'center' }]}>
-                {props.items.pickup === 'Yes' &&
+            {
+                userData?.data?.role_title === 'Closing TL' ?
+                    (<View style={[styles.buttonContainer, { justifyContent: 'center' }]}>
+                        {props.items.pickup === 'Yes' &&
 
-                    <Button
-                        width={150}
-                        height={30}
-                        bgcolor={WHITE_COLOR}
-                        bordercolor={PRIMARY_THEME_COLOR}
-                        borderWidth={1}
-                        btnTxtcolor={PRIMARY_THEME_COLOR}
-                        buttonText={strings.dropLocation}
-                        btnTxtsize={14}
-                        border={10}
-                        handleBtnPress={() => {
-                            props.setappointmentid(props?.items?._id)
-                            props.setLocationModel(true)
-                        }}
-                        textTransform={'uppercase'}
-                    />
-                }
-                <Button
-                    width={100}
-                    height={30}
-                    bgcolor={WHITE_COLOR}
-                    bordercolor={PRIMARY_THEME_COLOR}
-                    borderWidth={1}
-                    btnTxtcolor={PRIMARY_THEME_COLOR}
-                    buttonText={strings.allocate}
-                    btnTxtsize={14}
-                    border={10}
-                    handleBtnPress={() => {
-                        props.setAllocatedCM({
-                            ...props.allocatedCM, appointment_id: props.items?._id
-                        })
-                        props.setAllocateModel(true)
-                    }}
-                    textTransform={'uppercase'}
-                />
-            </View>
+                            <Button
+                                width={150}
+                                height={30}
+                                bgcolor={WHITE_COLOR}
+                                bordercolor={PRIMARY_THEME_COLOR}
+                                borderWidth={1}
+                                btnTxtcolor={PRIMARY_THEME_COLOR}
+                                buttonText={strings.dropLocation}
+                                btnTxtsize={14}
+                                border={10}
+                                handleBtnPress={() => {
+                                    props.setappointmentid(props?.items?._id)
+                                    props.setLocationModel(true)
+                                }}
+                                textTransform={'uppercase'}
+                            />
+                        }
+                        <Button
+                            width={100}
+                            height={30}
+                            bgcolor={WHITE_COLOR}
+                            bordercolor={PRIMARY_THEME_COLOR}
+                            borderWidth={1}
+                            btnTxtcolor={PRIMARY_THEME_COLOR}
+                            buttonText={strings.allocate}
+                            btnTxtsize={14}
+                            border={10}
+                            handleBtnPress={() => {
+                                props.setAllocatedCM({
+                                    ...props.allocatedCM, appointment_id: props.items?._id
+                                })
+                                props.setAllocateModel(true)
+                            }}
+                            textTransform={'uppercase'}
+                        />
+                    </View>)
+                    : null
+            }
         </View>
     );
 };
