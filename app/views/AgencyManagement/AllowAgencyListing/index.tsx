@@ -19,7 +19,7 @@ const AllowAgencyListing = ({ navigation }: any) => {
     React.useCallback(() => {
       getPendingList()
       return () => { };
-    }, [navigation])
+    }, [navigation, statusUpdate])
   );
   useEffect(() => {
     if (response?.status === 200) {

@@ -11,6 +11,7 @@ import InputField from "../../../../components/InputField";
 import { DATE_FORMAT, WHITE_COLOR } from "../../../../components/utilities/constant";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
+import ErrorMessage from "app/components/ErrorMessage";
 
 const ReadyToBookModal = (props: any) => {
     return (
@@ -63,8 +64,15 @@ const ReadyToBookModal = (props: any) => {
                     <View style={{ marginVertical: 20 }}>
                         <Button
                             handleBtnPress={() => {
-                                props.setIsVisible(false)
-                                props.handleBooking()
+                                if (props?.BookingData?.booking_date) {
+                                    props.setIsVisible(false)
+                                    props.handleBooking()
+                                } else {
+                                    ErrorMessage({
+                                        msg: 'Please Enter the Booking Date',
+                                        backgroundColor: 'red'
+                                    })
+                                }
                             }}
                             buttonText={props.doneBttnTxt ? props.doneBttnTxt : strings.Confirm} />
                     </View>
