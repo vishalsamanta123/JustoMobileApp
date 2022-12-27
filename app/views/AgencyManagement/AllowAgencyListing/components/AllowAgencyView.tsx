@@ -79,6 +79,7 @@ const AllowAgencyView = (props: any) => {
         confirmtype={'CONFIRMATION'}
         setStatusChange={props.setStatusChange}
         statusChange={props.statusChange}
+        getPendingList={props.getPendingList}
         handleYesResponse={() => props.handleUpdateAssignCP(props.statusChange)}
       />
     </View>
