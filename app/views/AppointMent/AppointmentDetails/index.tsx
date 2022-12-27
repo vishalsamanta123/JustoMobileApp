@@ -4,13 +4,16 @@ import AppointmentDetailsView from './Components/AppointmentDetailsView'
 import { useFocusEffect } from '@react-navigation/native'
 import { getAppointmentDetail } from 'app/Redux/Actions/AppointmentWithCpActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { AddBooking } from 'app/Redux/Actions/AppointmentCLAction'
+import { AddBooking, removeAddBookingData } from 'app/Redux/Actions/AppointmentCLAction'
+import ErrorMessage from 'app/components/ErrorMessage'
+import { GREEN_COLOR } from 'app/components/utilities/constant'
 
 const AppointmentDetails = ({ navigation, route }: any) => {
   const data = route?.params || {}
-  const [BookingData, setBookingData] = useState({})
+  const [BookingData, setBookingData] = useState<any>({})
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
+  const addedBookingData = useSelector((state: any) => state.addedBooking) || {}
   // useFocusEffect(
   //   React.useCallback(() => {
   //     dispatch(getAppointmentDetail({
@@ -36,6 +39,18 @@ const AppointmentDetails = ({ navigation, route }: any) => {
     })
   }, [data])
 
+
+  useEffect(() => {
+    if (addedBookingData?.response?.status === 200) {
+      dispatch(removeAddBookingData())
+      ErrorMessage({
+        msg: addedBookingData?.response?.message,
+        backgroundColor: GREEN_COLOR
+      })
+      navigation.navigate("BookingList", { type: "readyToBook" });
+    }
+  }, [addedBookingData])
+
   const handleBackPress = () => {
     navigation.goBack()
   }
@@ -43,16 +58,16 @@ const AppointmentDetails = ({ navigation, route }: any) => {
     navigation.navigate('VisitorUpdate', data)
   }
   const onPressBookNow = () => {
-    navigation.navigate('Booking', {getBookingData : response?.data?.length > 0 ?  response?.data[0] : [], type: ''})
+    navigation.navigate('Booking', { getBookingData: response?.data?.length > 0 ? response?.data[0] : [], type: '' })
   }
   const handleViewFollowUp = (data: any) => {
     navigation.navigate('AllFollowUpScreen', data)
   }
   const handleUpdateStatus = (data: any) => {
-    navigation.navigate('AddAppointmentForSite', {item : response?.data[0]})
+    navigation.navigate('AddAppointmentForSite', { item: response?.data[0] })
   }
   const handleBooking = () => {
-    dispatch(AddBooking({...BookingData, booking_status: 1}))
+    dispatch(AddBooking({ ...BookingData, booking_status: 1 }))
   }
   return (
     <AppointmentDetailsView

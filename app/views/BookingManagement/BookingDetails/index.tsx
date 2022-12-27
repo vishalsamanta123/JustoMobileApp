@@ -48,7 +48,7 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
             dispatch(removeBooking())
         }
     }, [cancelBookingData])
-    const cancelBookingPress = (data: any) => {
+    const cancelBookingPress = () => {
         const params = {
             module_id: "",
             booking_id: data?._id,

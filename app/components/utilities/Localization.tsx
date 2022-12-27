@@ -154,7 +154,7 @@ const strings = new LocalizedStrings({
 
     /*** agency ***/
     addnewAgency: 'Add new Agency',
-    pendingconfirm: 'Pending Confirm',
+    pendingconfirm: 'Pending Agency',
     AllocateRequest: 'Allocate Request',
     edit: 'Edit',
     confirm: 'Confirm',
