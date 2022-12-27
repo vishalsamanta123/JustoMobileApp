@@ -65,6 +65,7 @@ const AllocateConfirmModal = (props: any) => {
       assignCPSM(allocateData)
     );
     setAllocateData([])
+    props.getPendingList()
   }
 
   const renderItem = (item: any) => {
