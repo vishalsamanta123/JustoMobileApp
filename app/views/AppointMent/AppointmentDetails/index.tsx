@@ -64,7 +64,7 @@ const AppointmentDetails = ({ navigation, route }: any) => {
     navigation.navigate('AllFollowUpScreen', data)
   }
   const handleUpdateStatus = (data: any) => {
-    navigation.navigate('AddAppointmentForSite', { item: response?.data[0] })
+    navigation.navigate('AddAppointmentForSite', { item: response?.data[0], type: 'reSheduled' })
   }
   const handleBooking = () => {
     dispatch(AddBooking({ ...BookingData, booking_status: 1 }))
