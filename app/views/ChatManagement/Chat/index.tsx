@@ -10,14 +10,14 @@ const ChatViewScreen = ({ navigation }: any) => {
 
   const { response = {},  } = useSelector((state: any) => state.chatData);
 
-  const dispatch: any = useDispatch();
+//   const dispatch: any = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAllUserChatList({
-        limit: 100,
-        offset: 0
-    }))
-}, [navigation, isFocused])
+//   useEffect(() => {
+//     dispatch(getAllUserChatList({
+//         limit: 100,
+//         offset: 0
+//     }))
+// }, [navigation, isFocused])
 
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
