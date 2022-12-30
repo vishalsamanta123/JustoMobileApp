@@ -54,7 +54,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configratiohn</Text>
+          <Text style={styles.projectTxt}>Configuration</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -102,7 +102,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Appointment Craete by</Text>
+          <Text style={styles.projectTxt}>Appointment created by</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>

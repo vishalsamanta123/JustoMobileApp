@@ -9,6 +9,7 @@ import {
   BORDER_COLOR,
   CALL_COLOR,
   FONT_FAMILY_SEMIBOLD,
+  GRAY_LIGHT_COLOR,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
 } from "app/components/utilities/constant";
@@ -18,7 +19,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     marginBottom: 20,
-
   },
   headerStyle: {
     backgroundColor: PRIMARY_THEME_COLOR,
@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
   chatListView: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: normalizeSpacing(15),
     borderBottomWidth: 1,
     borderBottomColor: BORDER_COLOR,
@@ -39,17 +39,17 @@ const styles = StyleSheet.create({
     fontSize: normalize(15),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     marginLeft: normalize(20),
-    color: PRIMARY_THEME_COLOR
+    color: PRIMARY_THEME_COLOR,
   },
   iconStyle: {
     height: normalizeHeight(20),
     width: normalizeWidth(20),
   },
-  straight:{
-    flexDirection: 'row',
-    alignItems: 'center'
+  straight: {
+    flexDirection: "row",
+    alignItems: "center",
   },
-  profileImage:{
+  profileImage: {
     height: normalizeHeight(35),
     width: normalizeWidth(35),
     borderRadius: normalize(35),
@@ -95,6 +95,48 @@ const styles = StyleSheet.create({
     width: "80%",
     justifyContent: "center",
     // backgroundColor: "red",
+  },
+  imageMessageView: {
+    height: normalizeHeight(200),
+    width: normalizeWidth(200),
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    borderColor: PRIMARY_THEME_COLOR,
+    borderWidth: 4,
+  },
+  senderpdfMessageView: {
+    height: normalizeHeight(50),
+    width: normalizeWidth(200),
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    justifyContent: "center",
+  },
+  recieverpdfMessageView: {
+    height: normalizeHeight(50),
+    width: normalizeWidth(230),
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  pdfnameTxt: {
+    fontSize: normalize(15),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    marginLeft: normalize(20),
+    color: WHITE_COLOR,
+  },
+  pdfRecievednameTxt: {
+    fontSize: normalize(15),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    marginLeft: normalize(20),
+    color: BLACK_COLOR,
+  },
+  downloadImage: {
+    height: normalizeHeight(30),
+    width: normalizeWidth(30),
+    tintColor: BLACK_COLOR,
+    padding: normalizeSpacing(10),
   },
 });
 export default styles;
