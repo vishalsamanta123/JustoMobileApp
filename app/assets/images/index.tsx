@@ -41,6 +41,7 @@ const images = {
   addCircle: require('./addCircle.png'),
   lock: require('./lock.png'),
   bell: require('./notification.png'),
+  download: require('./download.png'),
 };
 
 export default images;

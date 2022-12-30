@@ -3,7 +3,6 @@ import { apiCall } from "app/components/utilities/httpClient";
 import { CHAT_ERROR, GET_ALL_USER_CHAT_LIST, START_LOADING, STOP_LOADING } from "../types";
 
 export const getAllUserChatList = (params: any) => async (dispatch: any) => {
-    console.log("params: in GET_ALL_USER_CHAT_LIST ", params);
     dispatch({ type: START_LOADING });
     try {
       const res = await apiCall("post", apiEndPoints.GET_ALL_USER_CHAT_LIST, params);
