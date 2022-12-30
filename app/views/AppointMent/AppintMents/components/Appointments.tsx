@@ -68,6 +68,14 @@ const AppointmentListView = (props: any) => {
                     onRefresh={() => {
                         props.getAppointmentList(0)
                     }}
+                    onEndReached={() => {
+                        if (props?.DATA?.length < props?.moreData) {
+                            props.getAppointmentList(
+                                props?.DATA?.length > 2 ? props.offSET + 1 : 0,
+                                props?.filterData
+                            );
+                        }
+                    }}
                 />
             </View>
             <FilterModal

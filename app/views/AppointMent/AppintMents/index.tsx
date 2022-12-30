@@ -78,7 +78,8 @@ const AppointmentsScreen = ({ navigation }: any) => {
     })
     useFocusEffect(
         React.useCallback(() => {
-            getAppointmentList(offSET)
+            getAppointmentList(0)
+            setAppointmentList([])
             return () => { };
         }, [navigation, list])
     );
@@ -141,6 +142,9 @@ const AppointmentsScreen = ({ navigation }: any) => {
                 setAllocatedCM={setAllocatedCM}
                 allocatedCM={allocatedCM}
                 handleAllocateCM={handleAllocateCM}
+                offSET={offSET}
+                moreData={response?.total_data}
+                filterData={filterData}
             />
         </>
     )

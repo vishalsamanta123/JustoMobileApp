@@ -23,7 +23,7 @@ const AddAppointmentItem = (props: any) => {
                         placeholder={props?.appointMentForm?.first_name != "" ?
                             props?.appointMentForm?.first_name :
                             strings.selectLead}
-                        disable={props.type === 'edit' ? true : false}
+                        disable={props.type === 'edit' || props.type === 'reSheduled' ? true : false}
                         data={props?.leadList}
                         paddingLeft={16}
                         maxHeight={300}
@@ -32,11 +32,12 @@ const AddAppointmentItem = (props: any) => {
                         valueField={'lead_id'}
                         value={props?.appointMentForm?.lead_id}
                         onChange={(item: any) => {
-                            setpickUp(item?.pickup)
+                            // setpickUp(item?.pickup ? item?.pickup : props?.appointMentForm?.pickup)
                             props.setAppointMentForm({
                                 ...props.appointMentForm,
                                 lead_id: item.lead_id,
-                                first_name: item.first_name
+                                first_name: item.first_name,
+                                pickup: item?.pickup
                             })
                         }}
                         newRenderItem={(item: any) => {
@@ -57,7 +58,7 @@ const AddAppointmentItem = (props: any) => {
                             props?.appointMentForm?.property_title :
                             strings.selectproperty}
                         data={props?.propertyList}
-                        disable={props.type === 'edit' ? true : false}
+                        disable={props.type === 'edit' || props.type === 'reSheduled' ? true : false}
                         paddingLeft={16}
                         maxHeight={300}
                         onFocus={() => props.getPropertyList()}
@@ -104,7 +105,7 @@ const AddAppointmentItem = (props: any) => {
                         }}
                         value={
                             props?.appointMentForm?.appointment_date !== ""
-                                ? moment(props?.appointMentForm?.appointment_date).format(DATE_FORMAT)
+                                ? moment(props?.appointMentForm?.appointment_date).format("DD-MM-YYYY")
                                 : null
                         }
                     />
@@ -135,7 +136,7 @@ const AddAppointmentItem = (props: any) => {
                         }
                     />
                 </View>
-                {pickUp === 'Yes' ?
+                {props?.appointMentForm?.pickup === 'Yes' ?
                     <>
                         <View style={styles.inputWrap}>
                             <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
@@ -234,7 +235,8 @@ const AddAppointmentItem = (props: any) => {
                     <Button
                         handleBtnPress={() => props.onPressAddEdit()}
                         buttonText={props.type === 'edit' ? strings.update :
-                            strings.addNewappointment} />
+                            props.type === 'reSheduled' ? 'ReSheduled Appointment' :
+                                strings.addNewappointment} />
                 </View>
             </View>
         </ScrollView>

@@ -53,7 +53,7 @@ const AppointmentDetailsView = (props: any) => {
                         </View>
                         <View style={{ marginVertical: 10 }} />
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            {userData?.data?.role_title === 'Closing Manager' ||
+                            {userData?.data?.role_title === 'Closing Manager' || userData?.data?.role_title === 'Closing TL' ||
                                 getLoginType?.response?.data?.role_title === 'Closing Manager' ?
                                 <Button
                                     buttonText={'Book Now'}

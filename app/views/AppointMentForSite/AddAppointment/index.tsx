@@ -17,7 +17,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const editAppointmentData = useSelector((state: any) => state.editAddAppointment) || {}
   const [leadList, setLeadList] = useState<any>([])
   const [propertyList, setPropertyList] = useState<any>([])
-  const [appointMentForm, setAppointMentForm] = useState({
+  const [appointMentForm, setAppointMentForm] = useState<any>({
     module_id: "",
     lead_id: '',
     property_id: '',
@@ -34,13 +34,17 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     first_name: ''
   })
   useEffect(() => {
-    if (type === 'edit') {
+    if (type === 'edit' || type === 'reSheduled') {
       getUserDetails()
     }
   }, [type])
   useEffect(() => {
     if (editAppointmentData?.response?.status === 200) {
-      navigation.navigate('AppointmentForSite')
+      if (type !== 'reSheduled') {
+        navigation.navigate('AppointmentForSite')
+      } else {
+        navigation.navigate('Appointments')
+      }
       dispatch(removeEditUser())
       ErrorMessage({
         msg: editAppointmentData?.response?.message,
@@ -106,6 +110,15 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
         pickup_longitude: response?.data[0]?.pickup_longitude,
         number_of_guest: response?.data[0]?.number_of_guest,
       })
+    } else if (type === 'reSheduled' && response?.status === 200) {
+      setAppointMentForm({
+        lead_id: response?.data[0]?.lead_id,
+        first_name: response?.data[0]?.customer_first_name,
+        property_id: response?.data[0]?.property_id,
+        property_title: response?.data[0]?.property_title,
+        pickup: response?.data[0]?.pickup,
+        type: response?.data[0]?.type,
+      })
     }
   }, [response])
   const getUserDetails = () => {
@@ -137,6 +150,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
       dispatch(editAppointment({ ...params, appointment_id: item?._id }))
     } else {
       dispatch(addAppointment(params))
+      console.log('params: ', params);
     }
   }
   return (
