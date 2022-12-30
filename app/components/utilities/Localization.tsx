@@ -131,6 +131,7 @@ const strings = new LocalizedStrings({
     allocation: 'Allocation',
     newAllocateTxt: 'Allocate to New CP',
     noCpSelected: 'No CP Selected',
+    noCpFound: 'No CP Found',
     selectMonth: 'Select Month',
     startDate: "Start Date",
     endDate: "End Date",

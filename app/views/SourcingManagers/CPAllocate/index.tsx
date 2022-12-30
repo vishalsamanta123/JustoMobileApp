@@ -27,6 +27,7 @@ const AllocateCPScreen = ({ navigation, route }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
+      setCpList([])
       dispatch(
         getAssignCPList({
           user_id: id
