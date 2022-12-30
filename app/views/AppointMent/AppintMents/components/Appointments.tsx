@@ -12,6 +12,7 @@ import DropLocationModal from "./DropLocationModal";
 import { useDispatch } from "react-redux";
 import { AddDropLocation } from "app/Redux/Actions/AppointmentCLAction";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
+import AppointmentFilterModal from "./AppointmentFilterModal ";
 
 const AppointmentListView = (props: any) => {
     const [locationModel, setLocationModel] = useState(false)
@@ -51,7 +52,7 @@ const AppointmentListView = (props: any) => {
             </View> */}
             <View style={styles.listView}>
                 <FlatList
-                    data={props.DATA}
+                    data={Array.isArray(props.DATA) ? props.DATA : []}
                     showsVerticalScrollIndicator={false}
                     ListEmptyComponent={<EmptyListScreen message={strings.appointmentHeader} />}
                     renderItem={({ item }) =>
@@ -66,7 +67,12 @@ const AppointmentListView = (props: any) => {
                         />}
                     refreshing={false}
                     onRefresh={() => {
-                        props.getAppointmentList(0)
+                        props.getAppointmentList(0, {})
+                        props.setFilterData({
+                            start_date: '',
+                            end_date: '',
+                            customer_name: '',
+                        })
                     }}
                     onEndReached={() => {
                         if (props?.DATA?.length < props?.moreData) {
@@ -78,9 +84,13 @@ const AppointmentListView = (props: any) => {
                     }}
                 />
             </View>
-            <FilterModal
+            <AppointmentFilterModal
                 Visible={props.filterisVisible}
                 setIsVisible={props.setFilterisVisible}
+                filterData={props.filterData}
+                setFilterData={props.setFilterData}
+                getAppointmentList={props.getAppointmentList}
+                setAppointmentList={props.setAppointmentList}
             />
             <AllocateModal
                 Visible={allocateModel}
