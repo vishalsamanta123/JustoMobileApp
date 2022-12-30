@@ -15,10 +15,6 @@ import { useNavigation } from '@react-navigation/native';
 
 const AllocateCPView = (props: any) => {
 
-
-
-
-
     const navigation: any = useNavigation();
     const { response = {}, allocated } =
     useSelector((state: any) => state.propertyData) || [];
@@ -97,6 +93,7 @@ const AllocateCPView = (props: any) => {
                     onFocus={() => props.setAllList(true)}
                     onChangeText={(text: any) => props.handleSearch(text)}
                 />
+                {props.cpList.length === 0 && <Text style={styles.noSelectedTxt}>{strings.noCpFound}</Text>}
                 {props.allList ?
                     <FlatList
                         data={props.cpList}
@@ -136,6 +133,7 @@ const AllocateCPView = (props: any) => {
                     btnTxtsize={16}
                     buttonText={strings.cpAllocation}
                     textTransform={null}
+                    disabled={props.cpList.length === 0}
                     handleBtnPress={() => props.handleAddTarget()}
                 />
             </View>

@@ -21,6 +21,7 @@ const Button = (props: any) => {
     textTransform = "capitalize",
     marginTop = 0,
     rightImage,
+    disabled=false
   } = props;
   return (
     <View style={styles.mainContainer}>
@@ -41,6 +42,7 @@ const Button = (props: any) => {
           },
         ]}
         onPress={props.handleBtnPress}
+        disabled={disabled}
       >
         <View>
           <Text
