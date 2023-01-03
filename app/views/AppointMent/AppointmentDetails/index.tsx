@@ -58,7 +58,7 @@ const AppointmentDetails = ({ navigation, route }: any) => {
     navigation.navigate('VisitorUpdate', data)
   }
   const onPressBookNow = () => {
-    navigation.navigate('Booking', { getBookingData: response?.data?.length > 0 ? response?.data[0] : [], type: '' })
+    navigation.navigate('Booking', { getBookingData: response?.data?.length > 0 ? response?.data[0] : [], type: 'readyToBook' })
   }
   const handleViewFollowUp = (data: any) => {
     navigation.navigate('AllFollowUpScreen', data)

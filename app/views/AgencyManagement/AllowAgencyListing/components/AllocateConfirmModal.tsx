@@ -140,7 +140,7 @@ const AllocateConfirmModal = (props: any) => {
                   maxHeight={300}
                   labelField="user_name"
                   valueField="value"
-                  placeholder={props.placeholder ? props.placeholder : "Select Reasone"}
+                  placeholder={props.placeholder ? props.placeholder : "Select SM"}
                   value={value}
                   onChange={(item) => {
                     setAllocateData({

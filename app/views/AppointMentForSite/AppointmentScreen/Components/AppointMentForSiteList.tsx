@@ -61,7 +61,7 @@ const AppointMentForSiteList = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, { color: props.items.status == 5 ? 'red' : BLACK_COLOR }]}>{props.items.status == 1 ? 'Pending' :
             props.items.status == 2 ? 'Confirm' :
-              props.items.status == 3 ? 'Compleat' :
+              props.items.status == 3 ? 'Completed' :
                 props.items.status == 5 ? 'Appoiment cancel' : ''}
           </Text>
         </View>
