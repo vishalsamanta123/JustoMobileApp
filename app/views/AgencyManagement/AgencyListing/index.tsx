@@ -35,6 +35,7 @@ const AgencyListing = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
+      setAgentList([])
       getAgencyList(0, {});
       return () => { };
     }, [navigation, statusUpdate])
