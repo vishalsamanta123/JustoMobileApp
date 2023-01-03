@@ -35,6 +35,7 @@ const AgencyListing = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
+      setAgentList([])
       getAgencyList(0, {});
       return () => { };
     }, [navigation, statusUpdate])
@@ -43,11 +44,13 @@ const AgencyListing = ({ navigation }: any) => {
   useEffect(() => {
     if (SmCpList?.response?.status === 200) {
       setAgentList(SmCpList?.response?.data);
+    } else {
+      setAgentList([]);
     }
   }, [SmCpList]);
 
   const getAgencyList = (offset: any, filterData: any) => {
-  console.log('filterData: ', filterData);
+    console.log('filterData: ', filterData);
     setOffset(offset);
     // if (userData?.data?.role_title === 'Sourcing Manager') {
     dispatch(

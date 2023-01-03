@@ -16,7 +16,7 @@ const PropertyScreen = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getallproperty()
+      getallproperty(0)
       return () => { };
     }, [navigation, list]))
 
@@ -29,22 +29,24 @@ const PropertyScreen = ({ navigation }: any) => {
   }
 
 
-  const getallproperty = () => {
+  const getallproperty = (OFFset: any) => {
+    console.log('Offset ======', OFFset)
+    setOffset(OFFset)
     dispatch(getAllProperty({
-      offset: 0,
-      limit: limit,
+      offset: OFFset,
+      limit: 3,
     }))
   }
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
-  const Onreachedend = () => {
-    //  setOffset(offset + 1)
-    dispatch(getAllProperty({
-      offset: offset + 1,
-      limit: limit,
-    }))
-  };
+  // const Onreachedend = () => {
+  //   //  setOffset(offset + 1)
+  //   dispatch(getAllProperty({
+  //     offset: offset + 1,
+  //     limit: limit,
+  //   }))
+  // };
   const handleAllocatePress = (item: any) => {
     // dispatch(getManagerList({
     //   property_id: item._id
@@ -55,7 +57,7 @@ const PropertyScreen = ({ navigation }: any) => {
     <>
       <PropertyView
         handleDrawerPress={handleDrawerPress}
-        Onreachedend={Onreachedend}
+        // Onreachedend={Onreachedend}
         getallproperty={getallproperty}
         handleStatusChange={() => handleStatusChange()}
         currentStatus={currentStatus}
@@ -64,6 +66,7 @@ const PropertyScreen = ({ navigation }: any) => {
         setResion={setResion}
         resion={resion}
         handleAllocatePress={handleAllocatePress}
+        oFFset={offset}
       />
     </>
   );

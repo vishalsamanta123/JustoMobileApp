@@ -4,7 +4,7 @@ import { RadioButton } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import images from '../../../../assets/images';
 import InputField from '../../../../components/InputField';
-import { PRIMARY_THEME_COLOR, BLACK_COLOR, DATE_FORMAT } from '../../../../components/utilities/constant';
+import { PRIMARY_THEME_COLOR, BLACK_COLOR, DATE_FORMAT, AMOUNT_TYPE, Isios } from '../../../../components/utilities/constant';
 import strings from '../../../../components/utilities/Localization';
 import styles from './Styles';
 import Styles from '../../../../components/Modals/styles'
@@ -402,14 +402,34 @@ const AddNewVisitorForm = (props: any) => {
                                 placeholder='Min Budget'
                                 style={styles.budgetInput}
                             />
-                            <TouchableOpacity
-                                onPress={() => props.setFormData({
-                                    ...props.formData,
-                                    min_budget_type: props?.formData?.min_budget_type === 'Cr.' ? "L" : "Cr.",
-                                })}
-                                style={styles.smallBox}>
-                                <Text style={{ color: BLACK_COLOR }}>{props?.formData?.min_budget_type}</Text>
-                            </TouchableOpacity>
+                            <DropdownInput
+                                inputWidth={Isios ? 45 : 47}
+                                inputheight={Isios ? 20 : 39}
+                                paddingLeft={10}
+                                itemContainerStyle={{ width: 100 }}
+                                iconStyle={{ width: 15, height: 15 }}
+                                data={AMOUNT_TYPE}
+                                itemTextStyle={{ fontSize: 8 }}
+                                labelField="value"
+                                valueField={'value'}
+                                placeholder={props.formData?.min_budget_type}
+                                value={props?.formData?.min_budget_type}
+                                onChange={(item: any) => {
+                                    props.setFormData({
+                                        ...props.formData,
+                                        min_budget_type: item.value,
+                                    })
+                                }}
+                                newRenderItem={(item: any) => {
+                                    return (
+                                        <>
+                                            <View style={Styles.item}>
+                                                <Text style={Styles.textItem}>{item.value}</Text>
+                                            </View>
+                                        </>
+                                    );
+                                }}
+                            />
                             <TextInput
                                 value={props?.formData?.max_budget}
                                 onChangeText={(data: any) => {
@@ -420,15 +440,35 @@ const AddNewVisitorForm = (props: any) => {
                                 }}
                                 keyboardType={'number-pad'}
                                 placeholder='Max Budget'
-                                style={[styles.budgetInput, { marginLeft: 20 }]} />
-                            <TouchableOpacity
-                                onPress={() => props.setFormData({
-                                    ...props.formData,
-                                    max_budget_type: props?.formData?.max_budget_type === "Cr." ? "L" : "Cr.",
-                                })}
-                                style={styles.smallBox}>
-                                <Text style={{ color: BLACK_COLOR }}>{props?.formData?.max_budget_type}</Text>
-                            </TouchableOpacity>
+                                style={[styles.budgetInput, { marginLeft: 8 }]} />
+                            <DropdownInput
+                                inputWidth={Isios ? 45 : 47}
+                                inputheight={Isios ? 20 : 39}
+                                paddingLeft={10}
+                                itemContainerStyle={{ width: 100 }}
+                                iconStyle={{ width: 15, height: 15 }}
+                                data={AMOUNT_TYPE}
+                                itemTextStyle={{ fontSize: 8 }}
+                                labelField="value"
+                                valueField={'value'}
+                                placeholder={props.formData?.max_budget_type}
+                                value={props?.formData?.max_budget_type}
+                                onChange={(item: any) => {
+                                    props.setFormData({
+                                        ...props.formData,
+                                        max_budget_type: item.value,
+                                    })
+                                }}
+                                newRenderItem={(item: any) => {
+                                    return (
+                                        <>
+                                            <View style={Styles.item}>
+                                                <Text style={Styles.textItem}>{item.value}</Text>
+                                            </View>
+                                        </>
+                                    );
+                                }}
+                            />
                         </View>
                     </View>
                     <View style={styles.radioBtnView}>
@@ -518,14 +558,34 @@ const AddNewVisitorForm = (props: any) => {
                                 }}
                                 keyboardType={'number-pad'}
                                 placeholder='Min EMI Pay' style={styles.budgetInput} />
-                            <TouchableOpacity
-                                onPress={() => props.setFormData({
-                                    ...props.formData,
-                                    min_emi_budget_type: props?.formData?.min_emi_budget_type === 'Cr.' ? "L" : "Cr.",
-                                })}
-                                style={styles.smallBox}>
-                                <Text>{props?.formData?.min_emi_budget_type}</Text>
-                            </TouchableOpacity>
+                            <DropdownInput
+                                inputWidth={Isios ? 45 : 47}
+                                inputheight={Isios ? 20 : 39}
+                                paddingLeft={10}
+                                itemContainerStyle={{ width: 100 }}
+                                iconStyle={{ width: 15, height: 15 }}
+                                data={AMOUNT_TYPE}
+                                itemTextStyle={{ fontSize: 8 }}
+                                labelField="value"
+                                valueField={'value'}
+                                placeholder={props.formData?.min_emi_budget_type}
+                                value={props?.formData?.min_emi_budget_type}
+                                onChange={(item: any) => {
+                                    props.setFormData({
+                                        ...props.formData,
+                                        min_emi_budget_type: item.value,
+                                    })
+                                }}
+                                newRenderItem={(item: any) => {
+                                    return (
+                                        <>
+                                            <View style={Styles.item}>
+                                                <Text style={Styles.textItem}>{item.value}</Text>
+                                            </View>
+                                        </>
+                                    );
+                                }}
+                            />
                             <TextInput
                                 value={props?.formData?.max_emi_budget}
                                 onChangeText={(data: any) => {
@@ -536,16 +596,36 @@ const AddNewVisitorForm = (props: any) => {
                                 }}
                                 keyboardType={'number-pad'}
                                 placeholder='Max EMI Pay'
-                                style={[styles.budgetInput, { marginLeft: 20 }]}
+                                style={[styles.budgetInput, { marginLeft: 8 }]}
                             />
-                            <TouchableOpacity
-                                onPress={() => props.setFormData({
-                                    ...props.formData,
-                                    max_emi_budget_type: props?.formData?.max_emi_budget_type === 'Cr.' ? "L" : "Cr.",
-                                })}
-                                style={styles.smallBox}>
-                                <Text>{props?.formData?.max_emi_budget_type}</Text>
-                            </TouchableOpacity>
+                            <DropdownInput
+                                inputWidth={Isios ? 45 : 47}
+                                inputheight={Isios ? 20 : 39}
+                                paddingLeft={10}
+                                itemContainerStyle={{ width: 100 }}
+                                iconStyle={{ width: 15, height: 15 }}
+                                data={AMOUNT_TYPE}
+                                itemTextStyle={{ fontSize: 8 }}
+                                labelField="value"
+                                valueField={'value'}
+                                placeholder={props.formData?.max_emi_budget_type}
+                                value={props?.formData?.max_emi_budget_type}
+                                onChange={(item: any) => {
+                                    props.setFormData({
+                                        ...props.formData,
+                                        max_emi_budget_type: item.value,
+                                    })
+                                }}
+                                newRenderItem={(item: any) => {
+                                    return (
+                                        <>
+                                            <View style={Styles.item}>
+                                                <Text style={Styles.textItem}>{item.value}</Text>
+                                            </View>
+                                        </>
+                                    );
+                                }}
+                            />
                         </View>
                     </View>
                     <View style={styles.radioBtnView}>

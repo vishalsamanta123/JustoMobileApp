@@ -32,6 +32,7 @@ export const checkSpecialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 export const Isios = Platform.OS === 'ios'
 export const DATE_FORMAT = 'YYYY-MM-DD'
 export const TIME_FORMAT = 'LT'
+export const AMOUNT_TYPE = [{ value: "Cr" }, { value: "L" }, { value: "K" }]
 
 // export const  GLOBAL_URL = 'http://192.168.1.27:3000'
 export const  GLOBAL_URL = 'https://itinformatix.org:3044'

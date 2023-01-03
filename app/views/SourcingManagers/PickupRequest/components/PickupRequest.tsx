@@ -7,6 +7,7 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import PickupRequestsList from './PickupRequestsList'
 import FilterModal from "../../../../components/Modals/FilterModal";
+import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 
 
 const PickupRequestView = (props: any) => {
@@ -32,6 +33,7 @@ const PickupRequestView = (props: any) => {
                     />}
                     onRefresh={() => props.onRefresh()}
                     refreshing={false}
+                    ListEmptyComponent={() => <EmptyListScreen message={strings.PickuprequestHeader} />}
                 />
             </View>
             <FilterModal

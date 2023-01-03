@@ -9,7 +9,15 @@ target 'justo' do
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways/Permission-LocationAlways.podspec"
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse/Permission-LocationWhenInUse.podspec"
-
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+  # pod 'Firebase', :modular_headers => true
+  # pod 'FirebaseCore', :modular_headers => true
+  # pod 'FirebaseCoreExtension', :modular_headers => true
+  # pod 'FirebaseAuthInterop', :modular_headers => true
+  # pod 'FirebaseMessagingInterop', :modular_headers => true
+  # pod 'GTMSessionFetcher', :modular_headers => true
+  # pod 'FirebaseAppCheckInterop', :modular_headers => true
+  # pod 'GoogleUtilities', :modular_headers => true
   # Flags change depending on the env values.
   flags = get_default_flags()
 
