@@ -1,13 +1,7 @@
 import { View, Text, StatusBar, FlatList } from "react-native";
 import React, { useState, useEffect } from "react";
 import Header from "../../../../components/Header";
-import {
-  BLACK_COLOR,
-  GRAY_COLOR,
-  PRIMARY_THEME_COLOR,
-  PRIMARY_THEME_COLOR_DARK,
-  YELLOW_COLOR,
-} from "../../../../components/utilities/constant";
+import { GRAY_COLOR, } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
@@ -101,30 +95,30 @@ const PropertyDetailView = (props: any) => {
         />
       </View>
       <View style={[styles.btnContainer, {
-        justifyContent:  'center'
+        justifyContent: 'center'
       }]}>
-            <Button
-              handleBtnPress={() => props.handleAllocatePress()}
-              buttonText={strings.allocate}
-              width={150}
-              height={45}
-              bordercolor={GRAY_COLOR}
-              borderWidth={1}
-              // btnTxtcolor={PRIMARY_THEME_COLOR}
-              btnTxtsize={15}
-              textTransform={"uppercase"}
-            />
-            <Button
-              handleBtnPress={() => onPressCreatevisit()}
-              buttonText={strings.visits}
-              width={150}
-              height={45}
-              bordercolor={GRAY_COLOR}
-              borderWidth={1}
-              // btnTxtcolor={PRIMARY_THEME_COLOR}
-              btnTxtsize={15}
-              textTransform={"uppercase"}
-            />
+        <Button
+          handleBtnPress={() => props.handleAllocatePress()}
+          buttonText={strings.allocate}
+          width={150}
+          height={45}
+          bordercolor={GRAY_COLOR}
+          borderWidth={1}
+          // btnTxtcolor={PRIMARY_THEME_COLOR}
+          btnTxtsize={15}
+          textTransform={"uppercase"}
+        />
+        <Button
+          handleBtnPress={() => onPressCreatevisit()}
+          buttonText={strings.visits}
+          width={150}
+          height={45}
+          bordercolor={GRAY_COLOR}
+          borderWidth={1}
+          // btnTxtcolor={PRIMARY_THEME_COLOR}
+          btnTxtsize={15}
+          textTransform={"uppercase"}
+        />
       </View>
 
       <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} />

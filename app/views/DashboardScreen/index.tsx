@@ -12,12 +12,9 @@ import DashboardView from './components/DashboardView';
 const DashboardScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const getLoginType = useSelector((state: any) => state.login);
-  console.log('getLoginType: ', getLoginType);
   const statusData = useSelector((state: any) => state.statusUpdateData) || {}
   const { response = {}, } = useSelector((state: any) => state.dashboardData);
-  console.log('response: dashboardData', response);
   const SMListData = useSelector((state: any) => state.SourcingManager)
-  console.log('SMListData: ', SMListData);
   // const CPListData = useSelector((state: any) => state.agentData)
   const [dashboardData, setDashboardData] = useState({})
   const [listData, setListData] = useState<any>([])
