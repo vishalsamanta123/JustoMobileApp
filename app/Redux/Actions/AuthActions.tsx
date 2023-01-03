@@ -260,7 +260,7 @@ export const userRegister = (item: any) => async (dispatch: any) => {
 export const getUserDetails = (item: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING });
     try {
-        const res = await apiCall("post", apiEndPoints.GET_USERPROFILE, item);
+        const res = await apiCall("post", apiEndPoints.GETUSERDETAIL, item);
         if (res.data.status == 200) {
             dispatch({
                 type: GET_USER_DETAILS,
