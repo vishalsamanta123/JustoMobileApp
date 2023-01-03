@@ -1,11 +1,16 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
-import styles from './Styles'
-import images from '../../../../assets/images'
-import strings from '../../../../components/utilities/Localization'
-import Button from '../../../../components/Button'
-import { PURPLE_COLOR, CALL_COLOR } from '../../../../components/utilities/constant'
-import moment from 'moment'
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import React from "react";
+import styles from "./Styles";
+import images from "../../../../assets/images";
+import strings from "../../../../components/utilities/Localization";
+import Button from "../../../../components/Button";
+import {
+  PURPLE_COLOR,
+  CALL_COLOR,
+  RED_COLOR,
+  GREEN_COLOR,
+} from "../../../../components/utilities/constant";
+import moment from "moment";
 
 const SmAppointment = (props: any) => {
   return (
@@ -15,7 +20,9 @@ const SmAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Date :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{moment(props.items.appointment_date).format('DD-MM-YYYY')}</Text>
+          <Text style={styles.nameTxt}>
+            {moment(props.items.appointment_date).format("DD-MM-YYYY")}
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -23,7 +30,9 @@ const SmAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Appointment Type :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lead_source}</Text>
+          <Text style={styles.nameTxt}>
+            {props.items.appointment_type_title}
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -39,26 +48,83 @@ const SmAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Appointment With :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.customer_first_name}</Text>
+          <Text style={styles.nameTxt}>
+            {props.role === "TL"
+              ? props.items.receiver_name
+              : props.items.sender_name}
+          </Text>
         </View>
       </View>
+      {props.role === "TL" ? (
+        <View style={styles.Txtview}>
+          <View style={styles.projectContainer}>
+            <Text style={styles.projectTxt}>SM name :</Text>
+          </View>
+          <View style={styles.nameContainer}>
+            <Text style={styles.nameTxt}>{props.items.sender_name}</Text>
+          </View>
+        </View>
+      ) : null}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Status :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{
-            props.items.status == 1 ? 'Pending' :
-              props.items.status == 2 ? 'Confirm' :
-                props.items.status == 3 ? 'Compleat' : 'Appoiment cancel'
-          }</Text>
+          <Text style={styles.nameTxt}>
+            {props.items.appointment_status == 1
+              ? "Pending"
+              : props.items.appointment_status == 2
+              ? "Confirm"
+              : props.items.appointment_status == 3
+              ? "Complete"
+              : "Appointment cancel"}
+          </Text>
         </View>
       </View>
-
-      <View style={[styles.buttonContainer, { justifyContent: props.items.Status !== 'Pending' ? 'flex-end' : 'space-between' }]}>
-
-        {props.items.Status === 'Pending' ?
-          (
+      <View
+        style={[
+          styles.buttonContainer,
+          {
+            justifyContent:
+              props.items.appointment_status === 3 ||
+              props.items.appointment_status === 4 || 
+              props.role === "TL"
+                ? "flex-end"
+                : "space-between",
+          },
+        ]}
+      >
+        {props.role !== "TL" ? (
+          props.items.appointment_status === 1 ? (
+            <Button
+              width={80}
+              height={30}
+              bgcolor={null}
+              bordercolor={RED_COLOR}
+              borderWidth={1}
+              btnTxtcolor={RED_COLOR}
+              buttonText={strings.decline}
+              btnTxtsize={14}
+              border={10}
+              handleBtnPress={() => props.handleOptionPress(props.items._id, 4)}
+            />
+          ) : props.items.appointment_status === 2 ? (
+            <Button
+              width={80}
+              height={30}
+              bgcolor={null}
+              bordercolor={PURPLE_COLOR}
+              borderWidth={1}
+              btnTxtcolor={PURPLE_COLOR}
+              buttonText={strings.cancel}
+              btnTxtsize={14}
+              border={10}
+              handleBtnPress={() => props.handleOptionPress(props.items._id, 4)}
+            />
+          ) : null
+        ) : null}
+        {props.role !== "TL" ? (
+          props.items.appointment_status === 1 ? (
             <Button
               width={80}
               height={30}
@@ -69,22 +135,19 @@ const SmAppointment = (props: any) => {
               buttonText={strings.confirm}
               btnTxtsize={14}
               border={10}
-            // handleBtnPress={() => props.onPressEdit()}
+              handleBtnPress={() => props.handleOptionPress(props.items._id, 2)}
             />
-          )
-          : null
-        }
-        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>
-          <Image
-            source={images.forwardArrow}
-            style={styles.arrow}
-          />
+          ) : null
+        ) : null}
+        <TouchableOpacity
+          style={styles.Viewbutton}
+          onPress={() => props.onPressView(props.items)}
+        >
+          <Image source={images.forwardArrow} style={styles.arrow} />
         </TouchableOpacity>
       </View>
-
     </View>
+  );
+};
 
-  )
-}
-
-export default SmAppointment
+export default SmAppointment;
