@@ -30,6 +30,8 @@ const DropdownInput = (props: any) => {
                         height: normalizeHeight(inputheight),
                         paddingLeft: normalize(paddingLeft),
                     }]}
+                    itemTextStyle={{ fontSize: 10 }}
+                    itemContainerStyle={props.itemContainerStyle}
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={props.selectedTextStyle ? props.selectedTextStyle : styles.selectedTextStyle}
                     iconStyle={styles.iconStyle}

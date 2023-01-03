@@ -17,23 +17,40 @@ import {
 } from "@react-navigation/drawer";
 import { PRIMARY_THEME_COLOR } from "../components/utilities/constant";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { userLogout } from "../Redux/Actions/AuthActions";
-import { useDispatch } from "react-redux";
+import { userLogout, getUserDetails } from "../Redux/Actions/AuthActions";
+import { useDispatch, useSelector } from "react-redux";
 import auth from "@react-native-firebase/auth";
 
 const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch();
+  const { response = {} } = useSelector((state: any) => state.userDetail)
   const isDrawerOpen = useDrawerStatus() === "open";
   const insets = useSafeAreaInsets();
-  const [userData, setUserData] = useState<any>([]);
+  const [userData, setUserData] = useState<any>({});
+  console.log('userData: ', userData);
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const data: any = await AsyncStorage.getItem("userData");
-    setUserData(JSON.parse(data));
+    if (response?.status === 200) {
+      setUserData(response?.data)
+    } else {
+      setUserData({})
+    }
+  }, [response, isDrawerOpen])
+  useEffect(() => {
+    if (isDrawerOpen) {
+      getDetail()
+    }
+  }, [isDrawerOpen])
+  const getDetail = async () => {
+    const userData: any = await AsyncStorage.getItem("loginData");
+    if (JSON.parse(userData)?.data?._id) {
+      dispatch(
+        getUserDetails({
+          user_id: JSON.parse(userData).data?._id,
+        })
+      );
+    }
   };
+
   const toggleDrawer = () => {
     navigation.toggleDrawer();
   };

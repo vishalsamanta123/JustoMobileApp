@@ -23,12 +23,12 @@ const LeadManagementScreen = ({ navigation }: any) => {
     React.useCallback(() => {
       getVisitorsList(0, {})
       return () => { };
-    }, [navigation])
+    }, [navigation, list])
   );
 
   useEffect(() => {
     if (response?.status === 200) {
-      if (offSET === 0 || offSET === undefined) {
+      if (offSET === 0) {
         setVisiitorList(response?.data)
       } else {
         setVisiitorList([...visitorList, ...response?.data])
@@ -36,16 +36,16 @@ const LeadManagementScreen = ({ navigation }: any) => {
     }
   }, [response])
 
-  const getVisitorsList = (offset: any, filterData: any) => {
+  const getVisitorsList = (offset: any, data: any) => {
     setOffset(offset)
     dispatch(getAllLeadsList({
       offset: offset,
       limit: 3,
-      start_date: filterData?.startdate ? filterData?.startdate : '',
-      end_date: filterData?.enddate ? filterData?.enddate : '',
-      search_by_visisor_name: filterData?.search_by_visisor_name ? filterData?.search_by_visisor_name : '',
-      search_configuration: filterData?.search_configuration ? filterData?.search_configuration : '',
-      visit_score: filterData?.visit_score ? filterData?.visit_score : ''
+      start_date: data?.startdate ? data?.startdate : '',
+      end_date: data?.enddate ? data?.enddate : '',
+      search_by_visisor_name: data?.search_by_visisor_name ? data?.search_by_visisor_name : '',
+      search_configuration: data?.search_configuration ? data?.search_configuration : '',
+      visit_score: data?.visit_score ? data?.visit_score : '',
     }))
   }
   const handleDrawerPress = () => {
@@ -59,6 +59,7 @@ const LeadManagementScreen = ({ navigation }: any) => {
       getVisitorsList={getVisitorsList}
       filterData={filterData}
       setFilterData={setFilterData}
+      setVisiitorList={setVisiitorList}
     />
   )
 }
