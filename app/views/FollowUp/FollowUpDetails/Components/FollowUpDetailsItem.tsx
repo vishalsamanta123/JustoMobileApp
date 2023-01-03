@@ -121,7 +121,7 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{`${props?.data?.customer?.first_name} ${props?.data?.customer?.last_name}`}</Text>
+                        <Text style={styles.nameTxt}>{`${props?.data?.customer?.first_name}`}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
