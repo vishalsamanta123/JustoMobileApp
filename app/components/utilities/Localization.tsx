@@ -89,6 +89,8 @@ const strings = new LocalizedStrings({
     transfer: 'transfer',
     comingSoon: 'Coming Soon',
     notification: 'Notification',
+    decline: 'Decline',
+    done: 'Done',
 
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
@@ -158,6 +160,7 @@ const strings = new LocalizedStrings({
     pendingconfirm: 'Pending Agency',
     AllocateRequest: 'Allocate Request',
     edit: 'Edit',
+    add: 'Add',
     confirm: 'Confirm',
     deactive: 'Deactive',
     Agencydetail: 'Agency Detail',
@@ -228,6 +231,7 @@ const strings = new LocalizedStrings({
     doneappointment: 'Done Appointment',
     visitorupdate: 'Visitor Update',
     viewfollowup: 'View Follow-Up',
+    updateStatus: 'Update Status',
 
     // Pickup request
     PickuprequestHeader: 'Pickup Request',

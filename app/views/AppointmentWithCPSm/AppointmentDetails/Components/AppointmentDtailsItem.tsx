@@ -22,7 +22,7 @@ const AppointmentDtailsItem = (props : any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{appdetail.lead_source}</Text>
+          <Text style={styles.nameTxt}>{appdetail.appointment_type_title}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -40,7 +40,7 @@ const AppointmentDtailsItem = (props : any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{appdetail.customer_first_name}</Text>
+          <Text style={styles.nameTxt}>{appdetail.receiver_name}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -50,13 +50,13 @@ const AppointmentDtailsItem = (props : any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{
-            appdetail.status == 1 ? 'Pending' :
-              appdetail.status == 2 ? 'Confirm' :
-                appdetail.status == 3 ? 'Compleat' : 'Appoiment cancel'
+            appdetail.appointment_status == 1 ? 'Pending' :
+              appdetail.appointment_status == 2 ? 'Confirm' :
+                appdetail.appointment_status == 3 ? 'Complete' : 'Appointment cancel'
           }</Text>
         </View>
       </View>
-      { appdetail.status === 'Complete' ? <>
+      { appdetail.appointment_status === 'Complete' ? <>
       <View style={styles.bottomView}>
         <Text style={styles.topTxt}>SH update information</Text>
       </View>

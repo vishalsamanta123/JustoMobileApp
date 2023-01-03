@@ -56,22 +56,22 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
         msg: userDataSucess?.response?.message,
         backgroundColor: GREEN_COLOR,
       });
-      auth()
-        .createUserWithEmailAndPassword(addNewSmData.email, "123456")
-        .then(() => {
-          console.log("User account created & signed in!");
-        })
-        .catch((error) => {
-          if (error.code === "auth/email-already-in-use") {
-            console.log("That email address is already in use!");
-          }
+      // auth()
+      //   .createUserWithEmailAndPassword(addNewSmData.email, "123456")
+      //   .then(() => {
+      //     console.log("User account created & signed in!");
+      //   })
+      //   .catch((error) => {
+      //     if (error.code === "auth/email-already-in-use") {
+      //       console.log("That email address is already in use!");
+      //     }
 
-          if (error.code === "auth/invalid-email") {
-            console.log("That email address is invalid!");
-          }
+      //     if (error.code === "auth/invalid-email") {
+      //       console.log("That email address is invalid!");
+      //     }
 
-          console.error(error);
-        });
+      //     console.error(error);
+      //   });
     }
   }, [userDataSucess]);
   useFocusEffect(
