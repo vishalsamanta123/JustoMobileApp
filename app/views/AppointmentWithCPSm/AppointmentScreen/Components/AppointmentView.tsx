@@ -11,8 +11,8 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./Styles";
 import { SceneMap, TabBar, TabView } from "react-native-tab-view";
 import SmAppointment from "./SmAppointment";
-import { useNavigation } from "@react-navigation/native";
-import FilterModal from "./AppointmentModal";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import AppointmentModal from "./AppointmentModal";
 import Button from "../../../../components/Button";
 import MyAppointment from "./MyAppointment";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,7 @@ import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 import { getUserVisitList } from "app/Redux/Actions/LeadsActions";
 import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 import { updateUserAppointmentStatus } from "app/Redux/Actions/AppiontmentWithUserActions";
+import ConfirmModal from "app/components/Modals/ConfirmModal";
 
 const AppointmentView = (props: any) => {
   const dispatch: any = useDispatch();
@@ -40,6 +41,12 @@ const AppointmentView = (props: any) => {
     { key: "second", title: "SM Appointment With CP" },
   ]);
   const [visitorList, setVisiitorList] = useState<any>([]);
+  const [isVisible, setIsVisible] = useState<any>(false);
+  const [params, setParams] = useState({
+    appointment_id: "",
+    appointment_status: "",
+    remark: "",
+  });
   useEffect(() => {
     if (list) {
       setVisiitorList(response?.data);
@@ -48,28 +55,43 @@ const AppointmentView = (props: any) => {
 
   useEffect(() => {
     if (index == 1) {
-      props.getAppointmentList(1);
+      props.getAppointmentList(props.role === 'TL'? 3 : 1);
     } else {
       props.getAppointmentList(2);
     }
   }, [userEditAppointmentData]);
 
   useEffect(() => {
+    console.log('props.role: ', props.role);
+
     if (index == 1) {
-      props.getAppointmentList(1);
+      props.getAppointmentList(props.role === 'TL'? 3 : 1);
     } else {
       props.getAppointmentList(2);
     }
   }, [index]);
+  useFocusEffect(
+    React.useCallback(() => {
+      setIndex(0)
+      props.getAppointmentList(2);
+      return () => { };
+    }, [navigation])
+  );
   const handleOptionPress = (id: any, status: any) => {
     console.log(id, "= = == ", status);
+    setParams({
+      ...params,
+      appointment_id: id,
+      appointment_status: status,
+    });
+    setIsVisible(true);
+  };
+  const handleOnPressYesInModal = () => {
+    console.log('params: IN APPOINTMENT UPDATE', params);
     dispatch(
-      updateUserAppointmentStatus({
-        appointment_id: id,
-        appointment_status: status,
-        remark: "",
-      })
+      updateUserAppointmentStatus(params)
     );
+    setIsVisible(false);
   };
   const getVisitorsList = (offset: any, array: any) => {
     dispatch(
@@ -140,6 +162,7 @@ const AppointmentView = (props: any) => {
           items={item}
           onPressView={onPressView}
           handleOptionPress={handleOptionPress}
+          role={props.role}
         />
       )}
       ListEmptyComponent={
@@ -152,7 +175,7 @@ const AppointmentView = (props: any) => {
           customer_name: "",
           status: "",
         });
-        props.getAppointmentList(1);
+        props.getAppointmentList(props.role === 'TL'? 3 : 1);
       }}
       refreshing={loadingref}
       // onEndReached={() => {
@@ -200,14 +223,13 @@ const AppointmentView = (props: any) => {
           initialLayout={{ width: layout.width }}
         />
       </View>
-      {/* <FilterModal
-        Visible={FilterisVisible}
-        setIsVisible={setFilterisVisible}
-        setFilterData={props.setFilterData}
-        filterData={props.filterData}
-        visitorList={visitorList}
-        getVisitorsList={getVisitorsList}
-      /> */}
+      <AppointmentModal
+        Visible={isVisible}
+        setIsVisible={setIsVisible}
+        params={params}
+        setParams={setParams}
+        handleOnPressYesInModal={handleOnPressYesInModal}
+      />
     </View>
   );
 };

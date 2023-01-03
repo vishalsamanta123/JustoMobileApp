@@ -48,9 +48,23 @@ const SmAppointment = (props: any) => {
           <Text style={styles.projectTxt}>Appointment With :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.sender_name}</Text>
+          <Text style={styles.nameTxt}>
+            {props.role === "TL"
+              ? props.items.receiver_name
+              : props.items.sender_name}
+          </Text>
         </View>
       </View>
+      {props.role === "TL" ? (
+        <View style={styles.Txtview}>
+          <View style={styles.projectContainer}>
+            <Text style={styles.projectTxt}>SM name :</Text>
+          </View>
+          <View style={styles.nameContainer}>
+            <Text style={styles.nameTxt}>{props.items.sender_name}</Text>
+          </View>
+        </View>
+      ) : null}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Status :</Text>
@@ -72,65 +86,58 @@ const SmAppointment = (props: any) => {
           styles.buttonContainer,
           {
             justifyContent:
-              props.items.appointment_status === 3 || props.items.appointment_status ===4
+              props.items.appointment_status === 3 ||
+              props.items.appointment_status === 4 || 
+              props.role === "TL"
                 ? "flex-end"
                 : "space-between",
           },
         ]}
       >
-        {props.items.appointment_status === 1 ? (
-          <Button
-            width={80}
-            height={30}
-            bgcolor={null}
-            bordercolor={RED_COLOR}
-            borderWidth={1}
-            btnTxtcolor={RED_COLOR}
-            buttonText={strings.decline}
-            btnTxtsize={14}
-            border={10}
-            handleBtnPress={() => props.handleOptionPress(props.items._id, 4)}
-          />
-        ) : props.items.appointment_status === 2 ? (
-          <Button
-            width={80}
-            height={30}
-            bgcolor={null}
-            bordercolor={PURPLE_COLOR}
-            borderWidth={1}
-            btnTxtcolor={PURPLE_COLOR}
-            buttonText={strings.cancel}
-            btnTxtsize={14}
-            border={10}
-            handleBtnPress={() => props.handleOptionPress(props.items._id, 4)}
-          />
+        {props.role !== "TL" ? (
+          props.items.appointment_status === 1 ? (
+            <Button
+              width={80}
+              height={30}
+              bgcolor={null}
+              bordercolor={RED_COLOR}
+              borderWidth={1}
+              btnTxtcolor={RED_COLOR}
+              buttonText={strings.decline}
+              btnTxtsize={14}
+              border={10}
+              handleBtnPress={() => props.handleOptionPress(props.items._id, 4)}
+            />
+          ) : props.items.appointment_status === 2 ? (
+            <Button
+              width={80}
+              height={30}
+              bgcolor={null}
+              bordercolor={PURPLE_COLOR}
+              borderWidth={1}
+              btnTxtcolor={PURPLE_COLOR}
+              buttonText={strings.cancel}
+              btnTxtsize={14}
+              border={10}
+              handleBtnPress={() => props.handleOptionPress(props.items._id, 4)}
+            />
+          ) : null
         ) : null}
-        {props.items.appointment_status === 1 ? (
-          <Button
-            width={80}
-            height={30}
-            bgcolor={null}
-            bordercolor={PURPLE_COLOR}
-            borderWidth={1}
-            btnTxtcolor={PURPLE_COLOR}
-            buttonText={strings.confirm}
-            btnTxtsize={14}
-            border={10}
-            handleBtnPress={() => props.handleOptionPress(props.items._id, 2)}
-          />
-        ) : props.items.appointment_status === 2 ? (
-          <Button
-            width={80}
-            height={30}
-            bgcolor={null}
-            bordercolor={PURPLE_COLOR}
-            borderWidth={1}
-            btnTxtcolor={PURPLE_COLOR}
-            buttonText={strings.cancel}
-            btnTxtsize={14}
-            border={10}
-            handleBtnPress={() => props.handleOptionPress(props.items._id, 4)}
-          />
+        {props.role !== "TL" ? (
+          props.items.appointment_status === 1 ? (
+            <Button
+              width={80}
+              height={30}
+              bgcolor={null}
+              bordercolor={PURPLE_COLOR}
+              borderWidth={1}
+              btnTxtcolor={PURPLE_COLOR}
+              buttonText={strings.confirm}
+              btnTxtsize={14}
+              border={10}
+              handleBtnPress={() => props.handleOptionPress(props.items._id, 2)}
+            />
+          ) : null
         ) : null}
         <TouchableOpacity
           style={styles.Viewbutton}
