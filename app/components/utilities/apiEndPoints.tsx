@@ -81,6 +81,13 @@ export default {
   ADD_DROPLOCATION: '/appointment/addDropOffLocation',
   ALLOCATE_CM: '/appointment/appointmentAlocateClosinManager',
   PICKUP_LIST: 'appointment/getPickupAddressList',
+
+  // user Appointment
+  CREATE_USER_APPOINTMENT: '/userAppointment/createUserAppointment',
+  GET_USER_APPOINTMENT_LIST: '/userAppointment/getUSerAppoinmentList',
+  EDIT_USER_APPOINTMENT: '/userAppointment/editUserAppointment',
+  UPDATE_USER_APPOINTMENT_STATUS: '/userAppointment/userAppointmentStatusUpdate',
+
   // BOOKING
   ADD_BOOKING: '/booking/addBooking',
   GET_BOOKINGLIST: '/booking/getBookingList',

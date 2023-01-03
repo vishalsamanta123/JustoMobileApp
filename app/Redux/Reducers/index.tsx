@@ -17,6 +17,7 @@ import { PickUpReducer } from "./PickUpReducer";
 import { transferVisitorReducer, transferVisitReducer } from "./TransferVisitReducer";
 import { firebaseReducer } from "./FirebaseReducer";
 import { ChatReducer } from "./ChatReducer";
+import { userAppointmentReducer, userEditAppointmentReducer } from "./AppointmentWithUserReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -55,6 +56,8 @@ export default {
 
     // Appointment CL
     appointmentCL: appointmentCLReducer,
+    userAppointmentData: userAppointmentReducer,
+    userEditAppointmentData: userEditAppointmentReducer,
 
     // Booking
     booking: BookingReducer,
