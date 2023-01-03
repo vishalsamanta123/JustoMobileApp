@@ -2,7 +2,6 @@ import {
   AgencyCreateFormRemove,
   getAgencyDetail,
 } from "app/Redux/Actions/AgencyActions";
-import { getAgentDetail } from "app/Redux/Actions/AgentActions";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AgentDetailView from "./components/AgentDetailView";

@@ -97,6 +97,7 @@ const EditProfileView = (props: any) => {
                 });
               }}
               headingText={"Aadhaar No."}
+              maxLength={12}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -110,6 +111,7 @@ const EditProfileView = (props: any) => {
                 });
               }}
               headingText={"Pancard No."}
+              maxLength={10}
             />
           </View>
           <View style={styles.genderView}>
@@ -208,6 +210,7 @@ const EditProfileView = (props: any) => {
                 });
               }}
               headingText={"Mobile No."}
+              maxLength={10}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -221,6 +224,7 @@ const EditProfileView = (props: any) => {
                 });
               }}
               headingText={"WhatsApp No."}
+              maxLength={10}
             />
           </View>
           <View style={styles.inputWrap}>
