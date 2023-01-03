@@ -20,7 +20,7 @@ const FilterModal = (props: any) => {
       type: 2
     }))
   }, [])
-  const { response = { data: [] } } = useSelector((state: any) => state.MasterReducer) || {}
+  const { response = { data: [] } } = useSelector((state: any) => state.masterData) || {}
   const datavisitingscore = [
     { label: "High to low", value: 2 },
     { label: "Low to high", value: 1 }
@@ -36,6 +36,7 @@ const FilterModal = (props: any) => {
     })
     props.setIsVisible(false)
     props.getVisitorsListApi(0, [])
+    props.setVisiitorList([])
   }
 
   const configRender = (item: any) => {
@@ -168,7 +169,7 @@ const FilterModal = (props: any) => {
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               <Button
                 width={135}
                 buttonText={strings.reset}
@@ -177,6 +178,7 @@ const FilterModal = (props: any) => {
               <Button
                 width={135}
                 handleBtnPress={() => {
+                  props.setVisiitorList([])
                   props.setIsVisible(false)
                   props.getVisitorsList(0, props.filterData)
                 }} buttonText={strings.apply}

@@ -64,6 +64,7 @@ const LeadManagementView = (props: any) => {
       status: ''
     })
     props.getVisitorsList(0, {})
+    props.setVisiitorList([])
   }
   const onPressView = (data: any) => {
     navigation.navigate('LeadDetails', data)
@@ -109,6 +110,7 @@ const LeadManagementView = (props: any) => {
         setIsVisible={setFilterisVisible}
         setFilterData={props.setFilterData}
         filterData={props.filterData}
+        setVisiitorList={props?.setVisiitorList}
         getVisitorsListApi={props.getVisitorsList}
         getVisitorsList={() => props.getVisitorsList(0, props.filterData)}
       />

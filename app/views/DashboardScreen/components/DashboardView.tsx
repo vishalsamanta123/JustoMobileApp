@@ -232,7 +232,8 @@ const DashboardView = (props: any) => {
                 data={props?.listData}
                 renderItem={renderItem} />
               {props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ||
-                props?.getLoginType?.response?.data?.role_title === 'Sourcing Manager' && props?.listData?.length > 5 ?
+                props?.getLoginType?.response?.data?.role_title === 'Sourcing Manager'
+                && props?.listData?.length > 5 ?
                 <TouchableOpacity style={styles.headingView}>
                   <Text style={[styles.headingText, styles.knowMoreText]}>
                     Know More
