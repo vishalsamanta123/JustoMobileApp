@@ -212,6 +212,20 @@ const AddAppointmentItem = (props: any) => {
                                 </View>
                                 <View style={styles.inputWrap}>
                                     <InputField
+                                        placeholderText={"Area"}
+                                        handleInputBtnPress={() => { }}
+                                        headingText={"Area"}
+                                        valueshow={props.appointMentForm?.pickup_address}
+                                        onChangeText={(val: any) => {
+                                            props.setAppointMentForm({
+                                                ...props.appointMentForm,
+                                                pickup_address: val,
+                                            });
+                                        }}
+                                    />
+                                </View>
+                                <View style={styles.inputWrap}>
+                                    <InputField
                                         placeholderText={strings.noofguest}
                                         handleInputBtnPress={() => { }}
                                         onChangeText={(data: any) => {

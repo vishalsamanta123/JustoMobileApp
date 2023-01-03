@@ -69,6 +69,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
+    width: normalizeWidth(100),
+    height: normalizeWidth(100),
   },
   qrCodeImage: {
     height: normalizeHeight(70),
@@ -130,7 +132,7 @@ const styles = StyleSheet.create({
   },
   thirdPortion: {
     backgroundColor: WHITE_COLOR,
-    padding: normalizeSpacing(20),
+    paddingHorizontal: normalizeSpacing(20),
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',

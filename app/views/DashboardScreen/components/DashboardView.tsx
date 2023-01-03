@@ -205,40 +205,43 @@ const DashboardView = (props: any) => {
               </View>
             </>
           }
-          <View style={styles.bottomSection}>
-            <View style={styles.headingView}>
-              {props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ?
-                <>
-                  <Text style={styles.headingText}>SM NAME</Text>
-                  <Text style={styles.headingText}>VISITOR</Text>
-                  <Text style={styles.headingText}>SITE VISIT</Text>
-                  <Text style={styles.headingText}>CLOSE LEAD</Text>
-                </>
-                :
-                <>
-                  {props?.getLoginType?.response?.data?.role_title === 'Sourcing Manager' &&
-                    <>
-                      <Text style={styles.headingText}>CP NAME</Text>
-                      <Text style={styles.headingText}>VISITOR</Text>
-                      <Text style={styles.headingText}>SITE VISIT</Text>
-                      <Text style={styles.headingText}>CLOSE LEAD</Text>
-                    </>
-                  }
-                </>
+          {props?.listData?.length > 0 ?
+            (<View style={styles.bottomSection}>
+              <View style={styles.headingView}>
+                {props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ?
+                  <>
+                    <Text style={styles.headingText}>SM NAME</Text>
+                    <Text style={styles.headingText}>VISITOR</Text>
+                    <Text style={styles.headingText}>SITE VISIT</Text>
+                    <Text style={styles.headingText}>CLOSE LEAD</Text>
+                  </>
+                  :
+                  <>
+                    {props?.getLoginType?.response?.data?.role_title === 'Sourcing Manager' &&
+                      <>
+                        <Text style={styles.headingText}>CP NAME</Text>
+                        <Text style={styles.headingText}>VISITOR</Text>
+                        <Text style={styles.headingText}>SITE VISIT</Text>
+                        <Text style={styles.headingText}>CLOSE LEAD</Text>
+                      </>
+                    }
+                  </>
+                }
+              </View>
+              <FlatList
+                data={props?.listData}
+                renderItem={renderItem} />
+              {props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ||
+                props?.getLoginType?.response?.data?.role_title === 'Sourcing Manager' && props?.listData?.length > 5 ?
+                <TouchableOpacity style={styles.headingView}>
+                  <Text style={[styles.headingText, styles.knowMoreText]}>
+                    Know More
+                  </Text>
+                </TouchableOpacity> : null
               }
-            </View>
-            <FlatList
-              data={props?.listData}
-              renderItem={renderItem} />
-            {props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ||
-              props?.getLoginType?.response?.data?.role_title === 'Sourcing Manager' && props?.listData?.length > 5 ?
-              <TouchableOpacity style={styles.headingView}>
-                <Text style={[styles.headingText, styles.knowMoreText]}>
-                  Know More
-                </Text>
-              </TouchableOpacity> : null
-            }
-          </View>
+            </View>)
+            : null
+          }
         </ScrollView>
       </View>
     </>
