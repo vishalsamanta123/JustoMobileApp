@@ -4,7 +4,7 @@ import { RadioButton } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import images from '../../../../assets/images';
 import InputField from '../../../../components/InputField';
-import { PRIMARY_THEME_COLOR, BLACK_COLOR, DATE_FORMAT, AMOUNT_TYPE } from '../../../../components/utilities/constant';
+import { PRIMARY_THEME_COLOR, BLACK_COLOR, DATE_FORMAT, AMOUNT_TYPE, Isios } from '../../../../components/utilities/constant';
 import strings from '../../../../components/utilities/Localization';
 import styles from './Styles';
 import Styles from '../../../../components/Modals/styles'
@@ -403,8 +403,8 @@ const AddNewVisitorForm = (props: any) => {
                                 style={styles.budgetInput}
                             />
                             <DropdownInput
-                                inputWidth={47}
-                                inputheight={39}
+                                inputWidth={Isios ? 45 : 47}
+                                inputheight={Isios ? 20 : 39}
                                 paddingLeft={10}
                                 itemContainerStyle={{ width: 100 }}
                                 iconStyle={{ width: 15, height: 15 }}
@@ -440,10 +440,10 @@ const AddNewVisitorForm = (props: any) => {
                                 }}
                                 keyboardType={'number-pad'}
                                 placeholder='Max Budget'
-                                style={[styles.budgetInput, { marginLeft: 20 }]} />
+                                style={[styles.budgetInput, { marginLeft: 8 }]} />
                             <DropdownInput
-                                inputWidth={47}
-                                inputheight={39}
+                                inputWidth={Isios ? 45 : 47}
+                                inputheight={Isios ? 20 : 39}
                                 paddingLeft={10}
                                 itemContainerStyle={{ width: 100 }}
                                 iconStyle={{ width: 15, height: 15 }}
@@ -559,8 +559,8 @@ const AddNewVisitorForm = (props: any) => {
                                 keyboardType={'number-pad'}
                                 placeholder='Min EMI Pay' style={styles.budgetInput} />
                             <DropdownInput
-                                inputWidth={47}
-                                inputheight={39}
+                                inputWidth={Isios ? 45 : 47}
+                                inputheight={Isios ? 20 : 39}
                                 paddingLeft={10}
                                 itemContainerStyle={{ width: 100 }}
                                 iconStyle={{ width: 15, height: 15 }}
@@ -596,11 +596,11 @@ const AddNewVisitorForm = (props: any) => {
                                 }}
                                 keyboardType={'number-pad'}
                                 placeholder='Max EMI Pay'
-                                style={[styles.budgetInput, { marginLeft: 20 }]}
+                                style={[styles.budgetInput, { marginLeft: 8 }]}
                             />
                             <DropdownInput
-                                inputWidth={47}
-                                inputheight={39}
+                                inputWidth={Isios ? 45 : 47}
+                                inputheight={Isios ? 20 : 39}
                                 paddingLeft={10}
                                 itemContainerStyle={{ width: 100 }}
                                 iconStyle={{ width: 15, height: 15 }}

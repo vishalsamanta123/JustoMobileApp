@@ -9,6 +9,7 @@ target 'justo' do
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways/Permission-LocationAlways.podspec"
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse/Permission-LocationWhenInUse.podspec"
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
   # pod 'Firebase', :modular_headers => true
   # pod 'FirebaseCore', :modular_headers => true
   # pod 'FirebaseCoreExtension', :modular_headers => true

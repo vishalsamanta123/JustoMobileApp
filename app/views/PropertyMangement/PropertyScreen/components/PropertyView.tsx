@@ -23,7 +23,8 @@ const PropertyView = (props: any) => {
   
   
   const [FilterisVisible, setFilterisVisible] = useState(false)
-  const [propertyList, setPropertyList] = useState([])
+  const [propertyList, setPropertyList] = useState<any>([])
+  console.log('propertyList', propertyList?.length)
   const insets = useSafeAreaInsets();
   const propertyData = useSelector((state: any) => state.propertyData) || {}
   const masterData = useSelector((state: any) => state.masterData) || {}
@@ -42,12 +43,14 @@ const PropertyView = (props: any) => {
   useEffect(() => {
     if (propertyData?.response) {
       const { response, loading ,list} = propertyData;
-     if(list){
-      if (response?.status === 200 ) {
+     if(response?.status === 200){
+      if (props?.oFFset === 0 ) {
         setPropertyList(response?.data);
       } else {
-        setPropertyList([]);
+        setPropertyList([...propertyList, ...response?.data]);
       }
+     }else{
+      setPropertyList([]);
      }
     }
   }, [propertyData]);
@@ -76,7 +79,8 @@ const PropertyView = (props: any) => {
       property_name: "",
       property_type: "",
     });
-    props.getallproperty()
+    props.getallproperty(0)
+    setPropertyList([])
   }
   const confirmStatus = (items : any ) => {
     if(items.approve_status === 2) {
@@ -123,6 +127,14 @@ const PropertyView = (props: any) => {
           ListEmptyComponent={<EmptyListScreen message={strings.propertyHeader} />}
           renderItem={({ item, index }) => <PropertyListItem handleAllocatePress={props.handleAllocatePress} items={item} setIsVisible={setIsVisible} onPressView={onPressView} 
           confirmStatus={(items : any ) => confirmStatus(items)} />}
+          onEndReached={() => {
+            console.log('propertyData?.response?.total_data', propertyData?.response?.total_data)
+            if (propertyList?.length < propertyData?.response?.total_data) {
+              props.getallproperty(
+                propertyList?.length > 3 ? props.oFFset + 1 : 0
+              );
+            }
+          }}
           /*   onEndReached={({ distanceFromEnd }) => {
               props.Onreachedend()
             }} 
