@@ -53,7 +53,7 @@ const AppointmentsScreen = ({ navigation }: any) => {
                 setAppointmentList([])
             }
         }
-    }, [response])
+    }, [response, appointMentList, getLoginType])
     useEffect(() => {
         if (CMList?.response === 200) {
             setClosingMList(CMList?.response?.data)

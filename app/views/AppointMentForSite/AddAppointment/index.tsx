@@ -112,9 +112,11 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     let isError = true;
     let errorMessage: any = ''
     if (type !== 'edit') {
-      if (appointMentForm.update_type == undefined || appointMentForm.update_type == '') {
-        isError = false;
-        errorMessage = "Update Type is require. Please Select the Update Type"
+      if (type === 'reSheduled') {
+        if (appointMentForm.update_type == undefined || appointMentForm.update_type == '') {
+          isError = false;
+          errorMessage = "Update Type is require. Please Select the Update Type"
+        }
       }
       else if (appointMentForm.appointment_date == undefined || appointMentForm.appointment_date == '') {
         isError = false;
