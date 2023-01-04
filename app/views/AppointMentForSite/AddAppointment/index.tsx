@@ -47,7 +47,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
           first_name: item?.customer_first_name,
           property_id: item?.property_id,
           property_title: item?.property_title,
-          pickup: 'Yes',
+          pickup: item?.pickup,
           update_type: ''
         })
       }

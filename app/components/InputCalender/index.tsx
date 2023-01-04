@@ -70,7 +70,7 @@ const InputCalender = (props: any) => {
           maximumDate={props.headingText === 'Date of Birth' ||
             props.placeholderText === 'Date of Birth'
             ?
-            moment()?.subtract(18, "years") :
+            new Date(moment(minDate).format()) :
             props.maximumDate ? props.maximumDate : ''}
           open={open}
           date={props.headingText === 'Date of Birth' ||
