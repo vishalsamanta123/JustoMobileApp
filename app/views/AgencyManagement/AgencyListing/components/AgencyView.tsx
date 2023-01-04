@@ -199,7 +199,6 @@ const AgencyView = (props: any) => {
         setStatusChange={props.setChangeStatus}
         handleYesResponse={() => props.onPressDeactivates(props.changeStatus)}
       />
-
       <FilterModal
         getAgencyList={props.getAgencyList}
         onReset={onReset}

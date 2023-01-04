@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   inputHeadingText: {
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: PRIMARY_THEME_COLOR,
+    fontSize: normalize(Isios ? 14 : 16),
   },
 })
 

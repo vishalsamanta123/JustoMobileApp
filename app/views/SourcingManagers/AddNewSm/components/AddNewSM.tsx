@@ -223,7 +223,7 @@ const AddNewSMView = (props: any) => {
           <InputCalender
             leftIcon={images.event}
             mode={"date"}
-            placeholderText={"Date of Birth"} //can edit
+            placeholderText={"Date of Birth"}
             headingText={"Date of Birth"}
             editable={false}
             dateData={(data: any) => {
@@ -232,7 +232,6 @@ const AddNewSMView = (props: any) => {
                 dateofbirth: moment(data).format(DATE_FORMAT),
               });
             }}
-            maximumDate={new Date()}
             setDateshow={(data: any) => {
               props.setAddNewSmData({
                 ...props.addNewSmData,
@@ -359,7 +358,7 @@ const AddNewSMView = (props: any) => {
                 address: val,
               });
             }}
-           
+
           />
         </View>
         <View style={{ marginVertical: 10, marginBottom: 20 }}>

@@ -113,6 +113,7 @@ const AgentBasicInfoView = (props: any) => {
                 adhar_no: val,
               });
             }}
+            maxLength={12}
           />
         </View>
         <View style={styles.inputWrap}>
@@ -127,6 +128,7 @@ const AgentBasicInfoView = (props: any) => {
                 pancard_no: val,
               });
             }}
+            maxLength={10}
           />
         </View>
         <View style={styles.genderView}>

@@ -77,6 +77,7 @@ const VisitorUpdateView = (props: any) => {
                         }}
                         valueshow={props?.updateForm?.adhar_no?.toString()}
                         headingText={"Aadhaar No."}
+                        maxLength={12}
                     />
                 </View>
                 <View style={styles.inputWrap}>
@@ -91,6 +92,7 @@ const VisitorUpdateView = (props: any) => {
                         }}
                         valueshow={props?.updateForm?.pancard_no?.toString()}
                         headingText={"Pancard No."}
+                        maxLength={10}
                     />
                 </View>
                 <View style={styles.selectsView}>
@@ -145,7 +147,6 @@ const VisitorUpdateView = (props: any) => {
                         placeholderText={"Date of Birth"}
                         headingText={"Date of Birth"}
                         editable={false}
-                        maximumDate={new Date()}
                         dateData={(data: any) => {
                             props.setUpdateForm({
                                 ...props.updateForm,
@@ -158,10 +159,11 @@ const VisitorUpdateView = (props: any) => {
                                 birth_date: moment(data).format(DATE_FORMAT),
                             });
                         }}
-                        value={props?.updateForm?.birth_date != "" ||
-                            props?.updateForm?.birth_date != undefined
-                            ? moment(props?.updateForm?.birth_date).format(DATE_FORMAT) :
-                            ''
+                        value={props?.updateForm?.birth_date === '' ||
+                            props?.updateForm?.birth_date === undefined ||
+                            props?.updateForm?.birth_date === null ?
+                            "" :
+                            moment(props?.updateForm?.birth_date).format(DATE_FORMAT)
                         }
                     />
                 </View>
@@ -220,7 +222,7 @@ const VisitorUpdateView = (props: any) => {
                         onChangeText={(data: any) => {
                             props.setUpdateForm({
                                 ...props.updateForm,
-                                location: data,
+                                location: data ? data : props?.updateForm?.location,
                             })
                         }}
                         onPressSelect={(data: any, detail: any) => {
