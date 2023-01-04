@@ -10,6 +10,8 @@ import { GREEN_COLOR } from 'app/components/utilities/constant'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { type = "", item = {} } = route?.params || {}
+  console.log('type: ', type);
+  console.log('item: ', item);
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
   const leadData = useSelector((state: any) => state.visitorDataList) || {}
@@ -34,8 +36,19 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     first_name: ''
   })
   useEffect(() => {
-    if (type === 'edit' || type === 'reSheduled') {
+    if (type === 'edit' || type === 'reSheduled' || type === 'visitAppo') {
       getUserDetails()
+    } else {
+      if (type === 'Add') {
+        setAppointMentForm({
+          ...appointMentForm,
+          lead_id: item?._id,
+          first_name: item?.customer_first_name,
+          property_id: item?.property_id,
+          property_title: item?.property_title,
+          pickup: 'Yes'
+        })
+      }
     }
   }, [type])
   useEffect(() => {

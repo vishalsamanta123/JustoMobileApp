@@ -31,6 +31,7 @@ const ReadyToBookModal = (props: any) => {
                             mode={'date'}
                             leftIcon={images.event}
                             placeholderText={"Booking Date"}
+                            minimumDate={new Date()}
                             editable={false}
                             dateData={(data: any) => {
                                 props.setBookingData({

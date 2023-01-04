@@ -176,9 +176,16 @@ const FilterModal = (props: any) => {
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <Button
-              handleBtnPress={() => handleApply()}
-              buttonText={strings.apply} />
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <Button
+                width={135}
+                buttonText={strings.reset}
+                handleBtnPress={() => props.onReset()} />
+              <Button
+                width={135}
+                handleBtnPress={() => handleApply()}
+                buttonText={strings.apply} />
+            </View>
           </View>
         </View>
       </ScrollView>

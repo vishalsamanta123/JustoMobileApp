@@ -45,6 +45,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     areain_sqlft: '',
     coumpany_name: '',
   })
+  const [NavigationType, setNavigationType] = useState(0)
   const [masterDatas, setMasterDatas] = useState<any>([])
   const [allProperty, setAllProperty] = useState<any>([])
   const masterData = useSelector((state: any) => state.masterData) || {}
@@ -52,7 +53,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const editData = useSelector((state: any) => state.editVisitorData) || {}
   const addData = useSelector((state: any) => state.addVisitorData) || {}
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (type === 'edit') {
       if (data?._id) {
         dispatch(getVisitorDetail({
@@ -68,7 +69,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         property_title: data?.property_title,
       })
     }
-  }, [detail])
+  }, [detail, type])
 
   useEffect(() => {
     dispatch(getAllMaster({
@@ -101,7 +102,10 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   }
 
   const OnpressseheduleVisit = () => {
-    navigation.navigate('AddAppointmentScreen')
+    if (validation()) {
+      OnpressCreateEdit()
+      // navigation.navigate('AddAppointmentForSite', {type: 'visitAppo'})
+    }
   }
 
   const validation = () => {
@@ -129,7 +133,20 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   useEffect(() => {
     if (editData?.update || addData?.create) {
       dispatch(addVisitorRemove());
-      navigation.navigate('LeadManagementScreen')
+      if (NavigationType === 1) {
+        setNavigationType(0)
+        navigation.navigate('LeadManagementScreen')
+      } else if (NavigationType === 2) {
+        setNavigationType(0)
+        navigation.navigate('AddAppointmentForSite', {
+          type: 'Add', item: {
+            _id: addData?.response?.data?._id ? addData?.response?.data?._id : '',
+            customer_first_name: addData?.response?.data?.customer?.first_name ? addData?.response?.data?.customer?.first_name : '',
+            property_id: addData?.response?.data?.property_id ? addData?.response?.data?.property_id : '',
+            property_title: data?.property_title ? data?.property_title : '',
+          }
+        })
+      }
       ErrorMessage({
         msg: editData?.update ? editData?.response?.message :
           addData?.create ? addData?.response?.message : 'no message',
@@ -239,6 +256,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       masterDatas={masterDatas}
       // handleProperty={handleProperty}
       allProperty={allProperty}
+      setNavigationType={setNavigationType}
     />
   )
 }

@@ -23,7 +23,7 @@ const AddAppointmentItem = (props: any) => {
                         placeholder={props?.appointMentForm?.first_name != "" ?
                             props?.appointMentForm?.first_name :
                             strings.selectLead}
-                        disable={props.type === 'edit' || props.type === 'reSheduled' ? true : false}
+                        disable={props.type === 'edit' || props.type === 'reSheduled' || props.type === 'Add' ? true : false}
                         data={props?.leadList}
                         paddingLeft={16}
                         maxHeight={300}
@@ -58,7 +58,7 @@ const AddAppointmentItem = (props: any) => {
                             props?.appointMentForm?.property_title :
                             strings.selectproperty}
                         data={props?.propertyList}
-                        disable={props.type === 'edit' || props.type === 'reSheduled' ? true : false}
+                        disable={props.type === 'edit' || props.type === 'reSheduled' || props.type === 'Add' ? true : false}
                         paddingLeft={16}
                         maxHeight={300}
                         onFocus={() => props.getPropertyList()}
@@ -136,112 +136,107 @@ const AddAppointmentItem = (props: any) => {
                         }
                     />
                 </View>
-                {props?.appointMentForm?.pickup === 'Yes' ?
+                <View style={styles.inputWrap}>
+                    <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
+                </View>
+                <View style={styles.genderView}>
+                    <View style={styles.radioView}>
+                        <RadioButton.Android
+                            value="Yes"
+                            status={props.appointMentForm?.pickup === "Yes" ? "checked" : "unchecked"}
+                            onPress={() => props.setAppointMentForm({
+                                ...props.appointMentForm,
+                                pickup: 'Yes'
+                            })}
+                            color={PRIMARY_THEME_COLOR}
+                        />
+                        <Text
+                            style={[
+                                styles.radioTxt,
+                                {
+                                    color:
+                                        props.appointMentForm?.pickup === "Yes" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                                },
+                            ]}
+                        >
+                            {strings.yes}
+                        </Text>
+                    </View>
+                    <View style={styles.radioView}>
+                        <RadioButton.Android
+                            value="No"
+                            status={props.appointMentForm?.pickup === "No" ? "checked" : "unchecked"}
+                            onPress={() => props.setAppointMentForm({
+                                ...props.appointMentForm,
+                                pickup: 'No'
+                            })}
+                            color={PRIMARY_THEME_COLOR}
+                        />
+                        <Text
+                            style={[
+                                styles.radioTxt,
+                                {
+                                    color:
+                                        props.appointMentForm?.pickup === "No" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                                },
+                            ]}
+                        >
+                            {strings.no}
+                        </Text>
+                    </View>
+                </View>
+                {props.appointMentForm?.pickup === 'Yes' ?
                     <>
                         <View style={styles.inputWrap}>
-                            <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
-                        </View>
-                        <View style={styles.genderView}>
-                            <View style={styles.radioView}>
-                                <RadioButton.Android
-                                    value="Yes"
-                                    status={props.appointMentForm?.pickup === "Yes" ? "checked" : "unchecked"}
-                                    onPress={() => props.setAppointMentForm({
+                            <InputField
+                                headingText={strings.location}
+                                valueshow={props?.appointMentForm?.pickup_location}
+                                inputType={'location'}
+                                onPressSelect={(data: any, detail: any) => {
+                                    props.setAppointMentForm({
                                         ...props.appointMentForm,
-                                        pickup: 'Yes'
-                                    })}
-                                    color={PRIMARY_THEME_COLOR}
-                                />
-                                <Text
-                                    style={[
-                                        styles.radioTxt,
-                                        {
-                                            color:
-                                                props.appointMentForm?.pickup === "Yes" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
-                                        },
-                                    ]}
-                                >
-                                    {strings.yes}
-                                </Text>
-                            </View>
-                            <View style={styles.radioView}>
-                                <RadioButton.Android
-                                    value="No"
-                                    status={props.appointMentForm?.pickup === "No" ? "checked" : "unchecked"}
-                                    onPress={() => props.setAppointMentForm({
+                                        pickup_location: data?.description,
+                                        pickup_latitude: detail?.geometry?.location?.lat,
+                                        pickup_longitude: detail?.geometry?.location?.lng
+                                    })
+                                }}
+                                onChangeText={(data: any) => {
+                                    props.setAppointMentForm({
                                         ...props.appointMentForm,
-                                        pickup: 'No'
-                                    })}
-                                    color={PRIMARY_THEME_COLOR}
-                                />
-                                <Text
-                                    style={[
-                                        styles.radioTxt,
-                                        {
-                                            color:
-                                                props.appointMentForm?.pickup === "No" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
-                                        },
-                                    ]}
-                                >
-                                    {strings.no}
-                                </Text>
-                            </View>
+                                        pickup_location: data,
+                                    })
+                                }}
+                            />
                         </View>
-                        {props.appointMentForm?.pickup === 'Yes' ?
-                            <>
-                                <View style={styles.inputWrap}>
-                                    <InputField
-                                        headingText={strings.location}
-                                        valueshow={props?.appointMentForm?.pickup_location}
-                                        inputType={'location'}
-                                        onPressSelect={(data: any, detail: any) => {
-                                            props.setAppointMentForm({
-                                                ...props.appointMentForm,
-                                                pickup_location: data?.description,
-                                                pickup_latitude: detail?.geometry?.location?.lat,
-                                                pickup_longitude: detail?.geometry?.location?.lng
-                                            })
-                                        }}
-                                        onChangeText={(data: any) => {
-                                            props.setAppointMentForm({
-                                                ...props.appointMentForm,
-                                                pickup_location: data,
-                                            })
-                                        }}
-                                    />
-                                </View>
-                                <View style={styles.inputWrap}>
-                                    <InputField
-                                        placeholderText={"Area"}
-                                        handleInputBtnPress={() => { }}
-                                        headingText={"Area"}
-                                        valueshow={props.appointMentForm?.pickup_address}
-                                        onChangeText={(val: any) => {
-                                            props.setAppointMentForm({
-                                                ...props.appointMentForm,
-                                                pickup_address: val,
-                                            });
-                                        }}
-                                    />
-                                </View>
-                                <View style={styles.inputWrap}>
-                                    <InputField
-                                        placeholderText={strings.noofguest}
-                                        handleInputBtnPress={() => { }}
-                                        onChangeText={(data: any) => {
-                                            props.setAppointMentForm({
-                                                ...props.appointMentForm,
-                                                number_of_guest: data,
-                                            })
-                                        }}
-                                        valueshow={props?.appointMentForm?.number_of_guest?.toString()}
-                                        keyboardtype={'number-pad'}
-                                        headingText={strings.noofguest}
-                                    />
-                                </View>
-                            </>
-                            : null
-                        }
+                        <View style={styles.inputWrap}>
+                            <InputField
+                                placeholderText={"Address"}
+                                handleInputBtnPress={() => { }}
+                                headingText={"Address"}
+                                valueshow={props.appointMentForm?.pickup_address}
+                                onChangeText={(val: any) => {
+                                    props.setAppointMentForm({
+                                        ...props.appointMentForm,
+                                        pickup_address: val,
+                                    });
+                                }}
+                            />
+                        </View>
+                        <View style={styles.inputWrap}>
+                            <InputField
+                                placeholderText={strings.noofguest}
+                                handleInputBtnPress={() => { }}
+                                onChangeText={(data: any) => {
+                                    props.setAppointMentForm({
+                                        ...props.appointMentForm,
+                                        number_of_guest: data,
+                                    })
+                                }}
+                                valueshow={props?.appointMentForm?.number_of_guest?.toString()}
+                                keyboardtype={'number-pad'}
+                                headingText={strings.noofguest}
+                            />
+                        </View>
                     </>
                     : null
                 }

@@ -20,8 +20,8 @@ const PropertyDetailView = (props: any) => {
 
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    { key: 'first', title: 'Agency Info' },
-    { key: 'second', title: 'Agency Stats' },
+    { key: 'first', title: 'Info' },
+    { key: 'second', title: 'Stats' },
   ]);
 
 

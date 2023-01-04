@@ -67,6 +67,13 @@ const styles = StyleSheet.create({
     inputContVw: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        flex: 1
+    },
+    smallContVw: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     smallBox: {
         backgroundColor: WHITE_COLOR,
@@ -82,7 +89,7 @@ const styles = StyleSheet.create({
     },
     budgetInput: {
         backgroundColor: WHITE_COLOR,
-        width: '30%',
+        width: '55%',
         borderRadius: 10,
         elevation: 5,
         shadowColor: '#171717',
@@ -91,6 +98,7 @@ const styles = StyleSheet.create({
         shadowRadius: 1,
         borderColor: GRAY_COLOR,
         color: BLACK_COLOR,
+        paddingLeft: normalizeSpacing(8)
     },
     smallCont: {
         flexDirection: 'row',

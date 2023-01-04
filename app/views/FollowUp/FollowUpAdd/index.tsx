@@ -47,6 +47,14 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
             isError = false;
             errorMessage = "Followup Status is require. Please Choose Followup Status"
         }
+        else if(formData?.followup_status === '6360c6d52ca46e9d3636fbf4'){
+            if(typeof formData?.next_followup_date === "undefined" || formData?.next_followup_date === ''){
+                errorMessage = "Date is require. Please Enter Date"
+            }
+           else if(typeof formData?.followup_time === "undefined" || formData?.followup_time === ''){
+                errorMessage = "Time is require. Time Enter Date"
+            }
+        }
 
         if (errorMessage !== '') {
             ErrorMessage({

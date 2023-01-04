@@ -7,6 +7,7 @@ export const getAllPickupList = () => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.PICKUP_LIST, {});
+        console.log('res: ', res);
         if (res?.data?.status == 200) {
             dispatch({
                 type: GET_PICKUP_LIST,

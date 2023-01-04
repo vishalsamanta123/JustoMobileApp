@@ -8,6 +8,7 @@ import moment from 'moment'
 import { BLACK_COLOR } from 'app/components/utilities/constant'
 
 const LeadDetailsIteam = (props: any) => {
+    console.log('props: ', props);
     const item = props?.items || {}
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -93,9 +94,9 @@ const LeadDetailsIteam = (props: any) => {
                     <Text style={[styles.nameTxt, {
                         color: item?.lead_status === 6 ? 'red' : BLACK_COLOR
                     }]}>
-                        {item?.lead_status === 1 ? "Create Lead" :
+                        {item?.lead_status === 1 ? "Lead Created" :
                             item?.lead_status === 2 ? "Follow-up" :
-                                item?.lead_status === 3 ? "Site Visit/Appointment" :
+                                item?.lead_status === 3 ? "Appointment" :
                                     item?.lead_status === 4 ? "Booking" :
                                         item?.lead_status === 5 ? "Registration" :
                                             item?.lead_status === 6 && "Close"
@@ -140,11 +141,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.customer_detail?.budget === '' ||
-                            item?.customer_detail?.budget === undefined ||
-                            item?.customer_detail?.budget === "undefined" ?
-                            strings.notfount :
-                            item?.customer_detail?.budget}</Text>
+                        <Text style={styles.nameTxt}>{
+                            item?.customer_detail?.min_budget || item?.customer_detail?.max_budget ?
+                            `${item?.customer_detail?.min_budget} ${item?.customer_detail?.min_budget_type} - ${item?.customer_detail?.max_budget} ${item?.customer_detail?.max_budget_type}`
+                            : strings.notfount
+                        }</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -249,7 +250,7 @@ const LeadDetailsIteam = (props: any) => {
             {/* Company Details */}
             <>
                 <View style={styles.headdingView}>
-                    <Text style={styles.headdingTxt}>{strings.companydetails}</Text>
+                    <Text style={styles.headdingTxt}>{strings.ocupacion}</Text>
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
@@ -283,9 +284,9 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.customer_detail?.designation === '' ||
-                            item?.customer_detail?.designation === undefined ||
-                            item?.customer_detail?.designation === "undefined" || item?.customer_detail?.designation === null
+                        <Text style={styles.nameTxt}>{item?.customer_detail?.desigantion === '' ||
+                            item?.customer_detail?.desigantion === undefined ||
+                            item?.customer_detail?.desigantion === "undefined" || item?.customer_detail?.desigantion === null
                             ? strings.notfount :
                             item?.customer_detail?.desigantion}</Text>
                     </View>

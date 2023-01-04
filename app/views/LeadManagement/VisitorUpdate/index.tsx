@@ -14,6 +14,8 @@ const VisitorUpdateScreen = ({ navigation, route }: any) => {
     const { response = {}, detail = "" } = useSelector((state: any) => state.visitorData)
     const masterData = useSelector((state: any) => state.masterData) || {}
     const editData = useSelector((state: any) => state.editVisitorData) || {}
+    const [screenType, setScreenType] = useState(0)
+    const [masterDatas, setMasterDatas] = useState<any>([])
     const [updateForm, setUpdateForm] = React.useState({
         lead_id: "",
         first_name: "",
@@ -57,12 +59,12 @@ const VisitorUpdateScreen = ({ navigation, route }: any) => {
         property_type_title: '',
     });
     useLayoutEffect(() => {
-        if (data.lead_id) {
+        if (data?.lead_id) {
             dispatch(getVisitorDetail({
                 lead_id: data?.lead_id
             }))
         }
-    }, [detail])
+    }, [detail, data,])
 
     useEffect(() => {
         if (response?.status === 200) {
@@ -78,8 +80,6 @@ const VisitorUpdateScreen = ({ navigation, route }: any) => {
             })
         }
     }, [response])
-    const [screenType, setScreenType] = useState(0)
-    const [masterDatas, setMasterDatas] = useState<any>([])
 
     useEffect(() => {
         dispatch(getAllMaster({

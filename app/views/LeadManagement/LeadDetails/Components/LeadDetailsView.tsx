@@ -1,6 +1,6 @@
 import { View, Text, StatusBar } from 'react-native'
 import React from 'react'
-import {  Isios, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, WHITE_COLOR } from '../../../../components/utilities/constant'
+import { Isios, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, WHITE_COLOR } from '../../../../components/utilities/constant'
 import Header from '../../../../components/Header'
 import images from '../../../../assets/images'
 import strings from '../../../../components/utilities/Localization'
@@ -27,17 +27,18 @@ const LeadDetailsView = (props: any) => {
         />
       </View>
       {props?.allDetails?.lead_status !== 6 ?
-        <View style={styles.btnContainer}>
-          <Button
-            buttonText={strings.ScheduleSitevisite}
-            width={Isios ? 180 : 150}
-            height={45}
-            bgcolor={PRIMARY_THEME_COLOR_DARK}
-            btnTxtcolor={WHITE_COLOR}
-            btnTxtsize={12}
-            textTransform={"uppercase"}
-            handleBtnPress={() => props.handleScheduleVisit()}
-          />
+        <View style={[styles.btnContainer, { justifyContent: props?.allDetails?.lead_status === 3 ? 'center' : 'space-between' }]}>
+          {props?.allDetails?.lead_status !== 3 ?
+            (<Button
+              buttonText={strings.ScheduleSitevisite}
+              width={Isios ? 180 : 150}
+              height={45}
+              bgcolor={PRIMARY_THEME_COLOR_DARK}
+              btnTxtcolor={WHITE_COLOR}
+              btnTxtsize={12}
+              textTransform={"uppercase"}
+              handleBtnPress={() => props.handleScheduleVisit()}
+            />) : null}
           <Button
             buttonText={strings.Statusupdate}
             width={150}

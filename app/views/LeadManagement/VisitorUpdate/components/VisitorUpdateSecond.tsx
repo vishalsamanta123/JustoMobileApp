@@ -5,7 +5,7 @@ import TopScreensViewer from './TopScreensViewer'
 import Header from "../../../../components/Header";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
-import { BLACK_COLOR, DATE_FORMAT, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
+import { AMOUNT_TYPE, BLACK_COLOR, DATE_FORMAT, Isios, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import InputField from "../../../../components/InputField";
 import { RadioButton } from "react-native-paper";
 import Button from "../../../../components/Button";
@@ -31,7 +31,7 @@ const VisitorUpdateView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
             <View style={styles.noMoveVw}>
-                <TopScreensViewer type={props.screenType} />
+                {/* <TopScreensViewer type={props.screenType} /> */}
             </View>
             <ScrollView contentContainerStyle={styles.wrap}>
                 <View style={styles.typeVw}>
@@ -75,6 +75,7 @@ const VisitorUpdateView = (props: any) => {
                         placeholderText={"Expected Possession Date"}
                         headingText={"Expected Possession Date"}
                         editable={false}
+                        minimumDate={new Date()}
                         dateData={(data: any) => {
                             props.setUpdateForm({
                                 ...props.updateForm,
@@ -87,10 +88,11 @@ const VisitorUpdateView = (props: any) => {
                                 expected_possession_date: moment(data).format(DATE_FORMAT),
                             });
                         }}
-                        value={props?.updateForm?.expected_possession_date != "" ||
-                            props?.updateForm?.expected_possession_date != undefined
-                            ? moment(props?.updateForm?.expected_possession_date).format(DATE_FORMAT) :
-                            ''
+                        value={props?.updateForm?.expected_possession_date === '' ||
+                            props?.updateForm?.expected_possession_date === undefined ||
+                            props?.updateForm?.expected_possession_date === null ?
+                            "" :
+                            moment(props?.updateForm?.expected_possession_date).format(DATE_FORMAT)
                         }
                     />
                 </View>
@@ -110,48 +112,92 @@ const VisitorUpdateView = (props: any) => {
                     />
                 </View>
                 <View style={styles.smallCont}>
-                    <Text style={[styles.headingsTxt, { width: '55%' }]}>Min Budget</Text>
+                    <Text style={[styles.headingsTxt, { width: '56%' }]}>Min Budget</Text>
                     <Text style={[styles.headingsTxt, { width: '50%' }]}>Max Budget</Text>
                 </View>
                 <View style={styles.inputContVw}>
-                    <TextInput
-                        value={props?.updateForm?.min_budget?.toString()}
-                        onChangeText={(data: any) => {
-                            props.setUpdateForm({
-                                ...props.updateForm,
-                                min_budget: data
-                            })
-                        }}
-                        keyboardType={'number-pad'}
-                        placeholder='Min Budget'
-                        style={styles.budgetInput} />
-                    <TouchableOpacity
-                        onPress={() => props.setUpdateForm({
-                            ...props.formData,
-                            min_budget_type: props?.updateForm?.min_budget_type === 'C' ? "L" : "C",
-                        })}
-                        style={styles.smallBox}>
-                        <Text style={{ color: BLACK_COLOR }}>{props?.updateForm?.min_budget_type}</Text>
-                    </TouchableOpacity>
-                    <TextInput
-                        value={props?.updateForm?.max_budget?.toString()}
-                        onChangeText={(data: any) => {
-                            props.setUpdateForm({
-                                ...props.updateForm,
-                                max_budget: data
-                            })
-                        }}
-                        keyboardType={'number-pad'}
-                        placeholder='Max Budget'
-                        style={[styles.budgetInput, { marginLeft: 20 }]} />
-                    <TouchableOpacity
-                        onPress={() => props.setUpdateForm({
-                            ...props.updateForm,
-                            max_budget_type: props?.updateForm?.max_budget_type === "C" ? "L" : "C",
-                        })}
-                        style={styles.smallBox}>
-                        <Text style={{ color: BLACK_COLOR }}>{props?.updateForm?.max_budget_type}</Text>
-                    </TouchableOpacity>
+                    <View style={styles.smallContVw}>
+                        <TextInput
+                            value={props?.updateForm?.min_budget?.toString()}
+                            onChangeText={(data: any) => {
+                                props.setUpdateForm({
+                                    ...props.updateForm,
+                                    min_budget: data
+                                })
+                            }}
+                            keyboardType={'number-pad'}
+                            placeholder='Min Budget'
+                            style={styles.budgetInput} />
+                        <DropdownInput
+                            inputWidth={Isios ? 45 : 49}
+                            inputheight={Isios ? 20 : 38}
+                            paddingLeft={10}
+                            itemContainerStyle={{ width: 100 }}
+                            iconStyle={{ width: 15, height: 15 }}
+                            data={AMOUNT_TYPE}
+                            itemTextStyle={{ fontSize: 8 }}
+                            labelField="value"
+                            valueField={'value'}
+                            placeholder={props?.updateForm?.min_budget_type}
+                            value={props?.updateForm?.min_budget_type}
+                            onChange={(item: any) => {
+                                props.setUpdateForm({
+                                    ...props.updateForm,
+                                    min_budget_type: item.value,
+                                })
+                            }}
+                            newRenderItem={(item: any) => {
+                                return (
+                                    <>
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.value}</Text>
+                                        </View>
+                                    </>
+                                );
+                            }}
+                        />
+                    </View>
+                    <View style={[styles.smallContVw, { justifyContent: 'flex-end' }]}>
+                        <TextInput
+                            value={props?.updateForm?.max_budget?.toString()}
+                            onChangeText={(data: any) => {
+                                props.setUpdateForm({
+                                    ...props.updateForm,
+                                    max_budget: data
+                                })
+                            }}
+                            keyboardType={'number-pad'}
+                            placeholder='Max Budget'
+                            style={styles.budgetInput} />
+                        <DropdownInput
+                            inputWidth={Isios ? 45 : 49}
+                            inputheight={Isios ? 20 : 38}
+                            paddingLeft={10}
+                            itemContainerStyle={{ width: 100 }}
+                            iconStyle={{ width: 15, height: 15 }}
+                            data={AMOUNT_TYPE}
+                            itemTextStyle={{ fontSize: 8 }}
+                            labelField="value"
+                            valueField={'value'}
+                            placeholder={props?.updateForm?.max_budget_type}
+                            value={props?.updateForm?.max_budget_type}
+                            onChange={(item: any) => {
+                                props.setUpdateForm({
+                                    ...props.updateForm,
+                                    max_budget_type: item.value,
+                                })
+                            }}
+                            newRenderItem={(item: any) => {
+                                return (
+                                    <>
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.value}</Text>
+                                        </View>
+                                    </>
+                                );
+                            }}
+                        />
+                    </View>
                 </View>
                 <View style={styles.selectsView}>
                     <Text style={styles.selectsTxt}>{"Nature Of Fuding"}</Text>
@@ -192,6 +238,94 @@ const VisitorUpdateView = (props: any) => {
                             color={PRIMARY_THEME_COLOR}
                         />
                         <Text style={styles.checkTxt}>{'Both'}</Text>
+                    </View>
+                </View>
+                <View style={styles.smallCont}>
+                    <Text style={[styles.headingsTxt, { width: '56%' }]}>Min EMI Pay</Text>
+                    <Text style={[styles.headingsTxt, { width: '50%' }]}>Max EMI Pay</Text>
+                </View>
+                <View style={styles.inputContVw}>
+                    <View style={styles.smallContVw}>
+                        <TextInput
+                            value={props?.updateForm?.min_emi_budget?.toString()}
+                            onChangeText={(data: any) => {
+                                props.setUpdateForm({
+                                    ...props.updateForm,
+                                    min_emi_budget: data
+                                })
+                            }}
+                            keyboardType={'number-pad'}
+                            placeholder='Min EMI Pay'
+                            style={styles.budgetInput} />
+                        <DropdownInput
+                            inputWidth={Isios ? 45 : 49}
+                            inputheight={Isios ? 20 : 38}
+                            paddingLeft={10}
+                            itemContainerStyle={{ width: 100 }}
+                            iconStyle={{ width: 15, height: 15 }}
+                            data={AMOUNT_TYPE}
+                            itemTextStyle={{ fontSize: 8 }}
+                            labelField="value"
+                            valueField={'value'}
+                            placeholder={props?.updateForm?.min_emi_budget_type}
+                            value={props?.updateForm?.min_emi_budget_type}
+                            onChange={(item: any) => {
+                                props.setUpdateForm({
+                                    ...props.updateForm,
+                                    min_emi_budget_type: item.value,
+                                })
+                            }}
+                            newRenderItem={(item: any) => {
+                                return (
+                                    <>
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.value}</Text>
+                                        </View>
+                                    </>
+                                );
+                            }}
+                        />
+                    </View>
+                    <View style={[styles.smallContVw, { justifyContent: 'flex-end' }]}>
+                        <TextInput
+                            value={props?.updateForm?.max_emi_budget}
+                            onChangeText={(data: any) => {
+                                props.setUpdateForm({
+                                    ...props.updateForm,
+                                    max_emi_budget: data
+                                })
+                            }}
+                            keyboardType={'number-pad'}
+                            placeholder='Max EMI Pay'
+                            style={styles.budgetInput} />
+                        <DropdownInput
+                            inputWidth={Isios ? 45 : 49}
+                            inputheight={Isios ? 20 : 38}
+                            paddingLeft={10}
+                            itemContainerStyle={{ width: 100 }}
+                            iconStyle={{ width: 15, height: 15 }}
+                            data={AMOUNT_TYPE}
+                            itemTextStyle={{ fontSize: 8 }}
+                            labelField="value"
+                            valueField={'value'}
+                            placeholder={props?.updateForm?.max_emi_budget_type}
+                            value={props?.updateForm?.max_emi_budget_type}
+                            onChange={(item: any) => {
+                                props.setUpdateForm({
+                                    ...props.updateForm,
+                                    max_emi_budget_type: item.value,
+                                })
+                            }}
+                            newRenderItem={(item: any) => {
+                                return (
+                                    <>
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.value}</Text>
+                                        </View>
+                                    </>
+                                );
+                            }}
+                        />
                     </View>
                 </View>
                 <View style={styles.selectsView}>
