@@ -7,6 +7,7 @@ import {
     GET_APPOINTMENT_DETAILS_ERROR, GET_APPOINTMENT_LIST,
     GET_APPOINTMENT_LIST_ERROR, REMOVE_ADD_EDIT_APPOINTMENT, START_LOADING, STOP_LOADING
 } from "../types";
+
 export const getAllAppointmentList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {

@@ -156,6 +156,7 @@ const AddNewVisitorForm = (props: any) => {
                             valueshow={props?.formData?.adhar_no?.toString()}
                             headingText={"Aadhaar No."}
                             keyboardtype={'number-pad'}
+                            maxLength={12}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -170,6 +171,7 @@ const AddNewVisitorForm = (props: any) => {
                             }}
                             valueshow={props?.formData?.pancard_no}
                             headingText={"Pancard No."}
+                            maxLength={10}
                         />
                     </View>
                     <View style={styles.genderView}>
@@ -348,6 +350,7 @@ const AddNewVisitorForm = (props: any) => {
                             placeholderText={"Expected Possession Date"}
                             headingText={"Expected Possession Date"}
                             editable={false}
+                            minimumDate={new Date()}
                             dateData={(data: any) => {
                                 props.setFormData({
                                     ...props.formData,
@@ -383,14 +386,14 @@ const AddNewVisitorForm = (props: any) => {
                         // keyboardtype={'phone-pad'}
                         />
                     </View>
-                    <View style={[styles.inputWrap, {}]}>
-                        <View style={styles.smallCont}>
-                            <Text style={[styles.headingsTxt, { width: '50%' }]}>Min Budget</Text>
-                            <Text style={[styles.headingsTxt, { width: '50%' }]}>Max Budget</Text>
-                        </View>
-                        <View style={styles.budgetView}>
+                    <View style={styles.smallCont}>
+                        <Text style={[styles.headingsTxt, { width: '56%' }]}>Min Budget</Text>
+                        <Text style={[styles.headingsTxt, { width: '50%' }]}>Max Budget</Text>
+                    </View>
+                    <View style={styles.inputContVw}>
+                        <View style={styles.smallContVw}>
                             <TextInput
-                                value={props?.formData?.min_budget}
+                                value={props?.formData?.min_budget?.toString()}
                                 onChangeText={(data: any) => {
                                     props.setFormData({
                                         ...props.formData,
@@ -399,11 +402,10 @@ const AddNewVisitorForm = (props: any) => {
                                 }}
                                 keyboardType={'number-pad'}
                                 placeholder='Min Budget'
-                                style={styles.budgetInput}
-                            />
+                                style={styles.budgetInput} />
                             <DropdownInput
-                                inputWidth={Isios ? 45 : 47}
-                                inputheight={Isios ? 20 : 39}
+                                inputWidth={Isios ? 45 : 49}
+                                inputheight={Isios ? 20 : 38}
                                 paddingLeft={10}
                                 itemContainerStyle={{ width: 100 }}
                                 iconStyle={{ width: 15, height: 15 }}
@@ -411,7 +413,7 @@ const AddNewVisitorForm = (props: any) => {
                                 itemTextStyle={{ fontSize: 8 }}
                                 labelField="value"
                                 valueField={'value'}
-                                placeholder={props.formData?.min_budget_type}
+                                placeholder={props?.formData?.min_budget_type}
                                 value={props?.formData?.min_budget_type}
                                 onChange={(item: any) => {
                                     props.setFormData({
@@ -429,6 +431,8 @@ const AddNewVisitorForm = (props: any) => {
                                     );
                                 }}
                             />
+                        </View>
+                        <View style={[styles.smallContVw, { justifyContent: 'flex-end' }]}>
                             <TextInput
                                 value={props?.formData?.max_budget}
                                 onChangeText={(data: any) => {
@@ -439,10 +443,10 @@ const AddNewVisitorForm = (props: any) => {
                                 }}
                                 keyboardType={'number-pad'}
                                 placeholder='Max Budget'
-                                style={[styles.budgetInput, { marginLeft: 8 }]} />
+                                style={styles.budgetInput} />
                             <DropdownInput
-                                inputWidth={Isios ? 45 : 47}
-                                inputheight={Isios ? 20 : 39}
+                                inputWidth={Isios ? 45 : 49}
+                                inputheight={Isios ? 20 : 38}
                                 paddingLeft={10}
                                 itemContainerStyle={{ width: 100 }}
                                 iconStyle={{ width: 15, height: 15 }}
@@ -450,7 +454,7 @@ const AddNewVisitorForm = (props: any) => {
                                 itemTextStyle={{ fontSize: 8 }}
                                 labelField="value"
                                 valueField={'value'}
-                                placeholder={props.formData?.max_budget_type}
+                                placeholder={props?.formData?.max_budget_type}
                                 value={props?.formData?.max_budget_type}
                                 onChange={(item: any) => {
                                     props.setFormData({
@@ -541,14 +545,14 @@ const AddNewVisitorForm = (props: any) => {
                             </View>
                         </View>
                     </View>
-                    <View style={[styles.inputWrap, { marginTop: 0 }]}>
-                        <View style={styles.smallCont}>
-                            <Text style={[styles.headingsTxt, { width: '50%' }]}>Min EMI Pay</Text>
-                            <Text style={[styles.headingsTxt, { width: '50%' }]}> Max EMI Pay </Text>
-                        </View>
-                        <View style={styles.budgetView}>
+                    <View style={styles.smallCont}>
+                        <Text style={[styles.headingsTxt, { width: '56%' }]}>Min EMI Pay</Text>
+                        <Text style={[styles.headingsTxt, { width: '50%' }]}>Max EMI Pay</Text>
+                    </View>
+                    <View style={styles.inputContVw}>
+                        <View style={styles.smallContVw}>
                             <TextInput
-                                value={props?.formData?.min_emi_budget}
+                                value={props?.formData?.min_emi_budget?.toString()}
                                 onChangeText={(data: any) => {
                                     props.setFormData({
                                         ...props.formData,
@@ -556,10 +560,11 @@ const AddNewVisitorForm = (props: any) => {
                                     })
                                 }}
                                 keyboardType={'number-pad'}
-                                placeholder='Min EMI Pay' style={styles.budgetInput} />
+                                placeholder='Min EMI Pay'
+                                style={styles.budgetInput} />
                             <DropdownInput
-                                inputWidth={Isios ? 45 : 47}
-                                inputheight={Isios ? 20 : 39}
+                                inputWidth={Isios ? 45 : 49}
+                                inputheight={Isios ? 20 : 38}
                                 paddingLeft={10}
                                 itemContainerStyle={{ width: 100 }}
                                 iconStyle={{ width: 15, height: 15 }}
@@ -567,7 +572,7 @@ const AddNewVisitorForm = (props: any) => {
                                 itemTextStyle={{ fontSize: 8 }}
                                 labelField="value"
                                 valueField={'value'}
-                                placeholder={props.formData?.min_emi_budget_type}
+                                placeholder={props?.formData?.min_emi_budget_type}
                                 value={props?.formData?.min_emi_budget_type}
                                 onChange={(item: any) => {
                                     props.setFormData({
@@ -585,6 +590,8 @@ const AddNewVisitorForm = (props: any) => {
                                     );
                                 }}
                             />
+                        </View>
+                        <View style={[styles.smallContVw, { justifyContent: 'flex-end' }]}>
                             <TextInput
                                 value={props?.formData?.max_emi_budget}
                                 onChangeText={(data: any) => {
@@ -595,11 +602,10 @@ const AddNewVisitorForm = (props: any) => {
                                 }}
                                 keyboardType={'number-pad'}
                                 placeholder='Max EMI Pay'
-                                style={[styles.budgetInput, { marginLeft: 8 }]}
-                            />
+                                style={styles.budgetInput} />
                             <DropdownInput
-                                inputWidth={Isios ? 45 : 47}
-                                inputheight={Isios ? 20 : 39}
+                                inputWidth={Isios ? 45 : 49}
+                                inputheight={Isios ? 20 : 38}
                                 paddingLeft={10}
                                 itemContainerStyle={{ width: 100 }}
                                 iconStyle={{ width: 15, height: 15 }}
@@ -607,7 +613,7 @@ const AddNewVisitorForm = (props: any) => {
                                 itemTextStyle={{ fontSize: 8 }}
                                 labelField="value"
                                 valueField={'value'}
-                                placeholder={props.formData?.max_emi_budget_type}
+                                placeholder={props?.formData?.max_emi_budget_type}
                                 value={props?.formData?.max_emi_budget_type}
                                 onChange={(item: any) => {
                                     props.setFormData({

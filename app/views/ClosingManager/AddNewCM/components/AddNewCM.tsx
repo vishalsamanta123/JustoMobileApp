@@ -203,7 +203,6 @@ const AddNewCMView = (props: any) => {
                     <InputCalender
                         leftIcon={images.event}
                         mode={'date'}
-                        maximumDate={new Date()}
                         placeholderText={"Date of Birth"}//can edit
                         editable={false}
                         dateData={(data: any) => {

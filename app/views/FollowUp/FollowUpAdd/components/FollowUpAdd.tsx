@@ -29,36 +29,38 @@ const FollowUpAddView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
             <View style={styles.topItemsVw}>
-                <DropdownInput
-                    headingText={'Status'}
-                    placeholder={strings.status}
-                    data={props?.masterDatas}
-                    inputWidth={'100%'}
-                    paddingLeft={16}
-                    maxHeight={300}
-                    onFocus={() => props.handleMasterDatas(5)}
-                    labelField="title"
-                    valueField={'_id'}
-                    value={props?.formData?.property_id}
-                    onChange={(item: any) => {
-                        console.log('item: ', item);
-                        props.setFormData({
-                            ...props.formData,
-                            followup_status: item._id,
-                        })
-                    }}
-                    newRenderItem={(item: any) => {
-                        return (
-                            <>
-                                {props?.isloading === false &&
-                                    <View style={Styles.item}>
-                                        <Text style={Styles.textItem}>{item.title}</Text>
-                                    </View>
-                                }
-                            </>
-                        );
-                    }}
-                />
+                <View style={styles.inputWrap}>
+                    <DropdownInput
+                        headingText={'Status'}
+                        placeholder={strings.status}
+                        data={props?.masterDatas}
+                        inputWidth={'100%'}
+                        paddingLeft={16}
+                        maxHeight={300}
+                        onFocus={() => props.handleMasterDatas(5)}
+                        labelField="title"
+                        valueField={'_id'}
+                        value={props?.formData?.property_id}
+                        onChange={(item: any) => {
+                            console.log('item: ', item);
+                            props.setFormData({
+                                ...props.formData,
+                                followup_status: item._id,
+                            })
+                        }}
+                        newRenderItem={(item: any) => {
+                            return (
+                                <>
+                                    {props?.isloading === false &&
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.title}</Text>
+                                        </View>
+                                    }
+                                </>
+                            );
+                        }}
+                    />
+                </View>
                 {props?.formData?.followup_status === '6360c6d52ca46e9d3636fbf4' ?
                     (
                         <>

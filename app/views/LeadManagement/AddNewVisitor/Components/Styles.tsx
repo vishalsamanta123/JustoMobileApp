@@ -71,14 +71,15 @@ const styles = StyleSheet.create({
     marginHorizontal: normalizeSpacing(2),
   },
   radioTxt: {
-    fontSize: normalize(15),
+    fontSize: normalize(14),
     color: BLACK_COLOR
   },
   smallCont: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: normalizeSpacing(8),
-    marginLeft: normalizeSpacing(6)
+    marginLeft: normalizeSpacing(6),
+    marginTop: normalize(14),
   },
   workingView: {
     width: '100%',
@@ -116,6 +117,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: normalizeHeight(50)
   },
+  inputContVw: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flex: 1
+  },
+  smallContVw: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   smallBox: {
     width: "15%",
     backgroundColor: WHITE_COLOR,
@@ -127,10 +139,16 @@ const styles = StyleSheet.create({
   },
   budgetInput: {
     backgroundColor: WHITE_COLOR,
-    width: '30%',
+    width: '55%',
     borderRadius: 10,
-    height: normalizeHeight(50),
-    paddingLeft: normalizeSpacing(10)
+    elevation: 5,
+    shadowColor: '#171717',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    borderColor: GRAY_COLOR,
+    color: BLACK_COLOR,
+    paddingLeft: normalizeSpacing(8)
   },
   headingsTxt: {
     fontSize: normalize(16),

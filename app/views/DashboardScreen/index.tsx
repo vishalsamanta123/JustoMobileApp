@@ -35,6 +35,8 @@ const DashboardScreen = ({ navigation }: any) => {
       getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
       if (SMListData?.response?.status === 200) {
         setListData(SMListData?.response?.data)
+      }else{
+        setListData([])
       }
     }
   }, [response, SMListData])

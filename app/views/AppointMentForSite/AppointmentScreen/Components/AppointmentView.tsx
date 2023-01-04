@@ -68,11 +68,13 @@ const AppointmentView = (props: any) => {
                             property_name: ''
                         })
                         props.getAppointmentList(0, {})
+                        props.setSiteAppointments([])
                     }}
                     refreshing={loadingref}
                     onEndReached={() => {
                         if (props?.siteAppointments?.length < props?.moreData) {
-                            props.getAppointmentList(props?.siteAppointments?.length > 2 ? props.offSET + 1 : 0, props.filterData)
+                            props.getAppointmentList(props?.siteAppointments?.length >= 3 ?
+                                props.offSET + 1 : 0, props.filterData)
                         }
                     }}
                 />
@@ -83,6 +85,18 @@ const AppointmentView = (props: any) => {
                 Visible={FilterisVisible}
                 getAppointmentList={props.getAppointmentList}
                 setIsVisible={setFilterisVisible}
+                onReset={() => {
+                    props.setFilterData({
+                        appointment_with: '',
+                        status: '',
+                        start_date: '',
+                        end_date: '',
+                        customer_name: '',
+                        property_name: ''
+                    })
+                    props.getAppointmentList(0, {})
+                    props.setSiteAppointments([])
+                }}
                 setSiteAppointments={props.setSiteAppointments}
             />
         </View>

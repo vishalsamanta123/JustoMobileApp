@@ -9,7 +9,7 @@ const AppointmentScreen = ({ navigation }: any) => {
   const { response = {}, list = '' } = useSelector((state: any) => state.appointment)
   const moreData = response?.total_data || 0
   const [offSET, setOffset] = useState(0)
-  const [siteAppointments, setSiteAppointments] = useState([])
+  const [siteAppointments, setSiteAppointments] = useState<any>([])
   const [filterData, setFilterData] = useState({
     appointment_with: '',
     status: '',
@@ -55,7 +55,13 @@ const AppointmentScreen = ({ navigation }: any) => {
   );
   useEffect(() => {
     if (response?.status === 200) {
-      setSiteAppointments(response?.data)
+      if (offSET === 0) {
+        setSiteAppointments(response?.data)
+      } else {
+        setSiteAppointments([...siteAppointments, ...response?.data])
+      }
+    } else {
+      setSiteAppointments([])
     }
   }, [response])
 
