@@ -89,6 +89,7 @@ import DeactiveAgencyScreen from "app/views/AgencyManagement/DeactiveAgency";
 import AllowAgencyListing from "app/views/AgencyManagement/AllowAgencyListing";
 import auth from "@react-native-firebase/auth";
 import { updateFirebase } from "app/Redux/Actions/FirebaseActions";
+import AppointmentAddScreen from "app/views/AppointMentForSite/AppointmentAdd";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -203,6 +204,10 @@ const AppComponent = () => {
       <AppStack.Screen
         name="AddAppointmentForSite"
         component={AddAppointmentForSiteScreen}
+      />
+      <AppStack.Screen
+        name="AppointmentAddS"
+        component={AppointmentAddScreen}
       />
 
       {/* BookingDetails */}

@@ -25,11 +25,14 @@ const AppointmentDetailsView = (props: any) => {
                     detail={props.appointMentDetail}
                 />
             </View>
-            <View style={styles.bntView}>
-                <Button
-                    handleBtnPress={() => props.handleStatusUpdate()}
-                    buttonText={strings.Statusupdate} />
-            </View>
+            {props.appointMentDetail?.status === 1 || props.appointMentDetail?.status === 2 ?
+                (<View style={styles.bntView}>
+                    <Button
+                        handleBtnPress={() => props.handleStatusUpdate()}
+                        buttonText={strings.Statusupdate} />
+                </View>)
+                : null
+            }
         </View>
     )
 }

@@ -6,7 +6,7 @@ import { addAppointment, editAppointment, getAppointmentDetail, removeEditUser }
 import { getAllLeadsList } from 'app/Redux/Actions/LeadsActions'
 import { getAllProperty } from 'app/Redux/Actions/propertyActions'
 import ErrorMessage from 'app/components/ErrorMessage'
-import { GREEN_COLOR } from 'app/components/utilities/constant'
+import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { type = "", item = {} } = route?.params || {}
@@ -33,10 +33,11 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     pickup_longitude: '',
     number_of_guest: '',
     property_title: '',
-    first_name: ''
+    first_name: '',
+    update_type: ''
   })
   useEffect(() => {
-    if (type === 'edit' || type === 'reSheduled' || type === 'visitAppo') {
+    if (type === 'edit' || type === 'reSheduled') {
       getUserDetails()
     } else {
       if (type === 'Add') {
@@ -46,7 +47,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
           first_name: item?.customer_first_name,
           property_id: item?.property_id,
           property_title: item?.property_title,
-          pickup: 'Yes'
+          pickup: 'Yes',
+          update_type: ''
         })
       }
     }
@@ -77,7 +79,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
         pickup_longitude: '',
         number_of_guest: '',
         property_title: '',
-        first_name: ''
+        first_name: '',
+        update_type: ''
       })
     }
   }, [editAppointmentData])
@@ -104,6 +107,41 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
       offset: 0,
       limit: 100,
     }))
+  }
+  const validation = () => {
+    let isError = true;
+    let errorMessage: any = ''
+    if (type !== 'edit') {
+      if (appointMentForm.update_type == undefined || appointMentForm.update_type == '') {
+        isError = false;
+        errorMessage = "Update Type is require. Please Select the Update Type"
+      }
+      else if (appointMentForm.appointment_date == undefined || appointMentForm.appointment_date == '') {
+        isError = false;
+        errorMessage = "Date is require. Please Select the Date"
+      }
+      else if (appointMentForm.appointment_time == undefined || appointMentForm.appointment_time == '') {
+        isError = false;
+        errorMessage = "Time is require. Please Select the Time"
+      }
+      if (appointMentForm.pickup === 'Yes') {
+        if (appointMentForm.pickup_location == undefined || appointMentForm.pickup_location == '') {
+          isError = false;
+          errorMessage = "Location is require. Please Enter the Location"
+        }
+        else if (appointMentForm.number_of_guest == undefined || appointMentForm.number_of_guest == '') {
+          isError = false;
+          errorMessage = "Number of guest is require. Please Enter the Number of guest"
+        }
+      }
+    }
+    if (errorMessage !== '') {
+      ErrorMessage({
+        msg: errorMessage,
+        backgroundColor: RED_COLOR
+      })
+    }
+    return isError;
   }
   useEffect(() => {
     if (type === 'edit' && response?.status === 200) {
@@ -158,12 +196,15 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
       number_of_guest: appointMentForm?.number_of_guest,
       type: 1,
       drop_off_location: appointMentForm?.pickup_address,
+      update_type: appointMentForm?.update_type,
     }
     if (type === 'edit') {
       dispatch(editAppointment({ ...params, appointment_id: item?._id }))
     } else {
-      dispatch(addAppointment(params))
-      console.log('params: ', params);
+      if (validation()) {
+        dispatch(addAppointment(params))
+        console.log('params: ', params);
+      }
     }
   }
   return (

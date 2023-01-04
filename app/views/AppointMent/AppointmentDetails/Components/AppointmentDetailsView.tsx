@@ -47,7 +47,7 @@ const AppointmentDetailsView = (props: any) => {
                                 width={150}
                             />
                             <Button
-                                buttonText={'rescheduled'}
+                                buttonText={'Update'}
                                 handleBtnPress={() => props.handleUpdateStatus()}
                                 width={150}
                             />
