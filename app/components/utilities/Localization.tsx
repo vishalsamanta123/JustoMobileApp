@@ -110,7 +110,7 @@ const strings = new LocalizedStrings({
     // common strings
     search: 'Search',
     update: 'Update',
-    searchbytype: 'Search By Tpe',
+    searchbytype: 'Search By Type',
     call: 'Call',
     unsubscribe: 'Unsubscribe',
     subscribe: 'Subscribe',
@@ -195,7 +195,7 @@ const strings = new LocalizedStrings({
     createVisitor: 'Create Visitor',
     Statusupdate: 'Status Update',
     cancelBooking: 'Cancel Booking',
-    ScheduleSitevisite: 'Schedule Site Visite',
+    ScheduleSitevisite: 'Schedule Site Visit',
     createandschedule: 'Create & schedule',
     propertyrequired: 'Property Required',
     Customerdetails: 'Customer Details',
@@ -212,8 +212,8 @@ const strings = new LocalizedStrings({
 
 
     // Appointment
-    appointmnet: 'Appointmnet',
-    appointmnetdetail: 'Appointmnet Detail',
+    appointmnet: 'Appointment',
+    appointmnetdetail: 'Appointment Detail',
     updatestatus: 'Update Status',
     searchappointment: 'Search Appointment',
     addNewappointment: 'Add New Appointment',
