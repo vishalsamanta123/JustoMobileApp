@@ -66,7 +66,7 @@ const PendingAgencyView = (props: any) => {
           <FlatList
             showsVerticalScrollIndicator={false}
             data={Array.isArray(props?.pendingAgency) ? props?.pendingAgency : []}
-            ListEmptyComponent={<EmptyListScreen message={strings.agency} />}
+            ListEmptyComponent={<EmptyListScreen message={strings.pendingconfirm} />}
             renderItem={({ item }) => <PendingAgencyList
               items={item} setIsVisible={setIsVisible}
               onPressView={onPressView}

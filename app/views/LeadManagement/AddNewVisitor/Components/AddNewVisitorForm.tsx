@@ -16,7 +16,6 @@ import DropdownInput from 'app/components/DropDown';
 import { useSelector } from 'react-redux';
 
 const AddNewVisitorForm = (props: any) => {
-    const insets = useSafeAreaInsets();
     const { response = {}, detail = "" } = useSelector((state: any) => state.visitorData)
 
     useEffect(() => {
@@ -58,7 +57,7 @@ const AddNewVisitorForm = (props: any) => {
                             placeholder={props.formData?.property_title ?
                                 props.formData?.property_title : 'Property'}
                             data={props?.allProperty}
-                            disable={props.type == 'edit' ? true : false}
+                            disable={props.type == 'edit' || props.type == 'propertySelect' ? true : false}
                             inputWidth={'100%'}
                             paddingLeft={16}
                             maxHeight={300}
@@ -301,7 +300,7 @@ const AddNewVisitorForm = (props: any) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <InputField
-                            placeholderText={"Localitiy"}
+                            placeholderText={"Locality"}
                             handleInputBtnPress={() => { }}
                             onChangeText={(data: any) => {
                                 props.setFormData({
@@ -310,7 +309,7 @@ const AddNewVisitorForm = (props: any) => {
                                 })
                             }}
                             valueshow={props?.formData?.locality}
-                            headingText={"Localitiy"}
+                            headingText={"Locality"}
                         />
                     </View>
                     <Text style={[styles.headingText, { marginTop: 20 }]}>{strings.propertyrequire}</Text>
@@ -805,19 +804,28 @@ const AddNewVisitorForm = (props: any) => {
                                 height={45}
                                 buttonText={strings.editVisitor}
                                 btnTxtsize={16}
-                                handleBtnPress={() => props.OnpressCreateEdit()}
+                                handleBtnPress={() => {
+                                    props.setNavigationType(1)
+                                    props.OnpressCreateEdit()
+                                }}
                             />
                             :
                             <>
                                 <Button
                                     width={150}
-                                    handleBtnPress={() => props.OnpressCreateEdit()}
+                                    handleBtnPress={() => {
+                                        props.setNavigationType(1)
+                                        props.OnpressCreateEdit()
+                                    }}
                                     height={45}
                                     buttonText={strings.createVisitor}
                                     btnTxtsize={16} />
                                 <Button
                                     width={150}
-                                    handleBtnPress={() => props.OnpressseheduleVisit()}
+                                    handleBtnPress={() => {
+                                        props.setNavigationType(2)
+                                        props.OnpressseheduleVisit()
+                                    }}
                                     height={45}
                                     buttonText={strings.createandschedule}
                                     btnTxtsize={14} />

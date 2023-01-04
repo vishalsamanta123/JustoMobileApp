@@ -22,6 +22,7 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 import { useSelector } from "react-redux";
+import { normalizeWidth } from "app/components/scaleFontSize";
 
 const AgencyView = (props: any) => {
   const loadingref = false;
@@ -133,6 +134,7 @@ const AgencyView = (props: any) => {
                 {
                   borderColor: BLACK_COLOR,
                   backgroundColor: PRIMARY_THEME_COLOR,
+                  width: normalizeWidth(180),
                 },
               ]}
             >

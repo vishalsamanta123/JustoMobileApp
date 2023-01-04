@@ -26,7 +26,7 @@ const VisitorUpdateView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
             <View style={styles.noMoveVw}>
-                <TopScreensViewer type={props.screenType} />
+                {/* <TopScreensViewer type={props.screenType} /> */}
             </View>
             <ScrollView contentContainerStyle={styles.wrap}>
                 <View style={styles.typeVw}>

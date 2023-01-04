@@ -88,7 +88,7 @@ const FilterModal = (props: any) => {
           </View>
           <View style={styles.borderView} />
           <View style={{ marginHorizontal: 10 }}>
-            <View style={styles.inputWrap}>
+            {/* <View style={styles.inputWrap}>
               <InputCalender
                 mode={"date"}
                 leftIcon={images.event}
@@ -113,10 +113,8 @@ const FilterModal = (props: any) => {
                   });
                 }}
               />
-
-              {/*  <Button title="Open" handleBtnPress={() => setOpen(true)} /> */}
-            </View>
-            <View style={styles.inputWrap}>
+            </View> */}
+            {/* <View style={styles.inputWrap}>
               <InputCalender
                 mode={"date"}
                 leftIcon={images.event}
@@ -141,7 +139,7 @@ const FilterModal = (props: any) => {
                   });
                 }}
               />
-            </View>
+            </View> */}
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Name"}

@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './Styles'
 import images from '../../../../assets/images'
 import strings from '../../../../components/utilities/Localization'
-import { PURPLE_COLOR, CALL_COLOR, WHITE_COLOR, DATE_FORMAT, TIME_FORMAT, BLACK_COLOR } from '../../../../components/utilities/constant'
+import { PURPLE_COLOR, CALL_COLOR, WHITE_COLOR, DATE_FORMAT, TIME_FORMAT, BLACK_COLOR, DATE_BY_DAY } from '../../../../components/utilities/constant'
 import Button from '../../../../components/Button'
 import moment from 'moment'
 
@@ -18,7 +18,7 @@ const AppointMentForSiteList = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{
             props?.items?.appointment_date === '' || props?.items?.appointment_date === undefined ?
-              strings.notfount : moment(props?.items?.appointment_date).format(DATE_FORMAT)
+              strings.notfount : moment(props?.items?.appointment_date).format(DATE_BY_DAY)
           }<Text style={styles.nameTxt}>
               {props?.items?.appointment_time === '' || props?.items?.appointment_time === undefined ?
                 strings.notfount : " " + props?.items?.appointment_time}

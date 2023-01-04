@@ -21,7 +21,7 @@ const AddAppointmentView = (props: any) => {
                 leftImageSrc={images.backArrow}
                 rightSecondImageScr={images.notification}
                 headerText={props.type === 'edit' ? strings.editNewappointment :
-                    props.type === 'reSheduled' ? 'ReScheduled Appointment' :
+                    props.type === 'reSheduled' ? 'Rescheduled Appointment' :
                         strings.addNewappointment}
                 leftImageIconStyle={styles.RightFirstIconStyle}
                 handleOnLeftIconPress={() => props.handleBackPress()}

@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
 import styles from './Styles'
 import images from '../../../../assets/images'
-import { BLACK_COLOR, DATE_FORMAT } from 'app/components/utilities/constant'
+import { BLACK_COLOR, DATE_BY_DAY, DATE_FORMAT } from 'app/components/utilities/constant'
 import moment from 'moment'
 import strings from 'app/components/utilities/Localization'
 
@@ -68,7 +68,7 @@ const AppointmentDtailsItem = (props: any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props?.detail?.appointment_date === '' || props?.detail?.appointment_date === undefined ?
-            strings.notfount : moment(props?.detail?.appointment_date).format(DATE_FORMAT)}
+            strings.notfount : moment(props?.detail?.appointment_date).format(DATE_BY_DAY)}
             <Text style={styles.nameTxt}>
               {props?.detail?.appointment_time === '' || props?.detail?.appointment_time === undefined ?
                 strings.notfount : " " + props?.detail?.appointment_time}

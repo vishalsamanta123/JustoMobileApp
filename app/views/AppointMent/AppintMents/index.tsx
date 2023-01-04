@@ -8,60 +8,6 @@ import { getClosingManagerList } from "app/Redux/Actions/ClosingManager";
 import { AllocateCM } from "app/Redux/Actions/AppointmentCLAction";
 
 const AppointmentsScreen = ({ navigation }: any) => {
-    const DATA: any = [
-        {
-            visitorName: 'ABC',
-            siteVisitDate: '11/10/2022,11:00 PM',
-            leadNo: 'JUSTO2775',
-            pickup: "Yes",
-            status: 'confirmatin Pending',
-            visitScore: 234,
-            assignTo: "Suresh ",
-            source: 'DEF',
-            location: 'Pune',
-            age: '32',
-            budget: '50L',
-        },
-        {
-            visitorName: 'ABC',
-            siteVisitDate: '11/10/2022,12:00 PM',
-            leadNo: 'JUSTO2775899',
-            pickup: "Yes",
-            status: 'Subscribe',
-            visitScore: 234,
-            assignTo: "Anil",
-            source: 'DESSF',
-            location: 'Pune,india',
-            age: '32',
-            budget: '90L',
-        },
-        {
-            visitorName: 'ABC',
-            siteVisitDate: '11/10/2022,03:00 PM',
-            leadNo: 'JUSTO2444',
-            pickup: "Yes",
-            status: 'Unsubscribe',
-            visitScore: 234,
-            assignTo: 'Harsh ',
-            source: 'DESSF',
-            location: 'Indore',
-            age: '32',
-            budget: '5L',
-        },
-        {
-            visitorName: 'ABC',
-            siteVisitDate: '11/10/2022,06:00 PM',
-            leadNo: 'JUSTO2555',
-            pickup: "Yes",
-            status: 'confirmatin Pending',
-            visitScore: 234,
-            assignTo: 'Harsh.S',
-            source: 'DEF',
-            location: 'Pune',
-            age: '32',
-            budget: '50L',
-        },
-    ];
     const [dropLocisVisible, setDropLocisVisible] = useState(false)
     const [filterisVisible, setFilterisVisible] = useState(false)
     const [appointmentList, setAppointmentList] = useState<any>([])
@@ -93,6 +39,8 @@ const AppointmentsScreen = ({ navigation }: any) => {
                     setAppointmentList([...appointmentList, ...response?.data])
                 }
             }
+        } else {
+            setAppointmentList([])
         }
     }, [response])
     useEffect(() => {

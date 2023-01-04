@@ -110,7 +110,7 @@ const PropertyDetailView = (props: any) => {
         />
         <Button
           handleBtnPress={() => onPressCreatevisit()}
-          buttonText={strings.visits}
+          buttonText={strings.createVisit}
           width={150}
           height={45}
           bordercolor={GRAY_COLOR}
