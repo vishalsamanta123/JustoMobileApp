@@ -46,7 +46,8 @@ const InputCalender = (props: any) => {
           }]}
           onChangeText={val => props.onChangeText(val)}
           onSubmitEditing={onSubmit}
-          placeholder={props.placeholderText}
+          placeholder={props.placeholderText === 'Date of Birth' ? "" :
+            props.placeholderText}
           placeholderTextColor={BLACK_COLOR}
           secureTextEntry={props.isSecureText}
           autoCapitalize={'none'}
