@@ -10,9 +10,13 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   const [appointMentDetail, setAppointMentDetail] = useState<any>({})
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
-  useEffect(() => {
-    getUserDetails()
-  }, [navigation])
+  
+  useFocusEffect(
+    React.useCallback(() => {
+      getUserDetails()
+      return () => { };
+    }, [navigation]))
+
   const getUserDetails = () => {
     dispatch(getAppointmentDetail({
       appointment_id: data?._id ? data?._id : ''
@@ -27,7 +31,7 @@ const AppointmentDetails = ({ navigation, route }: any) => {
     navigation.goBack()
   }
   const handleStatusUpdate = () => {
-    navigation.navigate('FollUpAdd', data)
+    navigation.navigate('AppointmentAddS', data)
   }
   return (
     <AppointmentDetailsView

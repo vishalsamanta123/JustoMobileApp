@@ -83,7 +83,7 @@ const AllowAgencyListing = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Colse Visit :</Text>
+          <Text style={styles.projectTxt}>No. of Close Visit :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{

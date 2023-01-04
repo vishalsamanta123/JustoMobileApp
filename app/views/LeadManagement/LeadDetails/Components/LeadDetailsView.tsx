@@ -31,7 +31,7 @@ const LeadDetailsView = (props: any) => {
           {props?.allDetails?.lead_status !== 3 ?
             (<Button
               buttonText={strings.ScheduleSitevisite}
-              width={Isios ? 180 : 150}
+              width={180}
               height={45}
               bgcolor={PRIMARY_THEME_COLOR_DARK}
               btnTxtcolor={WHITE_COLOR}

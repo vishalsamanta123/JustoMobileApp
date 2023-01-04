@@ -17,6 +17,37 @@ const AddAppointmentItem = (props: any) => {
     return (
         <ScrollView keyboardShouldPersistTaps={'handled'}>
             <View style={styles.wrap}>
+                {props.type === 'reSheduled' ?
+                    (<View style={styles.inputWrap}>
+                        <DropdownInput
+                            headingText={'Select Update Type'}
+                            placeholder={props?.appointMentForm?.update_type}
+                            data={[
+                                { lable: 'Revisit', value: 1 },
+                                { lable: 'Reschedule', value: 2 }
+                            ]}
+                            paddingLeft={16}
+                            maxHeight={300}
+                            labelField="lable"
+                            valueField={'value'}
+                            value={props?.appointMentForm?.update_type}
+                            onChange={(item: any) => {
+                                props.setAppointMentForm({
+                                    ...props.appointMentForm,
+                                    update_type: item.value,
+                                })
+                            }}
+                            newRenderItem={(item: any) => {
+                                return (
+                                    <>
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.lable}</Text>
+                                        </View>
+                                    </>
+                                );
+                            }}
+                        />
+                    </View>) : null}
                 <View style={styles.inputWrap}>
                     <DropdownInput
                         headingText={strings.selectLead}

@@ -83,22 +83,23 @@ const AppointmentItem = (props: any) => {
                 </View>
             </View>
             <View style={styles.buttonContainer}>
-                <Button
-                    width={80}
-                    height={30}
-                    bgcolor={WHITE_COLOR}
-                    bordercolor={CALL_COLOR}
-                    borderWidth={1}
-                    btnTxtcolor={CALL_COLOR}
-                    buttonText={strings.call}
-                    btnTxtsize={14}
-                    border={10}
-                    handleBtnPress={() => {
-                        Linking.openURL(
-                            `tel:${props.items?.mobile}`
-                        )
-                    }}
-                />
+                {props.items.status === 1 || props.items.status === 2 ?
+                    (<Button
+                        width={80}
+                        height={30}
+                        bgcolor={WHITE_COLOR}
+                        bordercolor={CALL_COLOR}
+                        borderWidth={1}
+                        btnTxtcolor={CALL_COLOR}
+                        buttonText={strings.call}
+                        btnTxtsize={14}
+                        border={10}
+                        handleBtnPress={() => {
+                            Linking.openURL(
+                                `tel:${props.items?.mobile}`
+                            )
+                        }}
+                    />) : <View></View>}
                 <TouchableOpacity style={styles.Viewbutton}
                     onPress={() => props.onPressView(props.items)}
                 >
@@ -109,46 +110,47 @@ const AppointmentItem = (props: any) => {
                 </TouchableOpacity>
             </View>
             {
-                userData?.data?.role_title === 'Closing TL' ?
-                    (<View style={[styles.buttonContainer, { justifyContent: 'center' }]}>
-                        {props.items.pickup === 'Yes' &&
+                userData?.data?.role_title === 'Closing TL' && props.items.status === 1 ?
+                    (
+                        <View style={[styles.buttonContainer, { justifyContent: 'center' }]}>
+                            {props.items.pickup === 'Yes' &&
 
+                                <Button
+                                    width={150}
+                                    height={30}
+                                    bgcolor={WHITE_COLOR}
+                                    bordercolor={PRIMARY_THEME_COLOR}
+                                    borderWidth={1}
+                                    btnTxtcolor={PRIMARY_THEME_COLOR}
+                                    buttonText={strings.dropLocation}
+                                    btnTxtsize={14}
+                                    border={10}
+                                    handleBtnPress={() => {
+                                        props.setappointmentid(props?.items?._id)
+                                        props.setLocationModel(true)
+                                    }}
+                                    textTransform={'uppercase'}
+                                />
+                            }
                             <Button
-                                width={150}
+                                width={100}
                                 height={30}
                                 bgcolor={WHITE_COLOR}
                                 bordercolor={PRIMARY_THEME_COLOR}
                                 borderWidth={1}
                                 btnTxtcolor={PRIMARY_THEME_COLOR}
-                                buttonText={strings.dropLocation}
+                                buttonText={strings.allocate}
                                 btnTxtsize={14}
                                 border={10}
                                 handleBtnPress={() => {
-                                    props.setappointmentid(props?.items?._id)
-                                    props.setLocationModel(true)
+                                    props.setAllocatedCM({
+                                        ...props.allocatedCM, appointment_id: props.items?._id
+                                    })
+                                    props.setAllocateModel(true)
                                 }}
                                 textTransform={'uppercase'}
                             />
-                        }
-                        <Button
-                            width={100}
-                            height={30}
-                            bgcolor={WHITE_COLOR}
-                            bordercolor={PRIMARY_THEME_COLOR}
-                            borderWidth={1}
-                            btnTxtcolor={PRIMARY_THEME_COLOR}
-                            buttonText={strings.allocate}
-                            btnTxtsize={14}
-                            border={10}
-                            handleBtnPress={() => {
-                                props.setAllocatedCM({
-                                    ...props.allocatedCM, appointment_id: props.items?._id
-                                })
-                                props.setAllocateModel(true)
-                            }}
-                            textTransform={'uppercase'}
-                        />
-                    </View>)
+                        </View>)
                     : null
             }
         </View>
