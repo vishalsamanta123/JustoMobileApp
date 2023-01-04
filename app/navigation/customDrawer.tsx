@@ -285,7 +285,7 @@ const customDrawer = ({ navigation }: any) => {
             navigation.navigate("PickupRequest");
           }}
           iconSource={images.support}
-          tabTitle={strings.supportHeader}
+          tabTitle={strings.PickuprequestHeader}
         />
         <DrawerTabSection
           type={"Closing Manager,Closing TL"}
