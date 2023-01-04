@@ -96,10 +96,13 @@ const AppointmentDtailsItem = (props: any) => {
           {/* <Text style={styles.nameTxt}>{props?.detail?.status === 1 ? 'Pending' :
             props?.detail?.status === 2 ? 'Confirm' :
               props?.detail?.status === 3 ? 'Complete' : 'Appointment cancel'}</Text> */}
-          <Text style={[styles.nameTxt, { color: props?.detail?.status == 5 ? 'red' : BLACK_COLOR }]}>{props?.detail?.status == 1 ? 'Pending' :
-            props?.detail?.status == 2 ? 'Confirm' :
-              props?.detail?.status == 3 ? 'Completed' :
-                props?.detail?.status == 5 ? 'Appoiment cancel' : ''}
+          <Text style={[styles.nameTxt, { color: props?.detail?.status == 5 ? 'red' : BLACK_COLOR }]}>{
+            props?.detail?.status == 1 ? 'Pending' :
+              props?.detail?.status === 2 ? 'Confirm' :
+                props?.detail?.status == 3 ? 'Completed' :
+                  props?.detail?.status == 5 ? 'Close' :
+                    props?.detail?.status === 4 && 'Appoiment cancel'
+          }
           </Text>
         </View>
       </View>
