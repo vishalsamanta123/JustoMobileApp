@@ -82,7 +82,7 @@ const SourcingManagersItem = (props: any) => {
                     handleBtnPress={() => props.onPressStatus()}
                 /> */}
                 <Button
-                    width={Isios ? 100 : 85}
+                    width={110}
                     height={30}
                     bgcolor={WHITE_COLOR}
                     bordercolor={PRIMARY_THEME_COLOR}

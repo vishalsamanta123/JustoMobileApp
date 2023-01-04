@@ -275,7 +275,7 @@ const AuthLoadingComponent = () => {
     console.log('response: IN LOGIN ', response);
       if (response.status === 200) {
         if (
-          typeof response?.data?.firebase_id === "undefined" || response?.data?.firebase_id === null
+          typeof response?.data?.firebase_id === "undefined" || response?.data?.firebase_id === null || response?.data?.firebase_id === ""
         ) {
           console.log('if = = = = = = =>>')
           auth()

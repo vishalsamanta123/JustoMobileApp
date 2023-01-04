@@ -8,11 +8,13 @@ import {
   PURPLE_COLOR,
   PRIMARY_THEME_COLOR_DARK,
   PRIMARY_THEME_COLOR,
+  DATE_BY_DAY,
 } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import moment from "moment";
 
 const FollowUpItem = (props: any) => {
+console.log('props: ', props);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
@@ -42,12 +44,25 @@ const FollowUpItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Follow-Up Status :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>
+            {props.items.followup_status === "" ||
+            props.items.followup_status === undefined
+              ? strings.notfount
+              : props.items.followup_status}
+          </Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Follow-Up Date :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props.items.next_followup_date === "" ||
-            props.items.next_followup_date === undefined
+            props.items.next_followup_date === undefined || props.items.next_followup_date === null
               ? strings.notfount
               : moment(props.items.next_followup_date).format("DD/MM/YYYY")}
           </Text>
@@ -79,7 +94,7 @@ const FollowUpItem = (props: any) => {
           </Text>
         </View>
       </View>
-      <View style={styles.Txtview}>
+      {/* <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Budget :</Text>
         </View>
@@ -91,7 +106,7 @@ const FollowUpItem = (props: any) => {
             </Text>
           ) : null}
         </View>
-      </View>
+      </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Followup Type :</Text>
@@ -110,6 +125,20 @@ const FollowUpItem = (props: any) => {
           </Text>
         </View>
       </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Created Date :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>
+            {props.items.followup_date === "" ||
+            props.items.followup_date === undefined
+              ? strings.notfount
+              : moment(props.items.followup_date).format(DATE_BY_DAY)}
+          </Text>
+        </View>
+      </View>
+
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, { borderColor: PURPLE_COLOR }]}

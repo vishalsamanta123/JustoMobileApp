@@ -41,6 +41,7 @@ const FollowUpAddView = (props: any) => {
                     valueField={'_id'}
                     value={props?.formData?.property_id}
                     onChange={(item: any) => {
+                        console.log('item: ', item);
                         props.setFormData({
                             ...props.formData,
                             followup_status: item._id,
@@ -58,52 +59,60 @@ const FollowUpAddView = (props: any) => {
                         );
                     }}
                 />
-                <View style={styles.inputWrap}>
-                    <InputCalender
-                        headingText={'Date'}
-                        mode={'date'}
-                        leftIcon={images.event}
-                        placeholderText={"Date"}//can edit
-                        editable={false}
-                        // onChangeText={() => { }}
-                        dateData={(data: any) => {
-                            props.setFormData({
-                                ...props.formData,
-                                next_followup_date: moment(data).format(DATE_FORMAT)
-                            })
-                        }}
-                        setDateshow={(data: any) => {
-                            props.setFormData({
-                                ...props.formData,
-                                next_followup_date: moment(data).format(DATE_FORMAT)
-                            })
-                        }}
-                        value={props?.formData?.next_followup_date}
-                    />
-                </View>
-                <View style={styles.inputWrap}>
-                    <InputCalender
-                        headingText={'Time'}
-                        mode={'time'}
-                        leftIcon={images.timer}
-                        placeholderText={"Time"}//can edit
-                        editable={false}
-                        // onChangeText={() => { }}
-                        dateData={(data: any) => {
-                            props.setFormData({
-                                ...props.formData,
-                                followup_time: moment(data).format(TIME_FORMAT)
-                            })
-                        }}
-                        setDateshow={(data: any) => {
-                            props.setFormData({
-                                ...props.formData,
-                                followup_time: moment(data).format(TIME_FORMAT)
-                            })
-                        }}
-                        value={props?.formData?.followup_time}
-                    />
-                </View>
+                {props?.formData?.followup_status === '6360c6d52ca46e9d3636fbf4' ?
+                    (
+                        <>
+                            <View style={styles.inputWrap}>
+                                <InputCalender
+                                    headingText={'Date'}
+                                    mode={'date'}
+                                    leftIcon={images.event}
+                                    minimumDate={new Date()}
+                                    placeholderText={"Date"}//can edit
+                                    editable={false}
+                                    // onChangeText={() => { }}
+                                    dateData={(data: any) => {
+                                        props.setFormData({
+                                            ...props.formData,
+                                            next_followup_date: moment(data).format(DATE_FORMAT)
+                                        })
+                                    }}
+                                    setDateshow={(data: any) => {
+                                        props.setFormData({
+                                            ...props.formData,
+                                            next_followup_date: moment(data).format(DATE_FORMAT)
+                                        })
+                                    }}
+                                    value={props?.formData?.next_followup_date}
+                                />
+                            </View>
+                            <View style={styles.inputWrap}>
+                                <InputCalender
+                                    headingText={'Time'}
+                                    mode={'time'}
+                                    leftIcon={images.timer}
+                                    placeholderText={"Time"}//can edit
+                                    editable={false}
+                                    // onChangeText={() => { }}
+                                    dateData={(data: any) => {
+                                        props.setFormData({
+                                            ...props.formData,
+                                            followup_time: moment(data).format(TIME_FORMAT)
+                                        })
+                                    }}
+                                    setDateshow={(data: any) => {
+                                        props.setFormData({
+                                            ...props.formData,
+                                            followup_time: moment(data).format(TIME_FORMAT)
+                                        })
+                                    }}
+                                    value={props?.formData?.followup_time}
+                                />
+                            </View>
+                        </>
+                    )
+                    : null
+                }
                 <View style={styles.inputWrap}>
                     <InputField
                         headingText={'Description'}

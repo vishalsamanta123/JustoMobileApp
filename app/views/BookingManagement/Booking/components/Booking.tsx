@@ -82,7 +82,7 @@ const BookingView = (props: any) => {
                                 width={130}
                                 height={45}
                                 buttonText={strings.browse}
-                                bgcolor={CALL_COLOR}
+                                bgcolor={PRIMARY_THEME_COLOR}
                                 border={14}
                                 handleBtnPress={() => props.setBrowse(true)}
                             />
@@ -177,7 +177,7 @@ const BookingView = (props: any) => {
                     <View style={{ marginVertical: normalize(30) }}>
                         <Button
                             buttonText={strings.bookNow}
-                            bgcolor={CALL_COLOR}
+                            bgcolor={PRIMARY_THEME_COLOR}
                             border={14}
                             handleBtnPress={() => props.handleBookPress()}
                         />

@@ -10,6 +10,7 @@ import LeadManagementItem from "./LeadManagementItem";
 import { useNavigation } from "@react-navigation/native";
 import FilterModal from "./LeadManagementModal";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
+import Button from "app/components/Button";
 const DATA: any = [
   {
     Projectname: 'ABC',
@@ -69,6 +70,12 @@ const LeadManagementView = (props: any) => {
   const onPressView = (data: any) => {
     navigation.navigate('LeadDetails', data)
   }
+  const handleEdit = (data: any) => {
+    navigation.navigate('VisitorUpdate', data)
+  }
+  const onPressCreatevisit = () => {
+    navigation.navigate('AddNewVisitorScreen')
+  };
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -84,12 +91,22 @@ const LeadManagementView = (props: any) => {
         barStyle={'light-content'}
       />
       <View style={styles.propertyListView}>
+        <View style={{ alignItems: 'flex-end' }}>
+          <Button
+            height={30}
+            width={160}
+            buttonText={'Add New Visit'}
+            handleBtnPress={() => onPressCreatevisit()}
+          />
+        </View>
         <FlatList
           data={props?.visitorList}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) =>
             <LeadManagementItem items={item}
-              onPressView={onPressView} />
+              onPressView={onPressView}
+              handleEdit={handleEdit}
+            />
           }
           ListEmptyComponent={() => (
             <EmptyListScreen message={strings.visitor} />

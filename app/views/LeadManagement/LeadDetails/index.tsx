@@ -29,7 +29,7 @@ const LeadDetails = ({ navigation, route }: any) => {
     navigation.navigate('FollUpAdd', data)
   }
   const handleScheduleVisit = () => {
-    navigation.navigate('AddAppointmentForSite')
+    navigation.navigate('AddAppointmentForSite',{item: allDetails, type: 'Add'})
   }
   return (
     <LeadDetailsView
