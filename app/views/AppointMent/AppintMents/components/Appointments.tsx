@@ -73,6 +73,7 @@ const AppointmentListView = (props: any) => {
                             end_date: '',
                             customer_name: '',
                         })
+                        props.setAppointmentList([])
                     }}
                     onEndReached={() => {
                         if (props?.DATA?.length < props?.moreData) {
