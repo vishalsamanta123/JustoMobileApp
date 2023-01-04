@@ -10,7 +10,7 @@ import DropdownInput from "../../../../components/DropDown";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { DATE_FORMAT } from "app/components/utilities/constant";
-import { normalize } from "app/components/scaleFontSize";
+import { normalize, normalizeSpacing } from "app/components/scaleFontSize";
 
 const FilterModal = (props: any) => {
   const appointmentWith = [
@@ -28,7 +28,8 @@ const FilterModal = (props: any) => {
   }
   return (
     <Modal isVisible={props.Visible}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+      <ScrollView keyboardShouldPersistTaps={'handled'}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchappointment}</Text>
@@ -63,7 +64,7 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputCalender
-                mode={"date"}
+                mode={"date"} DATE_FORMAT
                 leftIcon={images.event}
                 placeholderText={"End Date"}
                 editable={false}
@@ -82,9 +83,9 @@ const FilterModal = (props: any) => {
                 value={props?.filterData?.end_date}
               />
             </View>
-            <View style={styles.inputWrap}>
+            <View style={[styles.inputWrap, { top: normalizeSpacing(8) }]}>
               <InputField
-                placeholderText={"By Cutomer Name"}
+                headingText={"By Cutomer Name"}
                 handleInputBtnPress={() => { }}
                 valueshow={props.filterData?.customer_name}
                 onChangeText={(data: any) => {
@@ -95,9 +96,9 @@ const FilterModal = (props: any) => {
                 }}
               />
             </View>
-            <View style={styles.inputWrap}>
+            <View style={[styles.inputWrap, { top: normalizeSpacing(14) }]}>
               <InputField
-                placeholderText={"By Property Name"}
+                headingText={"By Property Name"}
                 handleInputBtnPress={() => { }}
                 valueshow={props.filterData?.property_name}
                 onChangeText={(data: any) => {
@@ -108,7 +109,7 @@ const FilterModal = (props: any) => {
                 }}
               />
             </View>
-            <View style={styles.inputWrap}>
+            {/* <View style={styles.inputWrap}>
               <DropdownInput
                 placeholder={strings.appointmentWith}
                 value={props.filterData.appointment_with}
@@ -140,7 +141,7 @@ const FilterModal = (props: any) => {
                   );
                 }}
               />
-            </View>
+            </View> */}
             <View style={styles.inputWrap}>
               <DropdownInput
                 placeholder={strings.status}

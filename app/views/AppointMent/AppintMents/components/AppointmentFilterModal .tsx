@@ -10,7 +10,7 @@ import DropdownInput from "../../../../components/DropDown";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { DATE_FORMAT } from "app/components/utilities/constant";
-import { normalize } from "app/components/scaleFontSize";
+import { normalize, normalizeSpacing } from "app/components/scaleFontSize";
 
 const AppointmentFilterModal = (props: any) => {
   const appointmentWith = [
@@ -82,9 +82,9 @@ const AppointmentFilterModal = (props: any) => {
                 value={props?.filterData?.end_date}
               />
             </View>
-            <View style={styles.inputWrap}>
+            <View style={[styles.inputWrap, { top: normalizeSpacing(10) }]}>
               <InputField
-                placeholderText={"By Cutomer Name"}
+                headingText={"By Cutomer Name"}
                 handleInputBtnPress={() => { }}
                 valueshow={props.filterData?.customer_name}
                 onChangeText={(data: any) => {
@@ -96,7 +96,10 @@ const AppointmentFilterModal = (props: any) => {
               />
             </View>
           </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 20 }}>
+          <View style={{
+            flexDirection: 'row',
+            justifyContent: 'center', marginVertical: 30
+          }}>
             <Button
               handleBtnPress={() => {
                 props.setIsVisible(false)

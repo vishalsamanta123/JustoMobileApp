@@ -16,6 +16,7 @@ import {
 } from "../../../../Redux/Actions/propertyActions";
 import { DATE_FORMAT } from "app/components/utilities/constant";
 import DropdownInput from "app/components/DropDown";
+import { normalizeSpacing } from "app/components/scaleFontSize";
 
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch();
@@ -140,7 +141,7 @@ const FilterModal = (props: any) => {
                 }}
               />
             </View> */}
-            <View style={styles.inputWrap}>
+            <View style={[styles.inputWrap, { top: normalizeSpacing(8) }]}>
               <InputField
                 placeholderText={"Search by Name"}
                 headingText={"Search by Name"}

@@ -17,6 +17,7 @@ const CancelModal = (props: any) => {
     const [masterDatas, setMasterDatas] = useState<any>()
     const [propertyCompetitor, setPropertyCompetitor] = useState<any>()
     const [propetyInput, setPropetyInput] = useState<any>(false)
+    const [reasonSelect, setReasonSelect] = useState<any>(false)
     const masterData = useSelector((state: any) => state.masterData) || {}
     const propertyData = useSelector((state: any) => state.competitorproperty) || {}
 
@@ -48,10 +49,15 @@ const CancelModal = (props: any) => {
     }, [masterData])
 
     const handleCancel = () => {
-        props.setIsVisible(false)
-        setPropetyInput(false)
         if (props?.cancelValue?.reason != '') {
             props.cancelDataPress()
+            props.setIsVisible(false)
+            setPropetyInput(false)
+            setReasonSelect(false)
+        } else {
+            // props.setIsVisible(false)
+            // setPropetyInput(false)
+            setReasonSelect(true)
         }
     }
     return (
@@ -84,6 +90,7 @@ const CancelModal = (props: any) => {
                                 valueField={'_id'}
                                 value={props?.cancelValue?.reason}
                                 onChange={(item: any) => {
+                                    setReasonSelect(false)
                                     props.setCancelValue({
                                         ...props.cancelValue,
                                         reason: item._id,
@@ -100,6 +107,11 @@ const CancelModal = (props: any) => {
                                 }}
                             />
                         </View>
+                        {reasonSelect ?
+                            <View>
+                                <Text style={styles.errorTxt}>Select Reason to cancel booking</Text>
+                            </View> : null
+                        }
                         <View style={styles.inputWrap}>
                             <View style={styles.propertyVw}>
                                 <Text style={styles.titleTxt}>{propetyInput ? "Property Name" :
@@ -180,7 +192,8 @@ const CancelModal = (props: any) => {
                     <View style={{ marginVertical: 20 }}>
                         <Button
                             handleBtnPress={() => handleCancel()}
-                            buttonText={strings.cancelBooking} />
+                            buttonText={strings.cancelBooking}
+                        />
                     </View>
                 </View>
             </ScrollView>

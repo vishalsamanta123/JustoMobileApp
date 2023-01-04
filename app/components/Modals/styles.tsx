@@ -13,6 +13,7 @@ import {
   FONT_FAMILY_SEMIBOLD,
   GRAY_COLOR,
   PRIMARY_THEME_COLOR,
+  RED_COLOR,
   WHITE_COLOR,
 } from "../utilities/constant";
 
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
-},
+  },
   addNewBttn: {
     alignSelf: 'flex-end',
     marginBottom: normalizeSpacing(6)
@@ -117,8 +118,13 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginVertical: normalize(8)
   },
+  errorTxt: {
+    color: RED_COLOR,
+    marginLeft: normalizeSpacing(10),
+    marginVertical: normalize(6)
+  },
   inputWrap: {
-    marginTop: normalizeSpacing(12),
+    marginTop: normalizeSpacing(16),
   },
   btnview: {
     width: '50%',

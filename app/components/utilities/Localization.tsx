@@ -220,7 +220,7 @@ const strings = new LocalizedStrings({
     editNewappointment: 'Edit Appointment',
     selectLead: 'Select Lead',
     selectproperty: 'Select Property',
-    reason: 'Reason',
+    reason: 'Select Reason',
     appointmentDate: 'Appointment Date',
     appointmentTime: 'Appointment Time',
     location: 'Location',

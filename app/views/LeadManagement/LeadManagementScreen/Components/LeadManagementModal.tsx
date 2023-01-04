@@ -12,6 +12,7 @@ import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { DATE_FORMAT } from "app/components/utilities/constant";
+import { normalizeSpacing } from "app/components/scaleFontSize";
 
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch()
@@ -111,9 +112,9 @@ const FilterModal = (props: any) => {
                 }}
               />
             </View>
-            <View style={styles.inputWrap}>
+            <View style={[styles.inputWrap, { top: normalizeSpacing(10) }]}>
               <InputField
-                placeholderText={"Search by Visitor Name"}
+                headingText={"Search by Visitor Name"}
                 handleInputBtnPress={() => { }}
                 onChangeText={(data: any) => {
                   props.setFilterData({

@@ -9,8 +9,10 @@ import strings from "../../../components/utilities/Localization";
 import { GREEN_COLOR, RED_COLOR, WHITE_COLOR } from "../../../components/utilities/constant";
 
 const DashboardView = (props: any) => {
-  const targetData = props?.dashboardData?.target || {}
-  const achieveTargetData = props?.dashboardData?.achievetarget || {}
+  const targetData = props?.dashboardData?.userTarget || {}
+  console.log('targetData: ', targetData);
+  const achieveTargetData = props?.dashboardData?.achievetargetdata || {}
+
   const insets = useSafeAreaInsets();
   const role = props?.getLoginType?.response?.data?.role_title || {}
   const renderItem = ({ item }: any) => {
@@ -190,6 +192,14 @@ const DashboardView = (props: any) => {
                   <View style={styles.numberView}>
                     <Text style={styles.thirdPortionNumberText}>
                       {props?.dashboardData?.total_ready_booking}</Text>
+                  </View>
+                </View>
+                <View style={styles.thirdPortioncardView}>
+                  <View style={styles.thirdPortionCardTextView}>
+                    <Text style={styles.thirdPortionCardText}>{'Cancel Booking'}</Text>
+                  </View>
+                  <View style={styles.numberView}>
+                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_closing_manager}</Text>
                   </View>
                 </View>
                 {role === 'Closing TL' ?

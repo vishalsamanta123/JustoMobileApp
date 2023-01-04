@@ -46,6 +46,13 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
                 backgroundColor: GREEN_COLOR
             })
             dispatch(removeBooking())
+            setCancelValue({
+                reason: '',
+                property_id: '',
+                comment: '',
+                property_name: '',
+                remark: '',
+            })
         }
     }, [cancelBookingData])
     const cancelBookingPress = () => {
@@ -61,8 +68,8 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
         dispatch(cancelBooking(params))
     }
     const onPressBookNow = () => {
-        navigation.navigate('Booking', {getBookingData : response?.data?.length > 0 ?  response?.data[0] : [], type: 'readyToBook'})
-      }
+        navigation.navigate('Booking', { getBookingData: response?.data?.length > 0 ? response?.data[0] : [], type: 'readyToBook' })
+    }
     return (
         <>
             <BookingDetailsView

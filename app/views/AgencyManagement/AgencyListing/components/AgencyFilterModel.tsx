@@ -11,6 +11,7 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { DATE_FORMAT } from "app/components/utilities/constant";
 import { Dropdown } from "react-native-element-dropdown";
+import { normalizeSpacing } from "app/components/scaleFontSize";
 const FilterModal = (props: any) => {
   const data = [
     { label: "Active", value: true },
@@ -31,7 +32,7 @@ const FilterModal = (props: any) => {
   return (
     <Modal isVisible={props.Visible}>
       <ScrollView keyboardShouldPersistTaps={'handled'}
-      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchAgency}</Text>
@@ -86,9 +87,9 @@ const FilterModal = (props: any) => {
                 value={props?.filterData?.enddate}
               />
             </View>
-            <View style={styles.inputWrap}>
+            <View style={[styles.inputWrap, { top: normalizeSpacing(10) }]}>
               <InputField
-                placeholderText={"Search by Name"}
+                headingText={"Search by Name"}
                 onChangeText={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
@@ -118,7 +119,7 @@ const FilterModal = (props: any) => {
               />
             </View>
             <View style={styles.inputWrap}>
-              <Dropdown
+              <DropdownInput
                 style={styles.dropdown}
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle}
@@ -129,7 +130,7 @@ const FilterModal = (props: any) => {
                 valueField="value"
                 placeholder="Select Status"
                 value={props?.filterData?.status}
-                onChange={(item) => {
+                onChange={(item: any) => {
                   props.setFilterData({
                     ...props.filterData,
                     status: item.value,

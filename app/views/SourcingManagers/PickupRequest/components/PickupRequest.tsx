@@ -15,7 +15,7 @@ const PickupRequestView = (props: any) => {
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.menu}
-                rightFirstImageScr={images.filter}
+                // rightFirstImageScr={images.filter}
                 rightSecondImageScr={images.notification}
                 headerText={strings.PickuprequestHeader}
                 handleOnLeftIconPress={props.handleDrawerPress}
