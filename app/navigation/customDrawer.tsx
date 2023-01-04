@@ -27,7 +27,7 @@ const customDrawer = ({ navigation }: any) => {
   const isDrawerOpen = useDrawerStatus() === "open";
   const insets = useSafeAreaInsets();
   const [userData, setUserData] = useState<any>({});
-  console.log('userData: ', userData);
+  // console.log('userData: ', userData);
   useEffect(() => {
     if (response?.status === 200) {
       setUserData(response?.data)
@@ -285,7 +285,7 @@ const customDrawer = ({ navigation }: any) => {
             navigation.navigate("PickupRequest");
           }}
           iconSource={images.support}
-          tabTitle={strings.supportHeader}
+          tabTitle={strings.PickuprequestHeader}
         />
         <DrawerTabSection
           type={"Closing Manager,Closing TL"}
