@@ -83,7 +83,7 @@ console.log('props: ', props);
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configration :</Text>
+          <Text style={styles.projectTxt}>Configuration :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
