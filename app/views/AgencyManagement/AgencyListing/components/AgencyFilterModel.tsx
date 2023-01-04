@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
@@ -29,8 +29,9 @@ const FilterModal = (props: any) => {
     props.getAgencyList(0, props.filterData)
   }
   return (
-    <View>
-      <Modal isVisible={props.Visible}>
+    <Modal isVisible={props.Visible}>
+      <ScrollView keyboardShouldPersistTaps={'handled'}
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchAgency}</Text>
@@ -69,6 +70,7 @@ const FilterModal = (props: any) => {
                 leftIcon={images.event}
                 placeholderText={"End Date"}
                 editable={false}
+                minimumDate={new Date()}
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
@@ -94,10 +96,11 @@ const FilterModal = (props: any) => {
                   });
                 }}
                 valueshow={props?.filterData?.search_by_name}
-                handleInputBtnPress={() => {}}
+                handleInputBtnPress={() => { }}
               />
             </View>
-            <InputField
+            <View style={styles.inputWrap}>
+              <InputField
                 valueshow={props?.filterData?.search_by_location}
                 inputType={'location'}
                 onPressSelect={(data: any, detail: any) => {
@@ -113,6 +116,7 @@ const FilterModal = (props: any) => {
                   })
                 }}
               />
+            </View>
             <View style={styles.inputWrap}>
               <Dropdown
                 style={styles.dropdown}
@@ -148,8 +152,8 @@ const FilterModal = (props: any) => {
             </View>
           </View>
         </View>
-      </Modal>
-    </View>
+      </ScrollView>
+    </Modal>
   );
 };
 
