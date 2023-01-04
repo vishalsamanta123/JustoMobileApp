@@ -6,6 +6,7 @@ import { getAllAppointmentList } from "app/Redux/Actions/AppointmentWithCpAction
 import { useDispatch, useSelector } from "react-redux";
 import { getClosingManagerList } from "app/Redux/Actions/ClosingManager";
 import { AllocateCM } from "app/Redux/Actions/AppointmentCLAction";
+import { getAllPickupList } from "app/Redux/Actions/PickUpActions";
 
 const AppointmentsScreen = ({ navigation }: any) => {
     const [dropLocisVisible, setDropLocisVisible] = useState(false)
@@ -17,47 +18,65 @@ const AppointmentsScreen = ({ navigation }: any) => {
     const dispatch: any = useDispatch()
     const { response = {}, list = '' } = useSelector((state: any) => state.appointment) || [];
     const CMList = useSelector((state: any) => state.ClosingManager) || {}
+    const appointMentList = useSelector((state: any) => state.Pickup) || {}
+    const getLoginType = useSelector((state: any) => state.login);
+
     const [filterData, setFilterData] = useState({
         start_date: '',
         end_date: '',
         customer_name: '',
     })
-    console.log('filterData: ', filterData);
     useFocusEffect(
         React.useCallback(() => {
             setAppointmentList([])
             getAppointmentList(0, {})
             return () => { };
-        }, [navigation, list])
+        }, [navigation, list, getLoginType])
     );
     useEffect(() => {
-        if (response?.status === 200) {
-            if (response?.data?.length > 0) {
-                if (offSET == 0) {
-                    setAppointmentList(response?.data)
-                } else {
-                    setAppointmentList([...appointmentList, ...response?.data])
-                }
+        if (getLoginType?.response?.data?.role_title === 'Closing Manager') {
+            if (appointMentList?.response?.status === 200) {
+                setAppointmentList(appointMentList?.response?.data)
+            } else {
+                setAppointmentList([])
             }
         } else {
-            setAppointmentList([])
+            if (response?.status === 200) {
+                if (response?.data?.length > 0) {
+                    if (offSET == 0) {
+                        setAppointmentList(response?.data)
+                    } else {
+                        setAppointmentList([...appointmentList, ...response?.data])
+                    }
+                }
+            } else {
+                setAppointmentList([])
+            }
         }
     }, [response])
     useEffect(() => {
-        setClosingMList(CMList?.response?.data)
+        if (CMList?.response === 200) {
+            setClosingMList(CMList?.response?.data)
+        } else {
+            setClosingMList([])
+        }
     }, [CMList])
 
     const getAppointmentList = (offset: any, data: any) => {
-        setOffset(offset)
-        dispatch(getAllAppointmentList({
-            offset: offset,
-            limit: 3,
-            start_date: data?.start_date,
-            end_date: data?.end_date,
-            customer_name: data?.customer_name,
-            appointment_type: 2
-        }))
-        // toGetDatas(array)
+        if (getLoginType?.response?.data?.role_title === 'Closing Manager') {
+            dispatch(getAllPickupList())
+        } else {
+            setOffset(offset)
+            dispatch(getAllAppointmentList({
+                offset: offset,
+                limit: 3,
+                start_date: data?.start_date,
+                end_date: data?.end_date,
+                customer_name: data?.customer_name,
+                appointment_type: 2
+            }))
+        }
+
     }
     const handleDrawerPress = () => {
         navigation.toggleDrawer()

@@ -72,7 +72,11 @@ const InputCalender = (props: any) => {
             moment()?.subtract(18, "years") :
             props.maximumDate ? props.maximumDate : ''}
           open={open}
-          date={new Date(moment(minDate).format())}
+          date={props.headingText === 'Date of Birth' ||
+            props.placeholderText === 'Date of Birth'
+            ?
+            new Date(moment(minDate).format()) :
+            new Date()}
           onDateChange={(date) => {
             props.setDateshow(date)
           }}
