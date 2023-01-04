@@ -94,7 +94,7 @@ const FollowUpItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Followup Type :</Text>
+          <Text style={styles.projectTxt}>Follow-up Type :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
