@@ -31,6 +31,7 @@ const ReadyToBookModal = (props: any) => {
                             mode={'date'}
                             leftIcon={images.event}
                             placeholderText={"Booking Date"}
+                            headingText={"Booking Date"}
                             minimumDate={new Date()}
                             editable={false}
                             dateData={(data: any) => {
@@ -51,6 +52,7 @@ const ReadyToBookModal = (props: any) => {
                     <View style={styles.inputWrap}>
                         <InputField
                             placeholderText={"Comment"}
+                            headingText={"Comment"}
                             handleInputBtnPress={() => { }}
                             inputheight={80}
                             valueshow={props.BookingData?.description}

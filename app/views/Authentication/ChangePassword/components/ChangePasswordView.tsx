@@ -36,6 +36,7 @@ const ChangePasswordView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"New Password"}
+            headingText={"New Password"}
             rightImgSrc={
               isVisiblePassword ? images.showPassword : images.hiddenPassword
             }
@@ -51,6 +52,7 @@ const ChangePasswordView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Confirm Password"}
+            headingText={"Confirm Password"}
             rightImgSrc={
               isVisiblecPassword ? images.showPassword : images.hiddenPassword
             }

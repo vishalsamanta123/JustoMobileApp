@@ -76,6 +76,7 @@ const CompanyDetails = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"GST"}
+            headingText={"GST"}
             handleInputBtnPress={() => {}}
             valueshow={props?.agencyData?.agencies?.gst}
             onChangeText={(val: any) => {
@@ -89,6 +90,7 @@ const CompanyDetails = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"RERA Registration"}
+            headingText={"RERA Registration"}
             handleInputBtnPress={() => {}}
             valueshow={props?.agencyData?.rera_registration}
             onChangeText={(val: any) => {

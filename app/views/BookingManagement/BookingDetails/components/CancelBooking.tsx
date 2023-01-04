@@ -121,6 +121,7 @@ const CancelModal = (props: any) => {
                             {propetyInput ?
                                 <InputField
                                     placeholderText={"Property Name"}
+                                    headingText={"Property Name"}
                                     handleInputBtnPress={() => { }}
                                     valueshow={props?.cancelValue?.property_name}
                                     onChangeText={(val: any) => {

@@ -21,6 +21,7 @@ const LoginView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
+            headingText={"Email Address"}
             rightImgSrc={props.validEmail ? images.check : images.emailIcon}
             isSecureText={false}
             onChangeText={(val: any) => {
@@ -33,6 +34,7 @@ const LoginView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Password"}
+            headingText={"Password"}
             rightImgSrc={
               isVisiblePassword ? images.hiddenPassword : images.showPassword
             }

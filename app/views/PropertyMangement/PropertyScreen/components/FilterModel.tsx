@@ -143,6 +143,7 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Name"}
+                headingText={"Search by Name"}
                 handleInputBtnPress={() => { }}
                 onChangeText={(val: any) => {
                   props.setFilterform({

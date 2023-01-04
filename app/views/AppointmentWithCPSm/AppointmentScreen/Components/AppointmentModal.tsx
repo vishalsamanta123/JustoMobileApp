@@ -38,6 +38,7 @@ const AppointmentModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Comment"}
+                headingText={"Comment"}
                 handleInputBtnPress={() => {}}
                 inputheight={80}
                 valueshow={props.params.remark}
