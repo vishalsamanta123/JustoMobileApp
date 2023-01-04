@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
   budgetInput: {
     backgroundColor: WHITE_COLOR,
     width: '55%',
+    height: normalizeHeight(50),
     borderRadius: 10,
     elevation: 5,
     shadowColor: '#171717',

@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     },
     budgetInput: {
         backgroundColor: WHITE_COLOR,
+        height: normalizeHeight(50),
         width: '55%',
         borderRadius: 10,
         elevation: 5,
