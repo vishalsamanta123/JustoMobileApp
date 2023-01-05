@@ -141,7 +141,7 @@ export const requestPermission = async (permission: any, msgHeading: any, messag
   let res: any = false;
   switch (await reqRes) {
     case RESULTS.UNAVAILABLE:
-      //  openPermissionSetting(msgHeading, message);
+       openPermissionSetting(msgHeading, message);
       break;
     case RESULTS.DENIED:
       res = false;
