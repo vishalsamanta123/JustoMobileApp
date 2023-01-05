@@ -6,13 +6,11 @@ import BookingListView from './components/BookingList'
 
 const BookingListScreen = ({ navigation, route }: any) => {
   const { type = '' } = route?.params || {}
-  console.log('type: ', type);
   const [BookingList, setBookingList] = useState<any>([]);
   const [offSET, setOffset] = useState(0);
   const dispatch: any = useDispatch();
   const { response = {}, list = "" } = useSelector(
     (state: any) => state.booking)
-  console.log('response: ', response);
   const moreData = response?.total_data
   useFocusEffect(
     React.useCallback(() => {

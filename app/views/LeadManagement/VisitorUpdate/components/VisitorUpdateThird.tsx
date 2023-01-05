@@ -30,7 +30,7 @@ const VisitorUpdateView = (props: any) => {
             </View>
             <ScrollView contentContainerStyle={styles.wrap}>
                 <View style={styles.typeVw}>
-                    <Text style={styles.typeTxt}>Company Detail</Text>
+                    <Text style={styles.typeTxt}>Occupation Detail</Text>
                     <View style={styles.typeBorders} />
                 </View>
                 <View style={styles.selectsView}>

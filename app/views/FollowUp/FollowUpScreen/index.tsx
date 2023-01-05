@@ -11,12 +11,13 @@ const FollowUpScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch();
   const { response = {}, list = "" } = useSelector(
     (state: any) => state.followUp
-  );
+    );
   const moreData = response?.total_data || 0;
   const [filterData, setFilterData] = useState({
     startdate: "",
     enddate: "",
-    followup_for: ''
+    followup_for: '',
+    lead_id: ''
   });
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
@@ -47,6 +48,7 @@ const FollowUpScreen = ({ navigation }: any) => {
         start_date: data?.startdate ? data?.startdate : '',
         end_date: data?.enddate ? data?.enddate : '',
         followup_for: data?.followup_for ? data?.followup_for : '',
+        lead_id: data?.lead_id ? data?.lead_id : ''
       })
     );
   };
