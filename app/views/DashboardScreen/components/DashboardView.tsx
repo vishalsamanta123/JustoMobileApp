@@ -10,9 +10,9 @@ import { GREEN_COLOR, RED_COLOR, WHITE_COLOR } from "../../../components/utiliti
 
 const DashboardView = (props: any) => {
   const targetData = props?.dashboardData?.userTarget ||
-  props?.dashboardData?.target || {}
-const achieveTargetData = props?.dashboardData?.achievetargetdata ||
-  props?.dashboardData?.achievetarget || {}
+    props?.dashboardData?.target || {}
+  const achieveTargetData = props?.dashboardData?.achievetargetdata ||
+    props?.dashboardData?.achievetarget || {}
 
   const insets = useSafeAreaInsets();
   const role = props?.getLoginType?.response?.data?.role_title || {}
