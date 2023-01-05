@@ -14,7 +14,6 @@ import strings from "../../../../components/utilities/Localization";
 import moment from "moment";
 
 const LeadManagementItem = (props: any) => {
-  console.log('props: ', props);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>

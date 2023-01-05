@@ -36,7 +36,12 @@ const AppointmentsScreen = ({ navigation }: any) => {
     useEffect(() => {
         if (getLoginType?.response?.data?.role_title === 'Closing Manager') {
             if (appointMentList?.response?.status === 200) {
-                setAppointmentList(appointMentList?.response?.data)
+                if (offSET == 0) {
+                    setAppointmentList(appointMentList?.response?.data)
+                } else {
+                    setAppointmentList([...appointmentList,
+                    ...appointMentList?.response?.data])
+                }
             } else {
                 setAppointmentList([])
             }
@@ -64,15 +69,23 @@ const AppointmentsScreen = ({ navigation }: any) => {
 
     const getAppointmentList = (offset: any, data: any) => {
         if (getLoginType?.response?.data?.role_title === 'Closing Manager') {
-            dispatch(getAllPickupList())
+            setOffset(offset)
+            dispatch(getAllPickupList({
+                offset: offset,
+                limit: 3,
+                start_date: data?.start_date ? data?.start_date : '',
+                end_date: data?.end_date ? data?.end_date : '',
+                customer_name: data?.customer_name ? data?.customer_name : '',
+                appointment_type: 2
+            }))
         } else {
             setOffset(offset)
             dispatch(getAllAppointmentList({
                 offset: offset,
                 limit: 3,
-                start_date: data?.start_date,
-                end_date: data?.end_date,
-                customer_name: data?.customer_name,
+                start_date: data?.start_date ? data?.start_date : '',
+                end_date: data?.end_date ? data?.end_date : '',
+                customer_name: data?.customer_name ? data?.customer_name : '',
                 appointment_type: 2
             }))
         }
