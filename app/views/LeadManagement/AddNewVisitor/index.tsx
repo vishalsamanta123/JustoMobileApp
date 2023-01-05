@@ -117,7 +117,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     } else if (formData?.first_name === '' || formData?.first_name === undefined) {
       isError = false;
       errorMessage = "Please fill visitor name"
-    } else if (formData?.mobile === '' || formData?.mobile === undefined || formData?.mobile?.length === 10) {
+    } else if (formData?.mobile === '' || formData?.mobile === undefined || formData?.mobile?.length > 10) {
       isError = false;
       errorMessage = "Mobile number should be 10 digits"
     }

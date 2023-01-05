@@ -311,6 +311,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         // formData.append("registration_no", agencyData?.registration_no);
         formData.append("rera_registration", agencyData?.rera_registration);
         formData.append("owner_name", agencyData?.owner_name);
+        formData.append("agent_name", agencyData?.owner_name);
         if (type != "edit") {
           formData.append("agency_name", agencyData?.agency_name);
         }

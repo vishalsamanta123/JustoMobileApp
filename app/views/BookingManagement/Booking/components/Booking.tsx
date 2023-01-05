@@ -62,7 +62,6 @@ const BookingView = (props: any) => {
                     <View style={styles.inputWrap}>
                         <InputField
                             placeholderText={"Cheque"}
-                            editable={false}
                             onChangeText={(data: any) => {
                                 props.setBookingData({
                                     ...props.bookingData,

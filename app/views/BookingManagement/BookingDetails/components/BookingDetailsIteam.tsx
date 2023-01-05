@@ -171,7 +171,7 @@ const BookingDetailsItem = (props: any) => {
                         <View style={styles.nameContainer}>
                             <Text style={styles.nameTxt}>{
                                 item?.payment_type === "1" ? 'Cash' :
-                                    item?.payment_type === "2" ? 'cheque' : 'upi/online'
+                                    item?.payment_type === "2" ? 'Cheque' : item?.payment_type
                             }</Text>
                         </View>
                     </View>

@@ -84,7 +84,7 @@ const CancelModal = (props: any) => {
                             maxHeight={300}
                             labelField="title"
                             valueField="_id"
-                            placeholder="Select Reasone"
+                            placeholder="Select Reason"
                             value={props.resion}
                             onChange={(item) => {
                                 setcloseVisitData({

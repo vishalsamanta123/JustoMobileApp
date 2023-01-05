@@ -70,6 +70,7 @@ const LeadManagementScreen = ({ navigation }: any) => {
       filterData={filterData}
       setFilterData={setFilterData}
       setVisiitorList={setVisiitorList}
+      offSET={offSET}
     />
   );
 };

@@ -88,7 +88,7 @@ const ConfirmModal = (props: any) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder={props.placeholder ? props.placeholder : "Select Reasone"}
+                  placeholder={props.placeholder ? props.placeholder : "Select Reason"}
                   value={value}
                   onChange={(item) => {
                     setValue(item.value);
