@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux'
 const FollowUpDetailsView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
-  const { response = {} } = useSelector((state: any) => state.followUp)
+  const { response = {} } = useSelector((state: any) => state.followUp) || []
   const onpressSchedule = () => {
     navigation.navigate('AddAppointmentForSite')
   }
@@ -29,7 +29,7 @@ const FollowUpDetailsView = (props: any) => {
         headerStyle={styles.headerStyle}
       />
       <View style={styles.leadDetailsItemView}>
-        <FollowUpDetailsItem data={response?.data} />
+        <FollowUpDetailsItem data={response?.data?.length > 0 ? response?.data[0] : {}} />
       </View>
       <View style={styles.btnContainer}>
         <Button

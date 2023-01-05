@@ -7,14 +7,16 @@ import strings from '../../../../components/utilities/Localization'
 import { BLACK_COLOR } from 'app/components/utilities/constant'
 
 const BookingDetailsItem = (props: any) => {
-    console.log('props: ', props);
     const item = props?.item[0] || {}
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
                 <View style={styles.topTxtView}>
                     <Text style={styles.topTxt}>Visitor Score </Text>
-                    <Text style={styles.topTxt}>{item?.lead_score}</Text>
+                    <Text style={styles.topTxt}>{item?.leads?.lead_score === '' ||
+                        item?.leads?.lead_score === null ||
+                        item?.leads?.lead_score === undefined ?
+                        strings.notfount : item?.leads?.lead_score}</Text>
                 </View>
                 <View style={styles.topBtnView}>
                     <TouchableOpacity
@@ -56,7 +58,10 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.coniguration}</Text>
+                        <Text style={styles.nameTxt}>{item?.coniguration === '' ||
+                            item?.coniguration === null ||
+                            item?.coniguration === undefined ?
+                            strings.notfount : item?.coniguration}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -65,7 +70,10 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.leads?.customer?.areain_sqlft}</Text>
+                        <Text style={styles.nameTxt}>{item?.area === '' ||
+                            item?.area === null ||
+                            item?.area === undefined ?
+                            strings.notfount : item?.area}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -74,7 +82,11 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.leads?.customer?.budget}</Text>
+                        <Text style={styles.nameTxt}>{
+                            item?.leads?.customer?.min_budget || item?.leads?.customer?.max_budget ?
+                                `${item?.leads?.customer?.min_budget} ${item?.leads?.customer?.min_budget_type} - ${item?.leads?.customer?.max_budget} ${item?.leads?.customer?.max_budget_type}`
+                                : strings.notfount
+                        }</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -101,7 +113,10 @@ const BookingDetailsItem = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.properties?.property_title}</Text>
+                    <Text style={styles.nameTxt}>{item?.properties?.property_title === '' ||
+                        item?.properties?.property_title === null ||
+                        item?.properties?.property_title === undefined ?
+                        strings.notfount : item?.properties?.property_title}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -110,7 +125,10 @@ const BookingDetailsItem = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.leads?.customer?.first_name}</Text>
+                    <Text style={styles.nameTxt}>{item?.leads?.customer?.first_name === '' ||
+                        item?.leads?.customer?.first_name === null ||
+                        item?.leads?.customer?.first_name === undefined ?
+                        strings.notfount : item?.leads?.customer?.first_name}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -119,7 +137,10 @@ const BookingDetailsItem = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.creaters?.user_name}</Text>
+                    <Text style={styles.nameTxt}>{item?.creaters?.user_name === '' ||
+                        item?.creaters?.user_name === null ||
+                        item?.creaters?.user_name === undefined ?
+                        strings.notfount : item?.creaters?.user_name}</Text>
                 </View>
             </View>
             {/* <View style={styles.Txtview}>
@@ -142,7 +163,10 @@ const BookingDetailsItem = (props: any) => {
                         </View>
                         <View><Text>:</Text></View>
                         <View style={styles.nameContainer}>
-                            <Text style={styles.nameTxt}>{item?.booking_amount}</Text>
+                            <Text style={styles.nameTxt}>{item?.booking_amount === '' ||
+                                item?.booking_amount === null ||
+                                item?.booking_amount === undefined ?
+                                strings.notfount : item?.booking_amount}</Text>
                         </View>
                     </View>
                     <View style={styles.Txtview}>
@@ -151,7 +175,10 @@ const BookingDetailsItem = (props: any) => {
                         </View>
                         <View><Text>:</Text></View>
                         <View style={styles.nameContainer}>
-                            <Text style={styles.nameTxt}>{item?.tranjection_upi_cheque_number}</Text>
+                            <Text style={styles.nameTxt}>{item?.tranjection_upi_cheque_number === '' ||
+                                item?.tranjection_upi_cheque_number === null ||
+                                item?.tranjection_upi_cheque_number === undefined ?
+                                strings.notfount : item?.tranjection_upi_cheque_number}</Text>
                         </View>
                     </View>
                     <View style={styles.Txtview}>

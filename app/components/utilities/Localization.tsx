@@ -84,7 +84,7 @@ const strings = new LocalizedStrings({
     dropLocation: 'Drop Location',
     selectNewCloseManager: 'Select New Closing Manager',
     bookNow: 'Book Now',
-    browse: 'Attachment',
+    browse: 'Attach',
     reset: 'RESET',
     transfer: 'transfer',
     comingSoon: 'Coming Soon',
