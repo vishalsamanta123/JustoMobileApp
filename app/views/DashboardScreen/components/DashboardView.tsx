@@ -9,9 +9,10 @@ import strings from "../../../components/utilities/Localization";
 import { GREEN_COLOR, RED_COLOR, WHITE_COLOR } from "../../../components/utilities/constant";
 
 const DashboardView = (props: any) => {
-  const targetData = props?.dashboardData?.userTarget || {}
-  console.log('targetData: ', targetData);
-  const achieveTargetData = props?.dashboardData?.achievetargetdata || {}
+  const targetData = props?.dashboardData?.userTarget ||
+    props?.dashboardData?.target || {}
+  const achieveTargetData = props?.dashboardData?.achievetargetdata ||
+    props?.dashboardData?.achievetarget || {}
 
   const insets = useSafeAreaInsets();
   const role = props?.getLoginType?.response?.data?.role_title || {}

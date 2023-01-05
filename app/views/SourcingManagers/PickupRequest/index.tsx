@@ -12,18 +12,18 @@ const PickupRequestScreen = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      dispatch(getAllPickupList())
+      dispatch(getAllPickupList({}))
       return () => { };
     }, [navigation, list])
   );
   useEffect(() => {
-    if (list) {
+    if (response?.status === 200) {
       setPickupList(response?.data);
     }
   }, [response]);
 
   const onRefresh = () => {
-    dispatch(getAllPickupList())
+    dispatch(getAllPickupList({}))
   }
 
   const handleDrawerPress = () => {
