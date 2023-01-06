@@ -20,6 +20,7 @@ const AppointmentDetailsView = (props: any) => {
     const [cancelAppoitment, setCancelAppoitment] = useState(false)
     const { response = {}, detail = '' } = useSelector((state: any) => state.appointment) || []
     const data = response?.data?.length > 0 ? response?.data[0] : []
+    console.log('data: ', data);
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -37,45 +38,89 @@ const AppointmentDetailsView = (props: any) => {
                     handleVistorUpdate={props.handleVistorUpdate}
                 />
             </View>
-            <View style={styles.bntView}>
-                {data?.status !== 5 && data?.status !== 4 && data?.status !== 3 ?
-                    <>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <Button
-                                buttonText={'Close Visit'}
-                                handleBtnPress={() => setCancelAppoitment(true)}
-                                width={150}
-                            />
-                            <Button
-                                buttonText={'Update'}
-                                handleBtnPress={() => props.handleUpdateStatus()}
-                                width={150}
-                            />
-                        </View>
-                        <View style={{ marginVertical: 10 }} />
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            {userData?.data?.role_title === 'Closing Manager' || userData?.data?.role_title === 'Closing TL' ||
-                                getLoginType?.response?.data?.role_title === 'Closing Manager' ?
-                                <Button
-                                    buttonText={'Book Now'}
-                                    handleBtnPress={() => props.onPressBookNow()}
-                                    width={150}
-                                /> : null
-                            }
+            {userData?.data?.role_title === 'Closing Manager' ?
+                data?.assign_appoinment ? (
+                    <View style={styles.bntView}>
+                        {data?.status !== 5 && data?.status !== 4 && data?.status !== 3 ?
+                            <>
+                                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                    <Button
+                                        buttonText={'Close Visit'}
+                                        handleBtnPress={() => setCancelAppoitment(true)}
+                                        width={150}
+                                    />
+                                    <Button
+                                        buttonText={'Update'}
+                                        handleBtnPress={() => props.handleUpdateStatus()}
+                                        width={150}
+                                    />
+                                </View>
+                                <View style={{ marginVertical: 10 }} />
+                                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                    {userData?.data?.role_title === 'Closing Manager' || userData?.data?.role_title === 'Closing TL' ||
+                                        getLoginType?.response?.data?.role_title === 'Closing Manager' ?
+                                        <Button
+                                            buttonText={'Book Now'}
+                                            handleBtnPress={() => props.onPressBookNow()}
+                                            width={150}
+                                        /> : null
+                                    }
 
-                            {data?.status !== 2 ?
-                                (<Button
-                                    buttonText={strings.readytoBookHeader}
-                                    handleBtnPress={() => setReadyToBooK(true)}
+                                    {data?.status !== 2 ?
+                                        (<Button
+                                            buttonText={strings.readytoBookHeader}
+                                            handleBtnPress={() => setReadyToBooK(true)}
+                                            width={150}
+                                        />)
+                                        : null
+                                    }
+                                </View>
+                            </>
+                            : null
+                        }
+                    </View>
+                ) : null
+                :
+                <View style={styles.bntView}>
+                    {data?.status !== 5 && data?.status !== 4 && data?.status !== 3 ?
+                        <>
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                <Button
+                                    buttonText={'Close Visit'}
+                                    handleBtnPress={() => setCancelAppoitment(true)}
                                     width={150}
-                                />)
-                                : null
-                            }
-                        </View>
-                    </>
-                    : null
-                }
-            </View>
+                                />
+                                <Button
+                                    buttonText={'Update'}
+                                    handleBtnPress={() => props.handleUpdateStatus()}
+                                    width={150}
+                                />
+                            </View>
+                            <View style={{ marginVertical: 10 }} />
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                {userData?.data?.role_title === 'Closing Manager' || userData?.data?.role_title === 'Closing TL' ||
+                                    getLoginType?.response?.data?.role_title === 'Closing Manager' ?
+                                    <Button
+                                        buttonText={'Book Now'}
+                                        handleBtnPress={() => props.onPressBookNow()}
+                                        width={150}
+                                    /> : null
+                                }
+
+                                {data?.status !== 2 ?
+                                    (<Button
+                                        buttonText={strings.readytoBookHeader}
+                                        handleBtnPress={() => setReadyToBooK(true)}
+                                        width={150}
+                                    />)
+                                    : null
+                                }
+                            </View>
+                        </>
+                        : null
+                    }
+                </View>
+            }
             <ReadyToBookModal
                 Visible={readyToBooK}
                 setIsVisible={() => setReadyToBooK(false)}

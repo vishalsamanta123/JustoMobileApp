@@ -19,7 +19,11 @@ const AppointmentDtailsItem = (props: any) => {
           <Text style={styles.topTxt}>{item?.lead_score}</Text>
         </View>
         <Image
-          source={images.qrCode}
+          source={
+            item?.qr_code === '' || typeof item?.qr_code === undefined ?
+              images.qrCode :
+              { uri: item?.qr_code }
+          }
           style={styles.qrImg}
         />
       </View>
@@ -29,7 +33,7 @@ const AppointmentDtailsItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.customer_first_name}</Text>
+          <Text style={styles.nameTxt}>{item?.customer_first_name ? item?.customer_first_name : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -39,7 +43,9 @@ const AppointmentDtailsItem = (props: any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{
-            `${item?.min_budget} ${item?.min_budget_type} - ${item?.max_budget} ${item?.max_budget_type}`
+            item?.min_budget || item?.max_budget ?
+              `${item?.min_budget} ${item?.min_budget_type} - ${item?.max_budget} ${item?.max_budget_type}`
+              : strings.notfount
           }</Text>
         </View>
       </View>
@@ -49,7 +55,7 @@ const AppointmentDtailsItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}></Text>
+          <Text style={styles.nameTxt}>{strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -58,7 +64,7 @@ const AppointmentDtailsItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.configuration}</Text>
+          <Text style={styles.nameTxt}>{item?.configuration ? item?.configuration : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -68,7 +74,9 @@ const AppointmentDtailsItem = (props: any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{
-            `${moment(item?.appointment_date).format('DD-MM-YYYY')} ${item?.appointment_time}`
+            item?.appointment_date || item?.appointment_time ?
+              `${moment(item?.appointment_date).format('DD-MM-YYYY')} ${item?.appointment_time}` :
+              strings.notfount
           }</Text>
         </View>
       </View>
@@ -78,7 +86,7 @@ const AppointmentDtailsItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.property_title}</Text>
+          <Text style={styles.nameTxt}>{item?.property_title ? item?.property_title : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -88,15 +96,15 @@ const AppointmentDtailsItem = (props: any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
-            color: item.status == 1 || item.status == 5 || item.status == 4  ? 'red' :
+            color: item.status == 1 || item.status == 5 || item.status == 4 ? 'red' :
               item.status == 2 ? YELLOW_COLOR : BLACK_COLOR
           }]}>{
-            // status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 = Appoiment cancel, 5= close}
+              // status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 = Appoiment cancel, 5= close}
               item.status === 1 ? 'Pending' :
                 item.status === 2 ? 'Confirm' :
-                item.status === 3 ? 'Completed' :
-                item.status === 4 ? 'Appoiment cancel' :
-                  item.status == 5 && 'Close'
+                  item.status === 3 ? 'Completed' :
+                    item.status === 4 ? 'Appoiment cancel' :
+                      item.status == 5 && 'Close'
             }</Text>
         </View>
       </View>
@@ -106,7 +114,7 @@ const AppointmentDtailsItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.create_by}</Text>
+          <Text style={styles.nameTxt}>{item?.create_by ? item?.create_by : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -115,36 +123,43 @@ const AppointmentDtailsItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.pickup}</Text>
+          <Text style={styles.nameTxt}>{item?.pickup ? item?.pickup : strings.notfount}</Text>
         </View>
       </View>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Pickup Location</Text>
-        </View>
-        <View><Text>:</Text></View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.pickup_location}</Text>
-        </View>
-      </View>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Drop up Location</Text>
-        </View>
-        <View><Text>:</Text></View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.drop_off_location}</Text>
-        </View>
-      </View>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Guest</Text>
-        </View>
-        <View><Text>:</Text></View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.number_of_guest}</Text>
-        </View>
-      </View>
+      {item?.pickup === 'Yes' ?
+        (
+          <>
+            <View style={styles.Txtview}>
+              <View style={styles.projectContainer}>
+                <Text style={styles.projectTxt}>Pickup Location</Text>
+              </View>
+              <View><Text>:</Text></View>
+              <View style={styles.nameContainer}>
+                <Text style={styles.nameTxt}>{item?.pickup_location ? item?.pickup_location : strings.notfount}</Text>
+              </View>
+            </View>
+            <View style={styles.Txtview}>
+              <View style={styles.projectContainer}>
+                <Text style={styles.projectTxt}>Drop up Location</Text>
+              </View>
+              <View><Text>:</Text></View>
+              <View style={styles.nameContainer}>
+                <Text style={styles.nameTxt}>{item?.drop_off_location ? item?.drop_off_location : strings.notfount}</Text>
+              </View>
+            </View>
+            <View style={styles.Txtview}>
+              <View style={styles.projectContainer}>
+                <Text style={styles.projectTxt}>No. of Guest</Text>
+              </View>
+              <View><Text>:</Text></View>
+              <View style={styles.nameContainer}>
+                <Text style={styles.nameTxt}>{item?.number_of_guest ? item?.number_of_guest : strings.notfount}</Text>
+              </View>
+            </View>
+          </>
+        )
+        : null
+      }
       <View style={{
         flexDirection: 'row',
         justifyContent: 'center',

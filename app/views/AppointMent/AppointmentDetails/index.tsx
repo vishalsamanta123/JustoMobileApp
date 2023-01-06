@@ -10,6 +10,7 @@ import { GREEN_COLOR } from 'app/components/utilities/constant'
 
 const AppointmentDetails = ({ navigation, route }: any) => {
   const data = route?.params || {}
+  console.log('data: ', data);
   const [BookingData, setBookingData] = useState<any>({})
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)

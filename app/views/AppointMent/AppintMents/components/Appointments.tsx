@@ -40,7 +40,7 @@ const AppointmentListView = (props: any) => {
                 headerStyle={styles.headerStyle}
                 handleOnRightFirstIconPress={() => props.setFilterisVisible(true)}
             />
-            {/* <View style={{ alignItems: 'flex-end', paddingVertical: 6 }}>
+            <View style={{ alignItems: 'flex-end', paddingVertical: 6 }}>
                 <Button
                     height={30}
                     width={120}
@@ -49,7 +49,7 @@ const AppointmentListView = (props: any) => {
                     btnTxtsize={15}
                     handleBtnPress={() => props.handleScanQr()}
                 />
-            </View> */}
+            </View>
             <View style={styles.listView}>
                 <FlatList
                     data={Array.isArray(props.DATA) ? props.DATA : []}

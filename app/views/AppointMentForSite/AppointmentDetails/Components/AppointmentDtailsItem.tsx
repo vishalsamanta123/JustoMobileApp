@@ -70,6 +70,7 @@ const AppointmentDtailsItem = (props: any) => {
           <Text style={styles.nameTxt}>{props?.detail?.appointment_date === '' || props?.detail?.appointment_date === undefined ?
             strings.notfount : moment(props?.detail?.appointment_date).format(DATE_BY_DAY)}
             <Text style={styles.nameTxt}>
+              -
               {props?.detail?.appointment_time === '' || props?.detail?.appointment_time === undefined ?
                 strings.notfount : " " + props?.detail?.appointment_time}
             </Text>
