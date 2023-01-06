@@ -105,6 +105,7 @@ const strings = new LocalizedStrings({
     sendotp: 'Send OTP',
     registration: 'registration',
     followup: 'Follow-Up',
+    enterCompPropertyName: 'Please enter competetor Property name',
 
 
     // common strings

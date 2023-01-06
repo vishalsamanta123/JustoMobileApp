@@ -14,6 +14,8 @@ import {
   removePropertyCompetitor,
 } from "app/Redux/Actions/propertyActions";
 import { normalizeSpacing } from "app/components/scaleFontSize";
+import ErrorMessage from "app/components/ErrorMessage";
+import { RED_COLOR } from "app/components/utilities/constant";
 
 const CancelModal = (props: any) => {
   const dispatch: any = useDispatch();
@@ -67,6 +69,20 @@ const CancelModal = (props: any) => {
   }, [masterData]);
 
   const handleCancel = () => {
+    if (propetyInput && props?.cancelValue?.property_name === "") {
+      ErrorMessage({
+        msg: strings.enterCompPropertyName,
+        backgroundColor: RED_COLOR,
+      });
+      return;
+    }
+    if (props?.cancelValue?.reason === "639d691c9f37df12d3ea64e2" && props?.cancelValue?.property_id === "") {
+      ErrorMessage({
+        msg: strings.enterCompPropertyName,
+        backgroundColor: RED_COLOR,
+      });
+      return;
+    }
     if (props?.cancelValue?.reason != "") {
       props.cancelDataPress();
       props.setIsVisible(false);
@@ -80,7 +96,8 @@ const CancelModal = (props: any) => {
   };
   return (
     <Modal isVisible={props.Visible}>
-      <ScrollView keyboardShouldPersistTaps={'handled'}
+      <ScrollView
+        keyboardShouldPersistTaps={"handled"}
         contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
       >
         <View style={styles.mainContainer}>
@@ -94,12 +111,12 @@ const CancelModal = (props: any) => {
                   props.setIsVisible(false);
                   setPropetyInput(false);
                   props.setCancelValue({
-                    reason: '',
-                    property_id: '',
-                    comment: '',
-                    property_name: '',
-                    remark: '',
-                })
+                    reason: "",
+                    property_id: "",
+                    comment: "",
+                    property_name: "",
+                    remark: "",
+                  });
                 }}
               >
                 <Image source={images.close} style={styles.closeIcon} />
@@ -169,7 +186,7 @@ const CancelModal = (props: any) => {
                 {propetyInput ? (
                   <InputField
                     placeholderText={"Property Name"}
-                    headingText={"Property Name"}
+                    // headingText={"Property Name"}
                     handleInputBtnPress={() => {}}
                     valueshow={props?.cancelValue?.property_name}
                     onChangeText={(val: any) => {
