@@ -275,7 +275,7 @@ const AddAppointmentItem = (props: any) => {
                     <Button
                         handleBtnPress={() => props.onPressAddEdit()}
                         buttonText={props.type === 'edit' ? strings.update :
-                            props.type === 'reSheduled' ? 'ReScheduled Appointment' :
+                            props.type === 'reSheduled' ? 'Update Appointment' :
                                 strings.addNewappointment} />
                 </View>
             </View>
