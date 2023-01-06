@@ -31,10 +31,10 @@ const AllFollowUpView = (props: any) => {
           renderItem={({ item }) => <AllFollowUpItem items={item} />}
           onEndReached={() => {
             if (props?.allFollowUpList?.length < response?.total_data) {
-              props.getFollowupList(props?.allFollowUpList?.length > 4 ? props.offSET + 1 : 0, props?.allFollowUpList)
+              props.getFollowupList(props?.allFollowUpList?.length >= 4 ? props.offSET + 1 : 0)
             }
           }}
-          onRefresh={() => props.getFollowupList(0, [])}
+          onRefresh={() => props.getFollowupList(0)}
           refreshing={false}
         />
       </View>

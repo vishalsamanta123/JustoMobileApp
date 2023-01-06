@@ -44,16 +44,18 @@ const BookingDetailsView = (props: any) => {
                     textTransform={"uppercase"}
                     handleBtnPress={() => props.handleStatusUpdate()}
                 />)}
-                <Button
-                    buttonText={strings.cancelBooking}
-                    width={150}
-                    height={45}
-                    bgcolor={PRIMARY_THEME_COLOR_DARK}
-                    btnTxtcolor={WHITE_COLOR}
-                    btnTxtsize={14}
-                    textTransform={"uppercase"}
-                    handleBtnPress={() => props.setCancelBookingModel(true)}
-                />
+                {response?.data[0]?.booking_status != 4 ?
+                    <Button
+                        buttonText={strings.cancelBooking}
+                        width={150}
+                        height={45}
+                        bgcolor={PRIMARY_THEME_COLOR_DARK}
+                        btnTxtcolor={WHITE_COLOR}
+                        btnTxtsize={14}
+                        textTransform={"uppercase"}
+                        handleBtnPress={() => props.setCancelBookingModel(true)}
+                    /> : null
+                }
             </View>
             {props?.type === 'readyToBook' && (
                 <View style={styles.btnContainer}>

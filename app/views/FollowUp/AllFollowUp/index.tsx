@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AllFollowUpView from './Components/AllFollowUpView'
 import { useFocusEffect } from '@react-navigation/native'
 import { allfollowupRemove, getAllFollowUpList } from 'app/Redux/Actions/FollowUpActions'
@@ -6,37 +6,36 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const AllFollowUpScreen = ({ navigation, route }: any) => {
   const data = route?.params || {}
-  const [isloading, setIsloading] = useState(false)
   const [allFollowUpList, setAllFollowUpList] = useState<any>([])
   const [offSET, setOffset] = useState(0)
   const dispatch: any = useDispatch()
   const { response = {}, list = '' } = useSelector((state: any) => state.followUp)
   useFocusEffect(
     React.useCallback(() => {
-      getFollowupList(offSET, [])
+      getFollowupList(0, [])
       return () => { };
     }, [navigation, list])
   );
   const getFollowupList = (offset: any, array: any) => {
-    setIsloading(true)
     setOffset(offset)
     dispatch(getAllFollowUpList({
       offset: offset,
-      limit: 10,
-      lead_id: data?.lead_id
+      limit: 4,
+      lead_id: data?.lead_id ? data?.lead_id : '',
     }))
-    toGetDatas(array)
   }
-  const toGetDatas = (array: any) => {
-    if (response?.status) {
-      setIsloading(false)
-      setAllFollowUpList(response?.data)
-      // if (offSET == 0) {
-      // } else {
-      //   setAllFollowUpList([...array, ...response?.data])
-      // }
+  useEffect(() => {
+    if (response?.status === 200) {
+      if (offSET == 0) {
+        setAllFollowUpList(response?.data)
+      } else {
+        setAllFollowUpList([...allFollowUpList, ...response?.data])
+      }
+    } else {
+      setAllFollowUpList([])
     }
-  }
+  }, [response])
+
   const handleBackPres = () => {
     navigation.goBack()
   }

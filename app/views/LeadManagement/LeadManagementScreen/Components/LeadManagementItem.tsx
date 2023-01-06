@@ -94,7 +94,8 @@ const LeadManagementItem = (props: any) => {
                 props.items.lead_status === 3 ? "Appointment" :
                   props.items.lead_status === 4 ? "Booking" :
                     props.items.lead_status === 5 ? "Registration" :
-                      props.items.lead_status === 6 && "Close"
+                      props.items.lead_status === 6 ? "Close" :
+                      props.items.lead_status === 7 && "Ready To Book" 
             }
           </Text>
         </View>

@@ -54,7 +54,7 @@ const BookingListItem = (props: any) => {
                             <Text style={styles.nameTxt}>{
                                 props.items.min_budget || props.items.max_budget ?
                                     `${props.items.min_budget}${props.items.min_budget_type} - ${props.items.max_budget}${props.items.max_budget_type}`
-                                    : null
+                                    : strings.notfount
                             }</Text>
                         </View>
                     </View>

@@ -5,14 +5,31 @@ import styles from "../../../../components/Modals/styles";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import Button from "../../../../components/Button";
-import InputField from "../../../../components/InputField";
-import { Dropdown } from "react-native-element-dropdown";
-import { dropdownData } from "../../../../components/utilities/DemoData";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { DATE_FORMAT } from "app/components/utilities/constant";
 import DropdownInput from "app/components/DropDown";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserVisitList } from "app/Redux/Actions/LeadsActions";
 const FilterModal = (props: any) => {
+  const dispatch: any = useDispatch()
+  const { response = {}, list = "" } = useSelector((state: any) => state.visitorData) || []
+  const [visitorList, setVisiitorList] = useState<any>([])
+
+  useEffect(() => {
+    if (props.Visible) {
+      dispatch(getUserVisitList({}))
+    }
+  }, [props.Visible])
+
+  useEffect(() => {
+    if (response?.status === 200) {
+      if (response?.data?.length > 0) {
+        setVisiitorList(response?.data)
+      }
+    }
+  }, [response])
+
   const followupforData = [
     { label: 'Lead', value: 1 },
     { label: 'Site Visit', value: 2 },
@@ -110,14 +127,51 @@ const FilterModal = (props: any) => {
                 newRenderItem={renderItem}
               />
             </View>
+            <View style={styles.inputWrap}>
+              <DropdownInput
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                iconStyle={styles.iconStyle}
+                data={visitorList}
+                maxHeight={300}
+                labelField="first_name"
+                valueField={'_id'}
+                placeholder="Search by Lead"
+                value={props.filterData.lead_id}
+                onChange={(item: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    lead_id: item._id
+                  })
+                }}
+                newRenderItem={(item: any) => {
+                  return (
+                    <View style={styles.item}>
+                      <Text style={styles.textItem}>{item.first_name}</Text>
+                    </View>
+                  );
+                }}
+              />
+            </View>
           </View>
-          <View style={{ marginVertical: 20 }}>
+          <View style={{ marginVertical: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+            <Button
+              handleBtnPress={() => {
+                props.setIsVisible(false)
+                props.onRefresh()
+              }}
+              buttonText={strings.reset}
+              width={135}
+            />
             <Button
               handleBtnPress={() => {
                 props.setIsVisible(false)
                 props.getFollowupList(0, props.filterData)
+                props.setFollowUpList([])
               }}
               buttonText={strings.apply}
+              width={135}
             />
           </View>
         </View>

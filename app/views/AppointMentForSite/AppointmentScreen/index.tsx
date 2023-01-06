@@ -7,6 +7,7 @@ import AppointmentView from './Components/AppointmentView'
 const AppointmentScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const { response = {}, list = '' } = useSelector((state: any) => state.appointment)
+  console.log('response: ', response);
   const moreData = response?.total_data || 0
   const [offSET, setOffset] = useState(0)
   const [siteAppointments, setSiteAppointments] = useState<any>([])

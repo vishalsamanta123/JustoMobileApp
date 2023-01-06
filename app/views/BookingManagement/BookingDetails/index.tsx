@@ -21,6 +21,7 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
     });
     const { response = {}, detail = "" } = useSelector(
         (state: any) => state.booking)
+        console.log('response:BookingDetailsScreen ', response);
     const cancelBookingData = useSelector((state: any) => state.cancelBooking)
     useFocusEffect(
         React.useCallback(() => {
@@ -30,7 +31,7 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
                 })
             )
             return () => { };
-        }, [navigation, detail])
+        }, [navigation, detail, cancelBookingData])
     );
     const handleBackPress = () => {
         navigation.goBack()
