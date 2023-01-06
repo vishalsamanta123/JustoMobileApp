@@ -34,7 +34,7 @@ export const getAllProperty = (params: any) => async (dispatch: any) => {
 export const getAllPropertyCompetitor = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
-        const res = await apiCall("post", apiEndPoints.GET_PROPERTY_COMPETITOR, {});
+        const res = await apiCall("post", apiEndPoints.GET_PROPERTY_COMPETITOR, params);
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_COMPETITOR_LIST,

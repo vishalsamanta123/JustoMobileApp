@@ -47,6 +47,7 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
                 backgroundColor: GREEN_COLOR
             })
             dispatch(removeBooking())
+            navigation.goBack()
             setCancelValue({
                 reason: '',
                 property_id: '',

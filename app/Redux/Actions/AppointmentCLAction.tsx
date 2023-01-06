@@ -30,7 +30,6 @@ export const AddDropLocation = (params: any) => async (dispatch: any) => {
     }
 };
 export const AddBooking = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const header = {
