@@ -22,6 +22,7 @@ const strings = new LocalizedStrings({
     agencyDeactiveHeader: 'Agency Deactive',
     leadManagementHeader: 'Lead Management',
     appointmentWithCPHeader: 'Appointment With CP',
+    appointmentWithSMHeader: 'Appointment With SM',
     appointmentForVisitHeader: 'Appointment For Site Visit',
     appointmentVisitHeader: 'Appointment Site Visit',
     reportHeader: 'Report',
