@@ -30,13 +30,14 @@ export const AddDropLocation = (params: any) => async (dispatch: any) => {
     }
 };
 export const AddBooking = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
+console.log('params: in AddBooking ', params);
     dispatch({ type: START_LOADING })
     try {
         const header = {
             "Content-Type": "multipart/form-data", "access-control-allow-origin": "*",
         };
         const res = await apiCall("post", apiEndPoints.ADD_BOOKING, params, header);
+        console.log('res: AddBooking', res);
         if (res.data.status == 200) {
             dispatch({
                 type: ADD_BOOKING,

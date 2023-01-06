@@ -71,6 +71,7 @@ const BookingDetailsView = (props: any) => {
                 Visible={props.cancelBookingModel}
                 setIsVisible={props.setCancelBookingModel}
                 cancelValue={props.cancelValue}
+                item={response?.data?.length > 0 ? response?.data : []}
                 setCancelValue={props.setCancelValue}
             />
         </View>
