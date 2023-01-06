@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getClosingManagerList } from "app/Redux/Actions/ClosingManager";
 import { AllocateCM } from "app/Redux/Actions/AppointmentCLAction";
 import { getAllPickupList } from "app/Redux/Actions/PickUpActions";
+import { handlePermission, openPermissionSetting } from "app/components/utilities/GlobalFuncations";
+import strings from "app/components/utilities/Localization";
 
 const AppointmentsScreen = ({ navigation }: any) => {
     const [dropLocisVisible, setDropLocisVisible] = useState(false)
@@ -97,8 +99,22 @@ const AppointmentsScreen = ({ navigation }: any) => {
     const onPressView = (items: any) => {
         navigation.navigate('AppointmentDetailMain', items)
     };
-    const handleScanQr = (items: any) => {
-        navigation.navigate('ScanQr')
+    const handleScanQr = async (items: any) => {
+        const res = await handlePermission(
+            'camera',
+            strings.txt_setting_heading_camera,
+            strings.txt_setting_description_camera,
+        );
+        console.log('res', res)
+
+        if (res == 'setting1') {
+            openPermissionSetting(
+                strings.txt_setting_heading_camera,
+                strings.txt_setting_description_camera,
+            );
+        } else if (res) {
+            navigation.navigate('ScanQr')
+        }
     };
 
     const getCMList = () => {
@@ -126,7 +142,7 @@ const AppointmentsScreen = ({ navigation }: any) => {
                 allocatedCM={allocatedCM}
                 handleAllocateCM={handleAllocateCM}
                 offSET={offSET}
-                moreData={response?.total_data}
+                moreData={getLoginType?.response?.data?.role_title === 'Closing Manager'? appointMentList?.response?.total_data : response?.total_data}
                 filterData={filterData}
                 setFilterData={setFilterData}
                 setAppointmentList={setAppointmentList}
