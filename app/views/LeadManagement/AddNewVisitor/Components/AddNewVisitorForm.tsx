@@ -53,6 +53,7 @@ const AddNewVisitorForm = (props: any) => {
                     <Text style={styles.headingText}>{strings.visitordetails}</Text>
                     <View style={[styles.inputWrap]}>
                         <DropdownInput
+                            require={true}
                             headingText={'Property'}
                             placeholder={props.formData?.property_title ?
                                 props.formData?.property_title : 'Property'}
@@ -83,38 +84,9 @@ const AddNewVisitorForm = (props: any) => {
                             }}
                         />
                     </View>
-                    {/* <View style={[styles.inputWrap, { width: '100%' }]}>
-                        <DropdownInput
-                            headingText={'Propert Type'}
-                            placeholder={props.formData?.property_type_title ?
-                                props.formData?.property_type_title : 'Propert Type'}
-                            inputWidth={'100%'}
-                            disable={true}
-                            paddingLeft={16}
-                            maxHeight={300}
-                            labelField="title"
-                            valueField={'_id'}
-                            value={props?.formData?.property_id}
-                            onChange={(item: any) => {
-                                props.setFormData({
-                                    ...props.formData,
-                                    property_id: item._id,
-                                    property_type_title: item.title
-                                })
-                            }}
-                            newRenderItem={(item: any) => {
-                                return (
-                                    <>
-                                            <View style={Styles.item}>
-                                                <Text style={Styles.textItem}>{item.title}</Text>
-                                            </View>
-                                    </>
-                                );
-                            }}
-                        />
-                    </View> */}
                     <View style={styles.inputWrap}>
                         <InputField
+                            require={true}
                             placeholderText={"Visitor Name"}
                             handleInputBtnPress={() => { }}
                             onChangeText={(data: any) => {
@@ -129,6 +101,7 @@ const AddNewVisitorForm = (props: any) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <InputField
+                            require={true}
                             placeholderText={"Mobile No."}
                             handleInputBtnPress={() => { }}
                             onChangeText={(data: any) => {

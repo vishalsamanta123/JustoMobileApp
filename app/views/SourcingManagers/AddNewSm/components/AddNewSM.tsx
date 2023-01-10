@@ -19,6 +19,7 @@ import moment from "moment";
 import InputCalender from "app/components/InputCalender";
 import DropdownInput from "app/components/DropDown";
 import { normalizeSpacing } from "app/components/scaleFontSize";
+import { RequiredStart } from "app/components/utilities/GlobalFuncations";
 
 const AddNewSMView = (props: any) => {
   const [gender, setGender] = useState("Male");
@@ -103,6 +104,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"First Name"}
             handleInputBtnPress={() => { }}
             headingText={"SM First Name"}
@@ -117,6 +119,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Last Name"}
             handleInputBtnPress={() => { }}
             headingText={"SM Last Name"}
@@ -131,6 +134,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Aadhaar No."}
             handleInputBtnPress={() => { }}
             headingText={"Aadhaar No."}
@@ -147,6 +151,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Pancard No."}
             handleInputBtnPress={() => { }}
             headingText={"Pancard No."}
@@ -162,6 +167,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.genderView}>
           <Text style={styles.genderTxt}>{strings.gender}</Text>
+          <RequiredStart />
           <View style={styles.radioView}>
             <RadioButton.Android
               value="Male"
@@ -221,6 +227,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputCalender
+            require={true}
             leftIcon={images.event}
             mode={"date"}
             placeholderText={"Date of Birth"}
@@ -247,6 +254,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Mobile No."}
             handleInputBtnPress={() => { }}
             headingText={"Mobile No."}
@@ -263,6 +271,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"WhatsApp No."}
             handleInputBtnPress={() => { }}
             headingText={"WhatsApp No."}
@@ -279,6 +288,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Email Address"}
             handleInputBtnPress={() => { }}
             headingText={"Email Address"}
@@ -293,6 +303,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <DropdownInput
+            require={true}
             headingText={strings.city}
             placeholder={props.addNewSmData?.city != '' ?
               props.addNewSmData?.city :
@@ -325,6 +336,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={{ marginTop: normalizeSpacing(30), }}>
           <InputField
+            require={true}
             placeholderText={"Area Location"}
             handleInputBtnPress={() => { }}
             headingText={"Area Location"}
@@ -348,6 +360,7 @@ const AddNewSMView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"House Address"}
             handleInputBtnPress={() => { }}
             headingText={"House Address"}

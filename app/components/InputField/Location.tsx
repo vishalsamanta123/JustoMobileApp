@@ -6,6 +6,7 @@ import images from '../../assets/images';
 import { normalize, normalizeHeight, normalizeSpacing } from '../scaleFontSize';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import strings from '../utilities/Localization';
+import { RequiredStart } from '../utilities/GlobalFuncations';
 
 const LocationInput = (props: any) => {
     return (
@@ -14,6 +15,7 @@ const LocationInput = (props: any) => {
                 <Text style={[styles.inputHeadingText, {
                     width: props.headingTextWidth
                 }]}>{props.headingText}</Text>
+                {props.require ? (<RequiredStart />) : null}
             </View>
             <GooglePlacesAutocomplete
                 fetchDetails={true}

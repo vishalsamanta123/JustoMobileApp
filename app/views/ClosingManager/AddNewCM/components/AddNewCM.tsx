@@ -13,6 +13,7 @@ import moment from 'moment';
 import InputCalender from 'app/components/InputCalender';
 import DropdownInput from 'app/components/DropDown';
 import { normalizeSpacing } from 'app/components/scaleFontSize';
+import { RequiredStart } from 'app/components/utilities/GlobalFuncations';
 
 const AddNewCMView = (props: any) => {
     const [profile, setProfile] = React.useState(false);
@@ -97,6 +98,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         placeholderText={"First Name"}
                         handleInputBtnPress={() => { }}
                         headingText={"CM First Name"}
@@ -110,6 +112,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         placeholderText={"Last Name"}
                         handleInputBtnPress={() => { }}
                         headingText={"CM Last Name"}
@@ -123,6 +126,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         placeholderText={"Aadhaar No."}
                         handleInputBtnPress={() => { }}
                         headingText={"Aadhaar No."}
@@ -138,6 +142,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         placeholderText={"Pancard No."}
                         handleInputBtnPress={() => { }}
                         headingText={"Pancard No."}
@@ -152,6 +157,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.genderView}>
                     <Text style={styles.genderTxt}>{strings.gender}</Text>
+                    <RequiredStart />
                     <View style={styles.radioView}>
                         <RadioButton.Android
                             value="Male"
@@ -201,6 +207,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputCalender
+                        require={true}
                         leftIcon={images.event}
                         mode={'date'}
                         placeholderText={"Date of Birth"}//can edit
@@ -226,6 +233,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         placeholderText={"Mobile No."}
                         handleInputBtnPress={() => { }}
                         headingText={"Mobile No."}
@@ -241,6 +249,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         placeholderText={"WhatsApp No."}
                         handleInputBtnPress={() => { }}
                         headingText={"WhatsApp No."}
@@ -256,6 +265,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         placeholderText={"Email Address"}
                         handleInputBtnPress={() => { }}
                         headingText={"Email Address"}
@@ -269,6 +279,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <DropdownInput
+                        require={true}
                         headingText={strings.city}
                         placeholder={
                             props.addNewCMData?.city === '' || props.addNewCMData?.city_id === null
@@ -301,6 +312,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         placeholderText={"Area"}
                         handleInputBtnPress={() => { }}
                         headingText={"Area"}
@@ -314,6 +326,7 @@ const AddNewCMView = (props: any) => {
                 </View>
                 <View style={{ marginTop: normalizeSpacing(30), }}>
                     <InputField
+                        require={true}
                         placeholderText={"Address"}
                         headingText={"Address"}
                         valueshow={props.addNewCMData?.address}

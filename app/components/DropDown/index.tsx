@@ -4,12 +4,14 @@ import { Dropdown } from 'react-native-element-dropdown';
 import styles from './styles';
 import { dropdownData } from '../utilities/DemoData';
 import { normalize, normalizeHeight } from '../scaleFontSize';
+import { RequiredStart } from '../utilities/GlobalFuncations';
 
 const DropdownInput = (props: any) => {
     const {
         inputWidth = '100%',
         inputheight = 50,
-        paddingLeft = 0
+        paddingLeft = 0,
+        require = false
     } = props
     const renderItem = (item: any) => {
         return (
@@ -22,6 +24,7 @@ const DropdownInput = (props: any) => {
         <View>
             <View style={styles.inputHeadinView}>
                 <Text style={styles.inputHeadingText}>{props.headingText}</Text>
+                {require ? (<RequiredStart />) : null}
             </View>
             <View style={styles.mainContainer}>
                 <Dropdown

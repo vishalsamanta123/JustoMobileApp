@@ -6,6 +6,7 @@ import images from '../../assets/images';
 import { normalizeHeight } from '../scaleFontSize';
 import DatePicker from 'react-native-date-picker'
 import moment from 'moment';
+import { RequiredStart } from '../utilities/GlobalFuncations';
 
 const InputCalender = (props: any) => {
   const minDate: any = moment().subtract(18, "years")
@@ -35,6 +36,7 @@ const InputCalender = (props: any) => {
     <View>
       <View style={styles.inputHeadinView}>
         <Text style={styles.inputHeadingText}>{props.headingText}</Text>
+        {props.require ? (<RequiredStart />) : null}
       </View>
       <View style={styles.mainContainer}>
         <TextInput

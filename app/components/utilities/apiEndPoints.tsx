@@ -87,6 +87,7 @@ export default {
   GET_USER_APPOINTMENT_LIST: '/userAppointment/getUSerAppoinmentList',
   EDIT_USER_APPOINTMENT: '/userAppointment/editUserAppointment',
   UPDATE_USER_APPOINTMENT_STATUS: '/userAppointment/userAppointmentStatusUpdate',
+  CHECKIN_APPOINTMENT: '/appointment/checkInAppointmentProperty',
 
   // BOOKING
   ADD_BOOKING: '/booking/addBooking',

@@ -42,6 +42,7 @@ const images = {
   lock: require('./lock.png'),
   bell: require('./notification.png'),
   download: require('./download.png'),
+  star: require('./star.png'),
 };
 
 export default images;

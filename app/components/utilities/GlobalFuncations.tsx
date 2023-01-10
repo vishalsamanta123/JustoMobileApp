@@ -1,4 +1,4 @@
-import { Alert } from 'react-native';
+import { Alert, Image } from 'react-native';
 import {
   request,
   PERMISSIONS,
@@ -8,6 +8,8 @@ import {
 } from 'react-native-permissions';
 import { Isios } from './constant';
 import strings from './Localization';
+import images from 'app/assets/images';
+import { normalizeWidth, normalizeHeight, normalizeSpacing } from '../scaleFontSize';
 
 export const handlePermission = async (
   permission: any,
@@ -215,3 +217,18 @@ export const openPermissionSetting = (msgHeading: any, message: any,
     { text: 'Settings', onPress: () => openSettings() },
   ]);
 };
+
+
+export const RequiredStart = () => {
+  return (
+    <Image
+      source={images.star}
+      style={{
+        width: normalizeWidth(5),
+        height: normalizeHeight(5),
+        marginLeft: normalizeSpacing(5),
+        marginBottom: normalizeSpacing(5),
+      }}
+    />
+  )
+}
