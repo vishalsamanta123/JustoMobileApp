@@ -11,7 +11,6 @@ const initialState = {
 };
 
 export const userLogin = (loginDetail: any) => async (dispatch: any) => {
-console.log('loginDetail: ', loginDetail);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.LOGIN, loginDetail);

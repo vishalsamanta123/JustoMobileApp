@@ -7,11 +7,9 @@ import {
 } from "../types";
 
 export const getAllLeadsList = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.VISITORLIST, params);
-        console.log('res:VISITORLIST ', res);
         if (res?.data?.status == 200) {
             dispatch({
                 type: VISITOR_LIST,

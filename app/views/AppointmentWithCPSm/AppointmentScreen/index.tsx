@@ -32,7 +32,6 @@ const AppointmentScreenCPSM = ({ navigation }: any) => {
     if (response?.status === 200) {
       if(response?.data?.length > 0) {
         setAppointmentList(response?.data);
-        console.log("response?.data: ", response?.data);
       }
     }
   }, [response, list, edit]);
@@ -42,14 +41,8 @@ const AppointmentScreenCPSM = ({ navigation }: any) => {
     }
   }, [edit]);
   useEffect(() => {
-    console.log(
-      "getLoginType?.response?.data?.user_id: ",
-      getLoginType?.response?.data?.user_id
-    );
-    console.log("getLoginType?.response: ", getLoginType?.response);
     if (getLoginType?.response?.data?.role_title === "Sourcing TL") {
       setRole("TL");
-      console.log("getLoginType?.response: ", getLoginType?.response);
     } else if (
       getLoginType?.response?.data?.role_title === "Sourcing Manager"
     ) {
@@ -57,7 +50,6 @@ const AppointmentScreenCPSM = ({ navigation }: any) => {
     }
   }, [getLoginType]);
   const getAppointmentList = (type: any) => {
-    console.log("type: ", type);
     dispatch(
       getUserAppointmentList({
         appoiment: type ? type : 1,

@@ -135,7 +135,7 @@ const AddNewSMView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"Aadhaar No."}
+            placeholderText={"3675 9834 6012"}
             handleInputBtnPress={() => { }}
             headingText={"Aadhaar No."}
             keyboardtype={'number-pad'}
@@ -146,13 +146,13 @@ const AddNewSMView = (props: any) => {
                 adhar_no: val,
               });
             }}
-            maxLength={12}
+            maxLength={14}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"Pancard No."}
+            placeholderText={"BNZAA2318JM"}
             handleInputBtnPress={() => { }}
             headingText={"Pancard No."}
             valueshow={props.addNewSmData?.pancard_no}

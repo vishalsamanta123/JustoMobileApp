@@ -59,11 +59,9 @@ export const getRolesList = (item: any) => async (dispatch: any) => {
     }
 }
 export const getAllMaster = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.ADDMASTERLIST, params);
-        console.log('res: ADDMASTERLIST', res);
         if (res.data.status == 200) {
             dispatch({
                 type: MASTER_LIST,
@@ -138,7 +136,6 @@ export const getAllSourcingManager = (params: any) => async (dispatch: any) => {
 export const cpAppointmentCheckIn = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.CHECKIN_APPOINTMENT, params);
-        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: GET_APPOINTMENT_CHECKIN,

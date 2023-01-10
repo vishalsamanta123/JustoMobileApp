@@ -10,7 +10,6 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   const [appointMentDetail, setAppointMentDetail] = useState<any>({})
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
-  console.log('response: ', response);
   
   useFocusEffect(
     React.useCallback(() => {

@@ -15,7 +15,6 @@ import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 const NotificationView = (props: any) => {
   const { onPressBack, data } = props || {}
   const { response = [] } = useSelector((state: any) => state.notificationData);
-  console.log('response in notification: ', response);
   const [listData, setListData] = useState<any>([]);
 
 

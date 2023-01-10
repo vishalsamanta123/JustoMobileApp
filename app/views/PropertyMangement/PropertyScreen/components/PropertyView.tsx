@@ -24,7 +24,6 @@ const PropertyView = (props: any) => {
   
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const [propertyList, setPropertyList] = useState<any>([])
-  console.log('propertyList', propertyList?.length)
   const insets = useSafeAreaInsets();
   const propertyData = useSelector((state: any) => state.propertyData) || {}
   const masterData = useSelector((state: any) => state.masterData) || {}
@@ -128,7 +127,6 @@ const PropertyView = (props: any) => {
           renderItem={({ item, index }) => <PropertyListItem handleAllocatePress={props.handleAllocatePress} items={item} setIsVisible={setIsVisible} onPressView={onPressView} 
           confirmStatus={(items : any ) => confirmStatus(items)} />}
           onEndReached={() => {
-            console.log('propertyData?.response?.total_data', propertyData?.response?.total_data)
             if (propertyList?.length < propertyData?.response?.total_data) {
               props.getallproperty(
                 propertyList?.length > 3 ? props.oFFset + 1 : 0

@@ -8,13 +8,11 @@ import {
 } from "../types";
 
 export const updateFirebase = (params: any) => async (dispatch: any) => {
-  console.log("params: in UPDATE FIREBASE ", params);
   dispatch({ type: START_LOADING });
   try {
     const res = await apiCall("post", apiEndPoints.FIREBASE_UPDATE, params);
     console.log('res: ', res);
     if (res.data.status === 200) {
-      /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
       dispatch({
         type: FIREBASE_UPDATE,
         payload: res.data,

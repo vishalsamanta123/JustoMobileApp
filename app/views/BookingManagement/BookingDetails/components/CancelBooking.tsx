@@ -26,7 +26,6 @@ const CancelModal = (props: any) => {
   const masterData = useSelector((state: any) => state.masterData) || {};
   const propertyData =
     useSelector((state: any) => state.competitorproperty) || {};
-  console.log("propertyData: ", propertyData);
 
   const handleMasterDatas = (data: any) => {
     dispatch(
@@ -37,7 +36,6 @@ const CancelModal = (props: any) => {
   };
 
   const handleCompetitorProperty = () => {
-    console.log("props +++=++++", props.item[0].property_id);
     dispatch(
       getAllPropertyCompetitor({
         property_id: props?.item[0]?.property_id
@@ -138,7 +136,6 @@ const CancelModal = (props: any) => {
                 valueField={"_id"}
                 value={props?.cancelValue?.reason}
                 onChange={(item: any) => {
-                  console.log("item._id: ", item._id);
 
                   setReasonSelect(false);
                   props.setCancelValue({

@@ -62,7 +62,6 @@ const AppointmentView = (props: any) => {
   }, [userEditAppointmentData]);
 
   useEffect(() => {
-    console.log('props.role: ', props.role);
     if (index == 1) {
       props.getAppointmentList(props.role === 'TL'? 3 : 1);
     } else {
@@ -77,7 +76,6 @@ const AppointmentView = (props: any) => {
     }, [navigation])
   );
   const handleOptionPress = (id: any, status: any) => {
-    console.log(id, "= = == ", status);
     setParams({
       ...params,
       appointment_id: id,
@@ -86,7 +84,6 @@ const AppointmentView = (props: any) => {
     setIsVisible(true);
   };
   const handleOnPressYesInModal = () => {
-    console.log('params: IN APPOINTMENT UPDATE', params);
     dispatch(
       updateUserAppointmentStatus(params)
     );

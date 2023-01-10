@@ -8,7 +8,6 @@ import moment from 'moment'
 import { BLACK_COLOR } from 'app/components/utilities/constant'
 
 const LeadDetailsIteam = (props: any) => {
-    console.log('props: ', props);
     const item = props?.items || {}
     return (
         <ScrollView showsVerticalScrollIndicator={false}>

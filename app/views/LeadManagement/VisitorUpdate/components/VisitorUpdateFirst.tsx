@@ -83,7 +83,7 @@ const VisitorUpdateView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        placeholderText={"Aadhaar No."}
+                        placeholderText={"3675 9834 6012"}
                         handleInputBtnPress={() => { }}
                         onChangeText={(text: any) => {
                             props.setUpdateForm({
@@ -98,7 +98,7 @@ const VisitorUpdateView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        placeholderText={"Pancard No."}
+                        placeholderText={"BNZAA2318JM"}
                         handleInputBtnPress={() => { }}
                         onChangeText={(text: any) => {
                             props.setUpdateForm({

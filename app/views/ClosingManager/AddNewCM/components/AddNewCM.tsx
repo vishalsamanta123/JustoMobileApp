@@ -127,7 +127,7 @@ const AddNewCMView = (props: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         require={true}
-                        placeholderText={"Aadhaar No."}
+                        placeholderText={"3675 9834 6012"}
                         handleInputBtnPress={() => { }}
                         headingText={"Aadhaar No."}
                         onChangeText={(val: any) => {
@@ -143,7 +143,7 @@ const AddNewCMView = (props: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         require={true}
-                        placeholderText={"Pancard No."}
+                        placeholderText={"BNZAA2318JM"}
                         handleInputBtnPress={() => { }}
                         headingText={"Pancard No."}
                         onChangeText={(val: any) => {

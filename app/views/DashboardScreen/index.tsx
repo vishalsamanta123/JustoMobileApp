@@ -17,7 +17,6 @@ const DashboardScreen = ({ navigation }: any) => {
   const SMListData = useSelector((state: any) => state.SourcingManager)
   // const CPListData = useSelector((state: any) => state.agentData)
   const [dashboardData, setDashboardData] = useState({})
-  console.log('dashboardData: ', dashboardData);
   const [listData, setListData] = useState<any>([])
   const [isEnabled, setIsEnabled] = useState<any>();
 

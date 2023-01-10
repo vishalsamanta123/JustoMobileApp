@@ -118,7 +118,7 @@ const AddNewVisitorForm = (props: any) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <InputField
-                            placeholderText={"Aadhaar No."}
+                            placeholderText={"3675 9834 6012"}
                             handleInputBtnPress={() => { }}
                             onChangeText={(data: any) => {
                                 props.setFormData({
@@ -134,7 +134,7 @@ const AddNewVisitorForm = (props: any) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <InputField
-                            placeholderText={"Pancard No."}
+                            placeholderText={"BNZAA2318JM"}
                             handleInputBtnPress={() => { }}
                             onChangeText={(data: any) => {
                                 props.setFormData({

@@ -43,7 +43,6 @@ const FollowUpAddView = (props: any) => {
                         valueField={'_id'}
                         value={props?.formData?.property_id}
                         onChange={(item: any) => {
-                            console.log('item: ', item);
                             props.setFormData({
                                 ...props.formData,
                                 followup_status: item._id,

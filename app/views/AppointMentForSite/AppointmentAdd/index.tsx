@@ -62,7 +62,6 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
     const handleUpdateStatus = () => {
         if (validation()) {
             dispatch(editAppointment(formData))
-            console.log('formData: ', formData);
         }
     }
     const handleAllFollowUp = () => {

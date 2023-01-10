@@ -14,7 +14,6 @@ const PropertyDetailItem = (props: any) => {
     const videos = el.document_type == "video";
     return videos;
   });
-  console.log('videoarray: ', videoarray);
   const documentarray = props.propertydocument?.filter((el: any) => {
     const count = el.document_type == 'document'
     return count

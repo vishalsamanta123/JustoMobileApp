@@ -1,6 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
 import ErrorMessage from 'app/components/ErrorMessage';
-import { GREEN_COLOR, RED_COLOR, validateEmail } from 'app/components/utilities/constant';
+import { GREEN_COLOR, RED_COLOR, Regexs, validateEmail } from 'app/components/utilities/constant';
 import { getClosingDetail } from 'app/Redux/Actions/ClosingManager';
 import { getCityList, getRolesList } from 'app/Redux/Actions/MasterActions';
 import { removeAuthUser, updateUserSettingData, userRegister } from 'app/Redux/Actions/SettingActions';
@@ -120,10 +120,24 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
         } else if (addNewCMData.adhar_no == undefined || addNewCMData.adhar_no == "") {
             isError = false;
             errorMessage = "Aadhaar Number is require. Please enter Aadhaar number";
-        } else if (addNewCMData.pancard_no == undefined || addNewCMData.pancard_no == "") {
+        }
+        else if (
+            Regexs.AadharRegex.test(addNewCMData.adhar_no) === false
+        ) {
+            isError = false;
+            errorMessage = "Please enter the valid Aadhaar number";
+        }
+        else if (addNewCMData.pancard_no == undefined || addNewCMData.pancard_no == "") {
             isError = false;
             errorMessage = "Pancard Number is require. Please enter pancard number";
-        } else if (addNewCMData.gender == undefined || addNewCMData.gender == "") {
+        }
+        else if (
+            Regexs.panRegex.test(addNewCMData.pancard_no) === false
+        ) {
+            isError = false;
+            errorMessage = "Please enter the valid Pancard number";
+        }
+        else if (addNewCMData.gender == undefined || addNewCMData.gender == "") {
             isError = false;
             errorMessage = "Gender is require. Please select gender";
         } else if (addNewCMData.dateofbirth == undefined || addNewCMData.dateofbirth == "") {

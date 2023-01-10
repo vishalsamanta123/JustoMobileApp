@@ -46,10 +46,10 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
       //   backgroundColor: GREEN_COLOR
       // })
     } else {
-      ErrorMessage({
-        msg: response.message,
-        backgroundColor: RED_COLOR
-      })
+      // ErrorMessage({
+      //   msg: response.message,
+      //   backgroundColor: RED_COLOR
+      // })
     }
   }, [response])
 

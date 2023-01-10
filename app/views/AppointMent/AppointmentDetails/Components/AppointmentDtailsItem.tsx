@@ -10,7 +10,6 @@ import { normalizeSpacing } from 'app/components/scaleFontSize'
 
 const AppointmentDtailsItem = (props: any) => {
   const item = props?.item || {}
-  console.log('item: ', item);
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>

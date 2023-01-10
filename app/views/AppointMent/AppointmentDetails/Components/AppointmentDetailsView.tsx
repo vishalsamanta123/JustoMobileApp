@@ -20,7 +20,6 @@ const AppointmentDetailsView = (props: any) => {
     const [cancelAppoitment, setCancelAppoitment] = useState(false)
     const { response = {}, detail = '' } = useSelector((state: any) => state.appointment) || []
     const data = response?.data?.length > 0 ? response?.data[0] : []
-    console.log('data: ', data);
     return (
         <View style={styles.mainContainer}>
             <Header

@@ -18,7 +18,6 @@ const VideoContent = ({navigation,route}: any) => {
   const [itemDetail,setItemDetail] = useState({})
   const insets = useSafeAreaInsets();
   const datavideos = route?.params || []
-  console.log('datavideos: ', datavideos);
   const handleBackPress = () => {
     navigation.goBack();
   };

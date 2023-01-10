@@ -4,11 +4,9 @@ import { apiCall } from "app/components/utilities/httpClient";
 import { ASSIGNCP_SM, ASSIGNCP_SM_ERROR, GET_ASSIGNCP_LIST, GET_ASSIGNCP_LIST_ERROR, GET_SOURCINGMANAGER_DETAIL, GET_SOURCINGMANAGER_DETAIL_ERROR, GET_SOURCINGMANAGER_LIST, GET_SOURCINGMANAGER_LIST_ERROR, REMOVE_UPDATE_ASSIGN_CP, START_LOADING, STOP_LOADING, UPDATE_ASSIGN_CP_STATUS, UPDATE_ASSIGN_CP_STATUS_ERR } from "../types";
 
 export const getSourcingManagerList = (parmas: any) => async (dispatch: any) => {
-console.log('parmas 111111: ', parmas);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_SOURCING_MANAGER_LIST, parmas);
-        console.log('res GET_SOURCING_MANAGER_LIST: ', res);
         if (res?.data?.status === 200) {
             dispatch({
                 type: GET_SOURCINGMANAGER_LIST,
@@ -60,11 +58,9 @@ export const getSourcingManagerDetail = (parma: any) => async (dispatch: any) =>
     }
 }
 export const getAssignCPList = (parma: any) => async (dispatch: any) => {
-console.log('parma: ', parma);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_ASSIGNCP_LIST, parma);
-        console.log('res: IN GET ASSING CP', res);
         if (res?.data?.status === 200) {
             dispatch({
                 type: GET_ASSIGNCP_LIST,

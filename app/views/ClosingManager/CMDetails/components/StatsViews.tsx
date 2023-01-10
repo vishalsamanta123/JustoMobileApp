@@ -13,7 +13,6 @@ import styles from "./styles";
 
 const StatsView = (props: any) => {
   const item = props?.items || {};
-  console.log("item: ", item);
   const current_target =
     props?.item?.current_target?.length > 0
       ? props?.item?.current_target?.[0]

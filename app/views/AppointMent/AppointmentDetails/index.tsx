@@ -10,19 +10,11 @@ import { GREEN_COLOR } from 'app/components/utilities/constant'
 
 const AppointmentDetails = ({ navigation, route }: any) => {
   const data = route?.params || {}
-  console.log('data: ', data);
   const [BookingData, setBookingData] = useState<any>({})
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
   const addedBookingData = useSelector((state: any) => state.addedBooking) || {}
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     dispatch(getAppointmentDetail({
-  //       appointment_id: data?._id
-  //     }))
-  //     return () => { };
-  //   }, [navigation, detail])
-  // );
+  
   useFocusEffect(
     React.useCallback(() => {
       dispatch(getAppointmentDetail({

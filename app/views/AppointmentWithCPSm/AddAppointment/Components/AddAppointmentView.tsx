@@ -30,17 +30,11 @@ const AddAppointmentView = (props: any) => {
     }
   };
   const handleBtnPress = () => {
-    console.log("addAppointmentForm: ", addAppointmentForm);
     if (validation()) {
 
       props.handleAddAppointment(addAppointmentForm);
     }
-    // navigation.navigate('AppointmentScreen')
   };
-  // useEffect(() => {
-  //     setAddAppointmentForm(props.data)
-  //     return () => {}
-  //   }, [props.data])
   return (
     <View style={styles.mainContainer}>
       <Header

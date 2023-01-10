@@ -37,7 +37,6 @@ const ScanQrView = (props: any) => {
                     }}
                     type={RNCamera.Constants.Type.back}
                     onGoogleVisionBarcodesDetected={({ barcodes }: any) => {
-                        console.log(barcodes);
                         if(barcodes?.length > 0){
                             props.handleQrScan(barcodes[0]?.data)
                         }

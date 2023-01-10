@@ -92,7 +92,6 @@ const CatalogueContent = ({ navigation, route }: any) => {
                 borderWidth: 1,
               }}
             >
-              {/* {console.log('item', item)} */}
               <TouchableOpacity
                 onPress={() => OpenDoc(`${item?.base_url}${item?.document}`)}
               >

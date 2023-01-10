@@ -30,7 +30,6 @@ const PropertyScreen = ({ navigation }: any) => {
 
 
   const getallproperty = (OFFset: any) => {
-    console.log('Offset ======', OFFset)
     setOffset(OFFset)
     dispatch(getAllProperty({
       offset: OFFset,
