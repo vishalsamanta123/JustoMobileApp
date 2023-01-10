@@ -6,13 +6,19 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import BookingListItem from './BookingListItem'
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
+import { useSelector } from "react-redux";
+import { ROLE_IDS } from "app/components/utilities/constant";
 
 const BookingListView = (props: any) => {
+    const getLoginType = useSelector((state: any) => state.login);
     return (
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.menu}
-                headerText={props?.type === 'readyToBook' ? strings.readytoBookHeader : strings.bookingRequestHead}
+                headerText={props?.type === 'readyToBook' ? strings.readytoBookHeader :
+                    getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id
+                        && props?.type === 'register' ?
+                        strings.registrationReqHead : strings.bookingRequestHead}
                 handleOnLeftIconPress={props.handleDrawerPress}
                 headerStyle={styles.headerStyle}
             />

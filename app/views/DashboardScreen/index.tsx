@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import ErrorMessage from 'app/components/ErrorMessage';
-import { GREEN_COLOR } from 'app/components/utilities/constant';
+import { GREEN_COLOR, ROLE_IDS } from 'app/components/utilities/constant';
 import { getAllAgentList } from 'app/Redux/Actions/AgencyActions';
-import { dashboardClosingData, dashboardSourcingData, userStatusUpdateData, userStatusUpdater } from 'app/Redux/Actions/Dashboard';
+import { dashboardClosingData, dashboardPostSaleData, dashboardSourcingData, userStatusUpdateData, userStatusUpdater } from 'app/Redux/Actions/Dashboard';
 import { getAssignCPList, getSourcingManagerList } from 'app/Redux/Actions/SourcingManagerActions';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,9 +15,7 @@ const DashboardScreen = ({ navigation }: any) => {
   const statusData = useSelector((state: any) => state.statusUpdateData) || {}
   const { response = {}, } = useSelector((state: any) => state.dashboardData);
   const SMListData = useSelector((state: any) => state.SourcingManager)
-  // const CPListData = useSelector((state: any) => state.agentData)
   const [dashboardData, setDashboardData] = useState({})
-  console.log('dashboardData: ', dashboardData);
   const [listData, setListData] = useState<any>([])
   const [isEnabled, setIsEnabled] = useState<any>();
 
@@ -31,39 +29,40 @@ const DashboardScreen = ({ navigation }: any) => {
     if (response?.status === 200) {
       setDashboardData(response?.data)
       setIsEnabled(response?.data?.online_status)
+    } else {
+      setDashboardData({})
+      setIsEnabled(null)
     }
-    if (getLoginType?.response?.data?.role_title === 'Sourcing TL' ||
-      getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
+    if (getLoginType?.response?.data?.role_id === ROLE_IDS.sourcingtl_id ||
+      getLoginType?.response?.data?.role_id === ROLE_IDS.sourcingmanager_id) {
       if (SMListData?.response?.status === 200) {
         setListData(SMListData?.response?.data)
-      }else{
+      } else {
         setListData([])
       }
     }
   }, [response, SMListData])
   const getDashboard = async () => {
-    if (
-      getLoginType?.response?.data?.role_title === 'Sourcing TL' ||
-      getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
+    if (getLoginType?.response?.data?.role_id === ROLE_IDS.sourcingtl_id ||
+      getLoginType?.response?.data?.role_id === ROLE_IDS.sourcingmanager_id) {
       dispatch(dashboardSourcingData({}))
-      if (getLoginType?.response?.data?.role_title === 'Sourcing TL') {
+      if (getLoginType?.response?.data?.role_id === ROLE_IDS.sourcingtl_id) {
         dispatch(getSourcingManagerList({}))
+      } else if (getLoginType?.response?.data?.role_id === ROLE_IDS.sourcingmanager_id) {
+        dispatch(getAssignCPList({
+          user_id: getLoginType?.response?.data?.user_id,
+        }))
       } else {
-        if (getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
-          dispatch(getAssignCPList({
-            user_id: getLoginType?.response?.data?.user_id,
-          }))
-        } else {
-          setListData([])
-        }
+        setListData([])
       }
+    } else if (getLoginType?.response?.data?.role_id === ROLE_IDS.closingtl_id ||
+      getLoginType?.response?.data?.role_id === ROLE_IDS.closingmanager_id) {
+      dispatch(dashboardClosingData({}))
+    } else if (getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id) {
+      dispatch(dashboardPostSaleData({}))
     } else {
-      if (getLoginType?.response?.data?.role_title === 'Closing TL' ||
-        getLoginType?.response?.data?.role_title === 'Closing Manager') {
-        dispatch(dashboardClosingData({}))
-      } else {
-        setDashboardData({})
-      }
+      setDashboardData({})
+      setIsEnabled(null)
     }
   }
   const updateStatusPress = (data: any) => {

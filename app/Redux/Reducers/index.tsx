@@ -10,7 +10,7 @@ import { masterDataReducer } from "./MasterReducer";
 import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
 import { addBookingReducer, appointmentCLReducer } from "./AppointmentCLReducer";
 import { ClosingManagerReducer } from "./ClosingManagerReducer";
-import { BookingReducer, cancelBookingReducer } from "./BookingReducer";
+import { BookingReducer, cancelAddBookingReducer, } from "./BookingReducer";
 import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 import { notificationListReducer } from "./NotificationReducer";
 import { PickUpReducer } from "./PickUpReducer";
@@ -33,7 +33,7 @@ export default {
     agencyForm: agencyCreateFormReducer,
     agency: agencyReducer,
     agencyStatus: agencyStatusReducer,
-    addEditAgency : addEditAgencyReducer,
+    addEditAgency: addEditAgencyReducer,
 
     SourcingManager: SourcingManagerReducer,
     propertyData: propertyReducer,
@@ -61,12 +61,12 @@ export default {
 
     // Booking
     booking: BookingReducer,
-    cancelBooking: cancelBookingReducer,
+    cancelAddBooking: cancelAddBookingReducer,
     addedBooking: addBookingReducer,
-    
+
     // chat
     chatData: ChatReducer,
-    
+
 
 
     // visit modal

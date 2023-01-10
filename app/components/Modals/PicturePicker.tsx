@@ -17,15 +17,46 @@ const PicturePickerModal = (props: any) => {
             compressImageQuality: 0.8,
         }).then((image: any) => {
             props.setVisible(false);
-            props.imageData(
-                {
-                    uri: image?.path,
-                    type: image?.mime,
-                    name: image?.path?.substring(
-                        image?.path?.lastIndexOf("/") + 1
-                    ),
+            if (props.multiple && image?.length > 0) {
+                const allArray: any = image?.map((itm: any) => {
+                    return {
+                        uri: itm?.path,
+                        type: itm?.mime,
+                        name: itm?.path?.substring(
+                            itm?.path?.lastIndexOf("/") + 1
+                        ),
+                    }
+                })
+                if (props?.value?.length === 0) {
+                    props.imageData(allArray)
+                } else {
+                    var newAdd: any[] = [...props?.value];
+                    const getNew = newAdd.concat(allArray);
+                    props.imageData(getNew)
                 }
-            );
+            } else {
+                if (props?.value?.length === 0) {
+                    props.imageData(
+                        {
+                            uri: image?.path,
+                            type: image?.mime,
+                            name: image?.path?.substring(
+                                image?.path?.lastIndexOf("/") + 1
+                            ),
+                        }
+                    );
+                } else {
+                    var newAdd: any[] = [...props?.value];
+                    const getNew = newAdd.concat({
+                        uri: image?.path,
+                        type: image?.mime,
+                        name: image?.path?.substring(
+                            image?.path?.lastIndexOf("/") + 1
+                        ),
+                    });
+                    props.imageData(getNew)
+                }
+            }
         });
     }
     const handleGalleryPress = () => {
@@ -37,15 +68,34 @@ const PicturePickerModal = (props: any) => {
             compressImageQuality: 0.8,
         }).then((image: any) => {
             props.setVisible(false);
-            props.imageData(
-                {
-                    uri: image?.path,
-                    type: image?.mime,
-                    name: image?.path?.substring(
-                        image?.path?.lastIndexOf("/") + 1
-                    ),
+            if (props.multiple && image?.length > 0) {
+                const allArray: any = image?.map((itm: any) => {
+                    return {
+                        uri: itm?.path,
+                        type: itm?.mime,
+                        name: itm?.path?.substring(
+                            itm?.path?.lastIndexOf("/") + 1
+                        ),
+                    }
+                })
+                if (props?.value?.length === 0) {
+                    props.imageData(allArray)
+                } else {
+                    var newAdd: any[] = [...props?.value];
+                    const getNew = newAdd.concat(allArray);
+                    props.imageData(getNew)
                 }
-            )
+            } else {
+                props.imageData(
+                    {
+                        uri: image?.path,
+                        type: image?.mime,
+                        name: image?.path?.substring(
+                            image?.path?.lastIndexOf("/") + 1
+                        ),
+                    }
+                )
+            }
         });
     }
 

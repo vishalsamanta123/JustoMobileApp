@@ -6,22 +6,77 @@ import Header from "../../../components/Header";
 import images from "../../../assets/images";
 import styles from "./styles";
 import strings from "../../../components/utilities/Localization";
-import { GREEN_COLOR, RED_COLOR, WHITE_COLOR } from "../../../components/utilities/constant";
+import { GREEN_COLOR, RED_COLOR, ROLE_IDS, WHITE_COLOR } from "../../../components/utilities/constant";
+import SourcingDashboardView from "./SourcingView";
+import ClosingDashboardView from "./ClosingView";
+import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
+import PostSaleDashboardView from "./PostSalesView";
 
 const DashboardView = (props: any) => {
-  const targetData = props?.dashboardData?.userTarget ||
-    props?.dashboardData?.target || {}
-  const achieveTargetData = props?.dashboardData?.achievetargetdata ||
-    props?.dashboardData?.achievetarget || {}
+  const data = [
+    {
+      email: "niteshtl@gmail.com",
+      last_login: "2023-01-03T08:54:34.964Z",
+      mobile: "8976450213",
+      online_status: 0,
+      role_id: "63466085fadec47fe8e96bb7",
+      total_closing_lead: 0,
+      total_closing_percentage: "0%",
+      total_site_visit: 0,
+      total_visit: 0,
+      user_id: "63b3ed4a9a2a96a1c19d4f33",
+      user_name: "nitesh tl",
+    },
+    {
+      email: "niteshtl@gmail.com",
+      last_login: "2023-01-03T08:54:34.964Z",
+      mobile: "8976450213",
+      online_status: 0,
+      role_id: "63466085fadec47fe8e96bb7",
+      total_closing_lead: 0,
+      total_closing_percentage: "0%",
+      total_site_visit: 0,
+      total_visit: 0,
+      user_id: "63b3ed4a9a2a96a1c19d4f33",
+      user_name: "nitesh tl",
+    },
+    {
+      email: "niteshtl@gmail.com",
+      last_login: "2023-01-03T08:54:34.964Z",
+      mobile: "8976450213",
+      online_status: 0,
+      role_id: "63466085fadec47fe8e96bb7",
+      total_closing_lead: 0,
+      total_closing_percentage: "0%",
+      total_site_visit: 0,
+      total_visit: 0,
+      user_id: "63b3ed4a9a2a96a1c19d4f33",
+      user_name: "nitesh tl",
+    },
+    {
+      email: "niteshtl@gmail.com",
+      last_login: "2023-01-03T08:54:34.964Z",
+      mobile: "8976450213",
+      online_status: 0,
+      role_id: "63466085fadec47fe8e96bb7",
+      total_closing_lead: 0,
+      total_closing_percentage: "0%",
+      total_site_visit: 0,
+      total_visit: 0,
+      user_id: "63b3ed4a9a2a96a1c19d4f33",
+      user_name: "nitesh tl",
+    },
 
+  ]
   const insets = useSafeAreaInsets();
-  const role = props?.getLoginType?.response?.data?.role_title || {}
+  const roleType = props?.getLoginType?.response?.data?.role_id || null
   const renderItem = ({ item }: any) => {
     return (
       <TouchableOpacity style={styles.headingView}>
-        <Text style={styles.itemText}>{props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ?
-          item.user_name : props.getLoginType?.response?.data?.role_title === 'Sourcing Manager'
-            ? item.agent_name : strings.notfount}</Text>
+        <Text style={styles.itemText}>{
+          roleType === ROLE_IDS.sourcingtl_id ?
+            item.user_name : roleType === ROLE_IDS.sourcingmanager_id
+              ? item.agent_name : strings.notfount}</Text>
         <Text style={styles.itemText}>{item.total_visit}</Text>
         <Text style={styles.itemText}>{item.total_site_visit}</Text>
         <Text style={styles.itemText}>{item.total_closing_lead}</Text>
@@ -60,8 +115,6 @@ const DashboardView = (props: any) => {
                     // barHeight={1}
                     circleBorderWidth={2}
                   />
-
-
                 </View>
               </View>
               <View style={styles.welcomeView}>
@@ -81,145 +134,38 @@ const DashboardView = (props: any) => {
               </TouchableOpacity>
             </View>
           </View>
-          {/* Top Section */}
-          {role === 'Sourcing TL' || role === 'Sourcing Manager' ?
-            <>
-              <View style={styles.secondPortion}>
-                <View style={styles.firstCardView}>
-                  <View style={styles.cardTextView}>
-                    <Text style={styles.cardText}>Visit Target</Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.numberText}>{achieveTargetData?.achieve_visit_target}/{targetData?.booking_target}</Text>
-                  </View>
-                </View>
-                <View style={styles.secondCardView}>
-                  <View style={styles.cardTextView}>
-                    <Text style={styles.cardText}>Site Visit Target</Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.numberText}>{achieveTargetData?.achieve_site_visit_target}/{targetData?.site_visit_target}</Text>
-                  </View>
-                </View>
-              </View>
-              {/* Bottom Section */}
-              <View style={styles.thirdPortion}>
-                <View style={styles.thirdPortioncardView}>
-                  <View style={styles.thirdPortionCardTextView}>
-                    <Text style={styles.thirdPortionCardText}>Today Visit</Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_visit}</Text>
-                  </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
-                  <View style={styles.thirdPortionCardTextView}>
-                    <Text style={styles.thirdPortionCardText} numberOfLines={2}>
-                      Today Site Visit
-                    </Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_site_visit}</Text>
-                  </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
-                  <View style={styles.thirdPortionCardTextView}>
-                    <Text style={styles.thirdPortionCardText}>{props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ? 'Active SM' : 'Active CP'}</Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.thirdPortionNumberText}>{
-                      role === 'Sourcing TL' ? props?.dashboardData?.total_sorcing_manager : props?.dashboardData?.active_cp
-                    }</Text>
-                  </View>
-                </View>
-              </View>
-            </>
+          {roleType === ROLE_IDS.sourcingtl_id ||
+            roleType === ROLE_IDS.sourcingmanager_id ?
+            <SourcingDashboardView
+              dashboardData={props?.dashboardData}
+              getLoginType={props.getLoginType}
+            />
             :
             <>
-              <View style={styles.secondPortion}>
-                <View style={styles.thirdCardView}>
-                  <View style={styles.cardTextView}>
-                    <Text style={styles.cardText}>Closing Target</Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.numberText}>{achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}</Text>
-                  </View>
-                </View>
-                <View style={styles.secondCardView}>
-                  <View style={styles.cardTextView}>
-                    <Text style={styles.cardText}>Booking Target</Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.numberText}>{achieveTargetData?.achieve_site_visit_target}/{targetData?.site_visit_target}</Text>
-                  </View>
-                </View>
-              </View>
-              {/* Bottom Section */}
-              <View style={styles.thirdPortion}>
-                <View style={styles.thirdPortioncardView}>
-                  <View style={styles.thirdPortionCardTextView}>
-                    <Text style={styles.thirdPortionCardText}>
-                      Today Site Visit
-                    </Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_site_visit}</Text>
-                  </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
-                  <View style={styles.thirdPortionCardTextView}>
-                    <Text style={styles.thirdPortionCardText}>
-                      Today Closed Visit
-                    </Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_close_visit}</Text>
-                  </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
-                  <View style={styles.thirdPortionCardTextView}>
-                    <Text style={styles.thirdPortionCardText}>
-                      Today Booking
-                    </Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_booking}</Text>
-                  </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
-                  <View style={styles.thirdPortionCardTextView}>
-                    <Text style={styles.thirdPortionCardText}>Ready to Book</Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.thirdPortionNumberText}>
-                      {props?.dashboardData?.total_ready_booking}</Text>
-                  </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
-                  <View style={styles.thirdPortionCardTextView}>
-                    <Text style={styles.thirdPortionCardText}>{'Cancel Booking'}</Text>
-                  </View>
-                  <View style={styles.numberView}>
-                    <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_closing_manager}</Text>
-                  </View>
-                </View>
-                {role === 'Closing TL' ?
-                  <View style={styles.thirdPortioncardView}>
-                    <View style={styles.thirdPortionCardTextView}>
-                      <Text style={styles.thirdPortionCardText}>{'Active CM'}</Text>
+              {roleType === ROLE_IDS.closingtl_id ||
+                roleType === ROLE_IDS.closingmanager_id ?
+                <ClosingDashboardView
+                  dashboardData={props?.dashboardData}
+                  getLoginType={props.getLoginType}
+                /> :
+                <>
+                  {roleType === ROLE_IDS.postsales_id ?
+                    <PostSaleDashboardView
+                      dashboardData={props?.dashboardData}
+                      getLoginType={props.getLoginType}
+                    /> :
+                    <View style={styles.secondPortion}>
+                      <ComingSoonScreen />
                     </View>
-                    <View style={styles.numberView}>
-                      <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_closing_manager}</Text>
-                    </View>
-                  </View> : null
-                }
-              </View>
+                  }
+                </>
+              }
             </>
           }
           {props?.listData?.length > 0 ?
             (<View style={styles.bottomSection}>
               <View style={styles.headingView}>
-                {props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ?
+                {roleType === ROLE_IDS.sourcingtl_id ?
                   <>
                     <Text style={styles.headingText}>SM NAME</Text>
                     <Text style={styles.headingText}>VISITOR</Text>
@@ -228,7 +174,7 @@ const DashboardView = (props: any) => {
                   </>
                   :
                   <>
-                    {props?.getLoginType?.response?.data?.role_title === 'Sourcing Manager' &&
+                    {roleType === ROLE_IDS.sourcingmanager_id &&
                       <>
                         <Text style={styles.headingText}>CP NAME</Text>
                         <Text style={styles.headingText}>VISITOR</Text>
@@ -242,8 +188,8 @@ const DashboardView = (props: any) => {
               <FlatList
                 data={props?.listData}
                 renderItem={renderItem} />
-              {props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ||
-                props?.getLoginType?.response?.data?.role_title === 'Sourcing Manager'
+              {roleType === ROLE_IDS.sourcingtl_id ||
+                roleType === ROLE_IDS.sourcingmanager_id
                 && props?.listData?.length > 5 ?
                 <TouchableOpacity style={styles.headingView}>
                   <Text style={[styles.headingText, styles.knowMoreText]}>

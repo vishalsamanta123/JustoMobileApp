@@ -36,7 +36,18 @@ export const TIME_FORMAT = 'LT'
 export const AMOUNT_TYPE = [{ value: "Cr" }, { value: "L" }, { value: "K" }]
 
 // export const  GLOBAL_URL = 'http://192.168.1.27:3000'
-export const  GLOBAL_URL = 'https://itinformatix.org:3044'
+export const GLOBAL_URL = 'https://itinformatix.org:3044'
 // export const  MAP_KEY = 'AIzaSyDdLk5tb75SiJvRk9F2B4almu-sBAi1-EM'
-export const  MAP_KEY = 'AIzaSyCbDx7Lk4eTMzptrQKXZvOPYgEMggrq8o4'
+export const MAP_KEY = 'AIzaSyCbDx7Lk4eTMzptrQKXZvOPYgEMggrq8o4'
 
+export const ROLE_IDS = {
+  suadminrole_id: "6344049eb4f40996bcf1265a",
+  admin_id: "6373203dd9363c459e315563",
+  sourcingtl_id: "63464da503a33caee62c9cf2",
+  sourcingmanager_id: "63466085fadec47fe8e96bb7",
+  closingmanager_id: "63731fd3d9363c459e31551f",
+  closingtl_id: "63731fafd9363c459e31550c",
+  cp_id: "6346a40364de88d6385d4e38",
+  agent_id: "6373209fd9363c459e3155b6",
+  postsales_id: "63732009d9363c459e315530",
+}

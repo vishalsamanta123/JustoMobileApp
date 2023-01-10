@@ -27,7 +27,6 @@ const customDrawer = ({ navigation }: any) => {
   const isDrawerOpen = useDrawerStatus() === "open";
   const insets = useSafeAreaInsets();
   const [userData, setUserData] = useState<any>({});
-  // console.log('userData: ', userData);
   useEffect(() => {
     if (response?.status === 200) {
       setUserData(response?.data)
@@ -160,7 +159,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"postsales,Closing TL,Closing Manager"}
+          type={"Closing TL,Closing Manager,Post Sales"}
           iconSource={images.lead}
           tabTitle={strings.readytoBookHeader}
           handleDrawerNavigation={() => {
@@ -216,11 +215,19 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"postsales,Closing Manager,Closing TL"}
+          type={"Closing Manager,Closing TL,Post Sales"}
           iconSource={images.lead}
           tabTitle={strings.bookingRequestHead}
           handleDrawerNavigation={() => {
             navigation.navigate("BookingList", { type: "request" });
+          }}
+        />
+        <DrawerTabSection
+          type={"Post Sales"}
+          iconSource={images.lead}
+          tabTitle={strings.registrationReqHead}
+          handleDrawerNavigation={() => {
+            navigation.navigate("BookingList", { type: "register" });
           }}
         />
         <DrawerTabSection
@@ -240,7 +247,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"all"}
+          type={userData?.role_title === 'Post Sales' ? '' : "all"}
           iconSource={images.support}
           tabTitle={strings.supportForumHeader}
           handleDrawerNavigation={() => {

@@ -4,11 +4,14 @@ import styles from './styles'
 import Button from '../../../../components/Button'
 import { normalize } from '../../../../components/scaleFontSize'
 import strings from '../../../../components/utilities/Localization'
-import { BLACK_COLOR } from 'app/components/utilities/constant'
+import { BLACK_COLOR, DATE_BY_DAY, ROLE_IDS } from 'app/components/utilities/constant'
+import { useSelector } from 'react-redux'
+import moment from 'moment'
 
 const BookingDetailsItem = (props: any) => {
-    console.log('props: ', props);
+    const getLoginType = useSelector((state: any) => state.login);
     const item = props?.item[0] || {}
+    console.log('item: ', item);
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
@@ -50,13 +53,83 @@ const BookingDetailsItem = (props: any) => {
                 </View>
             </View>
             <>
+                {props?.type === 'readyToBook' ?
+                    <>
+                        <View style={styles.Txtview}>
+                            <View style={styles.projectContainer}>
+                                <Text style={styles.projectTxt}>Book Date</Text>
+                            </View>
+                            <View><Text>:</Text></View>
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.nameTxt}>{item?.booking_date === '' ||
+                                    item?.booking_date === undefined ||
+                                    item?.booking_date === null ?
+                                    strings.notfount : moment(item?.booking_date).format(DATE_BY_DAY)
+                                }</Text>
+                            </View>
+                        </View>
+                        <View style={styles.Txtview}>
+                            <View style={styles.projectContainer}>
+                                <Text style={styles.projectTxt}>Other Details</Text>
+                            </View>
+                            <View><Text>:</Text></View>
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.nameTxt}>{item?.description ?
+                                    item?.description : strings.notfount}</Text>
+                            </View>
+                        </View>
+                    </> : null
+                }
+                {getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id
+                    && props?.type === 'readyToBook' ?
+                    <>
+                        <View style={styles.Txtview}>
+                            <View style={styles.projectContainer}>
+                                <Text style={styles.projectTxt}>User Name</Text>
+                            </View>
+                            <View><Text>:</Text></View>
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.nameTxt}>{item?.leads?.customer?.first_name ?
+                                    item?.leads?.customer?.first_name : strings.notfount}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.Txtview}>
+                            <View style={styles.projectContainer}>
+                                <Text style={styles.projectTxt}>Lead By</Text>
+                            </View>
+                            <View><Text>:</Text></View>
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.nameTxt}>{item?.visit_create_by?.role_title}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.Txtview}>
+                            <View style={styles.projectContainer}>
+                                <Text style={styles.projectTxt}>Lead Username</Text>
+                            </View>
+                            <View><Text>:</Text></View>
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.nameTxt}>{item?.visit_create_by?.user_name}</Text>
+                            </View>
+                        </View>
+                        <View style={[styles.Txtview, { alignItems: 'flex-start', }]}>
+                            <View style={styles.projectContainer}>
+                                <Text style={styles.projectTxt}>Location</Text>
+                            </View>
+                            <View><Text>:</Text></View>
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.nameTxt}>{item?.properties?.area}</Text>
+                            </View>
+                        </View>
+                    </> : null
+                }
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
                         <Text style={styles.projectTxt}>Configuration</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.coniguration}</Text>
+                        <Text style={styles.nameTxt}>{item?.configuration ?
+                            item?.configuration : strings.notfount}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -65,18 +138,21 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.leads?.customer?.areain_sqlft}</Text>
+                        <Text style={styles.nameTxt}>{item?.area ?
+                            item?.area : strings.notfount}</Text>
                     </View>
                 </View>
-                <View style={styles.Txtview}>
-                    <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Budget</Text>
-                    </View>
-                    <View><Text>:</Text></View>
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.leads?.customer?.budget}</Text>
-                    </View>
-                </View>
+                {getLoginType?.response?.data?.role_id !== ROLE_IDS.postsales_id ?
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Budget</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{item?.leads?.customer?.budget}</Text>
+                        </View>
+                    </View> : null
+                }
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
                         <Text style={styles.projectTxt}>Current Status</Text>
@@ -86,42 +162,59 @@ const BookingDetailsItem = (props: any) => {
                         {/* booking_status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 =booking cancel} */}
                         <Text style={[styles.nameTxt, {
                             color: item?.booking_status === 1 || item?.booking_status === 4 ? 'red' : BLACK_COLOR
-                        }]}>{
-                                item?.booking_status === 1 ? 'Pending' :
-                                    item?.booking_status === 2 ? 'Confirm' :
-                                        item?.booking_status === 3 ? 'Completed' :
-                                            item?.booking_status === 4 && 'Booking Cancel'
+                        }]}>{item?.leads?.lead_status === 5 &&
+                            props?.type === 'register' ? "Registered" :
+                            item?.booking_status === 1 ? 'Pending' :
+                                item?.booking_status === 2 ? 'Confirm' :
+                                    item?.booking_status === 3 ? 'Completed' :
+                                        item?.booking_status === 4 && 'Booking Cancel'
                             }</Text>
                     </View>
                 </View>
             </>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Property Name</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.properties?.property_title}</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Visitor Name</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.leads?.customer?.first_name}</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Source</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.creaters?.user_name}</Text>
-                </View>
-            </View>
+            {getLoginType?.response?.data?.role_id !== ROLE_IDS.postsales_id ?
+                <>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Property Name</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{item?.properties?.property_title}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Visitor Name</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{item?.leads?.customer?.first_name}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Source</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{item?.creaters?.user_name}</Text>
+                        </View>
+                    </View>
+                </> : null
+            }
+            {getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id
+                && props?.type === 'readyToBook' ?
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Close By</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{item?.visit_create_by?.role_title}</Text>
+                    </View>
+                </View> : null
+            }
             {/* <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
                     <Text style={styles.projectTxt}>Closing Date</Text>
@@ -131,7 +224,7 @@ const BookingDetailsItem = (props: any) => {
                     <Text style={styles.nameTxt}>nullll</Text>
                 </View>
             </View> */}
-            {props?.type !== 'readyToBook' ? (
+            {props?.type !== 'readyToBook' && props?.type !== 'register' ? (
                 <>
                     <View style={styles.headdingView}>
                         <Text style={styles.headdingTxt}>{strings.bookingDetails}</Text>
@@ -145,6 +238,26 @@ const BookingDetailsItem = (props: any) => {
                             <Text style={styles.nameTxt}>{item?.booking_amount}</Text>
                         </View>
                     </View>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Booking No.</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>{item?.booking_no}</Text>
+                        </View>
+                    </View>
+                    {getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id ?
+                        <View style={styles.Txtview}>
+                            <View style={styles.projectContainer}>
+                                <Text style={styles.projectTxt}>Booking By</Text>
+                            </View>
+                            <View><Text>:</Text></View>
+                            <View style={styles.nameContainer}>
+                                <Text style={styles.nameTxt}>{item?.booking_by_name}</Text>
+                            </View>
+                        </View> : null
+                    }
                     <View style={styles.Txtview}>
                         <View style={styles.projectContainer}>
                             <Text style={styles.projectTxt}>Cheque No.</Text>
@@ -188,6 +301,58 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                 </>)
                 : null
+            }
+            {props?.type === 'register' ?
+                <>
+                    <View style={styles.headdingView}>
+                        <Text style={styles.headdingTxt}>{'Registration Details'}</Text>
+                    </View>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Register Amount</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>
+                                {item?.total_amount && item?.total_amount_type ?
+                                    item?.total_amount + " " + item?.total_amount_type :
+                                    null}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Register No.</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>
+                                {item?.booking_no ?
+                                    item?.booking_no : strings.notfount}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Register By</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>
+                                {item?.register_by_name ?
+                                    item?.register_by_name : null}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.Txtview}>
+                        <View style={styles.projectContainer}>
+                            <Text style={styles.projectTxt}>Configuration Qty</Text>
+                        </View>
+                        <View><Text>:</Text></View>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.nameTxt}>
+                                {item?.configuration && item?.quantity ?
+                                    `${item?.configuration} / ${item?.quantity}` : strings.notfount}</Text>
+                        </View>
+                    </View>
+                </> : null
             }
         </ScrollView>
     )
