@@ -15,8 +15,6 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 
 const AddAppointmentItem = (props: any) => {
-  console.log("props.addAppointmentForm: ", props.addAppointmentForm);
-
   return (
     <ScrollView>
       <View style={styles.wrap}>
@@ -82,7 +80,6 @@ const AddAppointmentItem = (props: any) => {
             valueField={"_id"}
             value={props.addAppointmentForm?.appointment_type}
             onChange={(item: any) => {
-              console.log("item: ", item);
               props.setAddAppointmentForm({
                 ...props.addAppointmentForm,
                 appointment_type: item._id,
@@ -126,7 +123,7 @@ const AddAppointmentItem = (props: any) => {
             value={
               props.role === "TL"
                 ? props.listData._id
-                : props.addAppointmentForm?.appointment_with
+                : props.listData._id
             }
             onChange={(item: any) => {
               props.setAddAppointmentForm({
@@ -135,7 +132,6 @@ const AddAppointmentItem = (props: any) => {
               });
             }}
             newRenderItem={(item: any) => {
-              console.log("item: ", item);
               return (
                 <View
                   style={{

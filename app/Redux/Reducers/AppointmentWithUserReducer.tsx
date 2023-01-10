@@ -11,11 +11,8 @@ import {
 
 const initialState = {
   response: null,
-  detail: false,
   create: false,
   list: false,
-  update: false,
-  edit: false,
 };
 const editInitialState = {
   response: null,
@@ -31,12 +28,6 @@ export function userAppointmentReducer(state = initialState, action: any) {
         create: true,
         response: action.payload,
       };
-    case EDIT_USER_APPOINTMENT:
-      return {
-        ...state,
-        edit: true,
-        response: action.payload,
-      };
     case GET_USER_APPOINTMENT_LIST:
       return {
         ...state,
@@ -44,7 +35,6 @@ export function userAppointmentReducer(state = initialState, action: any) {
         response: action.payload,
       };
     case GET_USER_APPOINTMENT_LIST_ERROR:
-    case EDIT_USER_APPOINTMENT_ERROR:
     case ADD_USER_APPOINTMENT_ERROR:
       return {
         ...state,
