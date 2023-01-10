@@ -210,7 +210,8 @@ const AddNewCMView = (props: any) => {
                         require={true}
                         leftIcon={images.event}
                         mode={'date'}
-                        placeholderText={"Date of Birth"}//can edit
+                        headingText={"Date of Birth"}
+                        placeholderText={"Date of Birth"}
                         editable={false}
                         dateData={(data: any) => {
                             props.setAddNewCMData({

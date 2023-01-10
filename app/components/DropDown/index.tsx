@@ -23,7 +23,7 @@ const DropdownInput = (props: any) => {
     return (
         <View>
             <View style={styles.inputHeadinView}>
-                <Text style={styles.inputHeadingText}>{props.headingText}</Text>
+                <Text numberOfLines={1} style={styles.inputHeadingText}>{props.headingText}</Text>
                 {require ? (<RequiredStart />) : null}
             </View>
             <View style={styles.mainContainer}>
