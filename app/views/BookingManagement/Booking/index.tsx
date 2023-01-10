@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPropertyConfig } from "app/Redux/Actions/MasterActions";
+import { getAllMaster, getPropertyConfig } from "app/Redux/Actions/MasterActions";
 import BookingView from "./components/Booking";
 import { Alert } from "react-native";
 import { AddBooking, removeAddBookingData } from "app/Redux/Actions/AppointmentCLAction";
@@ -18,7 +18,7 @@ const BookingScreen = ({ navigation, route }: any) => {
         customer_id: getBookingData?.customer_id ? getBookingData?.customer_id : "",
         booking_amount: '',
         tranjection_upi_cheque_number: '',
-        payment_type: 2,
+        payment_type: '',
         booking_date: moment(new Date()).format(),
         cheque_image: '',
         coniguration: '',
@@ -27,16 +27,25 @@ const BookingScreen = ({ navigation, route }: any) => {
         description: '',
         booking_id: getBookingData?._id ? getBookingData?._id : ''
     })
+    console.log('bookingData: ', bookingData);
     const masterData = useSelector((state: any) => state.masterData) || {}
     const addedBookingData = useSelector((state: any) => state.addedBooking) || {}
-    const {response = {}} = useSelector((state: any) => state.booking) || {}
+    const { response = {} } = useSelector((state: any) => state.booking) || {}
     const [masterDatas, setMasterDatas] = useState<any>([])
-    useEffect(() => {
-        dispatch(getPropertyConfig({
-            module_id: '',
-            property_id: getBookingData?.property_id ? getBookingData?.property_id : "",
-        }))
-    }, [navigation])
+    const [paymentTypes, setPaymentTypes] = useState<any>([])
+
+    const getDropDownData = (data: any) => {
+        if (data === 10) {
+            dispatch(getAllMaster({
+                type: 10,
+            }))
+        } else {
+            dispatch(getPropertyConfig({
+                module_id: '',
+                property_id: getBookingData?.property_id ? getBookingData?.property_id : "",
+            }))
+        }
+    }
     useEffect(() => {
         if (masterData?.response?.status === 200) {
             setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
@@ -49,11 +58,9 @@ const BookingScreen = ({ navigation, route }: any) => {
                 msg: addedBookingData?.response?.message,
                 backgroundColor: GREEN_COLOR
             })
-            handleBackPress()
+            navigation.navigate("BookingList", { type: "request" });
         }
     }, [addedBookingData])
-
-
 
     const [browse, setBrowse] = useState(false)
     const handleBackPress = () => {
@@ -65,13 +72,9 @@ const BookingScreen = ({ navigation, route }: any) => {
         if (bookingData.booking_amount == undefined || bookingData.booking_amount == '') {
             isError = false;
             errorMessage = "Booking Amount is require. Please enter Booking Amount"
-        } else if (bookingData.tranjection_upi_cheque_number == undefined ||
-            bookingData.tranjection_upi_cheque_number == '') {
+        } else if (bookingData.payment_type == undefined || bookingData.payment_type == '') {
             isError = false;
-            errorMessage = "Cheque Number is require. Please enter cheque number"
-        } else if (typeof bookingData.cheque_image != 'object' || bookingData.cheque_image == '') {
-            isError = false;
-            errorMessage = "Cheque Image is require. Please select cheque image"
+            errorMessage = "Payment Type is require. Please select payment type"
         } else if (bookingData.coniguration_id == undefined || bookingData.coniguration_id == '') {
             isError = false;
             errorMessage = "Purchase Configuration is require. Please select purchase configuration"
@@ -81,6 +84,17 @@ const BookingScreen = ({ navigation, route }: any) => {
         } else if (bookingData.description == undefined || bookingData.description == '') {
             isError = false;
             errorMessage = "Comment is require. Please enter description"
+        }
+        if (bookingData.payment_type === 'Cheque') {
+            if (bookingData.tranjection_upi_cheque_number === undefined ||
+                bookingData.tranjection_upi_cheque_number === '') {
+                isError = false;
+                errorMessage = "Cheque Number is require. Please enter cheque number"
+            } else if (bookingData?.payment_type === 'Cheque' &&
+                typeof bookingData.cheque_image != 'object' || bookingData.cheque_image == '') {
+                isError = false;
+                errorMessage = "Cheque Image is require. Please select cheque image"
+            }
         }
         if (errorMessage !== '') {
             ErrorMessage({
@@ -109,11 +123,11 @@ const BookingScreen = ({ navigation, route }: any) => {
             newFormdata.append("description", bookingData.description)
             newFormdata.append("booking_status", 2)
             if (type === 'readyToBook') {
-            newFormdata.append("booking_id", bookingData?.booking_id)
+                newFormdata.append("booking_id", bookingData?.booking_id)
             }
             if (type === 'readyToBook') {
                 dispatch(updateBookingDetailStatus(newFormdata))
-            }else{
+            } else {
                 dispatch(AddBooking(newFormdata))
             }
         }
@@ -127,7 +141,9 @@ const BookingScreen = ({ navigation, route }: any) => {
                 handleBookPress={handleBookPress}
                 setBookingData={setBookingData}
                 bookingData={bookingData}
+                getDropDownData={getDropDownData}
                 masterDatas={masterDatas}
+                paymentTypes={paymentTypes}
             />
         </>
     )

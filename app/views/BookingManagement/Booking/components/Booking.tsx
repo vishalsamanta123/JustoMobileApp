@@ -1,6 +1,4 @@
 import DropdownInput from "app/components/DropDown";
-import InputCalender from "app/components/InputCalender";
-import moment from "moment";
 import React from "react";
 import { View, Text, Image, ScrollView } from 'react-native';
 import images from "../../../../assets/images";
@@ -10,7 +8,7 @@ import InputField from "../../../../components/InputField";
 import PicturePickerModal from "../../../../components/Modals/PicturePicker";
 import { normalize } from "../../../../components/scaleFontSize";
 import Styles from 'app/components/Modals/styles'
-import { BLUE_COLOR, CALL_COLOR, DATE_FORMAT, Isios, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
+import { PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 
@@ -46,51 +44,70 @@ const BookingView = (props: any) => {
                         />
                     </View>
                     <View style={styles.inputWrap}>
-                        <InputField
-                            placeholderText={"Number"}
-                            handleInputBtnPress={() => { }}
-                            onChangeText={(data: any) => {
-                                props.setBookingData({
-                                    ...props.bookingData,
-                                    tranjection_upi_cheque_number: data
-                                })
-                            }}
-                            valueshow={props?.bookingData?.tranjection_upi_cheque_number}
-                            headingText={"Cheque No."}
-                        />
-                    </View>
-                    <View style={styles.inputWrap}>
-                        <InputField
-                            placeholderText={"Cheque"}
-                            onChangeText={(data: any) => {
-                                props.setBookingData({
-                                    ...props.bookingData,
-                                    payment_type: data
-                                })
-                            }}
-                            valueshow={props?.bookingData?.payment_type}
+                        <DropdownInput
                             headingText={"Payment Type"}
+                            data={Array.isArray(props?.masterDatas) ? props?.masterDatas : []}
+                            inputWidth={'100%'}
+                            paddingLeft={16}
+                            maxHeight={300}
+                            onFocus={() => props.getDropDownData(10)}
+                            labelField={"title"}
+                            valueField={'title'}
+                            value={props?.bookingData?.payment_type}
+                            onChange={(item: any) => {
+                                props.setBookingData({
+                                    ...props.bookingData,
+                                    payment_type: item.title,
+                                })
+                            }}
+                            newRenderItem={(item: any) => {
+                                return (
+                                    <>
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.title}</Text>
+                                        </View>
+                                    </>
+                                );
+                            }}
                         />
                     </View>
-                    <View style={styles.straightVw}>
-                        <Text style={[styles.titleTxt, {
-                            bottom: typeof props?.bookingData?.cheque_image === 'object' ? 8 : 0
-                        }]}>Cheque Photo : </Text>
-                        <View>
-                            <Button
-                                width={130}
-                                height={45}
-                                buttonText={strings.browse}
-                                bgcolor={PRIMARY_THEME_COLOR}
-                                border={14}
-                                handleBtnPress={() => props.setBrowse(true)}
-                            />
-                            {typeof props?.bookingData?.cheque_image === 'object' ?
-                                <Text style={{ fontSize: 12, textAlign: "center" }}>{"Cheque Added"}</Text> : null
-                            }
-                        </View>
-
-                    </View>
+                    {props.bookingData?.payment_type === 'Cheque' ?
+                        <>
+                            <View style={styles.inputWrap}>
+                                <InputField
+                                    placeholderText={"Number"}
+                                    handleInputBtnPress={() => { }}
+                                    onChangeText={(data: any) => {
+                                        props.setBookingData({
+                                            ...props.bookingData,
+                                            tranjection_upi_cheque_number: data
+                                        })
+                                    }}
+                                    valueshow={props?.bookingData?.tranjection_upi_cheque_number}
+                                    headingText={"Cheque No."}
+                                />
+                            </View>
+                            <View style={styles.straightVw}>
+                                <Text style={[styles.titleTxt, {
+                                    bottom: typeof props?.bookingData?.cheque_image === 'object' ? 8 : 0
+                                }]}>Cheque Photo : </Text>
+                                <View>
+                                    <Button
+                                        width={130}
+                                        height={45}
+                                        buttonText={strings.browse}
+                                        bgcolor={PRIMARY_THEME_COLOR}
+                                        border={14}
+                                        handleBtnPress={() => props.setBrowse(true)}
+                                    />
+                                    {typeof props?.bookingData?.cheque_image === 'object' ?
+                                        <Text style={{ fontSize: 12, textAlign: "center" }}>{"Cheque Added"}</Text> : null
+                                    }
+                                </View>
+                            </View>
+                        </>
+                        : null
+                    }
                     {/* <View style={styles.inputWrap}>
                     <InputCalender
                         mode={'date'}
@@ -116,6 +133,7 @@ const BookingView = (props: any) => {
                         <View style={{ width: '48%' }}>
                             <DropdownInput
                                 headingText={'Pur. Configuration'}
+                                onFocus={() => props.getDropDownData()}
                                 placeholder={props?.bookingData?.coniguration ?
                                     props?.bookingData?.coniguration : 'Configuration'}
                                 data={Array.isArray(props?.masterDatas) ? props?.masterDatas : []}
