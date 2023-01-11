@@ -5,10 +5,14 @@ const SupportScreen = ({ navigation }: any) => {
     const handleDrawerPress = () => {
         navigation.toggleDrawer();
     };
+    const handleAddTicket = () => {
+        navigation.navigate('AddTicket');
+    };
     return (
         <>
             <SupportView
                 handleDrawerPress={handleDrawerPress}
+                handleAddTicket={handleAddTicket}
             />
         </>
     )

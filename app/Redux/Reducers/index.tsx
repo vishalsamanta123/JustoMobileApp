@@ -19,6 +19,7 @@ import { firebaseReducer } from "./FirebaseReducer";
 import { ChatReducer } from "./ChatReducer";
 import { userAppointmentReducer, userEditAppointmentReducer } from "./AppointmentWithUserReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
+import { SupportReducer } from "./SupportReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -34,7 +35,7 @@ export default {
     agencyForm: agencyCreateFormReducer,
     agency: agencyReducer,
     agencyStatus: agencyStatusReducer,
-    addEditAgency : addEditAgencyReducer,
+    addEditAgency: addEditAgencyReducer,
 
     SourcingManager: SourcingManagerReducer,
     propertyData: propertyReducer,
@@ -64,10 +65,10 @@ export default {
     booking: BookingReducer,
     cancelBooking: cancelBookingReducer,
     addedBooking: addBookingReducer,
-    
+
     // chat
     chatData: ChatReducer,
-    
+
 
 
     // visit modal
@@ -82,7 +83,10 @@ export default {
     //pickUp
     Pickup: PickUpReducer,
 
-     //support Forum
-     supportForumData: supportForumReducer,
-     supportForumUpdateData: supportForumUpdateReducer,
+    //support Forum
+    supportForumData: supportForumReducer,
+    supportForumUpdateData: supportForumUpdateReducer,
+
+    // Raise Ticket (Support)
+    Support: SupportReducer
 }
