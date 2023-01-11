@@ -76,7 +76,7 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
 import AddNewVisitorScreen from "app/views/LeadManagement/AddNewVisitor";
 import FollowUpAddScreen from "app/views/AppointMent/FollowUpAdd";
-import SupportScreen from "app/views/Support";
+import SupportScreen from "app/views/SupportScreen/Support";
 import SalesToolsScreen from "app/views/SalesTools";
 import ReportScreen from "app/views/Report";
 import ChatViewScreen from "app/views/ChatManagement/Chat";
@@ -91,6 +91,8 @@ import { updateFirebase } from "app/Redux/Actions/FirebaseActions";
 import AppointmentAddScreen from "app/views/AppointMentForSite/AppointmentAdd";
 import SupportForumScreen from "app/views/SupportForumScreen/SupportForum";
 import SupportForumDetail from "app/views/SupportForumScreen/SupportForumDtl";
+import SupportScreenDetails from "app/views/SupportScreen/SupportDetails";
+import AddTicketScreen from "app/views/SupportScreen/AddTicket";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -244,6 +246,11 @@ const AppComponent = () => {
 
       {/* Support Forum */}
       <AppStack.Screen name="SupportForumDetail" component={SupportForumDetail} />
+
+      {/* Raise Ticket (Support) */}
+      <AppStack.Screen name="SupportScreenDetails" component={SupportScreenDetails} />
+      <AppStack.Screen name="AddTicket" component={AddTicketScreen} />
+
     </AppStack.Navigator>
   );
 };
@@ -281,7 +288,7 @@ const AuthLoadingComponent = () => {
 
   const checklogin = async () => {
     if (response && authToken) {
-    console.log('response: IN LOGIN ', response);
+      console.log('response: IN LOGIN ', response);
       if (response.status === 200) {
         if (
           typeof response?.data?.firebase_id === "undefined" || response?.data?.firebase_id === null || response?.data?.firebase_id === ""

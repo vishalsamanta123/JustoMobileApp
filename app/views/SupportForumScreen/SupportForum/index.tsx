@@ -16,21 +16,21 @@ const SupportForumScreen = ({ navigation }: any) => {
         start_date: '',
         end_date: '',
     })
-    useFocusEffect(
-        React.useCallback(() => {
-            getSupportForums(0, {})
-            return () => { };
-        }, [navigation,list])
-    );
-    useEffect(() => {
-        if (response?.status === 200) {
-            if (offSET === 0) {
-                setSupportForumList(response?.data)
-            } else {
-                setSupportForumList([...supportForumList, ...response?.data])
-            }
-        }
-    }, [response])
+    // useFocusEffect(
+    //     React.useCallback(() => {
+    //         getSupportForums(0, {})
+    //         return () => { };
+    //     }, [navigation,list])
+    // );
+    // useEffect(() => {
+    //     if (response?.status === 200) {
+    //         if (offSET === 0) {
+    //             setSupportForumList(response?.data)
+    //         } else {
+    //             setSupportForumList([...supportForumList, ...response?.data])
+    //         }
+    //     }
+    // }, [response])
     const getSupportForums = (offset: any, data: any) => {
         setOffset(offset)
         dispatch(supportForumListData({

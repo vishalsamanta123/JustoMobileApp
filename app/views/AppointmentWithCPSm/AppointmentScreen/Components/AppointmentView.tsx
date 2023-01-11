@@ -47,34 +47,34 @@ const AppointmentView = (props: any) => {
     appointment_status: "",
     remark: "",
   });
-  useEffect(() => {
-    if (list) {
-      setVisiitorList(response?.data);
-    }
-  }, [response]);
+  // useEffect(() => {
+  //   if (list) {
+  //     setVisiitorList(response?.data);
+  //   }
+  // }, [response]);
 
-  useEffect(() => {
-    if (index == 1) {
-      props.getAppointmentList(props.role === 'TL'? 3 : 1);
-    } else {
-      props.getAppointmentList(2);
-    }
-  }, [userEditAppointmentData]);
+  // useEffect(() => {
+  //   if (index == 1) {
+  //     props.getAppointmentList(props.role === 'TL'? 3 : 1);
+  //   } else {
+  //     props.getAppointmentList(2);
+  //   }
+  // }, [userEditAppointmentData]);
 
-  useEffect(() => {
-    if (index == 1) {
-      props.getAppointmentList(props.role === 'TL'? 3 : 1);
-    } else {
-      props.getAppointmentList(2);
-    }
-  }, [index]);
-  useFocusEffect(
-    React.useCallback(() => {
-      setIndex(0)
-      props.getAppointmentList(2);
-      return () => { };
-    }, [navigation])
-  );
+  // useEffect(() => {
+  //   if (index == 1) {
+  //     props.getAppointmentList(props.role === 'TL'? 3 : 1);
+  //   } else {
+  //     props.getAppointmentList(2);
+  //   }
+  // }, [index]);
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     setIndex(0)
+  //     props.getAppointmentList(2);
+  //     return () => { };
+  //   }, [navigation])
+  // );
   const handleOptionPress = (id: any, status: any) => {
     setParams({
       ...params,
@@ -200,8 +200,8 @@ const AppointmentView = (props: any) => {
         barStyle={"light-content"}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      {/* <ComingSoonScreen /> */}
-      <View style={{ marginVertical: 10, alignItems: "flex-end" }}>
+      <ComingSoonScreen />
+      {/* <View style={{ marginVertical: 10, alignItems: "flex-end" }}>
         <Button
           width={200}
           height={30}
@@ -225,7 +225,7 @@ const AppointmentView = (props: any) => {
         params={params}
         setParams={setParams}
         handleOnPressYesInModal={handleOnPressYesInModal}
-      />
+      /> */}
     </View>
   );
 };
