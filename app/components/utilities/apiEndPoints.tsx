@@ -102,8 +102,8 @@ export default {
   
   // Chat Management
   GET_ALL_USER_CHAT_LIST: '/chat/getAllUserListForChat',
-  
-  
+
+
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
   NOTIFICATION_LIST: "/notification/getNotificationList",
@@ -127,9 +127,12 @@ export default {
   GET_CLOSINGMANAGER: "/userManage/getClosingManagerListOnCH",
   GETCMDETAIL: "/userManage/getUserClosingManagerDetail",
 
-   //Support Forum
-   GET_SUPPORT_FORUM_LIST: '/supportForum/supportForumList',
-   GET_SUPPORT_FORUM_DETAIL: '/supportForum/getSupportForumDetails',
-   UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum',
+  //Support Forum
+  GET_SUPPORT_FORUM_LIST: '/supportForum/supportForumList',
+  GET_SUPPORT_FORUM_DETAIL: '/supportForum/getSupportForumDetails',
+  UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum',
+
+  // Raise Ticket (Support)
+  ADD_TICKET: '/support/addSupport',
 
 };

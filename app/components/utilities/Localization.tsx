@@ -279,6 +279,13 @@ const strings = new LocalizedStrings({
 
     //Support Forum
     supportforumDtlHeader: 'Support Forum Detail',
+
+    // Raise Ticket (Support)
+    addticket: 'Add Ticket',
+    supportrequest: 'Support Request',
+    myticket: 'My Ticket',
+    escalate: 'Escalate',
+    ticketDetails: 'Ticket Details'
   },
 });
 
