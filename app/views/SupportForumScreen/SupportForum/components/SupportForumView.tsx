@@ -85,7 +85,7 @@ const SupportForumView = (props: any) => {
                                     }
                                 </View>
                                 <View style={styles.buttonContainer}>
-                                    <TouchableOpacity >
+                                    <TouchableOpacity onPress={() => props.onPressShare(item)} >
                                         <Image
                                             source={images.shareIcon}
                                             resizeMode={'contain'}

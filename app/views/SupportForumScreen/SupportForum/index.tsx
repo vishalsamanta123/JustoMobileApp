@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import SupportForumView from './components/SupportForumView'
 import { supportForumListData } from 'app/Redux/Actions/SupportForumAction';
+import { Share } from 'react-native';
 
 const SupportForumScreen = ({ navigation }: any) => {
     const dispatch: any = useDispatch()
@@ -46,6 +47,24 @@ const SupportForumScreen = ({ navigation }: any) => {
     const onPressView = (data: any) => {
         navigation.navigate('SupportForumDetail', data);
     };
+    const onPressShare = async (data: any) => {
+            try {
+              const result = await Share.share({
+                message: `${data?.title}` ,
+              });
+              if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                  // shared with activity type of result.activityType
+                } else {
+                  // shared
+                }
+              } else if (result.action === Share.dismissedAction) {
+                // dismissed
+              }
+            } catch (error: any) {
+              console.log(error.message);
+            }
+    };
     return (
         <SupportForumView
             handleDrawerPress={handleDrawerPress}
@@ -54,6 +73,7 @@ const SupportForumScreen = ({ navigation }: any) => {
             setFilterData={setFilterData}
             getSupportForums={getSupportForums}
             onPressView={onPressView}
+            onPressShare={onPressShare}
             offSET={offSET}
             moreData={moreData}
         />

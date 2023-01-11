@@ -8,8 +8,10 @@ import { PRIMARY_THEME_COLOR, WHITE_COLOR } from 'app/components/utilities/const
 import FastImages from 'app/components/FastImage'
 import Video from "react-native-video";
 import Button from 'app/components/Button'
+import Loader from 'app/components/CommonScreen/Loader'
 const ContentView = (props: any) => {
     const [playPause, setPlayPause] = useState(false)
+    const [loading, setLoading] = useState(false)
     return (
         <>
             {props.Visible ?
@@ -28,23 +30,23 @@ const ContentView = (props: any) => {
                         barStyle={'light-content'}
                     />
                     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                        {props?.contentData?.video_thumbnail &&
-                            props?.contentData?.content_type === 'video' ?
+                        {loading ? <Loader /> : null}
+                        {props?.contentData?.content_type === 'video' ?
                             <View style={{ width: '100%' }}>
                                 <Video
                                     source={{ uri: props?.url + props?.contentData?.content }}
-                                    //poster={item.videos[0].thumbnail}
-                                    // shouldPlay={false}
+                                    poster={props?.url + props?.contentData?.video_thumbnail}
                                     repeat
-                                    // onReadyForDisplay={() => {
-                                    //     <Image
-                                    //         source={images.playbuttonIcon}
-                                    //     />
-                                    // }}
+                                    onReadyForDisplay={() => {
+                                        setLoading(false)
+                                    }}
+                                    onLoad={() => {setLoading(true)}}
                                     paused={playPause}
-                                    //isLooping
+                                    selectedVideoTrack={{
+                                        type: 'resolution',
+                                        value: 480
+                                    }}
                                     resizeMode="contain"
-                                    // posterResizeMode={"contain"}
                                     style={{
                                         height: '90%',
                                         width: '95%',
