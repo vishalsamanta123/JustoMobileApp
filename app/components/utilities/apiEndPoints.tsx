@@ -88,6 +88,7 @@ export default {
   GET_USER_APPOINTMENT_LIST: '/userAppointment/getUSerAppoinmentList',
   EDIT_USER_APPOINTMENT: '/userAppointment/editUserAppointment',
   UPDATE_USER_APPOINTMENT_STATUS: '/userAppointment/userAppointmentStatusUpdate',
+  CHECKIN_APPOINTMENT: '/appointment/checkInAppointmentProperty',
 
   // BOOKING
   ADD_BOOKING: '/booking/addBooking',
@@ -125,5 +126,10 @@ export default {
   //closing head
   GET_CLOSINGMANAGER: "/userManage/getClosingManagerListOnCH",
   GETCMDETAIL: "/userManage/getUserClosingManagerDetail",
+
+   //Support Forum
+   GET_SUPPORT_FORUM_LIST: '/supportForum/supportForumList',
+   GET_SUPPORT_FORUM_DETAIL: '/supportForum/getSupportForumDetails',
+   UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum',
 
 };

@@ -27,6 +27,7 @@ import {
 } from "app/components/scaleFontSize";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import ErrorMessage from "app/components/ErrorMessage";
+import { RequiredStart } from "app/components/utilities/GlobalFuncations";
 
 const CompanyDetails = (props: any) => {
   const [visible, setVisible] = useState(false);
@@ -61,8 +62,9 @@ const CompanyDetails = (props: any) => {
       <ScrollView contentContainerStyle={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Agency Name"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"RealeEstate Company"}
             valueshow={props?.agencyData?.agency_name}
             onChangeText={(val: any) => {
@@ -75,9 +77,10 @@ const CompanyDetails = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"GST"}
             headingText={"GST"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             valueshow={props?.agencyData?.agencies?.gst}
             onChangeText={(val: any) => {
               props.setAgencyData({
@@ -89,9 +92,10 @@ const CompanyDetails = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"RERA Registration"}
             headingText={"RERA Registration"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             valueshow={props?.agencyData?.rera_registration}
             onChangeText={(val: any) => {
               props.setAgencyData({
@@ -111,8 +115,9 @@ const CompanyDetails = (props: any) => {
             },
           ]}
         >
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={styles.headingText}>Pancard</Text>
+            <RequiredStart />
           </View>
           <View>
             <TouchableOpacity
@@ -153,10 +158,11 @@ const CompanyDetails = (props: any) => {
             },
           ]}
         >
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <Text style={styles.headingText}>
               Decalaration Latter of Company
             </Text>
+            <RequiredStart />
           </View>
           <View>
             <TouchableOpacity
@@ -192,8 +198,9 @@ const CompanyDetails = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Bank Name"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Bank Name"}
             valueshow={props?.agencyData?.company_bank_name}
             onChangeText={(val: any) => {
@@ -206,8 +213,9 @@ const CompanyDetails = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Branch Name"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Branch Name"}
             valueshow={props?.agencyData?.company_branch_name}
             onChangeText={(val: any) => {
@@ -220,8 +228,9 @@ const CompanyDetails = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Account No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Account No."}
             keyboardtype={"number-pad"}
             valueshow={props?.agencyData?.company_account_no}
@@ -235,8 +244,9 @@ const CompanyDetails = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"IFSC Code"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"IFSC Code"}
             valueshow={props?.agencyData?.company_ifsc_code}
             onChangeText={(val: any) => {

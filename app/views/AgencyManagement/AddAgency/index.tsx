@@ -1,5 +1,5 @@
 import ErrorMessage from "app/components/ErrorMessage";
-import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
+import { GREEN_COLOR, RED_COLOR, Regexs } from "app/components/utilities/constant";
 import {
   AgencyCreateForm,
   AgencyCreateFormRemove,
@@ -129,13 +129,27 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       ) {
         isError = false;
         errorMessage = "Aadhaar No. is require. Please enter Aadhaar No.";
-      } else if (
+      }
+      else if (
+        Regexs.AadharRegex.test(agencyData.adhar_no) === false
+      ) {
+        isError = false;
+        errorMessage = "Please enter the valid Aadhaar number";
+      }
+      else if (
         agencyData.pancard_no == undefined ||
         agencyData.pancard_no == ""
       ) {
         isError = false;
         errorMessage = "Pancard No. is require. Please enter Pancard No.";
-      } else if (agencyData.gender == undefined || agencyData.gender == "") {
+      }
+      else if (
+        Regexs.panRegex.test(agencyData.pancard_no) === false
+      ) {
+        isError = false;
+        errorMessage = "Please enter the valid PanCard number";
+      }
+      else if (agencyData.gender == undefined || agencyData.gender == "") {
         isError = false;
         errorMessage = "Gender is require. Please enter Gender";
       } else if (

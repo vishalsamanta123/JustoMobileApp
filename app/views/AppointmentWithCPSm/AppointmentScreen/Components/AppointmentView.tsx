@@ -36,10 +36,10 @@ const AppointmentView = (props: any) => {
     (state: any) => state.userEditAppointmentData
   );
 
-  const [routes] = useState([
-    { key: "first", title: "My Appointment with CP" },
-    { key: "second", title: "SM Appointment With CP" },
-  ]);
+  const routes = [
+    { key: "first", title: props.role === 'TL'? "My Appointment" :"My Appointment with CP" },
+    { key: "second", title: props.role === 'TL'? "SM Appointment With CP" : "Appointment with TL"},
+  ];
   const [visitorList, setVisiitorList] = useState<any>([]);
   const [isVisible, setIsVisible] = useState<any>(false);
   const [params, setParams] = useState({
@@ -47,38 +47,35 @@ const AppointmentView = (props: any) => {
     appointment_status: "",
     remark: "",
   });
-  // useEffect(() => {
-  //   if (list) {
-  //     setVisiitorList(response?.data);
-  //   }
-  // }, [response]);
+  useEffect(() => {
+    if (list) {
+      setVisiitorList(response?.data);
+    }
+  }, [response]);
 
-  // useEffect(() => {
-  //   if (index == 1) {
-  //     props.getAppointmentList(props.role === 'TL'? 3 : 1);
-  //   } else {
-  //     props.getAppointmentList(2);
-  //   }
-  // }, [userEditAppointmentData]);
+  useEffect(() => {
+    if (index == 1) {
+      props.getAppointmentList(props.role === 'TL'? 3 : 1);
+    } else {
+      props.getAppointmentList(2);
+    }
+  }, [userEditAppointmentData]);
 
-  // useEffect(() => {
-  //   console.log('props.role: ', props.role);
-
-  //   if (index == 1) {
-  //     props.getAppointmentList(props.role === 'TL'? 3 : 1);
-  //   } else {
-  //     props.getAppointmentList(2);
-  //   }
-  // }, [index]);
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     setIndex(0)
-  //     props.getAppointmentList(2);
-  //     return () => { };
-  //   }, [navigation])
-  // );
+  useEffect(() => {
+    if (index == 1) {
+      props.getAppointmentList(props.role === 'TL'? 3 : 1);
+    } else {
+      props.getAppointmentList(2);
+    }
+  }, [index]);
+  useFocusEffect(
+    React.useCallback(() => {
+      setIndex(0)
+      props.getAppointmentList(2);
+      return () => { };
+    }, [navigation])
+  );
   const handleOptionPress = (id: any, status: any) => {
-    console.log(id, "= = == ", status);
     setParams({
       ...params,
       appointment_id: id,
@@ -87,7 +84,6 @@ const AppointmentView = (props: any) => {
     setIsVisible(true);
   };
   const handleOnPressYesInModal = () => {
-    console.log('params: IN APPOINTMENT UPDATE', params);
     dispatch(
       updateUserAppointmentStatus(params)
     );
@@ -196,7 +192,7 @@ const AppointmentView = (props: any) => {
         leftImageSrc={images.menu}
         // rightFirstImageScr={images.filter}
         rightSecondImageScr={images.notification}
-        headerText={strings.appointmentWithCPHeader}
+        headerText={props.role === 'TL'? strings.appointmentWithSMHeader : strings.appointmentWithCPHeader}
         handleOnLeftIconPress={props.handleDrawerPress}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}
@@ -204,8 +200,8 @@ const AppointmentView = (props: any) => {
         barStyle={"light-content"}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <ComingSoonScreen />
-      {/* <View style={{ marginVertical: 10, alignItems: "flex-end" }}>
+      {/* <ComingSoonScreen /> */}
+      <View style={{ marginVertical: 10, alignItems: "flex-end" }}>
         <Button
           width={200}
           height={30}
@@ -229,7 +225,7 @@ const AppointmentView = (props: any) => {
         params={params}
         setParams={setParams}
         handleOnPressYesInModal={handleOnPressYesInModal}
-      /> */}
+      />
     </View>
   );
 };

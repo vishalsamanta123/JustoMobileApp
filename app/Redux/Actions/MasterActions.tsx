@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_CITY_LIST, GET_CITY_LIST_ERROR, GET_ROLE_LIST, GET_ROLE_LIST_ERROR, GET_SOURCING_MANAGER, GET_SOURCING_MANAGER_ERROR, MASTER_ERROR, MASTER_LIST, PROPERTY_CONFIGURATION, PROPERTY_CONFIGURATION_ERROR, START_LOADING, STOP_LOADING } from "../types";
+import { GET_APPOINTMENT_CHECKIN, GET_APPOINTMENT_CHECKIN_ERROR, GET_CITY_LIST, GET_CITY_LIST_ERROR, GET_ROLE_LIST, GET_ROLE_LIST_ERROR, GET_SOURCING_MANAGER, GET_SOURCING_MANAGER_ERROR, MASTER_ERROR, MASTER_LIST, PROPERTY_CONFIGURATION, PROPERTY_CONFIGURATION_ERROR, START_LOADING, STOP_LOADING } from "../types";
 
 export const getCityList = (item: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -59,11 +59,10 @@ export const getRolesList = (item: any) => async (dispatch: any) => {
     }
 }
 export const getAllMaster = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.ADDMASTERLIST, params);
-        console.log('res: ADDMASTERLIST', res);
+        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: MASTER_LIST,
@@ -133,5 +132,27 @@ export const getAllSourcingManager = (params: any) => async (dispatch: any) => {
     }
     finally {
         dispatch({ type: STOP_LOADING })
+    }
+};
+export const cpAppointmentCheckIn = (params: any) => async (dispatch: any) => {
+    try {
+        const res = await apiCall("post", apiEndPoints.CHECKIN_APPOINTMENT, params);
+        if (res.data.status == 200) {
+            dispatch({
+                type: GET_APPOINTMENT_CHECKIN,
+                payload: res.data,
+            });
+        } else {
+            handleApiError(res?.data)
+            dispatch({
+                type: GET_APPOINTMENT_CHECKIN_ERROR,
+                payload: [],
+            });
+        }
+    } catch (e) {
+        dispatch({
+            type: GET_APPOINTMENT_CHECKIN_ERROR,
+            payload: console.log(e),
+        });
     }
 };

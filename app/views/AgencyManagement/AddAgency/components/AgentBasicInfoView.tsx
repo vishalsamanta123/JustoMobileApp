@@ -23,6 +23,7 @@ import Button from "../../../../components/Button";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import MultiLocation from "app/components/MultiLocation";
+import { RequiredStart } from "app/components/utilities/GlobalFuncations";
 
 const AgentBasicInfoView = (props: any) => {
   const handleDelete = (item: any, index: any) => {
@@ -88,6 +89,7 @@ const AgentBasicInfoView = (props: any) => {
         </TouchableOpacity>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Name"}
             handleInputBtnPress={() => { }}
             headingText={"Agent Name"}
@@ -102,7 +104,8 @@ const AgentBasicInfoView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Aadhaar No."}
+            require={true}
+            placeholderText={"3675 9834 6012"}
             handleInputBtnPress={() => { }}
             headingText={"Aadhaar No."}
             valueshow={props.agencyData?.adhar_no}
@@ -118,7 +121,8 @@ const AgentBasicInfoView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Pancard No."}
+            require={true}
+            placeholderText={"BNZAA2318JM"}
             handleInputBtnPress={() => { }}
             headingText={"Pancard No."}
             valueshow={props.agencyData?.pancard_no}
@@ -133,6 +137,7 @@ const AgentBasicInfoView = (props: any) => {
         </View>
         <View style={styles.genderView}>
           <Text style={styles.genderTxt}>{strings.gender}</Text>
+          <RequiredStart />
           <View style={styles.radioView}>
             <RadioButton.Android
               value={props.agencyData?.gender}
@@ -188,6 +193,7 @@ const AgentBasicInfoView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputCalender
+            require={true}
             leftIcon={images.event}
             mode={"date"}
             placeholderText={"Date of Birth"}
@@ -214,6 +220,7 @@ const AgentBasicInfoView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Mobile No."}
             handleInputBtnPress={() => { }}
             headingText={"Mobile No."}
@@ -230,6 +237,7 @@ const AgentBasicInfoView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"WhatsApp No."}
             handleInputBtnPress={() => { }}
             headingText={"WhatsApp No."}
@@ -246,6 +254,7 @@ const AgentBasicInfoView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Email Address"}
             handleInputBtnPress={() => { }}
             headingText={"Email Address"}
@@ -260,6 +269,7 @@ const AgentBasicInfoView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Address"}
             headingText={"Address"}
             valueshow={props.agencyData?.location}
@@ -292,9 +302,11 @@ const AgentBasicInfoView = (props: any) => {
           <View
             style={{
               top: props.agencyData?.working_location?.length > 0 ? 5 : 0,
+              flexDirection: 'row', alignItems: 'center'
             }}
           >
             <Text style={styles.workTxt}>Working Location</Text>
+            <RequiredStart />
           </View>
           <TouchableOpacity
             onPress={() => props.setLocationModel(true)}

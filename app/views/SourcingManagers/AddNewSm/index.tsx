@@ -3,6 +3,7 @@ import ErrorMessage from "app/components/ErrorMessage";
 import {
   GREEN_COLOR,
   RED_COLOR,
+  Regexs,
   validateEmail,
 } from "app/components/utilities/constant";
 import { getAgentDetail } from "app/Redux/Actions/AgentActions";
@@ -83,7 +84,7 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
           })
         );
       }
-      return () => {};
+      return () => { };
     }, [navigation, SMDetails?.detail])
   );
 
@@ -122,6 +123,7 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
   };
 
   const validation = () => {
+
     let isError = true;
     let errorMessage: any = "";
     if (addNewSmData.firstname == undefined || addNewSmData.firstname == "") {
@@ -140,12 +142,25 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
       isError = false;
       errorMessage = "Aadhaar Number is require. Please enter Aadhaar number";
     } else if (
+      Regexs.AadharRegex.test(addNewSmData.adhar_no) === false
+    ) {
+      isError = false;
+      errorMessage = "Please enter the valid Aadhaar number";
+    }
+    else if (
       addNewSmData.pancard_no == undefined ||
       addNewSmData.pancard_no == ""
     ) {
       isError = false;
       errorMessage = "Pancard Number is require. Please enter pancard number";
-    } else if (addNewSmData.gender == undefined || addNewSmData.gender == "") {
+    }
+    else if (
+      Regexs.panRegex.test(addNewSmData.pancard_no) === false
+    ) {
+      isError = false;
+      errorMessage = "Please enter the valid PanCard number";
+    }
+    else if (addNewSmData.gender == undefined || addNewSmData.gender == "") {
       isError = false;
       errorMessage = "Gender is require. Please select gender";
     } else if (
@@ -203,6 +218,7 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
       newFormdata.append("firstname", addNewSmData.firstname);
       newFormdata.append("lastname", addNewSmData.lastname);
       newFormdata.append("pancard_no", addNewSmData.pancard_no);
+      newFormdata.append("adhar_no", addNewSmData.adhar_no);
       newFormdata.append("gender", addNewSmData.gender);
       newFormdata.append("mobile", addNewSmData.mobile);
       newFormdata.append("dateofbirth", addNewSmData.dateofbirth);

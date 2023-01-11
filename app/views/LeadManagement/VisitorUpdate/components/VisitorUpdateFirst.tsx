@@ -67,7 +67,23 @@ const VisitorUpdateView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        placeholderText={"Aadhaar No."}
+                        placeholderText={"Mobile No."}
+                        handleInputBtnPress={() => { }}
+                        onChangeText={(text: any) => {
+                            props.setUpdateForm({
+                                ...props.updateForm,
+                                mobile: text
+                            })
+                        }}
+                        valueshow={props?.updateForm?.mobile?.toString()}
+                        headingText={"Mobile No."}
+                        keyboardtype={'number-pad'}
+                        maxLength={10}
+                    />
+                </View>
+                <View style={styles.inputWrap}>
+                    <InputField
+                        placeholderText={"3675 9834 6012"}
                         handleInputBtnPress={() => { }}
                         onChangeText={(text: any) => {
                             props.setUpdateForm({
@@ -82,7 +98,7 @@ const VisitorUpdateView = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        placeholderText={"Pancard No."}
+                        placeholderText={"BNZAA2318JM"}
                         handleInputBtnPress={() => { }}
                         onChangeText={(text: any) => {
                             props.setUpdateForm({
@@ -102,6 +118,7 @@ const VisitorUpdateView = (props: any) => {
                             value="1"
                             status={props.updateForm.gender === 1 ? "checked" : "unchecked"}
                             onPress={() => props.setUpdateForm({
+                                ...props.updateForm,
                                 gender: 1
                             })}
                             color={PRIMARY_THEME_COLOR}
@@ -123,6 +140,7 @@ const VisitorUpdateView = (props: any) => {
                             value="2"
                             status={props.updateForm.gender === 2 ? "checked" : "unchecked"}
                             onPress={() => props.setUpdateForm({
+                                ...props.updateForm,
                                 gender: 2
                             })}
                             color={PRIMARY_THEME_COLOR}
@@ -165,22 +183,6 @@ const VisitorUpdateView = (props: any) => {
                             "" :
                             moment(props?.updateForm?.birth_date).format(DATE_FORMAT)
                         }
-                    />
-                </View>
-                <View style={styles.inputWrap}>
-                    <InputField
-                        placeholderText={"Mobile No."}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={(text: any) => {
-                            props.setUpdateForm({
-                                ...props.updateForm,
-                                mobile: text
-                            })
-                        }}
-                        valueshow={props?.updateForm?.mobile?.toString()}
-                        headingText={"Mobile No."}
-                        keyboardtype={'number-pad'}
-                        maxLength={10}
                     />
                 </View>
                 <View style={styles.inputWrap}>

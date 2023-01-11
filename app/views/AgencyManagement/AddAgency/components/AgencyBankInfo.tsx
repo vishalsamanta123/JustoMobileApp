@@ -19,6 +19,7 @@ import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { normalizeWidth, normalizeHeight, normalize } from "app/components/scaleFontSize";
 import { AgencyCreateForm } from "app/Redux/Actions/AgencyActions";
 import ErrorMessage from "app/components/ErrorMessage";
+import { RequiredStart } from "app/components/utilities/GlobalFuncations";
 
 const AgentBankInfo = (props: any) => {
   const [reravisible, setreraVisible] = useState(false)
@@ -40,6 +41,7 @@ const AgentBankInfo = (props: any) => {
       <ScrollView contentContainerStyle={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"RERA Certificate No."}
             handleInputBtnPress={() => { }}
             headingText={"RERA Certificate No."}
@@ -52,8 +54,9 @@ const AgentBankInfo = (props: any) => {
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, flexDirection: "row", alignItems: 'center', }}>
             <Text style={styles.headingText}>RERA Certificate</Text>
+            <RequiredStart />
           </View>
           <View>
             <TouchableOpacity
@@ -76,8 +79,9 @@ const AgentBankInfo = (props: any) => {
           </View>
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, flexDirection: "row", alignItems: 'center' }}>
             <Text style={styles.headingText}>Propidership Declaration Letter</Text>
+            <RequiredStart />
           </View>
           <View>
             <TouchableOpacity
@@ -104,6 +108,7 @@ const AgentBankInfo = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Bank Name"}
             handleInputBtnPress={() => { }}
             headingText={"Bank Name"}
@@ -117,6 +122,7 @@ const AgentBankInfo = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Branch Name"}
             handleInputBtnPress={() => { }}
             headingText={"Branch Name"}
@@ -130,6 +136,7 @@ const AgentBankInfo = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Account No."}
             handleInputBtnPress={() => { }}
             headingText={"Account No."}
@@ -144,6 +151,7 @@ const AgentBankInfo = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"IFSC Code"}
             handleInputBtnPress={() => { }}
             headingText={"IFSC Code"}
@@ -156,8 +164,9 @@ const AgentBankInfo = (props: any) => {
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
-          <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <Text style={styles.headingText}>Cancel Cheaque</Text>
+            <RequiredStart />
           </View>
           <View>
             <TouchableOpacity
@@ -182,7 +191,7 @@ const AgentBankInfo = (props: any) => {
         <View style={styles.buttonContainer}>
           <Button
             handleBtnPress={(type: any) => {
-                props.onPressNext(2, props.agencyData)
+              props.onPressNext(2, props.agencyData)
             }}
             rightImage={images.forwardArrow}
             buttonText={strings.next}

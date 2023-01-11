@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./styles";
 import { GRAY_COLOR } from "../../../../components/utilities/constant";
 import { normalizeSpacing } from "../../../../components/scaleFontSize";
+import strings from "app/components/utilities/Localization";
 
 const PropertyDetailItem = (props: any) => {
   const item = props?.items || {}
@@ -10,11 +11,11 @@ const PropertyDetailItem = (props: any) => {
     <View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Closing Persentage</Text>
+          <Text style={styles.projectTxt}>Closing Percentage</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.closingper}</Text>
+          <Text style={styles.nameTxt}>{item?.closingper ? item?.closingper : strings.notfount}</Text>
         </View>
       </View>
      
@@ -24,7 +25,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.visitor}</Text>
+          <Text style={styles.nameTxt}>{item?.visitor ? item?.visitor : 0}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -33,7 +34,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.siteVisit}</Text>
+          <Text style={styles.nameTxt}>{item?.siteVisit ? item?.siteVisit : 0}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -42,7 +43,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.closeVisit}</Text>
+          <Text style={styles.nameTxt}>{item?.closeVisit ? item?.closeVisit : 0}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -60,7 +61,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.lastvisit}</Text>
+          <Text style={styles.nameTxt}>{item?.lastvisit ? item?.lastvisit : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -78,7 +79,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.lastclosevisit}</Text>
+          <Text style={styles.nameTxt}>{item?.lastclosevisit ? item?.lastclosevisit : strings.notfount}</Text>
         </View>
       </View>
       

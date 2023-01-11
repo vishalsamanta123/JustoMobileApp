@@ -6,9 +6,7 @@ export const getAllUserChatList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING });
     try {
       const res = await apiCall("post", apiEndPoints.GET_ALL_USER_CHAT_LIST, params);
-      // console.log('res: GET_ALL_USER_CHAT_LIST', res);
       if (res.data.status === 200) {
-        /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
         dispatch({
           type: GET_ALL_USER_CHAT_LIST,
           payload: res.data,

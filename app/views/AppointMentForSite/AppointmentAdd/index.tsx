@@ -1,9 +1,10 @@
 import ErrorMessage from "app/components/ErrorMessage";
-import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
+import { DATE_FORMAT, GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AppointmentAddView from "./components/AppointmentAdd";
 import { editAppointment, removeEditUser } from "app/Redux/Actions/AppointmentWithCpActions";
+import moment from "moment";
 
 const AppointmentAddScreen = ({ navigation, route }: any) => {
     const appointmentId = route?.params || {}
@@ -13,7 +14,7 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
     const [formData, setFormData] = useState({
         appointment_id: appointmentId?._id ? appointmentId?._id : '',
         status: '',
-        appointment_date: appointmentId?.appointment_date ? appointmentId?.appointment_date : '',
+        appointment_date: appointmentId?.appointment_date ? moment(appointmentId?.appointment_date).format(DATE_FORMAT) : '',
         appointment_time: appointmentId?.appointment_time ? appointmentId?.appointment_time :  '',
         remark: ''
     })
@@ -61,7 +62,6 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
     const handleUpdateStatus = () => {
         if (validation()) {
             dispatch(editAppointment(formData))
-            console.log('formData: ', formData);
         }
     }
     const handleAllFollowUp = () => {

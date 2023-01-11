@@ -25,13 +25,15 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   useEffect(() => {
     if (response?.status === 200) {
       setAppointMentDetail({ ...response?.data[0] })
+    }else {
+      setAppointMentDetail({})
     }
   }, [response])
   const handleBackPress = () => {
     navigation.goBack()
   }
   const handleStatusUpdate = () => {
-    navigation.navigate('AppointmentAddS', data)
+    navigation.navigate('AppointmentAddS', appointMentDetail)
   }
   return (
     <AppointmentDetailsView

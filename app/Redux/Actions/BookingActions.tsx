@@ -115,7 +115,6 @@ export const updateBookingDetailStatus = (params: any) => async (dispatch: any) 
             "access-control-allow-origin": "*",
         };
         const res = await apiCall("post", apiEndPoints.UPDATE_BOOKINGSTATUS, params, header);
-        console.log('res UPDATE_BOOKINGSTATUS: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: BOOKING_STATUS_UPDATE,

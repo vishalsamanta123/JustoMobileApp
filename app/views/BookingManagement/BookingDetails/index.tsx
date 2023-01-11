@@ -55,7 +55,11 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
                 }
             }
             return () => { };
+<<<<<<< HEAD
         }, [navigation, detail, cancelAddBookingData])
+=======
+        }, [navigation, detail, cancelBookingData])
+>>>>>>> e31c94185f9a627d78b295bbd530883db38ff3ed
     );
     const handleBackPress = () => {
         navigation.goBack()
@@ -71,6 +75,7 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
                 backgroundColor: GREEN_COLOR
             })
             dispatch(removeBooking())
+            navigation.goBack()
             setCancelValue({
                 reason: '',
                 property_id: '',

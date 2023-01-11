@@ -201,7 +201,7 @@ const customDrawer = ({ navigation }: any) => {
         <DrawerTabSection
           type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.event}
-          tabTitle={strings.appointmentWithCPHeader}
+          tabTitle={userData?.role_title === "Sourcing TL" ? strings.appointmentWithSMHeader : strings.appointmentWithCPHeader}
           handleDrawerNavigation={() => {
             navigation.navigate("AppointmentScreenCPSM");
           }}

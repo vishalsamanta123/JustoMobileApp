@@ -33,8 +33,10 @@ const FollowUpView = (props: any) => {
       startdate: "",
       enddate: "",
       followup_for: "",
+      lead_id: ''
     });
     props.getFollowupList(0, {});
+    props.setFollowUpList([])
   };
   return (
     <View style={styles.mainContainer}>
@@ -79,6 +81,8 @@ const FollowUpView = (props: any) => {
         setFilterData={props.setFilterData}
         filterData={props.filterData}
         getFollowupList={props.getFollowupList}
+        onRefresh={onRefresh}
+        setFollowUpList={props.setFollowUpList}
       />
     </View>
   );

@@ -20,6 +20,7 @@ const AddAppointmentItem = (props: any) => {
                 {props.type === 'reSheduled' ?
                     (<View style={styles.inputWrap}>
                         <DropdownInput
+                            require={true}
                             headingText={'Select Update Type'}
                             placeholder={props?.appointMentForm?.update_type}
                             data={[
@@ -50,6 +51,7 @@ const AddAppointmentItem = (props: any) => {
                     </View>) : null}
                 <View style={styles.inputWrap}>
                     <DropdownInput
+                        require={true}
                         headingText={strings.selectLead}
                         placeholder={props?.appointMentForm?.first_name != "" ?
                             props?.appointMentForm?.first_name :
@@ -84,6 +86,7 @@ const AddAppointmentItem = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <DropdownInput
+                        require={true}
                         headingText={strings.selectproperty}
                         placeholder={props?.appointMentForm?.property_title != "" ?
                             props?.appointMentForm?.property_title :
@@ -116,6 +119,7 @@ const AddAppointmentItem = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputCalender
+                        require={true}
                         leftIcon={images.event}
                         mode={"date"}
                         minimumDate={new Date()}
@@ -143,6 +147,7 @@ const AddAppointmentItem = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputCalender
+                        require={true}
                         leftIcon={images.timer}
                         mode={"time"}
                         placeholderText={strings.appointmentTime}
@@ -220,6 +225,7 @@ const AddAppointmentItem = (props: any) => {
                     <>
                         <View style={styles.inputWrap}>
                             <InputField
+                                require={true}
                                 headingText={strings.location}
                                 valueshow={props?.appointMentForm?.pickup_location}
                                 inputType={'location'}
@@ -241,6 +247,7 @@ const AddAppointmentItem = (props: any) => {
                         </View>
                         <View style={styles.inputWrap}>
                             <InputField
+                                require={true}
                                 placeholderText={"Address"}
                                 handleInputBtnPress={() => { }}
                                 headingText={"Address"}
@@ -255,6 +262,7 @@ const AddAppointmentItem = (props: any) => {
                         </View>
                         <View style={styles.inputWrap}>
                             <InputField
+                                require={true}
                                 placeholderText={strings.noofguest}
                                 handleInputBtnPress={() => { }}
                                 onChangeText={(data: any) => {
@@ -275,7 +283,7 @@ const AddAppointmentItem = (props: any) => {
                     <Button
                         handleBtnPress={() => props.onPressAddEdit()}
                         buttonText={props.type === 'edit' ? strings.update :
-                            props.type === 'reSheduled' ? 'ReScheduled Appointment' :
+                            props.type === 'reSheduled' ? 'Update Appointment' :
                                 strings.addNewappointment} />
                 </View>
             </View>

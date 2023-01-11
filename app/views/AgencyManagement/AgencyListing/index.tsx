@@ -50,7 +50,6 @@ const AgencyListing = ({ navigation }: any) => {
   }, [SmCpList]);
 
   const getAgencyList = (offset: any, filterData: any) => {
-    console.log('filterData: ', filterData);
     setOffset(offset);
     // if (userData?.data?.role_title === 'Sourcing Manager') {
     dispatch(

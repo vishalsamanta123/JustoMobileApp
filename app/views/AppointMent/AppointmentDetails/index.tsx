@@ -14,14 +14,7 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
   const addedBookingData = useSelector((state: any) => state.addedBooking) || {}
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     dispatch(getAppointmentDetail({
-  //       appointment_id: data?._id
-  //     }))
-  //     return () => { };
-  //   }, [navigation, detail])
-  // );
+  
   useFocusEffect(
     React.useCallback(() => {
       dispatch(getAppointmentDetail({

@@ -96,7 +96,6 @@ export const AgencyCreateFormRemove = () => async (dispatch: any) => {
 };
 
 export const createAgency = (item: any) => async (dispatch: any) => {
-  console.log("item: PARAMS CREATE AGENCY", item);
   dispatch({ type: START_LOADING });
   try {
     const header = {
@@ -109,9 +108,7 @@ export const createAgency = (item: any) => async (dispatch: any) => {
       item,
       header
     );
-    console.log("res CREATECHANNELPARTNER: ", res);
     if (res?.data?.status === 200) {
-      console.log("res.data: ", res.data);
       dispatch({
         type: CREATE_AGENCY,
         payload: res.data,

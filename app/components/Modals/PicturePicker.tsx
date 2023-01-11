@@ -147,6 +147,7 @@ const PicturePickerModal = (props: any) => {
                                     strings.txt_setting_heading_camera,
                                     strings.txt_setting_description_camera,
                                 );
+
                                 if (res == 'setting1') {
                                     openPermissionSetting(
                                         strings.txt_setting_heading_camera,

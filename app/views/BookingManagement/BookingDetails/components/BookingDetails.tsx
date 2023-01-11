@@ -42,6 +42,7 @@ const BookingDetailsView = (props: any) => {
                 <BookingDetailsIteam item={[detailData]} type={props?.type} />
             </View>
             <View style={styles.btnContainer}>
+<<<<<<< HEAD
                 {getLoginType?.response?.data?.role_id != ROLE_IDS.postsales_id ?
                     <>
                         {props?.type === 'readyToBook' ?
@@ -112,6 +113,29 @@ const BookingDetailsView = (props: any) => {
                             height={45}
                         />
                     </View> : null
+=======
+                {props?.type === 'readyToBook' && (<Button
+                    buttonText={strings.Statusupdate}
+                    width={150}
+                    height={45}
+                    bgcolor={PRIMARY_THEME_COLOR_DARK}
+                    btnTxtcolor={WHITE_COLOR}
+                    btnTxtsize={12}
+                    textTransform={"uppercase"}
+                    handleBtnPress={() => props.handleStatusUpdate()}
+                />)}
+                {response?.data[0]?.booking_status != 4 ?
+                    <Button
+                        buttonText={strings.cancelBooking}
+                        width={150}
+                        height={45}
+                        bgcolor={PRIMARY_THEME_COLOR_DARK}
+                        btnTxtcolor={WHITE_COLOR}
+                        btnTxtsize={14}
+                        textTransform={"uppercase"}
+                        handleBtnPress={() => props.setCancelBookingModel(true)}
+                    /> : null
+>>>>>>> e31c94185f9a627d78b295bbd530883db38ff3ed
                 }
             </View>
             <CancelModal
@@ -119,6 +143,7 @@ const BookingDetailsView = (props: any) => {
                 Visible={props.cancelBookingModel}
                 setIsVisible={props.setCancelBookingModel}
                 cancelValue={props.cancelValue}
+                item={response?.data?.length > 0 ? response?.data : []}
                 setCancelValue={props.setCancelValue}
             />
             <ReAllocateModal

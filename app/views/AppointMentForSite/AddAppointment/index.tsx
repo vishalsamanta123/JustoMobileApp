@@ -10,8 +10,6 @@ import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { type = "", item = {} } = route?.params || {}
-  console.log('type: ', type);
-  console.log('item: ', item);
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
   const leadData = useSelector((state: any) => state.visitorDataList) || {}
@@ -205,7 +203,6 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     } else {
       if (validation()) {
         dispatch(addAppointment(params))
-        console.log('params: ', params);
       }
     }
   }

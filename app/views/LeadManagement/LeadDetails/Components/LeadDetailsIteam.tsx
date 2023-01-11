@@ -8,7 +8,6 @@ import moment from 'moment'
 import { BLACK_COLOR } from 'app/components/utilities/constant'
 
 const LeadDetailsIteam = (props: any) => {
-    console.log('props: ', props);
     const item = props?.items || {}
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -99,7 +98,9 @@ const LeadDetailsIteam = (props: any) => {
                                 item?.lead_status === 3 ? "Appointment" :
                                     item?.lead_status === 4 ? "Booking" :
                                         item?.lead_status === 5 ? "Registration" :
-                                            item?.lead_status === 6 && "Close"
+                                            item?.lead_status === 6 ? "Close" :
+                                            item?.lead_status === 7 && "Ready To Book" 
+                                            
                         }</Text>
                 </View>
             </View>

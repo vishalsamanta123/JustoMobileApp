@@ -20,7 +20,6 @@ const data = [
   { label: "Item 8", value: "8" },
 ];
 const AllocateConfirmModal = (props: any) => {
-  console.log('props ===: ', props.statusChange);
   const [value, setValue] = useState(null);
   const [allocateData, setAllocateData] = useState<any>({
     cp_id: [],
@@ -28,13 +27,11 @@ const AllocateConfirmModal = (props: any) => {
     assign_type: 2,
     property_id: ''
   })
-  console.log('allocateData: ', allocateData);
   const [isYes, setisYes] = useState(false)
   const dispatch: any = useDispatch()
   const [sourcingManagers, setSourcingManagers] = useState<any>([])
 
   const { response = {}, list = '' } = useSelector((state: any) => state.SourcingManager)
-  console.log('response: ', response);
 
   useEffect(() => {
     setSourcingManagers([])

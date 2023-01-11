@@ -17,12 +17,15 @@ const strings = new LocalizedStrings({
     bookingRequestHead: 'Booking Request',
     registrationReqHead: 'Registration Request',
     playVideo: 'Play',
+    pauseVideo: 'Pause',
     recoveryHeader: 'Recovery',
+    recoveryDetailHeader: 'Recovery Details',
     saleToolHeader: 'Sales Tools',
     agencyHeader: 'CP Management',
     agencyDeactiveHeader: 'Agency Deactive',
     leadManagementHeader: 'Lead Management',
     appointmentWithCPHeader: 'Appointment With CP',
+    appointmentWithSMHeader: 'Appointment With SM',
     appointmentForVisitHeader: 'Appointment For Site Visit',
     appointmentVisitHeader: 'Appointment Site Visit',
     reportHeader: 'Report',
@@ -108,6 +111,7 @@ const strings = new LocalizedStrings({
     sendotp: 'Send OTP',
     registration: 'registration',
     followup: 'Follow-Up',
+    enterCompPropertyName: 'Please enter competetor Property name',
 
 
     // common strings
@@ -271,7 +275,10 @@ const strings = new LocalizedStrings({
     notSelectedLocation: 'Not Selected Location',
     searchYourlocation: 'Search your location here',
     notfount: 'Not Found',
-    ocupacion: 'Ocupacion',
+    ocupacion: 'Occupation',
+
+    //Support Forum
+    supportforumDtlHeader: 'Support Forum Detail',
   },
 });
 

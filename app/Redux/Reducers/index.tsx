@@ -18,6 +18,7 @@ import { transferVisitorReducer, transferVisitReducer } from "./TransferVisitRed
 import { firebaseReducer } from "./FirebaseReducer";
 import { ChatReducer } from "./ChatReducer";
 import { userAppointmentReducer, userEditAppointmentReducer } from "./AppointmentWithUserReducer";
+import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -79,5 +80,9 @@ export default {
     ClosingManager: ClosingManagerReducer,
 
     //pickUp
-    Pickup: PickUpReducer
+    Pickup: PickUpReducer,
+
+     //support Forum
+     supportForumData: supportForumReducer,
+     supportForumUpdateData: supportForumUpdateReducer,
 }

@@ -77,12 +77,15 @@ import { RED_COLOR } from "app/components/utilities/constant";
 import AddNewVisitorScreen from "app/views/LeadManagement/AddNewVisitor";
 import FollowUpAddScreen from "app/views/AppointMent/FollowUpAdd";
 import SupportScreen from "app/views/Support";
-import SupportForumScreen from "app/views/SupportForum";
 import SalesToolsScreen from "app/views/SalesTools";
 import ReportScreen from "app/views/Report";
 import ChatViewScreen from "app/views/ChatManagement/Chat";
+<<<<<<< HEAD
 import RecoveryScreen from "app/views/Recovery";
 import CancelBookingScreen from "app/views/BookingManagement/CancelBooking";
+=======
+import RecoveryScreen from "app/views/Recovery/RecoveryScreen";
+>>>>>>> e31c94185f9a627d78b295bbd530883db38ff3ed
 import PropertyChat from "app/views/ChatManagement/PropertyChat";
 import ChatScreen from "app/views/ChatManagement/Chat/components/ChatScreen";
 import Notification from "app/views/Setting/Notification";
@@ -91,6 +94,9 @@ import AllowAgencyListing from "app/views/AgencyManagement/AllowAgencyListing";
 import auth from "@react-native-firebase/auth";
 import { updateFirebase } from "app/Redux/Actions/FirebaseActions";
 import AppointmentAddScreen from "app/views/AppointMentForSite/AppointmentAdd";
+import SupportForumScreen from "app/views/SupportForumScreen/SupportForum";
+import SupportForumDetail from "app/views/SupportForumScreen/SupportForumDtl";
+import RecoveryDetails from "app/views/Recovery/RecoveryDetail";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -220,10 +226,12 @@ const AppComponent = () => {
       <AppStack.Screen
         name="AppointmentDetailMain"
         component={AppointmentDetailsScreen}
-      />
+        />
       <AppStack.Screen name="FollUpAdd" component={FollUpAddScreen} />
       <AppStack.Screen name="VisitorUpdate" component={VisitorUpdateScreen} />
       <AppStack.Screen name="FollowUpAdd" component={FollowUpAddScreen} />
+      {/* Recovery  */}
+      <AppStack.Screen name="RecoveryDetails" component={RecoveryDetails} />
 
       {/* Chat  */}
       <AppStack.Screen name="PropertyChat" component={PropertyChat} />
@@ -242,6 +250,9 @@ const AppComponent = () => {
       <AppStack.Screen name="changePassword" component={ChangePasswordScreen} />
       <AppStack.Screen name="separateLink" component={SeparateLinkScreen} />
       <AppStack.Screen name="notification" component={Notification} />
+
+      {/* Support Forum */}
+      <AppStack.Screen name="SupportForumDetail" component={SupportForumDetail} />
     </AppStack.Navigator>
   );
 };

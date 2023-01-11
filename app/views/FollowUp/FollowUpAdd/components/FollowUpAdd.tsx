@@ -31,6 +31,7 @@ const FollowUpAddView = (props: any) => {
             <View style={styles.topItemsVw}>
                 <View style={styles.inputWrap}>
                     <DropdownInput
+                        require={true}
                         headingText={'Status'}
                         placeholder={strings.status}
                         data={props?.masterDatas}
@@ -42,7 +43,6 @@ const FollowUpAddView = (props: any) => {
                         valueField={'_id'}
                         value={props?.formData?.property_id}
                         onChange={(item: any) => {
-                            console.log('item: ', item);
                             props.setFormData({
                                 ...props.formData,
                                 followup_status: item._id,
@@ -66,6 +66,7 @@ const FollowUpAddView = (props: any) => {
                         <>
                             <View style={styles.inputWrap}>
                                 <InputCalender
+                                    require={true}
                                     headingText={'Date'}
                                     mode={'date'}
                                     leftIcon={images.event}
@@ -90,6 +91,7 @@ const FollowUpAddView = (props: any) => {
                             </View>
                             <View style={styles.inputWrap}>
                                 <InputCalender
+                                    require={true}
                                     headingText={'Time'}
                                     mode={'time'}
                                     leftIcon={images.timer}

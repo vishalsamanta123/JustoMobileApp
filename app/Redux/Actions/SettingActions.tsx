@@ -35,7 +35,6 @@ export const updateUserSettingData =
   };
 
 export const userRegister = (item: any) => async (dispatch: any) => {
-console.log('item: ', item);
   dispatch({ type: START_LOADING });
   try {
     const header = {
@@ -43,7 +42,6 @@ console.log('item: ', item);
       "access-control-allow-origin": "*",
     };
     const res = await apiCall("post", apiEndPoints.REGISTERANDADDUSER, item, header);
-    console.log('res REGISTERANDADDUSER: ', res);
     if (res.data.status == 200) {
       dispatch({
         type: USERREGISTER,

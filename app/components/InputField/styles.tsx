@@ -45,6 +45,8 @@ const styles = StyleSheet.create({
     top: normalizeSpacing(-15),
     left: normalizeSpacing(20),
     zIndex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   inputHeadingText: {
     fontSize: normalize(Isios ? 14 : 16),

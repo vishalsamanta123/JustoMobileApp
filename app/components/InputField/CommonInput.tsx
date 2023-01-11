@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './styles';
 import { BLACK_COLOR, GRAY_LIGHT_COLOR } from '../utilities/constant';
 import { normalizeHeight } from '../scaleFontSize';
+import { RequiredStart } from '../utilities/GlobalFuncations';
 
 const CommonInput = (props: any) => {
   const onSubmit = (e: any) => {
@@ -15,6 +16,7 @@ const CommonInput = (props: any) => {
         <Text style={[styles.inputHeadingText, {
           width: props.headingTextWidth
         }]}>{props.headingText}</Text>
+        {props.require ? (<RequiredStart />) : null}
       </View>
       <View style={styles.mainContainer}>
         <TextInput
@@ -27,8 +29,10 @@ const CommonInput = (props: any) => {
           }]}
           onChangeText={val => props.onChangeText(val)}
           onSubmitEditing={onSubmit}
-          // placeholder={props.placeholderText}
-          // placeholderTextColor={BLACK_COLOR}
+          placeholder={
+            props.placeholderText === '3675 9834 6012' || props.placeholderText === 'BNZAA2318JM' ?
+            props.placeholderText : null}
+          placeholderTextColor={BLACK_COLOR}
           secureTextEntry={props.isSecureText}
           autoCapitalize={'none'}
           editable={props.editable}

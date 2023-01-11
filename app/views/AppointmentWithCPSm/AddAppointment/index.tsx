@@ -24,7 +24,6 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const [masterDatas, setMasterDatas] = useState<any>([])
   const [listData, setListData] = useState<any>([])
   const [role, setRole] = useState<any>('')
-  console.log('listData: ', listData);
 
 
   useEffect(() => {
@@ -34,12 +33,9 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   }, [response])
 
   useEffect(() => {
-    console.log('getLoginType?.response?.data?.user_id: ', getLoginType?.response?.data?.user_id);
-    console.log('getLoginType?.response: ', getLoginType?.response);
 
     if (getLoginType?.response?.data?.role_title === 'Sourcing TL') {
       setRole('TL')
-      console.log('getLoginType?.response: ', getLoginType?.response);
       dispatch(getSourcingManagerList({}))
     } else {
       if (getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
@@ -83,7 +79,6 @@ const handleMasterDatas = (data: any) => {
   
   const handleAddAppointment = (params: any) => {
     if (type === strings.edit) {
-      console.log('userEditAppointmentData: ', userEditAppointmentData);
       dispatch(editUserAppointment({...params, appointment_id: data?._id}))
       if (userEditAppointmentData?.response?.status === 200) {
         navigation.goBack()
