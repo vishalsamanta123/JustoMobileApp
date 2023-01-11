@@ -41,7 +41,6 @@ export const GLOBAL_URL = 'https://itinformatix.org:3044'
 // export const  MAP_KEY = 'AIzaSyDdLk5tb75SiJvRk9F2B4almu-sBAi1-EM'
 export const MAP_KEY = 'AIzaSyCbDx7Lk4eTMzptrQKXZvOPYgEMggrq8o4'
 
-<<<<<<< HEAD
 export const ROLE_IDS = {
   suadminrole_id: "6344049eb4f40996bcf1265a",
   admin_id: "6373203dd9363c459e315563",
@@ -52,10 +51,9 @@ export const ROLE_IDS = {
   cp_id: "6346a40364de88d6385d4e38",
   agent_id: "6373209fd9363c459e3155b6",
   postsales_id: "63732009d9363c459e315530",
+  receptionist_id: "6373202cd9363c459e315551",
 }
-=======
 export const Regexs = {
   AadharRegex: new RegExp(/^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/),
   panRegex: new RegExp(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/)
 }
->>>>>>> e31c94185f9a627d78b295bbd530883db38ff3ed

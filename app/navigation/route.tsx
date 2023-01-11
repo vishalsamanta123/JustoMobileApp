@@ -80,12 +80,8 @@ import SupportScreen from "app/views/Support";
 import SalesToolsScreen from "app/views/SalesTools";
 import ReportScreen from "app/views/Report";
 import ChatViewScreen from "app/views/ChatManagement/Chat";
-<<<<<<< HEAD
-import RecoveryScreen from "app/views/Recovery";
 import CancelBookingScreen from "app/views/BookingManagement/CancelBooking";
-=======
 import RecoveryScreen from "app/views/Recovery/RecoveryScreen";
->>>>>>> e31c94185f9a627d78b295bbd530883db38ff3ed
 import PropertyChat from "app/views/ChatManagement/PropertyChat";
 import ChatScreen from "app/views/ChatManagement/Chat/components/ChatScreen";
 import Notification from "app/views/Setting/Notification";

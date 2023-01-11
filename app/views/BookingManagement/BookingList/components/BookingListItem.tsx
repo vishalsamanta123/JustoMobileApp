@@ -9,7 +9,6 @@ import moment from 'moment';
 import { useSelector } from 'react-redux';
 
 const BookingListItem = (props: any) => {
-console.log('props: ', props.items);
     const getLoginType = useSelector((state: any) => state.login);
     return (
         <View style={styles.IteamView}>
@@ -66,15 +65,8 @@ console.log('props: ', props.items);
                         </View>
                         <View style={styles.nameContainer}>
                             <Text style={styles.nameTxt}>{
-<<<<<<< HEAD
                                 props.items.payment_type ?
                                     props.items.payment_type : strings.notfount}</Text>
-=======
-                                props.items.min_budget || props.items.max_budget ?
-                                    `${props.items.min_budget}${props.items.min_budget_type} - ${props.items.max_budget}${props.items.max_budget_type}`
-                                    : strings.notfount
-                            }</Text>
->>>>>>> e31c94185f9a627d78b295bbd530883db38ff3ed
                         </View>
                     </View>
                 </> : null

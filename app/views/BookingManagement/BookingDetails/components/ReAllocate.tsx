@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import Modal from "react-native-modal";
 import styles from "app/components/Modals/styles";
-import Styles from './components/styles'
+import Styles from './styles'
 import images from "app/assets/images";
 import strings from "app/components/utilities/Localization";
 import Button from "app/components/Button";

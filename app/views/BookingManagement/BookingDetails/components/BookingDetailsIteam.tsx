@@ -9,12 +9,8 @@ import { useSelector } from 'react-redux'
 import moment from 'moment'
 
 const BookingDetailsItem = (props: any) => {
-<<<<<<< HEAD
     const getLoginType = useSelector((state: any) => state.login);
-=======
->>>>>>> e31c94185f9a627d78b295bbd530883db38ff3ed
     const item = props?.item[0] || {}
-    console.log('item: ', item);
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
@@ -134,15 +130,8 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-<<<<<<< HEAD
                         <Text style={styles.nameTxt}>{item?.configuration ?
                             item?.configuration : strings.notfount}</Text>
-=======
-                        <Text style={styles.nameTxt}>{item?.coniguration === '' ||
-                            item?.coniguration === null ||
-                            item?.coniguration === undefined ?
-                            strings.notfount : item?.coniguration}</Text>
->>>>>>> e31c94185f9a627d78b295bbd530883db38ff3ed
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -151,28 +140,8 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-<<<<<<< HEAD
                         <Text style={styles.nameTxt}>{item?.area ?
                             item?.area : strings.notfount}</Text>
-=======
-                        <Text style={styles.nameTxt}>{item?.area === '' ||
-                            item?.area === null ||
-                            item?.area === undefined ?
-                            strings.notfount : item?.area}</Text>
-                    </View>
-                </View>
-                <View style={styles.Txtview}>
-                    <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Budget</Text>
-                    </View>
-                    <View><Text>:</Text></View>
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{
-                            item?.leads?.customer?.min_budget || item?.leads?.customer?.max_budget ?
-                                `${item?.leads?.customer?.min_budget} ${item?.leads?.customer?.min_budget_type} - ${item?.leads?.customer?.max_budget} ${item?.leads?.customer?.max_budget_type}`
-                                : strings.notfount
-                        }</Text>
->>>>>>> e31c94185f9a627d78b295bbd530883db38ff3ed
                     </View>
                 </View>
                 {getLoginType?.response?.data?.role_id !== ROLE_IDS.postsales_id ?
@@ -205,7 +174,6 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                 </View>
             </>
-<<<<<<< HEAD
             {getLoginType?.response?.data?.role_id !== ROLE_IDS.postsales_id ?
                 <>
                     <View style={styles.Txtview}>
@@ -249,44 +217,6 @@ const BookingDetailsItem = (props: any) => {
                     </View>
                 </View> : null
             }
-=======
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Property Name</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.properties?.property_title === '' ||
-                        item?.properties?.property_title === null ||
-                        item?.properties?.property_title === undefined ?
-                        strings.notfount : item?.properties?.property_title}</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Visitor Name</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.leads?.customer?.first_name === '' ||
-                        item?.leads?.customer?.first_name === null ||
-                        item?.leads?.customer?.first_name === undefined ?
-                        strings.notfount : item?.leads?.customer?.first_name}</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Source</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.creaters?.user_name === '' ||
-                        item?.creaters?.user_name === null ||
-                        item?.creaters?.user_name === undefined ?
-                        strings.notfount : item?.creaters?.user_name}</Text>
-                </View>
-            </View>
->>>>>>> e31c94185f9a627d78b295bbd530883db38ff3ed
             {/* <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
                     <Text style={styles.projectTxt}>Closing Date</Text>

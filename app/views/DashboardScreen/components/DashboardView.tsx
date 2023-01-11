@@ -11,6 +11,7 @@ import SourcingDashboardView from "./SourcingView";
 import ClosingDashboardView from "./ClosingView";
 import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 import PostSaleDashboardView from "./PostSalesView";
+import ReceiptionistDashboardView from "./ReceptionistView";
 
 const DashboardView = (props: any) => {
   const data = [
@@ -154,9 +155,14 @@ const DashboardView = (props: any) => {
                       dashboardData={props?.dashboardData}
                       getLoginType={props.getLoginType}
                     /> :
-                    <View style={styles.secondPortion}>
-                      <ComingSoonScreen />
-                    </View>
+                    <>
+                      {roleType === ROLE_IDS.receptionist_id ?
+                        <ReceiptionistDashboardView /> :
+                        <View style={styles.secondPortion}>
+                          <ComingSoonScreen />
+                        </View>
+                      }
+                    </>
                   }
                 </>
               }
