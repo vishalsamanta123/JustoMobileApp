@@ -33,7 +33,7 @@ const EditFollowUp = ({ navigation, route }: any) => {
   );
   const dispatch: any = useDispatch();
   const insets = useSafeAreaInsets();
-  const [formData, setFormData] = useState<any>({});
+  const [formData, setFormData] = useState<any>([]);
   const [masterDatas, setMasterDatas] = useState<any>([]);
   const masterData = useSelector((state: any) => state.masterData) || {};
 
@@ -58,8 +58,9 @@ const EditFollowUp = ({ navigation, route }: any) => {
 
   useEffect(() => {
     if (response?.status === 200) {
-      setIsloading(false);
-      setFormData(response.data);
+      if(response.data?.length > 0){
+      setFormData(response.data[0]);
+      }
     }
   }, [response]);
 
@@ -152,7 +153,7 @@ const EditFollowUp = ({ navigation, route }: any) => {
                     });
                   }}
                   value={
-                    formData?.next_followup_date === ""
+                    formData?.next_followup_date === "" || formData?.next_followup_date === null
                       ? strings.notRecived
                       : moment(formData?.next_followup_date).format("DD/MM/YYYY")
                   }

@@ -27,15 +27,15 @@ const LeadDetailsView = (props: any) => {
         />
       </View>
       {props?.allDetails?.lead_status !== 6 ?
-        <View style={[styles.btnContainer, { justifyContent: props?.allDetails?.lead_status === 3 ? 'center' : 'space-between' }]}>
+        <View style={[styles.btnContainer, { justifyContent: props?.allDetails?.lead_status === 3 ? 'center' : 'space-around' }]}>
           {props?.allDetails?.lead_status !== 3 ?
             (<Button
               buttonText={strings.ScheduleSitevisite}
-              width={180}
+              width={155}
               height={45}
               bgcolor={PRIMARY_THEME_COLOR_DARK}
               btnTxtcolor={WHITE_COLOR}
-              btnTxtsize={12}
+              btnTxtsize={11.7}
               textTransform={"uppercase"}
               handleBtnPress={() => props.handleScheduleVisit()}
             />) : null}

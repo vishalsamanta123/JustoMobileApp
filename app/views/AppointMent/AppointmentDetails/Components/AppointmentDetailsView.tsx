@@ -105,15 +105,11 @@ const AppointmentDetailsView = (props: any) => {
                                         width={150}
                                     /> : null
                                 }
-
-                                {data?.status !== 2 ?
-                                    (<Button
-                                        buttonText={strings.readytoBookHeader}
-                                        handleBtnPress={() => setReadyToBooK(true)}
-                                        width={150}
-                                    />)
-                                    : null
-                                }
+                                <Button
+                                    buttonText={strings.readytoBookHeader}
+                                    handleBtnPress={() => setReadyToBooK(true)}
+                                    width={150}
+                                />
                             </View>
                         </>
                         : null

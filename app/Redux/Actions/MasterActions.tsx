@@ -62,6 +62,7 @@ export const getAllMaster = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.ADDMASTERLIST, params);
+        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: MASTER_LIST,
