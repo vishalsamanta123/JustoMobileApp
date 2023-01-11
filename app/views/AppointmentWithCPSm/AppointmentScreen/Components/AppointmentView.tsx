@@ -36,10 +36,10 @@ const AppointmentView = (props: any) => {
     (state: any) => state.userEditAppointmentData
   );
 
-  const [routes] = useState([
+  const routes = [
     { key: "first", title: props.role === 'TL'? "My Appointment" :"My Appointment with CP" },
     { key: "second", title: props.role === 'TL'? "SM Appointment With CP" : "Appointment with TL"},
-  ]);
+  ];
   const [visitorList, setVisiitorList] = useState<any>([]);
   const [isVisible, setIsVisible] = useState<any>(false);
   const [params, setParams] = useState({
