@@ -123,4 +123,9 @@ export default {
   GET_CLOSINGMANAGER: "/userManage/getClosingManagerListOnCH",
   GETCMDETAIL: "/userManage/getUserClosingManagerDetail",
 
+   //Support Forum
+   GET_SUPPORT_FORUM_LIST: '/supportForum/supportForumList',
+   GET_SUPPORT_FORUM_DETAIL: '/supportForum/getSupportForumDetails',
+   UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum',
+
 };

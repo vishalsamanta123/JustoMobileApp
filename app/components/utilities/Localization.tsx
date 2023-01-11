@@ -16,6 +16,7 @@ const strings = new LocalizedStrings({
     readytoBookHeader: 'Ready to Book',
     bookingRequestHead: 'Booking Request',
     playVideo: 'Play',
+    pauseVideo: 'Pause',
     recoveryHeader: 'Recovery',
     saleToolHeader: 'Sales Tools',
     agencyHeader: 'CP Management',
@@ -270,7 +271,10 @@ const strings = new LocalizedStrings({
     notSelectedLocation: 'Not Selected Location',
     searchYourlocation: 'Search your location here',
     notfount: 'Not Found',
-    ocupacion: 'Ocupacion',
+    ocupacion: 'Occupation',
+
+    //Support Forum
+    supportforumDtlHeader: 'Support Forum Detail',
   },
 });
 

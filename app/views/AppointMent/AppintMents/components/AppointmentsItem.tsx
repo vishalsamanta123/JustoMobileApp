@@ -63,11 +63,11 @@ const AppointmentItem = (props: any) => {
                         color: props.items.status == 1 || props.items.status == 5 || props.items.status == 4 ? 'red' :
                             props.items.status == 2 ? YELLOW_COLOR : BLACK_COLOR
                     }]}>{
-                            // status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 = Appoiment cancel, 5= close}
+                            // status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 = Appointment cancel, 5= close}
                             props.items.status === 1 ? 'Pending' :
                                 props.items.status === 2 ? 'Confirm' :
                                     props.items.status === 3 ? 'Completed' :
-                                        props.items.status === 4 ? 'Appoiment cancel' :
+                                        props.items.status === 4 ? 'Appointment cancel' :
                                             props.items.status == 5 && 'Close'
                         }</Text>
                 </View>

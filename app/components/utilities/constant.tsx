@@ -33,6 +33,7 @@ export const Isios = Platform.OS === 'ios'
 export const DATE_FORMAT = 'YYYY-MM-DD'
 export const DATE_BY_DAY = 'DD-MM-YYYY'
 export const TIME_FORMAT = 'LT'
+export const DATE_TIME_FORMAT = 'YYYY-MM-DD, h:mm a'
 export const AMOUNT_TYPE = [{ value: "Cr" }, { value: "L" }, { value: "K" }]
 
 // export const  GLOBAL_URL = 'http://192.168.1.27:3000'
