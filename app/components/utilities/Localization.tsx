@@ -18,6 +18,7 @@ const strings = new LocalizedStrings({
     playVideo: 'Play',
     pauseVideo: 'Pause',
     recoveryHeader: 'Recovery',
+    recoveryDetailHeader: 'Recovery Details',
     saleToolHeader: 'Sales Tools',
     agencyHeader: 'CP Management',
     agencyDeactiveHeader: 'Agency Deactive',
