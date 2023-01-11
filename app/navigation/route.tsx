@@ -80,7 +80,7 @@ import SupportScreen from "app/views/Support";
 import SalesToolsScreen from "app/views/SalesTools";
 import ReportScreen from "app/views/Report";
 import ChatViewScreen from "app/views/ChatManagement/Chat";
-import RecoveryScreen from "app/views/Recovery";
+import RecoveryScreen from "app/views/Recovery/RecoveryScreen";
 import PropertyChat from "app/views/ChatManagement/PropertyChat";
 import ChatScreen from "app/views/ChatManagement/Chat/components/ChatScreen";
 import Notification from "app/views/Setting/Notification";
@@ -91,6 +91,7 @@ import { updateFirebase } from "app/Redux/Actions/FirebaseActions";
 import AppointmentAddScreen from "app/views/AppointMentForSite/AppointmentAdd";
 import SupportForumScreen from "app/views/SupportForumScreen/SupportForum";
 import SupportForumDetail from "app/views/SupportForumScreen/SupportForumDtl";
+import RecoveryDetails from "app/views/Recovery/RecoveryDetail";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -219,10 +220,12 @@ const AppComponent = () => {
       <AppStack.Screen
         name="AppointmentDetailMain"
         component={AppointmentDetailsScreen}
-      />
+        />
       <AppStack.Screen name="FollUpAdd" component={FollUpAddScreen} />
       <AppStack.Screen name="VisitorUpdate" component={VisitorUpdateScreen} />
       <AppStack.Screen name="FollowUpAdd" component={FollowUpAddScreen} />
+      {/* Recovery  */}
+      <AppStack.Screen name="RecoveryDetails" component={RecoveryDetails} />
 
       {/* Chat  */}
       <AppStack.Screen name="PropertyChat" component={PropertyChat} />
