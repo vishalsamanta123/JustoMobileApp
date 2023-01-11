@@ -200,10 +200,16 @@ const styles = StyleSheet.create({
   knowMoreText: {
     fontSize: normalize(14),
   },
+  subTitleVw: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginHorizontal: normalizeSpacing(28)
+  },
   subTitleTxt: {
     textAlign: "center",
     fontFamily: FONT_FAMILY_EXTRABOLD,
-    fontSize: normalize(18),
+    fontSize: normalize(20),
     color: WHITE_COLOR,
   }
 });

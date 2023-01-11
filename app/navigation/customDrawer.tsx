@@ -265,6 +265,14 @@ const customDrawer = ({ navigation }: any) => {
         <DrawerTabSection
           type={"Closing Manager,Closing TL"}
           iconSource={images.property}
+          tabTitle={strings.cancelBooking}
+          handleDrawerNavigation={() => {
+            navigation.navigate("CancelBooking");
+          }}
+        />
+        <DrawerTabSection
+          type={"Closing Manager,Closing TL"}
+          iconSource={images.property}
           tabTitle={strings.recoveryHeader}
           handleDrawerNavigation={() => {
             navigation.navigate("Recovery");

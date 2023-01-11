@@ -82,6 +82,7 @@ import SalesToolsScreen from "app/views/SalesTools";
 import ReportScreen from "app/views/Report";
 import ChatViewScreen from "app/views/ChatManagement/Chat";
 import RecoveryScreen from "app/views/Recovery";
+import CancelBookingScreen from "app/views/BookingManagement/CancelBooking";
 import PropertyChat from "app/views/ChatManagement/PropertyChat";
 import ChatScreen from "app/views/ChatManagement/Chat/components/ChatScreen";
 import Notification from "app/views/Setting/Notification";
@@ -134,6 +135,7 @@ const DrawerComponent = () => {
       <Drawer.Screen name="Report" component={ReportScreen} />
       <Drawer.Screen name="Chat" component={ChatViewScreen} />
       <Drawer.Screen name="Recovery" component={RecoveryScreen} />
+      <Drawer.Screen name="CancelBooking" component={CancelBookingScreen} />
       {/* <Drawer.Screen name="profile" component={ProfileScreen}  /> */}
     </Drawer.Navigator>
   );

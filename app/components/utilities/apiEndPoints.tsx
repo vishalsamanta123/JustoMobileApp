@@ -21,7 +21,7 @@ export default {
   //Dashboard 
   DASHBOARD_SOURCING: '/dashboard/dashboardDetailSourcing',
   DASHBOARD_CLOSING: '/dashboard/dashboardDetailClosing',
-  DASHBOARD_POSTSALES: '/dashboard/DashboardDetail',
+  DASHBOARD_POSTSALES: '/dashboard/dashboardDetailPostSale',
   UPDATE_USER_STATUS: '/auth/userOnlineStatusUpdate',
   // CREATE CHANNEL PARTNER
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',

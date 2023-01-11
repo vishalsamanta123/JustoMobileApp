@@ -55,7 +55,7 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
                 }
             }
             return () => { };
-        }, [navigation, detail])
+        }, [navigation, detail, cancelAddBookingData])
     );
     const handleBackPress = () => {
         navigation.goBack()

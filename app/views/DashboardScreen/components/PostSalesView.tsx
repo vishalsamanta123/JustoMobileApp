@@ -2,23 +2,24 @@ import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity, } from "react-native";
 import styles from "./styles";
 import strings from "../../../components/utilities/Localization";
-import { normalizeSpacing } from "app/components/scaleFontSize";
+import { normalizeHeight, normalizeSpacing } from "app/components/scaleFontSize";
 
 const PostSaleDashboardView = (props: any) => {
-    const targetData = props?.dashboardData?.userTarget ||
-        props?.dashboardData?.target || {}
-    const achieveTargetData = props?.dashboardData?.achievetargetdata ||
-        props?.dashboardData?.achievetarget || {}
+    const targetData = props?.dashboardData?.target || {}
+    const achieveTargetData = props?.dashboardData?.achievetargetdata || {}
     return (
         <View style={styles.mainContainerWrap}>
-            <Text style={styles.subTitleTxt}>This Month Incentive   {'3000'}</Text>
+            <View style={styles.subTitleVw}>
+                <Text style={styles.subTitleTxt}>This Month Incentive</Text>
+                <Text style={styles.subTitleTxt}>{props?.dashboardData?.total_insantive}</Text>
+            </View>
             <View style={styles.secondPortion}>
                 <View style={styles.thirdCardView}>
                     <View style={styles.cardTextView}>
                         <Text style={styles.cardText}>Registration Target</Text>
                     </View>
                     <View style={styles.numberView}>
-                        <Text style={styles.numberText}>{achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}</Text>
+                        <Text style={styles.numberText}>{achieveTargetData?.achieve_closing_target}/{targetData?.registration_target}</Text>
                     </View>
                 </View>
                 <View style={styles.secondCardView}>
@@ -28,33 +29,37 @@ const PostSaleDashboardView = (props: any) => {
                         }]}>Booking Target</Text>
                     </View>
                     <View style={styles.numberView}>
-                        <Text style={styles.numberText}>{achieveTargetData?.achieve_site_visit_target}/{targetData?.site_visit_target}</Text>
+                        <Text style={styles.numberText}>{achieveTargetData?.achieve_booking_target}/{targetData?.booking_target}</Text>
                     </View>
                 </View>
             </View>
             {/* Bottom Section */}
             <View style={styles.thirdPortion}>
-                <View style={styles.thirdPortioncardView}>
+                <View style={[styles.thirdPortioncardView, {
+                    maxHeight: normalizeHeight(150)
+                }]}>
                     <View style={styles.thirdPortionCardTextView}>
                         <Text style={styles.thirdPortionCardText}>
                             Today Booking
                         </Text>
                     </View>
                     <View style={styles.numberView}>
-                        <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_booking}</Text>
+                        <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_booking}</Text>
                     </View>
                 </View>
-                <View style={styles.thirdPortioncardView}>
+                <View style={[styles.thirdPortioncardView, {
+                    minHeight: normalizeHeight(150)
+                }]}>
                     <View style={styles.thirdPortionCardTextView}>
                         <Text style={styles.thirdPortionCardText}>
                             Today Registration
                         </Text>
                     </View>
                     <View style={styles.numberView}>
-                        <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_booking}</Text>
+                        <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_registration}</Text>
                     </View>
                 </View>
-                <View style={styles.thirdPortioncardView}>
+                {/* <View style={styles.thirdPortioncardView}>
                     <View style={styles.thirdPortionCardTextView}>
                         <Text style={styles.thirdPortionCardText}>Ready to Book</Text>
                     </View>
@@ -70,7 +75,7 @@ const PostSaleDashboardView = (props: any) => {
                     <View style={styles.numberView}>
                         <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_closing_manager}</Text>
                     </View>
-                </View>
+                </View> */}
             </View>
         </View>
     );

@@ -6,8 +6,6 @@ import images from 'app/assets/images'
 import strings from 'app/components/utilities/Localization'
 import { PRIMARY_THEME_COLOR } from 'app/components/utilities/constant'
 import ComingSoonScreen from 'app/components/CommonScreen/ComingSoon'
-import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen'
-import RecoveryItems from './RecoveryItems'
 
 const RecoveryView = (props: any) => {
     return (
@@ -24,29 +22,6 @@ const RecoveryView = (props: any) => {
                 barStyle={'light-content'}
             />
             <ComingSoonScreen />
-            {/* <View style={styles.listView}>
-                <FlatList
-                    data={Array.isArray(props.DATA) ? props.DATA : []}
-                    showsVerticalScrollIndicator={false}
-                    ListEmptyComponent={<EmptyListScreen message={strings.recoveryHeader} />}
-                    renderItem={({ item }) => <RecoveryItems items={item} type={props?.type}
-                        onPressView={() => props.handleView(item)}
-                    />}
-                    onEndReached={() => {
-                        if (props?.DATA?.length < props?.moreData) {
-                            props.getBookingLits(
-                                props?.DATA?.length > 2 ? props.offSET + 1 : 0,
-                                props?.filterData
-                            );
-                        }
-                    }}
-                    refreshing={false}
-                    onRefresh={() => {
-                        props.getBookingLits(0)
-                        props.setBookingList([])
-                    }}
-                />
-            </View> */}
         </View>
     )
 }

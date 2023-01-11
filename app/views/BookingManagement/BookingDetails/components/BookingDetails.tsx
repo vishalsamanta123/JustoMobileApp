@@ -89,7 +89,8 @@ const BookingDetailsView = (props: any) => {
                 }
                 {getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id
                     && props?.type === 'request' &&
-                    detailData?.leads?.lead_status !== 5
+                    detailData?.leads?.lead_status !== 5 &&
+                    detailData?.booking_status !== 4
                     ?
                     <View style={styles.buttonVw}>
                         <Button
