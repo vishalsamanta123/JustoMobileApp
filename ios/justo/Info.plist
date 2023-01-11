@@ -33,6 +33,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Justo uses your media for library and media</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Justo uses your calender for date and time</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Justo uses access to your camera to let you take and share photos, record videos and more.</string>
 	<key>NSExceptionDomains</key>
