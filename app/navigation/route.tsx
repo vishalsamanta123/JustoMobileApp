@@ -95,6 +95,7 @@ import SupportForumDetail from "app/views/SupportForumScreen/SupportForumDtl";
 import SupportScreenDetails from "app/views/SupportScreen/SupportDetails";
 import AddTicketScreen from "app/views/SupportScreen/AddTicket";
 import RecoveryDetails from "app/views/Recovery/RecoveryDetail";
+import CpChecking from "app/views/CpChecking/CpCheckingScreen";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -139,6 +140,7 @@ const DrawerComponent = () => {
       <Drawer.Screen name="Report" component={ReportScreen} />
       <Drawer.Screen name="Chat" component={ChatViewScreen} />
       <Drawer.Screen name="Recovery" component={RecoveryScreen} />
+      <Drawer.Screen name="CpChecking" component={CpChecking} />
       <Drawer.Screen name="CancelBooking" component={CancelBookingScreen} />
       {/* <Drawer.Screen name="profile" component={ProfileScreen}  /> */}
     </Drawer.Navigator>

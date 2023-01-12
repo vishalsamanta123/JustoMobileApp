@@ -23,23 +23,23 @@ import auth from "@react-native-firebase/auth";
 
 const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch();
-  const { response = {} } = useSelector((state: any) => state.userDetail)
+  const { response = {} } = useSelector((state: any) => state.userDetail);
   const isDrawerOpen = useDrawerStatus() === "open";
   const insets = useSafeAreaInsets();
   const [userData, setUserData] = useState<any>({});
   console.log('userData: ', userData);
   useEffect(() => {
     if (response?.status === 200) {
-      setUserData(response?.data)
+      setUserData(response?.data);
     } else {
-      setUserData({})
+      setUserData({});
     }
-  }, [response, isDrawerOpen])
+  }, [response, isDrawerOpen]);
   useEffect(() => {
     if (isDrawerOpen) {
-      getDetail()
+      getDetail();
     }
-  }, [isDrawerOpen])
+  }, [isDrawerOpen]);
   const getDetail = async () => {
     const userData: any = await AsyncStorage.getItem("loginData");
     if (JSON.parse(userData)?.data?._id) {
@@ -219,10 +219,14 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.sourcingtl_id, ROLE_IDS.sourcingmanager_id}`}
-          // type={"Sourcing TL,Sourcing Manager"}
+          type={`${ROLE_IDS.sourcingtl_id, ROLE_IDS.sourcingmanager_id, ROLE_IDS.receptionist_id}`}
+          // type={"Sourcing TL,Sourcing Manager,Receptionist"}
           iconSource={images.event}
-          tabTitle={strings.appointmentForVisitHeader}
+          tabTitle={
+            userData?.role_id === ROLE_IDS.receptionist_id
+              ? strings.visitorAppointmentHeader
+              : strings.appointmentForVisitHeader
+          }
           handleDrawerNavigation={() => {
             navigation.navigate("AppointmentForSite");
           }}
@@ -243,6 +247,15 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.registrationReqHead}
           handleDrawerNavigation={() => {
             navigation.navigate("BookingList", { type: "register" });
+          }}
+        />
+        <DrawerTabSection
+          type={`${ROLE_IDS.receptionist_id}`}
+          // type={"Receptionist"}
+          iconSource={images.lead}
+          tabTitle={strings.cpChecking}
+          handleDrawerNavigation={() => {
+            navigation.navigate("CpChecking");
           }}
         />
         <DrawerTabSection
