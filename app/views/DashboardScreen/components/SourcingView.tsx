@@ -1,0 +1,66 @@
+import React, { useState } from "react";
+import { View, Text, Image, TouchableOpacity, } from "react-native";
+import styles from "./styles";
+import strings from "../../../components/utilities/Localization";
+import { ROLE_IDS } from "app/components/utilities/constant";
+
+const SourcingDashboardView = (props: any) => {
+    const targetData = props?.dashboardData?.target || {}
+    const achieveTargetData = props?.dashboardData?.achievetarget || {}
+    const role = props?.getLoginType?.response?.data?.role_id || null
+    return (
+        <View style={{ flex: 1 }}>
+            <View style={styles.secondPortion}>
+                <View style={styles.firstCardView}>
+                    <View style={styles.cardTextView}>
+                        <Text style={styles.cardText}>Visit Target</Text>
+                    </View>
+                    <View style={styles.numberView}>
+                        <Text style={styles.numberText}>{achieveTargetData?.achieve_visit_target}/{targetData?.booking_target}</Text>
+                    </View>
+                </View>
+                <View style={styles.secondCardView}>
+                    <View style={styles.cardTextView}>
+                        <Text style={styles.cardText}>Site Visit Target</Text>
+                    </View>
+                    <View style={styles.numberView}>
+                        <Text style={styles.numberText}>{achieveTargetData?.achieve_site_visit_target}/{targetData?.site_visit_target}</Text>
+                    </View>
+                </View>
+            </View>
+            {/* Bottom Section */}
+            <View style={styles.thirdPortion}>
+                <View style={styles.thirdPortioncardView}>
+                    <View style={styles.thirdPortionCardTextView}>
+                        <Text style={styles.thirdPortionCardText}>Today Visit</Text>
+                    </View>
+                    <View style={styles.numberView}>
+                        <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_visit}</Text>
+                    </View>
+                </View>
+                <View style={styles.thirdPortioncardView}>
+                    <View style={styles.thirdPortionCardTextView}>
+                        <Text style={styles.thirdPortionCardText} numberOfLines={2}>
+                            Today Site Visit
+                        </Text>
+                    </View>
+                    <View style={styles.numberView}>
+                        <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_site_visit}</Text>
+                    </View>
+                </View>
+                <View style={styles.thirdPortioncardView}>
+                    <View style={styles.thirdPortionCardTextView}>
+                        <Text style={styles.thirdPortionCardText}>{props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ? 'Active SM' : 'Active CP'}</Text>
+                    </View>
+                    <View style={styles.numberView}>
+                        <Text style={styles.thirdPortionNumberText}>{
+                            role === ROLE_IDS.sourcingtl_id ? props?.dashboardData?.total_sorcing_manager : props?.dashboardData?.active_cp
+                        }</Text>
+                    </View>
+                </View>
+            </View>
+        </View>
+    );
+};
+
+export default SourcingDashboardView;

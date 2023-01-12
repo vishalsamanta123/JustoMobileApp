@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     color: BLACK_COLOR,
     fontSize: normalize(18),
     fontFamily: FONT_FAMILY_EXTRABOLD,
+    width: '92%',
   },
   bottomTxt: {
     color: BLACK_COLOR,

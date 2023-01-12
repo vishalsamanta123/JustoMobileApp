@@ -15,6 +15,7 @@ const strings = new LocalizedStrings({
     appointmentHeader: 'Appointment',
     readytoBookHeader: 'Ready to Book',
     bookingRequestHead: 'Booking Request',
+    registrationReqHead: 'Registration Request',
     playVideo: 'Play',
     pauseVideo: 'Pause',
     recoveryHeader: 'Recovery',
@@ -34,6 +35,7 @@ const strings = new LocalizedStrings({
     leaderBoardHeader: 'LeaderBoard',
     bookingListHeader: 'Booking List',
     bookingDetails: 'Booking Details',
+    registerDetails: 'Registration Details',
     settingHeader: 'Setting',
     logout: 'Logout',
     versionText: 'version',
@@ -94,7 +96,8 @@ const strings = new LocalizedStrings({
     notification: 'Notification',
     decline: 'Decline',
     done: 'Done',
-
+    reAllocate: 'Re-Allocate',
+    document:'Document',
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
     correctemail: 'Enter correct Email Address',
