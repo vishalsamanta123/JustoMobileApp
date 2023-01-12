@@ -92,6 +92,7 @@ import AppointmentAddScreen from "app/views/AppointMentForSite/AppointmentAdd";
 import SupportForumScreen from "app/views/SupportForumScreen/SupportForum";
 import SupportForumDetail from "app/views/SupportForumScreen/SupportForumDtl";
 import RecoveryDetails from "app/views/Recovery/RecoveryDetail";
+import CpChecking from "app/views/CpChecking/CpCheckingScreen";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -136,6 +137,7 @@ const DrawerComponent = () => {
       <Drawer.Screen name="Report" component={ReportScreen} />
       <Drawer.Screen name="Chat" component={ChatViewScreen} />
       <Drawer.Screen name="Recovery" component={RecoveryScreen} />
+      <Drawer.Screen name="CpChecking" component={CpChecking} />
       {/* <Drawer.Screen name="profile" component={ProfileScreen}  /> */}
     </Drawer.Navigator>
   );

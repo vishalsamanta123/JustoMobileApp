@@ -15,6 +15,8 @@ const DashboardView = (props: any) => {
     props?.dashboardData?.achievetarget || {}
 
   const insets = useSafeAreaInsets();
+  console.log('props?.dashboardData: ', props?.dashboardData);
+
   const role = props?.getLoginType?.response?.data?.role_title || {}
   const renderItem = ({ item }: any) => {
     return (
