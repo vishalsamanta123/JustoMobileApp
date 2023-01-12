@@ -15,7 +15,7 @@ import {
   DrawerContentScrollView,
   useDrawerStatus,
 } from "@react-navigation/drawer";
-import { PRIMARY_THEME_COLOR } from "../components/utilities/constant";
+import { PRIMARY_THEME_COLOR, ROLE_IDS } from "../components/utilities/constant";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { userLogout, getUserDetails } from "../Redux/Actions/AuthActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +27,7 @@ const customDrawer = ({ navigation }: any) => {
   const isDrawerOpen = useDrawerStatus() === "open";
   const insets = useSafeAreaInsets();
   const [userData, setUserData] = useState<any>({});
+  console.log('userData: ', userData);
   useEffect(() => {
     if (response?.status === 200) {
       setUserData(response?.data);
@@ -106,7 +107,7 @@ const customDrawer = ({ navigation }: any) => {
   const DrawerTabSection = (props: any) => {
     return (
       <>
-        {props?.type?.includes(userData?.role_title) || props?.type == "all" ? (
+        {props?.type?.includes(userData?.role_id) || props?.type == "all" ? (
           <TouchableOpacity
             style={styles.drawerTouch}
             onPress={props.handleDrawerNavigation}
@@ -135,7 +136,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Closing TL"}
+          type={`${ROLE_IDS.closingtl_id}`}
+          // type={"Closing TL"}
           iconSource={images.property}
           tabTitle={strings.closingManagerHeader}
           handleDrawerNavigation={() => {
@@ -143,7 +145,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Sourcing TL,Sourcing Manager,Closing TL"}
+          type={`${ROLE_IDS.closingtl_id, ROLE_IDS.sourcingtl_id, ROLE_IDS.sourcingmanager_id}`}
+          // type={"Sourcing TL,Sourcing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.propertyManagementHeader}
           handleDrawerNavigation={() => {
@@ -151,7 +154,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Closing Manager,Closing TL"}
+          type={`${ROLE_IDS.closingtl_id, ROLE_IDS.closingmanager_id}`}
+          // type={"Closing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.appointmentHeader}
           handleDrawerNavigation={() => {
@@ -159,7 +163,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Closing TL,Closing Manager,Post Sales"}
+          type={`${ROLE_IDS.closingtl_id, ROLE_IDS.closingmanager_id, ROLE_IDS.postsales_id}`}
+          // type={"Closing TL,Closing Manager,Post Sales"}
           iconSource={images.lead}
           tabTitle={strings.readytoBookHeader}
           handleDrawerNavigation={() => {
@@ -167,7 +172,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Sourcing TL"}
+          type={`${ROLE_IDS.sourcingtl_id}`}
+          // type={"Sourcing TL"}
           iconSource={images.property}
           tabTitle={strings.SourcingManagersHeader}
           handleDrawerNavigation={() => {
@@ -175,7 +181,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Sourcing TL,Sourcing Manager"}
+          type={`${ROLE_IDS.sourcingtl_id, ROLE_IDS.sourcingmanager_id}`}
+          // type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.agency}
           tabTitle={strings.agencyHeader}
           handleDrawerNavigation={() => {
@@ -183,7 +190,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Sourcing TL,Sourcing Manager"}
+          type={`${ROLE_IDS.sourcingtl_id, ROLE_IDS.sourcingmanager_id}`}
+          // type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.lead}
           tabTitle={strings.leadManagementHeader}
           handleDrawerNavigation={() => {
@@ -191,7 +199,9 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Sourcing TL,Sourcing Manager,Closing Manager,Closing TL"}
+          type={`${ROLE_IDS.sourcingtl_id, ROLE_IDS.sourcingmanager_id,
+            ROLE_IDS.closingtl_id, ROLE_IDS.closingmanager_id}`}
+          // type={"Sourcing TL,Sourcing Manager,Closing Manager,Closing TL"}
           iconSource={images.event}
           tabTitle={strings.followupHeader}
           handleDrawerNavigation={() => {
@@ -199,22 +209,21 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Sourcing TL,Sourcing Manager"}
+          type={`${ROLE_IDS.sourcingtl_id, ROLE_IDS.sourcingmanager_id}`}
+          // type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.event}
-          tabTitle={
-            userData?.role_title === "Sourcing TL"
-              ? strings.appointmentWithSMHeader
-              : strings.appointmentWithCPHeader
-          }
+          tabTitle={userData?.role_id === ROLE_IDS.sourcingtl_id ?
+            strings.appointmentWithSMHeader : strings.appointmentWithCPHeader}
           handleDrawerNavigation={() => {
             navigation.navigate("AppointmentScreenCPSM");
           }}
         />
         <DrawerTabSection
-          type={"Sourcing TL,Sourcing Manager,Receptionist"}
+          type={`${ROLE_IDS.sourcingtl_id, ROLE_IDS.sourcingmanager_id, ROLE_IDS.receptionist_id}`}
+          // type={"Sourcing TL,Sourcing Manager,Receptionist"}
           iconSource={images.event}
           tabTitle={
-            userData?.role_title === "Receptionist"
+            userData?.role_id === ROLE_IDS.receptionist_id
               ? strings.visitorAppointmentHeader
               : strings.appointmentForVisitHeader
           }
@@ -223,7 +232,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Closing Manager,Closing TL,Post Sales"}
+          type={`${ROLE_IDS.closingtl_id, ROLE_IDS.closingmanager_id, ROLE_IDS.postsales_id}`}
+          // type={"Closing Manager,Closing TL,Post Sales"}
           iconSource={images.lead}
           tabTitle={strings.bookingRequestHead}
           handleDrawerNavigation={() => {
@@ -231,7 +241,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Post Sales"}
+          type={`${ROLE_IDS.postsales_id}`}
+          // type={"Post Sales"}
           iconSource={images.lead}
           tabTitle={strings.registrationReqHead}
           handleDrawerNavigation={() => {
@@ -239,7 +250,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Receptionist"}
+          type={`${ROLE_IDS.receptionist_id}`}
+          // type={"Receptionist"}
           iconSource={images.lead}
           tabTitle={strings.cpChecking}
           handleDrawerNavigation={() => {
@@ -247,7 +259,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Sourcing Manager"}
+          type={`${ROLE_IDS.sourcingmanager_id}`}
+          // type={"Sourcing Manager"}
           iconSource={images.event}
           tabTitle={strings.leaderBoardHeader}
           handleDrawerNavigation={() => {
@@ -255,7 +268,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Sourcing TL,Sourcing Manager"}
+          type={`${ROLE_IDS.sourcingtl_id, ROLE_IDS.sourcingmanager_id}`}
+          // type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.event}
           tabTitle={strings.PickuprequestHeader}
           handleDrawerNavigation={() => {
@@ -263,7 +277,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={userData?.role_title === "Post Sales" ? "" : "all"}
+          type={userData?.role_id === ROLE_IDS.postsales_id ? '' : "all"}
           iconSource={images.support}
           tabTitle={strings.supportForumHeader}
           handleDrawerNavigation={() => {
@@ -279,7 +293,8 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.supportHeader}
         />
         <DrawerTabSection
-          type={"Closing Manager,Closing TL"}
+          type={`${ROLE_IDS.closingtl_id, ROLE_IDS.closingmanager_id}`}
+          // type={"Closing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.cancelBooking}
           handleDrawerNavigation={() => {
@@ -287,7 +302,8 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={"Closing Manager,Closing TL"}
+          type={`${ROLE_IDS.closingtl_id, ROLE_IDS.closingmanager_id}`}
+          // type={"Closing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.recoveryHeader}
           handleDrawerNavigation={() => {
@@ -311,7 +327,8 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.chatHeader}
         />
         <DrawerTabSection
-          type={"Closing TL"}
+          type={`${ROLE_IDS.closingtl_id}`}
+          // type={"Closing TL"}
           handleDrawerNavigation={() => {
             navigation.navigate("PickupRequest");
           }}
@@ -319,7 +336,8 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.PickuprequestHeader}
         />
         <DrawerTabSection
-          type={"Closing Manager,Closing TL"}
+          type={`${ROLE_IDS.closingtl_id, ROLE_IDS.closingmanager_id}`}
+          // type={"Closing Manager,Closing TL"}
           iconSource={images.support}
           tabTitle={strings.saleToolHeader}
           handleDrawerNavigation={() => {
