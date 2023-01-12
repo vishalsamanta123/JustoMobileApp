@@ -23,22 +23,22 @@ import auth from "@react-native-firebase/auth";
 
 const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch();
-  const { response = {} } = useSelector((state: any) => state.userDetail)
+  const { response = {} } = useSelector((state: any) => state.userDetail);
   const isDrawerOpen = useDrawerStatus() === "open";
   const insets = useSafeAreaInsets();
   const [userData, setUserData] = useState<any>({});
   useEffect(() => {
     if (response?.status === 200) {
-      setUserData(response?.data)
+      setUserData(response?.data);
     } else {
-      setUserData({})
+      setUserData({});
     }
-  }, [response, isDrawerOpen])
+  }, [response, isDrawerOpen]);
   useEffect(() => {
     if (isDrawerOpen) {
-      getDetail()
+      getDetail();
     }
-  }, [isDrawerOpen])
+  }, [isDrawerOpen]);
   const getDetail = async () => {
     const userData: any = await AsyncStorage.getItem("loginData");
     if (JSON.parse(userData)?.data?._id) {
@@ -201,15 +201,23 @@ const customDrawer = ({ navigation }: any) => {
         <DrawerTabSection
           type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.event}
-          tabTitle={userData?.role_title === "Sourcing TL" ? strings.appointmentWithSMHeader : strings.appointmentWithCPHeader}
+          tabTitle={
+            userData?.role_title === "Sourcing TL"
+              ? strings.appointmentWithSMHeader
+              : strings.appointmentWithCPHeader
+          }
           handleDrawerNavigation={() => {
             navigation.navigate("AppointmentScreenCPSM");
           }}
         />
         <DrawerTabSection
-          type={"Sourcing TL,Sourcing Manager"}
+          type={"Sourcing TL,Sourcing Manager,Receptionist"}
           iconSource={images.event}
-          tabTitle={strings.appointmentForVisitHeader}
+          tabTitle={
+            userData?.role_title === "Receptionist"
+              ? strings.visitorAppointmentHeader
+              : strings.appointmentForVisitHeader
+          }
           handleDrawerNavigation={() => {
             navigation.navigate("AppointmentForSite");
           }}
@@ -231,6 +239,14 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
+          type={"Receptionist"}
+          iconSource={images.lead}
+          tabTitle={strings.cpChecking}
+          handleDrawerNavigation={() => {
+            navigation.navigate("CpChecking");
+          }}
+        />
+        <DrawerTabSection
           type={"Sourcing Manager"}
           iconSource={images.event}
           tabTitle={strings.leaderBoardHeader}
@@ -247,7 +263,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={userData?.role_title === 'Post Sales' ? '' : "all"}
+          type={userData?.role_title === "Post Sales" ? "" : "all"}
           iconSource={images.support}
           tabTitle={strings.supportForumHeader}
           handleDrawerNavigation={() => {
