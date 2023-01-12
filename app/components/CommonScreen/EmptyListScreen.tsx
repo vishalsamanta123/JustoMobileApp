@@ -7,7 +7,7 @@ const EmptyListScreen = (props: any) => {
  return (
     <View style={styles.centered}>
         <Text style={styles.title}>{props.message+' '+strings.notfount}</Text>
-       {/*  <Text style={styles.subtitle}>Using Flexbox</Text> */}
+        {/* <Text style={styles.subtitle}>Using Flexbox</Text> */}
   </View>
  )
 

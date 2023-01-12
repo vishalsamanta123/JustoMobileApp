@@ -16,6 +16,7 @@ const strings = new LocalizedStrings({
     readytoBookHeader: 'Ready to Book',
     bookingRequestHead: 'Booking Request',
     cpChecking: 'CP Checking',
+    registrationReqHead: 'Registration Request',
     playVideo: 'Play',
     pauseVideo: 'Pause',
     recoveryHeader: 'Recovery',
@@ -36,6 +37,7 @@ const strings = new LocalizedStrings({
     leaderBoardHeader: 'LeaderBoard',
     bookingListHeader: 'Booking List',
     bookingDetails: 'Booking Details',
+    registerDetails: 'Registration Details',
     settingHeader: 'Setting',
     logout: 'Logout',
     versionText: 'version',
@@ -96,7 +98,8 @@ const strings = new LocalizedStrings({
     notification: 'Notification',
     decline: 'Decline',
     done: 'Done',
-
+    reAllocate: 'Re-Allocate',
+    document:'Document',
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
     correctemail: 'Enter correct Email Address',
@@ -278,6 +281,13 @@ const strings = new LocalizedStrings({
 
     //Support Forum
     supportforumDtlHeader: 'Support Forum Detail',
+
+    // Raise Ticket (Support)
+    addticket: 'Add Ticket',
+    supportrequest: 'Support Request',
+    myticket: 'My Ticket',
+    escalate: 'Escalate',
+    ticketDetails: 'Ticket Details'
   },
 });
 

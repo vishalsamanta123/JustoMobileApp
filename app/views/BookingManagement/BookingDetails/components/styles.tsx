@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
-import { BLACK_COLOR, FONT_FAMILY_EXTRABOLD, FONT_FAMILY_SEMIBOLD, GRAY_COLOR, GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant';
+import { BLACK_COLOR, FONT_FAMILY_EXTRABOLD, FONT_FAMILY_SEMIBOLD, GRAY_COLOR, GRAY_LIGHT_COLOR, Isios, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant';
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -21,7 +21,27 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginHorizontal: normalizeSpacing(10),
-        marginVertical: normalizeSpacing(5)
+        marginVertical: normalizeSpacing(5),
+        flexWrap: 'wrap',
+    },
+    buttonVw: {
+        marginVertical: normalize(10)
+    },
+    documentVw: {
+        margin: normalizeSpacing(5),
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: normalizeSpacing(16),
+    },
+    documentTxt: {
+        fontSize: normalize(14),
+        color: PRIMARY_THEME_COLOR,
+        fontFamily: FONT_FAMILY_SEMIBOLD,
+    },
+    documentIcon: {
+        width: normalizeWidth(18),
+        height: normalizeHeight(18),
+        marginLeft: normalizeSpacing(10),
     },
     topDetailsView: {
         flexDirection: 'row',
@@ -105,5 +125,22 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: GRAY_LIGHT_COLOR
     },
+    bookingModelVw: {
+        backgroundColor: WHITE_COLOR,
+        paddingHorizontal: 10,
+        borderRadius: 10
+    },
+    inputHeadingText: {
+        fontSize: normalize(Isios ? 14 : 16),
+        fontFamily: FONT_FAMILY_SEMIBOLD,
+        color: PRIMARY_THEME_COLOR,
+        marginLeft: normalizeSpacing(14)
+    },
+    straightVw: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: normalize(22)
+    }
 })
 export default styles;

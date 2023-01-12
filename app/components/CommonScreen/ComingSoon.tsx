@@ -5,8 +5,8 @@ import strings from '../utilities/Localization'
 
 const ComingSoonScreen = (props: any) => {
     return (
-        <View style={[styles.centered,{marginTop: 0}]}>
-            <Text style={styles.title}>{strings.comingSoon}</Text>
+        <View style={[styles.centered, { marginTop: 0 }]}>
+            <Text style={props.textStyle ? props.textStyle : styles.title}>{strings.comingSoon}</Text>
         </View>
     )
 
