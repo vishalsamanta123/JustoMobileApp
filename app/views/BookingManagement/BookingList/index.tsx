@@ -1,5 +1,5 @@
 import { useFocusEffect } from "@react-navigation/native";
-import { getBookingList } from "app/Redux/Actions/BookingActions";
+import { getBookingList, getRegisteredList } from "app/Redux/Actions/BookingActions";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BookingListView from './components/BookingList'
@@ -22,7 +22,7 @@ const BookingListScreen = ({ navigation, route }: any) => {
   useEffect(() => {
     if (response?.status === 200) {
       if (response?.data?.length > 0) {
-        if (offSET == 0 || offSET == undefined) {
+        if (offSET === 0) {
           setBookingList(response?.data);
         } else {
           setBookingList([...BookingList, ...response?.data]);
@@ -33,13 +33,22 @@ const BookingListScreen = ({ navigation, route }: any) => {
 
   const getBookingLits = (offset: any, array: any) => {
     setOffset(offset);
-    dispatch(
-      getBookingList({
-        offset: offset,
-        limit: 3,
-        booking_status: type === 'readyToBook' ? 1 : 2
-      })
-    );
+    if (type === 'register') {
+      dispatch(
+        getRegisteredList({
+          offset: offset,
+          limit: 3,
+        })
+      );
+    } else {
+      dispatch(
+        getBookingList({
+          offset: offset,
+          limit: 3,
+          booking_status: type === 'readyToBook' ? 1 : 2,
+        })
+      );
+    }
   };
   const handleDrawerPress = () => {
     navigation.toggleDrawer()

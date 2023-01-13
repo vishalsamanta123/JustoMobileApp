@@ -80,6 +80,7 @@ import SupportScreen from "app/views/SupportScreen/Support";
 import SalesToolsScreen from "app/views/SalesTools";
 import ReportScreen from "app/views/Report";
 import ChatViewScreen from "app/views/ChatManagement/Chat";
+import CancelBookingScreen from "app/views/BookingManagement/CancelBooking";
 import RecoveryScreen from "app/views/Recovery/RecoveryScreen";
 import PropertyChat from "app/views/ChatManagement/PropertyChat";
 import ChatScreen from "app/views/ChatManagement/Chat/components/ChatScreen";
@@ -96,6 +97,7 @@ import AddTicketScreen from "app/views/SupportScreen/AddTicket";
 import RecoveryDetails from "app/views/Recovery/RecoveryDetail";
 import ShowReply from "app/views/SupportScreen/SupportDetails/Components/ShowReply";
 import TicketStatusUpdate from "app/views/SupportScreen/Support/components/TicketStatusUpdate";
+import CpChecking from "app/views/CpChecking/CpCheckingScreen";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -140,6 +142,8 @@ const DrawerComponent = () => {
       <Drawer.Screen name="Report" component={ReportScreen} />
       <Drawer.Screen name="Chat" component={ChatViewScreen} />
       <Drawer.Screen name="Recovery" component={RecoveryScreen} />
+      <Drawer.Screen name="CpChecking" component={CpChecking} />
+      <Drawer.Screen name="CancelBooking" component={CancelBookingScreen} />
       {/* <Drawer.Screen name="profile" component={ProfileScreen}  /> */}
     </Drawer.Navigator>
   );

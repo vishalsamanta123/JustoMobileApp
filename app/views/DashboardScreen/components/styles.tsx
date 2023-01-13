@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   dashboardWrap: {
-    flex: 1,
     padding: normalizeSpacing(15),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: normalizeSpacing(30)
   },
   secondPortion: {
     flex: 1,
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     fontSize: normalize(20),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: WHITE_COLOR,
-
   },
   switchView: {
     marginLeft: normalizeSpacing(10),
@@ -200,6 +199,18 @@ const styles = StyleSheet.create({
   },
   knowMoreText: {
     fontSize: normalize(14),
+  },
+  subTitleVw: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginHorizontal: normalizeSpacing(28)
+  },
+  subTitleTxt: {
+    textAlign: "center",
+    fontFamily: FONT_FAMILY_EXTRABOLD,
+    fontSize: normalize(20),
+    color: WHITE_COLOR,
   }
 });
 

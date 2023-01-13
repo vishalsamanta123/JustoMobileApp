@@ -21,6 +21,7 @@ export default {
   //Dashboard 
   DASHBOARD_SOURCING: '/dashboard/dashboardDetailSourcing',
   DASHBOARD_CLOSING: '/dashboard/dashboardDetailClosing',
+  DASHBOARD_POSTSALES: '/dashboard/dashboardDetailPostSale',
   UPDATE_USER_STATUS: '/auth/userOnlineStatusUpdate',
   // CREATE CHANNEL PARTNER
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
@@ -95,7 +96,10 @@ export default {
   GET_BOOKINGDETAIL: '/booking/getBookingdetails',
   UPDATE_BOOKINGSTATUS: '/booking/updateBooking',
   CANCEL_BOOKING: '/booking/bookingStatusUpdate',
-
+  REGISTER_BOOKING: '/registration/addRegistration',
+  GET_REGISTERLIST: '/registration/getRegistrationList',
+  GET_BOOKINGREGISTERDETAIL: '/registration/getRegistrationDetails',
+  
   // Chat Management
   GET_ALL_USER_CHAT_LIST: '/chat/getAllUserListForChat',
 
