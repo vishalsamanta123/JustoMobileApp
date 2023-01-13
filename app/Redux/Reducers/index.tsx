@@ -20,6 +20,7 @@ import { ChatReducer } from "./ChatReducer";
 import { userAppointmentReducer, userEditAppointmentReducer } from "./AppointmentWithUserReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
 import { SupportReducer } from "./SupportReducer";
+import { CpCheckingReducer } from "./CpCheckingReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -44,6 +45,7 @@ export default {
     agentData: agentReducer,
     settingData: settingReducer,
     appointment: appointmentReducer,
+    CpCheckingData: CpCheckingReducer,
     editAddAppointment: editAddAppointmentReducer,
     followUp: followUpReducer,
     masterData: masterDataReducer,

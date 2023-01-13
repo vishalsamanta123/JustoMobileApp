@@ -14,6 +14,8 @@ import PostSaleDashboardView from "./PostSalesView";
 import ReceiptionistDashboardView from "./ReceptionistView";
 
 const DashboardView = (props: any) => {
+  console.log('props?.dashboardData: ', props?.dashboardData);
+
   const data = [
     {
       email: "niteshtl@gmail.com",
@@ -157,7 +159,7 @@ const DashboardView = (props: any) => {
                     /> :
                     <>
                       {roleType === ROLE_IDS.receptionist_id ?
-                        <ReceiptionistDashboardView /> :
+                        <ReceiptionistDashboardView dashboardData={props?.dashboardData} /> :
                         <View style={styles.secondPortion}>
                           <ComingSoonScreen />
                         </View>

@@ -1,13 +1,38 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CpCheckingView from "./components/CpCheckingView";
 import {
   handlePermission,
   openPermissionSetting,
 } from "app/components/utilities/GlobalFuncations";
 import strings from "app/components/utilities/Localization";
+import { useDispatch, useSelector } from "react-redux";
+import { getCpCheckingList } from "app/Redux/Actions/CpCheckingActions";
+import { useFocusEffect } from "@react-navigation/native";
 
 const CpChecking = ({ navigation }: any) => {
+  const { response = {}, list = false } = useSelector(
+    (state: any) => state.CpCheckingData
+  );
+  console.log("response: ", response);
+  const dispatch: any = useDispatch();
+  const [cpCheckingList, setCpCheckingList] = useState([]);
+  useFocusEffect(
+    React.useCallback(() => {
+      handleGetCpCheckingList()
+      return () => {};
+    }, [navigation, list])
+  );
+  useEffect(() => {
+    if (response?.status === 200) {
+      setCpCheckingList(response?.data);
+    } else {
+      setCpCheckingList([]);
+    }
+  }, [response]);
+  const handleGetCpCheckingList = () => {
+    dispatch(getCpCheckingList({}));
+  }
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
@@ -31,6 +56,8 @@ const CpChecking = ({ navigation }: any) => {
     <CpCheckingView
       handleDrawerPress={handleDrawerPress}
       handleScanQr={handleScanQr}
+      cpCheckingList={cpCheckingList}
+      handleGetCpCheckingList={handleGetCpCheckingList}
     />
   );
 };

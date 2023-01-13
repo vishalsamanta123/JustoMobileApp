@@ -6,6 +6,7 @@ import strings from "app/components/utilities/Localization";
 import styles from "./styles";
 import { PRIMARY_THEME_COLOR } from "app/components/utilities/constant";
 import Button from "app/components/Button";
+import moment from "moment";
 
 const CpCheckingView = (props: any) => {
   const DATA = [
@@ -94,19 +95,22 @@ const CpCheckingView = (props: any) => {
       checkin: "2",
     },
   ];
+  const loadingref = false
   const renderItem = (item: any) => {
-    console.log("item: ", item);
+    console.log('item: ', item);
+    console.log('item: ', moment("2023-01-13T5:20:53.573Z").fromNow());
+
     return (
       <View style={styles.dataView}>
-        <Text style={styles.dataTxt}>{item?.cpName}</Text>
-        <Text style={styles.dataTxt}>{item?.visitor}</Text>
-        <Text style={styles.dataTxt}>{item?.siteVisit}</Text>
-        <Text style={styles.dataTxt}>{`${item?.checkin} min ago `}</Text>
+        <Text style={styles.dataTxt}>{item?.user_name}</Text>
+        <Text style={styles.dataTxt}>{item?.customer_name}</Text>
+        {/* <Text style={styles.dataTxt}>{item?.total_site_visit}</Text> */}
+        <Text style={styles.dataTxt}>{moment(item.created_date).fromNow()}</Text>
       </View>
     );
   };
   return (
-    <View>
+    <View style={styles.mainContainer}>
       <Header
         leftImageSrc={images.menu}
         // rightFirstImageScr={images.filter}
@@ -133,13 +137,16 @@ const CpCheckingView = (props: any) => {
           <>
             <Text style={styles.headingText}>Cp Name</Text>
             <Text style={styles.headingText}>Visitor</Text>
-            <Text style={styles.headingText}>Site Visit</Text>
+            {/* <Text style={styles.headingText}>Site Visit</Text> */}
             <Text style={styles.headingText}>Check In</Text>
           </>
         </View>
         <FlatList
-          data={DATA}
+          data={props.cpCheckingList}
           renderItem={({ item, index }: any) => renderItem(item)}
+          style={styles.listView}
+          refreshing={loadingref}
+          onRefresh={props.handleGetCpCheckingList}
         />
       </View>
     </View>
