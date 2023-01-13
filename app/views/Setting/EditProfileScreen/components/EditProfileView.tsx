@@ -6,6 +6,7 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import {
   BLACK_COLOR,
+  DATE_FORMAT_EXCL,
   PRIMARY_THEME_COLOR,
 } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -20,16 +21,7 @@ import PicturePickerModal from "app/components/Modals/PicturePicker";
 const EditProfileView = (props: any) => {
   const { onPressBack, allDetails, setEditData, editData } = props;
   const insets = useSafeAreaInsets();
-  const [gender, setGender] = useState("Male");
-  const [checked, setChecked] = useState("first");
   const [profileVisible, setProfileVisible] = useState(false);
-
-  const allDetailsall = useSelector((state: any) => state.agentData);
-  // useEffect(() => {
-  //   // setEditData(allDetails)
-  //   setEditData(allDetailsall?.response)
-  // }, [allDetailsall])
-
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -42,7 +34,7 @@ const EditProfileView = (props: any) => {
         barStyle={"light-content"}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps={'handled'}>
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
           {/* <View style={styles.nderlineStyle} /> */}
@@ -63,7 +55,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.firstname}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -76,7 +68,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.lastname}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -89,7 +81,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.adhar_no}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -103,7 +95,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.pancard_no}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -133,7 +125,7 @@ const EditProfileView = (props: any) => {
                   styles.radioTxt,
                   {
                     color:
-                      checked === "first" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                      editData?.gender === 1 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                   },
                 ]}
               >
@@ -157,7 +149,7 @@ const EditProfileView = (props: any) => {
                   styles.radioTxt,
                   {
                     color:
-                      checked === "second" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                      editData?.gender === 2 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                   },
                 ]}
               >
@@ -167,7 +159,7 @@ const EditProfileView = (props: any) => {
           </View>
           {/* <View style={styles.inputWrap}>
             <InputField
-              valueshow={moment(editData?.date_of_birth).format("DD/MM/YYYY")}
+              valueshow={moment(editData?.date_of_birth).format(DATE_FORMAT_EXCL)}
               handleInputBtnPress={() => {}}
               onChangeText={(e: any) => {
                 setEditData({
@@ -197,12 +189,12 @@ const EditProfileView = (props: any) => {
                 dateofbirth: data,
               });
             }}
-            value={moment(editData?.dateofbirth).format("DD/MM/YYYY")}
+            value={moment(editData?.dateofbirth).format(DATE_FORMAT_EXCL)}
           />
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.mobile?.toString()}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -216,7 +208,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.whatsapp_no}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -230,7 +222,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.email}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,

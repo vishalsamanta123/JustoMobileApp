@@ -1,4 +1,4 @@
-import { normalizeSpacing, normalize } from "app/components/scaleFontSize";
+import { normalizeSpacing, normalize, normalizeWidth, normalizeHeight } from "app/components/scaleFontSize";
 import { BLACK_COLOR, FONT_FAMILY_EXTRABOLD, FONT_FAMILY_SEMIBOLD, GRAY_COLOR, GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from "app/components/utilities/constant";
 import { StyleSheet } from "react-native";
 
@@ -61,6 +61,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginVertical: normalizeSpacing(10)
+  },
+  Img: {
+    width: normalizeWidth(100),
+    height: normalizeHeight(100),
+    borderRadius: normalize(8)
+  },
+  replyView: {
+    backgroundColor: WHITE_COLOR,
+    marginVertical: normalizeSpacing(10),
+    marginHorizontal: normalizeSpacing(10),
+    borderRadius: normalize(10)
   }
 })
 

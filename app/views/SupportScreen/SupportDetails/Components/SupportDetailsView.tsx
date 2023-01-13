@@ -23,23 +23,37 @@ const SupportDetailsView = (props: any) => {
         barStyle={'light-content'}
       />
       <View style={{ flex: 1 }}>
-        <SupportDetailsItem />
+        <SupportDetailsItem item={props.ticketDetailsData} />
       </View>
       <View style={styles.btnContainer}>
-        <Button
-          width={160}
-          height={50}
-          buttonText={strings.escalate}
-          btnTxtsize={15}
-        // handleBtnPress={() => onPressAddNew()}
-        />
-        <Button
-          width={160}
-          height={50}
-          buttonText={strings.Statusupdate}
-          btnTxtsize={15}
-        // handleBtnPress={() => onPressAddNew()}
-        />
+        {props.type === 0 ?
+          (
+            <>
+              <Button
+                width={160}
+                height={50}
+                buttonText={strings.escalate}
+                btnTxtsize={15}
+              // handleBtnPress={() => onPressAddNew()}
+              />
+              <Button
+                width={160}
+                height={50}
+                buttonText={strings.Statusupdate}
+                btnTxtsize={15}
+              handleBtnPress={() => props.onPressStatusUpdate()}
+              />
+            </>
+          )
+          :
+          <Button
+            width={160}
+            height={50}
+            buttonText={strings.showreply}
+            btnTxtsize={15}
+          handleBtnPress={() => props.onPressReply()}
+          />
+        }
       </View>
     </View>
   )

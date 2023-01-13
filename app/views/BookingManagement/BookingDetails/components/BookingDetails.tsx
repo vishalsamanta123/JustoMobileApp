@@ -15,13 +15,14 @@ import RegistrationModal from "./Registration";
 
 const BookingDetailsView = (props: any) => {
     const getLoginType = useSelector((state: any) => state.login);
-    const { response = {}, detail = "" } = useSelector(
-        (state: any) => state.booking)
+    const { response = {}, detail = "" } = useSelector((state: any) => state.booking)
     const detailData = response?.data?.length > 0 ? response?.data[0] : {}
-    console.log('detailData: ', detailData);
     const navigation: any = useNavigation()
     const onPressBookNow = () => {
-        navigation.navigate('Booking', { getBookingData: response?.data?.length > 0 ? response?.data[0] : [], type: 'readyToBook' })
+        navigation.navigate('Booking', {
+            getBookingData: response?.data?.length > 0 ?
+                response?.data[0] : [], type: 'readyToBook'
+        })
     }
     return (
         <View style={styles.mainContainer}>
