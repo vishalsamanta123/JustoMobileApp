@@ -132,7 +132,7 @@ const BookingView = (props: any) => {
                     <View style={[styles.straightVw, { marginTop: normalize(20) }]}>
                         <View style={{ width: '48%' }}>
                             <DropdownInput
-                                headingText={'Pur. Configuration'}
+                                headingText={'Configuration'}
                                 onFocus={() => props.getDropDownData()}
                                 placeholder={props?.bookingData?.coniguration ?
                                     props?.bookingData?.coniguration : 'Configuration'}

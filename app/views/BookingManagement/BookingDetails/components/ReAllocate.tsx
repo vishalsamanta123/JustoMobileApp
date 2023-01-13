@@ -9,8 +9,16 @@ import strings from "app/components/utilities/Localization";
 import Button from "app/components/Button";
 import InputField from "app/components/InputField";
 import { normalizeSpacing } from "app/components/scaleFontSize";
+import { useDispatch } from "react-redux";
+import { cancelBooking } from "app/Redux/Actions/BookingActions";
+import ErrorMessage from "app/components/ErrorMessage";
+import { RED_COLOR } from "app/components/utilities/constant";
 
 const ReAllocateModal = (props: any) => {
+    const dispatch: any = useDispatch()
+    const handleReAllocate = () => {
+        dispatch(cancelBooking(props.reAllocateData))
+    }
     return (
         <Modal isVisible={props.Visible}>
             <View style={Styles.bookingModelVw}>
@@ -29,11 +37,11 @@ const ReAllocateModal = (props: any) => {
                         handleInputBtnPress={() => { }}
                         inputheight={80}
                         multiline={true}
-                        valueshow={props?.reAllocateData?.comment}
+                        valueshow={props?.reAllocateData?.description}
                         onChangeText={(val: any) => {
                             props.setReAllocateData({
                                 ...props.reAllocateData,
-                                comment: val
+                                description: val
                             })
                         }}
                     />
@@ -41,15 +49,15 @@ const ReAllocateModal = (props: any) => {
                 <View style={{ marginVertical: 20 }}>
                     <Button
                         handleBtnPress={() => {
-                            // if (props?.BookingData?.booking_date) {
-                            props.setIsVisible(false)
-                            //     props.handleBooking()
-                            // } else {
-                            //     ErrorMessage({
-                            //         msg: 'Please Enter the Booking Date',
-                            //         backgroundColor: 'red'
-                            //     })
-                            // }
+                            if (props?.reAllocateData?.description !== '') {
+                                handleReAllocate()
+                                props.setIsVisible(false)
+                            } else {
+                                ErrorMessage({
+                                    msg: 'Please Enter tne comment',
+                                    backgroundColor: RED_COLOR
+                                })
+                            }
                         }}
                         buttonText={strings.reAllocate} />
                 </View>
