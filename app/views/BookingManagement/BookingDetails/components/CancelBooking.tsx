@@ -59,6 +59,13 @@ const CancelModal = (props: any) => {
     }
   }, [propertyData]);
   useEffect(() => {
+    props.setCancelValue({
+      reason: '',
+      property_id: '',
+      comment: '',
+      property_name: '',
+      remark: '',
+  })
     if (masterData?.response?.status === 200) {
       setMasterDatas(
         masterData?.response?.data?.length > 0 ? masterData?.response?.data : []
@@ -74,7 +81,7 @@ const CancelModal = (props: any) => {
       });
       return;
     }
-    if (props?.cancelValue?.reason === "639d691c9f37df12d3ea64e2" && props?.cancelValue?.property_id === "") {
+    if (props?.cancelValue?.reason === "639d691c9f37df12d3ea64e2" && props?.cancelValue?.property_name === "") {
       ErrorMessage({
         msg: strings.enterCompPropertyName,
         backgroundColor: RED_COLOR,
