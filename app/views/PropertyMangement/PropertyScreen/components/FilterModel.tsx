@@ -158,8 +158,9 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputField
-                placeholderText={"Search by Location"}
-                inputType={"location"}
+                headingText={"Search by Locality"}
+                placeholderText={"Search by Locality"}
+                // inputType={"location"}
                 valueshow={props?.filterform?.location}
                 onChangeText={(data: any) => {
                   props.setFilterform({

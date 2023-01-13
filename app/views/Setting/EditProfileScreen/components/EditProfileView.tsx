@@ -89,7 +89,7 @@ const EditProfileView = (props: any) => {
                 });
               }}
               headingText={"Aadhaar No."}
-              maxLength={12}
+              maxLength={14}
             />
           </View>
           <View style={styles.inputWrap}>

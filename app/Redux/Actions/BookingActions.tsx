@@ -141,6 +141,7 @@ export const cancelBooking = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.CANCEL_BOOKING, params);
+        console.log('res IN CANKCFS: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: BOOKING_CANCEL,

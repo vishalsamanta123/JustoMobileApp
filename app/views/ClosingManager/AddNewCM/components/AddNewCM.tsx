@@ -136,7 +136,7 @@ const AddNewCMView = (props: any) => {
                             })
                         }}
                         valueshow={props?.addNewCMData?.adhar_no}
-                        maxLength={12}
+                        maxLength={14}
                         keyboardtype={'number-pad'}
                     />
                 </View>
