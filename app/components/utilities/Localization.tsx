@@ -284,10 +284,14 @@ const strings = new LocalizedStrings({
 
     // Raise Ticket (Support)
     addticket: 'Add Ticket',
+    editticket: 'Edit Ticket',
     supportrequest: 'Support Request',
     myticket: 'My Ticket',
     escalate: 'Escalate',
-    ticketDetails: 'Ticket Details'
+    ticketDetails: 'Ticket Details',
+    ticketReply: 'Ticket Reply',
+    showreply: 'Show Reply',
+    ticketStatusUpdate: 'Status Update'
   },
 });
 

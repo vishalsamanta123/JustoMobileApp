@@ -63,5 +63,23 @@ const styles = StyleSheet.create({
     width: normalizeWidth(30),
     height: normalizeHeight(30)
   },
+  topItemsVw: {
+    paddingHorizontal: normalize(16),
+    paddingVertical: normalize(16)
+  },
+  inputWrap: {
+    marginVertical: normalizeSpacing(10),
+  },
+  item: {
+    padding: 17,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  textItem: {
+    flex: 1,
+    fontSize: 16,
+    color: GRAY_LIGHT_COLOR
+  },
 })
 export default styles

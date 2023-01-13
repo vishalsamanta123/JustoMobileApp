@@ -95,6 +95,8 @@ import SupportForumDetail from "app/views/SupportForumScreen/SupportForumDtl";
 import SupportScreenDetails from "app/views/SupportScreen/SupportDetails";
 import AddTicketScreen from "app/views/SupportScreen/AddTicket";
 import RecoveryDetails from "app/views/Recovery/RecoveryDetail";
+import ShowReply from "app/views/SupportScreen/SupportDetails/Components/ShowReply";
+import TicketStatusUpdate from "app/views/SupportScreen/Support/components/TicketStatusUpdate";
 import CpChecking from "app/views/CpChecking/CpCheckingScreen";
 
 const Stack = createNativeStackNavigator();
@@ -257,6 +259,8 @@ const AppComponent = () => {
       {/* Raise Ticket (Support) */}
       <AppStack.Screen name="SupportScreenDetails" component={SupportScreenDetails} />
       <AppStack.Screen name="AddTicket" component={AddTicketScreen} />
+      <AppStack.Screen name="ShowReply" component={ShowReply} />
+      <AppStack.Screen name="TicketStatusUpdate" component={TicketStatusUpdate} />
 
     </AppStack.Navigator>
   );

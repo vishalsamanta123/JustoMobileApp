@@ -1,21 +1,24 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
 import styles from './styles'
 import Header from 'app/components/Header'
 import images from 'app/assets/images'
 import strings from 'app/components/utilities/Localization'
-import { PRIMARY_THEME_COLOR } from 'app/components/utilities/constant'
+import { BLACK_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from 'app/components/utilities/constant'
 import InputField from 'app/components/InputField'
 import DropdownInput from 'app/components/DropDown'
 import Button from 'app/components/Button'
+import { normalizeWidth, normalizeHeight, normalize } from 'app/components/scaleFontSize'
+import PicturePickerModal from 'app/components/Modals/PicturePicker'
 
 const AddTicketForm = (props: any) => {
+    const [visible, setVisible] = useState(false)
     return (
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.backArrow}
                 rightSecondImageScr={images.notification}
-                headerText={strings.addticket}
+                headerText={props.type === strings.edit ? strings.editticket : strings.addticket}
                 handleOnLeftIconPress={props.handleBackPress}
                 headerStyle={styles.headerStyle}
                 RightFirstIconStyle={styles.RightFirstIconStyle}
@@ -63,12 +66,11 @@ const AddTicketForm = (props: any) => {
                                 title: val,
                             })
                         }}
-                        multiline={true}
+                        valueshow={props.addTicketData.title}
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        require={true}
                         headingText={'Description'}
                         placeholderText={"Description"}
                         handleInputBtnPress={() => { }}
@@ -80,15 +82,43 @@ const AddTicketForm = (props: any) => {
                         }}
                         multiline={true}
                         inputheight={100}
+                        valueshow={props.addTicketData.remark}
                     />
+                </View>
+                <View style={styles.inputWrap}>
+                    <View style={styles.attachView}>
+                        <Text style={styles.attachTxt}>Image</Text>
+                        <View style={{ alignItems: 'center' }}>
+                            <TouchableOpacity
+                                style={styles.attachbtn}
+                                onPress={() => {
+                                    setVisible(true)
+                                }}
+                            >
+                                <Text style={{ color: WHITE_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
+                            </TouchableOpacity>
+                            {props.addTicketData?.image?.uri ? (<Text style={styles.attachTxt1}>Image Added</Text>) : null}
+                        </View>
+                    </View>
                 </View>
             </View>
             <View>
                 <Button
-                    buttonText={strings.addticket}
-                    // handleBtnPress={() => {}}
+                    buttonText={props.type === strings.edit ? strings.editticket : strings.addticket}
+                    handleBtnPress={() => { props.onPressAddTicket() }}
                 />
             </View>
+            <PicturePickerModal
+                Visible={visible}
+                setVisible={setVisible}
+                imageData={(data: any) => {
+                    setVisible(false)
+                    props.setAddTicketData({
+                        ...props.addTicketData,
+                        image: data,
+                    })
+                }}
+            />
         </View>
     )
 }
