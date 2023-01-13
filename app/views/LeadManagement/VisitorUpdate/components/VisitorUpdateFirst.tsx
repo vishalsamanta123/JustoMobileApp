@@ -93,7 +93,7 @@ const VisitorUpdateView = (props: any) => {
                         }}
                         valueshow={props?.updateForm?.adhar_no?.toString()}
                         headingText={"Aadhaar No."}
-                        maxLength={12}
+                        maxLength={14}
                     />
                 </View>
                 <View style={styles.inputWrap}>

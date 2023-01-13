@@ -93,7 +93,7 @@ const LeadDetailsIteam = (props: any) => {
                     <Text style={[styles.nameTxt, {
                         color: item?.lead_status === 6 ? 'red' : BLACK_COLOR
                     }]}>
-                        {item?.lead_status === 1 ? "Lead Created" :
+                        {item?.lead_status === 1 ? "Create Lead" :
                             item?.lead_status === 2 ? "Follow-up" :
                                 item?.lead_status === 3 ? "Appointment" :
                                     item?.lead_status === 4 ? "Booking" :

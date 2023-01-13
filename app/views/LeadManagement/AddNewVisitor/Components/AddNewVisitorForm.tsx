@@ -129,7 +129,7 @@ const AddNewVisitorForm = (props: any) => {
                             valueshow={props?.formData?.adhar_no?.toString()}
                             headingText={"Aadhaar No."}
                             keyboardtype={'number-pad'}
-                            maxLength={12}
+                            maxLength={14}
                         />
                     </View>
                     <View style={styles.inputWrap}>

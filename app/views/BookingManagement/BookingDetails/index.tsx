@@ -12,6 +12,8 @@ import BookingDetailsView from './components/BookingDetails'
 const BookingDetailsScreen = ({ navigation, route }: any) => {
     const { data = {}, type = '' } = route?.params || {}
     const dispatch: any = useDispatch()
+    const { response = {}, detail = "" } = useSelector(
+        (state: any) => state.booking)
     const [cancelBookingModel, setCancelBookingModel] = useState(false)
     const [reAllocateModel, setReAllocateModel] = useState(false)
     const [registerModal, setRegisterModal] = useState(false)
@@ -24,16 +26,18 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
         remark: '',
     });
     const [reAllocateData, setReAllocateData] = useState({
-        comment: '',
+        booking_id: data?._id,
+        description: '',
+        booking_status: 4,
+        receivery_status: 1
     });
+
     const [registerNowData, setRegisterNowData] = useState({
         register_date: '',
         documents: [],
         total_amount: '',
         total_amount_type: 'L',
     });
-    const { response = {}, detail = "" } = useSelector(
-        (state: any) => state.booking)
     const cancelAddBookingData = useSelector((state: any) => state.cancelAddBooking)
     useFocusEffect(
         React.useCallback(() => {
