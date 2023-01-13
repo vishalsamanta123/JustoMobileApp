@@ -4,13 +4,18 @@ import AddTicketForm from './Components/AddTicketForm'
 import { useFocusEffect } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllMaster } from 'app/Redux/Actions/MasterActions'
+import ErrorMessage from 'app/components/ErrorMessage'
+import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant'
+import { AddNewTicket, EditTicket, RemoveTicket } from 'app/Redux/Actions/SupportActions'
+import strings from 'app/components/utilities/Localization'
 
-const AddTicketScreen = ({ navigation }: any) => {
+const AddTicketScreen = ({ navigation, route }: any) => {
+    const { data, type } = route?.params || {}
     const dispatch: any = useDispatch()
-    const [addTicketData, setAddTicketData] = useState({})
-    console.log('addTicketData: ', addTicketData);
+    const [addTicketData, setAddTicketData] = useState<any>({})
     const [masterData, setMasterData] = useState([])
     const { response = {} } = useSelector((state: any) => state.masterData)
+    const SupportResponse = useSelector((state: any) => state.SupportAdd)
 
     useFocusEffect(
         React.useCallback(() => {
@@ -18,7 +23,7 @@ const AddTicketScreen = ({ navigation }: any) => {
                 type: 11
             }))
             return () => { };
-        }, [navigation,])
+        }, [navigation])
     );
 
     useEffect(() => {
@@ -27,12 +32,63 @@ const AddTicketScreen = ({ navigation }: any) => {
                 setMasterData(response?.data)
             }
         }
-    }, [response])
+        setAddTicketData({
+            ticket_id: data?._id,
+            reason: data?.reason,
+            title: data?.title,
+            remark: data?.remark
+        })
+    }, [response, data])
+
+    useEffect(() => {
+        if (SupportResponse?.response?.status === 200) {
+            navigation.goBack()
+            dispatch(RemoveTicket())
+            ErrorMessage({
+                msg: SupportResponse?.response?.message,
+                backgroundColor: GREEN_COLOR
+            })
+        }
+    }, [SupportResponse])
 
     const validation = () => {
-        
-    }
+        let isError = true;
+        let errorMessage: any = ''
+        if (addTicketData.reason == undefined || addTicketData.reason == '') {
+            isError = false;
+            errorMessage = "Issue is require. Please Choose the Issue"
+        }
+        else if (addTicketData.title == undefined || addTicketData.title == '') {
+            isError = false;
+            errorMessage = "Title is require. Please Enter the Title"
+        }
 
+        if (errorMessage !== '') {
+            ErrorMessage({
+                msg: errorMessage,
+                backgroundColor: RED_COLOR
+            })
+        }
+        return isError;
+    }
+    const onPressAddTicket = () => {
+
+        if (validation()) {
+            const formData: any = new FormData()
+            if (type === strings.edit) {
+                formData.append("ticket_id", addTicketData?.ticket_id)
+            }
+            formData.append("reason", addTicketData?.reason)
+            formData.append("title", addTicketData?.title)
+            formData.append("remark", addTicketData?.remark)
+            formData.append("image", addTicketData?.image)
+            if (type === strings.edit) {
+                dispatch(EditTicket(formData))
+            } else {
+                dispatch(AddNewTicket(formData))
+            }
+        }
+    }
     const handleBackPress = () => {
         navigation.goBack()
     }
@@ -42,6 +98,8 @@ const AddTicketScreen = ({ navigation }: any) => {
             addTicketData={addTicketData}
             setAddTicketData={setAddTicketData}
             masterData={masterData}
+            onPressAddTicket={onPressAddTicket}
+            type={type}
         />
     )
 }

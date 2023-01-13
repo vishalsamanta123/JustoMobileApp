@@ -1,5 +1,5 @@
 import { View, Text, useWindowDimensions, FlatList } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles'
 import Header from 'app/components/Header'
 import images from 'app/assets/images'
@@ -10,7 +10,7 @@ import Button from 'app/components/Button'
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view'
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen'
 import SupportItem from './SupportItem'
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 const SupportView = (props: any) => {
     const [index, setIndex] = useState(0);
@@ -21,9 +21,28 @@ const SupportView = (props: any) => {
         { key: "first", title: strings.supportrequest },
         { key: "second", title: strings.myticket },
     ];
+    useFocusEffect(
+        React.useCallback(() => {
+            setIndex(0)
+            props.setTicketList([])
+            props.TicketList(props.offSET, { type: 2 });
+            return () => { };
+        }, [navigation])
+    );
 
-    const onPressView = () => {
-        navigation.navigate('SupportScreenDetails')
+    useEffect(() => {
+        if (index === 0) {
+            props.setTicketList([])
+            props.TicketList(0, { type: 2 });
+        } else {
+            props.setTicketList([])
+            props.TicketList(0, { type: 1 });
+        }
+    }, [index])
+
+
+    const onPressView = (data: any) => {
+        navigation.navigate('SupportScreenDetails', { ticketid: data, type: index })
     }
 
     const renderTabBar = (props: any) => (
@@ -37,64 +56,68 @@ const SupportView = (props: any) => {
     );
     const FirstRoute = () => (
         <FlatList
-            data={[
-                {
-                    ticket: strings.supportrequest,
-                    Createby: 'ABC',
-                    issue: 'payment',
-                    date: '11/01/2023',
-                    status: 'Pending'
-                }
-            ]}
+            data={Array.isArray(props.ticketList) ? props.ticketList : []}
             renderItem={({ item }) => (
-                <SupportItem items={item} index={index} onPressView={onPressView} />
+                <SupportItem
+                    items={item}
+                    index={index}
+                    onPressView={onPressView}
+                    onPressStatusUpdate={props.onPressStatusUpdate}
+                />
             )}
             ListEmptyComponent={
                 <EmptyListScreen message={strings.supportrequest} />
             }
-            //   onRefresh={() => {
-            //     props.setFilterData({
-            //       start_date: "",
-            //       end_date: "",
-            //       customer_name: "",
-            //       status: "",
-            //     });
-            //     props.getAppointmentList(2);
-            //   }}
+            onRefresh={() => {
+                props.setFilterData({
+                    start_date: "",
+                    end_date: "",
+                    customer_name: "",
+                    status: "",
+                });
+                props.TicketList(0, { type: 2 });
+            }}
+            onEndReached={() => {
+                if (props.ticketList?.length < props.totalData) {
+                    props.TicketList(props.ticketList?.length > 2 ? props.offSET + 1 : 0, { type: 1 });
+                }
+            }}
             refreshing={false}
         />
-        // <ComingSoonScreen />
     );
 
     const SecondRoute = () => (
         <FlatList
-            data={[
-                {
-                    ticket: strings.myticket,
-                    Createby: 'ABC',
-                    issue: 'payment',
-                    date: '11/01/2023',
-                    status: 'Pending'
-                }
-            ]}
+            data={Array.isArray(props.ticketList) ? props.ticketList : []}
             renderItem={({ item }) => (
-                <SupportItem items={item} index={index} onPressView={onPressView} />
+                <SupportItem
+                    items={item} index={index}
+                    onPressView={onPressView}
+                    handleEditTicket={props.handleEditTicket}
+                />
             )}
             ListEmptyComponent={
                 <EmptyListScreen message={strings.myticket} />
             }
-            //   onRefresh={() => {
-            //     props.setFilterData({
-            //       start_date: "",
-            //       end_date: "",
-            //       customer_name: "",
-            //       status: "",
-            //     });
-            //     props.getAppointmentList(props.role === 'TL'? 3 : 1);
-            //   }}
+            onRefresh={() => {
+                props.setFilterData({
+                    start_date: "",
+                    end_date: "",
+                    customer_name: "",
+                    status: "",
+                });
+                props.TicketList(0, { type: 1 });
+            }}
+            onEndReached={() => {
+                if (props.ticketList?.length < props.totalData) {
+                    props.TicketList(
+                        props.ticketList?.length > 2 ? props.offSET + 1 : 0,
+                        { type: 1 }
+                    );
+                }
+            }}
             refreshing={false}
         />
-        // <ComingSoonScreen />
     );
 
     const renderScene = SceneMap({
@@ -114,8 +137,7 @@ const SupportView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
                 barStyle={'light-content'}
             />
-            <ComingSoonScreen />
-            {/* <View style={{ marginVertical: 10, alignItems: "flex-end" }}>
+            <View style={{ marginVertical: 10, alignItems: "flex-end" }}>
                 <Button
                     width={150}
                     height={30}
@@ -132,7 +154,7 @@ const SupportView = (props: any) => {
                     onIndexChange={setIndex}
                     initialLayout={{ width: layout.width }}
                 />
-            </View> */}
+            </View>
         </View >
     )
 }

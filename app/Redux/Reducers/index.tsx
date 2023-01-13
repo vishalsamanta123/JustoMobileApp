@@ -19,7 +19,7 @@ import { firebaseReducer } from "./FirebaseReducer";
 import { ChatReducer } from "./ChatReducer";
 import { userAppointmentReducer, userEditAppointmentReducer } from "./AppointmentWithUserReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
-import { SupportReducer } from "./SupportReducer";
+import { SupportAddReducer, SupportReducer } from "./SupportReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -88,5 +88,6 @@ export default {
     supportForumUpdateData: supportForumUpdateReducer,
 
     // Raise Ticket (Support)
-    Support: SupportReducer
+    SupportAdd: SupportAddReducer,
+    SupportData: SupportReducer
 }
