@@ -19,6 +19,7 @@ import { firebaseReducer } from "./FirebaseReducer";
 import { ChatReducer } from "./ChatReducer";
 import { userAppointmentReducer, userEditAppointmentReducer } from "./AppointmentWithUserReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
+import { CpCheckingReducer } from "./CpCheckingReducer";
 import { SupportAddReducer, SupportReducer } from "./SupportReducer";
 
 export default {
@@ -44,6 +45,7 @@ export default {
     agentData: agentReducer,
     settingData: settingReducer,
     appointment: appointmentReducer,
+    CpCheckingData: CpCheckingReducer,
     editAddAppointment: editAddAppointmentReducer,
     followUp: followUpReducer,
     masterData: masterDataReducer,

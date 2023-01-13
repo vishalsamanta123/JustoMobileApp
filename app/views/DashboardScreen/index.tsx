@@ -3,7 +3,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import ErrorMessage from 'app/components/ErrorMessage';
 import { GREEN_COLOR, ROLE_IDS } from 'app/components/utilities/constant';
 import { getAllAgentList } from 'app/Redux/Actions/AgencyActions';
-import { dashboardClosingData, dashboardPostSaleData, dashboardSourcingData, userStatusUpdateData, userStatusUpdater } from 'app/Redux/Actions/Dashboard';
+import { dashboardClosingData, dashboardPostSaleData, dashboardReceptionistData, dashboardSourcingData, userStatusUpdateData, userStatusUpdater } from 'app/Redux/Actions/Dashboard';
 import { getAssignCPList, getSourcingManagerList } from 'app/Redux/Actions/SourcingManagerActions';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -60,6 +60,8 @@ const DashboardScreen = ({ navigation }: any) => {
       dispatch(dashboardClosingData({}))
     } else if (getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id) {
       dispatch(dashboardPostSaleData({}))
+    } else if (getLoginType?.response?.data?.role_id === ROLE_IDS.receptionist_id) {
+      dispatch(dashboardReceptionistData({}))
     } else {
       setDashboardData({})
       setIsEnabled(null)

@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
     tintColor: WHITE_COLOR,
   },
   bottomSection: {
-    // flex: 1,
-    // backgroundColor: WHITE_COLOR_LIGHT,
+    flex: 1,
     paddingHorizontal: normalizeSpacing(10),
   },
   headingView: {
@@ -43,8 +42,8 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_EXTRABOLD,
     textAlign: "center",
   },
-  dataView:{
-    flexDirection :'row'
+  dataView: {
+    flexDirection: "row",
   },
   dataTxt: {
     flex: 1,
@@ -53,7 +52,10 @@ const styles = StyleSheet.create({
     fontSize: normalize(13),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     textAlign: "center",
-  }
+  },
+  listView: {
+    flex: 1,
+  },
 });
 
 export default styles;
