@@ -140,4 +140,8 @@ export default {
   TICKET_LIST: '/support/getSupportList',
   TICKET_DETAILS: '/support/getTicketDetail',
   TICKET_STATUS_UPDATE: '/support/replySupportTicket',
+
+  //LeaderBoard
+  GET_LEADERBOARD:'/leaderboard/getActivePropertyListForLeaderboard',
+  GET_LEADERBOARD_DETAIL:'/leaderboard/getPropertyLeaderboardDetails',
 };
