@@ -21,6 +21,7 @@ import { userAppointmentReducer, userEditAppointmentReducer } from "./Appointmen
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
 import { CpCheckingReducer } from "./CpCheckingReducer";
 import { SupportAddReducer, SupportReducer } from "./SupportReducer";
+import { leaderBoardReducer } from "./LearderBoardReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -89,6 +90,8 @@ export default {
     supportForumData: supportForumReducer,
     supportForumUpdateData: supportForumUpdateReducer,
 
+    //ledearboard
+    leaderBoard: leaderBoardReducer,
     // Raise Ticket (Support)
     SupportAdd: SupportAddReducer,
     SupportData: SupportReducer
