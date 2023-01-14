@@ -14,64 +14,6 @@ import PostSaleDashboardView from "./PostSalesView";
 import ReceiptionistDashboardView from "./ReceptionistView";
 
 const DashboardView = (props: any) => {
-  console.log('props?.dashboardData: ', props?.dashboardData);
-
-  const data = [
-    {
-      email: "niteshtl@gmail.com",
-      last_login: "2023-01-03T08:54:34.964Z",
-      mobile: "8976450213",
-      online_status: 0,
-      role_id: "63466085fadec47fe8e96bb7",
-      total_closing_lead: 0,
-      total_closing_percentage: "0%",
-      total_site_visit: 0,
-      total_visit: 0,
-      user_id: "63b3ed4a9a2a96a1c19d4f33",
-      user_name: "nitesh tl",
-    },
-    {
-      email: "niteshtl@gmail.com",
-      last_login: "2023-01-03T08:54:34.964Z",
-      mobile: "8976450213",
-      online_status: 0,
-      role_id: "63466085fadec47fe8e96bb7",
-      total_closing_lead: 0,
-      total_closing_percentage: "0%",
-      total_site_visit: 0,
-      total_visit: 0,
-      user_id: "63b3ed4a9a2a96a1c19d4f33",
-      user_name: "nitesh tl",
-    },
-    {
-      email: "niteshtl@gmail.com",
-      last_login: "2023-01-03T08:54:34.964Z",
-      mobile: "8976450213",
-      online_status: 0,
-      role_id: "63466085fadec47fe8e96bb7",
-      total_closing_lead: 0,
-      total_closing_percentage: "0%",
-      total_site_visit: 0,
-      total_visit: 0,
-      user_id: "63b3ed4a9a2a96a1c19d4f33",
-      user_name: "nitesh tl",
-    },
-    {
-      email: "niteshtl@gmail.com",
-      last_login: "2023-01-03T08:54:34.964Z",
-      mobile: "8976450213",
-      online_status: 0,
-      role_id: "63466085fadec47fe8e96bb7",
-      total_closing_lead: 0,
-      total_closing_percentage: "0%",
-      total_site_visit: 0,
-      total_visit: 0,
-      user_id: "63b3ed4a9a2a96a1c19d4f33",
-      user_name: "nitesh tl",
-    },
-
-  ]
-  const insets = useSafeAreaInsets();
   const roleType = props?.getLoginType?.response?.data?.role_id || null
   const renderItem = ({ item }: any) => {
     return (
