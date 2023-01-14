@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
     height: normalizeWidth(100),
   },
   qrCodeImage: {
-    height: normalizeHeight(70),
-    width: normalizeWidth(70),
+    height: normalizeHeight(100),
+    width: normalizeWidth(100),
   },
   linkImageView: {
     position: 'absolute',

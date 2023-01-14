@@ -74,9 +74,9 @@ const DashboardView = (props: any) => {
                 :
                 <Image source={images.qrCode} style={styles.qrCodeImage} />
               }
-              <TouchableOpacity style={styles.linkImageView}>
+              {/* <TouchableOpacity style={styles.linkImageView}>
                 <Image source={images.link} style={styles.linkImage} />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
           {roleType === ROLE_IDS.sourcingtl_id ||
