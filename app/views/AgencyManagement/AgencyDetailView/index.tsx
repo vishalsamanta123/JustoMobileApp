@@ -25,6 +25,8 @@ const AgentDetail = ({ navigation, route }: any) => {
       if (response?.data?.length > 0) {
         setAllDetails(response?.data[0]);
       }
+    }else {
+      setAllDetails({})
     }
   }, [response]);
 

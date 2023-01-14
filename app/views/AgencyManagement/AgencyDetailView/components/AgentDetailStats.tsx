@@ -52,7 +52,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.lastlogin}</Text>
+          <Text style={styles.nameTxt}>{item?.lastlogin ? item?.lastlogin : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -70,7 +70,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.lastsitevisit}</Text>
+          <Text style={styles.nameTxt}>{item?.lastsitevisit ? item?.lastsitevisit : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
