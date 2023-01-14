@@ -76,6 +76,8 @@ const BookingDetailsView = (props: any) => {
                         />
                     </View> : null
                 }
+            </View>
+            <View style={styles.btnContainer}>
                 {getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id &&
                     props?.type === 'readyToBook' ?
                     <View style={styles.buttonVw}>
@@ -103,6 +105,8 @@ const BookingDetailsView = (props: any) => {
                         />
                     </View> : null
                 }
+            </View>
+            <View style={styles.btnContainer}>
                 {props?.type === 'readyToBook' ?
                     <View style={styles.buttonVw}>
                         <Button
