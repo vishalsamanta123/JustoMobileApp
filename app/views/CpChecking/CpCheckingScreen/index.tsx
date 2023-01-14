@@ -14,7 +14,6 @@ const CpChecking = ({ navigation }: any) => {
   const { response = {}, list = false } = useSelector(
     (state: any) => state.CpCheckingData
   );
-  console.log("response: ", response);
   const dispatch: any = useDispatch();
   const [cpCheckingList, setCpCheckingList] = useState([]);
   useFocusEffect(

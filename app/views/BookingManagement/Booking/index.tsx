@@ -27,7 +27,6 @@ const BookingScreen = ({ navigation, route }: any) => {
         description: '',
         booking_id: getBookingData?._id ? getBookingData?._id : ''
     })
-    console.log('bookingData: ', bookingData);
     const masterData = useSelector((state: any) => state.masterData) || {}
     const addedBookingData = useSelector((state: any) => state.addedBooking) || {}
     const { response = {} } = useSelector((state: any) => state.booking) || {}

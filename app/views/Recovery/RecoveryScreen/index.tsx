@@ -53,7 +53,6 @@ const RecoveryScreen = ({ navigation }: any) => {
     },
   ];
   const onPressView = (data: any) => {
-    console.log("data: ", data);
     navigation.navigate("RecoveryDetails" , data);
   };
   const handleDrawerPress = () => {

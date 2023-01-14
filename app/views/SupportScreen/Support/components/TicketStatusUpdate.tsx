@@ -16,7 +16,6 @@ import ErrorMessage from 'app/components/ErrorMessage'
 
 const TicketStatusUpdate = ({ route }: any) => {
     const data = route?.params || {}
-    console.log('data: ', data);
     const [statusUpdate, setStatusUpdate] = useState<any>([])
     const navigation: any = useNavigation()
     const dispatch: any = useDispatch()

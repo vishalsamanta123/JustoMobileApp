@@ -16,13 +16,11 @@ const SourcingDetailsView = (props: any) => {
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.menu}
-                // rightFirstImageScr={images.filter}
                 rightSecondImageScr={images.notification}
                 headerText={strings.SourcingManagersHeader}
                 handleOnLeftIconPress={props.handleDrawerPress}
                 headerStyle={styles.headerStyle}
                 RightFirstIconStyle={styles.RightFirstIconStyle}
-                // handleOnRightFirstIconPress={() => props.setFilterisVisible(true)}
                 statusBarColor={PRIMARY_THEME_COLOR}
                 barStyle={'light-content'}
             />
@@ -41,7 +39,6 @@ const SourcingDetailsView = (props: any) => {
                     showsVerticalScrollIndicator={false}
                     data={props?.sourcingManagers}
                     renderItem={({ item }) => <SourcingManagersItem items={item}
-                        // setIsVisible={setIsVisible} onPressView={onPressView}
                         onPressEditSM={() => props.handleAddNewSM('edit',item )}
                         onPressAllocate={() => props.onPressAllocateCp(item)}
                         onPressView={() => props.onPressViews(item)}
