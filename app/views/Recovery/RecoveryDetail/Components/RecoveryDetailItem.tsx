@@ -13,7 +13,6 @@ import { normalize } from "app/components/scaleFontSize";
 
 const RecoveryDetailItem = (props: any) => {
   const appdetail = props?.data || {};
-  console.log("appdetail: ", appdetail);
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>

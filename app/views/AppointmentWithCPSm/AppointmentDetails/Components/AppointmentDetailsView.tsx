@@ -10,7 +10,6 @@ import AppointmentDtailsItem from './AppointmentDtailsItem';
 import Button from '../../../../components/Button';
 
 const AppointmentDetailsView = (props: any) => {
-    const insets = useSafeAreaInsets();
     return (
         <View style={styles.mainContainer}>
             <Header

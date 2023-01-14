@@ -97,8 +97,6 @@ const CpCheckingView = (props: any) => {
   ];
   const loadingref = false
   const renderItem = (item: any) => {
-    console.log('item: ', item);
-    console.log('item: ', moment("2023-01-13T5:20:53.573Z").fromNow());
 
     return (
       <View style={styles.dataView}>

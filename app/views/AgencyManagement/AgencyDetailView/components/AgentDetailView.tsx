@@ -69,26 +69,7 @@ const PropertyDetailView = (props: any) => {
   });
 
 
-  /*   const renderTabBar = props => {
-      return (
-        <TabBar
-          {...props}
-          renderLabel={({ focused, route }) => {
-            return (
-              <TextView
-                size={20}
-                category="Medium"
-                color={focused ? 'BLACK' : 'GRAY3'}>
-                {route.title}
-              </TextView>
-            );
-          }}
-          indicatorStyle={styles.indicatorStyle}
-          style={styles.tabBar}
-        />
-      );
-    }; */
-
+ 
   const renderTabBar = (props: any) => (
 
     <TabBar
@@ -123,11 +104,7 @@ const PropertyDetailView = (props: any) => {
           renderScene={renderScene}
           onIndexChange={setIndex}
           initialLayout={{ width: layout.width }}
-        //pagerStyle={{backgroundColor:'red'}}
-
         />
-
-        {/* <AgentDetailInfo items={DATAINFO} /> */}
       </View>
     </View>
   )

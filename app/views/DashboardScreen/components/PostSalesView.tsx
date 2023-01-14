@@ -63,23 +63,6 @@ const PostSaleDashboardView = (props: any) => {
                         <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_registration}</Text>
                     </View>
                 </View>
-                {/* <View style={styles.thirdPortioncardView}>
-                    <View style={styles.thirdPortionCardTextView}>
-                        <Text style={styles.thirdPortionCardText}>Ready to Book</Text>
-                    </View>
-                    <View style={styles.numberView}>
-                        <Text style={styles.thirdPortionNumberText}>
-                            {props?.dashboardData?.total_ready_booking}</Text>
-                    </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
-                    <View style={styles.thirdPortionCardTextView}>
-                        <Text style={styles.thirdPortionCardText}>{'Cancel Booking'}</Text>
-                    </View>
-                    <View style={styles.numberView}>
-                        <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_closing_manager}</Text>
-                    </View>
-                </View> */}
             </View>
         </View>
     );

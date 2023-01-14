@@ -7,7 +7,6 @@ import Button from "../../../../components/Button";
 import { WHITE_COLOR, CALL_COLOR } from "app/components/utilities/constant";
 
 const RecoveryListIem = (props: any) => {
-  console.log("props: ", props);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
