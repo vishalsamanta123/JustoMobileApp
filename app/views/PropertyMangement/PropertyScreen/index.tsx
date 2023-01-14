@@ -7,16 +7,23 @@ import PropertyView from './components/PropertyView';
 const PropertyScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const [limit, setLimit] = useState(10)
-  const [offset, setOffset] = useState(0)
+  const [oFFset, setOffset] = useState(0)
   const [currentStatus, setCurrentStatus] = useState(1)
   const [currentProperty, setCurrentProperty] = useState({})
   const [resion, setResion] = useState('')
+  const [filterform, setFilterform] = useState({
+    start_date: "",
+    end_date: "",
+    location: "",
+    property_name: "",
+    property_type: "",
+  });
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
   const { response, loading, updateStatus, list } = propertyData;
 
   useFocusEffect(
     React.useCallback(() => {
-      getallproperty(0)
+      getallproperty(0, {})
       return () => { };
     }, [navigation, list]))
 
@@ -29,34 +36,31 @@ const PropertyScreen = ({ navigation }: any) => {
   }
 
 
-  const getallproperty = (OFFset: any) => {
-    setOffset(OFFset)
+  const getallproperty = (offset: any, data: any) => {
+    setOffset(offset)
     dispatch(getAllProperty({
-      offset: OFFset,
+      offset: offset,
       limit: 3,
+      start_date: data?.start_date ? data?.start_date : '',
+      end_date: data?.end_date ? data?.end_date : '',
+      location: data?.location ? data?.location : '',
+      property_name: data?.property_name ? data?.property_name : '',
+      property_type: data?.property_type ? data?.property_type : '',
     }))
   }
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
-  // const Onreachedend = () => {
-  //   //  setOffset(offset + 1)
-  //   dispatch(getAllProperty({
-  //     offset: offset + 1,
-  //     limit: limit,
-  //   }))
-  // };
   const handleAllocatePress = (item: any) => {
     // dispatch(getManagerList({
     //   property_id: item._id
     // }))
-    navigation.navigate('AllocatePropertyScreen', {id: item?._id})
+    navigation.navigate('AllocatePropertyScreen', { id: item?._id })
   }
   return (
     <>
       <PropertyView
         handleDrawerPress={handleDrawerPress}
-        // Onreachedend={Onreachedend}
         getallproperty={getallproperty}
         handleStatusChange={() => handleStatusChange()}
         currentStatus={currentStatus}
@@ -65,7 +69,9 @@ const PropertyScreen = ({ navigation }: any) => {
         setResion={setResion}
         resion={resion}
         handleAllocatePress={handleAllocatePress}
-        oFFset={offset}
+        oFFset={oFFset}
+        filterform={filterform}
+        setFilterform={setFilterform}
       />
     </>
   );
