@@ -5,7 +5,6 @@ import RecoveryDetailView from "./Components/RecoveryDetailView";
 const RecoveryDetails = ({ navigation, route }: any) => {
   // const [status, setStatus] = useState(route?.params);
   const data = route?.params;
-  console.log("route?.params: ", route?.params);
   const handleBackPress = () => {
     navigation.goBack();
   };

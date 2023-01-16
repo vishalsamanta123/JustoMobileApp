@@ -20,8 +20,8 @@ const PropertyView = (props: any) => {
   const dispatch: any = useDispatch()
   const [isVisible, setIsVisible] = useState(false)
   const [masterDataShow, setMasterDataShow] = useState([])
-  
-  
+
+
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const [propertyList, setPropertyList] = useState<any>([])
   const insets = useSafeAreaInsets();
@@ -30,27 +30,21 @@ const PropertyView = (props: any) => {
   const navigation: any = useNavigation()
   const [loadingref, setLoadingref] = useState(false);
 
-  const [filterform, setFilterform] = useState({
-    start_date: "",
-    end_date: "",
-    location: "",
-    property_name: "",
-    property_type: "",
-  });
+
 
 
   useEffect(() => {
     if (propertyData?.response) {
-      const { response, loading ,list} = propertyData;
-     if(response?.status === 200){
-      if (props?.oFFset === 0 ) {
-        setPropertyList(response?.data);
+      const { response, loading, list } = propertyData;
+      if (response?.status === 200) {
+        if (props?.oFFset === 0) {
+          setPropertyList(response?.data);
+        } else {
+          setPropertyList([...propertyList, ...response?.data]);
+        }
       } else {
-        setPropertyList([...propertyList, ...response?.data]);
+        setPropertyList([]);
       }
-     }else{
-      setPropertyList([]);
-     }
     }
   }, [propertyData]);
 
@@ -70,7 +64,7 @@ const PropertyView = (props: any) => {
     navigation.navigate('PropertyDetails', items)
   }
   const onRefresh = () => {
-    setFilterform({
+    props.setFilterform({
       ...props.filterform,
       start_date: "",
       end_date: "",
@@ -81,30 +75,17 @@ const PropertyView = (props: any) => {
     props.getallproperty(0)
     setPropertyList([])
   }
-  const confirmStatus = (items : any ) => {
-    if(items.approve_status === 2) {
+  const confirmStatus = (items: any) => {
+    if (items.approve_status === 2) {
       dispatch(getAllMaster({
         type: 7
-      }))  
-    }  
+      }))
+    }
     setIsVisible(true)
     props.setCurrentStatus(items.approve_status)
     props.setCurrentProperty(items?.property_id)
-    
-  }
 
-  const renderFooter = () => {
-    return (
-      // Footer View with Loader
-      <View style={styles.footer}>
-        {loadingref ? (
-          <ActivityIndicator
-            color="black"
-            style={{ margin: 15 }} />
-        ) : null}
-      </View>
-    );
-  };
+  }
 
   return (
     <View style={styles.mainContainer}>
@@ -124,12 +105,12 @@ const PropertyView = (props: any) => {
           data={propertyList}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={<EmptyListScreen message={strings.propertyHeader} />}
-          renderItem={({ item, index }) => <PropertyListItem handleAllocatePress={props.handleAllocatePress} items={item} setIsVisible={setIsVisible} onPressView={onPressView} 
-          confirmStatus={(items : any ) => confirmStatus(items)} />}
+          renderItem={({ item, index }) => <PropertyListItem handleAllocatePress={props.handleAllocatePress} items={item} setIsVisible={setIsVisible} onPressView={onPressView}
+            confirmStatus={(items: any) => confirmStatus(items)} />}
           onEndReached={() => {
             if (propertyList?.length < propertyData?.response?.total_data) {
               props.getallproperty(
-                propertyList?.length > 3 ? props.oFFset + 1 : 0
+                propertyList?.length > 2 ? props.oFFset + 1 : 0, props.filterform,
               );
             }
           }}
@@ -143,7 +124,7 @@ const PropertyView = (props: any) => {
         />
       </View>
       {/* <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} /> */}
-     {/* <ConfirmModal
+      {/* <ConfirmModal
         Visible={isVisible}
         setIsVisible={setIsVisible}
         handleNoPress={() => {
@@ -171,9 +152,9 @@ const PropertyView = (props: any) => {
       <FilterModal
         Visible={FilterisVisible}
         setIsVisible={setFilterisVisible}
-        filterform={filterform}
-        setFilterform={setFilterform}
-        
+        filterform={props?.filterform}
+        setFilterform={props?.setFilterform}
+
       />
     </View>
   );

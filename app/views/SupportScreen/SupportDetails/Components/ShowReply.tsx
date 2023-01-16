@@ -13,7 +13,6 @@ const ShowReply = () => {
   const navigation: any = useNavigation()
   const [replyData, setReplyData] = useState<any>([])
   const { response = {}, detail = false } = useSelector((state: any) => state.SupportData) || []
-  console.log('response: ', response);
 
   useFocusEffect(
     React.useCallback(() => {

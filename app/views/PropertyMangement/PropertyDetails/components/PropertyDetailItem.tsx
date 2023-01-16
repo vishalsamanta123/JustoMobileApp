@@ -134,15 +134,6 @@ const PropertyDetailItem = (props: any) => {
           <Text style={styles.nameTxt}>{props.items.end_date}</Text>
         </View>
       </View>
-      {/*  <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Lead Assign to </Text>
-        </View>
-        <View><Text>:</Text></View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lead}</Text>
-        </View>
-      </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Configuration </Text>
@@ -168,31 +159,6 @@ const PropertyDetailItem = (props: any) => {
               {configuration.max_rate_type}
             </Text>
           ))}
-          {/*   <Text
-            style={[
-              styles.nameTxt,
-              {
-                borderBottomColor: GRAY_COLOR,
-                borderBottomWidth: 1,
-                width: '100%',
-              },
-            ]}
-          >
-            {props.items.configuration}
-          </Text>
-          <Text
-            style={[
-              styles.nameTxt,
-              {
-                borderBottomColor: GRAY_COLOR,
-                borderBottomWidth: 1,
-                width: '100%',
-                marginVertical: normalizeSpacing(5)
-              },
-            ]}
-          >{props.items.configuration}</Text>
-          <Text style={styles.nameTxt}>
-            {props.items.configuration}</Text> */}
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -232,18 +198,6 @@ const PropertyDetailItem = (props: any) => {
           >
             {props.items.amenity}
           </Text>
-          {/* <Text
-            style={[
-              styles.nameTxt,
-              {
-                borderBottomColor: GRAY_COLOR,
-                borderBottomWidth: 1,
-                width: '100%',
-                marginVertical: normalizeSpacing(5)
-              },
-            ]}
-          >{props.items.amenity}</Text>
-          <Text style={styles.nameTxt}>{props.items.amenity}</Text> */}
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -254,25 +208,6 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          {/* <Text style={styles.nameTxt}>Images</Text>
-          <View style={styles.ImageSliderContainer}>
-
-            { imagearray.map((imagearray: any) => (
-               <Image
-                  source={{uri:imagearray.base_url+imagearray.document}}
-                  style={styles.imageSlider}
-                
-                /> 
-              ))
-              
-              }
-            <TouchableOpacity style={styles.shadowView} onPress={() => props.onpresContent('ImageContent',imagearray)}>
-              <Image
-                source={images.forwardArrow}
-                style={styles.arrow}
-              />
-            </TouchableOpacity>
-          </View> */}
 
           {imagearray.length > 0 ? (
             <>

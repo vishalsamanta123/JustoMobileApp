@@ -28,6 +28,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: normalize(8)
     },
+    headTxt: {
+        fontFamily: FONT_FAMILY_EXTRABOLD,
+        fontSize: normalizeSpacing(20),
+        color: BLACK_COLOR,
+        textAlign: 'center',
+        marginVertical: normalizeSpacing(10),
+        textTransform: 'capitalize',
+    },
     Txtview: {
         flex: 1,
         flexDirection: 'row',
@@ -52,7 +60,8 @@ const styles = StyleSheet.create({
     txtStyle: {
         color: BLACK_COLOR,
         fontFamily: FONT_FAMILY_REGULAR,
-        fontSize: normalize(15)
+        fontSize: normalize(15),
+        textTransform: 'capitalize',
     },
     Viewbutton: {
         backgroundColor: PRIMARY_THEME_COLOR,

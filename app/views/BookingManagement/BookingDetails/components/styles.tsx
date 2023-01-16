@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
     },
     btnContainer: {
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         marginHorizontal: normalizeSpacing(10),
-        marginVertical: normalizeSpacing(5),
-        flexWrap: 'wrap',
+        // marginVertical: normalizeSpacing(5),
+        // flexWrap: 'wrap',
     },
     buttonVw: {
-        marginVertical: normalize(10)
+        marginVertical: normalize(8)
     },
     documentVw: {
         margin: normalizeSpacing(5),

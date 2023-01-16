@@ -184,6 +184,7 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
             newFormdata.append("lastname", addNewCMData.lastname)
             newFormdata.append("pancard_no", addNewCMData.pancard_no)
             newFormdata.append("gender", addNewCMData.gender)
+            newFormdata.append("adhar_no", addNewCMData.adhar_no)
             newFormdata.append("mobile", addNewCMData.mobile)
             newFormdata.append("dateofbirth", addNewCMData.dateofbirth)
             newFormdata.append("whatsapp_no", addNewCMData.whatsapp_no)

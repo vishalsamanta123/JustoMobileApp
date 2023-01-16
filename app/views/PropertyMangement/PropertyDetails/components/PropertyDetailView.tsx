@@ -21,7 +21,6 @@ const PropertyDetailView = (props: any) => {
   const [amenity, setAmenity] = useState([])
   const [approveStatus, setApproveStatus] = useState(1)
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
-  //const propertydetail = propertyData?.response?.data[0];
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
   const { response, loading } = propertyData;
@@ -40,7 +39,6 @@ const PropertyDetailView = (props: any) => {
       props.setIsloading(loading);
     } else {
       setPropertydetail([]);
-      //errorToast(response.message);
     }
 
 
@@ -49,26 +47,6 @@ const PropertyDetailView = (props: any) => {
 
 
   }, [propertyData])
-
-
-
-  const DATA: any = {
-    /*   Projectname: propertydetail?.property_title,
-      Location: propertydetail?.location,
-      visitor: propertydetail?.total_visitor,
-      siteVisit: propertydetail?.site_visit,
-      closeVisit: propertydetail?.close_visit,
-      status: (propertydetail?.status) ? 'Active' : 'Inactive',
-      createddate: propertydetail?.start_date,
-      propertyType: propertydetail?.property_type_title,
-      startDate: propertydetail?.start_date,
-      EndDate: propertydetail?.end_date, */
-    //lead: "12/11/2022",
-    //configuration: propertydetail?.property_configurations,
-    //amenity: "Sawimming Pool",
-    pickup: "yes",
-  };
-
 
 
 
@@ -104,7 +82,6 @@ const PropertyDetailView = (props: any) => {
           height={45}
           bordercolor={GRAY_COLOR}
           borderWidth={1}
-          // btnTxtcolor={PRIMARY_THEME_COLOR}
           btnTxtsize={15}
           textTransform={"uppercase"}
         />
@@ -115,7 +92,6 @@ const PropertyDetailView = (props: any) => {
           height={45}
           bordercolor={GRAY_COLOR}
           borderWidth={1}
-          // btnTxtcolor={PRIMARY_THEME_COLOR}
           btnTxtsize={15}
           textTransform={"uppercase"}
         />

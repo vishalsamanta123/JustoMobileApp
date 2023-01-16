@@ -18,35 +18,7 @@ const AppointmentScreen = ({ navigation }: any) => {
     customer_name: '',
     property_name: ''
   })
-  const Data: any = [
-    {
-      site_date: '15/10/2022',
-      visitor_name: 'Meett',
-      time: '11:00 AM',
-      leadNo: 'JUSTO230',
-      pickup: 'Yes',
-      status: 'Pending',
-      visit_score: '200'
-    },
-    {
-      site_date: '15/10/2022',
-      visitor_name: 'ABC',
-      time: '11:00 AM',
-      leadNo: 'JUSTOWW230',
-      pickup: 'No',
-      status: 'Done',
-      visit_score: '200'
-    },
-    {
-      site_date: '15/10/2022',
-      visitor_name: 'SD SM',
-      time: '11:00 AM',
-      leadNo: 'JUSTO23330',
-      pickup: 'Yes',
-      status: 'Pending',
-      visit_score: '200'
-    },
-  ]
+  
   useFocusEffect(
     React.useCallback(() => {
       getAppointmentList(0, {})

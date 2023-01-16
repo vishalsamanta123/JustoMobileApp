@@ -91,9 +91,8 @@ const AppointmentAddView = (props: any) => {
                                     headingText={'Time'}
                                     mode={'time'}
                                     leftIcon={images.timer}
-                                    placeholderText={"Time"}//can edit
+                                    placeholderText={"Time"}
                                     editable={false}
-                                    // onChangeText={() => { }}
                                     dateData={(data: any) => {
                                         props.setFormData({
                                             ...props.formData,

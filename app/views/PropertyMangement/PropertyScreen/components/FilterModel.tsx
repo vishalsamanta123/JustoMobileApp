@@ -22,7 +22,7 @@ const FilterModal = (props: any) => {
   const dispatch: any = useDispatch();
   const data = [
     { label: "Active", value: "1" },
-    { label: "Inactive", value: "2" },
+    { label: "InActive", value: "2" },
   ];
   const renderItem = (item: any) => {
     return (
@@ -32,20 +32,12 @@ const FilterModal = (props: any) => {
     );
   };
 
-  const handleInputField = (e: any) => {
-    props.setFilterform({ ...props.filterform, property_name: e });
-    /*  const nextFormState = {
-           ...props.filterform,
-           [e.target.name]: e.target.value,
-         };
-         props.setFilterform(nextFormState); */
-  };
 
   const ApplyFilter = () => {
     dispatch(
       getFilterProperty({
         offset: 0,
-        limit: 5,
+        limit: 3,
         start_date: props.filterform.start_date,
         end_date: props.filterform.end_date,
         location: props.filterform.location,
@@ -68,7 +60,7 @@ const FilterModal = (props: any) => {
     dispatch(
       getAllProperty({
         offset: 0,
-        limit: 5,
+        limit: 3,
       })
     );
     props.setIsVisible(false);
@@ -148,15 +140,15 @@ const FilterModal = (props: any) => {
                 handleInputBtnPress={() => { }}
                 onChangeText={(val: any) => {
                   props.setFilterform({
-                    ...props.filterform,
+                    ...props?.filterform,
                     property_name: val,
                   });
                 }}
-                valueshow={props.filterform.property_name}
+                valueshow={props?.filterform?.property_name}
               //name={'property_name'}
               />
             </View>
-            <View style={styles.inputWrap}>
+            <View style={[styles.inputWrap, { top: normalizeSpacing(10) }]}>
               <InputField
                 headingText={"Search by Locality"}
                 placeholderText={"Search by Locality"}
@@ -164,13 +156,13 @@ const FilterModal = (props: any) => {
                 valueshow={props?.filterform?.location}
                 onChangeText={(data: any) => {
                   props.setFilterform({
-                    ...props.filterform,
+                    ...props?.filterform,
                     location: data,
                   })
                 }}
                 onPressSelect={(data: any, detail: any) => {
                   props.setFilterform({
-                    ...props.filterform,
+                    ...props?.filterform,
                     location: data?.description,
                   });
                 }}
@@ -183,10 +175,10 @@ const FilterModal = (props: any) => {
                 labelField="label"
                 valueField="value"
                 placeholder="Select Status"
-                value={props.filterform.property_type}
+                value={props?.filterform?.property_type}
                 onChange={(item: any) => {
                   props.setFilterform({
-                    ...props.filterform,
+                    ...props?.filterform,
                     property_type: item.value,
                   });
                 }}

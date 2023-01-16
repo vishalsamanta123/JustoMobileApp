@@ -144,6 +144,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
             customer_first_name: addData?.response?.data?.customer?.first_name ? addData?.response?.data?.customer?.first_name : '',
             property_id: addData?.response?.data?.property_id ? addData?.response?.data?.property_id : '',
             property_title: data?.property_title ? data?.property_title : '',
+            pickup: data?.pickup
           }
         })
       }
