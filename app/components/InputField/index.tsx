@@ -63,6 +63,7 @@ const InputField = (props: any) => {
           inputheight={inputheight}
           keyboardtype={keyboardtype}
           topping={topping}
+          inputType={props.inputType}
           headingText={props.headingText}
           headingTextWidth={props.headingTextWidth}
           onChangeText={props.onChangeText}

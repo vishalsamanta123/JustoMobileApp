@@ -93,7 +93,9 @@ const VisitorUpdateView = (props: any) => {
                         }}
                         valueshow={props?.updateForm?.adhar_no?.toString()}
                         headingText={"Aadhaar No."}
+                        inputType={'aadhaar'}
                         maxLength={14}
+                        keyboardtype={'number-pad'}
                     />
                 </View>
                 <View style={styles.inputWrap}>

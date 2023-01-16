@@ -81,6 +81,8 @@ const strings = new LocalizedStrings({
     dontHaveAnAcc: `Don't Have an account?`,
     registerNow: 'Register Now',
     setting: "Setting",
+    qrNotFound: 'Qr Not Found',
+    shareQr: 'Share QR',
     userRole: "USER ROLE",
     channelPartner: 'CHANNEL PARTNER',
     updateProfile: 'UPDATE PROFILE',

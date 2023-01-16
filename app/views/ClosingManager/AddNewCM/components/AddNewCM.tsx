@@ -130,6 +130,7 @@ const AddNewCMView = (props: any) => {
                         placeholderText={"3675 9834 6012"}
                         handleInputBtnPress={() => { }}
                         headingText={"Aadhaar No."}
+                        inputType={'aadhaar'}
                         onChangeText={(val: any) => {
                             props.setAddNewCMData({
                                 ...props.addNewCMData, adhar_no: val
