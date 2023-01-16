@@ -23,6 +23,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { userLogout, getUserDetails } from "../Redux/Actions/AuthActions";
 import { useDispatch, useSelector } from "react-redux";
 import auth from "@react-native-firebase/auth";
+import FastImages from "app/components/FastImage";
 
 const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch();
@@ -66,15 +67,17 @@ const customDrawer = ({ navigation }: any) => {
       <TouchableOpacity style={styles.MainContainer}>
         <View style={styles.ContainerView}>
           <View style={styles.NameContainer}>
-            <Image
-              style={styles.UserImge}
-              resizeMode={"cover"}
-              //source={require('../assets/images/buildings.jpeg')}
-              source={
-                userData?.base_url
-                  ? { uri: userData?.base_url + userData?.profile_picture }
-                  : images.user
+            <FastImages
+              // style={styles.UserImge}
+              // resizeMode={"cover"}
+              // //source={require('../assets/images/buildings.jpeg')}
+              source={userData?.base_url + userData?.profile_picture
               }
+              // source={
+              //   userData?.base_url
+              //     ? { uri: userData?.base_url + userData?.profile_picture }
+              //     : images.user
+              // }
             />
             <View style={styles.UserNameView}>
               <Text

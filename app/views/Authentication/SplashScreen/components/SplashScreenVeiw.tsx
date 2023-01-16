@@ -9,7 +9,7 @@ const SplashScreenVeiw = () => {
   return (
     <View style={styles.splashContainer}>
       <StatusBar barStyle={"dark-content"} backgroundColor={WHITE_COLOR} />
-      <FastImages source={images.logoWhiteBG} style={styles.justoImage} />
+      <Image source={images.logoWhiteBG} style={styles.justoImage} />
     </View>
   );
 };

@@ -184,6 +184,22 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_EXTRABOLD,
     fontSize: 18
   },
+  citySearchView: {
+    backgroundColor: WHITE_COLOR,
+    marginHorizontal: normalizeSpacing(10),
+    borderRadius: 5,
+    marginVertical: normalizeSpacing(10),
+    borderColor: PRIMARY_THEME_COLOR,
+    borderWidth: 1
+  },
+  cityListView: {
+    height: normalizeHeight(250),
+    backgroundColor: WHITE_COLOR,
+    marginHorizontal: normalizeSpacing(10),
+    marginVertical: normalizeSpacing(20),
+    shadowColor: '#000',
+    elevation: 10
+  },
 });
 
 export default styles;
