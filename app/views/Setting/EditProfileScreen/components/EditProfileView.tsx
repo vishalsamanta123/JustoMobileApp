@@ -17,6 +17,7 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import InputCalender from "app/components/InputCalender";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
+import FastImages from "app/components/FastImage";
 
 const EditProfileView = (props: any) => {
   const { onPressBack, allDetails, setEditData, editData } = props;
@@ -43,13 +44,14 @@ const EditProfileView = (props: any) => {
             style={styles.imageCircle}
             onPress={() => setProfileVisible(true)}
           >
-            <Image
-              style={styles.userImage}
-              source={{
-                uri: editData?.local_profile_picture?.uri
-                  ? editData?.local_profile_picture?.uri
-                  : editData?.base_url + editData?.profile_picture,
-              }}
+            <FastImages
+              // style={styles.userImage}
+              source={editData?.local_profile_picture?.uri}
+              // source={{
+              //   uri: editData?.local_profile_picture?.uri
+              //     ? editData?.local_profile_picture?.uri
+              //     : editData?.base_url + editData?.profile_picture,
+              // }}
             />
           </TouchableOpacity>
           <View style={styles.inputWrap}>

@@ -99,7 +99,9 @@ const strings = new LocalizedStrings({
     decline: 'Decline',
     done: 'Done',
     reAllocate: 'Re-Allocate',
-    document:'Document',
+    document: 'Document',
+    selectCity: 'Select City',
+    select: 'select',
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
     correctemail: 'Enter correct Email Address',

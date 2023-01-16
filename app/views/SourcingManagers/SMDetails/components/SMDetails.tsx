@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, useWindowDimensions, Image } from 'react-native';
+import { View, Text, useWindowDimensions, Image, TouchableOpacity, Linking } from 'react-native';
 import images from '../../../../assets/images';
 import Header from '../../../../components/Header';
 import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, TABBAR_COLOR } from '../../../../components/utilities/constant';
 import strings from '../../../../components/utilities/Localization';
 import styles from './styles';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import SmInfoView from './SMInfo';
 import StatsView from './StatsViews';
 import Button from '../../../../components/Button';
@@ -26,55 +25,6 @@ const SMDetailsView = (props: any) => {
             //errorToast(response.message);
         }
     }, [response])
-    const DATAINFO: any =
-    {
-        AgentName: 'ABC',
-        Mobileno: '12586663',
-        Email: 'Abc@gmail.com',
-        whatsappno: '8890898779',
-        rerano: '12345699',
-        aadharno: '12345699',
-        pancardno: 'AAAAA2225A',
-        gst: 'ABC123',
-        workingfrom: '22/10/2021',
-        workinglocation: ['indoe', 'Dewash'],
-        allocatedCp: [
-            {
-                id: 1,
-                cpName: 'CP 1'
-            },
-            {
-                id: 2,
-                cpName: 'CP 2'
-            },
-            {
-                id: 3,
-                cpName: 'CP 3'
-            },
-            {
-                id: 4,
-                cpName: 'CP 4'
-            },
-        ]
-    };
-    const DATASTATS: any =
-    {
-        closingper: 10,
-        visitor: 123,
-        siteVisit: 234,
-        closeVisit: 600,
-        lastlogin: '2 min ago',
-        lastvisit: '2 min ago',
-        lastsitevisit: '2 min ago',
-        lastclosevisit: '2 min ago',
-        month: 'March',
-        startDate: '01/02/2022',
-        endDate: '10/02/2022',
-        visitTarget: '10/02',
-        siteVisitTarget: '15/02',
-        closeTarget: '12/02',
-    };
-
 
     const layout = useWindowDimensions();
 
@@ -117,14 +67,26 @@ const SMDetailsView = (props: any) => {
                 barStyle={'light-content'}
             />
             <View style={styles.topItemVw}>
-                <Image
-                    source={images.chat}
-                    style={styles.topItemSty}
-                />
-                <Image
-                    source={images.chat}
-                    style={styles.topItemSty}
-                />
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                        Linking?.openURL(
+                            `tel:${props?.SMdetail?.mobile}`
+                        )
+                    }}
+                >
+                    <Text style={styles.buttonTxt}>Call</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                        Linking?.openURL(
+                            `sms:${props?.SMdetail?.mobile}`
+                        )
+                    }}
+                >
+                    <Text style={styles.buttonTxt}>SMS</Text>
+                </TouchableOpacity>
             </View>
             <View style={styles.propertyListView}>
                 <TabView
