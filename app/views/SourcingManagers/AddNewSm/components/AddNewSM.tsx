@@ -20,11 +20,11 @@ import InputCalender from "app/components/InputCalender";
 import DropdownInput from "app/components/DropDown";
 import { normalizeSpacing } from "app/components/scaleFontSize";
 import { RequiredStart } from "app/components/utilities/GlobalFuncations";
+import CityModal from "app/components/Modals/CityModal";
 
 const AddNewSMView = (props: any) => {
-  const [gender, setGender] = useState("Male");
-  const [checked, setChecked] = React.useState("first");
   const [profile, setProfile] = React.useState(false);
+  const [ShowCity, setShowCity] = useState(false)
 
   return (
     <View style={styles.mainContainer}>
@@ -302,38 +302,50 @@ const AddNewSMView = (props: any) => {
           />
         </View>
         <View style={styles.inputWrap}>
-          <DropdownInput
-            require={true}
-            headingText={strings.city}
-            placeholder={props.addNewSmData?.city != '' ?
-              props.addNewSmData?.city :
-              strings.city}
-            data={Array.isArray(props.cityData) ? props.cityData : []}
-            inputWidth={"100%"}
-            paddingLeft={16}
-            maxHeight={300}
-            onFocus={() => props.handlegetCityList()}
-            labelField="city_name"
-            valueField={"city_id"}
-            value={props.addNewSmData?.city_id}
-            onChange={(item: any) => {
-              props.setAddNewSmData({
-                ...props.addNewSmData,
-                city: item.city_name,
-                city_id: item.city_id,
-              });
-            }}
-            newRenderItem={(item: any) => {
-              return (
-                <>
-                  <View style={styles.item}>
-                    <Text style={styles.textItem}>{item.city_name}</Text>
-                  </View>
-                </>
-              );
-            }}
-          />
+          <TouchableOpacity activeOpacity={1} onPress={() => setShowCity(true)}>
+            <InputField
+              editable={false}
+              require={true}
+              placeholderText={"City"}
+              handleInputBtnPress={() => { }}
+              headingText={"City"}
+              valueshow={props.addNewSmData?.city}
+            />
+          </TouchableOpacity>
         </View>
+        {/* <View style={styles.inputWrap}>
+            <DropdownInput
+              require={true}
+              headingText={strings.city}
+              placeholder={props.addNewSmData?.city != '' ?
+                props.addNewSmData?.city :
+                strings.city}
+              data={Array.isArray(props.cityData) ? props.cityData : []}
+              inputWidth={"100%"}
+              paddingLeft={16}
+              maxHeight={300}
+              onFocus={() => props.handlegetCityList()}
+              labelField="city_name"
+              valueField={"city_id"}
+              value={props.addNewSmData?.city_id}
+              onChange={(item: any) => {
+                props.setAddNewSmData({
+                  ...props.addNewSmData,
+                  city: item.city_name,
+                  city_id: item.city_id,
+                });
+              }}
+              newRenderItem={(item: any) => {
+                return (
+                  <>
+                    <View style={styles.item}>
+                      <Text style={styles.textItem}>{item.city_name}</Text>
+                    </View>
+                  </>
+                );
+              }}
+            />
+        </View> */}
         <View style={{ marginTop: normalizeSpacing(30), }}>
           <InputField
             require={true}
@@ -397,6 +409,12 @@ const AddNewSMView = (props: any) => {
             profile_picture: data,
           });
         }}
+      />
+      <CityModal
+        Visible={ShowCity}
+        setIsVisible={setShowCity}
+        setData={props.setAddNewSmData}
+        data={props.addNewSmData}
       />
     </View>
   );
