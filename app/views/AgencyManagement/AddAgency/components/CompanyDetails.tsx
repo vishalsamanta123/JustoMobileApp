@@ -59,7 +59,8 @@ const CompanyDetails = (props: any) => {
         barStyle={"light-content"}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <ScrollView contentContainerStyle={styles.wrap}>
+      <ScrollView keyboardShouldPersistTaps={'handled'}
+      contentContainerStyle={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField
             require={true}
@@ -119,17 +120,9 @@ const CompanyDetails = (props: any) => {
             <Text style={styles.headingText}>Pancard</Text>
             <RequiredStart />
           </View>
-          <View>
+          <View style={{ flex: 0.5 }}>
             <TouchableOpacity
-              style={{
-                width: normalizeWidth(120),
-                height: normalizeHeight(50),
-                backgroundColor: WHITE_COLOR,
-                alignItems: "center",
-                justifyContent: "center",
-                marginLeft: 10,
-                borderRadius: 10,
-              }}
+              style={styles.browseVw}
               onPress={() => {
                 setpanVisible(true);
                 setVisible(true);
@@ -146,6 +139,12 @@ const CompanyDetails = (props: any) => {
                 {strings.browse}
               </Text>
             </TouchableOpacity>
+            {props.agencyData?.pancard === null ||
+              props.agencyData?.pancard === "" ||
+              props.agencyData?.pancard === undefined ?
+              null :
+              <Text style={styles.addedTxt}>{"Pancard Added"}</Text>
+            }
           </View>
         </View>
         <View
@@ -164,17 +163,9 @@ const CompanyDetails = (props: any) => {
             </Text>
             <RequiredStart />
           </View>
-          <View>
+          <View style={{ flex: 0.5 }}>
             <TouchableOpacity
-              style={{
-                width: normalizeWidth(120),
-                height: normalizeHeight(50),
-                backgroundColor: WHITE_COLOR,
-                alignItems: "center",
-                justifyContent: "center",
-                marginLeft: 10,
-                borderRadius: 10,
-              }}
+              style={styles.browseVw}
               onPress={() => {
                 setletterVisible(true);
                 setVisible(true);
@@ -191,6 +182,12 @@ const CompanyDetails = (props: any) => {
                 {strings.browse}
               </Text>
             </TouchableOpacity>
+            {props.agencyData?.declaration_letter_of_company === null ||
+              props.agencyData?.declaration_letter_of_company === "" ||
+              props.agencyData?.declaration_letter_of_company === undefined ?
+              null :
+              <Text style={styles.addedTxt}>{"Decalaration Letter of Company Added"}</Text>
+            }
           </View>
         </View>
         <View style={styles.inputWrap}>
