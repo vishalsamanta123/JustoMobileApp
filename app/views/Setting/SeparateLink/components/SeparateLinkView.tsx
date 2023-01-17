@@ -1,4 +1,4 @@
-import { View, Text, Image, Share } from "react-native";
+import { View, Text, Image } from "react-native";
 import React, { useRef } from "react";
 import Header from "../../../../components/Header";
 import images from "../../../../assets/images";
@@ -10,33 +10,19 @@ import {
 import styles from "./styles";
 import Button from "../../../../components/Button";
 import strings from "../../../../components/utilities/Localization";
+import Share from "react-native-share";
 
 const SeparateLinkView = (props: any) => {
   const { data, handleBackPress, response } = props;
   console.log("response: ", response);
-  let myQRCode: any = useRef();
 
-  const shareQRCode = () => {
-    myQRCode.toDataURL((dataURL: any) => {
-      console.log(dataURL);
-      // let shareImageBase64 = {
-      //   title: 'React Native',
-      //   url: response?.qrcode,
-      //   subject: 'Share Link', //  for email
-      // };
-      // Share.share(shareImageBase64).catch((error) => console.log(error));
-    });
+  const shareQRCode = async () => {
+    const options = {
+      message: "HEllO",
+      url: response.qrcode,
+    };
+    const shareResponse = await Share.open(options);
   };
-  // let shareImageBase64 = {
-  //   title: 'React Native',
-  //   url: response?.qrcode,
-  //   subject: 'Share Link', //  for email
-  // };
-  // const options = {
-  //   title: 'QR',
-  //   url: response?.qrcode,
-  //   message: 'Hello',
-  // };
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -67,19 +53,17 @@ const SeparateLinkView = (props: any) => {
             <Text style={styles.notFoundText}>{strings.qrNotFound}</Text>
           </View>
         ) : (
-          // <Button
-          //   handleBtnPress={async () => {
-          //     // await props.onSharePress();
-          //     // shareQRCode();
-          //   }}
-          //   width={300}
-          //   btnTxtcolor={BLACK_COLOR}
-          //   btnTxtsize={15}
-          //   bgcolor={WHITE_COLOR}
-          //   buttonText={strings.shareQr}
-          //   textTransform={"uppercase"}
-          // />
-          <></>
+          <Button
+            handleBtnPress={() => {
+              shareQRCode();
+            }}
+            width={300}
+            btnTxtcolor={BLACK_COLOR}
+            btnTxtsize={15}
+            bgcolor={WHITE_COLOR}
+            buttonText={strings.shareQr}
+            textTransform={"uppercase"}
+          />
         )}
       </View>
     </View>
