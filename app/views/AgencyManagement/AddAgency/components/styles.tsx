@@ -98,6 +98,15 @@ const styles = StyleSheet.create({
     fontSize: normalize(13),
     fontFamily: FONT_FAMILY_EXTRABOLD
   },
+  browseVw: {
+    backgroundColor: WHITE_COLOR,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: normalize(10),
+    borderRadius: normalize(10),
+    paddingVertical: normalize(12),
+    top: normalize(8),
+  },
   workTxt: {
     color: BLACK_COLOR,
     textTransform: 'uppercase',
@@ -107,8 +116,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: normalizeSpacing(10),
-    alignSelf: 'center'
+    marginVertical: normalizeSpacing(20),
+    alignSelf: 'center',
   },
   loginBanner: {
     width: normalizeSpacing(100),
@@ -180,6 +189,14 @@ const styles = StyleSheet.create({
     height: normalizeHeight(18),
     marginHorizontal: 5,
     tintColor: BLACK_COLOR
+  },
+  addedTxt: {
+    width: '80%',
+    fontSize: 11,
+    textAlign: 'center',
+    alignSelf: 'center',
+    marginLeft: normalize(12),
+    top: normalize(10)
   },
 });
 
