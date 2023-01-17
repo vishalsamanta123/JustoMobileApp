@@ -23,8 +23,8 @@ const AddNewCMView = (props: any) => {
     return (
         <View style={styles.mainContainer}>
             <Header
-                headerText={strings.addNewCM}
-                // headerText={props?.type === 'edit' ? strings.editCM : strings.addNewCM}
+                // headerText={strings.addNewCM}
+                headerText={props?.type === 'edit' ? strings.editCM : strings.addNewCM}
                 headerStyle={styles.headerStyle}
                 headerTextStyle={styles.headerTextStyle}
                 leftImageSrc={images.backArrow}
