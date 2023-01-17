@@ -2,8 +2,8 @@ import { useFocusEffect } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import SupportForumView from './components/SupportForumView'
+import Share from "react-native-share";
 import { supportForumListData } from 'app/Redux/Actions/SupportForumAction';
-import { Share } from 'react-native';
 
 const SupportForumScreen = ({ navigation }: any) => {
     const dispatch: any = useDispatch()
@@ -48,22 +48,12 @@ const SupportForumScreen = ({ navigation }: any) => {
         navigation.navigate('SupportForumDetail', data);
     };
     const onPressShare = async (data: any) => {
-            try {
-              const result = await Share.share({
-                message: `${data?.title}` ,
-              });
-              if (result.action === Share.sharedAction) {
-                if (result.activityType) {
-                  // shared with activity type of result.activityType
-                } else {
-                  // shared
-                }
-              } else if (result.action === Share.dismissedAction) {
-                // dismissed
-              }
-            } catch (error: any) {
-              console.log(error.message);
-            }
+    console.log('data: ', data);
+      // const options = {
+      //   message: 'HEllO',
+      //   url: response.qrcode
+      // }
+      // const shareResponse = await Share.open(options);
     };
     return (
         <SupportForumView
