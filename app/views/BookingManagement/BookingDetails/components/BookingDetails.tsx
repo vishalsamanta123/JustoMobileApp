@@ -61,7 +61,7 @@ const BookingDetailsView = (props: any) => {
                         }
                     </> : null
                 }
-                {props?.type !== 'register' ||
+                {props?.type !== 'register' && detailData?.leads?.lead_status !== 5 &&
                     detailData?.booking_status !== 4 ?
                     <View style={styles.buttonVw}>
                         <Button

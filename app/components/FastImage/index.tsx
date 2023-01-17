@@ -1,74 +1,31 @@
 import { View, Text, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
 import FastImage from "react-native-fast-image";
-import images from "app/assets/images";
-import { normalizeHeight, normalizeWidth } from "../scaleFontSize";
 
 const FastImages = (props: any) => {
-  const {
-    source = '',
-    width = normalizeWidth(70),
-    height = normalizeHeight(70), 
-  } = props;
-    const [isLoading, setisLoading] = useState(false);
-    
+  const [isLoading, setIsLoading] = useState(false)
+  const { source = {
+    uri: "https://unsplash.it/400/400?image=1",
+    headers: { Authorization: "someAuthToken" },
+    priority: FastImage.priority.normal,
+  }, style } = props;
   return (
-    <>
-      <View
-        style={[
-          {
-            height: height,
-            width: width,
-            borderRadius: 40,
-            backgroundColor: 'gray',
-            alignItems: 'center',
-            justifyContent: 'center'
-          },
-          isLoading ? { alignItems: 'center', justifyContent: 'center' } : {},
-        ]}>
-        {isLoading && (
-          <View
-            style={{
-              position: 'absolute',
-              zIndex: 999,
-            }}>
-            <ActivityIndicator
-              animating={isLoading}
-              style={{
-                height: 50,
-                width: 50,
-              }}
-              color={'#fff'}
-            />
-          </View>
-        )}
-        {source && source != 'null' && typeof source !== 'number' ? (
-          <FastImage
-            source={{uri: source}}
-            style={{
-              height: height,
-              width: width,
-              borderRadius: 40,
-            }}
-            resizeMode={FastImage.resizeMode.cover}
-            onLoadStart={() => setisLoading(true)}
-            onLoadEnd={() => setisLoading(false)}
+    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+      {isLoading ?
+        (<View style={{ position: 'absolute', zIndex: 999999 }}>
+          <ActivityIndicator
+            color={'#fff'}
           />
-        ) : (
-          <FastImage
-            source={images?.user}
-            style={{
-              height: height,
-              width: width,
-              borderRadius: 2,
-            }}
-            resizeMode={FastImage.resizeMode.cover}
-            onLoadStart={() => setisLoading(true)}
-            onLoadEnd={() => setisLoading(false)}
-          />
-        )}
-      </View>
-    </>
+        </View>)
+        : null
+      }
+      <FastImage
+        style={style}
+        source={source}
+        onLoadStart={() => setIsLoading(true)}
+        onLoadEnd={() => setIsLoading(false)}
+      />
+    </View>
   );
 };
 
