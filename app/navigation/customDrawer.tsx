@@ -67,17 +67,17 @@ const customDrawer = ({ navigation }: any) => {
       <TouchableOpacity style={styles.MainContainer}>
         <View style={styles.ContainerView}>
           <View style={styles.NameContainer}>
-            <FastImages
-              // style={styles.UserImge}
-              // resizeMode={"cover"}
+            <Image
+              style={styles.UserImge}
+              resizeMode={"cover"}
               // //source={require('../assets/images/buildings.jpeg')}
-              source={userData?.base_url + userData?.profile_picture
-              }
-              // source={
-              //   userData?.base_url
-              //     ? { uri: userData?.base_url + userData?.profile_picture }
-              //     : images.user
+              // source={userData?.base_url + userData?.profile_picture
               // }
+              source={
+                userData?.base_url
+                  ? { uri: userData?.base_url + userData?.profile_picture }
+                  : images.user
+              }
             />
             <View style={styles.UserNameView}>
               <Text
@@ -199,7 +199,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sourcingmanager_id}}`}
+          type={`${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sourcingmanager_id}, ${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}}`}
           // type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.lead}
           tabTitle={strings.leadManagementHeader}

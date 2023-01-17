@@ -44,14 +44,14 @@ const EditProfileView = (props: any) => {
             style={styles.imageCircle}
             onPress={() => setProfileVisible(true)}
           >
-            <FastImages
-              // style={styles.userImage}
-              source={editData?.local_profile_picture?.uri}
-              // source={{
-              //   uri: editData?.local_profile_picture?.uri
-              //     ? editData?.local_profile_picture?.uri
-              //     : editData?.base_url + editData?.profile_picture,
-              // }}
+            <Image
+              style={styles.userImage}
+              // source={editData?.local_profile_picture?.uri}
+              source={{
+                uri: editData?.local_profile_picture?.uri
+                  ? editData?.local_profile_picture?.uri
+                  : editData?.base_url + editData?.profile_picture,
+              }}
             />
           </TouchableOpacity>
           <View style={styles.inputWrap}>
