@@ -2,9 +2,7 @@ import moment from "moment";
 import React from "react";
 import { View, Text } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
-import Button from "../../../../components/Button";
-import { normalize } from "../../../../components/scaleFontSize";
-import { BLACK_COLOR } from "../../../../components/utilities/constant";
+import { DATE_FORMAT, DATE_TIME_FORMAT } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 
@@ -46,7 +44,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{moment(item?.user_states?.last_login).format('DD-MM-YYYY')}</Text>
+                    <Text style={styles.nameTxt}>{moment(item?.user_states?.last_login).format(DATE_FORMAT)}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -55,7 +53,9 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.user_states?.last_visit}</Text>
+                    <Text style={styles.nameTxt}>{item?.user_states?.last_visit ?
+                        moment(item?.user_states?.last_visit).format(DATE_TIME_FORMAT)
+                        : strings.notfount}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -64,7 +64,9 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.user_states?.last_site_visit}</Text>
+                    <Text style={styles.nameTxt}>{item?.user_states?.last_site_visit ?
+                        moment(item?.user_states?.last_site_visit).format(DATE_TIME_FORMAT) :
+                        strings.notfount}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -78,7 +80,6 @@ const StatsView = (props: any) => {
             </View>
             <Text style={styles.bigTitlesTxt}>Current Target</Text>
             <View style={[styles.Txtview, { borderTopWidth: 1 }]}>
-                <View><Text>:</Text></View>
                 <View style={styles.projectContainer}>
                     <Text style={styles.projectTxt}>Month</Text>
                 </View>
