@@ -1,43 +1,115 @@
 
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-native-modal";
 import styles from "app/components/Modals/styles";
 import Styles from './styles'
 import images from "app/assets/images";
 import strings from "app/components/utilities/Localization";
 import Button from "app/components/Button";
-import { AMOUNT_TYPE, DATE_FORMAT, Isios, PRIMARY_THEME_COLOR, WHITE_COLOR } from "app/components/utilities/constant";
+import { AMOUNT_TYPE, DATE_FORMAT, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "app/components/utilities/constant";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { normalizeSpacing } from "app/components/scaleFontSize";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import InputField from "app/components/InputField";
 import DropdownInput from "app/components/DropDown";
+import ErrorMessage from "app/components/ErrorMessage";
+import { addRegistration, removeBooking } from "app/Redux/Actions/BookingActions";
+import { useDispatch, useSelector } from "react-redux";
+import Header from "app/components/Header";
 
-const RegistrationModal = (props: any) => {
+const RegistrationModal = ({ navigation, route }: any) => {
+    const { getBookingData = {}, type = '' } = route?.params || {}
+    const dispatch: any = useDispatch()
+    const cancelAddBookingData = useSelector((state: any) => state.cancelAddBooking)
+    const [documentBrowse, setDocumentBrowse] = useState(false)
+    const [registerNowData, setRegisterNowData] = useState({
+        register_date: '',
+        documents: [],
+        total_amount: '',
+        total_amount_type: 'L',
+    });
     const handleDelete = (item: any, index: any) => {
-        var array: any[] = [...props?.registerNowData?.documents];
+        const array = [...registerNowData?.documents];
         array?.splice(index, 1);
-        props?.setRegisterNowData({
-            ...props?.registerNowData,
+        setRegisterNowData({
+            ...registerNowData,
             documents: array,
         });
     };
+    useEffect(() => {
+        if (cancelAddBookingData?.response?.status === 200) {
+            ErrorMessage({
+                msg: cancelAddBookingData?.response?.message,
+                backgroundColor: GREEN_COLOR
+            })
+            dispatch(removeBooking())
+            navigation.goBack()
+            setRegisterNowData({
+                register_date: '',
+                documents: [],
+                total_amount: '',
+                total_amount_type: 'L',
+            })
+        }
+    }, [cancelAddBookingData])
+    const validationRegisterNow = () => {
+        let isError = true;
+        let errorMessage: any = "";
+        if (registerNowData.register_date == undefined ||
+            registerNowData.register_date == "") {
+            isError = false;
+            errorMessage = "Register Date is require. Please select Register Date";
+        } else if (registerNowData.total_amount == undefined ||
+            registerNowData.total_amount == "") {
+            isError = false;
+            errorMessage = "Total Amount is require. Please select Total Amount";
+        } else if (registerNowData.documents.length === 0) {
+            isError = false;
+            errorMessage = "Document is require. Please select Document";
+        }
+        if (errorMessage !== "") {
+            ErrorMessage({
+                msg: errorMessage,
+                backgroundColor: RED_COLOR,
+            });
+        }
+        return isError;
+    }
     const handleRegisterNow = () => {
-        props.registerNowPress()
+        if (validationRegisterNow()) {
+            const params = {
+                module_id: "",
+                booking_id: getBookingData?._id,
+                remark: '',
+                lead_id: getBookingData?.lead_id,
+                property_id: getBookingData?.property_id,
+                customer_id: getBookingData?.customer_id,
+                registration_date: registerNowData?.register_date,
+                document: JSON.stringify(registerNowData?.documents),
+                total_amount: registerNowData?.total_amount,
+                total_amount_type: registerNowData?.total_amount_type,
+            }
+            dispatch(addRegistration(params))
+        }
+    }
+    const handleBackPress = () => {
+        navigation.goBack()
     }
     return (
-        <Modal isVisible={props.Visible}>
+        <View style={[styles.mainContainer, { flex: 1 }]}>
+            <Header
+                leftImageSrc={images.backArrow}
+                // rightSecondImageScr={images.notification}
+                headerText={strings.registrationHeader}
+                leftImageIconStyle={Styles.RightFirstIconStyle}
+                handleOnLeftIconPress={handleBackPress}
+                headerStyle={Styles.headerStyle}
+                statusBarColor={PRIMARY_THEME_COLOR}
+                barStyle={'light-content'}
+            />
             <View style={Styles.bookingModelVw}>
-                <View style={styles.topContainer}>
-                    <Text style={styles.topTxt}>{'Registration'}</Text>
-                    <View>
-                        <TouchableOpacity onPress={() => props.setIsVisible(false)}>
-                            <Image source={images.close} style={styles.closeIcon} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
                 <View style={[styles.inputWrap, { top: normalizeSpacing(5) }]}>
                     <InputCalender
                         mode={'date'}
@@ -47,18 +119,18 @@ const RegistrationModal = (props: any) => {
                         minimumDate={new Date()}
                         editable={false}
                         dateData={(data: any) => {
-                            props.setRegisterNowData({
-                                ...props.registerNowData,
+                            setRegisterNowData({
+                                ...registerNowData,
                                 register_date: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         setDateshow={(data: any) => {
-                            props.setRegisterNowData({
-                                ...props.registerNowData,
+                            setRegisterNowData({
+                                ...registerNowData,
                                 register_date: moment(data).format(DATE_FORMAT)
                             })
                         }}
-                        value={props.registerNowData?.register_date}
+                        value={registerNowData?.register_date}
                     />
                 </View>
                 <View style={[styles.inputWrap, Styles.straightVw]}>
@@ -67,12 +139,12 @@ const RegistrationModal = (props: any) => {
                         headingText={"Total Amount"}
                         handleInputBtnPress={() => { }}
                         onChangeText={(data: any) => {
-                            props.setRegisterNowData({
-                                ...props.registerNowData,
+                            setRegisterNowData({
+                                ...registerNowData,
                                 total_amount: data,
                             })
                         }}
-                        valueshow={props?.registerNowData?.total_amount}
+                        valueshow={registerNowData?.total_amount}
                         keyboardtype={'number-pad'}
                     />
                     <DropdownInput
@@ -85,11 +157,11 @@ const RegistrationModal = (props: any) => {
                         itemTextStyle={{ fontSize: 8 }}
                         labelField="value"
                         valueField={'value'}
-                        placeholder={props?.registerNowData?.total_amount_type}
-                        value={props?.registerNowData?.total_amount_type}
+                        placeholder={registerNowData?.total_amount_type}
+                        value={registerNowData?.total_amount_type}
                         onChange={(item: any) => {
-                            props.setRegisterNowData({
-                                ...props.registerNowData,
+                            setRegisterNowData({
+                                ...registerNowData,
                                 total_amount_type: item.value,
                             })
                         }}
@@ -109,14 +181,16 @@ const RegistrationModal = (props: any) => {
                     <Button
                         width={110}
                         height={32}
-                        buttonText={strings.browse}
+                        marginHorizontal={0}
+                        buttonText={registerNowData?.documents?.length > 0 ?
+                            strings.add : strings.browse}
                         bgcolor={PRIMARY_THEME_COLOR}
                         border={10}
-                        handleBtnPress={() => props.setDocumentBrowse(true)}
+                        handleBtnPress={() => setDocumentBrowse(true)}
                     />
                 </View>
-                {props.registerNowData?.documents?.length > 0 ?
-                    props.registerNowData?.documents?.map((item: any, index: any) => {
+                {registerNowData?.documents?.length > 0 ?
+                    registerNowData?.documents?.map((item: any, index: any) => {
                         return (
                             <View style={Styles.documentVw}>
                                 <Text style={Styles.documentTxt}>{strings.document} {index + 1}</Text>
@@ -131,25 +205,25 @@ const RegistrationModal = (props: any) => {
                     })
                     : null
                 }
-                <View style={{ marginVertical: 20 }}>
+                <View style={{ marginTop: normalizeSpacing(50), }}>
                     <Button
                         handleBtnPress={() => handleRegisterNow()}
                         buttonText={strings.registerNow} />
                 </View>
             </View>
             <PicturePickerModal
-                Visible={props.documentBrowse}
-                setVisible={props.setDocumentBrowse}
-                value={props?.registerNowData?.documents}
+                Visible={documentBrowse}
+                setVisible={setDocumentBrowse}
+                value={registerNowData?.documents}
                 imageData={(data: any) => {
-                    props.setRegisterNowData({
-                        ...props.registerNowData,
+                    setRegisterNowData({
+                        ...registerNowData,
                         documents: data,
                     });
                 }}
                 multiple={true}
             />
-        </Modal>
+        </View>
     );
 };
 export default RegistrationModal

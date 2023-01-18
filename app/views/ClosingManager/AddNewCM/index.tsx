@@ -1,6 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
 import ErrorMessage from 'app/components/ErrorMessage';
-import { GREEN_COLOR, RED_COLOR, Regexs, validateEmail } from 'app/components/utilities/constant';
+import { GREEN_COLOR, RED_COLOR, Regexs, ROLE_IDS, validateEmail } from 'app/components/utilities/constant';
 import { getClosingDetail } from 'app/Redux/Actions/ClosingManager';
 import { getCityList, getRolesList } from 'app/Redux/Actions/MasterActions';
 import { removeAuthUser, updateUserSettingData, userRegister } from 'app/Redux/Actions/SettingActions';
@@ -13,7 +13,8 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
     const { type = "", data = {} } = route?.params || ""
     const dispatch: any = useDispatch()
     const [addNewCMData, setAddNewCMData] = useState<any>({
-        role_id: "63731fd3d9363c459e31551f",
+        // role_id: "63731fd3d9363c459e31551f",
+        role_id: ROLE_IDS.closingmanager_id,
         profile_picture: "",
         firstname: "",
         lastname: "",
@@ -51,7 +52,7 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
         if (type === 'edit') {
             if (detailsData?.response?.status === 200) {
                 setAddNewCMData({
-                    role_id: "63731fd3d9363c459e31551f",
+                    role_id: ROLE_IDS.closingmanager_id,
                     profile_picture: detailsData?.response?.data[0]?.base_url +
                         detailsData?.response?.data[0]?.profile_picture,
                     firstname: detailsData?.response?.data[0]?.firstname,
@@ -73,7 +74,7 @@ const AddNewCMScreen = ({ navigation, route }: any) => {
                 })
             } else {
                 setAddNewCMData({
-                    role_id: "63731fd3d9363c459e31551f",
+                    role_id: ROLE_IDS.closingmanager_id,
                     profile_picture: "",
                     firstname: "",
                     lastname: "",

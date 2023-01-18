@@ -31,9 +31,12 @@ const BookingScreen = ({ navigation, route }: any) => {
     const addedBookingData = useSelector((state: any) => state.addedBooking) || {}
     const { response = {} } = useSelector((state: any) => state.booking) || {}
     const [masterDatas, setMasterDatas] = useState<any>([])
+    const [propertyConfData, setPropertyConfData] = useState<any>([])
     const [paymentTypes, setPaymentTypes] = useState<any>([])
+    const [dropDownType, setDropDownType] = useState<any>(null)
 
     const getDropDownData = (data: any) => {
+        setDropDownType(data)
         if (data === 10) {
             dispatch(getAllMaster({
                 type: 10,
@@ -47,7 +50,11 @@ const BookingScreen = ({ navigation, route }: any) => {
     }
     useEffect(() => {
         if (masterData?.response?.status === 200) {
-            setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
+            if (dropDownType === 10) {
+                setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
+            } else {
+                setPropertyConfData(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
+            }
         }
     }, [masterData])
     useEffect(() => {
@@ -141,6 +148,7 @@ const BookingScreen = ({ navigation, route }: any) => {
                 setBookingData={setBookingData}
                 bookingData={bookingData}
                 getDropDownData={getDropDownData}
+                propertyConfData={propertyConfData}
                 masterDatas={masterDatas}
                 paymentTypes={paymentTypes}
             />

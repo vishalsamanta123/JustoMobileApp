@@ -659,7 +659,10 @@ const AddNewVisitorForm = (props: any) => {
                     <Text style={styles.headingText}>Company Details</Text>
                     <View style={styles.radioBtnView}>
                         <Text style={styles.headingsTxt}>Occupation</Text>
-                        <View style={{ flexDirection: "row", width: '100%' }}>
+                        <View style={{
+                            flexDirection: "row", width: '100%',
+                            flexWrap: 'wrap',alignSelf:'center'
+                        }}>
                             <View style={styles.radioView}>
                                 <RadioButton.Android
                                     value="salaried"

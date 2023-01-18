@@ -20,6 +20,7 @@ const Button = (props: any) => {
     btnTxtsize = 15,
     textTransform = "capitalize",
     marginTop = 0,
+    marginHorizontal = 10,
     rightImage,
     disabled=false
   } = props;
@@ -37,7 +38,7 @@ const Button = (props: any) => {
             borderWidth: borderWidth,
             // flexDirection: "row",
             // alignItems: "center",
-            marginHorizontal: 10,
+            marginHorizontal: marginHorizontal,
             marginTop: normalize(marginTop)
           },
         ]}
