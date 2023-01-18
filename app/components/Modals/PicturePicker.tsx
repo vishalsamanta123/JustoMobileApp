@@ -27,7 +27,7 @@ const PicturePickerModal = (props: any) => {
                         ),
                     }
                 })
-                if (props?.value?.length === 0) {
+                if (props?.value?.length === 0 || typeof props?.value === 'undefined') {
                     props.imageData(allArray)
                 } else {
                     var newAdd: any[] = [...props?.value];
@@ -35,7 +35,7 @@ const PicturePickerModal = (props: any) => {
                     props.imageData(getNew)
                 }
             } else {
-                if (props?.value?.length === 0) {
+                if (props?.value?.length === 0 || typeof props?.value === 'undefined') {
                     props.imageData(
                         {
                             uri: image?.path,
@@ -78,7 +78,7 @@ const PicturePickerModal = (props: any) => {
                         ),
                     }
                 })
-                if (props?.value?.length === 0) {
+                if (props?.value?.length === 0 || typeof props?.value === 'undefined') {
                     props.imageData(allArray)
                 } else {
                     var newAdd: any[] = [...props?.value];
