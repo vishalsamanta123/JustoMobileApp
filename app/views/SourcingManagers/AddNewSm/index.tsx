@@ -4,6 +4,7 @@ import {
   GREEN_COLOR,
   RED_COLOR,
   Regexs,
+  ROLE_IDS,
   validateEmail,
 } from "app/components/utilities/constant";
 import { getAgentDetail } from "app/Redux/Actions/AgentActions";
@@ -23,7 +24,8 @@ const AddNewSMScreen = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch();
   const userDataSucess = useSelector((state: any) => state.userReducer);
   const [addNewSmData, setAddNewSmData] = useState<any>({
-    role_id: "63466085fadec47fe8e96bb7",
+    // role_id: "63466085fadec47fe8e96bb7",
+    role_id: ROLE_IDS.sourcingmanager_id,
     profile_picture: "",
     firstname: "",
     lastname: "",

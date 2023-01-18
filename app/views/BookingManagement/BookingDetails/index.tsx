@@ -1,7 +1,7 @@
 import { useFocusEffect } from "@react-navigation/native";
 import ErrorMessage from "app/components/ErrorMessage";
 import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
-import { getBookingDetail, updateBookingDetailStatus, cancelBooking, removeBooking, addRegistration, getBookingRegisterDetail }
+import { getBookingDetail, updateBookingDetailStatus, cancelBooking, removeBooking, getBookingRegisterDetail }
     from "app/Redux/Actions/BookingActions";
 import { competitorpropertyReducer } from "app/Redux/Reducers/propertyReducers";
 import React, { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
     const [cancelBookingModel, setCancelBookingModel] = useState(false)
     const [reAllocateModel, setReAllocateModel] = useState(false)
     const [registerModal, setRegisterModal] = useState(false)
-    const [documentBrowse, setDocumentBrowse] = useState(false)
+   
     const [cancelValue, setCancelValue] = useState({
         reason: '',
         property_id: '',
@@ -31,14 +31,8 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
         booking_status: 4,
         receivery_status: 1
     });
-
-    const [registerNowData, setRegisterNowData] = useState({
-        register_date: '',
-        documents: [],
-        total_amount: '',
-        total_amount_type: 'L',
-    });
     const cancelAddBookingData = useSelector((state: any) => state.cancelAddBooking)
+   
     useFocusEffect(
         React.useCallback(() => {
             if (type === 'register') {
@@ -83,12 +77,6 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
                 property_name: '',
                 remark: '',
             })
-            setRegisterNowData({
-                register_date: '',
-                documents: [],
-                total_amount: '',
-                total_amount_type: 'L',
-            })
         }
     }, [cancelAddBookingData])
     const cancelBookingPress = () => {
@@ -103,49 +91,11 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
         }
         dispatch(cancelBooking(params))
     }
-    const validationRegisterNow = () => {
-        let isError = true;
-        let errorMessage: any = "";
-        if (registerNowData.register_date == undefined ||
-            registerNowData.register_date == "") {
-            isError = false;
-            errorMessage = "Register Date is require. Please select Register Date";
-        } else if (registerNowData.total_amount == undefined ||
-            registerNowData.total_amount == "") {
-            isError = false;
-            errorMessage = "Total Amount is require. Please select Total Amount";
-        } else if (registerNowData.documents.length === 0) {
-            isError = false;
-            errorMessage = "Document is require. Please select Document";
-        }
-        if (errorMessage !== "") {
-            ErrorMessage({
-                msg: errorMessage,
-                backgroundColor: RED_COLOR,
-            });
-        }
-        return isError;
-    }
-    const registerNowPress = () => {
-        if (validationRegisterNow()) {
-            setRegisterModal(false)
-            const params = {
-                module_id: "",
-                booking_id: data?._id,
-                remark: '',
-                lead_id: data?.lead_id,
-                property_id: data?.property_id,
-                customer_id: data?.customer_id,
-                registration_date: registerNowData?.register_date,
-                document: JSON.stringify(registerNowData?.documents),
-                total_amount: registerNowData?.total_amount,
-                total_amount_type: registerNowData?.total_amount_type,
-            }
-            dispatch(addRegistration(params))
-        }
-    }
     const onPressBookNow = () => {
         navigation.navigate('Booking', { getBookingData: response?.data?.length > 0 ? response?.data[0] : [], type: 'readyToBook' })
+    }
+    const handleRegister = () => {
+        navigation.navigate('BookingRegistration', { getBookingData: response?.data?.length > 0 ? response?.data[0] : [] })
     }
     return (
         <>
@@ -165,11 +115,7 @@ const BookingDetailsScreen = ({ navigation, route }: any) => {
                 setRegisterModal={setRegisterModal}
                 reAllocateData={reAllocateData}
                 setReAllocateData={setReAllocateData}
-                registerNowData={registerNowData}
-                setRegisterNowData={setRegisterNowData}
-                documentBrowse={documentBrowse}
-                setDocumentBrowse={setDocumentBrowse}
-                registerNowPress={registerNowPress}
+                handleRegister={handleRegister}
             />
         </>
     )

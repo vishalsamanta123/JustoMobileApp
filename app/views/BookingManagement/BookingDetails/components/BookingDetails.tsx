@@ -11,7 +11,6 @@ import CancelModal from "./CancelBooking";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import ReAllocateModal from "./ReAllocate";
-import RegistrationModal from "./Registration";
 
 const BookingDetailsView = (props: any) => {
     const getLoginType = useSelector((state: any) => state.login);
@@ -42,82 +41,87 @@ const BookingDetailsView = (props: any) => {
             <View style={styles.detailsItemView}>
                 <BookingDetailsIteam item={[detailData]} type={props?.type} />
             </View>
-            <View style={styles.btnContainer}>
-                {getLoginType?.response?.data?.role_id != ROLE_IDS.postsales_id ?
-                    <>
-                        {props?.type === 'readyToBook' ?
-                            <View style={styles.buttonVw}>
-                                <Button
-                                    buttonText={strings.Statusupdate}
-                                    width={150}
-                                    height={45}
-                                    bgcolor={PRIMARY_THEME_COLOR_DARK}
-                                    btnTxtcolor={WHITE_COLOR}
-                                    btnTxtsize={12}
-                                    textTransform={"uppercase"}
-                                    handleBtnPress={() => props.handleStatusUpdate()}
-                                />
-                            </View> : null
-                        }
-                    </> : null
-                }
-                {props?.type !== 'register' && detailData?.leads?.lead_status !== 5 &&
-                    detailData?.booking_status !== 4 ?
-                    <View style={styles.buttonVw}>
-                        <Button
-                            buttonText={strings.cancelBooking}
-                            width={150}
-                            height={45}
-                            bgcolor={PRIMARY_THEME_COLOR_DARK}
-                            btnTxtcolor={WHITE_COLOR}
-                            btnTxtsize={14}
-                            textTransform={"uppercase"}
-                            handleBtnPress={() => props.setCancelBookingModel(true)}
-                        />
-                    </View> : null
-                }
-            </View>
-            <View style={styles.btnContainer}>
-                {getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id &&
-                    props?.type === 'readyToBook' ?
-                    <View style={styles.buttonVw}>
-                        <Button
-                            buttonText={strings.reAllocate}
-                            handleBtnPress={() => props.setReAllocateModel(true)}
-                            bgcolor={PRIMARY_THEME_COLOR_DARK}
-                            width={150}
-                            height={45}
-                        />
-                    </View> : null
-                }
-                {getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id
-                    && props?.type === 'request' &&
-                    detailData?.leads?.lead_status !== 5 &&
-                    detailData?.booking_status !== 4
-                    ?
-                    <View style={styles.buttonVw}>
-                        <Button
-                            buttonText={strings.registerNow}
-                            handleBtnPress={() => props.setRegisterModal(true)}
-                            bgcolor={PRIMARY_THEME_COLOR_DARK}
-                            width={150}
-                            height={45}
-                        />
-                    </View> : null
-                }
-            </View>
-            <View style={styles.btnContainer}>
-                {props?.type === 'readyToBook' ?
-                    <View style={styles.buttonVw}>
-                        <Button
-                            buttonText={'Book Now'}
-                            handleBtnPress={() => onPressBookNow()}
-                            bgcolor={PRIMARY_THEME_COLOR_DARK}
-                            width={150}
-                            height={45}
-                        />
-                    </View> : null
-                }
+            <View style={{
+                flexDirection: 'row', flexWrap: 'wrap',
+                justifyContent: 'center'
+            }}>
+                <View style={styles.btnContainer}>
+                    {getLoginType?.response?.data?.role_id != ROLE_IDS.postsales_id ?
+                        <>
+                            {props?.type === 'readyToBook' ?
+                                <View style={styles.buttonVw}>
+                                    <Button
+                                        buttonText={strings.Statusupdate}
+                                        width={150}
+                                        height={45}
+                                        bgcolor={PRIMARY_THEME_COLOR_DARK}
+                                        btnTxtcolor={WHITE_COLOR}
+                                        btnTxtsize={12}
+                                        textTransform={"uppercase"}
+                                        handleBtnPress={() => props.handleStatusUpdate()}
+                                    />
+                                </View> : null
+                            }
+                        </> : null
+                    }
+                    {props?.type !== 'register' && detailData?.leads?.lead_status !== 5 &&
+                        detailData?.booking_status !== 4 ?
+                        <View style={styles.buttonVw}>
+                            <Button
+                                buttonText={strings.cancelBooking}
+                                width={150}
+                                height={45}
+                                bgcolor={PRIMARY_THEME_COLOR_DARK}
+                                btnTxtcolor={WHITE_COLOR}
+                                btnTxtsize={14}
+                                textTransform={"uppercase"}
+                                handleBtnPress={() => props.setCancelBookingModel(true)}
+                            />
+                        </View> : null
+                    }
+                </View>
+                <View style={styles.btnContainer}>
+                    {getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id &&
+                        props?.type === 'readyToBook' ?
+                        <View style={styles.buttonVw}>
+                            <Button
+                                buttonText={strings.reAllocate}
+                                handleBtnPress={() => props.setReAllocateModel(true)}
+                                bgcolor={PRIMARY_THEME_COLOR_DARK}
+                                width={150}
+                                height={45}
+                            />
+                        </View> : null
+                    }
+                    {getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id
+                        && props?.type === 'request' &&
+                        detailData?.leads?.lead_status !== 5 &&
+                        detailData?.booking_status !== 4
+                        ?
+                        <View style={styles.buttonVw}>
+                            <Button
+                                buttonText={strings.registerNow}
+                                handleBtnPress={() => props.handleRegister()}
+                                bgcolor={PRIMARY_THEME_COLOR_DARK}
+                                width={150}
+                                height={45}
+                            />
+                        </View> : null
+                    }
+                </View>
+                <View style={styles.btnContainer}>
+                    {props?.type === 'readyToBook' ?
+                        <View style={styles.buttonVw}>
+                            <Button
+                                buttonText={'Book Now'}
+                                handleBtnPress={() => onPressBookNow()}
+                                bgcolor={PRIMARY_THEME_COLOR_DARK}
+                                width={150}
+                                height={45}
+                            />
+                        </View> : null
+                    }
+                </View>
             </View>
             <CancelModal
                 cancelDataPress={props.cancelBookingPress}
@@ -132,15 +136,6 @@ const BookingDetailsView = (props: any) => {
                 setIsVisible={props.setReAllocateModel}
                 reAllocateData={props.reAllocateData}
                 setReAllocateData={props.setReAllocateData}
-            />
-            <RegistrationModal
-                Visible={props.registerModal}
-                setIsVisible={props.setRegisterModal}
-                registerNowData={props.registerNowData}
-                setRegisterNowData={props.setRegisterNowData}
-                documentBrowse={props.documentBrowse}
-                setDocumentBrowse={props.setDocumentBrowse}
-                registerNowPress={props.registerNowPress}
             />
         </View>
     )

@@ -98,6 +98,7 @@ import RecoveryDetails from "app/views/Recovery/RecoveryDetail";
 import ShowReply from "app/views/SupportScreen/SupportDetails/Components/ShowReply";
 import TicketStatusUpdate from "app/views/SupportScreen/Support/components/TicketStatusUpdate";
 import CpChecking from "app/views/CpChecking/CpCheckingScreen";
+import BookingRegistration from "app/views/BookingManagement/BookingDetails/components/Registration";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -223,6 +224,7 @@ const AppComponent = () => {
       {/* BookingDetails */}
       <AppStack.Screen name="BookingDetails" component={BookingDetailsScreen} />
       <AppStack.Screen name="Booking" component={BookingScreen} />
+      <AppStack.Screen name="BookingRegistration" component={BookingRegistration} />
 
       {/* Appointment  */}
       <AppStack.Screen

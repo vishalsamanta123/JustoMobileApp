@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
     bookingModelVw: {
         backgroundColor: WHITE_COLOR,
         paddingHorizontal: 10,
-        borderRadius: 10
+        borderRadius: 10,
+        marginTop: normalizeSpacing(24)
     },
     inputHeadingText: {
         fontSize: normalize(Isios ? 14 : 16),
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: normalize(22)
+        marginTop: normalize(24)
     }
 })
 export default styles;

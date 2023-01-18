@@ -53,6 +53,8 @@ const BookingView = (props: any) => {
                             onFocus={() => props.getDropDownData(10)}
                             labelField={"title"}
                             valueField={'title'}
+                            placeholder={props?.bookingData?.payment_type ?
+                                props?.bookingData?.payment_type : ''}
                             value={props?.bookingData?.payment_type}
                             onChange={(item: any) => {
                                 props.setBookingData({
@@ -136,7 +138,7 @@ const BookingView = (props: any) => {
                                 onFocus={() => props.getDropDownData()}
                                 placeholder={props?.bookingData?.coniguration ?
                                     props?.bookingData?.coniguration : 'Configuration'}
-                                data={Array.isArray(props?.masterDatas) ? props?.masterDatas : []}
+                                data={Array.isArray(props?.propertyConfData) ? props?.propertyConfData : []}
                                 inputWidth={'100%'}
                                 paddingLeft={16}
                                 maxHeight={300}
