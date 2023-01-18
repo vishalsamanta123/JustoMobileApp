@@ -66,49 +66,37 @@ const BookingListItem = (props: any) => {
                             props.items.payment_type : strings.notfount}</Text>
                 </View>
             </View>
-
-            {(props.type === 'request' ||
-                getLoginType?.response?.data?.role_id === ROLE_IDS.postsales_id ?
-                <>
-                    <View style={styles.Txtview} >
-                        <View style={styles.projectContainer}>
-                            <Text style={styles.projectTxt}>Configuration :</Text>
-                        </View>
-                        <View style={styles.nameContainer}>
-                            <Text style={styles.nameTxt}>{
-                                props.items.configuration ?
-                                    props.items.configuration : strings.notfount}</Text>
-                        </View>
-                    </View>
-                    {props.type === 'register' ?
-                        null :
-                        <View style={styles.Txtview}>
-                            <View style={styles.projectContainer}>
-                                <Text style={styles.projectTxt}>Budget :</Text>
-                            </View>
-                            <View style={styles.nameContainer}>
-                                <Text style={styles.nameTxt}>{
-                                    props.items.min_budget && props.items.max_budget ?
-                                        `${props.items.min_budget}${props.items.min_budget_type} - ${props.items.max_budget}${props.items.max_budget_type}`
-                                        : strings.notfount
-                                }</Text>
-                            </View>
-                        </View>
-                    }
-                    {props.type === 'request' ?
-                        <View style={styles.Txtview} >
-                            <View style={styles.projectContainer}>
-                                <Text style={styles.projectTxt}>Booking Amount :</Text>
-                            </View>
-                            <View style={styles.nameContainer}>
-                                <Text style={styles.nameTxt}>{props.items.booking_amount ?
-                                    props.items.booking_amount : strings.notfount}</Text>
-                            </View>
-                        </View> : null
-                    }
-                </>
-                : null
-            )}
+            <View style={styles.Txtview} >
+                <View style={styles.projectContainer}>
+                    <Text style={styles.projectTxt}>Configuration :</Text>
+                </View>
+                <View style={styles.nameContainer}>
+                    <Text style={styles.nameTxt}>{
+                        props.items.configuration ?
+                            props.items.configuration : strings.notfount}</Text>
+                </View>
+            </View>
+            <View style={styles.Txtview}>
+                <View style={styles.projectContainer}>
+                    <Text style={styles.projectTxt}>Budget :</Text>
+                </View>
+                <View style={styles.nameContainer}>
+                    <Text style={styles.nameTxt}>{
+                        props.items.min_budget && props.items.max_budget ?
+                            `${props.items.min_budget}${props.items.min_budget_type} - ${props.items.max_budget}${props.items.max_budget_type}`
+                            : strings.notfount
+                    }</Text>
+                </View>
+            </View>
+            <View style={styles.Txtview} >
+                <View style={styles.projectContainer}>
+                    <Text style={styles.projectTxt}>Booking Amount :</Text>
+                </View>
+                <View style={styles.nameContainer}>
+                    <Text style={styles.nameTxt}>{props.items.booking_amount ?
+                        props.items.booking_amount : strings.notfount}</Text>
+                </View>
+            </View>
             <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
                 <View style={styles.projectContainer}>
                     <Text style={styles.projectTxt}>{
