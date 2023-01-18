@@ -32,7 +32,7 @@ export async function onDisplayNotification(title: any, body: any, data: any) {
       pressAction: {
         id: "default",
       },
-      color: PRIMARY_THEME_COLOR,
+      // color: PRIMARY_THEME_COLOR,
     },
   });
 }
@@ -65,7 +65,6 @@ const App = () => {
         remoteMessage.notification.body,
         remoteMessage.data
       );
-      handleNotification(remoteMessage?.data?.type, remoteMessage?.data);
     });
 
     messaging().setBackgroundMessageHandler(async (remoteMessage: any) => {
@@ -75,7 +74,6 @@ const App = () => {
         remoteMessage.data.body,
         remoteMessage.data
       );
-      handleNotification(remoteMessage?.data?.type, remoteMessage?.data);
     });
     messaging().setBackgroundMessageHandler(async (remoteMessage: any) => {
       console.log("remoteMessage getInitialNotification: ", remoteMessage);
@@ -84,27 +82,35 @@ const App = () => {
         remoteMessage.notification.body,
         remoteMessage.data
       );
-      handleNotification(remoteMessage?.data?.type, remoteMessage?.data);
     });
     return unsubscribe;
-    console.log("set");
   }, []);
-  useEffect(() => {
-    return notifee.onForegroundEvent(({ type, detail }) => {
-      switch (type) {
-        case EventType.DISMISSED:
-          console.log("User dismissed notification", detail.notification);
-          break;
-        case EventType.PRESS:
-          console.log("User pressed notification", detail.notification);
-          break;
-      }
-    });
-  }, []);
-  const handleNotification = (notificationType: any, data: any) => {
-    console.log("data: IN handleNotification", data);
-    console.log("notificationType: ", notificationType);
-  };
+  // const handleNotification = (notificationType: any, data: any) => {
+  //   console.log("data: IN handleNotification", data);
+  //   console.log("notificationType: ", notificationType);
+  //   switch (notificationType) {
+  //     case 'property':
+  //       break;
+  //     case notificationType:
+  //       break;
+  //   }
+  // };
+  // useEffect(() => {
+  //   return notifee.onForegroundEvent(({ type, detail }: any) => {
+  //   console.log('detail: ', detail);
+  //   console.log('type: ', type);
+  //     switch (type) {
+  //       case EventType.DISMISSED:
+  //         console.log("User dismissed notification", detail.notification);
+  //         break;
+  //       case EventType.PRESS:
+  //         console.log("User pressed notification", detail.notification);
+  //         // handleNotification(detail?.notification?.data?.type, detail?.notification?.data)
+  //         break;
+  //     }
+  //   });
+  // }, []);
+
 
   const getFcmToken = async () => {
     const localFCM = await AsyncStorage.getItem("fcm");
