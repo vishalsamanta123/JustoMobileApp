@@ -7,6 +7,7 @@ import strings from '../utilities/Localization';
 import { normalize, normalizeSpacing } from '../scaleFontSize';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCityList } from 'app/Redux/Actions/MasterActions';
+import { BLACK_COLOR } from '../utilities/constant';
 
 const CityModal = (props: any) => {
     const dispatch: any = useDispatch()
@@ -58,8 +59,10 @@ const CityModal = (props: any) => {
                     <View style={styles.citySearchView}>
                         <TextInput
                             placeholder='Search City'
+                            placeholderTextColor={BLACK_COLOR}
                             style={{
-                                padding: 10
+                                padding: 10,
+                                color: BLACK_COLOR
                             }}
                             onChangeText={(val: any) => {
                                 handleSearch(val)

@@ -36,6 +36,7 @@ const DashboardView = (props: any) => {
           leftImageSrc={images.menu}
           rightImageScr={images.notification}
           headerText={strings.dashboardHeader}
+          rightSecondImageScr={images.notification}
           handleOnLeftIconPress={props.handleDrawerPress}
           headerStyle={styles.headerStyle}
         />

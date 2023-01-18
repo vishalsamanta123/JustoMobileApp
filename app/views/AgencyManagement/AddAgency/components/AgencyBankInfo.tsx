@@ -187,7 +187,7 @@ const AgentBankInfo = (props: any) => {
               props.agencyData?.cancel_cheaque === "" ||
               props.agencyData?.cancel_cheaque === undefined ?
               null :
-              <Text style={styles.addedTxt}>{"Proprietorship Declaration Letter Added"}</Text>
+              <Text style={styles.addedTxt}>{"Cancel Cheaque Added"}</Text>
             }
           </View>
         </View>

@@ -18,8 +18,8 @@ const SeparateLinkView = (props: any) => {
 
   const shareQRCode = async () => {
     const options = {
-      message: "HEllO",
-      url: response.qrcode,
+      message: "Scan This QR",
+      url: response.qr_code,
     };
     const shareResponse = await Share.open(options);
   };
@@ -37,14 +37,14 @@ const SeparateLinkView = (props: any) => {
         statusBarColor={PRIMARY_THEME_COLOR}
       />
       <View style={styles.warp}>
-        {response?.qrcode === "" ? (
+        {response?.qr_code === "" ? (
           <Image style={styles.qrcodeImage} source={images.qrCode} />
         ) : (
-          <Image style={styles.qrcodeImage} source={{ uri: response.qrcode }} />
+          <Image style={styles.qrcodeImage} source={{ uri: response.qr_code }} />
         )}
       </View>
       <View style={styles.btnCopyLinkView}>
-        {response?.qrcode === "" ? (
+        {response?.qr_code === "" ? (
           <View
             style={{
               alignItems: "center",

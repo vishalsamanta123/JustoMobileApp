@@ -26,7 +26,7 @@ const LeadDetailsView = (props: any) => {
           items={props?.allDetails}
         />
       </View>
-      {props?.allDetails?.lead_status !== 6 ?
+      {props?.allDetails?.lead_status === 1 || props?.allDetails?.lead_status === 2  ?
         <View style={[styles.btnContainer, { justifyContent: props?.allDetails?.lead_status === 3 ? 'center' : 'space-around' }]}>
           {props?.allDetails?.lead_status !== 3 ?
             (<Button

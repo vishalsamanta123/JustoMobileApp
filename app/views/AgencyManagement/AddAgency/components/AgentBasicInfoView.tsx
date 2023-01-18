@@ -106,6 +106,7 @@ const AgentBasicInfoView = (props: any) => {
           <InputField
             require={true}
             placeholderText={"3675 9834 6012"}
+            inputType={'aadhaar'}
             handleInputBtnPress={() => { }}
             headingText={"Aadhaar No."}
             valueshow={props.agencyData?.adhar_no}

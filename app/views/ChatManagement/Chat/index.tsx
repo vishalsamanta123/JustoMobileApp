@@ -1,4 +1,4 @@
-import { useIsFocused } from "@react-navigation/native";
+import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import { getAllUserChatList } from "app/Redux/Actions/ChatActions";
 import React, { useEffect, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,12 +12,22 @@ const ChatViewScreen = ({ navigation }: any) => {
 
   const dispatch: any = useDispatch();
 
-  useEffect(() => {
+//   useEffect(() => {
+//     dispatch(getAllUserChatList({
+//         limit: 100,
+//         offset: 0
+//     }))
+// }, [navigation, isFocused])
+
+useFocusEffect(
+  React.useCallback(() => {
     dispatch(getAllUserChatList({
-        limit: 100,
-        offset: 0
-    }))
-}, [navigation, isFocused])
+      limit: 100,
+      offset: 0
+  }))
+    return () => { };
+  }, [navigation])
+);
 
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
