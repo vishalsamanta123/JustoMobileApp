@@ -89,7 +89,7 @@ const customDrawer = ({ navigation }: any) => {
                   : `${userData?.firstname} ${userData?.lastname}`}
                 {/* Warren Hussen */}
               </Text>
-              <Text style={[styles.UserAddress, { width: 140 }]}>
+              <Text numberOfLines={2} style={[styles.UserAddress, { width: 140 }]}>
                 {userData?.city ?? ""}
               </Text>
             </View>
@@ -308,14 +308,14 @@ const customDrawer = ({ navigation }: any) => {
             navigation.navigate("SupportForum");
           }}
         />
-        <DrawerTabSection
+        {/* <DrawerTabSection
           type={"all"}
           iconSource={images.support}
           handleDrawerNavigation={() => {
             navigation.navigate("Support");
           }}
           tabTitle={strings.supportHeader}
-        />
+        /> */}
         <DrawerTabSection
           type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}`}
           // type={"Closing Manager,Closing TL"}
@@ -342,14 +342,14 @@ const customDrawer = ({ navigation }: any) => {
           }}
           tabTitle={strings.reportHeader}
         />
-        <DrawerTabSection
+        {/* <DrawerTabSection
           type={"all"}
           handleDrawerNavigation={() => {
             navigation.navigate("Chat");
           }}
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
-        />
+        /> */}
         <DrawerTabSection
           type={`${ROLE_IDS.closingtl_id}`}
           // type={"Closing TL"}
