@@ -95,7 +95,7 @@ const LeadManagementItem = (props: any) => {
                   props.items.lead_status === 4 ? "Booking" :
                     props.items.lead_status === 5 ? "Registration" :
                       props.items.lead_status === 6 ? "Close" :
-                      props.items.lead_status === 7 && "Ready To Book" 
+                        props.items.lead_status === 7 && "Ready To Book"
             }
           </Text>
         </View>
@@ -118,21 +118,24 @@ const LeadManagementItem = (props: any) => {
             )
           }}
         />
-        <Button
-          width={85}
-          height={30}
-          bgcolor={null}
-          bordercolor={PURPLE_COLOR}
-          borderWidth={1}
-          btnTxtcolor={PURPLE_COLOR}
-          buttonText={strings.edit}
-          btnTxtsize={14}
-          textTransform={null}
-          border={10}
-          handleBtnPress={() => {
-            props.handleEdit(props.items)
-          }}
-        />
+        {props.items.lead_status === 1 || props.items.lead_status === 2 || props.items.lead_status === 3 ?
+          (<Button
+            width={85}
+            height={30}
+            bgcolor={null}
+            bordercolor={PURPLE_COLOR}
+            borderWidth={1}
+            btnTxtcolor={PURPLE_COLOR}
+            buttonText={strings.edit}
+            btnTxtsize={14}
+            textTransform={null}
+            border={10}
+            handleBtnPress={() => {
+              props.handleEdit(props.items)
+            }}
+          />)
+          : null
+        }
         <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>
           <Image
             source={images.forwardArrow}
