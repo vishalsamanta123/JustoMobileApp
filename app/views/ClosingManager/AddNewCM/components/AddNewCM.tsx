@@ -14,15 +14,17 @@ import InputCalender from 'app/components/InputCalender';
 import DropdownInput from 'app/components/DropDown';
 import { normalizeSpacing } from 'app/components/scaleFontSize';
 import { RequiredStart } from 'app/components/utilities/GlobalFuncations';
+import CityModal from 'app/components/Modals/CityModal';
 
 const AddNewCMView = (props: any) => {
     const [profile, setProfile] = React.useState(false);
+    const [ShowCity, setShowCity] = useState(false)
 
     return (
         <View style={styles.mainContainer}>
             <Header
-                headerText={strings.addNewCM}
-                // headerText={props?.type === 'edit' ? strings.editCM : strings.addNewCM}
+                // headerText={strings.addNewCM}
+                headerText={props?.type === 'edit' ? strings.editCM : strings.addNewCM}
                 headerStyle={styles.headerStyle}
                 headerTextStyle={styles.headerTextStyle}
                 leftImageSrc={images.backArrow}
@@ -130,6 +132,7 @@ const AddNewCMView = (props: any) => {
                         placeholderText={"3675 9834 6012"}
                         handleInputBtnPress={() => { }}
                         headingText={"Aadhaar No."}
+                        inputType={'aadhaar'}
                         onChangeText={(val: any) => {
                             props.setAddNewCMData({
                                 ...props.addNewCMData, adhar_no: val
@@ -279,6 +282,18 @@ const AddNewCMView = (props: any) => {
                     />
                 </View>
                 <View style={styles.inputWrap}>
+                    <TouchableOpacity activeOpacity={1} onPress={() => setShowCity(true)}>
+                        <InputField
+                            editable={false}
+                            require={true}
+                            placeholderText={"City"}
+                            handleInputBtnPress={() => { }}
+                            headingText={"City"}
+                            valueshow={props.addNewCMData?.city}
+                        />
+                    </TouchableOpacity>
+                </View>
+                {/* <View style={styles.inputWrap}>
                     <DropdownInput
                         require={true}
                         headingText={strings.city}
@@ -310,7 +325,7 @@ const AddNewCMView = (props: any) => {
                             );
                         }}
                     />
-                </View>
+                </View> */}
                 <View style={styles.inputWrap}>
                     <InputField
                         require={true}
@@ -365,6 +380,12 @@ const AddNewCMView = (props: any) => {
                         ...props.addNewCMData, profile_picture: data
                     })
                 }}
+            />
+            <CityModal
+                Visible={ShowCity}
+                setIsVisible={setShowCity}
+                setData={props.setAddNewCMData}
+                data={props.addNewCMData}
             />
         </View>
     )

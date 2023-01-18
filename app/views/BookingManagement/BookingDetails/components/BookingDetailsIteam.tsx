@@ -164,7 +164,7 @@ const BookingDetailsItem = (props: any) => {
                         {/* booking_status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 =booking cancel} */}
                         <Text style={[styles.nameTxt, {
                             color: item?.booking_status === 1 || item?.booking_status === 4 ? 'red' : BLACK_COLOR
-                        }]}>{item?.leads?.lead_status === 5 &&
+                        }]}>{item?.leads?.lead_status === 5 ||
                             props?.type === 'register' ? "Registered" :
                             item?.booking_status === 1 ? 'Pending' :
                                 item?.booking_status === 2 ? 'Confirm' :

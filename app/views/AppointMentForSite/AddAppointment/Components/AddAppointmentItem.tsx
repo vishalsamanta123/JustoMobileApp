@@ -7,7 +7,7 @@ import DropdownInput from '../../../../components/DropDown'
 import strings from '../../../../components/utilities/Localization'
 import images from '../../../../assets/images'
 import { RadioButton } from 'react-native-paper'
-import { PRIMARY_THEME_COLOR, BLACK_COLOR, DATE_FORMAT, TIME_FORMAT } from '../../../../components/utilities/constant'
+import { PRIMARY_THEME_COLOR, BLACK_COLOR, DATE_FORMAT, TIME_FORMAT, ONE_MONTH_DATES } from '../../../../components/utilities/constant'
 import Button from '../../../../components/Button'
 import InputCalender from 'app/components/InputCalender'
 import moment from 'moment'
@@ -123,6 +123,7 @@ const AddAppointmentItem = (props: any) => {
                         leftIcon={images.event}
                         mode={"date"}
                         minimumDate={new Date()}
+                        maximumDate={ONE_MONTH_DATES}
                         placeholderText={strings.appointmentDate}
                         headingText={strings.appointmentDate}
                         editable={false}

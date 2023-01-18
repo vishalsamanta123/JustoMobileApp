@@ -54,21 +54,13 @@ const AgentBankInfo = (props: any) => {
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
-          <View style={{ flex: 1, flexDirection: "row", alignItems: 'center', }}>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={styles.headingText}>RERA Certificate</Text>
             <RequiredStart />
           </View>
-          <View>
+          <View style={{ flex: 0.5 }}>
             <TouchableOpacity
-              style={{
-                width: normalizeWidth(120),
-                height: normalizeHeight(50),
-                backgroundColor: WHITE_COLOR,
-                alignItems: "center",
-                justifyContent: "center",
-                marginLeft: 10,
-                borderRadius: 10,
-              }}
+              style={styles.browseVw}
               onPress={() => {
                 setreraVisible(true)
                 setVisible(true)
@@ -76,24 +68,22 @@ const AgentBankInfo = (props: any) => {
             >
               <Text style={{ color: props.agencyData?.rera_certificate ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
             </TouchableOpacity>
+            {props.agencyData?.rera_certificate === null ||
+              props.agencyData?.rera_certificate === "" ||
+              props.agencyData?.rera_certificate === undefined ?
+              null :
+              <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text>
+            }
           </View>
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
-          <View style={{ flex: 1, flexDirection: "row", alignItems: 'center' }}>
-            <Text style={styles.headingText}>Propidership Declaration Letter</Text>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={styles.headingText}>Proprietorship Declaration Letter</Text>
             <RequiredStart />
           </View>
-          <View>
+          <View style={{ flex: 0.5 }}>
             <TouchableOpacity
-              style={{
-                width: normalizeWidth(120),
-                height: normalizeHeight(50),
-                backgroundColor: WHITE_COLOR,
-                alignItems: "center",
-                justifyContent: "center",
-                marginLeft: 10,
-                borderRadius: 10,
-              }}
+              style={styles.browseVw}
               onPress={() => {
                 setletterVisible(true)
                 setVisible(true)
@@ -101,6 +91,12 @@ const AgentBankInfo = (props: any) => {
             >
               <Text style={{ color: props.agencyData?.propidership_declaration_letter ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
             </TouchableOpacity>
+            {props.agencyData?.propidership_declaration_letter === null ||
+              props.agencyData?.propidership_declaration_letter === "" ||
+              props.agencyData?.propidership_declaration_letter === undefined ?
+              null :
+              <Text style={styles.addedTxt}>{"Proprietorship Declaration Letter Added"}</Text>
+            }
           </View>
         </View>
         <View style={styles.inputWrap}>
@@ -156,6 +152,7 @@ const AgentBankInfo = (props: any) => {
             handleInputBtnPress={() => { }}
             headingText={"IFSC Code"}
             valueshow={props.agencyData?.ifsc_code}
+            maxLength={11}
             onChangeText={(val: any) => {
               props.setAgencyData({
                 ...props.agencyData, ifsc_code: val
@@ -164,28 +161,34 @@ const AgentBankInfo = (props: any) => {
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
-          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={styles.headingText}>Cancel Cheaque</Text>
             <RequiredStart />
           </View>
-          <View>
+          <View style={{ flex: 0.5 }}>
             <TouchableOpacity
-              style={{
-                width: normalizeWidth(120),
-                height: normalizeHeight(50),
-                backgroundColor: WHITE_COLOR,
-                alignItems: "center",
-                justifyContent: "center",
-                marginLeft: 10,
-                borderRadius: 10,
-              }}
+              style={[styles.browseVw, {
+                top: props.agencyData?.cancel_cheaque === null ||
+                  props.agencyData?.cancel_cheaque === "" ||
+                  props.agencyData?.cancel_cheaque === undefined ?
+                  normalize(0) : normalize(8),
+              }]}
               onPress={() => {
                 setcheaqueVisible(true)
                 setVisible(true)
               }}
             >
-              <Text style={{ color: props.agencyData?.cancel_cheaque ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
+              <Text style={{
+                color: props.agencyData?.cancel_cheaque === "" ?
+                  BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15)
+              }}>{strings.browse}</Text>
             </TouchableOpacity>
+            {props.agencyData?.cancel_cheaque === null ||
+              props.agencyData?.cancel_cheaque === "" ||
+              props.agencyData?.cancel_cheaque === undefined ?
+              null :
+              <Text style={styles.addedTxt}>{"Cancel Cheaque Added"}</Text>
+            }
           </View>
         </View>
         <View style={styles.buttonContainer}>

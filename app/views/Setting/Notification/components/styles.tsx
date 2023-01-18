@@ -66,8 +66,12 @@ rowBack: {
     // borderRadius: normalizeSpacing(10),
     borderTopRightRadius: normalizeSpacing(10),
     borderBottomRightRadius: normalizeSpacing(10),
-
-
+    alignItems: "center",
+    bottom: 0,
+    justifyContent: "center",
+    position: "absolute",
+    top: 0,
+    width: 75,
   },
   subjectText: {
     fontSize: normalize(16),

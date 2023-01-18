@@ -23,6 +23,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { userLogout, getUserDetails } from "../Redux/Actions/AuthActions";
 import { useDispatch, useSelector } from "react-redux";
 import auth from "@react-native-firebase/auth";
+import FastImages from "app/components/FastImage";
 
 const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch();
@@ -69,7 +70,9 @@ const customDrawer = ({ navigation }: any) => {
             <Image
               style={styles.UserImge}
               resizeMode={"cover"}
-              //source={require('../assets/images/buildings.jpeg')}
+              // //source={require('../assets/images/buildings.jpeg')}
+              // source={userData?.base_url + userData?.profile_picture
+              // }
               source={
                 userData?.base_url
                   ? { uri: userData?.base_url + userData?.profile_picture }
@@ -196,7 +199,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sourcingmanager_id}}`}
+          type={`${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sourcingmanager_id}, ${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}}`}
           // type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.lead}
           tabTitle={strings.leadManagementHeader}

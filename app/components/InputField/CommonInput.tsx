@@ -27,7 +27,19 @@ const CommonInput = (props: any) => {
             top: props.topping,
             color: GRAY_LIGHT_COLOR
           }]}
-          onChangeText={val => props.onChangeText(val)}
+          onChangeText={(val: any) => {
+            if (props.inputType === "aadhaar") {
+              let formattedText = val.split(" ").join("");
+              if (formattedText.length > 0) {
+                formattedText = formattedText
+                  .match(new RegExp(".{1,4}", "g"))
+                  .join(" ");
+                }
+                props.onChangeText(formattedText);
+            } else {
+              props.onChangeText(val);
+            }
+          }}
           onSubmitEditing={onSubmit}
           placeholder={
             props.placeholderText === '3675 9834 6012' || props.placeholderText === 'BNZAA2318JM' ?

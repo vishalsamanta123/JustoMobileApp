@@ -118,7 +118,7 @@ const AddAppointmentItem = (props: any) => {
             paddingLeft={16}
             maxHeight={300}
             onFocus={() => {}}
-            labelField={props.role === "TL" ? "user_name" : "agency_name"}
+            labelField={props.role === "TL" ? "user_name" : "agent_name"}
             valueField={props.role === "TL" ? "_id" : "appointment_with"}
             value={
               props.role === "TL"
@@ -148,7 +148,7 @@ const AddAppointmentItem = (props: any) => {
                       color: GRAY_LIGHT_COLOR,
                     }}
                   >
-                    {props.role === "TL" ? item.user_name : item.agency_name}
+                    {props.role === "TL" ? item.user_name : item.agent_name}
                   </Text>
                 </View>
               );

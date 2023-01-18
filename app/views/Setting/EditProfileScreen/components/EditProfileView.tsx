@@ -17,6 +17,7 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import InputCalender from "app/components/InputCalender";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
+import FastImages from "app/components/FastImage";
 
 const EditProfileView = (props: any) => {
   const { onPressBack, allDetails, setEditData, editData } = props;
@@ -45,6 +46,7 @@ const EditProfileView = (props: any) => {
           >
             <Image
               style={styles.userImage}
+              // source={editData?.local_profile_picture?.uri}
               source={{
                 uri: editData?.local_profile_picture?.uri
                   ? editData?.local_profile_picture?.uri
@@ -88,8 +90,10 @@ const EditProfileView = (props: any) => {
                   adhar_no: e,
                 });
               }}
+              inputType={'aadhaar'}
               headingText={"Aadhaar No."}
               maxLength={14}
+              keyboardtype={"number-pad"}
             />
           </View>
           <View style={styles.inputWrap}>
