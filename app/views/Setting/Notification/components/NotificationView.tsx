@@ -67,7 +67,7 @@ const NotificationView = (props: any) => {
         onPress={() => deleteRow(rowMap, data.item.key)}
       >
         <Text style={styles.backTextWhite}>Delete</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> 
     </View>
   );
 
@@ -88,6 +88,7 @@ const NotificationView = (props: any) => {
         renderHiddenItem={renderHiddenItem}
         leftOpenValue={75}
         rightOpenValue={-75}
+        disableRightSwipe
         ListEmptyComponent={<EmptyListScreen message={strings.notificationHeader} />}
       />
     </View>

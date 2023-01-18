@@ -21,6 +21,7 @@ import { getUserVisitList } from "app/Redux/Actions/LeadsActions";
 import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 import { updateUserAppointmentStatus } from "app/Redux/Actions/AppiontmentWithUserActions";
 import ConfirmModal from "app/components/Modals/ConfirmModal";
+import Geolocation from "@react-native-community/geolocation";
 
 const AppointmentView = (props: any) => {
   const dispatch: any = useDispatch();
@@ -37,15 +38,26 @@ const AppointmentView = (props: any) => {
   );
 
   const routes = [
-    { key: "first", title: props.role === 'TL'? "My Appointment" :"My Appointment with CP" },
-    { key: "second", title: props.role === 'TL'? "SM Appointment With CP" : "Appointment with TL"},
+    {
+      key: "first",
+      title: props.role === "TL" ? "My Appointment" : "My Appointment with CP",
+    },
+    {
+      key: "second",
+      title:
+        props.role === "TL" ? "SM Appointment With CP" : "Appointment with TL",
+    },
   ];
   const [visitorList, setVisiitorList] = useState<any>([]);
   const [isVisible, setIsVisible] = useState<any>(false);
-  const [params, setParams] = useState({
+  const [lat, setLat] = useState<any>("");
+  const [long, setLong] = useState<any>("");
+  const [params, setParams] = useState<any>({
     appointment_id: "",
     appointment_status: "",
     remark: "",
+    latitude: "",
+    longitude: "",
   });
   useEffect(() => {
     if (list) {
@@ -54,8 +66,25 @@ const AppointmentView = (props: any) => {
   }, [response]);
 
   useEffect(() => {
+    Geolocation.getCurrentPosition(
+      //Will give you the current location
+      (position) => {
+        //getting the Longitude from the location json
+        const currentLongitude = JSON.stringify(position.coords.longitude);
+        console.log("currentLongitude: ", currentLongitude);
+        setLong(currentLongitude);
+
+        //getting the Latitude from the location json
+        const currentLatitude = JSON.stringify(position.coords.latitude);
+        console.log("currentLatitude: ", typeof currentLatitude);
+        setLat(currentLatitude);
+      }
+    );
+  }, []);
+
+  useEffect(() => {
     if (index == 1) {
-      props.getAppointmentList(props.role === 'TL'? 3 : 1);
+      props.getAppointmentList(props.role === "TL" ? 3 : 1);
     } else {
       props.getAppointmentList(2);
     }
@@ -63,30 +92,37 @@ const AppointmentView = (props: any) => {
 
   useEffect(() => {
     if (index == 1) {
-      props.getAppointmentList(props.role === 'TL'? 3 : 1);
+      props.getAppointmentList(props.role === "TL" ? 3 : 1);
     } else {
       props.getAppointmentList(2);
     }
   }, [index]);
   useFocusEffect(
     React.useCallback(() => {
-      setIndex(0)
+      setIndex(0);
       props.getAppointmentList(2);
-      return () => { };
+      return () => {};
     }, [navigation])
   );
   const handleOptionPress = (id: any, status: any) => {
+    console.log("status: ", status);
     setParams({
       ...params,
       appointment_id: id,
       appointment_status: status,
+      latitude: status === 3 ? lat : "",
+      longitude: status === 3 ? long : "",
     });
+
     setIsVisible(true);
   };
   const handleOnPressYesInModal = () => {
-    dispatch(
-      updateUserAppointmentStatus(params)
+    console.log("params: ", params);
+    console.log(
+      "params.appointment_status: ",
+      typeof params.appointment_status
     );
+    dispatch(updateUserAppointmentStatus(params));
     setIsVisible(false);
   };
   const getVisitorsList = (offset: any, array: any) => {
@@ -171,7 +207,7 @@ const AppointmentView = (props: any) => {
           customer_name: "",
           status: "",
         });
-        props.getAppointmentList(props.role === 'TL'? 3 : 1);
+        props.getAppointmentList(props.role === "TL" ? 3 : 1);
       }}
       refreshing={loadingref}
       // onEndReached={() => {
@@ -192,7 +228,11 @@ const AppointmentView = (props: any) => {
         leftImageSrc={images.menu}
         // rightFirstImageScr={images.filter}
         rightSecondImageScr={images.notification}
-        headerText={props.role === 'TL'? strings.appointmentWithSMHeader : strings.appointmentWithCPHeader}
+        headerText={
+          props.role === "TL"
+            ? strings.appointmentWithSMHeader
+            : strings.appointmentWithCPHeader
+        }
         handleOnLeftIconPress={props.handleDrawerPress}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}
