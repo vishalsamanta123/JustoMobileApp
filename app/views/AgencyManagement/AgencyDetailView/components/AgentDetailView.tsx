@@ -15,6 +15,7 @@ import moment from 'moment'
 
 const PropertyDetailView = (props: any) => {
   const data = props?.allDetails || {};
+  console.log('data: ', data);
 
   const layout = useWindowDimensions();
 
@@ -28,7 +29,7 @@ const PropertyDetailView = (props: any) => {
   const DATAINFO: any =
   {
     status: data?.status ? data?.status : '',
-    AgentName: data?.owner_name ? data?.owner_name : '',
+    AgentName: data?.owner_name ? data?.owner_name : data?.agent_name,
     Mobileno: data?.primary_mobile ? data?.primary_mobile : '',
     Email: data?.email ? data?.email : '',
     whatsappno: data?.whatsapp_number ? data?.whatsapp_number : '',

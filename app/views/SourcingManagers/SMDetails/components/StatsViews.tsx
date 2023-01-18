@@ -13,6 +13,15 @@ const StatsView = (props: any) => {
         <ScrollView>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
+                    <Text style={styles.projectTxt}>No. of visit</Text>
+                </View>
+                <View><Text>:</Text></View>
+                <View style={styles.nameContainer}>
+                    <Text style={styles.nameTxt}>{item?.user_states?.total_visit}</Text>
+                </View>
+            </View>
+            <View style={styles.Txtview}>
+                <View style={styles.projectContainer}>
                     <Text style={styles.projectTxt}>No. of site visit</Text>
                 </View>
                 <View><Text>:</Text></View>
@@ -75,7 +84,11 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{item?.user_states?.last_closing_lead}</Text>
+                    <Text style={styles.nameTxt}>{
+                    item?.user_states?.last_closing_lead ?
+                    moment(item?.user_states?.last_closing_lead).format(DATE_TIME_FORMAT) :
+                    strings.notfount
+                }</Text>
                 </View>
             </View>
             <Text style={styles.bigTitlesTxt}>Current Target</Text>

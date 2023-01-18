@@ -37,10 +37,10 @@ const SeparateLinkView = (props: any) => {
         statusBarColor={PRIMARY_THEME_COLOR}
       />
       <View style={styles.warp}>
-        {response?.qr_code === "" ? (
+        {response?.qr_code === "" || response?.qrcode === ""  ? (
           <Image style={styles.qrcodeImage} source={images.qrCode} />
         ) : (
-          <Image style={styles.qrcodeImage} source={{ uri: response.qr_code }} />
+          <Image style={styles.qrcodeImage} source={{ uri: response.qr_code || response?.qrcode }} />
         )}
       </View>
       <View style={styles.btnCopyLinkView}>
