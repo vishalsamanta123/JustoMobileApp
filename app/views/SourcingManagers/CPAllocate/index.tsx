@@ -13,6 +13,7 @@ const AllocateCPScreen = ({ navigation, route }: any) => {
   const { response = {}, list } = useSelector((state: any) => state.SourcingManager) || [];
 
   const [cpList, setCpList] = useState<any>([]);
+  const [searchcpList, setSearchcpList] = useState<any>([]);
   const dispatch: any = useDispatch();
   const [selectedCp, setSelected] = useState<any>([]);
   const [selectedLoginIdCp, setSelectedLoginIdCp] = useState<any>([]);
@@ -40,6 +41,7 @@ const AllocateCPScreen = ({ navigation, route }: any) => {
   useEffect(() => {
     if (response?.data?.length > 0) {
       setCpList(response?.data);
+      setSearchcpList(response?.data);
       setSelected(response?.data?.filter((item: any) => item?.parent_id === id))
     }
   }, [response])
@@ -65,7 +67,7 @@ const AllocateCPScreen = ({ navigation, route }: any) => {
   };
   const handleSearch = (searchKey: any) => {
     if (searchKey === "") {
-      setCpList(cpList);
+      setCpList(searchcpList);
     } else {
       const lowerCased = searchKey.toLowerCase();
       const searchArray = [...cpList];

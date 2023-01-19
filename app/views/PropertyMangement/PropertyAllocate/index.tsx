@@ -13,6 +13,7 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
     useSelector((state: any) => state.propertyData) || [];
 
   const [cpList, setCpList] = useState<any>([]);
+  const [searchcpList, setSearchcpList] = useState<any>([]);
   const dispatch: any = useDispatch();
   const [selectedCp, setSelected] = useState<any>([]);
   const [selectedLoginIdCp, setSelectedLoginIdCp] = useState<any>([]);
@@ -37,10 +38,12 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
     }, [navigation, list])
   );
   useEffect(() => {
-    setCpList(response?.data);
-    setSelected(response?.data?.filter((item: any) => item?.allocate_status?.length > 0))
 
     if (response.status === 200) {
+
+      setCpList(response?.data);
+      setSearchcpList(response?.data)
+      setSelected(response?.data?.filter((item: any) => item?.allocate_status?.length > 0))
       // ErrorMessage({
       //   msg: response.message,
       //   backgroundColor: GREEN_COLOR
@@ -73,15 +76,15 @@ const AllocatePropertyScreen = ({ navigation, route }: any) => {
     setSelected(arrays);
   };
   const handleSearch = (searchKey: any) => {
-    if (searchKey === "") {
-      setCpList(cpList);
-    } else {
+    if (searchKey !== "") {
       const lowerCased = searchKey.toLowerCase();
       const searchArray = [...cpList];
       const list = searchArray.filter((item) => {
         return item.user_name.toLowerCase().match(lowerCased);
       });
       setCpList(list);
+    } else {
+      setCpList(searchcpList);
     }
   };
   const handleAddTarget = () => {

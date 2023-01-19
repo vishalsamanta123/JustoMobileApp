@@ -2,10 +2,7 @@ import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AddAppointmentView from './Components/AddAppointmentView'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllLeadsList, getUserVisitList } from 'app/Redux/Actions/LeadsActions'
-import ErrorMessage from 'app/components/ErrorMessage'
-import { RED_COLOR } from 'app/components/utilities/constant'
-import { addAppointment, editAppointment } from 'app/Redux/Actions/AppointmentWithCpActions'
+import { getUserVisitList } from 'app/Redux/Actions/LeadsActions'
 import strings from 'app/components/utilities/Localization'
 import { getAllMaster } from 'app/Redux/Actions/MasterActions'
 import { getAssignCPList, getSourcingManagerList } from 'app/Redux/Actions/SourcingManagerActions'
@@ -53,33 +50,33 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
 
   useEffect(() => {
     if (masterData?.response?.status === 200) {
-        setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
+      setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
     }
-}, [masterData])
+  }, [masterData])
 
-useEffect(() => {
-  if (getLoginType?.response?.data?.role_title === 'Sourcing TL' || getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
-    if (SMListData?.response?.status === 200) {
-      setListData(SMListData?.response?.data)
+  useEffect(() => {
+    if (getLoginType?.response?.data?.role_title === 'Sourcing TL' || getLoginType?.response?.data?.role_title === 'Sourcing Manager') {
+      if (SMListData?.response?.status === 200) {
+        setListData(SMListData?.response?.data)
+      }
     }
-  }
-}, [SMListData])
+  }, [SMListData])
 
-const handleMasterDatas = (data: any) => {
-  dispatch(getAllMaster({
+  const handleMasterDatas = (data: any) => {
+    dispatch(getAllMaster({
       type: data
-  }))
-}
+    }))
+  }
 
   const getVisitorsList = (offset: any, array: any) => {
     dispatch(getUserVisitList({
       lead_status: 1
     }))
   }
-  
+
   const handleAddAppointment = (params: any) => {
     if (type === strings.edit) {
-      dispatch(editUserAppointment({...params, appointment_id: data?._id}))
+      dispatch(editUserAppointment({ ...params, appointment_id: data?._id }))
       if (userEditAppointmentData?.response?.status === 200) {
         navigation.goBack()
       }

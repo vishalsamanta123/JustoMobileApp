@@ -17,8 +17,8 @@ const SMDetailsScreen = ({ navigation, route }: any) => {
     const handleBackPress = () => {
         navigation.goBack();
     };
-    const handleCpAllocationPress = () => {
-        navigation.navigate('AllocateCP')
+    const handleCpAllocationPress = (data: any) => {
+        navigation.navigate('AllocateCP', data?._id)
     };
     return (
         <SMDetailsView

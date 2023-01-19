@@ -106,7 +106,7 @@ const VisitorUpdateView = (props: any) => {
             <View style={styles.noMoveVw}>
                 <Button
                     handleBtnPress={(type: any) => props.onPressNext(null)}
-                    rightImage={images.forwardArrow}
+                    // rightImage={images.forwardArrow}
                     buttonText={strings.update}
                     textTransform={"uppercase"}
                 />

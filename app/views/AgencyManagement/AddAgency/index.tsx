@@ -70,6 +70,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
         if (response?.data?.length > 0)
           setAgencyData({
             ...response?.data[0],
+            owner_name: response?.data[0]?.owner_name ?  response?.data[0]?.owner_name : response?.data[0]?.agent_name,
             bank_name: response?.data[0]?.cp_bank_detail?.bank_name ?? '',
             branch_name: response?.data[0]?.cp_bank_detail?.branch_name ?? '',
             account_no: response?.data[0]?.cp_bank_detail?.account_no ?? '',
@@ -89,6 +90,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
             rera_certificate: response?.data[0]?.rera_certificate ?? '',
             pancard: response?.data[0]?.agencies?.pancard ?? '',
             declaration_letter_of_company: response?.data[0]?.agencies?.declaration_letter_of_company ?? '',
+            location: response?.data[0]?.location ?? '',
           });
       }
       // setAgencyData({ ...registrationData.response, sourcing_manager: userData?.data?._id })

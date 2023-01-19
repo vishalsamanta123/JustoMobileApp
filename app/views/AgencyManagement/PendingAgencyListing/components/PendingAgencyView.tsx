@@ -82,7 +82,7 @@ const PendingAgencyView = (props: any) => {
         setIsVisible={setIsVisible}
         stringshow={strings.confirmation}
         textshow={strings.activeconfirmation
-          + ' ' + strings.agencyHeader + '?'}
+          + ' ' + 'CP' + '?'}
         confirmtype={'CONFIRMATION'}
         setStatusChange={props.setStatusChange}
         handleYesResponse={() => props.handleUpdateAssignCP(props.statusChange)}
