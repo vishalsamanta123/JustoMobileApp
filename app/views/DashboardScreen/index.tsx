@@ -111,29 +111,65 @@ const DashboardScreen = ({ navigation }: any) => {
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
-  const handleKnowMorePress = () => {};
 
-  const handleItemNavigateToDetail = (type: any, data: any) => {
-    console.log("type: ", type);
-    console.log("data: ", data);
-    if (type === "TL") {
-      navigation.navigate('SMDetails', data)
-
-    } else if (type === "SM") {
-      navigation.navigate("AgencyDetails", { data });
+  const onPressTodayVisit = () => {
+    navigation.navigate('LeadManagementScreen')
+  }
+  const onPressSiteVisit = () => {
+    if (getLoginType?.response?.data?.role_id === ROLE_IDS.closingtl_id) {
+      navigation.navigate('Appointments')
+    } else {
+      navigation.navigate('AppointmentForSite')
     }
-  };
-  return (
-    <DashboardView
-      dashboardData={dashboardData}
-      handleDrawerPress={handleDrawerPress}
-      updateStatusPress={updateStatusPress}
-      isEnabled={isEnabled}
-      listData={listData}
-      getLoginType={getLoginType}
-      handleItemNavigateToDetail={handleItemNavigateToDetail}
-    />
-  );
+  }
+  const onPressSMList = (data: any) => {
+    if (data?._id !== '') {
+      navigation.navigate('SMDetails', data)
+    } else {
+      navigation.navigate('SourcingManager')
+    }
+  }
+  const onPressCPList = (data: any) => {
+    if (data?._id !== '') {
+      navigation.navigate('AgencyDetails', { data })
+    } else {
+      navigation.navigate('AgencyListing')
+    }
+  }
+
+  const onpressBooking = (type: any) => {
+    if (type === 'request') {
+      navigation.navigate("BookingList", { type: "request" });
+    } else if (type === 'register') {
+      navigation.navigate("BookingList", { type: "register" });
+    } else {
+      navigation.navigate("BookingList", { type: "readyToBook" });
+    }
+  }
+  const onpressSMList = () => {
+    navigation.navigate('ClosingManager')
+  }
+
+
+
+
+
+
+
+  return <DashboardView
+    dashboardData={dashboardData}
+    handleDrawerPress={handleDrawerPress}
+    updateStatusPress={updateStatusPress}
+    isEnabled={isEnabled}
+    listData={listData}
+    getLoginType={getLoginType}
+    onPressTodayVisit={onPressTodayVisit}
+    onPressSiteVisit={onPressSiteVisit}
+    onPressSMList={onPressSMList}
+    onPressCPList={onPressCPList}
+    onpressBooking={onpressBooking}
+    onpressSMList={onpressSMList}
+  />;
 };
 
 export default DashboardScreen;

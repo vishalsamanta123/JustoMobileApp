@@ -39,7 +39,9 @@ const PostSaleDashboardView = (props: any) => {
             </View>
             {/* Bottom Section */}
             <View style={styles.thirdPortion}>
-                <View style={[styles.thirdPortioncardView, {
+                <TouchableOpacity 
+                onPress={() => props.onpressBooking('request')}
+                style={[styles.thirdPortioncardView, {
                     maxHeight: normalizeHeight(150)
                 }]}>
                     <View style={styles.thirdPortionCardTextView}>
@@ -50,8 +52,10 @@ const PostSaleDashboardView = (props: any) => {
                     <View style={styles.numberView}>
                         <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_booking}</Text>
                     </View>
-                </View>
-                <View style={[styles.thirdPortioncardView, {
+                </TouchableOpacity>
+                <TouchableOpacity 
+                onPress={() => props.onpressBooking('register')}
+                style={[styles.thirdPortioncardView, {
                     minHeight: normalizeHeight(150)
                 }]}>
                     <View style={styles.thirdPortionCardTextView}>
@@ -62,7 +66,7 @@ const PostSaleDashboardView = (props: any) => {
                     <View style={styles.numberView}>
                         <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_registration}</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             </View>
         </View>
     );

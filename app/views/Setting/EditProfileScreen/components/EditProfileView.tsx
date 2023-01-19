@@ -53,6 +53,13 @@ const EditProfileView = (props: any) => {
                   : editData?.base_url + editData?.profile_picture,
               }}
             />
+            <View style={styles.editView}>
+              <Image
+                style={styles.editImage}
+                source={images.edit}
+                resizeMode="contain"
+              />
+            </View>
           </TouchableOpacity>
           <View style={styles.inputWrap}>
             <InputField

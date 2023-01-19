@@ -130,10 +130,10 @@ const FollowUpItem = (props: any) => {
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
-            {props.items.followup_date === "" ||
-            props.items.followup_date === undefined
+            {props.items.createdDate === "" ||
+            props.items.createdDate === undefined
               ? strings.notfount
-              : moment(props.items.followup_date).format(DATE_BY_DAY)}
+              : moment(props.items.createdDate).format(DATE_BY_DAY)}
           </Text>
         </View>
       </View>

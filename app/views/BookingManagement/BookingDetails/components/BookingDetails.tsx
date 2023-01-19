@@ -43,7 +43,7 @@ const BookingDetailsView = (props: any) => {
             </View>
             <View style={{
                 flexDirection: 'row', flexWrap: 'wrap',
-                justifyContent: 'center'
+                justifyContent: 'center',
             }}>
                 <View style={styles.btnContainer}>
                     {getLoginType?.response?.data?.role_id != ROLE_IDS.postsales_id ?

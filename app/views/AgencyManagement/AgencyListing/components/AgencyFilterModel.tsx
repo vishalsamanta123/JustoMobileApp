@@ -14,8 +14,8 @@ import { Dropdown } from "react-native-element-dropdown";
 import { normalizeSpacing } from "app/components/scaleFontSize";
 const FilterModal = (props: any) => {
   const data = [
-    { label: "Active", value: true },
-    { label: "InActive", value: false },
+    { label: "Active", value: 2 },
+    { label: "InActive", value: 1 },
 
   ];
   const renderItem = (item: any) => {

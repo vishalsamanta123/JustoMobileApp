@@ -58,9 +58,11 @@ export const getSourcingManagerDetail = (parma: any) => async (dispatch: any) =>
     }
 }
 export const getAssignCPList = (parma: any) => async (dispatch: any) => {
+console.log('parma: ', parma);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_ASSIGNCP_LIST, parma);
+        console.log('res GET_ASSIGNCP_LIST: ', res);
         if (res?.data?.status === 200) {
             dispatch({
                 type: GET_ASSIGNCP_LIST,

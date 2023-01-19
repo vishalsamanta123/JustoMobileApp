@@ -30,7 +30,9 @@ const ClosingDashboardView = (props: any) => {
             </View>
             {/* Bottom Section */}
             <View style={styles.thirdPortion}>
-                <View style={styles.thirdPortioncardView}>
+                <TouchableOpacity
+                    onPress={() => props.onPressSiteVisit()}
+                    style={styles.thirdPortioncardView}>
                     <View style={styles.thirdPortionCardTextView}>
                         <Text style={styles.thirdPortionCardText}>
                             Today Site Visit
@@ -39,8 +41,10 @@ const ClosingDashboardView = (props: any) => {
                     <View style={styles.numberView}>
                         <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_site_visit}</Text>
                     </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => props.onPressSiteVisit()}
+                    style={styles.thirdPortioncardView}>
                     <View style={styles.thirdPortionCardTextView}>
                         <Text style={styles.thirdPortionCardText}>
                             Today Closed Visit
@@ -49,8 +53,10 @@ const ClosingDashboardView = (props: any) => {
                     <View style={styles.numberView}>
                         <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_close_visit}</Text>
                     </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => props.onpressBooking('request')}
+                    style={styles.thirdPortioncardView}>
                     <View style={styles.thirdPortionCardTextView}>
                         <Text style={styles.thirdPortionCardText}>
                             Today Booking
@@ -59,8 +65,10 @@ const ClosingDashboardView = (props: any) => {
                     <View style={styles.numberView}>
                         <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_booking}</Text>
                     </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => props.onpressBooking()}
+                    style={styles.thirdPortioncardView}>
                     <View style={styles.thirdPortionCardTextView}>
                         <Text style={styles.thirdPortionCardText}>Ready to Book</Text>
                     </View>
@@ -68,24 +76,28 @@ const ClosingDashboardView = (props: any) => {
                         <Text style={styles.thirdPortionNumberText}>
                             {props?.dashboardData?.total_ready_booking}</Text>
                     </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => props.onpressBooking('request')}
+                    style={styles.thirdPortioncardView}>
                     <View style={styles.thirdPortionCardTextView}>
                         <Text style={styles.thirdPortionCardText}>{'Cancel Booking'}</Text>
                     </View>
                     <View style={styles.numberView}>
                         <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_closing_manager}</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
                 {role === ROLE_IDS.closingtl_id ?
-                    <View style={styles.thirdPortioncardView}>
+                    <TouchableOpacity
+                        onPress={() => props.onpressSMList()}
+                        style={styles.thirdPortioncardView}>
                         <View style={styles.thirdPortionCardTextView}>
                             <Text style={styles.thirdPortionCardText}>{'Active CM'}</Text>
                         </View>
                         <View style={styles.numberView}>
                             <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.total_closing_manager}</Text>
                         </View>
-                    </View> : null
+                    </TouchableOpacity> : null
                 }
             </View>
         </View>
