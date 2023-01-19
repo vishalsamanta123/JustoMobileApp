@@ -74,8 +74,7 @@ const AllowAgencyView = (props: any) => {
         Visible={isVisible}
         setIsVisible={setIsVisible}
         stringshow={strings.confirmation}
-        textshow={strings.activeconfirmation
-          + ' ' + strings.agencyHeader + '?'}
+        textshow={'Are you sure you want to allocate SM to this CP ?'}
         confirmtype={'CONFIRMATION'}
         setStatusChange={props.setStatusChange}
         statusChange={props.statusChange}

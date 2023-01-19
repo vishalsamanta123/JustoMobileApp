@@ -4,9 +4,8 @@ import styles from "./Styles";
 import {
   BLACK_COLOR,
   CALL_COLOR,
+  DATE_TIME_FORMAT,
   PURPLE_COLOR,
-  WHITE_COLOR,
-  YELLOW_COLOR,
 } from "../../../../components/utilities/constant";
 import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
@@ -54,7 +53,7 @@ const LeadManagementItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props.items.last_interacted_date ?
-              moment(props.items.last_interacted_date).format('llll') : strings.notfount}
+              moment(props.items.last_interacted_date).format(DATE_TIME_FORMAT) : strings.notfount}
           </Text>
         </View>
       </View>
@@ -73,6 +72,18 @@ const LeadManagementItem = (props: any) => {
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.lead_score}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Create Date :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{
+            props.items.createdDate ? 
+            moment(props.items.createdDate).format(DATE_TIME_FORMAT)
+            : strings.notfount
+          }</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

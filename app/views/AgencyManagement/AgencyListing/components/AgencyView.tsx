@@ -184,7 +184,7 @@ const AgencyView = (props: any) => {
         setIsVisible={setIsVisible}
         stringshow={strings.confirmation}
         textshow={
-          strings.deactivconfirmation + " " + strings.agencyHeader + "?"
+          strings.deactivconfirmation + " " + 'CP' + "?"
         }
         confirmtype={"CONFIRMATION"}
         setStatusChange={props.setChangeStatus}
@@ -195,7 +195,7 @@ const AgencyView = (props: any) => {
         setIsVisible={setNewVisitor}
         stringshow={strings.confirmation}
         textshow={
-          strings.deactivconfirmation + " " + strings.agencyHeader + "?"
+          strings.deactivconfirmation + " " + 'CP' + "?"
         }
         confirmtype={"CONFIRMATION"}
         setStatusChange={props.setChangeStatus}

@@ -53,7 +53,7 @@ const StatsView = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{moment(item?.user_states?.last_login).format(DATE_FORMAT)}</Text>
+                    <Text style={styles.nameTxt}>{moment(item?.user_states?.last_login).format(DATE_TIME_FORMAT)}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
