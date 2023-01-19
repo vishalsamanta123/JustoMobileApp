@@ -15,7 +15,6 @@ import moment from 'moment'
 
 const PropertyDetailView = (props: any) => {
   const data = props?.allDetails || {};
-  console.log('data: ', data);
 
   const layout = useWindowDimensions();
 
@@ -28,7 +27,7 @@ const PropertyDetailView = (props: any) => {
 
   const DATAINFO: any =
   {
-    status: data?.status ? data?.status : '',
+    active_status: data?.active_status ? data?.active_status : '',
     AgentName: data?.owner_name ? data?.owner_name : data?.agent_name,
     Mobileno: data?.primary_mobile ? data?.primary_mobile : '',
     Email: data?.email ? data?.email : '',
@@ -39,6 +38,10 @@ const PropertyDetailView = (props: any) => {
     location: data?.location ? data?.location : '',
     workingfrom: data?.createdDate ? moment(data?.createdDate).format('MMM Do YYYY') : '',
     workinglocation: data?.working_location ? data?.working_location : '',
+    account_no: data?.cp_bank_detail?.account_no ? data?.cp_bank_detail?.account_no : '',
+    bank_name: data?.cp_bank_detail?.bank_name ? data?.cp_bank_detail?.bank_name : '',
+    branch_name: data?.cp_bank_detail?.branch_name ? data?.cp_bank_detail?.branch_name : '',
+    ifsc_code: data?.cp_bank_detail?.ifsc_code ? data?.cp_bank_detail?.ifsc_code : '',
   };
   const DATASTATS: any =
   {
