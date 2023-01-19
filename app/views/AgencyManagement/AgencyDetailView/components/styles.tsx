@@ -49,6 +49,14 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: GRAY_LIGHT_COLOR
   },
+  headingTxt: {
+    fontSize: normalize(20),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+  },
+  headingView: {
+    padding: normalizeSpacing(10),
+    alignItems: 'center'
+  },
   nameContainer: {
     flex: 3.5,
     alignItems: 'flex-start',
