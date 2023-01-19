@@ -8,6 +8,8 @@ import strings from "app/components/utilities/Localization";
 
 const PropertyDetailItem = (props: any) => {
   const item = props?.items || {}
+  console.log('item?.cp_bank_detail?.bank_name: ', item);
+
   return (
     <ScrollView>
       <View style={styles.Txtview}>
@@ -18,7 +20,7 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.status ? strings.active : strings.deactive}</Text>
+          <Text style={styles.nameTxt}>{item?.active_status ? strings.active : strings.deactive}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -150,6 +152,53 @@ const PropertyDetailItem = (props: any) => {
               })}
             </>
           ) : null}
+        </View>
+      </View>
+      <View style={styles.headingView}>
+        <Text style={styles.headingTxt}>Bank Details</Text>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Bank Name </Text>
+        </View>
+        <View style={{ height: "100%" }}>
+          <Text>:</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{item?.bank_name}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Account Number </Text>
+        </View>
+        <View style={{ height: "100%" }}>
+          <Text>:</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{item?.account_no}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Branch Name </Text>
+        </View>
+        <View style={{ height: "100%" }}>
+          <Text>:</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{item?.branch_name}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>IFSC Code </Text>
+        </View>
+        <View style={{ height: "100%" }}>
+          <Text>:</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{item?.ifsc_code}</Text>
         </View>
       </View>
     </ScrollView>
