@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './Styles'
 import images from '../../../../assets/images'
 import strings from '../../../../components/utilities/Localization'
-import { PURPLE_COLOR, CALL_COLOR, WHITE_COLOR, DATE_FORMAT, TIME_FORMAT, BLACK_COLOR, DATE_BY_DAY, GREEN_COLOR } from '../../../../components/utilities/constant'
+import { PURPLE_COLOR, CALL_COLOR, WHITE_COLOR, DATE_FORMAT, TIME_FORMAT, BLACK_COLOR, DATE_BY_DAY, GREEN_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant'
 import Button from '../../../../components/Button'
 import moment from 'moment'
 
@@ -60,7 +60,7 @@ const AppointMentForSiteList = (props: any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
-            color: props.items.status === 5 || props?.items?.status === 4 || props?.items?.status === 1 ? 'red' : props?.items?.status == 3 ? GREEN_COLOR : BLACK_COLOR
+            color: props.items.status === 5 || props?.items?.status === 4 || props?.items?.status === 1 ? 'red' : props?.items?.status == 3 ? GREEN_COLOR : props?.items?.status === 2 ? YELLOW_COLOR : BLACK_COLOR
           }]}>
             {
               props?.items?.status == 1 ? 'Pending' :

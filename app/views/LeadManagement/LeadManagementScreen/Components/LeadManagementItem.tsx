@@ -17,6 +17,15 @@ const LeadManagementItem = (props: any) => {
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Property Name :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{
+            props?.items.property_title === null ? '' : props.items.property_title}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Visitor Name :</Text>
         </View>
         <View style={styles.nameContainer}>

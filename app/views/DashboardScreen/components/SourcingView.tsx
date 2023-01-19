@@ -30,15 +30,19 @@ const SourcingDashboardView = (props: any) => {
             </View>
             {/* Bottom Section */}
             <View style={styles.thirdPortion}>
-                <View style={styles.thirdPortioncardView}>
+                <TouchableOpacity
+                    onPress={() => props.onPressTodayVisit()}
+                    style={styles.thirdPortioncardView}>
                     <View style={styles.thirdPortionCardTextView}>
                         <Text style={styles.thirdPortionCardText}>Today Visit</Text>
                     </View>
                     <View style={styles.numberView}>
                         <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_visit}</Text>
                     </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => props.onPressSiteVisit()}
+                    style={styles.thirdPortioncardView}>
                     <View style={styles.thirdPortionCardTextView}>
                         <Text style={styles.thirdPortionCardText} numberOfLines={2}>
                             Today Site Visit
@@ -47,17 +51,23 @@ const SourcingDashboardView = (props: any) => {
                     <View style={styles.numberView}>
                         <Text style={styles.thirdPortionNumberText}>{props?.dashboardData?.today_site_visit}</Text>
                     </View>
-                </View>
-                <View style={styles.thirdPortioncardView}>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        role === ROLE_IDS.sourcingtl_id ?
+                        props.onPressSMList() :
+                        props.onPressCPList()
+                    }}
+                    style={styles.thirdPortioncardView}>
                     <View style={styles.thirdPortionCardTextView}>
-                        <Text style={styles.thirdPortionCardText}>{props?.getLoginType?.response?.data?.role_title === 'Sourcing TL' ? 'Active SM' : 'Active CP'}</Text>
+                        <Text style={styles.thirdPortionCardText}>{role === ROLE_IDS.sourcingtl_id ? 'Active SM' : 'Active CP'}</Text>
                     </View>
                     <View style={styles.numberView}>
                         <Text style={styles.thirdPortionNumberText}>{
                             role === ROLE_IDS.sourcingtl_id ? props?.dashboardData?.total_sorcing_manager : props?.dashboardData?.active_cp
                         }</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             </View>
         </View>
     );

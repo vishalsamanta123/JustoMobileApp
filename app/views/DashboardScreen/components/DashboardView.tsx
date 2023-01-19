@@ -17,14 +17,20 @@ const DashboardView = (props: any) => {
   const roleType = props?.getLoginType?.response?.data?.role_id || null
   const renderItem = ({ item }: any) => {
     return (
-      <TouchableOpacity style={styles.headingView}>
+      <TouchableOpacity
+        onPress={() => {
+          roleType === ROLE_IDS.sourcingtl_id ?
+            props.onPressSMList(item) :
+            props.onPressCPList(item)
+        }}
+        style={styles.headingView}>
         <Text style={styles.itemText}>{
           roleType === ROLE_IDS.sourcingtl_id ?
             item.user_name : roleType === ROLE_IDS.sourcingmanager_id
               ? item.agent_name : strings.notfount}</Text>
         <Text style={styles.itemText}>{item.total_visit}</Text>
         <Text style={styles.itemText}>{item.total_site_visit}</Text>
-        <Text style={styles.itemText}>{item.total_closing_lead}</Text>
+        {/* <Text style={styles.itemText}>{item.total_closing_lead}</Text> */}
         <Image source={images.rightArrow} style={styles.rightArrowImage} />
       </TouchableOpacity>
     );
@@ -85,6 +91,10 @@ const DashboardView = (props: any) => {
             <SourcingDashboardView
               dashboardData={props?.dashboardData}
               getLoginType={props.getLoginType}
+              onPressTodayVisit={props.onPressTodayVisit}
+              onPressSiteVisit={props.onPressSiteVisit}
+              onPressSMList={props.onPressSMList}
+              onPressCPList={props.onPressCPList}
             />
             :
             <>
@@ -93,12 +103,17 @@ const DashboardView = (props: any) => {
                 <ClosingDashboardView
                   dashboardData={props?.dashboardData}
                   getLoginType={props.getLoginType}
+                  onPressSiteVisit={props.onPressSiteVisit}
+                  onpressBooking={props.onpressBooking}
+                  onpressSMList={props.onpressSMList}
                 /> :
                 <>
                   {roleType === ROLE_IDS.postsales_id ?
                     <PostSaleDashboardView
                       dashboardData={props?.dashboardData}
                       getLoginType={props.getLoginType}
+                      onpressBooking={props.onpressBooking}
+
                     /> :
                     <>
                       {roleType === ROLE_IDS.receptionist_id ?
@@ -121,7 +136,7 @@ const DashboardView = (props: any) => {
                     <Text style={styles.headingText}>SM NAME</Text>
                     <Text style={styles.headingText}>VISITOR</Text>
                     <Text style={styles.headingText}>SITE VISIT</Text>
-                    <Text style={styles.headingText}>CLOSE LEAD</Text>
+                    {/* <Text style={styles.headingText}>CLOSE LEAD</Text> */}
                   </>
                   :
                   <>
@@ -130,7 +145,7 @@ const DashboardView = (props: any) => {
                         <Text style={styles.headingText}>CP NAME</Text>
                         <Text style={styles.headingText}>VISITOR</Text>
                         <Text style={styles.headingText}>SITE VISIT</Text>
-                        <Text style={styles.headingText}>CLOSE LEAD</Text>
+                        {/* <Text style={styles.headingText}>CLOSE LEAD</Text> */}
                       </>
                     }
                   </>
@@ -138,11 +153,19 @@ const DashboardView = (props: any) => {
               </View>
               <FlatList
                 data={props?.listData}
-                renderItem={renderItem} />
+                renderItem={renderItem}
+              />
+
               {roleType === ROLE_IDS.sourcingtl_id ||
                 roleType === ROLE_IDS.sourcingmanager_id
                 && props?.listData?.length > 5 ?
-                <TouchableOpacity style={styles.headingView}>
+                <TouchableOpacity
+                  onPress={() => {
+                    roleType === ROLE_IDS.sourcingtl_id ?
+                      props.onPressSMList() :
+                      props.onPressCPList()
+                  }}
+                  style={styles.headingView}>
                   <Text style={[styles.headingText, styles.knowMoreText]}>
                     Know More
                   </Text>
