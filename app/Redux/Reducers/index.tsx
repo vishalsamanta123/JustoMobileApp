@@ -12,7 +12,7 @@ import { addBookingReducer, appointmentCLReducer } from "./AppointmentCLReducer"
 import { ClosingManagerReducer } from "./ClosingManagerReducer";
 import { BookingReducer, cancelAddBookingReducer, } from "./BookingReducer";
 import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
-import { notificationListReducer } from "./NotificationReducer";
+import { deleteNotificationReducer, notificationListReducer } from "./NotificationReducer";
 import { PickUpReducer } from "./PickUpReducer";
 import { transferVisitorReducer, transferVisitReducer } from "./TransferVisitReducer";
 import { firebaseReducer } from "./FirebaseReducer";
@@ -51,6 +51,7 @@ export default {
     followUp: followUpReducer,
     masterData: masterDataReducer,
     notificationData: notificationListReducer,
+    deleteNotificationData: deleteNotificationReducer,
     transferVisitData: transferVisitReducer,
     transferVisitorData: transferVisitorReducer,
     firebaseData: firebaseReducer,

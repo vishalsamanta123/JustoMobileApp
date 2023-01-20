@@ -342,14 +342,14 @@ const customDrawer = ({ navigation }: any) => {
           }}
           tabTitle={strings.reportHeader}
         />
-        {/* <DrawerTabSection
+        <DrawerTabSection
           type={"all"}
           handleDrawerNavigation={() => {
             navigation.navigate("Chat");
           }}
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
-        /> */}
+        />
         <DrawerTabSection
           type={`${ROLE_IDS.closingtl_id}`}
           // type={"Closing TL"}

@@ -58,38 +58,49 @@ console.log('props: ', props);
         dispatch(removePropertyCompetitor());
       }
     }
-  }, [propertyData]);
+  }, []);
   useEffect(() => {
     props.setCancelValue({
-      reason: '',
-      property_id: '',
-      comment: '',
-      property_name: '',
-      remark: '',
-  })
+      reason: "",
+      property_id: "",
+      comment: "",
+      property_name: "",
+      remark: "",
+    });
     if (masterData?.response?.status === 200) {
       setMasterDatas(
         masterData?.response?.data?.length > 0 ? masterData?.response?.data : []
       );
     }
-  }, [masterData]);
+  }, []);
+
+  const validation = () => {
+    let isError = true;
+    let errorMessage: any = "";
+    if (props?.cancelValue?.reason === "") {
+      isError = false;
+      errorMessage = "Please Select a reason";
+    } if (propetyInput && props?.cancelValue?.property_name === "") {
+      isError = false;
+      errorMessage = "Please Enter competitor property";
+    } else if (
+      props?.cancelValue?.reason === "639d691c9f37df12d3ea64e2" && !propetyInput &&
+      props?.cancelValue?.property_id === ""
+    ) {
+      isError = false;
+      errorMessage = "Please Enter Property";
+    }
+    if (errorMessage !== "") {
+      ErrorMessage({
+        msg: errorMessage,
+        backgroundColor: RED_COLOR,
+      });
+    }
+    return isError;
+  };
 
   const handleCancel = () => {
-    if (propetyInput && props?.cancelValue?.property_name === "") {
-      ErrorMessage({
-        msg: strings.enterCompPropertyName,
-        backgroundColor: RED_COLOR,
-      });
-      return;
-    }
-    if (props?.cancelValue?.reason === "639d691c9f37df12d3ea64e2" && props?.cancelValue?.property_name === "") {
-      ErrorMessage({
-        msg: strings.enterCompPropertyName,
-        backgroundColor: RED_COLOR,
-      });
-      return;
-    }
-    if (props?.cancelValue?.reason != "") {
+    if (validation()) {
       props.cancelDataPress();
       props.setIsVisible(false);
       setPropetyInput(false);
@@ -97,7 +108,7 @@ console.log('props: ', props);
     } else {
       // props.setIsVisible(false)
       // setPropetyInput(false)
-      setReasonSelect(true);
+      // setReasonSelect(true);
     }
   };
   return (
@@ -144,7 +155,6 @@ console.log('props: ', props);
                 valueField={"_id"}
                 value={props?.cancelValue?.reason}
                 onChange={(item: any) => {
-
                   setReasonSelect(false);
                   props.setCancelValue({
                     ...props.cancelValue,

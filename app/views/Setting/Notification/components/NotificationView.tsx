@@ -13,29 +13,44 @@ import { SwipeListView } from "react-native-swipe-list-view";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 
 const NotificationView = (props: any) => {
-  const { onPressBack, data } = props || {}
+  const { onPressBack, data } = props || {};
   const { response = [] } = useSelector((state: any) => state.notificationData);
-  const [listData, setListData] = useState<any>([]);
+  const deleteNotificationData =
+    useSelector((state: any) => state.deleteNotificationData) || {};
+  console.log("deleteNotificationData: ", deleteNotificationData);
+  console.log("response: ", response);
 
+  const [listData, setListData] = useState<any>([]);
 
   useEffect(() => {
     if (response?.status === 200) {
       if (response?.data?.length > 0) {
-        setListData(response?.data)
+        response?.data.forEach(function (item: any, i: any) {
+          item["key"] = i + 1;
+        });
+        setListData(response?.data);
       }
     }
-
-    return () => {
+    return () => {};
+  }, [response]);
+  useEffect(() => {
+    if (deleteNotificationData?.status === 200) {
+      if (deleteNotificationData?.data?.length > 0) {
+        setListData(deleteNotificationData?.data);
+      }
     }
-  }, [response])
-
+    return () => {};
+  }, [deleteNotificationData]);
 
   const closeRow = (rowMap: any, rowKey: any) => {
     if (rowMap[rowKey]) {
       rowMap[rowKey].closeRow();
     }
   };
-  const deleteRow = (rowMap: any, rowKey: any) => {
+
+  const deleteRow = (rowMap: any, rowKey: any, item: any) => {
+    console.log("item: ", item);
+    props.handleDeleteNotification(item?._id)
     closeRow(rowMap, rowKey);
     const newData: any = [...listData];
     const prevIndex = listData.findIndex((item: any) => item.key === rowKey);
@@ -59,17 +74,19 @@ const NotificationView = (props: any) => {
     );
   };
 
-  const renderHiddenItem = (data: any, rowMap: any) => (
-    <View style={styles.rowBack}>
-      {/* <Text>Left</Text> */}
-      <TouchableOpacity
-        style={[styles.backRightBtn, styles.backRightBtnRight]}
-        onPress={() => deleteRow(rowMap, data.item.key)}
-      >
-        <Text style={styles.backTextWhite}>Delete</Text>
-      </TouchableOpacity> 
-    </View>
-  );
+  const renderHiddenItem = (data: any, rowMap: any) => {
+    return (
+      <View style={styles.rowBack}>
+        {/* <Text>Left</Text> */}
+        <TouchableOpacity
+          style={[styles.backRightBtn, styles.backRightBtnRight]}
+          onPress={() => deleteRow(rowMap, data.item.key, data.item)}
+        >
+          <Text style={styles.backTextWhite}>Delete</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -89,7 +106,9 @@ const NotificationView = (props: any) => {
         leftOpenValue={75}
         rightOpenValue={-75}
         disableRightSwipe
-        ListEmptyComponent={<EmptyListScreen message={strings.notificationHeader} />}
+        ListEmptyComponent={
+          <EmptyListScreen message={strings.notificationHeader} />
+        }
       />
     </View>
   );
