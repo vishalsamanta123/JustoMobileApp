@@ -18,7 +18,6 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
 
 const CancelModal = (props: any) => {
-console.log('props: ', props);
   const dispatch: any = useDispatch();
   const [masterDatas, setMasterDatas] = useState<any>();
   const [propertyCompetitor, setPropertyCompetitor] = useState<any>();
@@ -109,7 +108,7 @@ console.log('props: ', props);
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>
-              {strings.cancel + " " + strings.bookingRequestHead}
+              Close Visit
             </Text>
             <View>
               <TouchableOpacity
@@ -252,7 +251,7 @@ console.log('props: ', props);
           <View style={{ marginVertical: 20 }}>
             <Button
               handleBtnPress={() => handleCancel()}
-              buttonText={strings.cancelBooking}
+              buttonText={'Close Visit'}
             />
           </View>
         </View>

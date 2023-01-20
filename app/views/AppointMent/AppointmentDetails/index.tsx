@@ -7,14 +7,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AddBooking, removeAddBookingData } from 'app/Redux/Actions/AppointmentCLAction'
 import ErrorMessage from 'app/components/ErrorMessage'
 import { GREEN_COLOR } from 'app/components/utilities/constant'
+import { closeVisit } from 'app/Redux/Actions/LeadsActions'
 
 const AppointmentDetails = ({ navigation, route }: any) => {
   const data = route?.params || {}
   const [BookingData, setBookingData] = useState<any>({})
+  const [cancelValue, setCancelValue] = useState({
+    lead_id: '',
+    appointment_id: '',
+    cancle_type: '',  //1=lead, 2=appoinment
+    reason: '',
+    remark: '',
+    property_id: '',
+    property_name: '',
+  });
   const dispatch: any = useDispatch()
   const { response = {}, detail = '' } = useSelector((state: any) => state.appointment)
   const addedBookingData = useSelector((state: any) => state.addedBooking) || {}
-  
+
   useFocusEffect(
     React.useCallback(() => {
       dispatch(getAppointmentDetail({
@@ -62,6 +72,20 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   const handleBooking = () => {
     dispatch(AddBooking({ ...BookingData, booking_status: 1 }))
   }
+
+  const onpressCloseVisit = (data: any) => {
+    const params = {
+      lead_id: data?.lead_id,
+      appointment_id: data?.appointment_id,
+      cancle_type: data?.cancle_type,  //1=lead, 2=appoinment
+      resion: cancelValue?.reason,
+      comment: cancelValue?.remark,
+      property_id: cancelValue?.property_id,
+      property_name: cancelValue?.property_name,
+    }
+    dispatch(closeVisit(params))
+    console.log('params: ', params);
+  }
   return (
     <AppointmentDetailsView
       handleUpdateStatus={handleUpdateStatus}
@@ -72,6 +96,9 @@ const AppointmentDetails = ({ navigation, route }: any) => {
       BookingData={BookingData}
       handleBooking={handleBooking}
       onPressBookNow={onPressBookNow}
+      onpressCloseVisit={onpressCloseVisit}
+      cancelValue={cancelValue}
+      setCancelValue={setCancelValue}
     />
   )
 }
