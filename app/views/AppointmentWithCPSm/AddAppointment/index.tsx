@@ -6,7 +6,9 @@ import { getUserVisitList } from 'app/Redux/Actions/LeadsActions'
 import strings from 'app/components/utilities/Localization'
 import { getAllMaster } from 'app/Redux/Actions/MasterActions'
 import { getAssignCPList, getSourcingManagerList } from 'app/Redux/Actions/SourcingManagerActions'
-import { addUserAppointment, editUserAppointment } from 'app/Redux/Actions/AppiontmentWithUserActions'
+import { RemoveAppointment, addUserAppointment, editUserAppointment } from 'app/Redux/Actions/AppiontmentWithUserActions'
+import ErrorMessage from 'app/components/ErrorMessage'
+import { GREEN_COLOR } from 'app/components/utilities/constant'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { data, type } = route?.params || {}
@@ -28,6 +30,16 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
       setVisiitorList(response?.data)
     }
   }, [response])
+  useEffect(() => {
+    if (userEditAppointmentData?.response?.status === 200) {
+      dispatch(RemoveAppointment())
+      navigation.goBack()
+      ErrorMessage({
+        msg: userEditAppointmentData?.response?.message,
+        backgroundColor: GREEN_COLOR
+      })
+    }
+  }, [userEditAppointmentData])
 
   useEffect(() => {
 
@@ -77,14 +89,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const handleAddAppointment = (params: any) => {
     if (type === strings.edit) {
       dispatch(editUserAppointment({ ...params, appointment_id: data?._id }))
-      if (userEditAppointmentData?.response?.status === 200) {
-        navigation.goBack()
-      }
     } else {
       dispatch(addUserAppointment(params))
-      if (userAppointmentData?.response?.status === 200) {
-        navigation.goBack()
-      }
     }
   }
   const handleBackPress = () => {

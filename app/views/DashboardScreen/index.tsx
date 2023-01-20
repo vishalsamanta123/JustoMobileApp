@@ -116,7 +116,7 @@ const DashboardScreen = ({ navigation }: any) => {
     navigation.navigate('LeadManagementScreen')
   }
   const onPressSiteVisit = () => {
-    if (getLoginType?.response?.data?.role_id === ROLE_IDS.closingtl_id) {
+    if (getLoginType?.response?.data?.role_id === ROLE_IDS.closingtl_id || getLoginType?.response?.data?.role_id === ROLE_IDS.closingmanager_id) {
       navigation.navigate('Appointments')
     } else {
       navigation.navigate('AppointmentForSite')
