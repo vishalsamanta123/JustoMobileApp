@@ -16,7 +16,7 @@ import { deleteNotificationReducer, notificationListReducer } from "./Notificati
 import { PickUpReducer } from "./PickUpReducer";
 import { transferVisitorReducer, transferVisitReducer } from "./TransferVisitReducer";
 import { firebaseReducer } from "./FirebaseReducer";
-import { ChatReducer } from "./ChatReducer";
+import { ChatReducer, getRecentChatList, updateChatStatus } from "./ChatReducer";
 import { userAppointmentReducer, userEditAppointmentReducer } from "./AppointmentWithUserReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
 import { CpCheckingReducer } from "./CpCheckingReducer";
@@ -72,8 +72,8 @@ export default {
 
     // chat
     chatData: ChatReducer,
-
-
+    chatStatusData: updateChatStatus,
+    recentChatListData: getRecentChatList,
 
     // visit modal
     visitorData: visitorReducer,

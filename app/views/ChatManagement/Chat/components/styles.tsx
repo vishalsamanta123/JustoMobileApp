@@ -138,5 +138,13 @@ const styles = StyleSheet.create({
     tintColor: BLACK_COLOR,
     padding: normalizeSpacing(10),
   },
+  dot:{
+    height: 10,
+    width: 10,
+    backgroundColor: PRIMARY_THEME_COLOR,
+    borderRadius: 10,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end'
+  }
 });
 export default styles;

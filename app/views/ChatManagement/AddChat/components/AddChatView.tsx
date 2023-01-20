@@ -59,8 +59,9 @@ const AddChatView = (props: any) => {
         <Header
           leftImageSrc={images.backArrow}
           rightSecondImageScr={images.notification}
-          headerText={strings.chatHeader}
-          handleOnLeftIconPress={props.handleDrawerPress}
+          headerText={strings.addChatHeader}
+          leftImageIconStyle={styles.RightFirstIconStyle}
+          handleOnLeftIconPress={props.handleBackPress}
           headerStyle={styles.headerStyle}
           RightFirstIconStyle={styles.RightFirstIconStyle}
           statusBarColor={PRIMARY_THEME_COLOR}

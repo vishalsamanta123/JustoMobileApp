@@ -34,6 +34,8 @@ const ChatViewView = (props: any) => {
   };
   const onSubmit = (val: any) => {};
   const renderChatList = (item: any) => {
+    console.log('item?.is_seen: ', item?.is_seen);
+
     const role =
       item?.roles === "Sourcing TL"
         ? "TL"
@@ -56,6 +58,8 @@ const ChatViewView = (props: any) => {
           />
           <Text style={styles.propertyText}>{`${item.user_name} (${role})`}</Text>
         </View>
+        {item?.is_seen === false ?
+        <View style={styles.dot}></View> : null}
         <Image source={images.rightArrow} style={styles.iconStyle} />
       </TouchableOpacity>
     );

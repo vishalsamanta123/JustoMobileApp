@@ -31,6 +31,8 @@ import DocumentPicker from "react-native-document-picker";
 import { normalizeSpacing } from "app/components/scaleFontSize";
 import Video from "react-native-video";
 import RNFetchBlob from "rn-fetch-blob";
+import { chatStatusUpdate } from "app/Redux/Actions/ChatActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
@@ -42,10 +44,20 @@ const ChatScreen = ({ navigation, route }: any) => {
     url: "",
   });
   const { dirs } = RNFetchBlob.fs;
-
+  const dispatch: any = useDispatch();
+  const { response = {},  } = useSelector((state: any) => state.chatStatusData);
+  console.log('response: chatStatusData', response);
   useEffect(() => {
     getMsgList();
+    console.log('item?._id: ', item?._id);
+
+    dispatch(chatStatusUpdate({
+      receiver_id: item?._id,
+      msg_status: 2
+  }))
   }, []);
+
+ 
 
   const handleBackPress = () => {
     navigation.goBack();
@@ -102,20 +114,20 @@ const ChatScreen = ({ navigation, route }: any) => {
           const msgArray = generateItems(
             message_array.filter((i: any) => i?.["delete-" + senderID] == false)
           );
-          const finalChatArray = msgArray.map((item: any) => {
-            if (item?.text !== "" || item?.image !== "" || item?.video !== "") {
+          const finalChatArray = msgArray.map((items: any) => {
+            if (items?.text !== "" || items?.image !== "" || items?.video !== "") {
               return {
-                _id: item?.msgId,
-                text: item?.text,
-                image: item?.image,
-                filename: item?.filename,
-                type: item?.type === "doc" ? item.type : "",
-                video: item?.video,
+                _id: items?.msgId,
+                text: items?.text,
+                image: items?.image,
+                filename: items?.filename,
+                type: items?.type === "doc" ? items.type : "",
+                video: items?.video,
                 createdAt: new Date(),
                 user: {
-                  _id: item?._id,
+                  _id: items?._id,
                   name: "React Native",
-                  avatar: "https://placeimg.com/140/140/any",
+                  avatar: item.base_url + item.profile_picture,
                 },
               };
             }
@@ -153,7 +165,13 @@ const ChatScreen = ({ navigation, route }: any) => {
         )
         .push()
         .set(params)
-        .then((ref: any) => {});
+        .then((ref: any) => {
+          dispatch(chatStatusUpdate({
+            receiver_id: item?._id,
+            msg_status: 1
+        }))
+          console.log('MESSAGE SENT')
+        });
     }
   };
 

@@ -32,6 +32,7 @@ const strings = new LocalizedStrings({
     appointmentVisitHeader: 'Appointment Site Visit',
     reportHeader: 'Report',
     chatHeader: 'Chat',
+    addChatHeader: 'Add to Chat',
     supportHeader: 'Raise Ticket',
     supportForumHeader: 'Support Forum',
     leaderBoardHeader: 'LeaderBoard',

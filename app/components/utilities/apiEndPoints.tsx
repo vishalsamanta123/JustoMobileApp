@@ -104,6 +104,8 @@ export default {
   
   // Chat Management
   GET_ALL_USER_CHAT_LIST: '/chat/getAllUserListForChat',
+  UPDATE_CHAT_STATUS: '/chat/userChatStatusUpdate',
+  GET_RECENT_CHAT_LIST: '/chat/getUserListForChating',
 
 
   //Settings
