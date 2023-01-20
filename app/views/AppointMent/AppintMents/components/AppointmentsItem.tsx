@@ -10,6 +10,8 @@ import { useSelector } from 'react-redux';
 
 const AppointmentItem = (props: any) => {
     const { userData = {} } = useSelector((state: any) => state.userData)
+    const currentDate = moment(new Date).format('YYYY-MM-DD, h:mm A')
+    const appointmentdateTime = `${moment(props.items.appointment_date).format('YYYY-MM-DD')}, ${props.items.appointment_time}`
     return (
         <View style={styles.IteamView}>
             <View style={styles.Txtview} >
@@ -59,17 +61,34 @@ const AppointmentItem = (props: any) => {
                     <Text style={styles.projectTxt}>Status :</Text>
                 </View>
                 <View style={styles.nameContainer}>
-                    <Text style={[styles.nameTxt, {
-                        color: props.items.status == 1 || props.items.status == 5 || props.items.status == 4 ? 'red' :
-                            props.items.status == 2 ? YELLOW_COLOR : BLACK_COLOR
-                    }]}>{
-                            // status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 = Appointment cancel, 5= close}
-                            props.items.status === 1 ? 'Pending' :
-                                props.items.status === 2 ? 'Confirm' :
-                                    props.items.status === 3 ? 'Completed' :
-                                        props.items.status === 4 ? 'Appointment cancel' :
-                                            props.items.status == 5 && 'Close'
-                        }</Text>
+                    <Text
+                        style={[
+                            styles.nameTxt,
+                            {
+                                color:
+                                    props?.items?.status == 1
+                                        ? currentDate >= appointmentdateTime ? 'red' : 'red'
+                                        : props?.items?.status === 2
+                                            ? currentDate >= appointmentdateTime ? 'red' : YELLOW_COLOR
+                                            : props?.items?.status == 3
+                                                ? GREEN_COLOR
+                                                : props?.items?.status == 5
+                                                    ? "red"
+                                                    : props?.items?.status === 4 ? "red" : BLACK_COLOR
+                            },
+                        ]}
+                    >
+                        {
+                            props?.items?.status == 1
+                                ? currentDate >= appointmentdateTime ? 'Missed' : "Upcoming"
+                                : props?.items?.status === 2
+                                    ? currentDate >= appointmentdateTime ? 'Missed' : "Upcoming"
+                                    : props?.items?.status == 3
+                                        ? "Completed"
+                                        : props?.items?.status == 5
+                                            ? "Canceled"
+                                            : props?.items?.status === 4 && "Canceled"}
+                    </Text>
                 </View>
             </View>
             <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >

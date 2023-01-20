@@ -33,7 +33,6 @@ const AppointmentAddView = (props: any) => {
                         placeholder={strings.status}
                         data={[
                             { label: "Rescheduled", value: "1" },
-                            { label: "Confirm", value: "2" },
                             { label: "Appointment cancel", value: "4" },
                         ]}
                         inputWidth={'100%'}

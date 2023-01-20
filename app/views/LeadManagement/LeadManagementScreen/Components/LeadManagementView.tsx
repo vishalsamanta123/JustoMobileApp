@@ -11,48 +11,10 @@ import { useNavigation } from "@react-navigation/native";
 import FilterModal from "./LeadManagementModal";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 import Button from "app/components/Button";
-const DATA: any = [
-  {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'confirmatin Pending',
-    createddate: '11/10/2022'
-  },
-  {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'Subscribe',
-    createddate: '11/10/2022'
-  },
-  {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'Unsubscribe',
-    createddate: '11/10/2022'
-  },
-  {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'confirmatin Pending',
-    createddate: '11/10/2022'
-  },
-];
 
 const LeadManagementView = (props: any) => {
+  console.log('props?.visitorList: ', props?.visitorList);
   const loadingref = false
-  const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
   const [FilterisVisible, setFilterisVisible] = useState(false)
 
@@ -62,7 +24,11 @@ const LeadManagementView = (props: any) => {
       enddate: '',
       search_by_name: '',
       search_by_location: '',
-      status: ''
+      status: '',
+      property_id: '',
+      visit_score: '',
+      property_type_title: '',
+      property_title: ''
     })
     props.getVisitorsList(0, {})
     props.setVisiitorList([])

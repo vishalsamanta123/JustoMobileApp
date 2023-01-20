@@ -17,6 +17,9 @@ const LeadManagementScreen = ({ navigation }: any) => {
     search_by_visisor_name: "",
     search_configuration: "",
     visit_score: "",
+    property_id: '',
+    property_type_title: '',
+    property_title: ''
   });
   const [visitorList, setVisiitorList] = useState<any>([]);
   const [offSET, setOffset] = useState(0);
@@ -55,6 +58,7 @@ const LeadManagementScreen = ({ navigation }: any) => {
           ? data?.search_configuration
           : "",
         visit_score: data?.visit_score ? data?.visit_score : "",
+        property_id: data?.property_id ? data?.property_id : "",
       })
     );
   };

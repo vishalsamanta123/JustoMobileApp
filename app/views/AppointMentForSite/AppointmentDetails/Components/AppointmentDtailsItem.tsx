@@ -6,6 +6,7 @@ import {
   BLACK_COLOR,
   DATE_BY_DAY,
   DATE_FORMAT,
+  DATE_TIME_FORMAT,
   GREEN_COLOR,
   YELLOW_COLOR,
 } from "app/components/utilities/constant";
@@ -13,7 +14,8 @@ import moment from "moment";
 import strings from "app/components/utilities/Localization";
 
 const AppointmentDtailsItem = (props: any) => {
-  console.log("props: ", props);
+  const currentDate = moment(new Date).format('YYYY-MM-DD, h:mm A')
+  const appointmentdateTime = `${moment(props.detail.appointment_date).format('YYYY-MM-DD')}, ${props.detail.appointment_time}`
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.topTxtView}>
@@ -153,26 +155,28 @@ const AppointmentDtailsItem = (props: any) => {
               styles.nameTxt,
               {
                 color:
-                  props.detail.status === 5 ||
-                    props?.detail?.status === 4 ||
-                    props?.detail?.status === 1
-                    ? "red"
-                    : props?.detail?.status == 3
-                      ? GREEN_COLOR
-                      : props?.detail?.status === 2 ? YELLOW_COLOR
-                        : BLACK_COLOR,
+                  props?.detail?.status == 1
+                    ? currentDate >= appointmentdateTime ? 'red' : 'red'
+                    : props?.detail?.status === 2
+                      ? currentDate >= appointmentdateTime ? 'red' : YELLOW_COLOR
+                      : props?.detail?.status == 3
+                        ? GREEN_COLOR
+                        : props?.detail?.status == 5
+                          ? "red"
+                          : props?.detail?.status === 4 ? "red" : BLACK_COLOR
               },
             ]}
           >
-            {props?.detail?.status == 1
-              ? "Pending"
-              : props?.detail?.status === 2
-                ? "Confirm"
-                : props?.detail?.status == 3
-                  ? "Completed"
-                  : props?.detail?.status == 5
-                    ? "Close"
-                    : props?.detail?.status === 4 && "Appointment cancel"}
+            {
+              props?.detail?.status == 1
+                ? currentDate >= appointmentdateTime ? 'Missed' : "Upcoming"
+                : props?.detail?.status === 2
+                  ? currentDate >= appointmentdateTime ? 'Missed' : "Upcoming"
+                  : props?.detail?.status == 3
+                    ? "Completed"
+                    : props?.detail?.status == 5
+                      ? "Canceled"
+                      : props?.detail?.status === 4 && "Canceled"}
           </Text>
         </View>
       </View>

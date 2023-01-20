@@ -3,11 +3,14 @@ import React from 'react'
 import styles from './Styles'
 import images from '../../../../assets/images'
 import strings from '../../../../components/utilities/Localization'
-import { PURPLE_COLOR, CALL_COLOR, WHITE_COLOR, DATE_FORMAT, TIME_FORMAT, BLACK_COLOR, DATE_BY_DAY, GREEN_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant'
+import { PURPLE_COLOR, CALL_COLOR, WHITE_COLOR, DATE_FORMAT, TIME_FORMAT, BLACK_COLOR, DATE_BY_DAY, GREEN_COLOR, YELLOW_COLOR, DATE_TIME_FORMAT } from '../../../../components/utilities/constant'
 import Button from '../../../../components/Button'
 import moment from 'moment'
 
 const AppointMentForSiteList = (props: any) => {
+  const currentDate = moment(new Date).format('YYYY-MM-DD, h:mm A')
+  const appointmentdateTime = `${moment(props.items.appointment_date).format('YYYY-MM-DD')}, ${props.items.appointment_time}`
+
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
@@ -59,16 +62,33 @@ const AppointMentForSiteList = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={[styles.nameTxt, {
-            color: props.items.status === 5 || props?.items?.status === 4 || props?.items?.status === 1 ? 'red' : props?.items?.status == 3 ? GREEN_COLOR : props?.items?.status === 2 ? YELLOW_COLOR : BLACK_COLOR
-          }]}>
+          <Text
+            style={[
+              styles.nameTxt,
+              {
+                color:
+                  props?.items?.status == 1
+                    ? currentDate >= appointmentdateTime ? 'red' : 'red'
+                    : props?.items?.status === 2
+                      ? currentDate >= appointmentdateTime ? 'red' : YELLOW_COLOR
+                      : props?.items?.status == 3
+                        ? GREEN_COLOR
+                        : props?.items?.status == 5
+                          ? "red"
+                          : props?.items?.status === 4 ? "red" : BLACK_COLOR
+              },
+            ]}
+          >
             {
-              props?.items?.status == 1 ? 'Pending' :
-                props?.items?.status === 2 ? 'Confirm' :
-                  props?.items?.status == 3 ? 'Completed' :
-                    props?.items?.status == 5 ? 'Close' :
-                      props?.items?.status === 4 && 'Appointment cancel'
-            }
+              props?.items?.status == 1
+                ? currentDate >= appointmentdateTime ? 'Missed' : "Upcoming"
+                : props?.items?.status === 2
+                  ? currentDate >= appointmentdateTime ? 'Missed' : "Upcoming"
+                  : props?.items?.status == 3
+                    ? "Completed"
+                    : props?.items?.status == 5
+                      ? "Canceled"
+                      : props?.items?.status === 4 && "Canceled"}
           </Text>
         </View>
       </View>
@@ -83,18 +103,21 @@ const AppointMentForSiteList = (props: any) => {
       </View>
       <View style={styles.buttonContainer}>
         <View style={{ flexDirection: 'row', alignItems: 'center', top: 8 }}>
-          <Button
-            width={80}
-            height={30}
-            bgcolor={WHITE_COLOR}
-            bordercolor={PURPLE_COLOR}
-            borderWidth={1}
-            btnTxtcolor={PURPLE_COLOR}
-            buttonText={strings.edit}
-            btnTxtsize={14}
-            border={10}
-            handleBtnPress={() => props.onEditPress()}
-          />
+          {props?.items?.status === 1 || props?.items?.status === 2 ?
+            (<Button
+              width={80}
+              height={30}
+              bgcolor={WHITE_COLOR}
+              bordercolor={PURPLE_COLOR}
+              borderWidth={1}
+              btnTxtcolor={PURPLE_COLOR}
+              buttonText={strings.edit}
+              btnTxtsize={14}
+              border={10}
+              handleBtnPress={() => props.onEditPress()}
+            />)
+            : null
+          }
           <Button
             width={80}
             height={30}

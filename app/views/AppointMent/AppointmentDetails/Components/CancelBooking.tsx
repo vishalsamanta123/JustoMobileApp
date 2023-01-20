@@ -65,7 +65,7 @@ const CancelModal = (props: any) => {
       comment: '',
       property_name: '',
       remark: '',
-  })
+    })
     if (masterData?.response?.status === 200) {
       setMasterDatas(
         masterData?.response?.data?.length > 0 ? masterData?.response?.data : []
@@ -73,22 +73,34 @@ const CancelModal = (props: any) => {
     }
   }, [masterData]);
 
+  const validation = () => {
+    let isError = true;
+    let errorMessage: any = "";
+    if (props?.cancelValue?.reason === "") {
+      isError = false;
+      errorMessage = "Please Select a reason";
+    } if (propetyInput && props?.cancelValue?.property_name === "") {
+      isError = false;
+      errorMessage = "Please Enter competitor property";
+    } else if (
+      props?.cancelValue?.reason === "639d691c9f37df12d3ea64e2" && !propetyInput &&
+      props?.cancelValue?.property_id === ""
+    ) {
+      isError = false;
+      errorMessage = "Please Enter Property";
+    }
+    if (errorMessage !== "") {
+      ErrorMessage({
+        msg: errorMessage,
+        backgroundColor: RED_COLOR,
+      });
+    }
+    return isError;
+  };
+
+
   const handleCancel = () => {
-    if (propetyInput && props?.cancelValue?.property_name === "") {
-      ErrorMessage({
-        msg: strings.enterCompPropertyName,
-        backgroundColor: RED_COLOR,
-      });
-      return;
-    }
-    if (props?.cancelValue?.reason === "639d691c9f37df12d3ea64e2" && props?.cancelValue?.property_name === "") {
-      ErrorMessage({
-        msg: strings.enterCompPropertyName,
-        backgroundColor: RED_COLOR,
-      });
-      return;
-    }
-    if (props?.cancelValue?.reason != "") {
+    if (validation()) {
       props.cancelDataPress();
       props.setIsVisible(false);
       setPropetyInput(false);
@@ -96,7 +108,7 @@ const CancelModal = (props: any) => {
     } else {
       // props.setIsVisible(false)
       // setPropetyInput(false)
-      setReasonSelect(true);
+      // setReasonSelect(true);
     }
   };
   return (
@@ -175,7 +187,7 @@ const CancelModal = (props: any) => {
                     {propetyInput ? "Property Name" : strings.selectproperty}
                   </Text>
                   {(!propetyInput && props?.cancelValue?.property_id === "") ||
-                  props?.cancelValue?.property_id === undefined ? (
+                    props?.cancelValue?.property_id === undefined ? (
                     <View style={styles.addNewBttn}>
                       <Button
                         width={80}
@@ -191,7 +203,7 @@ const CancelModal = (props: any) => {
                   <InputField
                     placeholderText={"Property Name"}
                     // headingText={"Property Name"}
-                    handleInputBtnPress={() => {}}
+                    handleInputBtnPress={() => { }}
                     valueshow={props?.cancelValue?.property_name}
                     onChangeText={(val: any) => {
                       props.setCancelValue({
@@ -236,7 +248,7 @@ const CancelModal = (props: any) => {
               <Text style={styles.titleTxt}>{"Comment"}</Text>
               <InputField
                 placeholderText={"Comment"}
-                handleInputBtnPress={() => {}}
+                handleInputBtnPress={() => { }}
                 inputheight={80}
                 valueshow={props?.cancelValue?.remark}
                 onChangeText={(val: any) => {
