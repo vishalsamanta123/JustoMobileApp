@@ -19,9 +19,6 @@ const AddChatView = (props: any) => {
     const handleChatPress = (item: any) => {
       navigation.navigate("ChatScreen", item);
     };
-    const handleAddChatPress = () => {
-      navigation.navigate('AddChatScreen')
-    }
     const handleChangeText = (val: any) => {
       const final = props?.chatlist?.filter(function (el: any) {
         const name = `${el.user_name}`;
