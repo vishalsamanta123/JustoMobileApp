@@ -32,9 +32,11 @@ console.log('params: ', params);
     }
 };
 export const getAllPropertyCompetitor = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_PROPERTY_COMPETITOR, params);
+        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_COMPETITOR_LIST,

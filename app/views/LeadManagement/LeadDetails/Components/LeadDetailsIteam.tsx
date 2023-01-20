@@ -99,9 +99,22 @@ const LeadDetailsIteam = (props: any) => {
                                     item?.lead_status === 4 ? "Booking" :
                                         item?.lead_status === 5 ? "Registration" :
                                             item?.lead_status === 6 ? "Close" :
-                                            item?.lead_status === 7 && "Ready To Book" 
-                                            
+                                                item?.lead_status === 7 && "Ready To Book"
+
                         }</Text>
+                </View>
+            </View>
+            <View style={styles.Txtview}>
+                <View style={styles.projectContainer}>
+                    <Text style={styles.projectTxt}>Acquisition Source :</Text>
+                </View>
+                <View style={styles.nameContainer}>
+                    <Text style={[styles.nameTxt,]}>
+                        {/*  1- By User 2 - By Self acquisition_source */}
+                        {item?.acquisition_source === 1 ? "By User" :
+                            item?.acquisition_source === 2 ? "By Self" : strings.notfount
+                        }
+                    </Text>
                 </View>
             </View>
             {/* Property Required */}
@@ -144,8 +157,8 @@ const LeadDetailsIteam = (props: any) => {
                     <View style={styles.nameContainer}>
                         <Text style={styles.nameTxt}>{
                             item?.customer_detail?.min_budget || item?.customer_detail?.max_budget ?
-                            `${item?.customer_detail?.min_budget} ${item?.customer_detail?.min_budget_type} - ${item?.customer_detail?.max_budget} ${item?.customer_detail?.max_budget_type}`
-                            : strings.notfount
+                                `${item?.customer_detail?.min_budget} ${item?.customer_detail?.min_budget_type} - ${item?.customer_detail?.max_budget} ${item?.customer_detail?.max_budget_type}`
+                                : strings.notfount
                         }</Text>
                     </View>
                 </View>

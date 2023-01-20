@@ -3,13 +3,15 @@ import React from 'react'
 import styles from './Styles'
 import images from '../../../../assets/images'
 import moment from 'moment'
-import { YELLOW_COLOR, BLACK_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from 'app/components/utilities/constant'
+import { YELLOW_COLOR, BLACK_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR, GREEN_COLOR } from 'app/components/utilities/constant'
 import strings from 'app/components/utilities/Localization'
 import Button from 'app/components/Button'
 import { normalizeSpacing } from 'app/components/scaleFontSize'
 
 const AppointmentDtailsItem = (props: any) => {
   const item = props?.item || {}
+  const currentDate = moment(new Date).format('YYYY-MM-DD, h:mm A')
+  const appointmentdateTime = `${moment(item.appointment_date).format('YYYY-MM-DD')}, ${item.appointment_time}`
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>
@@ -94,17 +96,34 @@ const AppointmentDtailsItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={[styles.nameTxt, {
-            color: item.status == 1 || item.status == 5 || item.status == 4 ? 'red' :
-              item.status == 2 ? YELLOW_COLOR : BLACK_COLOR
-          }]}>{
-              // status: {//1= Panding, 2 = Confirm, 3= Compleat, 4 = Appointment cancel, 5= close}
-              item.status === 1 ? 'Pending' :
-                item.status === 2 ? 'Confirm' :
-                  item.status === 3 ? 'Completed' :
-                    item.status === 4 ? 'Appointment cancel' :
-                      item.status == 5 && 'Close'
-            }</Text>
+          <Text
+            style={[
+              styles.nameTxt,
+              {
+                color:
+                  item?.status == 1
+                    ? currentDate >= appointmentdateTime ? 'red' : 'red'
+                    : item?.status === 2
+                      ? currentDate >= appointmentdateTime ? 'red' : YELLOW_COLOR
+                      : item?.status == 3
+                        ? GREEN_COLOR
+                        : item?.status == 5
+                          ? "red"
+                          : item?.status === 4 ? "red" : BLACK_COLOR
+              },
+            ]}
+          >
+            {
+              item?.status == 1
+                ? currentDate >= appointmentdateTime ? 'Missed' : "Upcoming"
+                : item?.status === 2
+                  ? currentDate >= appointmentdateTime ? 'Missed' : "Upcoming"
+                  : item?.status == 3
+                    ? "Completed"
+                    : item?.status == 5
+                      ? "Canceled"
+                      : item?.status === 4 && "Canceled"}
+          </Text>
         </View>
       </View>
       <View style={styles.Txtview}>

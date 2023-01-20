@@ -89,9 +89,9 @@ const LeadManagementItem = (props: any) => {
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{
-            props.items.createdDate ? 
-            moment(props.items.createdDate).format(DATE_TIME_FORMAT)
-            : strings.notfount
+            props.items.createdDate ?
+              moment(props.items.createdDate).format(DATE_TIME_FORMAT)
+              : strings.notfount
           }</Text>
         </View>
       </View>
@@ -116,6 +116,19 @@ const LeadManagementItem = (props: any) => {
                     props.items.lead_status === 5 ? "Registration" :
                       props.items.lead_status === 6 ? "Close" :
                         props.items.lead_status === 7 && "Ready To Book"
+            }
+          </Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Acquisition Source :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={[styles.nameTxt,]}>
+            {/*  1- By User 2 - By Self acquisition_source */}
+            {props.items.acquisition_source === 1 ? "By User" :
+              props.items.acquisition_source === 2 ? "By Self" : strings.notfount
             }
           </Text>
         </View>

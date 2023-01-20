@@ -18,7 +18,6 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
 
 const CancelModal = (props: any) => {
-console.log('props: ', props);
   const dispatch: any = useDispatch();
   const [masterDatas, setMasterDatas] = useState<any>();
   const [propertyCompetitor, setPropertyCompetitor] = useState<any>();
@@ -58,21 +57,21 @@ console.log('props: ', props);
         dispatch(removePropertyCompetitor());
       }
     }
-  }, []);
+  }, [propertyData]);
   useEffect(() => {
     props.setCancelValue({
-      reason: "",
-      property_id: "",
-      comment: "",
-      property_name: "",
-      remark: "",
-    });
+      reason: '',
+      property_id: '',
+      comment: '',
+      property_name: '',
+      remark: '',
+    })
     if (masterData?.response?.status === 200) {
       setMasterDatas(
         masterData?.response?.data?.length > 0 ? masterData?.response?.data : []
       );
     }
-  }, []);
+  }, [masterData]);
 
   const validation = () => {
     let isError = true;
@@ -99,6 +98,7 @@ console.log('props: ', props);
     return isError;
   };
 
+
   const handleCancel = () => {
     if (validation()) {
       props.cancelDataPress();
@@ -120,7 +120,7 @@ console.log('props: ', props);
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>
-              {strings.cancel + " " + strings.bookingRequestHead}
+              Close Visit
             </Text>
             <View>
               <TouchableOpacity
@@ -155,6 +155,7 @@ console.log('props: ', props);
                 valueField={"_id"}
                 value={props?.cancelValue?.reason}
                 onChange={(item: any) => {
+
                   setReasonSelect(false);
                   props.setCancelValue({
                     ...props.cancelValue,
@@ -186,7 +187,7 @@ console.log('props: ', props);
                     {propetyInput ? "Property Name" : strings.selectproperty}
                   </Text>
                   {(!propetyInput && props?.cancelValue?.property_id === "") ||
-                  props?.cancelValue?.property_id === undefined ? (
+                    props?.cancelValue?.property_id === undefined ? (
                     <View style={styles.addNewBttn}>
                       <Button
                         width={80}
@@ -202,7 +203,7 @@ console.log('props: ', props);
                   <InputField
                     placeholderText={"Property Name"}
                     // headingText={"Property Name"}
-                    handleInputBtnPress={() => {}}
+                    handleInputBtnPress={() => { }}
                     valueshow={props?.cancelValue?.property_name}
                     onChangeText={(val: any) => {
                       props.setCancelValue({
@@ -247,7 +248,7 @@ console.log('props: ', props);
               <Text style={styles.titleTxt}>{"Comment"}</Text>
               <InputField
                 placeholderText={"Comment"}
-                handleInputBtnPress={() => {}}
+                handleInputBtnPress={() => { }}
                 inputheight={80}
                 valueshow={props?.cancelValue?.remark}
                 onChangeText={(val: any) => {
@@ -262,7 +263,7 @@ console.log('props: ', props);
           <View style={{ marginVertical: 20 }}>
             <Button
               handleBtnPress={() => handleCancel()}
-              buttonText={strings.cancelBooking}
+              buttonText={'Close Visit'}
             />
           </View>
         </View>

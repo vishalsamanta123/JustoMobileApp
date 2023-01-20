@@ -10,7 +10,7 @@ import AppointmentDtailsItem from './AppointmentDtailsItem';
 import Button from '../../../../components/Button';
 import { useSelector } from 'react-redux';
 import ReadyToBookModal from './ReadyToBookModal';
-import CancelModal from 'app/components/Modals/CancelModal';
+import CancelModal from './CancelBooking';
 
 const AppointmentDetailsView = (props: any) => {
     const getLoginType = useSelector((state: any) => state.login);
@@ -120,15 +120,28 @@ const AppointmentDetailsView = (props: any) => {
                 BookingData={props.BookingData}
                 handleBooking={props.handleBooking}
             />
-            <CancelModal
+            {/* <CancelModal
                 Visible={cancelAppoitment}
                 setIsVisible={() => setCancelAppoitment(false)}
                 data={[{
                     lead_id: response?.data?.length > 0 ? response?.data[0]?.lead_id : [],
                     appointment_id: response?.data?.length > 0 ? response?.data[0]?._id : [],
                     cancle_type: 2,  //1=lead, 2=appoinment
-                    resion: ''
+                    resion: '',
+                    property_id: response?.data?.length > 0 ? response?.data[0]?.property_id : []
                 }]}
+            /> */}
+            <CancelModal
+                cancelDataPress={() => props.onpressCloseVisit({
+                    lead_id: response?.data?.length > 0 ? response?.data[0]?.lead_id : [],
+                    appointment_id: response?.data?.length > 0 ? response?.data[0]?._id : [],
+                    cancle_type: 2,  //1=lead, 2=appoinment
+                })}
+                Visible={cancelAppoitment}
+                setIsVisible={setCancelAppoitment}
+                cancelValue={props.cancelValue}
+                item={response?.data?.length > 0 ? response?.data : []}
+                setCancelValue={props.setCancelValue}
             />
         </View>
     )

@@ -173,6 +173,7 @@ export const closeVisit = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.CLOSE_VISIT, params);
+        console.log('res: CLOSE_VISIT ', res);
         if (res.data.status === 200) {
             dispatch({
                 type: CLOSEVISIT,

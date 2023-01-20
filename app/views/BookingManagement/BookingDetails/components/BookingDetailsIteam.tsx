@@ -11,6 +11,7 @@ import moment from 'moment'
 const BookingDetailsItem = (props: any) => {
     const getLoginType = useSelector((state: any) => state.login);
     const item = props?.item[0] || {}
+    console.log('item: ', item);
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
@@ -151,7 +152,11 @@ const BookingDetailsItem = (props: any) => {
                         </View>
                         <View><Text>:</Text></View>
                         <View style={styles.nameContainer}>
-                            <Text style={styles.nameTxt}>{item?.leads?.customer?.budget}</Text>
+                            <Text style={styles.nameTxt}>{
+                                item?.leads?.customer?.min_budget || item?.leads?.customer?.max_budget ? 
+                                `${item?.leads?.customer?.min_budget} ${item?.leads?.customer?.min_budget_type} - ${item?.leads?.customer?.max_budget} ${item?.leads?.customer?.max_budget_type}`
+                                : strings.notfount
+                            }</Text>
                         </View>
                     </View> : null
                 }

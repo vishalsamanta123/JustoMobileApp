@@ -13,15 +13,30 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { DATE_FORMAT } from "app/components/utilities/constant";
 import { normalizeSpacing } from "app/components/scaleFontSize";
+import Styles from '../../../../components/Modals/styles'
+import { getAllProperty } from "app/Redux/Actions/propertyActions";
+
 
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch()
+  const [allProperty, setAllProperty] = useState<any>([]);
+
   useEffect(() => {
     dispatch(getAllMaster({
       type: 2
     }))
+
+    dispatch(
+      getAllProperty({
+        offset: 0,
+        limit: "",
+      })
+    );
+    getAllPropertyData();
   }, [])
   const { response = { data: [] } } = useSelector((state: any) => state.masterData) || {}
+  const propertyData = useSelector((state: any) => state.propertyData) || {};
+
   const datavisitingscore = [
     { label: "High to low", value: 2 },
     { label: "Low to high", value: 1 }
@@ -39,6 +54,12 @@ const FilterModal = (props: any) => {
     props.getVisitorsListApi(0, [])
     props.setVisiitorList([])
   }
+
+  const getAllPropertyData = () => {
+    if (propertyData?.response?.status === 200) {
+      setAllProperty(propertyData?.response?.data);
+    }
+  };
 
   const configRender = (item: any) => {
     return (
@@ -123,6 +144,36 @@ const FilterModal = (props: any) => {
                   })
                 }}
                 valueshow={props.filterData.search_by_visisor_name}
+              />
+            </View>
+            <View style={[styles.inputWrap, { top: normalizeSpacing(10) }]}>
+              <DropdownInput
+                headingText={'Search by Property'}
+                placeholder={'Select Property'}
+                data={allProperty}
+                inputWidth={'100%'}
+                paddingLeft={16}
+                maxHeight={300}
+                labelField="property_title"
+                valueField={'_id'}
+                value={props?.formData?.property_id}
+                onChange={(item: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    property_id: item.property_id,
+                    property_type_title: item.property_type,
+                    property_title: item.property_title,
+                  })
+                }}
+                newRenderItem={(item: any) => {
+                  return (
+                    <>
+                      <View style={Styles.item}>
+                        <Text style={Styles.textItem}>{item.property_title}</Text>
+                      </View>
+                    </>
+                  );
+                }}
               />
             </View>
             <View style={styles.inputWrap}>
