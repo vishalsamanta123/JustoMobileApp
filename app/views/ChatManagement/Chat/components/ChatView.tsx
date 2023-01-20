@@ -22,6 +22,9 @@ const ChatViewView = (props: any) => {
   const handleChatPress = (item: any) => {
     navigation.navigate("ChatScreen", item);
   };
+  const handleAddChatPress = () => {
+    navigation.navigate('AddChatScreen')
+  }
   const handleChangeText = (val: any) => {
     const final = props?.chatlist?.filter(function (el: any) {
       const name = `${el.user_name}`;
@@ -61,12 +64,13 @@ const ChatViewView = (props: any) => {
     <View style={styles.mainContainer}>
       <Header
         leftImageSrc={images.menu}
-        // rightFirstImageScr={images.filter}
+        rightFirstImageScr={images.addCircle}
         rightSecondImageScr={images.notification}
         headerText={strings.chatHeader}
         handleOnLeftIconPress={props.handleDrawerPress}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}
+        handleOnRightFirstIconPress={() => handleAddChatPress()}
         statusBarColor={PRIMARY_THEME_COLOR}
         barStyle={"light-content"}
       />

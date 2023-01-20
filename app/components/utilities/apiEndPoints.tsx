@@ -109,6 +109,7 @@ export default {
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
   NOTIFICATION_LIST: "/notification/getNotificationList",
+  DELETE_NOTIFICATION: "/notification/statusUpdateNotification",
 
   // Folloe-Up
   GET_FOLLOWUP_LIST: '/followupStatus/getFollowupList',

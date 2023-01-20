@@ -99,6 +99,7 @@ import ShowReply from "app/views/SupportScreen/SupportDetails/Components/ShowRep
 import TicketStatusUpdate from "app/views/SupportScreen/Support/components/TicketStatusUpdate";
 import CpChecking from "app/views/CpChecking/CpCheckingScreen";
 import BookingRegistration from "app/views/BookingManagement/BookingDetails/components/Registration";
+import AddChatScreen from "app/views/ChatManagement/AddChat";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -240,6 +241,7 @@ const AppComponent = () => {
       {/* Chat  */}
       <AppStack.Screen name="PropertyChat" component={PropertyChat} />
       <AppStack.Screen name="ChatScreen" component={ChatScreen} />
+      <AppStack.Screen name="AddChatScreen" component={AddChatScreen} />
 
       {/* LeaderBoard  */}
       <AppStack.Screen
@@ -344,7 +346,7 @@ const AuthLoadingComponent = () => {
         headers: { "content-type": "application/json" },
       };
       const data = await axios
-        .get("https://itinformatix.org:3044/api/token/jwtToken", options)
+        .get("http://itinformatix.org:3044/api/token/jwtToken", options)
         .then((res) => {
           console.log("res", res.data);
           return res.data;
