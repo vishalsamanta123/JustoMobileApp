@@ -73,7 +73,7 @@ import CatalogueContent from "../views/PropertyMangement/PropertyDetails/compone
 import AllocatePropertyScreen from "../views/PropertyMangement/PropertyAllocate";
 import AllocateCPScreen from "app/views/SourcingManagers/CPAllocate";
 import ErrorMessage from "app/components/ErrorMessage";
-import { RED_COLOR } from "app/components/utilities/constant";
+import { GLOBAL_URL, RED_COLOR } from "app/components/utilities/constant";
 import AddNewVisitorScreen from "app/views/LeadManagement/AddNewVisitor";
 import FollowUpAddScreen from "app/views/AppointMent/FollowUpAdd";
 import SupportScreen from "app/views/SupportScreen/Support";
@@ -344,7 +344,7 @@ const AuthLoadingComponent = () => {
         headers: { "content-type": "application/json" },
       };
       const data = await axios
-        .get("https://itinformatix.org:3044/api/token/jwtToken", options)
+        .get(`${GLOBAL_URL}/api/token/jwtToken`, options)
         .then((res) => {
           console.log("res", res.data);
           return res.data;
@@ -358,10 +358,10 @@ const AuthLoadingComponent = () => {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);
       } else {
-        ErrorMessage({
-          msg: data?.message,
-          backgroundColor: RED_COLOR,
-        });
+        // ErrorMessage({
+        //   msg: data?.message,
+        //   backgroundColor: RED_COLOR,
+        // });
       }
     } catch (error) {
       // console.log(error);
