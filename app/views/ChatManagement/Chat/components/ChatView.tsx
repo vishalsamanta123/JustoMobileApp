@@ -13,18 +13,17 @@ import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 import { useSelector } from "react-redux";
 
 const ChatViewView = (props: any) => {
-  
   const [filteredData, setFilteredData] = useState([]);
   useEffect(() => {
-    setFilteredData(props.chatlist)
-  }, [props.chatlist])
+    setFilteredData(props.chatlist);
+  }, [props.chatlist]);
   const navigation: any = useNavigation();
   const handleChatPress = (item: any) => {
     navigation.navigate("ChatScreen", item);
   };
   const handleAddChatPress = () => {
-    navigation.navigate('AddChatScreen')
-  }
+    navigation.navigate("AddChatScreen");
+  };
   const handleChangeText = (val: any) => {
     const final = props?.chatlist?.filter(function (el: any) {
       const name = `${el.user_name}`;
@@ -34,7 +33,8 @@ const ChatViewView = (props: any) => {
   };
   const onSubmit = (val: any) => {};
   const renderChatList = (item: any) => {
-    console.log('item?.is_seen: ', item?.is_seen);
+    console.log("item = = = = =: ", item);
+    console.log('uri: item.base_url + item.profile_picture: ', item.base_url + "/" + item.profile_picture);
 
     const role =
       item?.roles === "Sourcing TL"
@@ -56,11 +56,14 @@ const ChatViewView = (props: any) => {
             source={{ uri: item.base_url + item.profile_picture }}
             style={styles.profileImage}
           />
-          <Text style={styles.propertyText}>{`${item.user_name} (${role})`}</Text>
+          <Text
+            style={styles.propertyText}
+          >{`${item.user_name} (${role})`}</Text>
         </View>
-        {item?.is_seen === false ?
-        <View style={styles.dot}></View> : null}
-        <Image source={images.rightArrow} style={styles.iconStyle} />
+        <View style={styles.dotWrap}>
+          {item?.is_seen === false ? <View style={styles.dot}></View> : null}
+          <Image source={images.rightArrow} style={styles.iconStyle} />
+        </View>
       </TouchableOpacity>
     );
   };
