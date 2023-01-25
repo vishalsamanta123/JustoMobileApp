@@ -32,7 +32,7 @@ const DashboardScreen = ({ navigation }: any) => {
   useFocusEffect(
     React.useCallback(() => {
       getDashboard();
-      return () => {};
+      return () => { };
     }, [navigation, isEnabled, getLoginType])
   );
   useEffect(() => {
@@ -129,8 +129,8 @@ const DashboardScreen = ({ navigation }: any) => {
       navigation.navigate('SourcingManager')
     }
   }
-  const onPressCPList = (data: any) => {
-    if (data?._id !== '') {
+  const onPressCPList = (type: any, data: any) => {
+    if (type === 'details') {
       navigation.navigate('AgencyDetails', { data })
     } else {
       navigation.navigate('AgencyListing')
