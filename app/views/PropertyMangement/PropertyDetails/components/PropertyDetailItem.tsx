@@ -185,7 +185,7 @@ const PropertyDetailItem = (props: any) => {
             </Text>
           ))}
 
-          <Text
+          {/* <Text
             key={imagearray._id}
             style={[
               styles.nameTxt,
@@ -197,7 +197,7 @@ const PropertyDetailItem = (props: any) => {
             ]}
           >
             {props.items.amenity}
-          </Text>
+          </Text> */}
         </View>
       </View>
       <View style={styles.Txtview}>
