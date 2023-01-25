@@ -16,6 +16,8 @@ import strings from "app/components/utilities/Localization";
 const AppointmentDtailsItem = (props: any) => {
   const currentDate = moment(new Date).format('YYYY-MM-DD, h:mm A')
   const appointmentdateTime = `${moment(props.detail.appointment_date).format('YYYY-MM-DD')}, ${props.detail.appointment_time}`
+  console.log('props?.detail: ', props?.detail);
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.topTxtView}>
@@ -65,7 +67,7 @@ const AppointmentDtailsItem = (props: any) => {
           </Text>
         </View>
       </View>
-      <View style={styles.Txtview}>
+      {/* <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>When to buy</Text>
         </View>
@@ -81,7 +83,7 @@ const AppointmentDtailsItem = (props: any) => {
               : moment(props?.detail?.appointment_date).format(DATE_FORMAT)}
           </Text>
         </View>
-      </View>
+      </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Configuration</Text>

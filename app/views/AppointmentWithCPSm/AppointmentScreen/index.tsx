@@ -32,7 +32,11 @@ const AppointmentScreenCPSM = ({ navigation }: any) => {
     if (response?.status === 200) {
       if(response?.data?.length > 0) {
         setAppointmentList(response?.data);
+        console.log('response?.data: ', response?.data);
       }
+    } else {
+      console.log('response?.data: ', response?.data);
+      setAppointmentList([]);
     }
   }, [response, list, edit]);
   useEffect(() => {

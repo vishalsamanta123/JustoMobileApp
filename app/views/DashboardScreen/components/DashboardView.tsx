@@ -33,7 +33,7 @@ const DashboardView = (props: any) => {
         onPress={() => {
           roleType === ROLE_IDS.sourcingtl_id ?
             props.onPressSMList('details',item) :
-            props.onPressCPList(item)
+            props.onPressCPList('details', item)
         }}
         style={styles.headingView}>
         <Text style={styles.itemText}>{

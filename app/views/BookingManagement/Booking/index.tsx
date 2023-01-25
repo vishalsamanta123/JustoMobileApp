@@ -21,8 +21,8 @@ const BookingScreen = ({ navigation, route }: any) => {
         payment_type: '',
         booking_date: moment(new Date()).format(),
         cheque_image: '',
-        coniguration: '',
-        coniguration_id: "",
+        configuration: '',
+        configuration_id: "",
         quantity: "",
         description: '',
         booking_id: getBookingData?._id ? getBookingData?._id : ''
@@ -81,7 +81,7 @@ const BookingScreen = ({ navigation, route }: any) => {
         } else if (bookingData.payment_type == undefined || bookingData.payment_type == '') {
             isError = false;
             errorMessage = "Payment Type is require. Please select payment type"
-        } else if (bookingData.coniguration_id == undefined || bookingData.coniguration_id == '') {
+        } else if (bookingData.configuration_id == undefined || bookingData.configuration_id == '') {
             isError = false;
             errorMessage = "Purchase Configuration is require. Please select purchase configuration"
         } else if (bookingData.quantity == undefined || bookingData.quantity == '') {
@@ -119,8 +119,8 @@ const BookingScreen = ({ navigation, route }: any) => {
             newFormdata.append("lead_id", bookingData.lead_id)
             newFormdata.append("customer_id", bookingData.customer_id)
             newFormdata.append("property_id", bookingData.property_id)
-            newFormdata.append("coniguration", bookingData.coniguration)
-            newFormdata.append("coniguration_id", bookingData.coniguration_id)
+            newFormdata.append("configuration", bookingData.configuration)
+            newFormdata.append("configuration_id", bookingData.configuration_id)
             newFormdata.append("quantity", bookingData.quantity)
             newFormdata.append("booking_amount", bookingData.booking_amount)
             newFormdata.append("tranjection_upi_cheque_number", bookingData.tranjection_upi_cheque_number)

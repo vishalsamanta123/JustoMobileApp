@@ -10,6 +10,7 @@ import moment from 'moment'
 const AppointMentForSiteList = (props: any) => {
   const currentDate = moment(new Date).format('YYYY-MM-DD, h:mm A')
   const appointmentdateTime = `${moment(props.items.appointment_date).format('YYYY-MM-DD')}, ${props.items.appointment_time}`
+  console.log('props?.items?.status: ', props?.items?.status);
 
   return (
     <View style={styles.IteamView}>

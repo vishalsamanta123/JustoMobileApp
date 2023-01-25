@@ -122,8 +122,8 @@ const DashboardScreen = ({ navigation }: any) => {
       navigation.navigate('AppointmentForSite')
     }
   }
-  const onPressSMList = (data: any) => {
-    if (data?._id !== '') {
+  const onPressSMList = (type: any, data: any) => {
+    if (type === 'details') {
       navigation.navigate('SMDetails', data)
     } else {
       navigation.navigate('SourcingManager')

@@ -10,6 +10,8 @@ import { useSelector } from 'react-redux';
 
 const BookingListItem = (props: any) => {
     const getLoginType = useSelector((state: any) => state.login);
+    console.log('props.items: ', props.items);
+
     return (
         <View style={styles.IteamView}>
             <View style={styles.Txtview} >
