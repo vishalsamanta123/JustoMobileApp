@@ -308,8 +308,8 @@ const BookingDetailsItem = (props: any) => {
                         <View><Text>:</Text></View>
                         <View style={styles.nameContainer}>
                             <Text style={styles.nameTxt}>
-                                {item?.coniguration && item?.quantity ?
-                                    `${item?.coniguration} / ${item?.quantity}` : null}</Text>
+                                {item?.configuration && item?.quantity ?
+                                    `${item?.configuration} / ${item?.quantity}` : null}</Text>
                         </View>
                     </View>
                 </>)

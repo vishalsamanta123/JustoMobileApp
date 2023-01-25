@@ -138,13 +138,19 @@ const styles = StyleSheet.create({
     tintColor: BLACK_COLOR,
     padding: normalizeSpacing(10),
   },
-  dot:{
+  dot: {
     height: 10,
     width: 10,
     backgroundColor: PRIMARY_THEME_COLOR,
     borderRadius: 10,
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end'
-  }
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
+    marginRight: normalize(20),
+  },
+  dotWrap: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 export default styles;

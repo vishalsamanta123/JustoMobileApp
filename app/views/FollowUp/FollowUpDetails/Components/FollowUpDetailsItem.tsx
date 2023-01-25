@@ -66,7 +66,7 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.data?.customer?.configuration ? props?.data?.customer?.configuration : strings.notfount}</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.configuration ? props?.data?.configuration : strings.notfount}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -75,7 +75,7 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.data?.customer?.areain_sqlft ? props?.data?.customer?.areain_sqlft : strings.notfount}</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.areain_sqlft ? props?.data?.areain_sqlft : strings.notfount}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -86,8 +86,8 @@ const FollowUpDetailsItem = (props: any) => {
                     <View style={styles.nameContainer}>
                         <Text style={styles.nameTxt}>
                             {
-                                props?.data?.customer?.min_budget && props?.data?.customer?.max_budget ?
-                                    `${props?.data?.customer?.min_budget} ${props?.data?.customer?.min_budget_type} - ${props?.data?.customer?.max_budget} ${props?.data?.customer?.max_budget_type}`
+                                props?.data?.min_budget && props?.data?.max_budget ?
+                                    `${props?.data?.min_budget} ${props?.data?.min_budget_type} - ${props?.data?.max_budget} ${props?.data?.max_budget_type}`
                                     : strings.notfount
                             }
                         </Text>
@@ -99,7 +99,7 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.data?.customer?.funding_type ? props?.data?.customer?.funding_type : strings.notfount}</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.funding_type ? props?.data?.funding_type : strings.notfount}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -108,7 +108,7 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.data?.customer?.purpose ? props?.data?.customer?.purpose : strings.notfount}</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.purpose ? props?.data?.purpose : strings.notfount}</Text>
                     </View>
                 </View>
             </>

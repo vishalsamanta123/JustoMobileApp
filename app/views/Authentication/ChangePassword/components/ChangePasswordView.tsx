@@ -38,7 +38,7 @@ const ChangePasswordView = (props: any) => {
             placeholderText={"New Password"}
             headingText={"New Password"}
             rightImgSrc={
-              isVisiblePassword ? images.showPassword : images.hiddenPassword
+              isVisiblePassword ? images.hiddenPassword : images.showPassword
             }
             handleInputBtnPress={handlePasswordBtnPress}
             isSecureText={isVisiblePassword}
@@ -54,7 +54,7 @@ const ChangePasswordView = (props: any) => {
             placeholderText={"Confirm Password"}
             headingText={"Confirm Password"}
             rightImgSrc={
-              isVisiblecPassword ? images.showPassword : images.hiddenPassword
+              isVisiblecPassword ? images.hiddenPassword : images.showPassword
             }
             handleInputBtnPress={handlecPasswordBtnPress}
             isSecureText={isVisiblecPassword}
