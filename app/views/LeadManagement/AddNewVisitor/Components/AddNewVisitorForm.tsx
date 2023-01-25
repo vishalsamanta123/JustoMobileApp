@@ -51,39 +51,6 @@ const AddNewVisitorForm = (props: any) => {
             <ScrollView keyboardShouldPersistTaps={'handled'}>
                 <View style={styles.wrap}>
                     <Text style={styles.headingText}>{strings.visitordetails}</Text>
-                    <View style={[styles.inputWrap]}>
-                        <DropdownInput
-                            require={true}
-                            headingText={'Property'}
-                            placeholder={props.formData?.property_title ?
-                                props.formData?.property_title : 'Property'}
-                            data={props?.allProperty}
-                            disable={props.type == 'edit' || props.type == 'propertySelect' ? true : false}
-                            inputWidth={'100%'}
-                            paddingLeft={16}
-                            maxHeight={300}
-                            labelField="property_title"
-                            valueField={'_id'}
-                            value={props?.formData?.property_id}
-                            onChange={(item: any) => {
-                                props.setFormData({
-                                    ...props.formData,
-                                    property_id: item.property_id,
-                                    property_type_title: item.property_type,
-                                    property_title: item.property_title,
-                                })
-                            }}
-                            newRenderItem={(item: any) => {
-                                return (
-                                    <>
-                                        <View style={Styles.item}>
-                                            <Text style={Styles.textItem}>{item.property_title}</Text>
-                                        </View>
-                                    </>
-                                );
-                            }}
-                        />
-                    </View>
                     <View style={styles.inputWrap}>
                         <InputField
                             require={true}
@@ -287,6 +254,39 @@ const AddNewVisitorForm = (props: any) => {
                         />
                     </View>
                     <Text style={[styles.headingText, { marginTop: 20 }]}>{strings.propertyrequire}</Text>
+                    <View style={[styles.inputWrap]}>
+                        <DropdownInput
+                            // require={true}
+                            headingText={'Property'}
+                            placeholder={props.formData?.property_title ?
+                                props.formData?.property_title : 'Property'}
+                            data={props?.allProperty}
+                            disable={props.type == 'edit' || props.type == 'propertySelect' ? true : false}
+                            inputWidth={'100%'}
+                            paddingLeft={16}
+                            maxHeight={300}
+                            labelField="property_title"
+                            valueField={'_id'}
+                            value={props?.formData?.property_id}
+                            onChange={(item: any) => {
+                                props.setFormData({
+                                    ...props.formData,
+                                    property_id: item.property_id,
+                                    property_type_title: item.property_type,
+                                    property_title: item.property_title,
+                                })
+                            }}
+                            newRenderItem={(item: any) => {
+                                return (
+                                    <>
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.property_title}</Text>
+                                        </View>
+                                    </>
+                                );
+                            }}
+                        />
+                    </View>
                     <View style={[styles.inputWrap]}>
                         <DropdownInput
                             headingText={'Configuration'}

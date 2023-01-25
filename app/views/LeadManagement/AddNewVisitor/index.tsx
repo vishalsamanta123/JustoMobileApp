@@ -130,14 +130,16 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = "";
+    // if (
+    //   type != "edit" &&
+    //   formData?.property_id === "" &&
+    //   formData?.property_type_title === ""
+    // ) {
+    //   isError = false;
+    //   errorMessage = "Please select property name";
+    // } else 
+    
     if (
-      type != "edit" &&
-      formData?.property_id === "" &&
-      formData?.property_type_title === ""
-    ) {
-      isError = false;
-      errorMessage = "Please select property name";
-    } else if (
       formData?.first_name === "" ||
       formData?.first_name === undefined
     ) {
