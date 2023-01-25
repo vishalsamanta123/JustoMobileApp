@@ -13,6 +13,7 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 
 const BookingView = (props: any) => {
+console.log('props?.propertyConfData: ', props?.propertyConfData);
     return (
         <View style={styles.mainContainer}>
             <Header
