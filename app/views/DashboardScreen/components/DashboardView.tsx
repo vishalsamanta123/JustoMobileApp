@@ -32,7 +32,7 @@ const DashboardView = (props: any) => {
       <TouchableOpacity
         onPress={() => {
           roleType === ROLE_IDS.sourcingtl_id ?
-            props.onPressSMList(item) :
+            props.onPressSMList('details',item) :
             props.onPressCPList(item)
         }}
         style={styles.headingView}>
