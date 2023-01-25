@@ -26,8 +26,9 @@ console.log('props: ', props);
   const [reasonSelect, setReasonSelect] = useState<any>(false);
   const masterData = useSelector((state: any) => state.masterData) || {};
   const propertyData =
-    useSelector((state: any) => state.competitorproperty) || {};
-
+  useSelector((state: any) => state.competitorproperty) || {};
+  
+  console.log('propertyData: ', propertyData);
   const handleMasterDatas = (data: any) => {
     dispatch(
       getAllMaster({
@@ -219,7 +220,7 @@ console.log('props: ', props);
                     paddingLeft={16}
                     maxHeight={300}
                     onFocus={() => handleCompetitorProperty()}
-                    labelField="competitor_name"
+                    labelField="property_name"
                     valueField={"property_id"}
                     value={props?.cancelValue?.property_id}
                     onChange={(item: any) => {
@@ -233,7 +234,7 @@ console.log('props: ', props);
                         <>
                           <View style={styles.item}>
                             <Text style={styles.textItem}>
-                              {item.competitor_name}
+                              {item.property_name}
                             </Text>
                           </View>
                         </>

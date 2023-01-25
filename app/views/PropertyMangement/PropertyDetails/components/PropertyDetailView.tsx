@@ -31,8 +31,8 @@ const PropertyDetailView = (props: any) => {
   useEffect(() => {
     if (response && response?.status === 200) {
       setPropertydetail(response?.data[0]);
-      setConfigurations(response?.data[0]?.property_configurations || [])
-      setAmenity(response?.data[0]?.property_amenities || [])
+      setConfigurations(response?.data[0]?.configuration_area || [])
+      setAmenity(response?.data[0]?.amenity || [])
       setPropertydocument(response?.data[0]?.property_document || [])
       setApproveStatus(props.data.approve_status)
 
