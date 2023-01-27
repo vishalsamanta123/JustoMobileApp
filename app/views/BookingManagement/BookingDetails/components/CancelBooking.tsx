@@ -18,17 +18,16 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
 
 const CancelModal = (props: any) => {
-console.log('props: ', props);
   const dispatch: any = useDispatch();
   const [masterDatas, setMasterDatas] = useState<any>();
+  console.log('masterDatas: ', masterDatas);
   const [propertyCompetitor, setPropertyCompetitor] = useState<any>();
+  console.log('propertyCompetitor: ', propertyCompetitor);
   const [propetyInput, setPropetyInput] = useState<any>(false);
   const [reasonSelect, setReasonSelect] = useState<any>(false);
   const masterData = useSelector((state: any) => state.masterData) || {};
   const propertyData =
   useSelector((state: any) => state.competitorproperty) || {};
-  
-  console.log('propertyData: ', propertyData);
   const handleMasterDatas = (data: any) => {
     dispatch(
       getAllMaster({
@@ -226,7 +225,7 @@ console.log('props: ', props);
                     onChange={(item: any) => {
                       props.setCancelValue({
                         ...props.cancelValue,
-                        property_id: item.property_id,
+                        property_id: item.property_name,
                       });
                     }}
                     newRenderItem={(item: any) => {

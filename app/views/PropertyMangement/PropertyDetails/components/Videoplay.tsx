@@ -29,38 +29,42 @@ const Videoplay = (props: any) => {
                     <View style={styles.borderView} />
                     <View style={{ marginHorizontal: 5 }}>
 
-                      { 
-                       props.itemDetail?.document_type ==='video' ? 
+                        {
+                            props.itemDetail?.document_type === 'video' ?
 
-                        <Video
-                            ref={ref => {
-                                this.video = ref;
-                            }}
-                            source={{uri:props.itemDetail?.base_url+props.itemDetail?.document}}
-                            //poster={item.videos[0].thumbnail}
-                            // shouldPlay={false}
-                            repeat
-                            // onReadyForDisplay={this.loading}
-                            //paused={this.state.stop ? true : this.state.paused}
-                            //isLooping
-                            resizeMode="contain"
-                            // posterResizeMode={"contain"}
-                            style={{
-                                height: 250,
-                                width: '100%',
-                            }}
-                        />
-                        : 
-                        <Image 
-                        source={{uri:props.itemDetail?.base_url+props.itemDetail?.document}}
-                        />
-                        
+                                <Video
+                                    ref={ref => {
+                                        this.video = ref;
+                                    }}
+                                    source={{ uri: props?.base_url + props.itemDetail?.document }}
+                                    //poster={item.videos[0].thumbnail}
+                                    // shouldPlay={false}
+                                    repeat
+                                    // onReadyForDisplay={this.loading}
+                                    //paused={this.state.stop ? true : this.state.paused}
+                                    //isLooping
+                                    resizeMode="contain"
+                                    // posterResizeMode={"contain"}
+                                    style={{
+                                        height: 500,
+                                        width: '100%',
+                                    }}
+                                    selectedVideoTrack={{
+                                        type: "resolution",
+                                        value: 480
+                                    }}
+                                />
+                                :
+                                <Image
+                                    source={{ uri: props.itemDetail?.base_url + props.itemDetail?.document }}
+                                />
+
                         }
 
 
 
                     </View>
-                 
+
                 </View>
             </Modal>
 

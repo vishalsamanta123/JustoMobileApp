@@ -17,7 +17,7 @@ const VideoContent = ({navigation,route}: any) => {
   const [playerVisible,setPlayerVisible] = useState(false)
   const [itemDetail,setItemDetail] = useState({})
   const insets = useSafeAreaInsets();
-  const datavideos = route?.params || []
+  const {videoarray, base_url} = route?.params || []
   const handleBackPress = () => {
     navigation.goBack();
   };
@@ -53,7 +53,7 @@ const VideoContent = ({navigation,route}: any) => {
         videoHeight={900}
         thumbnail={{ uri: 'https://i.picsum.photos/id/866/1600/900.jpg' }}
         /> */}
-        <FlatList data={datavideos}
+        <FlatList data={videoarray}
         numColumns={1}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
@@ -68,7 +68,7 @@ const VideoContent = ({navigation,route}: any) => {
               //source={item.image}
               source={
                 item?.video_thumbnail ? 
-                {uri: item?.base_url + item?.video_thumbnail} :
+                {uri: base_url + item?.video_thumbnail} :
                 images.buildings
               }
               style={{
@@ -97,6 +97,7 @@ const VideoContent = ({navigation,route}: any) => {
         Visible={playerVisible}
         setIsVisible={setPlayerVisible}
         itemDetail={itemDetail}
+        base_url={base_url}
       />
 
     </View>
