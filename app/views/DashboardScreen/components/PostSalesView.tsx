@@ -24,7 +24,7 @@ const PostSaleDashboardView = (props: any) => {
                         <Text style={styles.numberText}>{achieveTargetData?.achieve_closing_target}/{targetData?.registration_target}</Text>
                     </View>
                 </View>
-                <View style={[styles.secondCardView, {
+                {/* <View style={[styles.secondCardView, {
                     maxHeight: normalizeHeight(150)
                 }]}>
                     <View style={styles.cardTextView}>
@@ -35,7 +35,7 @@ const PostSaleDashboardView = (props: any) => {
                     <View style={styles.numberView}>
                         <Text style={styles.numberText}>{achieveTargetData?.achieve_booking_target}/{targetData?.booking_target}</Text>
                     </View>
-                </View>
+                </View> */}
             </View>
             {/* Bottom Section */}
             <View style={styles.thirdPortion}>

@@ -113,7 +113,7 @@ const PickupRequestsList = (props: any) => {
         ) : (
           <View></View>
         )}
-        {/* {props.items.status === 1 || props.items.status === 2 ? (
+        {props.items.status === 1 || props.items.status === 2 ? (
           <Button
             width={120}
             height={30}
@@ -125,12 +125,12 @@ const PickupRequestsList = (props: any) => {
             btnTxtsize={14}
             border={10}
             handleBtnPress={() => {
-              Linking.openURL(`tel:${props.items?.mobile}`);
+              props.setIsVisible(true)
             }}
           />
         ) : (
           <View></View>
-        )} */}
+        )}
       </View>
     </View>
   );

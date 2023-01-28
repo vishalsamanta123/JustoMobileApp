@@ -58,6 +58,7 @@ const strings = new LocalizedStrings({
     allocate: 'Allocate',
     propertyDetailHeader: 'Property Detail',
     searchProperty: 'Search Property',
+    searchChat: 'Search Chat',
     resend: 'Resend',
     notRecived: `Didn't receive the code?`,
     codeSent: 'A verification code has been sent to',
@@ -69,7 +70,7 @@ const strings = new LocalizedStrings({
     galleryHeader: 'Gallery',
     videocontentHeader: 'Videos',
     cataloguecontentHeader: 'Catalogue',
-    createVisit: 'CREATE VISIT',
+    createVisit: 'CREATE VISITOR',
     visits: 'Visits',
     gender: "Gender :",
     male: "Male",
@@ -107,7 +108,7 @@ const strings = new LocalizedStrings({
     select: 'select',
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
-    correctemail: 'Enter correct Email Address',
+    correctemail: 'Enter correct Email Address or Mobile Number',
     usernamerequired: 'Username is require. Please enter username',
     passwordrequired: 'Password is require. Please enter password',
     emailrequired: 'Email is require. Please enter email',
@@ -131,6 +132,7 @@ const strings = new LocalizedStrings({
     city: 'City',
     propertyChat: 'Property chat',
     user: 'User',
+    chat: 'Chat',
 
     /**Confirm Model**/
     ConfirmationModalTxt: 'Select the reason for\r\nunsubscribe this property.',
