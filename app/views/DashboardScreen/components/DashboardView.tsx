@@ -31,15 +31,19 @@ const DashboardView = (props: any) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          roleType === ROLE_IDS.sourcingtl_id ?
-            props.onPressSMList('details',item) :
-            props.onPressCPList('details', item)
+          roleType === ROLE_IDS.sourcingtl_id
+            ? props.onPressSMList("details", item)
+            : props.onPressCPList("details", item);
         }}
-        style={styles.headingView}>
-        <Text style={styles.itemText}>{
-          roleType === ROLE_IDS.sourcingtl_id ?
-            item.user_name : roleType === ROLE_IDS.sourcingmanager_id
-              ? item.agent_name : strings.notfount}</Text>
+        style={styles.headingView}
+      >
+        <Text style={styles.itemText}>
+          {roleType === ROLE_IDS.sourcingtl_id
+            ? item.user_name
+            : roleType === ROLE_IDS.sourcingmanager_id
+            ? item.agent_name
+            : strings.notfount}
+        </Text>
         <Text style={styles.itemText}>{item.total_visit}</Text>
         <Text style={styles.itemText}>{item.total_site_visit}</Text>
         {/* <Text style={styles.itemText}>{item.total_closing_lead}</Text> */}
@@ -93,24 +97,28 @@ const DashboardView = (props: any) => {
                 </Text>
               </View>
             </View>
-            <View style={styles.qrCodeView}>
-              {props?.dashboardData?.qrcode != "" ||
-              props?.dashboardData?.qr_code ? (
-                <Image
-                  source={{
-                    uri:
-                      props?.dashboardData?.qrcode ||
-                      props?.dashboardData?.qr_code,
-                  }}
-                  style={styles.qrCodeImage}
-                />
-              ) : (
-                <Image source={images.qrCode} style={styles.qrCodeImage} />
-              )}
-              {/* <TouchableOpacity style={styles.linkImageView}>
+            {roleType === ROLE_IDS.postsales_id ? (
+              <></>
+            ) : (
+              <View style={styles.qrCodeView}>
+                {props?.dashboardData?.qrcode != "" ||
+                props?.dashboardData?.qr_code ? (
+                  <Image
+                    source={{
+                      uri:
+                        props?.dashboardData?.qrcode ||
+                        props?.dashboardData?.qr_code,
+                    }}
+                    style={styles.qrCodeImage}
+                  />
+                ) : (
+                  <Image source={images.qrCode} style={styles.qrCodeImage} />
+                )}
+                {/* <TouchableOpacity style={styles.linkImageView}>
                 <Image source={images.link} style={styles.linkImage} />
               </TouchableOpacity> */}
-            </View>
+              </View>
+            )}
           </View>
           {roleType === ROLE_IDS.sourcingtl_id ||
           roleType === ROLE_IDS.sourcingmanager_id ? (
@@ -185,11 +193,14 @@ const DashboardView = (props: any) => {
               {roleType === ROLE_IDS.sourcingtl_id ||
               (roleType === ROLE_IDS.sourcingmanager_id &&
                 props?.listData?.length > 5) ? (
-                <TouchableOpacity style={styles.headingView} onPress={() => {
-                  roleType === ROLE_IDS.sourcingtl_id ?
-                    props.onPressSMList() :
-                    props.onPressCPList()
-                }}>
+                <TouchableOpacity
+                  style={styles.headingView}
+                  onPress={() => {
+                    roleType === ROLE_IDS.sourcingtl_id
+                      ? props.onPressSMList()
+                      : props.onPressCPList();
+                  }}
+                >
                   <Text style={[styles.headingText, styles.knowMoreText]}>
                     Know More
                   </Text>

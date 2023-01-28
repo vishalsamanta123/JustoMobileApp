@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RED_COLOR, validateEmail } from '../../../components/utilities/constant';
+import { RED_COLOR, Regexs, validateEmail } from '../../../components/utilities/constant';
 import LoginView from './components/LoginView';
 import { users } from '../../../components/utilities/DemoData';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -73,7 +73,7 @@ const LoginScreen = ({ navigation }: any) => {
       isError = false;
       errorMessage = strings.usernamepasswordempty
     }
-    else if (reg.test(loginData.email) === false) {
+    else if ( Regexs.emailOrPhone.test(loginData.email) === false) {
       isError = false;
       errorMessage = strings.correctemail
     }

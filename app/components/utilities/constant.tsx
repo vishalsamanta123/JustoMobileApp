@@ -55,9 +55,12 @@ export const ROLE_IDS = {
   agent_id: "6373209fd9363c459e3155b6",
   postsales_id: "63732009d9363c459e315530",
   receptionist_id: "6373202cd9363c459e315551",
+  sitehead_id: "63d37697b29929d68de050f9",
 }
 export const Regexs = {
   AadharRegex: new RegExp(/^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/),
   panRegex: new RegExp(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/),
-  emailRegex: new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+  emailRegex: new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
+  phoneNumRegex: new RegExp(/^(\+\d{1,3}[- ]?)?\d{10}$/),
+  emailOrPhone: new RegExp(/^(?:\d{10}|\w+@\w+\.\w{2,3})$/)
 }

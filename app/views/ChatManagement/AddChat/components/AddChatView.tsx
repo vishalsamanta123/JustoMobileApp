@@ -69,14 +69,14 @@ const AddChatView = (props: any) => {
         />
         {/* <ComingSoonScreen /> */}
         <SearchBar
-          placeholderText={strings.searchProperty}
+          placeholderText={strings.searchChat}
           onChangeText={handleChangeText}
           onSubmit={onSubmit}
         />
         <FlatList
           data={filteredData}
           renderItem={(item) => renderChatList(item.item)}
-          ListEmptyComponent={<EmptyListScreen message={strings.propertyChat} />}
+          ListEmptyComponent={<EmptyListScreen message={strings.chat} />}
           keyboardShouldPersistTaps
         />
       </View>

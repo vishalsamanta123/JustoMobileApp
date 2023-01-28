@@ -1,7 +1,7 @@
 import { View, Text, StatusBar, FlatList } from "react-native";
 import React, { useState, useEffect } from "react";
 import Header from "../../../../components/Header";
-import { GRAY_COLOR, } from "../../../../components/utilities/constant";
+import { GRAY_COLOR, ROLE_IDS, } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
@@ -21,6 +21,8 @@ const PropertyDetailView = (props: any) => {
   const [amenity, setAmenity] = useState([])
   const [approveStatus, setApproveStatus] = useState(1)
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
+  const getLoginType = useSelector((state: any) => state.login);
+  const roleType = getLoginType?.response?.data?.role_id || null;
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
   const { response, loading } = propertyData;
@@ -75,7 +77,7 @@ const PropertyDetailView = (props: any) => {
       <View style={[styles.btnContainer, {
         justifyContent: 'center'
       }]}>
-        <Button
+        {roleType === ROLE_IDS.sitehead_id ? <></> : <Button
           handleBtnPress={() => props.handleAllocatePress()}
           buttonText={strings.allocate}
           width={150}
@@ -84,7 +86,7 @@ const PropertyDetailView = (props: any) => {
           borderWidth={1}
           btnTxtsize={15}
           textTransform={"uppercase"}
-        />
+        />}
         <Button
           handleBtnPress={() => onPressCreatevisit()}
           buttonText={strings.createVisit}

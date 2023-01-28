@@ -141,7 +141,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.closingtl_id}`}
+          type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.sitehead_id}`}
           // type={"Closing TL"}
           iconSource={images.property}
           tabTitle={strings.closingManagerHeader}
@@ -150,7 +150,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.closingtl_id},${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sourcingmanager_id}}`}
+          type={`${ROLE_IDS.closingtl_id},${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sourcingmanager_id}, ${ROLE_IDS.sitehead_id}}`}
           // type={"Sourcing TL,Sourcing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.propertyManagementHeader}
@@ -159,7 +159,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}}`}
+          type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}, ${ROLE_IDS.sitehead_id}}`}
           // type={"Closing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.appointmentHeader}
@@ -171,7 +171,7 @@ const customDrawer = ({ navigation }: any) => {
           type={`${
             ROLE_IDS.closingtl_id},
             ${ROLE_IDS.closingmanager_id},
-            ${ROLE_IDS.postsales_id}
+            ${ROLE_IDS.postsales_id}, ${ROLE_IDS.sitehead_id}
           }`}
           // type={"Closing TL,Closing Manager,Post Sales"}
           iconSource={images.lead}
@@ -181,7 +181,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.sourcingtl_id}`}
+          type={`${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sitehead_id}`}
           // type={"Sourcing TL"}
           iconSource={images.property}
           tabTitle={strings.SourcingManagersHeader}
@@ -190,7 +190,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sourcingmanager_id}}`}
+          type={`${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sourcingmanager_id}, ${ROLE_IDS.sitehead_id}}`}
           // type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.agency}
           tabTitle={strings.agencyHeader}
@@ -199,7 +199,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sourcingmanager_id}, ${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}}`}
+          type={`${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sourcingmanager_id}, ${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}, ${ROLE_IDS.sitehead_id}}`}
           // type={"Sourcing TL,Sourcing Manager"}
           iconSource={images.lead}
           tabTitle={strings.leadManagementHeader}
@@ -212,7 +212,7 @@ const customDrawer = ({ navigation }: any) => {
             ROLE_IDS.sourcingtl_id},
             ${ROLE_IDS.sourcingmanager_id},
             ${ROLE_IDS.closingtl_id},
-            ${ROLE_IDS.closingmanager_id}
+            ${ROLE_IDS.closingmanager_id}, ${ROLE_IDS.sitehead_id}
           }`}
           // type={"Sourcing TL,Sourcing Manager,Closing Manager,Closing TL"}
           iconSource={images.event}
@@ -238,7 +238,7 @@ const customDrawer = ({ navigation }: any) => {
           type={`${
             ROLE_IDS.sourcingtl_id},
             ${ROLE_IDS.sourcingmanager_id},
-            ${ROLE_IDS.receptionist_id}
+            ${ROLE_IDS.receptionist_id}, ${ROLE_IDS.sitehead_id}
           }`}
           // type={"Sourcing TL,Sourcing Manager,Receptionist"}
           iconSource={images.event}
@@ -255,7 +255,7 @@ const customDrawer = ({ navigation }: any) => {
           type={`${
             ROLE_IDS.closingtl_id},
             ${ROLE_IDS.closingmanager_id},
-            ${ROLE_IDS.postsales_id}
+            ${ROLE_IDS.postsales_id}, ${ROLE_IDS.sitehead_id}
           }`}
           // type={"Closing Manager,Closing TL,Post Sales"}
           iconSource={images.lead}
@@ -265,7 +265,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.postsales_id}`}
+          type={`${ROLE_IDS.postsales_id}, ${ROLE_IDS.sitehead_id}`}
           // type={"Post Sales"}
           iconSource={images.lead}
           tabTitle={strings.registrationReqHead}
@@ -283,7 +283,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.sourcingmanager_id}`}
+          type={`${ROLE_IDS.sourcingmanager_id}, ${ROLE_IDS.sitehead_id}`}
           // type={"Sourcing Manager"}
           iconSource={images.event}
           tabTitle={strings.leaderBoardHeader}
@@ -317,7 +317,7 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.supportHeader}
         /> */}
         <DrawerTabSection
-          type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}`}
+          type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}, ${ROLE_IDS.sitehead_id}`}
           // type={"Closing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.cancelBooking}
@@ -326,7 +326,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}`}
+          type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}, ${ROLE_IDS.sitehead_id}`}
           // type={"Closing Manager,Closing TL"}
           iconSource={images.property}
           tabTitle={strings.recoveryHeader}
@@ -351,7 +351,7 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.chatHeader}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.closingtl_id}`}
+          type={`${ROLE_IDS.closingtl_id} , ${ROLE_IDS.sitehead_id}`}
           // type={"Closing TL"}
           handleDrawerNavigation={() => {
             navigation.navigate("PickupRequest");
@@ -360,7 +360,7 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.PickuprequestHeader}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id}`}
+          type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.closingmanager_id} , ${ROLE_IDS.sitehead_id}`}
           // type={"Closing Manager,Closing TL"}
           iconSource={images.support}
           tabTitle={strings.saleToolHeader}
