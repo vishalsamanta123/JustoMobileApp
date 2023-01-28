@@ -142,7 +142,7 @@ const BookingDetailsItem = (props: any) => {
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
                         <Text style={styles.nameTxt}>{item?.area ?
-                            item?.area : strings.notfount}</Text>
+                            item?.area: item?.leads?.areain_sqlft ? item?.leads?.areain_sqlft : strings.notfount}</Text>
                     </View>
                 </View>
                 {getLoginType?.response?.data?.role_id !== ROLE_IDS.postsales_id ?
@@ -153,8 +153,8 @@ const BookingDetailsItem = (props: any) => {
                         <View><Text>:</Text></View>
                         <View style={styles.nameContainer}>
                             <Text style={styles.nameTxt}>{
-                                item?.leads?.customer?.min_budget || item?.leads?.customer?.max_budget ? 
-                                `${item?.leads?.customer?.min_budget} ${item?.leads?.customer?.min_budget_type} - ${item?.leads?.customer?.max_budget} ${item?.leads?.customer?.max_budget_type}`
+                                item?.leads?.budget?.min_budget || item?.leads?.budget?.max_budget ? 
+                                `${item?.leads?.budget?.min_budget} ${item?.leads?.budget?.min_budget_type} - ${item?.leads?.budget?.max_budget} ${item?.leads?.budget?.max_budget_type}`
                                 : strings.notfount
                             }</Text>
                         </View>
@@ -308,8 +308,8 @@ const BookingDetailsItem = (props: any) => {
                         <View><Text>:</Text></View>
                         <View style={styles.nameContainer}>
                             <Text style={styles.nameTxt}>
-                                {item?.coniguration && item?.quantity ?
-                                    `${item?.coniguration} / ${item?.quantity}` : null}</Text>
+                                {item?.configuration && item?.quantity ?
+                                    `${item?.configuration} / ${item?.quantity}` : null}</Text>
                         </View>
                     </View>
                 </>)

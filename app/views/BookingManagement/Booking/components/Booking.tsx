@@ -13,6 +13,7 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 
 const BookingView = (props: any) => {
+console.log('props?.propertyConfData: ', props?.propertyConfData);
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -136,8 +137,8 @@ const BookingView = (props: any) => {
                             <DropdownInput
                                 headingText={'Configuration'}
                                 onFocus={() => props.getDropDownData()}
-                                placeholder={props?.bookingData?.coniguration ?
-                                    props?.bookingData?.coniguration : 'Configuration'}
+                                placeholder={props?.bookingData?.configuration ?
+                                    props?.bookingData?.configuration : 'Configuration'}
                                 data={Array.isArray(props?.propertyConfData) ? props?.propertyConfData : []}
                                 inputWidth={'100%'}
                                 paddingLeft={16}
@@ -148,8 +149,8 @@ const BookingView = (props: any) => {
                                 onChange={(item: any) => {
                                     props.setBookingData({
                                         ...props.bookingData,
-                                        coniguration_id: item.configuration_id,
-                                        coniguration: item.configuration_title
+                                        configuration_id: item.configuration_id,
+                                        configuration: item.configuration_title
                                     })
                                 }}
                                 newRenderItem={(item: any) => {

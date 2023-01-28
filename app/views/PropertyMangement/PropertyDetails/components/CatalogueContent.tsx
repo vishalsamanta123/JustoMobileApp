@@ -12,6 +12,7 @@ import styles from "./styles";
 import {
   PRIMARY_THEME_COLOR_DARK,
   GRAY_LIGHT_COLOR,
+  RED_COLOR,
 } from "../../../../components/utilities/constant";
 import Header from "../../../../components/Header";
 import images from "../../../../assets/images";
@@ -24,11 +25,12 @@ import {
 } from "../../../../components/scaleFontSize";
 import FileViewer from "react-native-file-viewer";
 import RNFS from "react-native-fs";
+import ErrorMessage from "app/components/ErrorMessage";
 
 const CatalogueContent = ({ navigation, route }: any) => {
   const insets = useSafeAreaInsets();
 
-  const datadocuments = route?.params || [];
+  const {array, base_url} = route?.params || [];
   const handleBackPress = () => {
     navigation.goBack();
   };
@@ -53,6 +55,10 @@ const CatalogueContent = ({ navigation, route }: any) => {
       .catch((error) => {
         console.log("error", error);
         // error
+        ErrorMessage({
+          msg: error?.message,
+          backgroundColor: RED_COLOR
+        })
       });
   };
   return (
@@ -75,7 +81,7 @@ const CatalogueContent = ({ navigation, route }: any) => {
       />
       <View>
         <FlatList
-          data={datadocuments}
+          data={array}
           numColumns={1}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={
@@ -93,7 +99,7 @@ const CatalogueContent = ({ navigation, route }: any) => {
               }}
             >
               <TouchableOpacity
-                onPress={() => OpenDoc(`${item?.base_url}${item?.document}`)}
+                onPress={() => OpenDoc(`${base_url}${item?.document}`)}
               >
                 <Image
                   //source={item.image}

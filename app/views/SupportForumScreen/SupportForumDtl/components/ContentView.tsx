@@ -64,7 +64,7 @@ const ContentView = (props: any) => {
                                 </View>
                             </View>
                             :
-                            <FastImages
+                            <Image
                                 source={{ uri: props?.url + props?.contentData?.content }}
                                 style={styles.contentImgs}
                                 resizeMode={'contain'}

@@ -355,7 +355,7 @@ const AuthLoadingComponent = () => {
           console.log("e", e);
         });
       // const { data } = await apiCall("GET", apiEndPoints.JWTTOKEN, null);
-      console.log("data", data);
+      console.log("data IN Token", data);
       if (data?.status === 200) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);
@@ -365,8 +365,12 @@ const AuthLoadingComponent = () => {
         //   backgroundColor: RED_COLOR,
         // });
       }
-    } catch (error) {
+    } catch (error: any) {
       // console.log(error);
+      ErrorMessage({
+        msg: error?.message,
+        backgroundColor: RED_COLOR,
+      });
     }
   }
   useEffect(() => {

@@ -9,6 +9,7 @@ import { BLACK_COLOR, DATE_TIME_FORMAT } from 'app/components/utilities/constant
 
 const LeadDetailsIteam = (props: any) => {
     const item = props?.items || {}
+    console.log('item: LeadDetailsIteam ', item);
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
@@ -128,12 +129,12 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.customer_detail?.configuration === '' ||
-                            item?.customer_detail?.configuration === undefined ||
-                            item?.customer_detail?.configuration === null ||
-                            item?.customer_detail?.configuration === "undefined" ?
+                        <Text style={styles.nameTxt}>{item?.configuration === '' ||
+                            item?.configuration === undefined ||
+                            item?.configuration === null ||
+                            item?.configuration === "undefined" ?
                             strings.notfount :
-                            item?.customer_detail?.configuration}</Text>
+                            item?.configuration}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -142,11 +143,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.customer_detail?.areain_sqlft === '' ||
-                            item?.customer_detail?.areain_sqlft === undefined ||
-                            item?.customer_detail?.areain_sqlft === "undefined" ?
+                        <Text style={styles.nameTxt}>{item?.areain_sqlft === '' ||
+                            item?.areain_sqlft === undefined ||
+                            item?.areain_sqlft === "undefined" ?
                             strings.notfount :
-                            item?.customer_detail?.areain_sqlft}</Text>
+                            item?.areain_sqlft}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -156,8 +157,8 @@ const LeadDetailsIteam = (props: any) => {
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
                         <Text style={styles.nameTxt}>{
-                            item?.customer_detail?.min_budget || item?.customer_detail?.max_budget ?
-                                `${item?.customer_detail?.min_budget} ${item?.customer_detail?.min_budget_type} - ${item?.customer_detail?.max_budget} ${item?.customer_detail?.max_budget_type}`
+                            item?.min_budget || item?.max_budget ?
+                                `${item?.min_budget} ${item?.min_budget_type} - ${item?.max_budget} ${item?.max_budget_type}`
                                 : strings.notfount
                         }</Text>
                     </View>
@@ -253,11 +254,10 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{item?.customer_detail?.city === '' ||
-                            item?.customer_detail?.city === undefined ||
-                            item?.customer_detail?.city === "undefined" || item?.customer_detail?.city === null
-                            ? strings.notfount :
-                            item?.customer_detail?.city}</Text>
+                    <Text style={styles.nameTxt}>{
+                            item?.customer_detail?.city ? item?.customer_detail?.city :
+                                item?.customer_detail?.locality ? item?.customer_detail?.locality
+                                    : strings.notfount}</Text>
                     </View>
                 </View>
             </>

@@ -212,7 +212,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       ) {
         isError = false;
         errorMessage =
-          "Propidership Declaration Letter Image is require. Please Choose Propidership Declaration Letter Image";
+          "Proprietorship Declaration Letter Image is require. Please Choose Proprietorship Declaration Letter Image";
       } else if (
         agencyData.cancel_cheaque == null ||
         agencyData.cancel_cheaque == undefined

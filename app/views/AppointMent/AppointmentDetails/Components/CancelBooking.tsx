@@ -220,13 +220,13 @@ const CancelModal = (props: any) => {
                     paddingLeft={16}
                     maxHeight={300}
                     onFocus={() => handleCompetitorProperty()}
-                    labelField="competitor_name"
+                    labelField="property_name"
                     valueField={"property_id"}
                     value={props?.cancelValue?.property_id}
                     onChange={(item: any) => {
                       props.setCancelValue({
                         ...props.cancelValue,
-                        property_id: item.property_id,
+                        property_id: item.property_name,
                       });
                     }}
                     newRenderItem={(item: any) => {
@@ -234,7 +234,7 @@ const CancelModal = (props: any) => {
                         <>
                           <View style={styles.item}>
                             <Text style={styles.textItem}>
-                              {item.competitor_name}
+                              {item.property_name}
                             </Text>
                           </View>
                         </>
