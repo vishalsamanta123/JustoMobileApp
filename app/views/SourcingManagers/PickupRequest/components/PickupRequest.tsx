@@ -11,7 +11,6 @@ import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 import UpdateStatusModal from "./UpdateStatusModal";
 
 const PickupRequestView = (props: any) => {
-  const [isVisible, setIsVisible] = useState(false);
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -31,7 +30,7 @@ const PickupRequestView = (props: any) => {
           data={props?.DATA}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
-            <PickupRequestsList setIsVisible={setIsVisible} items={item} />
+            <PickupRequestsList setIsVisible={props.setIsVisible} items={item} setAppointId={props.setAppointId} />
           )}
           onRefresh={() => props.onRefresh()}
           refreshing={false}
@@ -45,8 +44,9 @@ const PickupRequestView = (props: any) => {
         setIsVisible={props.setFilterisVisible}
       />
       <UpdateStatusModal
-        Visible={isVisible}
-        setIsVisible={() => setIsVisible(false)}
+        Visible={props.isVisible}
+        setIsVisible={() => props.setIsVisible(false)}
+        updatePickupStatus={props.updatePickupStatus}
         // setDropLocation={setDropLocation}
         // handleDropLocation={handleDropLocation}
       />

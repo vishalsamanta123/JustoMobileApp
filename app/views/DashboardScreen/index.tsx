@@ -7,6 +7,7 @@ import {
   dashboardClosingData,
   dashboardPostSaleData,
   dashboardReceptionistData,
+  dashboardSiteHeadData,
   dashboardSourcingData,
   userStatusUpdateData,
   userStatusUpdater,
@@ -86,6 +87,10 @@ const DashboardScreen = ({ navigation }: any) => {
       getLoginType?.response?.data?.role_id === ROLE_IDS.receptionist_id
     ) {
       dispatch(dashboardReceptionistData({}));
+    }  else if (
+      getLoginType?.response?.data?.role_id === ROLE_IDS.sitehead_id
+    ) {
+      dispatch(dashboardSiteHeadData({}));
     } else {
       setDashboardData({});
       setIsEnabled(null);

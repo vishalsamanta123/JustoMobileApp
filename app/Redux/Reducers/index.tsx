@@ -13,7 +13,7 @@ import { ClosingManagerReducer } from "./ClosingManagerReducer";
 import { BookingReducer, cancelAddBookingReducer, } from "./BookingReducer";
 import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 import { deleteNotificationReducer, notificationListReducer } from "./NotificationReducer";
-import { PickUpReducer } from "./PickUpReducer";
+import { PickUpReducer, UpdatePickUpStatusReducer } from "./PickUpReducer";
 import { transferVisitorReducer, transferVisitReducer } from "./TransferVisitReducer";
 import { firebaseReducer } from "./FirebaseReducer";
 import { ChatReducer, getRecentChatList, updateChatStatus } from "./ChatReducer";
@@ -86,6 +86,7 @@ export default {
 
     //pickUp
     Pickup: PickUpReducer,
+    updatePickUpStatusData: UpdatePickUpStatusReducer,
 
     //support Forum
     supportForumData: supportForumReducer,

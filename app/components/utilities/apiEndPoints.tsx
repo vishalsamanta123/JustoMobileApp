@@ -23,6 +23,7 @@ export default {
   DASHBOARD_CLOSING: '/dashboard/dashboardDetailClosing',
   DASHBOARD_POSTSALES: '/dashboard/dashboardDetailPostSale',
   DASHBOARD_RECEPTIONIST: '/dashboard/dashboardDetailReception',
+  DASHBOARD_SITE_HEAD: '/dashboard/dashboardDetailSiteHead',
   UPDATE_USER_STATUS: '/auth/userOnlineStatusUpdate',
   // CREATE CHANNEL PARTNER
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
@@ -83,6 +84,7 @@ export default {
   ADD_DROPLOCATION: '/appointment/addDropOffLocation',
   ALLOCATE_CM: '/appointment/appointmentAlocateClosinManager',
   PICKUP_LIST: 'appointment/getPickupAddressList',
+  UPDATE_PICKUP_LIST: '/appointment/updatePickupStatus',
   GET_CHECKING_APPOINTMENT_LIST: '/appointment/getCheckInAppointmentList',
 
   // user Appointment

@@ -67,9 +67,11 @@ export const getAllFollowUpDetails = (params: any) => async (dispatch: any) => {
   }
 };
 export const updateFollowUp = (params: any) => async (dispatch: any) => {
+console.log('params: updateFollowUp ', params);
   dispatch({ type: START_LOADING });
   try {
     const res = await apiCall("post", apiEndPoints.UPDATE_FOLLOWUP, params);
+    console.log('res: IN updateFollowUp', res);
     if (res.data.status == 200) {
       dispatch({
         type: UPDATE_FOLLOWUP,

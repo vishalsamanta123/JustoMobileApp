@@ -84,18 +84,16 @@ const PickupRequestsList = (props: any) => {
         <View style={styles.nameContainer}>
           {/* <Text style={styles.nameTxt}>{item?.status}</Text> */}
           <Text style={styles.nameTxt}>
-            {item?.status == 1
+            {item?.pickup_status == 0
               ? "Pending"
-              : item?.status == 2
+              : item?.pickup_status == 1
               ? "Confirm"
-              : item?.status == 3
-              ? "Complete"
-              : "Appointment cancel"}
+               : strings.notfount}
           </Text>
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        {props.items.status === 1 || props.items.status === 2 ? (
+        {item?.pickup_status === 0 || item?.pickup_status === 1 ? (
           <Button
             width={80}
             height={30}
@@ -113,7 +111,7 @@ const PickupRequestsList = (props: any) => {
         ) : (
           <View></View>
         )}
-        {props.items.status === 1 || props.items.status === 2 ? (
+        {item?.pickup_status === 0 ? (
           <Button
             width={120}
             height={30}
@@ -125,6 +123,7 @@ const PickupRequestsList = (props: any) => {
             btnTxtsize={14}
             border={10}
             handleBtnPress={() => {
+              props.setAppointId(item)
               props.setIsVisible(true)
             }}
           />

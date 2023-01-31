@@ -36,55 +36,21 @@ const UpdateStatusModal = (props: any) => {
       <Modal isVisible={props.Visible}>
         <View style={styles.bookingModelVw}>
           <View style={styles.topContainer}>
+            <View style={{flexDirection: 'column'}}>
             <Text style={styles.topTxt}>{"Pickup Status"}</Text>
+            <Text style={styles.descText}>{"Are you sure want to Pickup"}</Text>
+            </View>
             <View>
               <TouchableOpacity onPress={() => props.setIsVisible(false)}>
                 <Image source={images.close} style={styles.closeIcon} />
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[styles.inputWrap, { marginVertical: 20 }]}>
+          {/* <View style={[styles.inputWrap, { marginVertical: 20 }]}>
             <ScrollView
               contentContainerStyle={{ flexGrow: 1 }}
               keyboardShouldPersistTaps={"handled"}
             >
-              {/* <GooglePlacesAutocomplete
-                fetchDetails={true}
-                placeholder={strings.location}
-                textInputProps={{
-                  placeholderTextColor: PRIMARY_THEME_COLOR_DARK,
-                }}
-                styles={{
-                  textInputContainer: {
-                    borderWidth: 1.5,
-                    borderColor: PRIMARY_THEME_COLOR_DARK,
-                    borderRadius: normalize(8),
-                    paddingVertical: normalizeSpacing(5),
-                  },
-                  textInput: {
-                    height: normalizeHeight(30),
-                    color: PRIMARY_THEME_COLOR_DARK,
-                    fontSize: normalize(14),
-                  },
-                  predefinedPlacesDescription: {
-                    color: "#1faadb",
-                  },
-                }}
-                onPress={(data, details = null) => {
-                  props.setDropLocation(data?.description);
-                }}
-                filterReverseGeocodingByTypes={[
-                  "locality",
-                  "administrative_area_level_1",
-                ]}
-                nearbyPlacesAPI="GooglePlacesSearch"
-                query={{
-                  key: MAP_KEY,
-                  language: "en",
-                  // types: '(cities)', //<=== use this to only show country cities
-                  components: "country:in", // <=== use this to restrict to country
-                }}
-              /> */}
               <DropdownInput
                 style={styles.dropdown}
                 placeholderStyle={styles.placeholderStyle}
@@ -103,10 +69,12 @@ const UpdateStatusModal = (props: any) => {
                 newRenderItem={configRender}
               />
             </ScrollView>
-          </View>
+          </View> */}
+          
           <View style={{ marginVertical: 20 }}>
             <Button
               handleBtnPress={() => {
+                props.updatePickupStatus()
                 props.setIsVisible(false);
               }}
               buttonText={strings.Confirm}

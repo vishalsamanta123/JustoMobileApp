@@ -24,6 +24,7 @@ import ClosingDashboardView from "./ClosingView";
 import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 import PostSaleDashboardView from "./PostSalesView";
 import ReceiptionistDashboardView from "./ReceptionistView";
+import SiteHeadView from "./SiteHeadView";
 
 const DashboardView = (props: any) => {
   const roleType = props?.getLoginType?.response?.data?.role_id || null;
@@ -156,9 +157,15 @@ const DashboardView = (props: any) => {
                           dashboardData={props?.dashboardData}
                         />
                       ) : (
-                        <View style={styles.secondPortion}>
-                          <ComingSoonScreen />
-                        </View>
+                        <>
+                          {roleType === ROLE_IDS.sitehead_id ? (
+                            <SiteHeadView dashboardData={props?.dashboardData} onpressBooking={props.onpressBooking}/>
+                          ) : (
+                            <View style={styles.secondPortion}>
+                              <ComingSoonScreen />
+                            </View>
+                          )}
+                        </>
                       )}
                     </>
                   )}

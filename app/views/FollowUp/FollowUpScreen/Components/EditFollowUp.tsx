@@ -48,10 +48,10 @@ const EditFollowUp = ({ navigation, route }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      if (followUpId?._id) {
+      // if (followUpId?._id) {
         setIsloading(true);
         dispatch(getAllFollowUpDetails({ followup_id: followUpId?._id }));
-      }
+      // }
       return () => { };
     }, [navigation, detail])
   );

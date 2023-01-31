@@ -1,4 +1,4 @@
-import { GET_DASHBOARD_SOURCING, DASHBOARD_SOURCING_ERROR, USER_STATUS_UPDATE, STATUS_UPDATE_DATA, GET_DASHBOARD_CLOSING, DASHBOARD_CLOSING_ERROR, GET_DASHBOARD_POSTSALES, DASHBOARD_POSTSALES_ERROR, GET_DASHBOARD_RECEPTIONIST, DASHBOARD_RECEPTIONIST_ERROR } from "../types";
+import { GET_DASHBOARD_SOURCING, DASHBOARD_SOURCING_ERROR, USER_STATUS_UPDATE, STATUS_UPDATE_DATA, GET_DASHBOARD_CLOSING, DASHBOARD_CLOSING_ERROR, GET_DASHBOARD_POSTSALES, DASHBOARD_POSTSALES_ERROR, GET_DASHBOARD_RECEPTIONIST, DASHBOARD_RECEPTIONIST_ERROR, GET_DASHBOARD_SITE_HEAD, GET_DASHBOARD_SITE_HEAD_ERROR } from "../types";
 const initialStateForm = {
     response: null,
     update: false,
@@ -46,6 +46,18 @@ export function dashboardReducer(state = initialStateForm, action: any) {
             return {
                 ...state,
                 data: true,
+                response: action.payload,
+            };
+        case GET_DASHBOARD_SITE_HEAD:
+            return {
+                ...state,
+                data: true,
+                response: action.payload,
+            };
+        case GET_DASHBOARD_SITE_HEAD_ERROR:
+            return {
+                ...state,
+                data: false,
                 response: action.payload,
             };
         case DASHBOARD_RECEPTIONIST_ERROR:

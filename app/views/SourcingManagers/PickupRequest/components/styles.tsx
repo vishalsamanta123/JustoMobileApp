@@ -116,6 +116,11 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_EXTRABOLD,
     fontSize: normalize(18),
   },
+  descText: {
+    color: BLACK_COLOR,
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    fontSize: normalize(16),
+  },
   topContainer: {
     flexDirection: "row",
     marginVertical: normalizeSpacing(10),

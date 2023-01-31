@@ -1,8 +1,12 @@
-import { GET_PICKUP_LIST, GET_PICKUP_LIST_ERROR } from "../types";
+import { GET_PICKUP_LIST, GET_PICKUP_LIST_ERROR, UPDATE_PICKUP_STATUS, UPDATE_PICKUP_STATUS_ERROR } from "../types";
 
 const initialState = {
     response: null,
     list: false
+  };
+const initialState1 = {
+    response: null,
+    update: false
   };
   
   
@@ -20,6 +24,26 @@ const initialState = {
         return {
           ...state,
           list: true,
+          response: action.payload,
+        };
+  
+      default:
+        return state;
+    }
+  }
+  export function UpdatePickUpStatusReducer(state = initialState1, action: any) {
+    switch (action.type) {
+  
+      case UPDATE_PICKUP_STATUS:
+        return {
+          ...state,
+          update: true,
+          response: action.payload,
+        };
+      case UPDATE_PICKUP_STATUS_ERROR:
+        return {
+          ...state,
+          update: false,
           response: action.payload,
         };
   
