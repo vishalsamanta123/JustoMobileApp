@@ -141,7 +141,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.closingtl_id}, ${ROLE_IDS.sitehead_id}`}
+          type={`${ROLE_IDS.closingtl_id}`}
           // type={"Closing TL"}
           iconSource={images.property}
           tabTitle={strings.closingManagerHeader}
@@ -156,6 +156,15 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.propertyManagementHeader}
           handleDrawerNavigation={() => {
             navigation.navigate("PropertyScreenView");
+          }}
+        />
+        <DrawerTabSection
+          type={`${ROLE_IDS.sitehead_id}}`}
+          // type={"Sourcing TL,Sourcing Manager,Closing TL"}
+          iconSource={images.property}
+          tabTitle={strings.UserManagerHeader}
+          handleDrawerNavigation={() => {
+            navigation.navigate("UserManager");
           }}
         />
         <DrawerTabSection
@@ -181,7 +190,7 @@ const customDrawer = ({ navigation }: any) => {
           }}
         />
         <DrawerTabSection
-          type={`${ROLE_IDS.sourcingtl_id}, ${ROLE_IDS.sitehead_id}`}
+          type={`${ROLE_IDS.sourcingtl_id}`}
           // type={"Sourcing TL"}
           iconSource={images.property}
           tabTitle={strings.SourcingManagersHeader}

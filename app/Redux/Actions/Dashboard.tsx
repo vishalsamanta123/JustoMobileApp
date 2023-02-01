@@ -138,7 +138,6 @@ export const dashboardSiteHeadData = (userDetail: any) => async (dispatch: any) 
             apiEndPoints.DASHBOARD_SITE_HEAD,
             {}
         );
-        console.log('res: IN dashboardSiteHeadData', res);
 
         if (res.data.status == 200) {
             dispatch({
