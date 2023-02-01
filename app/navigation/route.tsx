@@ -100,6 +100,9 @@ import TicketStatusUpdate from "app/views/SupportScreen/Support/components/Ticke
 import CpChecking from "app/views/CpChecking/CpCheckingScreen";
 import BookingRegistration from "app/views/BookingManagement/BookingDetails/components/Registration";
 import AddChatScreen from "app/views/ChatManagement/AddChat";
+import UserManagementScreen from "app/views/UserManager/UserManagement";
+import AddNewUserScreen from "app/views/UserManager/AddNewUser";
+import UserDetailsScreen from "app/views/UserManager/UserDetails";
 
 const Stack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -124,6 +127,7 @@ const DrawerComponent = () => {
       />
       <Drawer.Screen name="SourcingManager" component={SourcingManager} />
       <Drawer.Screen name="ClosingManager" component={ClosingManager} />
+      <Drawer.Screen name="UserManager" component={UserManagementScreen} />
       <Drawer.Screen name="FollowUpScreen" component={FollowUpScreen} />
       <Drawer.Screen
         name="AppointmentForSite"
@@ -191,6 +195,10 @@ const AppComponent = () => {
       {/* Closing Management Screens */}
       <AppStack.Screen name="AddNewCM" component={AddNewCM} />
       <AppStack.Screen name="CMDetails" component={CMDetails} />
+
+      {/* User Management Screens */}
+      <AppStack.Screen name="AddNewUserScreen" component={AddNewUserScreen} />
+      <AppStack.Screen name="UserDetailsScreen" component={UserDetailsScreen} />
 
       {/* Follow up Screens */}
       <AppStack.Screen name="FollowUpDetails" component={FollowUpDetails} />

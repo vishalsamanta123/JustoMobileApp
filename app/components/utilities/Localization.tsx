@@ -12,6 +12,7 @@ const strings = new LocalizedStrings({
     propertyHeader: 'Property',
     propertyManagementHeader: 'Property Management',
     closingManagerHeader: 'Closing Manager',
+    UserManagerHeader: 'User Manager',
     appointmentHeader: 'Appointment',
     readytoBookHeader: 'Ready to Book',
     bookingRequestHead: 'Booking Request',
@@ -171,6 +172,11 @@ const strings = new LocalizedStrings({
     CMDetails: "CM Detail",
     selectCM: "Select CM",
 
+    /*** User Manager ***/
+    addNewUser: 'Add New User',
+    createUser: 'Create User',
+    editUser: 'Edit User',
+    updateUser: 'Update User',
     /*** agency ***/
     addnewAgency: 'Add new CP',
     pendingconfirm: 'Approve New CP',

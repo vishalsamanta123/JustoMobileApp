@@ -9,7 +9,6 @@ import {
 } from "app/components/scaleFontSize";
 
 const SiteHeadView = (props: any) => {
-console.log('props: ', props);
   return (
     <View style={styles.mainContainerWrap}>
       <View style={styles.secondPortion}>
