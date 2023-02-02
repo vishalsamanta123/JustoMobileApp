@@ -1,4 +1,4 @@
-import { CHAT_ERROR, GET_ALL_USER_CHAT_LIST, GET_RECENT_CHAT_LIST, GET_RECENT_CHAT_LIST_ERROR, UPDATE_CHAT_STATUS, UPDATE_CHAT_STATUS_ERROR } from "../types";
+import { CHAT_ERROR, GET_ALL_USER_CHAT_LIST, GET_CHAT_PROPERTY_LIST, GET_RECENT_CHAT_LIST, GET_RECENT_CHAT_LIST_ERROR, PROPERTY_LIST_ERROR, UPDATE_CHAT_STATUS, UPDATE_CHAT_STATUS_ERROR } from "../types";
 
 const initialState = {
     response: null,
@@ -9,6 +9,10 @@ const initialState2 = {
     update: false,
 };
 const initialState3 = {
+    response: null,
+    list: false,
+};
+const initialState4 = {
     response: null,
     list: false,
 };
@@ -67,3 +71,21 @@ export function getRecentChatList(state = initialState3, action: any) {
             return state;
     }
 }
+export function propertyChatReducer(state = initialState4, action: any) {
+    switch (action.type) {
+      case GET_CHAT_PROPERTY_LIST:
+        return {
+          ...state,
+          list: true,
+          response: action.payload,
+        };
+      case PROPERTY_LIST_ERROR:
+        return {
+          ...state,
+          list: false,
+          response: action.payload,
+        };
+      default:
+        return state;
+    }
+  }

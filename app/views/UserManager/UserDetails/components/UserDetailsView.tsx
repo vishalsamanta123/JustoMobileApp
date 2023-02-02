@@ -16,6 +16,8 @@ const UserDetailsView = (props: any) => {
         { key: 'first', title: 'Stats' },
         { key: 'second', title: 'User Info' },
     ]);
+    console.log('props?.userDetail: ', props?.userDetail);
+
 
     const renderTabBar = (props: any) => (
         <TabBar
@@ -25,10 +27,10 @@ const UserDetailsView = (props: any) => {
             style={{ backgroundColor: PRIMARY_THEME_COLOR_DARK }} />
     );
     const FirstRoute = () => (
-        <StatsView items={props?.CMdetail} />
+        <StatsView items={props?.userDetail} />
     );
     const SecondRoute = () => (
-        <UserInfo items={props?.CMdetail} />
+        <UserInfo items={props?.userDetail} />
     );
     const renderScene = SceneMap({
         first: FirstRoute,
@@ -39,7 +41,7 @@ const UserDetailsView = (props: any) => {
             <Header
                 leftImageSrc={images.backArrow}
                 rightSecondImageScr={images.notification}
-                headerText={strings.CMDetails}
+                headerText={strings.userDetails}
                 headerStyle={styles.headerStyle}
                 RightFirstIconStyle={styles.leftImageIconStyle}
                 leftImageIconStyle={styles.leftImageIconStyle}
@@ -52,7 +54,7 @@ const UserDetailsView = (props: any) => {
                     style={styles.button}
                     onPress={() => {
                         Linking?.openURL(
-                            `tel:${props?.CMdetail?.mobile}`
+                            `tel:${props?.userDetail?.mobile}`
                         )
                     }}
                 >
@@ -62,7 +64,7 @@ const UserDetailsView = (props: any) => {
                     style={styles.button}
                     onPress={() => {
                         Linking?.openURL(
-                            `sms:${props?.CMdetail?.mobile}`
+                            `sms:${props?.userDetail?.mobile}`
                         )
                     }}
                 >

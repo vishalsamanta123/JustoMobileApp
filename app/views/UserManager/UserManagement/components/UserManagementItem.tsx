@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { BLACK_COLOR, DATE_FORMAT, PRIMARY_THEME_COLOR, PURPLE_COLOR, RED_COLOR, WHITE_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant';
+import { BLACK_COLOR, DATE_FORMAT, DATE_TIME_FORMAT, PRIMARY_THEME_COLOR, PURPLE_COLOR, RED_COLOR, WHITE_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import Button from '../../../../components/Button';
@@ -21,24 +21,13 @@ const UserManagementItem = (props: any) => {
             </View>
             <View style={styles.Txtview} >
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>No. of Booking :</Text>
+                    <Text style={styles.projectTxt}>Designation :</Text>
                 </View>
                 {/* <View><Text>:</Text></View> */}
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.total_booking != '' ||
-                        props.items.total_booking != undefined ?
-                        props.items.total_booking : '0'}</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>No. of Closing :</Text>
-                </View>
-                {/* <View><Text>:</Text></View> */}
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.total_closing_booking != "" ||
-                        props.items.total_closing_booking != undefined ?
-                        props.items.total_closing_booking : '0'}</Text>
+                    <Text style={styles.nameTxt}>{props.items.role_title != '' ||
+                        props.items.role_title != undefined ?
+                        props.items.role_title : strings.notfount}</Text>
                 </View>
             </View>
             <View style={styles.Txtview} >
@@ -71,7 +60,7 @@ const UserManagementItem = (props: any) => {
                         color: BLACK_COLOR
                     }]}>{props.items.last_login != "" ||
                         props.items.last_login != undefined ?
-                        moment(props.items.last_login).format(DATE_FORMAT) : ''}</Text>
+                        moment(props.items.last_login).format(DATE_TIME_FORMAT) : ''}</Text>
                 </View>
             </View>
             <View style={styles.buttonContainer}>

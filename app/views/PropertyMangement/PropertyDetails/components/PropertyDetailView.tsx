@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 
 const PropertyDetailView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
-  const [propertydetail, setPropertydetail] = useState([])
+  const [propertydetail, setPropertydetail] = useState<any>([])
   const [configurations, setConfigurations] = useState([])
   const [propertydocument, setPropertydocument] = useState([])
   const [amenity, setAmenity] = useState([])
@@ -77,26 +77,30 @@ const PropertyDetailView = (props: any) => {
       <View style={[styles.btnContainer, {
         justifyContent: 'center'
       }]}>
-        {roleType === ROLE_IDS.sitehead_id ? <></> : <Button
-          handleBtnPress={() => props.handleAllocatePress()}
-          buttonText={strings.allocate}
-          width={150}
-          height={45}
-          bordercolor={GRAY_COLOR}
-          borderWidth={1}
-          btnTxtsize={15}
-          textTransform={"uppercase"}
-        />}
-        <Button
-          handleBtnPress={() => onPressCreatevisit()}
-          buttonText={strings.createVisit}
-          width={150}
-          height={45}
-          bordercolor={GRAY_COLOR}
-          borderWidth={1}
-          btnTxtsize={15}
-          textTransform={"uppercase"}
-        />
+        {propertydetail.status ?
+          <>
+            {roleType === ROLE_IDS.sitehead_id ? <></> : <Button
+              handleBtnPress={() => props.handleAllocatePress()}
+              buttonText={strings.allocate}
+              width={150}
+              height={45}
+              bordercolor={GRAY_COLOR}
+              borderWidth={1}
+              btnTxtsize={15}
+              textTransform={"uppercase"}
+            />}
+            <Button
+              handleBtnPress={() => onPressCreatevisit()}
+              buttonText={strings.createVisit}
+              width={150}
+              height={45}
+              bordercolor={GRAY_COLOR}
+              borderWidth={1}
+              btnTxtsize={15}
+              textTransform={"uppercase"}
+            />
+         </> : <></>
+        }
       </View>
 
       <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} />

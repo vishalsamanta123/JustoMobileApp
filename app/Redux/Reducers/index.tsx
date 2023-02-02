@@ -16,12 +16,13 @@ import { deleteNotificationReducer, notificationListReducer } from "./Notificati
 import { PickUpReducer, UpdatePickUpStatusReducer } from "./PickUpReducer";
 import { transferVisitorReducer, transferVisitReducer } from "./TransferVisitReducer";
 import { firebaseReducer } from "./FirebaseReducer";
-import { ChatReducer, getRecentChatList, updateChatStatus } from "./ChatReducer";
+import { ChatReducer, getRecentChatList, propertyChatReducer, updateChatStatus } from "./ChatReducer";
 import { userAppointmentReducer, userEditAppointmentReducer } from "./AppointmentWithUserReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
 import { CpCheckingReducer } from "./CpCheckingReducer";
 import { SupportAddReducer, SupportReducer } from "./SupportReducer";
 import { leaderBoardReducer } from "./LearderBoardReducer";
+import { UserManagerReducer } from "./UserManagerReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -74,6 +75,7 @@ export default {
     chatData: ChatReducer,
     chatStatusData: updateChatStatus,
     recentChatListData: getRecentChatList,
+    propertyChatListData: propertyChatReducer,
 
     // visit modal
     visitorData: visitorReducer,
@@ -83,6 +85,9 @@ export default {
 
     //closing model
     ClosingManager: ClosingManagerReducer,
+    
+    // user manager 
+    UserManager: UserManagerReducer,
 
     //pickUp
     Pickup: PickUpReducer,

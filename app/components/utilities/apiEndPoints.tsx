@@ -41,7 +41,7 @@ export default {
   GET_ASSIGNCP_LIST: '/userManage/getAssignCPList',
   STATUS_UPDATE_ASSIGN_CP: '/userManage/smUpdateAssignCpStatus',
   ASSIGNCP_SM: '/userManage/cpAssignSorcingManager',
-
+  GET_USERS_LIST_FOR_SH: '/userManage/getUserListForSitehead',
 
   // property Start
   ADDPROPERTY: "/property/addProperty",
@@ -107,6 +107,7 @@ export default {
   // Chat Management
   GET_ALL_USER_CHAT_LIST: '/chat/getAllUserListForChat',
   UPDATE_CHAT_STATUS: '/chat/userChatStatusUpdate',
+  GET_PROPERTY_LIST_FOR_CHAT: '/chat/getCpActivePropertyList',
   GET_RECENT_CHAT_LIST: '/chat/getUserListForChating',
 
 
