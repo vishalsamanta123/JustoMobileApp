@@ -7,6 +7,7 @@ import {
   ROLE_IDS,
   validateEmail,
 } from "app/components/utilities/constant";
+import { getChatListForProperty } from "app/Redux/Actions/ChatActions";
 import { getClosingDetail } from "app/Redux/Actions/ClosingManager";
 import { getCityList, getRolesList } from "app/Redux/Actions/MasterActions";
 import {
@@ -14,6 +15,7 @@ import {
   updateUserSettingData,
   userRegister,
 } from "app/Redux/Actions/SettingActions";
+import { getUsersListForSiteHead } from "app/Redux/Actions/UserManagerActions";
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,15 +44,20 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
     address: "",
     latitude: "",
     longitude: "",
+    sourcing_head: "",
+    property_id: ""
   });
   const [cityData, setCityData] = useState<any>([]);
   const [roleData, setRoleData] = useState<any>([]);
   const userDataSucess = useSelector((state: any) => state.userReducer);
   const { userData = {} } = useSelector((state: any) => state.userData);
+  const propertyChatListData = useSelector((state: any) => state.propertyChatListData);
+  console.log('propertyChatListData: ', propertyChatListData);
   const { response = {}, Roleresponse = {} } =
     useSelector((state: any) => state.masterData) || {};
   const detailsData = useSelector((state: any) => state.ClosingManager);
-
+  const UserManager = useSelector((state: any) => state.UserManager) || {};
+  console.log("response: UserManager", UserManager);
   useFocusEffect(
     React.useCallback(() => {
       if (type === "edit") {
@@ -63,14 +70,14 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
     React.useCallback(() => {
       dispatch(getRolesList({}));
       if (Roleresponse?.status === 200) {
-      if (Roleresponse?.data?.length > 0) {
-      console.log('Roleresponse: ', Roleresponse);
-        const final = Roleresponse?.data?.filter((el: any) => {
-          return userData?.data?.role_title !== el.role_title;
-        });
-        setRoleData(final);
+        if (Roleresponse?.data?.length > 0) {
+          console.log("Roleresponse: ", Roleresponse);
+          const final = Roleresponse?.data?.filter((el: any) => {
+            return userData?.data?.role_title !== el.role_title;
+          });
+          setRoleData(final);
+        }
       }
-    }
       return () => {};
     }, [navigation])
   );
@@ -78,7 +85,7 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
   useEffect(() => {
     if (type === "edit") {
       if (detailsData?.response?.status === 200) {
-      console.log('detailsData: ', detailsData);
+        console.log("detailsData: ", detailsData);
         setAddNewUserData({
           role_id: detailsData?.response?.data[0]?.role_id,
           profile_picture:
@@ -141,7 +148,14 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = "";
-    if (addNewUserData.firstname == undefined || addNewUserData.firstname == "") {
+
+    if (addNewUserData.role_id == undefined || addNewUserData.role_id == "") {
+      isError = false;
+      errorMessage = "Role is require. Please enter Role";
+    } else if (
+      addNewUserData.firstname == undefined ||
+      addNewUserData.firstname == ""
+    ) {
       isError = false;
       errorMessage = "First Name is require. Please enter first name";
     } else if (
@@ -168,7 +182,10 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
     } else if (Regexs.panRegex.test(addNewUserData.pancard_no) === false) {
       isError = false;
       errorMessage = "Please enter the valid Pancard number";
-    } else if (addNewUserData.gender == undefined || addNewUserData.gender == "") {
+    } else if (
+      addNewUserData.gender == undefined ||
+      addNewUserData.gender == ""
+    ) {
       isError = false;
       errorMessage = "Gender is require. Please select gender";
     } else if (
@@ -177,7 +194,10 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
     ) {
       isError = false;
       errorMessage = "Date Of Birth is require. Please select date of birth";
-    } else if (addNewUserData.mobile == undefined || addNewUserData.mobile == "") {
+    } else if (
+      addNewUserData.mobile == undefined ||
+      addNewUserData.mobile == ""
+    ) {
       isError = false;
       errorMessage = "Mobile Number is require. Please enter mobile number";
     } else if (
@@ -186,7 +206,10 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
     ) {
       isError = false;
       errorMessage = "Whatsapp Number is require. Please enter whatsapp number";
-    } else if (addNewUserData.email == undefined || addNewUserData.email == "") {
+    } else if (
+      addNewUserData.email == undefined ||
+      addNewUserData.email == ""
+    ) {
       isError = false;
       errorMessage = "Email is require. Please enter email";
     } else if (validateEmail.test(addNewUserData.email) === false) {
@@ -207,6 +230,18 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
     ) {
       isError = false;
       errorMessage = "Address is require. Please enter address";
+    } else if (
+      addNewUserData.role_id === ROLE_IDS.sourcingmanager_id ||
+      addNewUserData.role_id === ROLE_IDS.closingmanager_id
+    ) {
+      if (
+        addNewUserData.sourcing_head == "" ||
+        addNewUserData.role_id == ""
+        ) {
+        console.log('ENTER')
+        isError = false;
+        errorMessage = "TL is require. Please enter TL ";
+      }
     }
     if (errorMessage !== "") {
       ErrorMessage({
@@ -239,6 +274,10 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
       newFormdata.append("address", addNewUserData.address);
       newFormdata.append("latitude", addNewUserData.latitude);
       newFormdata.append("longitude", addNewUserData.longitude);
+      newFormdata.append("property_id", addNewUserData.property_id);
+      if (addNewUserData?.sourcing_head) {
+        newFormdata.append("sourcing_head", addNewUserData.sourcing_head);
+      }
       if (type === "edit") {
         dispatch(updateUserSettingData(newFormdata));
       } else {
@@ -257,8 +296,22 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
     }
   }, [response]);
   const handlegetRoleList = () => {
-    console.log('dispatch. . . .. . ')
-    
+    console.log("dispatch. . . .. . ");
+  };
+  const handlegetPropertyList = () => {
+    dispatch(
+      getChatListForProperty({
+        limit: 100,
+        offset: 0,
+      })
+    );
+  };
+  const handleGetTLlist = () => {
+    dispatch(
+      getUsersListForSiteHead({
+        role_id: addNewUserData.role_id,
+      })
+    );
   };
   return (
     <>
@@ -272,6 +325,10 @@ const AddNewUserScreen = ({ navigation, route }: any) => {
         cityData={cityData}
         handlegetRoleList={handlegetRoleList}
         roleData={roleData}
+        userList={UserManager?.response?.data}
+        propertyList={propertyChatListData?.response?.data}
+        handleGetTLlist={handleGetTLlist}
+        handlegetPropertyList={handlegetPropertyList}
       />
     </>
   );

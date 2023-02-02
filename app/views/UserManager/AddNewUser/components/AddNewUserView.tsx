@@ -10,6 +10,7 @@ import {
   DATE_FORMAT,
   GRAY_COLOR,
   PRIMARY_THEME_COLOR,
+  ROLE_IDS,
   WHITE_COLOR,
 } from "../../../../components/utilities/constant";
 import Button from "../../../../components/Button";
@@ -26,12 +27,15 @@ const AddNewCMView = (props: any) => {
   const [profile, setProfile] = React.useState(false);
   const [ShowCity, setShowCity] = useState(false);
   console.log("props.roleData: ", props.roleData);
+  console.log('props.userList: ', props.userList);
 
   return (
     <View style={styles.mainContainer}>
       <Header
         // headerText={strings.addNewCM}
-        headerText={props?.type === "edit" ? strings.editUser : strings.addNewUser}
+        headerText={
+          props?.type === "edit" ? strings.editUser : strings.addNewUser
+        }
         headerStyle={styles.headerStyle}
         headerTextStyle={styles.headerTextStyle}
         leftImageSrc={images.backArrow}
@@ -76,7 +80,7 @@ const AddNewCMView = (props: any) => {
             />
           </View>
         </TouchableOpacity>
-        <View style={styles.inputWrap}>
+        {props?.type === "edit" ? null : <View style={styles.inputWrap}>
           <DropdownInput
             headingText={"Select Role"}
             placeholder={"Role"}
@@ -106,7 +110,80 @@ const AddNewCMView = (props: any) => {
               );
             }}
           />
-        </View>
+        </View>}
+        {props?.type === "edit" ? null : (props.addNewUserData.role_id === ROLE_IDS.sourcingmanager_id ||
+        props.addNewUserData.role_id === ROLE_IDS.closingmanager_id ? (
+          <View style={styles.inputWrap}>
+            <DropdownInput
+              headingText={
+                props.addNewUserData.role_id === ROLE_IDS.sourcingmanager_id
+                  ? "Select Sourcing TL"
+                  : props.addNewUserData.role_id === ROLE_IDS.closingmanager_id
+                  ? "Select Closing TL"
+                  : ""
+              }
+              placeholder={"Select user"}
+              data={props.userList}
+              inputWidth={"100%"}
+              // disable={true}
+              require={true}
+              paddingLeft={16}
+              maxHeight={300}
+              onFocus={() => props.handleGetTLlist()}
+              labelField="user_name"
+              valueField={"_id"}
+              value={props.addNewUserData?.sourcing_head}
+              onChange={(item: any) => {
+                console.log("item: ", item);
+                props.setAddNewUserData({
+                  ...props.addNewUserData,
+                  sourcing_head: item._id,
+                });
+              }}
+              newRenderItem={(item: any) => {
+              console.log('item: ', item);
+                return (
+                  <>
+                    <View style={styles.item}>
+                      <Text style={styles.textItem}>{item.user_name}</Text>
+                    </View>
+                  </>
+                );
+              }}
+            />
+          </View>
+        ) : null)}
+        {props?.type === "edit" ? null : <View style={styles.inputWrap}>
+          <DropdownInput
+            headingText={"Select Property"}
+            placeholder={"Property"}
+            data={props.propertyList}
+            inputWidth={"100%"}
+            // disable={true}
+            paddingLeft={16}
+            maxHeight={300}
+            onFocus={() => props.handlegetPropertyList()}
+            labelField="property_title"
+            valueField={"_id"}
+            value={props.addNewUserData?.property_id}
+            onChange={(item: any) => {
+              console.log("item: ", item);
+              props.setAddNewUserData({
+                ...props.addNewUserData,
+                property_id: item._id,
+              });
+            }}
+            newRenderItem={(item: any) => {
+              return (
+                <>
+                  <View style={styles.item}>
+                    <Text style={styles.textItem}>{item.property_title}</Text>
+                  </View>
+                </>
+              );
+            }}
+          />
+        </View>}
         <View style={styles.inputWrap}>
           <InputField
             require={true}

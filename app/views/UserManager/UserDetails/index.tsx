@@ -6,7 +6,7 @@ import UserDetailsView from "./components/UserDetailsView";
 
 const UserDetailsScreen = ({ navigation, route }: any) => {
   const data = route?.params || {};
-  const [CMdetail, setCMdetail] = useState([]);
+  const [userDetail, setUserdetail] = useState([]);
   const dispatch: any = useDispatch();
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.ClosingManager
@@ -21,16 +21,16 @@ const UserDetailsScreen = ({ navigation, route }: any) => {
 
   useEffect(() => {
     if (response?.status === 200) {
-      setCMdetail(response?.data[0]);
+      setUserdetail(response?.data[0]);
     } else {
-      setCMdetail([]);
+      setUserdetail([]);
     }
   }, [response]);
   const handleBackPress = () => {
     navigation.goBack();
   };
   return (
-    <UserDetailsView handleBackPress={handleBackPress} CMdetail={CMdetail} />
+    <UserDetailsView handleBackPress={handleBackPress} userDetail={userDetail} />
   );
 };
 export default UserDetailsScreen;

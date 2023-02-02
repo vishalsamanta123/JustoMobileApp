@@ -108,8 +108,8 @@ const EditProfileScreen = ({ navigation, route }: any) => {
         isError = false;
         errorMessage = "First Name is require. Please enter Owner Name";
       } else if (editData.adhar_no == undefined || editData.adhar_no == "") {
-        isError = false;
-        errorMessage = "Aadhaar No. is require. Please enter Aadhaar No.";
+        // isError = false;
+        // errorMessage = "Aadhaar No. is require. Please enter Aadhaar No.";
       } else if (Regexs.AadharRegex.test(editData.adhar_no) === false) {
         isError = false;
         errorMessage = "Please enter the valid Aadhaar number";
@@ -117,8 +117,8 @@ const EditProfileScreen = ({ navigation, route }: any) => {
         editData.pancard_no == undefined ||
         editData.pancard_no == ""
       ) {
-        isError = false;
-        errorMessage = "Pancard No. is require. Please enter Pancard No.";
+        // isError = false;
+        // errorMessage = "Pancard No. is require. Please enter Pancard No.";
       } else if (Regexs.panRegex.test(editData.pancard_no) === false) {
         isError = false;
         errorMessage = "Please enter the valid Pancard number";

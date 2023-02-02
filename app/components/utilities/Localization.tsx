@@ -177,6 +177,8 @@ const strings = new LocalizedStrings({
     createUser: 'Create User',
     editUser: 'Edit User',
     updateUser: 'Update User',
+    userDetails: "User Detail",
+
     /*** agency ***/
     addnewAgency: 'Add new CP',
     pendingconfirm: 'Approve New CP',

@@ -46,9 +46,9 @@ const ProfileView = (props: any) => {
             <Image
               style={styles.userImage}
               source={
-                allDetails?.profile_picture ?
-                {uri: allDetails?.base_url + allDetails?.profile_picture}
-                : images.user
+                allDetails?.profile_picture
+                  ? { uri: allDetails?.base_url + allDetails?.profile_picture }
+                  : images.user
               }
             />
             <Text style={styles.userNameText}>
@@ -84,7 +84,9 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>{allDetails?.adhar_no}</Text>
+              <Text style={styles.valueText}>
+                {allDetails?.adhar_no ? allDetails?.adhar_no : strings.notfount}
+              </Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -93,7 +95,11 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>{allDetails?.pancard_no} </Text>
+              <Text style={styles.valueText}>
+                {allDetails?.pancard_no
+                  ? allDetails?.pancard_no
+                  : strings.notfount}{" "}
+              </Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -114,7 +120,9 @@ const ProfileView = (props: any) => {
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
               <Text style={styles.valueText}>
-                {moment(allDetails?.dateofbirth).format("DD/MM/YYYY")}
+                {allDetails?.dateofbirth
+                  ? moment(allDetails?.dateofbirth).format("DD/MM/YYYY")
+                  : strings.notfount}
               </Text>
             </View>
           </View>
@@ -124,7 +132,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>{allDetails?.mobile}</Text>
+              <Text style={styles.valueText}>{allDetails?.mobile ? allDetails?.mobile : strings.notfount}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -133,7 +141,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>{allDetails?.whatsapp_no}</Text>
+              <Text style={styles.valueText}>{allDetails?.whatsapp_no ? allDetails?.whatsapp_no : strings.notfount}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -142,7 +150,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>{allDetails?.email}</Text>
+              <Text style={styles.valueText}>{allDetails?.email ? allDetails?.email : strings.notfount}</Text>
             </View>
           </View>
         </View>
